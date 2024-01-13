@@ -1,9 +1,9 @@
-import Image from "next/image";
-
-export default function Home() {
+const Home = () => {
   return (
-    <main className="text-center text-5xl font-bold pt-11">
-      Q-print is comming .... By ExperSquad
+    <main className="text-5xl font-bold items-center">
+      Q print is comming ...
     </main>
   );
-}
+};
+
+export default Home;
