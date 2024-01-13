@@ -1,3 +1,5 @@
+// tailwind.config.js
+
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -8,13 +10,8 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
       fontSize: {
-        clamp: "clamp(1rem, 5vw, 3rem)",
+        clamp: "clamp(1rem, 5vw, 3rem)", // use it like this => [font-size:_clamp(2em,5vw,10em)]
       },
     },
   },
@@ -23,4 +20,5 @@ const config: Config = {
     themes: ["light"],
   },
 };
+
 export default config;
