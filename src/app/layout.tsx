@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/Providers";
-import Header from "@/components/header/Header";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 const poppins = Poppins({
   weight: ["400"],
@@ -21,6 +22,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <body className={poppins.className}>
           <Header />
           {children}
+          <Footer />
         </body>
       </html>
     </Providers>
