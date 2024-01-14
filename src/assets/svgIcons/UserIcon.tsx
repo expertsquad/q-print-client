@@ -2,7 +2,7 @@ import React from "react";
 
 const UserIcon = () => {
   return (
-    <button className="border rounded-full p-1">
+    <div className="border border-solid border-black  rounded-full p-1.5">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="icon icon-tabler icon-tabler-user"
@@ -20,7 +20,7 @@ const UserIcon = () => {
         <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
       </svg>
       {""}
-    </button>
+    </div>
   );
 };
 
