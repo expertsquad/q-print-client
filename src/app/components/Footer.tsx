@@ -11,8 +11,9 @@ import Reddit from "../assets/FooterSVG/Reddit";
 import Youtube from "../assets/FooterSVG/Youtube";
 import WhatsApp from "../assets/FooterSVG/WhatsApp";
 import Pinterest from "../assets/FooterSVG/Pinterest";
+import PaymentsButton from "./PaymentsButton";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="bg-[#1A1A1A] p-6">
       <div className="space-y-5 md:grid md:grid-cols-5 items-center justify-center md:items-start mx-auto relative text-center py-5">
@@ -46,35 +47,16 @@ const Footer = () => {
           <p className="text-[#999]">Cartridge</p>
           <p className="text-[#999]">Ink</p>
         </div>
+        {/* //Payment Methods */}
         <div className="flex items-center justify-center gap-5 md:absolute md:bottom-10 md:right-12 flex-wrap">
-          {/* <!-- payment method btn ApplePay --> */}
-          <button className="border border-gray-600 w-16 h-12 flex items-center justify-center rounded-lg shrink-0">
-            {""}
-            <ApplePay />
-          </button>
-          {/* <!-- payment method btn Visa --> */}
-          <button className="border border-gray-600 w-16 h-12 flex items-center justify-center rounded-lg shrink-0">
-            {""}
-            <Visa />
-          </button>
-          {/* <!-- payment method btn DISCOVER --> */}
-          <button className="border border-gray-600 w-16 h-12 flex items-center justify-center rounded-lg shrink-0">
-            {""}
-            <Discover />
-          </button>
-          {/* <!-- payment method btn master Card --> */}
-          <button className="flex items-center justify-center border border-gray-600 w-16 h-12 rounded-lg shrink-0">
-            {""}
-            <Mastercard />
-          </button>
-          {/* <!-- payment method btn Secure Payment --> */}
-          <button className="w-24 h-12 border border-gray-600 rounded-lg font-bold text-white">
-            <span className="text-[#999] flex items-center gap-1 pl-3 font-semibold text-xs">
-              <Lock />
-              Secure
-            </span>
-            Payment
-          </button>
+          <PaymentsButton paymentMethodComponents={<ApplePay />} />
+
+          <PaymentsButton paymentMethodComponents={<Visa />} />
+
+          <PaymentsButton paymentMethodComponents={<Discover />} />
+
+          <PaymentsButton paymentMethodComponents={<Mastercard />} />
+          <PaymentsButton isSecure secureButtonContent="Payment" />
         </div>
         <div>
           <div className="flex gap-y-5 gap-x-5 py-10 md:flex-col items-center justify-center">
@@ -88,12 +70,6 @@ const Footer = () => {
             </div>
             {/* <!-- Apple PlayStore --> */}
             <div className="flex items-center justify-between flex-1 rounded-lg bg-full-black text-white-color text-left py-4 md:py-3 px-3 md:w-40">
-              {/* <img
-                  className="w-auto md:w-7"
-                  src="../../images/app-store.png"
-                  alt=""
-                />
-                <Image /> */}
               Image
               <div>
                 <p className="text-xs text-[#999]">Download on the</p>
