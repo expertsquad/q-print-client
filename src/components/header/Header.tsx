@@ -1,3 +1,4 @@
+import CartIcon from "@/assets/svgIcons/CartIcon";
 import FilterIcon from "@/assets/svgIcons/FilterIcon";
 import HeartIcon from "@/assets/svgIcons/HeartIcon";
 import UserIcon from "@/assets/svgIcons/UserIcon";
@@ -42,7 +43,7 @@ const Header = () => {
       </div>
       {/* //Order Two */}
       <div className="border ">
-        <div className="relative w-full">
+        <div className="relative w-[735px]">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg
               className="w-4 h-4 text-gray-500"
@@ -63,7 +64,7 @@ const Header = () => {
           <input
             type="search"
             id="default-search"
-            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 "
+            className="block w-full py-3 px-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50 "
             placeholder="Search for the product"
             required
           />
@@ -71,32 +72,18 @@ const Header = () => {
         <FilterIcon />
       </div>
       {/* //Order Three */}
-      <div className="border">
-        <button className="indicator">
+      <div className="border flex items-center gap-7">
+        <button type="button" className="flex items-center gap-2 text-[14px]">
           <HeartIcon />
-          <span className="badge badge-xs bg-red-500 indicator-item"></span>
           Wishlist
         </button>
-        <UserIcon />
-        <button className="btn btn-ghost btn-circle">
-          <div className="indicator">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-              />
-            </svg>
-            <span className="badge badge-xs bg-red-500 indicator-item"></span>
-          </div>
-          Wishlist
+        <button className="flex items-center gap-2">
+          <CartIcon />
+          Cart
+        </button>
+        <button>
+          <UserIcon />
+          {""}
         </button>
       </div>
     </header>
