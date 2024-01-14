@@ -17,6 +17,12 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <body className={poppins.className}>
+        <div
+          className="w-full items-center py-10 text-3xl text-center border-b-2 border-red-200
+         "
+        >
+          Heder section comming soon ...
+        </div>
         {children}
         <Footer />
       </body>
