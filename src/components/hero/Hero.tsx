@@ -3,6 +3,13 @@
 import { heroItems } from "@/constants";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import ShopNowButton from "../UI/btn/ShopNowButton";
+import { Nunito } from "next/font/google";
+
+const nunito = Nunito({
+  weight: "400",
+  subsets: ["cyrillic"],
+});
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -10,7 +17,7 @@ const Hero = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % heroItems.length);
-    }, 3000); // Change 7000 to the desired interval in milliseconds
+    }, 7000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -30,36 +37,49 @@ const Hero = () => {
           <div
             key={item?._id}
             id={item?._id}
-            className="carousel-item w-full bg-[#f2f4f5] h-[480px]"
+            className="carousel-item w-full bg-[#f3f5f2] h-[228px] md:h-[480px] "
             style={showSlide(index)}
           >
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-3xl font-bold ">{item?.company}</h2>
-                <p>{item?.about}</p>
+            <div className="flex items-center justify-between px-6">
+              <div className="flex flex-col  ">
+                <h2
+                  className={` [font-size:_clamp(1em,5vw,4em)] font-bold leading-none  ${nunito.className}`}
+                >
+                  {item?.company}
+                </h2>
+                <p
+                  className={`[font-size:_clamp(0.85em,5vw,1em)] ${nunito.className} `}
+                >
+                  {item?.about}
+                </p>
+
+                <div className="mt-4">
+                  <ShopNowButton href="#" />
+                </div>
+
+                <div className="indicators  gap-2 flex mt-8 ">
+                  {heroItems?.map((_, index) => (
+                    <div
+                      key={index}
+                      onClick={() => handleDotClick(index)}
+                      className={`indicator w-[10px] h-[10px] rounded-full cursor-pointer ${
+                        index === currentSlide ? "bg-[#E73C17]" : "bg-gray-300"
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
               <div>
                 <Image
                   src={item?.picture}
                   alt="hero item images"
-                  width={400}
-                  height={400}
+                  width={350}
+                  height={350}
                 />
               </div>
             </div>
           </div>
         ))}
-        <div className="indicators absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-          {heroItems?.map((_, index) => (
-            <div
-              key={index}
-              onClick={() => handleDotClick(index)}
-              className={`indicator w-[10px] h-[10px] rounded-full cursor-pointer ${
-                index === currentSlide ? "bg-[#E73C17]" : "bg-gray-300"
-              }`}
-            />
-          ))}
-        </div>
       </div>
     </div>
   );
