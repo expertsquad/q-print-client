@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["daisyui.com"],
+    domains: ["daisyui.com", "http://www.w3.org/2000/svg"],
   },
 };
 

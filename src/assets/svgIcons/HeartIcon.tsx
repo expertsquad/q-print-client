@@ -18,7 +18,7 @@ const HeartIcon = () => {
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
       </svg>
-      <span className="absolute top-0 end-0 inline-flex items-center py-0.5 px-1 rounded-full text-xs font-medium transform -translate-y-1/2 translate-x-1/2 bg-red-500 text-white">
+      <span className="absolute top-0 end-0 inline-flex items-center py-0.5 px-1 rounded-full text-xs font-medium transform -translate-y-1/2 translate-x-1/2 bg-red-600 text-white">
         99
       </span>
     </div>
