@@ -1,18 +1,18 @@
-import ApplePay from "../../assets/FooterSVG/ApplePay";
-import Discover from "../../assets/FooterSVG/Discover";
-import Logo from "../../assets/svgIcons/Logo";
-import Mastercard from "../../assets/FooterSVG/Mastercard";
-import Visa from "../../assets/FooterSVG/Visa";
-import Music from "../../assets/FooterSVG/Music";
-import Facebook from "../../assets/FooterSVG/Facebook";
-import Reddit from "../../assets/FooterSVG/Reddit";
-import Youtube from "../../assets/FooterSVG/Youtube";
-import WhatsApp from "../../assets/FooterSVG/WhatsApp";
-import Pinterest from "../../assets/FooterSVG/Pinterest";
 import FooterLinks from "./FooterLinks";
-import appleStore from "@/app/assets/applestore.svg";
-import playStore from "@/app/assets/playstore.svg";
 import CombinedComponent from "./CombineComponent";
+import Music from "@/assets/FooterSVG/Music";
+import Logo from "@/assets/svgIcons/Logo";
+import Visa from "@/assets/FooterSVG/Visa";
+import Discover from "@/assets/FooterSVG/Discover";
+import Mastercard from "@/assets/FooterSVG/Mastercard";
+import Reddit from "@/assets/FooterSVG/Reddit";
+import Youtube from "@/assets/FooterSVG/Youtube";
+import WhatsApp from "@/assets/FooterSVG/WhatsApp";
+import Pinterest from "@/assets/FooterSVG/Pinterest";
+import Facebook from "@/assets/FooterSVG/Facebook";
+import ApplePay from "@/assets/FooterSVG/ApplePay";
+import playStore from "@/assets/playstore.svg";
+import appleStore from "@/assets/applestore.svg";
 
 const Footer = () => {
   return (

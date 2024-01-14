@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import Providers from "@/lib/Providers";
+import Header from "@/components/header/Header";
 import Footer from "./components/Footer/Footer";
 
 const poppins = Poppins({
@@ -15,18 +17,15 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en">
-      <body className={poppins.className}>
-        <div
-          className="w-full items-center py-10 text-3xl text-center border-b-2 border-red-200
-         "
-        >
-          Heder section comming soon ...
-        </div>
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <Providers>
+      <html lang="en">
+        <body className={poppins.className}>
+          <Header />
+          {children}
+          <Footer />
+        </body>
+      </html>
+    </Providers>
   );
 };
 

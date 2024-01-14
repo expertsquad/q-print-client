@@ -1,7 +1,7 @@
+import Lock from "@/assets/FooterSVG/Lock";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactElement } from "react";
-import Lock from "../../assets/FooterSVG/Lock";
 
 interface CombinedComponentProps {
   type: "payment" | "social" | "store";
