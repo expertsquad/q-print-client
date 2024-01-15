@@ -40,7 +40,3 @@
     transform: translateX(-100%);
   }
 }
-
-.searchBar-controller {
-  width: clamp(300px, 60%, 735px);
-}

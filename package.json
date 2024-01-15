@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
-    "@tabler/icons": "^2.46.0",
+    "@tabler/icons-react": "^2.46.0",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
