@@ -15,3 +15,6 @@
   border: 2px solid transparent;
   border-image: linear-gradient(90deg, #c83b62 0.32%, #7f35cd 102.21%);
 }
+.searchBar-controller {
+  width: clamp(300px, 60%, 735px);
+}
