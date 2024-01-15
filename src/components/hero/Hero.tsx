@@ -32,18 +32,18 @@ const Hero = () => {
 
   return (
     <div className="w-full">
-      <div className="carousel w-full relative">
+      <div className="carousel w-full ">
         {heroItems?.map((item, index) => (
           <div
             key={item?._id}
             id={item?._id}
-            className="carousel-item w-full bg-[#f3f5f2] h-[228px] md:h-[480px] "
+            className="carousel-item w-full bg-[#f3f5f2] h-[250px] md:h-[480px] "
             style={showSlide(index)}
           >
             <div className="flex items-center justify-between px-9 py-4 h-full">
               <div className="flex flex-col  ">
                 <h2
-                  className={` [font-size:_clamp(1em,5vw,4em)] font-bold leading-none  ${nunito.className}`}
+                  className={` [font-size:_clamp(1.25em,5vw,4em)] font-bold leading-none  ${nunito.className}`}
                 >
                   {item?.company}
                 </h2>
@@ -72,7 +72,7 @@ const Hero = () => {
                   ))}
                 </div>
               </div>
-              <div className="">
+              <div className="pr-0 md:pr-32">
                 <Image
                   src={item?.picture}
                   alt="hero item images"
