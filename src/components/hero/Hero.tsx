@@ -31,7 +31,7 @@ const Hero = () => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <div className="carousel w-full relative">
         {heroItems?.map((item, index) => (
           <div

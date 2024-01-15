@@ -10,8 +10,8 @@ const Carousel = () => {
   ];
 
   return (
-    <div className=" w-full overflow-auto">
-      <div className="  whitespace-nowrap overflow-auto  flex">
+    <div className=" w-full overflow-hidden">
+      <div className="  whitespace-nowrap overflow-hidden  flex">
         {[...images, ...images, ...images].map((brand, index) => (
           <div key={index} className=" animated-carousel p-4 min-w-100">
             <Image
