@@ -40,7 +40,7 @@ const Hero = () => {
             className="carousel-item w-full bg-[#f3f5f2] h-[228px] md:h-[480px] "
             style={showSlide(index)}
           >
-            <div className="flex items-center justify-between px-6">
+            <div className="flex items-center justify-between px-9 h-full">
               <div className="flex flex-col  ">
                 <h2
                   className={` [font-size:_clamp(1em,5vw,4em)] font-bold leading-none  ${nunito.className}`}
@@ -52,6 +52,9 @@ const Hero = () => {
                 >
                   {item?.about}
                 </p>
+                <h4 className="[font-size:_clamp(1.6em,4vw,1em)] main-text-color font-semibold mt-4">
+                  2800 QAR
+                </h4>
 
                 <div className="mt-4">
                   <ShopNowButton href="#" />

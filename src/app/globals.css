@@ -2,16 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+/* main backgroud color */
+
 .main-bg-color {
   background: linear-gradient(90deg, #c83b62 0.32%, #7f35cd 102.21%);
 }
+
+/* main text color */
+
 .main-text-color {
   background: -webkit-linear-gradient(90deg, #c83b62 0.32%, #7f35cd 102.21%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* main border color */
+
 .main-border-color {
   border-image-slice: 1;
   border: 2px solid transparent;
   border-image: linear-gradient(90deg, #c83b62 0.32%, #7f35cd 102.21%);
+}
+
+/* carousel animation start */
+.animated-carousel {
+  animation: 5s slide infinite normal;
+}
+.animated-carousel:hover {
+  animation-play-state: paused;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
