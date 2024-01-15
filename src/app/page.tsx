@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <main className="max-w-[1280px] mx-auto">
       <Hero />
-      <div className="mb-36">
+      <div className="w-full">
         <Carousel />
       </div>
     </main>

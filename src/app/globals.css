@@ -26,17 +26,14 @@
 
 /* carousel animation start */
 .animated-carousel {
-  animation: 5s slide infinite normal;
-}
-.animated-carousel:hover {
-  animation-play-state: paused;
+  animation: 5s slide infinite linear;
 }
 
 @keyframes slide {
-  from {
+  0% {
     transform: translateX(0%);
   }
-  to {
+  100% {
     transform: translateX(-100%);
   }
 }

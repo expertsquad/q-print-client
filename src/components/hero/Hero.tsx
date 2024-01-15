@@ -40,7 +40,7 @@ const Hero = () => {
             className="carousel-item w-full bg-[#f3f5f2] h-[228px] md:h-[480px] "
             style={showSlide(index)}
           >
-            <div className="flex items-center justify-between px-9 h-full">
+            <div className="flex items-center justify-between px-9 py-4 h-full">
               <div className="flex flex-col  ">
                 <h2
                   className={` [font-size:_clamp(1em,5vw,4em)] font-bold leading-none  ${nunito.className}`}
@@ -72,12 +72,12 @@ const Hero = () => {
                   ))}
                 </div>
               </div>
-              <div>
+              <div className="">
                 <Image
                   src={item?.picture}
                   alt="hero item images"
-                  width={350}
-                  height={350}
+                  width={280}
+                  height={280}
                 />
               </div>
             </div>
