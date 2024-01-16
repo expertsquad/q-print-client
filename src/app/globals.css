@@ -40,3 +40,8 @@
     transform: translateX(-100%);
   }
 }
+
+/* //Deal Of The Day */
+.card-title-h2 {
+  font-size: clamp(18px, 15vw, 24px);
+}
