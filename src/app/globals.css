@@ -37,3 +37,12 @@
     transform: translateX(-100%);
   }
 }
+
+/* scroll modification */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-x: hidden;
+}

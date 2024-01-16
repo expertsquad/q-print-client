@@ -44,12 +44,12 @@ export const heroItems = [
     _id: "65a3c826678a3f02b0f68fef",
     picture: "https://freepngimg.com/thumb/printer/10-printer-png-image.png",
     company: "Awesome collection",
-    about: "nostrud id ad elit proident consectetur fugiat",
+    about: "New products arrived this month",
   },
   {
     _id: "65a3c8268d271912e713bbfa",
     picture: "https://freepngimg.com/thumb/printer/11-printer-png-image.png",
     company: "Shop online",
-    about: "est tempor esse minim consequat magna velit",
+    about: "Huge collection available",
   },
 ];

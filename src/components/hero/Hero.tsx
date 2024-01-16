@@ -48,11 +48,11 @@ const Hero = () => {
                   {item?.company}
                 </h2>
                 <p
-                  className={`[font-size:_clamp(0.85em,5vw,1em)] ${nunito.className} `}
+                  className={`[font-size:_clamp(0.85em,5vw,1em)] ${nunito.className} text-gray-500 `}
                 >
                   {item?.about}
                 </p>
-                <h4 className="[font-size:_clamp(1.6em,4vw,1em)] main-text-color font-semibold mt-4">
+                <h4 className="[font-size:_clamp(1.6em,4vw,1em)] main-text-color font-semibold mt-4 ">
                   2800 QAR
                 </h4>
 
