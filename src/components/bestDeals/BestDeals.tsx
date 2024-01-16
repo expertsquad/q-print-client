@@ -29,10 +29,10 @@ const BestDeals = () => {
 
           <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
             <div className="flex flex-col border p-3 rounded-lg ">
-              <span className="countdown [font-size:_clamp(0.9em,4vw,1.5em)] ">
-                <span style={{ "--value": 7 }}></span>
+              <span className="countdown [font-size:_clamp(0.9em,4vw,1.5em)]  ">
+                <span className="" style={{ "--value": 7 }}></span>
               </span>
-              <p className=" [font-size:_clamp(0.6em,4vw,0.8em)] font-bold">
+              <p className=" [font-size:_clamp(0.6em,4vw,0.8em)] font-bold bg-gradient-to-r from-[#C83B62]  to-[#7F35CD]  text-transparent bg-clip-text">
                 DAYS
               </p>
             </div>
@@ -40,7 +40,7 @@ const BestDeals = () => {
               <span className="countdown [font-size:_clamp(0.9em,4vw,1.5em)] ">
                 <span style={{ "--value": 15 }}></span>
               </span>
-              <p className=" [font-size:_clamp(0.6em,4vw,0.8em)] font-bold">
+              <p className=" [font-size:_clamp(0.6em,4vw,0.8em)] font-bold bg-gradient-to-r from-[#C83B62]  to-[#7F35CD]  text-transparent bg-clip-text">
                 HOURS
               </p>
             </div>
@@ -48,7 +48,7 @@ const BestDeals = () => {
               <span className="countdown [font-size:_clamp(0.9em,4vw,1.5em)] ">
                 <span style={{ "--value": 48 }}></span>
               </span>
-              <p className=" [font-size:_clamp(0.6em,4vw,0.8em)] font-bold">
+              <p className=" [font-size:_clamp(0.6em,4vw,0.8em)] font-bold bg-gradient-to-r from-[#C83B62]  to-[#7F35CD]  text-transparent bg-clip-text">
                 MIN
               </p>
             </div>
@@ -56,7 +56,7 @@ const BestDeals = () => {
               <span className="countdown [font-size:_clamp(0.9em,4vw,1.5em)] ">
                 <span style={{ "--value": 31 }}></span>
               </span>
-              <p className=" [font-size:_clamp(0.6em,4vw,0.8em)] font-bold">
+              <p className=" [font-size:_clamp(0.6em,4vw,0.8em)] font-bold bg-gradient-to-r from-[#C83B62]  to-[#7F35CD]  text-transparent bg-clip-text">
                 SEC
               </p>
             </div>
