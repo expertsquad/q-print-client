@@ -8,18 +8,19 @@ import {
 import IconButton from "./IconButton";
 import Image from "next/image";
 import qPrintLogo from "@/assets/logotwo.svg";
+import Link from "next/link";
 
 const Header = () => {
   return (
     <header>
-      <section className="flex items-center justify-between">
-        <div className="section-first-child">
+      <section className="flex items-center justify-between pt-6 pb-6 px-[100px]">
+        <div className="section-first-child w-1/4">
           <Image src={qPrintLogo} alt="Logo" />
         </div>
         {/* //SearchBar */}
-        <div className="section-second-child flex items-center">
-          <div className="relative">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+        <div className="section-second-child flex items-center w-2/4 gap-5">
+          <div className="relative w-full">
+            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
               <IconSearch />
             </div>
             <input
@@ -35,7 +36,7 @@ const Header = () => {
           </div>
         </div>
         {/* //Heart, Cart and Profile */}
-        <div className="section-last-child flex items-center gap-5">
+        <div className="section-last-child flex items-center gap-5 w-1/4 navbar-end">
           <IconButton
             icon={<IconHeart />}
             badgeCount={99}
@@ -52,74 +53,13 @@ const Header = () => {
           <IconButton icon={<IconUser />} label="" />
         </div>
       </section>
-      <section>
-        <div className="navbar bg-slate-300">
-          <div className="navbar-start">
-            <div className="dropdown">
-              <div tabIndex={0} role="button" className="btn btn-ghost ">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
-              </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <a>Item 1</a>
-                </li>
-                <li>
-                  <a>Parent</a>
-                  <ul className="p-2">
-                    <li>
-                      <a>Submenu 1</a>
-                    </li>
-                    <li>
-                      <a>Submenu 2</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a>Item 3</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className=" hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <details>
-                  <summary>Parent</summary>
-                  <ul className="p-2">
-                    <li>
-                      <a>Submenu 1</a>
-                    </li>
-                    <li>
-                      <a>Submenu 2</a>
-                    </li>
-                  </ul>
-                </details>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <section className="bg-[#FAFAFA] py-4 flex gap-6">
+        <Link href="/home">Home</Link>
+        <Link href="/home">Brands</Link>
+        <Link href="/home">FInd Cartridge</Link>
+        <Link href="/home">Order a Design Printing </Link>
+        <Link href="/home">About Us</Link>
+        <Link href="/home">Privacy Policy</Link>
       </section>
     </header>
   );
