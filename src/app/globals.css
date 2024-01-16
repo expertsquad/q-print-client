@@ -38,7 +38,6 @@
   }
 }
 
-<<<<<<< HEAD
 /* scroll modification */
 
 .no-scrollbar::-webkit-scrollbar {
@@ -46,9 +45,4 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-x: hidden;
-=======
-/* //Deal Of The Day */
-.card-title-h2 {
-  font-size: clamp(18px, 15vw, 24px);
->>>>>>> 0960f49c94a33e9a0cf7084b67f312808d76449d
 }
