@@ -1,3 +1,4 @@
+import DealOfTheDay from "@/components/DealOfTheDay/DealOfTheDay";
 import Carousel from "@/components/carousel/Carousel";
 import Hero from "@/components/hero/Hero";
 
@@ -8,6 +9,7 @@ const Home = () => {
       <div className="mb-36">
         <Carousel />
       </div>
+      <DealOfTheDay />
     </main>
   );
 };
