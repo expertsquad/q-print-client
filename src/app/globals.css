@@ -18,10 +18,12 @@
 
 /* main border color */
 
-.main-border-color {
+.main-gradient-border {
+  border-radius: 24px !important;
+  border-width: 3px;
+  /* border-style: solid; */
+  border-image: linear-gradient(to right, #c83b62, #7f35cd);
   border-image-slice: 1;
-  border: 2px solid transparent;
-  border-image: linear-gradient(90deg, #c83b62 0.32%, #7f35cd 102.21%);
 }
 
 /* carousel animation start */
@@ -38,7 +40,6 @@
   }
 }
 
-<<<<<<< HEAD
 /* scroll modification */
 
 .no-scrollbar::-webkit-scrollbar {
@@ -46,9 +47,4 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-x: hidden;
-=======
-/* //Deal Of The Day */
-.card-title-h2 {
-  font-size: clamp(18px, 15vw, 24px);
->>>>>>> 0960f49c94a33e9a0cf7084b67f312808d76449d
 }

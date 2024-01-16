@@ -28,7 +28,7 @@ const BestDeals = () => {
           {/* coundown started */}
 
           <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
-            <div className="flex flex-col border p-3 rounded-lg ">
+            <div className="flex flex-col border p-3 rounded-lg items-center justify-center bg-white ">
               <span className="countdown [font-size:_clamp(0.9em,4vw,1.5em)]  ">
                 <span className="" style={{ "--value": 7 }}></span>
               </span>
@@ -36,7 +36,7 @@ const BestDeals = () => {
                 DAYS
               </p>
             </div>
-            <div className="flex flex-col border p-3 rounded-lg ">
+            <div className="flex flex-col border p-3 rounded-lg items-center justify-center bg-white">
               <span className="countdown [font-size:_clamp(0.9em,4vw,1.5em)] ">
                 <span style={{ "--value": 15 }}></span>
               </span>
@@ -44,7 +44,7 @@ const BestDeals = () => {
                 HOURS
               </p>
             </div>
-            <div className="flex flex-col border p-3 rounded-lg ">
+            <div className="flex flex-col border p-3 rounded-lg items-center justify-center bg-white">
               <span className="countdown [font-size:_clamp(0.9em,4vw,1.5em)] ">
                 <span style={{ "--value": 48 }}></span>
               </span>
@@ -52,7 +52,7 @@ const BestDeals = () => {
                 MIN
               </p>
             </div>
-            <div className="flex flex-col border p-3 rounded-lg items-center ">
+            <div className="flex flex-col border p-3 rounded-lg items-center justify-center bg-white ">
               <span className="countdown [font-size:_clamp(0.9em,4vw,1.5em)] ">
                 <span style={{ "--value": 31 }}></span>
               </span>
@@ -86,7 +86,8 @@ const BestDeals = () => {
             <h3 className="text-black">I Pad Mini</h3>
 
             {/* rating started  small card rating */}
-            <div className="rating rating-xs md:rating-sm">
+
+            {/* <div className="rating rating-xs md:rating-sm">
               <input
                 type="radio"
                 name="rating-2"
@@ -113,7 +114,8 @@ const BestDeals = () => {
                 name="rating-2"
                 className="mask mask-star-2 bg-orange-400"
               />
-            </div>
+            </div> */}
+
             {/* rating end  small card rating */}
 
             <strong className="text-red-regular font-bold">
