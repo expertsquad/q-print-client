@@ -1,4 +1,4 @@
-//Footer Links start
+//Footer Links start, Added by PORAN
 export const footerLinks = [
   //My Account
   {
@@ -31,6 +31,25 @@ export const footerLinks = [
   },
 ];
 //Footer Links end
+
+//Shop by category
+export const shopByCategories = [
+  {
+    _id: 1,
+    picture: "https://freepngimg.com/thumb/printer/10-printer-png-image.png",
+    title: "Printers",
+  },
+  {
+    _id: 2,
+    picture: "https://freepngimg.com/thumb/printer/14-printer-png-image.png",
+    title: "Cartridge",
+  },
+  {
+    _id: 3,
+    picture: "https://freepngimg.com/thumb/printer/11-printer-png-image.png",
+    title: "Ink",
+  },
+];
 
 // hero section start added by zayed
 export const heroItems = [

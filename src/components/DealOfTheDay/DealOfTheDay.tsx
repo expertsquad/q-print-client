@@ -13,7 +13,7 @@ const DealOfTheDay = () => {
         <div className="main-section flex items-center bg-[#F4F4F4] rounded-xl p-8">
           <div className=" gap-5">
             <button className="btn bg-[#EFD33D] mb-4">25% OFF</button>
-            <h2 className="font-semibold card-title-h2 mb-4">
+            <h2 className="font-semibold [font-size:_clamp(18px,4vw,24px)] mb-4">
               Brother HL - L3270CDW Single Function Color
               {/* //Dynamic Title */}
             </h2>
@@ -32,7 +32,7 @@ const DealOfTheDay = () => {
             <button className="btn text-white bg-[#2DA5F3] uppercase mb-4 border-none">
               Best Deal
             </button>
-            <h2 className="text-white font-semibold card-title-h2 mb-4">
+            <h2 className="text-white font-semibold [font-size:_clamp(18px,4vw,24px)] mb-4">
               Brother HL - L3270CDW Singel Function Color Laser Printer
               {/* //Dynamic Title */}
             </h2>

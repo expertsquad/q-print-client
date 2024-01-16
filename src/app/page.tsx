@@ -1,7 +1,7 @@
 import BestDeals from "@/components/bestDeals/BestDeals";
 import DealOfTheDay from "@/components/DealOfTheDay/DealOfTheDay";
 import Carousel from "@/components/carousel/Carousel";
-import ShopByCategory from "@/components/category/ShopByCategory";
+import ShopByCategory from "@/components/ShopCategory/ShopByCategory";
 import Hero from "@/components/hero/Hero";
 import FeaturedProducts from "@/components/featuredProducts/featuredProducts";
 
