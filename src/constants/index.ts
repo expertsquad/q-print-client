@@ -79,6 +79,26 @@ export const productViewStaticData = [
   },
 ];
 
+//Product View Image
+export const productViewImage = [
+  {
+    _id: "1",
+    picture: "https://freepngimg.com/thumb/printer/14-printer-png-image.png",
+  },
+  {
+    _id: "2",
+    picture: "https://freepngimg.com/thumb/printer/10-printer-png-image.png",
+  },
+  {
+    _id: "3",
+    picture: "https://freepngimg.com/thumb/printer/14-printer-png-image.png",
+  },
+  {
+    _id: "4",
+    picture: "https://freepngimg.com/thumb/printer/11-printer-png-image.png",
+  },
+];
+
 // hero section start added by zayed
 export const heroItems = [
   {

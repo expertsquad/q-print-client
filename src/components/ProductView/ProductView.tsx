@@ -1,21 +1,41 @@
 import Image from "next/image";
 import adidasBrand from "@/assets/adidas brand.svg";
 import { IconStar, IconHeart } from "@tabler/icons-react";
+import demoPrinter from "@/assets/demo printer.svg";
+import demoPrinterTwo from "@/assets/demo printer -2.svg";
+import { productViewImage } from "@/constants";
 
 const ProductView = () => {
   return (
-    <section className="grid sm:grid-cols-2 grid-cols-1 ">
-      <div className="left-side">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro molestias
-        nemo rem officiis cum assumenda omnis! Ea commodi aut nostrum quam
-        labore officiis optio fugiat reiciendis? Expedita eligendi eos officiis
-        facere exercitationem commodi vero tempore ipsa porro sapiente? Vero et
-        quia odit distinctio, quidem earum consequatur numquam vitae! Doloremque
-        laudantium cum quisquam, delectus at culpa! Similique nihil animi dolore
-        ab, esse omnis tempora eum ipsam consequatur dolor facilis deleniti
-        veniam doloribus rerum reiciendis ea harum rem vero iste, beatae odio
-        explicabo? Ullam soluta minus iure accusantium sapiente quo quas quod,
-        sequi eaque quis nobis atque sit ex deserunt molestiae sunt?
+    <section className="grid sm:grid-cols-2 grid-cols-1 mb-16 gap-3">
+      <div className="flex items-center gap-5">
+        <div className="flex flex-col gap-3">
+          {productViewImage.map((item) => (
+            <div
+              key={item._id}
+              className="py-3 border border-fuchsia-700 cursor-pointer"
+            >
+              <Image
+                src={item.picture}
+                alt="demo Printer"
+                width={100}
+                height={100}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="flex items-center justify-center border border-gray-300 h-full">
+          <div className="flex items-center justify-center ">
+            {productViewImage.length > 0 && (
+              <Image
+                src={productViewImage[0].picture}
+                alt="photo"
+                width={400}
+                height={350}
+              />
+            )}
+          </div>
+        </div>
       </div>
       {/* //=== */}
       <div className="right-side">
