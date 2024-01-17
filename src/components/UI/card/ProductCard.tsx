@@ -1,14 +1,15 @@
 import React from "react";
 import AddToCartButton from "../btn/AddToCartButton";
+import ProductImageSlide from "@/components/product/ProductImageSlide";
 
 const ProductCard = () => {
   const productObject = [
     {
       images: [
-        "https://freepngimg.com/thumb/logo/62837-instagram-icons-photography-computer-logo-icon.png",
-        "https://freepngimg.com/thumb/logo/62859-logo-twitter-computer-icons-free-transparent-image-hq.png",
-        "https://freepngimg.com/thumb/logo/62866-logo-whatsapp-computer-icons-free-download-png-hq.png",
-        "https://freepngimg.com/thumb/logo/61746-graphic-priyanka-brand-chopra-design-graphics-logo.png",
+        "https://www.transparentpng.com/thumb/printer/vqVm4v-laser-printer-lpt-paper-print-printer-printing-icon.png",
+        "https://www.transparentpng.com/thumb/printer/hGdOI8-epson-printer-clipart-photos.png",
+        "https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png",
+        "https://www.transparentpng.com/thumb/printer/7udIJT-canon-printer-transparent.png",
       ],
 
       name: "Hp printer best quality printer",
@@ -19,10 +20,10 @@ const ProductCard = () => {
     },
     {
       images: [
-        "https://freepngimg.com/thumb/logo/62837-instagram-icons-photography-computer-logo-icon.png",
-        "https://freepngimg.com/thumb/logo/62859-logo-twitter-computer-icons-free-transparent-image-hq.png",
-        "https://freepngimg.com/thumb/logo/62866-logo-whatsapp-computer-icons-free-download-png-hq.png",
-        "https://freepngimg.com/thumb/logo/61746-graphic-priyanka-brand-chopra-design-graphics-logo.png",
+        "https://www.transparentpng.com/thumb/printer/hGdOI8-epson-printer-clipart-photos.png",
+        "https://www.transparentpng.com/thumb/printer/vqVm4v-laser-printer-lpt-paper-print-printer-printing-icon.png",
+        "https://www.transparentpng.com/thumb/printer/7udIJT-canon-printer-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png",
       ],
 
       name: "Priniter mb2589 ",
@@ -33,10 +34,24 @@ const ProductCard = () => {
     },
     {
       images: [
-        "https://freepngimg.com/thumb/logo/62837-instagram-icons-photography-computer-logo-icon.png",
-        "https://freepngimg.com/thumb/logo/62859-logo-twitter-computer-icons-free-transparent-image-hq.png",
-        "https://freepngimg.com/thumb/logo/62866-logo-whatsapp-computer-icons-free-download-png-hq.png",
-        "https://freepngimg.com/thumb/logo/61746-graphic-priyanka-brand-chopra-design-graphics-logo.png",
+        "https://www.transparentpng.com/thumb/printer/7udIJT-canon-printer-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/vqVm4v-laser-printer-lpt-paper-print-printer-printing-icon.png",
+        "https://www.transparentpng.com/thumb/printer/hGdOI8-epson-printer-clipart-photos.png",
+        "https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png",
+      ],
+
+      name: "Hp printer best quality printer",
+      brandName: "Brother",
+      price: 85,
+      discount: 20,
+      rating: 4,
+    },
+    {
+      images: [
+        "https://www.transparentpng.com/thumb/printer/7udIJT-canon-printer-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
       ],
 
       name: "Product demo titile here",
@@ -47,10 +62,10 @@ const ProductCard = () => {
     },
     {
       images: [
-        "https://freepngimg.com/thumb/logo/62837-instagram-icons-photography-computer-logo-icon.png",
-        "https://freepngimg.com/thumb/logo/62859-logo-twitter-computer-icons-free-transparent-image-hq.png",
-        "https://freepngimg.com/thumb/logo/62866-logo-whatsapp-computer-icons-free-download-png-hq.png",
-        "https://freepngimg.com/thumb/logo/61746-graphic-priyanka-brand-chopra-design-graphics-logo.png",
+        "https://www.transparentpng.com/thumb/printer/7udIJT-canon-printer-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
       ],
 
       name: "Here is another demo title",
@@ -61,10 +76,24 @@ const ProductCard = () => {
     },
     {
       images: [
-        "https://freepngimg.com/thumb/logo/62837-instagram-icons-photography-computer-logo-icon.png",
-        "https://freepngimg.com/thumb/logo/62859-logo-twitter-computer-icons-free-transparent-image-hq.png",
-        "https://freepngimg.com/thumb/logo/62866-logo-whatsapp-computer-icons-free-download-png-hq.png",
-        "https://freepngimg.com/thumb/logo/61746-graphic-priyanka-brand-chopra-design-graphics-logo.png",
+        "https://www.transparentpng.com/thumb/printer/7udIJT-canon-printer-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
+      ],
+
+      name: "Hp printer best quality printer",
+      brandName: "Brother",
+      price: 85,
+      discount: 20,
+      rating: 4,
+    },
+    {
+      images: [
+        "https://www.transparentpng.com/thumb/printer/7udIJT-canon-printer-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
       ],
 
       name: "More porer na ki likhum",
@@ -75,10 +104,10 @@ const ProductCard = () => {
     },
     {
       images: [
-        "https://freepngimg.com/thumb/logo/62837-instagram-icons-photography-computer-logo-icon.png",
-        "https://freepngimg.com/thumb/logo/62859-logo-twitter-computer-icons-free-transparent-image-hq.png",
-        "https://freepngimg.com/thumb/logo/62866-logo-whatsapp-computer-icons-free-download-png-hq.png",
-        "https://freepngimg.com/thumb/logo/61746-graphic-priyanka-brand-chopra-design-graphics-logo.png",
+        "https://www.transparentpng.com/thumb/printer/7udIJT-canon-printer-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
       ],
 
       name: "Onk kicu likhte hobe",
@@ -89,10 +118,10 @@ const ProductCard = () => {
     },
     {
       images: [
-        "https://freepngimg.com/thumb/logo/62837-instagram-icons-photography-computer-logo-icon.png",
-        "https://freepngimg.com/thumb/logo/62859-logo-twitter-computer-icons-free-transparent-image-hq.png",
-        "https://freepngimg.com/thumb/logo/62866-logo-whatsapp-computer-icons-free-download-png-hq.png",
-        "https://freepngimg.com/thumb/logo/61746-graphic-priyanka-brand-chopra-design-graphics-logo.png",
+        "https://www.transparentpng.com/thumb/printer/7udIJT-canon-printer-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
       ],
 
       name: "Ai j nen onek kicu likhlam",
@@ -103,10 +132,10 @@ const ProductCard = () => {
     },
     {
       images: [
-        "https://freepngimg.com/thumb/logo/62837-instagram-icons-photography-computer-logo-icon.png",
-        "https://freepngimg.com/thumb/logo/62859-logo-twitter-computer-icons-free-transparent-image-hq.png",
-        "https://freepngimg.com/thumb/logo/62866-logo-whatsapp-computer-icons-free-download-png-hq.png",
-        "https://freepngimg.com/thumb/logo/61746-graphic-priyanka-brand-chopra-design-graphics-logo.png",
+        "https://www.transparentpng.com/thumb/printer/7udIJT-canon-printer-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
       ],
 
       name: "Awesome printer in qater",
@@ -117,10 +146,10 @@ const ProductCard = () => {
     },
     {
       images: [
-        "https://freepngimg.com/thumb/logo/62837-instagram-icons-photography-computer-logo-icon.png",
-        "https://freepngimg.com/thumb/logo/62859-logo-twitter-computer-icons-free-transparent-image-hq.png",
-        "https://freepngimg.com/thumb/logo/62866-logo-whatsapp-computer-icons-free-download-png-hq.png",
-        "https://freepngimg.com/thumb/logo/61746-graphic-priyanka-brand-chopra-design-graphics-logo.png",
+        "https://www.transparentpng.com/thumb/printer/7udIJT-canon-printer-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
       ],
 
       name: "Another Printer here ",
@@ -131,10 +160,10 @@ const ProductCard = () => {
     },
     {
       images: [
-        "https://freepngimg.com/thumb/logo/62837-instagram-icons-photography-computer-logo-icon.png",
-        "https://freepngimg.com/thumb/logo/62859-logo-twitter-computer-icons-free-transparent-image-hq.png",
-        "https://freepngimg.com/thumb/logo/62866-logo-whatsapp-computer-icons-free-download-png-hq.png",
-        "https://freepngimg.com/thumb/logo/61746-graphic-priyanka-brand-chopra-design-graphics-logo.png",
+        "https://www.transparentpng.com/thumb/printer/7udIJT-canon-printer-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
+        "https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png",
+        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
       ],
 
       name: "Something coming very soon",
@@ -146,23 +175,25 @@ const ProductCard = () => {
   ];
 
   return (
-    <div className="main-product-card">
+    <div className=" grid grid-cols-4 gap-4 w-full ">
       {productObject?.map((product, i) => (
         <div
           key={i}
           className=" border-[1px] hover:border-fuchsia-700 rounded-lg p-5 group "
         >
-          <div>here is our img</div>
           <div>
-            <h3 className="[font-size:_clamp(0.8em,4vw,1.2em)] font-bold line-clamp-2">
+            <ProductImageSlide product={product} />
+          </div>
+          <div className="mt-4 pt-4 border-t ">
+            <h3 className="[font-size:_clamp(0.8em,4vw,1.2em)]  line-clamp-1">
               {product?.name}
             </h3>
-            <p className="text-md text-gray-500"> {product?.brandName}</p>
+            <p className=" text-gray-500"> {product?.brandName}</p>
             <div>product review coming</div>
 
             <div className="flex items-center justify-start gap-2">
               <h4 className="[font-size:_clamp(0.8em,4vw,1.5em)] main-text-color font-md">
-                {product?.price} QAR
+                <strong> {product?.price}</strong> QAR
               </h4>
               <del className="text-md text text-gray-500 ">
                 {product?.discount} QAR

@@ -3,7 +3,7 @@ import ProductCard from "../UI/card/ProductCard";
 const FeaturedProducts = () => {
   return (
     <section>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center w-full my-8">
         <h2 className="text-black [font-size:_clamp(1em,5vw,1.6em)] font-bold">
           FEATURED PRODUCTS
         </h2>
@@ -15,6 +15,7 @@ const FeaturedProducts = () => {
 
         {/* tabs end here */}
         {/* Product card start here */}
+
         <ProductCard />
 
         {/* Product card end */}
