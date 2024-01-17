@@ -1,4 +1,4 @@
-import ProductCard from "../UI/card/ProductCard";
+import TabProductView from "./TabProductView";
 
 const FeaturedProducts = () => {
   return (
@@ -14,9 +14,9 @@ const FeaturedProducts = () => {
         {/* tabs start here */}
 
         {/* tabs end here */}
-        {/* Product card start here */}
 
-        <ProductCard />
+        <TabProductView />
+        {/* Product card start here */}
 
         {/* Product card end */}
       </div>
