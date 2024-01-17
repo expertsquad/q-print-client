@@ -7,7 +7,7 @@ interface IShopNowButton {
 
 const ShopNowButton = ({ href }: IShopNowButton) => {
   return (
-    <button className="px-4 py-2 rounded-md  main-bg-color flex items-center justify-center text-white gap-2 [font-size:_clamp(12px,4vw,18px)] ">
+    <button className="px-4 py-2 rounded-md  main-bg-color flex items-center justify-center text-white gap-2 [font-size:_clamp(0.8em,4vw,1em)] ">
       <Link href={href || "#"}>Shop Now</Link> <ShopNowIcon />
     </button>
   );
