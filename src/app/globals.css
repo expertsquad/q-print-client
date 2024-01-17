@@ -16,6 +16,14 @@
   -webkit-text-fill-color: transparent;
 }
 
+/* main product card design start */
+
+.main-product-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
 /* main border color */
 
 .main-gradient-border {
