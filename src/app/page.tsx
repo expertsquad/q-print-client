@@ -3,8 +3,9 @@ import DealOfTheDay from "@/components/DealOfTheDay/DealOfTheDay";
 import Carousel from "@/components/carousel/Carousel";
 import ShopByCategory from "@/components/ShopCategory/ShopByCategory";
 import Hero from "@/components/hero/Hero";
-import FeaturedProducts from "@/components/featuredProducts/featuredProducts";
+
 import ExploreNew from "@/components/exploreNew/ExploreNew";
+import FeaturedProducts from "@/components/featuredProducts/FeaturedProducts";
 
 const Home = () => {
   return (

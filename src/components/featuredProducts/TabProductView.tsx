@@ -51,10 +51,7 @@ const TabProductView = () => {
               href="#"
             >
               {" "}
-              See all{" "}
-              <span className="main-text-color">
-                <IconArrowRight />
-              </span>{" "}
+              See all &rarr;
             </Link>
             <ProductCard />
           </div>
@@ -66,10 +63,7 @@ const TabProductView = () => {
               href="#"
             >
               {" "}
-              See all{" "}
-              <span className="main-text-color">
-                <IconArrowRight />
-              </span>{" "}
+              See all &rarr;
             </Link>
             <ProductCard />
           </div>
@@ -81,10 +75,7 @@ const TabProductView = () => {
               href="#"
             >
               {" "}
-              See all{" "}
-              <span className="main-text-color">
-                <IconArrowRight />
-              </span>{" "}
+              See all &rarr;
             </Link>
             <ProductCard />
           </div>
