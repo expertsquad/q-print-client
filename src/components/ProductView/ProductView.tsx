@@ -4,6 +4,7 @@ import { IconStar, IconHeart } from "@tabler/icons-react";
 import demoPrinter from "@/assets/demo printer.svg";
 import demoPrinterTwo from "@/assets/demo printer -2.svg";
 import { productViewImage } from "@/constants";
+import ColorPickUp from "./ColorPickUp";
 
 const ProductView = () => {
   return (
@@ -69,19 +70,27 @@ const ProductView = () => {
           </button>
         </div>
         {/* //Color Section */}
-        <div className="flex items-center flex-wrap">
-          <h3 className="main-text-color [font-size:_clamp(20px,5vw,26px)] font-semibold mr-2">
-            {/* //Price */}
-            1500.00 <small className="uppercase">qar</small>
-          </h3>
-          <del className="text-[#B3B3B3] [font-size:_clamp(14px,5vw,18px)] mr-5">
-            1800.00 QAR
-          </del>
-          <span className="[font-size:_clamp(14px,5vw,16px)] text-white main-bg-color py-1 px-3 rounded-md">
-            20% OFF
-          </span>
+        <div className="mb-5">
+          <ColorPickUp />
+        </div>
+        {/* //Range, Cart, Discount  */}
+        <div className="mb-5">
+          <div className="flex items-center flex-wrap">
+            <h3 className="main-text-color [font-size:_clamp(20px,5vw,26px)] font-semibold mr-2">
+              {/* //Price */}
+              1500.00 <small className="uppercase">qar</small>
+            </h3>
+            <del className="text-[#B3B3B3] [font-size:_clamp(14px,5vw,18px)] mr-5">
+              1800.00 QAR
+            </del>
+            <span className="[font-size:_clamp(14px,5vw,16px)] text-white main-bg-color py-1 px-3 rounded-md">
+              20% OFF
+            </span>
+          </div>
         </div>
         {/* //range */}
+        <div></div>
+        {/* //Buy Section */}
         <div>
           <p>
             Buy <span>8</span> item more to get off <b>15% Extra!</b>
