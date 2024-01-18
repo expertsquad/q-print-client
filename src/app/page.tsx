@@ -4,6 +4,7 @@ import Carousel from "@/components/carousel/Carousel";
 import ShopByCategory from "@/components/ShopCategory/ShopByCategory";
 import Hero from "@/components/hero/Hero";
 import FeaturedProducts from "@/components/featuredProducts/featuredProducts";
+import ExploreNew from "@/components/exploreNew/ExploreNew";
 
 const Home = () => {
   return (
@@ -17,6 +18,8 @@ const Home = () => {
       <BestDeals />
 
       <DealOfTheDay />
+
+      <ExploreNew />
     </main>
   );
 };
