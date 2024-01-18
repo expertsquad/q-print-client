@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import ProductCard from "../UI/card/ProductCard";
+import Link from "next/link";
+import { IconArrowRight } from "@tabler/icons-react";
 
 const TabProductView = () => {
   const [activeTab, setActiveTab] = useState("bestSeller");
@@ -44,19 +46,46 @@ const TabProductView = () => {
       <div className="mt-4">
         {activeTab === "bestSeller" && (
           <div>
-            We are in Best seller tab
+            <Link
+              className="flex items-center justify-end gap-2 main-text-color py-2 "
+              href="#"
+            >
+              {" "}
+              See all{" "}
+              <span className="main-text-color">
+                <IconArrowRight />
+              </span>{" "}
+            </Link>
             <ProductCard />
           </div>
         )}
         {activeTab === "sales" && (
           <div>
-            Sales tab
+            <Link
+              className="flex items-center justify-end gap-2 main-text-color py-2 "
+              href="#"
+            >
+              {" "}
+              See all{" "}
+              <span className="main-text-color">
+                <IconArrowRight />
+              </span>{" "}
+            </Link>
             <ProductCard />
           </div>
         )}
         {activeTab === "hotOffer" && (
           <div>
-            Here is our hot offer
+            <Link
+              className="flex items-center justify-end gap-2 main-text-color py-2 "
+              href="#"
+            >
+              {" "}
+              See all{" "}
+              <span className="main-text-color">
+                <IconArrowRight />
+              </span>{" "}
+            </Link>
             <ProductCard />
           </div>
         )}
