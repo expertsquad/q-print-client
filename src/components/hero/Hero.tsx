@@ -1,90 +1,56 @@
-"use client";
-
-import { heroItems } from "@/constants";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
 import ShopNowButton from "../UI/btn/ShopNowButton";
-import { Nunito } from "next/font/google";
-
-const nunito = Nunito({
-  weight: "400",
-  subsets: ["cyrillic"],
-});
+import HeroItemSlide from "./HeroItemSlide";
 
 const Hero = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % heroItems.length);
-    }, 7000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
-  const showSlide = (index: number) => {
-    return { display: index === currentSlide ? "block" : "none" };
-  };
-
-  const handleDotClick = (index: number) => {
-    setCurrentSlide(index);
-  };
-
   return (
-    <div className="w-full">
-      <div className="carousel w-full ">
-        {heroItems?.map((item, index) => (
-          <div
-            key={item?._id}
-            id={item?._id}
-            className="carousel-item w-full bg-[#f3f5f2] h-[250px] md:h-[480px] "
-            style={showSlide(index)}
-          >
-            <div className="flex items-center justify-between px-9 py-4 h-full">
-              <div className="flex flex-col  ">
-                <h2
-                  className={` [font-size:_clamp(1.25em,5vw,4em)] font-bold leading-none  ${nunito.className}`}
-                >
-                  {item?.company}
-                </h2>
-                <p
-                  className={`[font-size:_clamp(0.85em,5vw,1em)] ${nunito.className} text-gray-500 `}
-                >
-                  {item?.about}
-                </p>
-                <h4 className="[font-size:_clamp(1.6em,4vw,1em)] main-text-color font-semibold mt-4 ">
-                  2800 QAR
-                </h4>
-
-                <div className="mt-4">
-                  <ShopNowButton href="#" />
-                </div>
-
-                <div className="indicators  gap-2 flex mt-8 ">
-                  {heroItems?.map((_, index) => (
-                    <div
-                      key={index}
-                      onClick={() => handleDotClick(index)}
-                      className={`indicator w-[10px] h-[10px] rounded-full cursor-pointer ${
-                        index === currentSlide ? "bg-[#E73C17]" : "bg-gray-300"
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className="pr-0 md:pr-32">
-                <Image
-                  src={item?.picture}
-                  alt="hero item images"
-                  width={280}
-                  height={280}
-                />
-              </div>
-            </div>
-          </div>
-        ))}
+    <section className="w-full flex gap-6">
+      <div className="w-8/12">
+        {/* hero item */}
+        <HeroItemSlide />
       </div>
-    </div>
+      {/* right side card */}
+      <div className=" flex  flex-col gap-4">
+        {/* top one card */}
+        <div className="bg-[#F2F4F5] flex justify-center items-center  p-5 gap-4 rounded-lg">
+          <div className=" ">
+            <Image
+              src="https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png"
+              alt="Hero disount item"
+              height={150}
+              width={150}
+            ></Image>
+          </div>
+          <div className="">
+            <h2 className="[font-size:_clamp(1em,5vw,1.5em)]">
+              New Hp Cartridge
+            </h2>
+            <h3 className="main-text-color font-bold">2900 QR</h3>
+            <ShopNowButton />
+          </div>
+        </div>
+
+        {/* second  one card    */}
+        <div className="bg-[#3a42aa8e] flex justify-center items-center  p-5 gap-4 rounded-lg">
+          <div className=" ">
+            <h2 className="[font-size:_clamp(1em,5vw,1.5em)]">
+              New Hp Cartridge
+            </h2>
+            <h3 className="main-text-color font-bold">2900 QR</h3>
+            <ShopNowButton />
+          </div>
+
+          <div className=" ">
+            <Image
+              src="https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png"
+              alt="Hero disount item"
+              height={150}
+              width={150}
+            ></Image>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

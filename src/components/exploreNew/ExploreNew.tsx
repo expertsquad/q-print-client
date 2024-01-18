@@ -3,7 +3,7 @@ import ProductGridView from "../product/ProductGridView";
 
 const ExploreNew = () => {
   return (
-    <section>
+    <section className="py-20">
       <div className="flex items-center justify-center flex-col py-7">
         <small className="[font-size:_clamp(0.9em,4vw,1.1em)] main-text-color ">
           Explore Now
