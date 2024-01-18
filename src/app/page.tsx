@@ -6,6 +6,7 @@ import Hero from "@/components/hero/Hero";
 
 import ExploreNew from "@/components/exploreNew/ExploreNew";
 import FeaturedProducts from "@/components/featuredProducts/FeaturedProducts";
+import NewProduct from "@/components/newProduct/NewProduct";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <BestDeals />
 
       <DealOfTheDay />
+      <NewProduct />
 
       <ExploreNew />
     </main>

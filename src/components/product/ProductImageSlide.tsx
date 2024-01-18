@@ -73,7 +73,7 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
           onMouseLeave={() => setIsHovered(false)}
           className="flex justify-center items-center flex-col relative "
         >
-          <div className="h-[150px] w-[150px] flex mt-8 justify-center items-center">
+          <div className="h-[100px] w-[100px] flex mt-8 justify-center items-center">
             <Image
               src={productImg}
               alt="hero item images"

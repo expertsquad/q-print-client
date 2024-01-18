@@ -1,8 +1,8 @@
 import React from "react";
-import AddToCartButton from "../btn/AddToCartButton";
-import ProductImageSlide from "@/components/product/ProductImageSlide";
+import AddToCartButton from "../UI/btn/AddToCartButton";
+import ProductCard from "./ProductCard";
 
-const ProductCard = () => {
+const ProductGridView = () => {
   const productObject = [
     {
       images: [
@@ -175,36 +175,12 @@ const ProductCard = () => {
   ];
 
   return (
-    <div className=" grid grid-cols-4 gap-4 w-full ">
+    <div className=" grid md:grid-cols-4 grid-cols-2 gap-4 w-full ">
       {productObject?.map((product, i) => (
-        <div
-          key={i}
-          className=" border-[1px] hover:border-fuchsia-700 rounded-lg p-5 group "
-        >
-          <div>
-            <ProductImageSlide product={product} />
-          </div>
-          <div className="mt-4 pt-4 border-t ">
-            <h3 className="[font-size:_clamp(0.8em,4vw,1.2em)]  line-clamp-1">
-              {product?.name}
-            </h3>
-            <p className=" text-gray-500"> {product?.brandName}</p>
-            <div>product review coming</div>
-
-            <div className="flex items-center justify-start gap-2">
-              <h4 className="[font-size:_clamp(0.8em,4vw,1.5em)] main-text-color font-md">
-                <strong> {product?.price}</strong> QAR
-              </h4>
-              <del className="text-md text text-gray-500 ">
-                {product?.discount} QAR
-              </del>
-            </div>
-            <AddToCartButton />
-          </div>
-        </div>
+        <ProductCard key={i} product={product} />
       ))}
     </div>
   );
 };
 
-export default ProductCard;
+export default ProductGridView;

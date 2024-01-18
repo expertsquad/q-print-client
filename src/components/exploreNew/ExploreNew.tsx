@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCard from "../UI/card/ProductCard";
+import ProductGridView from "../product/ProductGridView";
 
 const ExploreNew = () => {
   return (
@@ -13,7 +13,7 @@ const ExploreNew = () => {
         </h3>
       </div>
 
-      <ProductCard />
+      <ProductGridView />
     </section>
   );
 };

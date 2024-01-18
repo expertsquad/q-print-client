@@ -1,50 +1,53 @@
 "use client";
 
 import React, { useState } from "react";
-import ProductCard from "../UI/card/ProductCard";
 import Link from "next/link";
-import { IconArrowRight } from "@tabler/icons-react";
+import ProductGridView from "../product/ProductGridView";
 
 const TabProductView = () => {
-  const [activeTab, setActiveTab] = useState("bestSeller");
+  const [activeTab, setActiveTab] = useState("topSell");
 
-  const handleTabClick = (tab) => {
+  const handleTabClick = (tab: any) => {
     setActiveTab(tab);
   };
 
   return (
     <div className=" mx-auto mt-4 ">
-      <div className="flex justify-center items-center rounded-full bg-red-500 ">
+      <div className="flex justify-center items-center rounded-full ">
         <button
           className={`px-6 py-2 rounded-full ${
-            activeTab === "bestSeller"
-              ? "bg-blue-500 text-white"
+            activeTab === "topSell"
+              ? "border-fuchsia-700 border-[1px]"
               : "bg-gray-300"
           }`}
-          onClick={() => handleTabClick("bestSeller")}
+          onClick={() => handleTabClick("topSell")}
         >
-          Best Seller
+          TOP SELL
         </button>
         <button
           className={`px-6 py-2  rounded-full ${
-            activeTab === "sales" ? "bg-blue-500 text-white" : "bg-gray-300"
+            activeTab === "popular"
+              ? "border-fuchsia-700 border-[1px] "
+              : "bg-gray-300"
           }`}
-          onClick={() => handleTabClick("sales")}
+          onClick={() => handleTabClick("popular")}
         >
-          Sales
+          POPULAE
         </button>
         <button
           className={`px-6 py-2 rounded-full ${
-            activeTab === "hotOffer" ? "bg-blue-500 text-white" : "bg-gray-300"
+            activeTab === "newest"
+              ? "border-fuchsia-700 border-[1px]"
+              : "bg-gray-300"
           }`}
-          onClick={() => handleTabClick("hotOffer")}
+          onClick={() => handleTabClick("newest")}
         >
-          Hot Offer
+          NEWEST
         </button>
       </div>
 
       <div className="mt-4">
-        {activeTab === "bestSeller" && (
+        {activeTab === "topSell" && (
           <div>
             <Link
               className="flex items-center justify-end gap-2 main-text-color py-2 "
@@ -53,10 +56,10 @@ const TabProductView = () => {
               {" "}
               See all &rarr;
             </Link>
-            <ProductCard />
+            <ProductGridView />
           </div>
         )}
-        {activeTab === "sales" && (
+        {activeTab === "popular" && (
           <div>
             <Link
               className="flex items-center justify-end gap-2 main-text-color py-2 "
@@ -65,10 +68,10 @@ const TabProductView = () => {
               {" "}
               See all &rarr;
             </Link>
-            <ProductCard />
+            <ProductGridView />
           </div>
         )}
-        {activeTab === "hotOffer" && (
+        {activeTab === "newest" && (
           <div>
             <Link
               className="flex items-center justify-end gap-2 main-text-color py-2 "
@@ -77,7 +80,7 @@ const TabProductView = () => {
               {" "}
               See all &rarr;
             </Link>
-            <ProductCard />
+            <ProductGridView />
           </div>
         )}
       </div>
