@@ -8,14 +8,14 @@ import moneyBack from "@/assets/money back.svg";
 const QServices: React.FC = () => {
   return (
     <section className="border border-gray-300 mb-16 ">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-5 ">
+      <div className="flex items-center justify-between md:flex-row flex-col px-5 ">
         {productViewStaticData.map((item) => (
-          <div key={item._id} className="py-10">
+          <div key={item._id} className="py-5 md:py-10">
             {item.type === "freeShipping" && (
-              <div className="flex items-center gap-6">
+              <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                 <Image src={freeShipping} alt="Free Shipping" />
                 <div className="flex gap-1 flex-col">
-                  <h3 className="[font-size:_clamp(14px,5vw,15px)] font-semibold">
+                  <h3 className="[font-size:_clamp(14px,5vw,15px)] font-semibold text-center md:text-start">
                     {item.title}
                   </h3>
                   <p className="text-[#999] [font-size:_clamp(12px,5vw,14px)]">
@@ -26,10 +26,10 @@ const QServices: React.FC = () => {
             )}
 
             {item.type === "customerSupport" && (
-              <div className="flex items-center gap-6">
+              <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                 <Image src={customerSupport} alt="Customer Support" />
                 <div className="flex gap-1 flex-col">
-                  <h3 className="[font-size:_clamp(14px,5vw,15px)] font-semibold">
+                  <h3 className="[font-size:_clamp(14px,5vw,15px)] font-semibold text-center md:text-start">
                     {item.title}
                   </h3>
                   <p className="text-[#999] [font-size:_clamp(12px,5vw,14px)]">
@@ -40,11 +40,11 @@ const QServices: React.FC = () => {
             )}
 
             {item.type === "securePayment" && (
-              <div className="flex items-center gap-6">
+              <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                 <Image src={securePayment} alt="Secure Payment" />
 
                 <div className="flex gap-1 flex-col">
-                  <h3 className="[font-size:_clamp(14px,5vw,15px)] font-semibold">
+                  <h3 className="[font-size:_clamp(14px,5vw,15px)] font-semibold text-center md:text-start">
                     {item.title}
                   </h3>
                   <p className="text-[#999] [font-size:_clamp(12px,5vw,14px)]">
@@ -55,11 +55,11 @@ const QServices: React.FC = () => {
             )}
 
             {item.type === "guarantee" && (
-              <div className="flex items-center gap-6">
+              <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                 <Image src={moneyBack} alt="Money Back" />
 
                 <div className="flex gap-1 flex-col">
-                  <h3 className="[font-size:_clamp(14px,5vw,15px)] font-semibold">
+                  <h3 className="[font-size:_clamp(14px,5vw,15px)] font-semibold text-center md:text-start">
                     {item.title}
                   </h3>
                   <p className="text-[#999] [font-size:_clamp(12px,5vw,14px)]">

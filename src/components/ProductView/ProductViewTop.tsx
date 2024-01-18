@@ -10,20 +10,24 @@ import {
 
 const ProductViewTop = () => {
   return (
-    <section className="flex justify-between mb-8">
+    <section className="flex flex-col gap-5 md:gap-0 md:flex-row justify-between mb-8 ">
       <div className="text-sm breadcrumbs">
-        <ul>
-          <li>
+        <ul className="flex items-center">
+          <li className="">
             <Link href="/">
-              <IconHome />
+              <IconHome width={20} height={20} className="mr-1" />
               Home
             </Link>
           </li>
           <li>
-            <Link href="/">
-              <IconChevronRight />
-              Documents
-            </Link>
+            <Link href="/">Category</Link>
+          </li>
+          <li>
+            <Link href="/">Printer</Link>
+          </li>
+
+          <li>
+            <Link href="/">Brother</Link>
           </li>
         </ul>
       </div>
