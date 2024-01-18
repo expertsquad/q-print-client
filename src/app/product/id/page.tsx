@@ -5,9 +5,7 @@ import QServices from "@/components/ProductView/QServices";
 const page = () => {
   return (
     <div className="max-w-[1280px] mx-auto">
-      <ProductViewTop />
       <ProductView />
-      <QServices />
     </div>
   );
 };
