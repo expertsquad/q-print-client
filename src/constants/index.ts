@@ -126,3 +126,13 @@ export const categories = [
   { title: "Cartridge", url: "/" },
   { title: "Ink", url: "/" },
 ];
+
+export const brands = [
+  { title: "Samsung", url: "/" },
+  { title: "Apple", url: "/" },
+  { title: "Xiomi", url: "/" },
+  { title: "Oppo", url: "/" },
+  { title: "Canon", url: "/" },
+  { title: "Sony", url: "/" },
+  { title: "Realme", url: "/" },
+];
