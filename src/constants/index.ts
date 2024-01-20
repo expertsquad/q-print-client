@@ -120,3 +120,9 @@ export const heroItems = [
     about: "Huge collection available",
   },
 ];
+
+export const categories = [
+  { title: "Printer", url: "/" },
+  { title: "Cartridge", url: "/" },
+  { title: "Ink", url: "/" },
+];
