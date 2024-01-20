@@ -2,6 +2,7 @@ import ProductViewTop from "./ProductViewTop";
 import QServices from "./QServices";
 import ProductViewImage from "./ProductViewImage";
 import SpecificationDetails from "./SpecificationDetails";
+import RelatedProduct from "./RelatedProduct";
 
 const ProductView = () => {
   return (
@@ -14,6 +15,9 @@ const ProductView = () => {
       </div>
       <div>
         <QServices />
+      </div>
+      <div>
+        <RelatedProduct />
       </div>
       <div>
         <SpecificationDetails />

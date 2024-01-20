@@ -61,8 +61,9 @@ const ProductViewDescEtc = () => {
         </div>
         {/* //range */}
         <div className="mb-4">Range</div>
-        <p className="mb-4">
-          Buy <span>8</span> item more to get off <b>15% Extra!</b>
+        <p className="mb-4 text-black text-opacity-60">
+          Buy <span className="main-text-color">8</span> item more to get off{" "}
+          <b className="text-black">15% Extra!</b>
         </p>
         {/* //Item Increase and Decrease */}
         <div className="flex items-center gap-5">
@@ -78,8 +79,12 @@ const ProductViewDescEtc = () => {
             </button>
           </div>
           <div>
-            <button className="w-56 md:w-64 lg:w-80 flex justify-center items-center bg-slate-400 main-text-color border border-fuchsia-700 py-2 rounded-lg">
-              <IconShoppingCart className="" />
+            <button className="w-56 md:w-64 lg:w-80 flex justify-center items-center gap-3 bg-slate-400 main-text-color border border-fuchsia-700 py-2 rounded-lg">
+              <IconShoppingCart
+                className="main-text-color"
+                width={20}
+                height={20}
+              />
               Add To Cart
             </button>
           </div>

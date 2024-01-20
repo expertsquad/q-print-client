@@ -104,22 +104,22 @@ export const productViewMenus = [
   {
     _id: 1,
     name: "Specification",
-    hashtag: "specification",
+    hashtag: "#specification",
   },
   {
     _id: 1,
     name: "Warranty",
-    hashtag: "warranty",
+    hashtag: "#warranty",
   },
   {
     _id: 1,
     name: "Description",
-    hashtag: "description",
+    hashtag: "#description",
   },
   {
     _id: 4,
     name: "Customer Review",
-    hashtag: "customerreview",
+    hashtag: "#customerreview",
   },
 ];
 
@@ -177,7 +177,97 @@ export const productViewSpecification = [
         _id: 1,
         name: "Paper Size",
         description:
-          "A4, Letter, A5, A5(Long Edge), A6, Executive, Legal, Folio, Mexico Legal, India Legal",
+          "A4, Letter, A5, A5(Long Edge), A6, Executive, Legal, Folio, Mexico Legal, India Legal lorem loremddkjdjfkdl kjdkfjd",
+      },
+      {
+        _id: 2,
+        name: "Paper Type",
+        description: "Matte, Glossy",
+      },
+      {
+        _id: 3,
+        name: "Paper Quality",
+        description: "High, Medium, Low",
+      },
+    ],
+  },
+  {
+    _id: 4,
+    title: "Paper Information",
+    specifications: [
+      {
+        _id: 1,
+        name: "Paper Size",
+        description:
+          "A4, Letter, A5, A5(Long Edge), A6, Executive, Legal, Folio, Mexico Legal, India Legal lorem loremddkjdjfkdl kjdkfjd",
+      },
+      {
+        _id: 2,
+        name: "Paper Type",
+        description: "Matte, Glossy",
+      },
+      {
+        _id: 3,
+        name: "Paper Quality",
+        description: "High, Medium, Low",
+      },
+    ],
+  },
+  {
+    _id: 5,
+    title: "Technical Specs",
+    specifications: [
+      {
+        _id: 1,
+        name: "Paper Size",
+        description:
+          "A4, Letter, A5, A5(Long Edge), A6, Executive, Legal, Folio, Mexico Legal, India Legal lorem loremddkjdjfkdl kjdkfjd",
+      },
+      {
+        _id: 2,
+        name: "Paper Type",
+        description: "Matte, Glossy",
+      },
+      {
+        _id: 3,
+        name: "Paper Quality",
+        description: "High, Medium, Low",
+      },
+    ],
+  },
+  //Physical Specs
+  {
+    _id: 6,
+    title: "Physical Specs",
+    specifications: [
+      {
+        _id: 1,
+        name: "Paper Size",
+        description:
+          "A4, Letter, A5, A5(Long Edge), A6, Executive, Legal, Folio, Mexico Legal, India Legal lorem loremddkjdjfkdl kjdkfjd",
+      },
+      {
+        _id: 2,
+        name: "Paper Type",
+        description: "Matte, Glossy",
+      },
+      {
+        _id: 3,
+        name: "Paper Quality",
+        description: "High, Medium, Low",
+      },
+    ],
+  },
+  //Special Features
+  {
+    _id: 7,
+    title: "Special Features",
+    specifications: [
+      {
+        _id: 1,
+        name: "Paper Size",
+        description:
+          "Windows 7, 8, 8.1, 10, Server 2016, 2012, 2012R2, 2008, 2008R2, Macintosh: OS X 10.11.6, 10.12.x, 10.13.x, Linux",
       },
       {
         _id: 2,
@@ -200,13 +290,15 @@ export const productViewCustomerReview = [
       {
         _id: 1,
         name: "John Doe",
-        photo: "",
+        photo:
+          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       },
     ],
     productId: "",
     orderId: "",
-    rating: "5",
-    comment: "I am very happy with this product. I love it!",
+    rating: "2",
+    comment:
+      "I got a pair of boots from store X and I’m very satisfied. They are high-quality and worth the money. The store also offered free shipping at that price so that’s a plus!",
     photos: "",
     reply: "Hello Reply",
   },
@@ -214,14 +306,16 @@ export const productViewCustomerReview = [
     reviewer: [
       {
         _id: 2,
-        name: "John Doe",
-        photo: "",
+        name: "Shahin X Native",
+        photo:
+          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       },
     ],
     productId: "",
     orderId: "",
     rating: "5",
-    comment: "I am very happy with this product. I love it!",
+    comment:
+      "My dining experience at [RestaurantName] was truly exceptional. From the moment we entered, the welcoming atmosphere and attentive staff made us feel right at home.",
     photos: "",
     reply: "Hello Reply",
   },
@@ -229,15 +323,20 @@ export const productViewCustomerReview = [
     reviewer: [
       {
         _id: 3,
-        name: "John Doe",
-        photo: "",
+        name: "Rocket X xyd",
+        photo:
+          "https://images.unsplash.com/photo-1576504593442-4533cdd52884?q=80&w=1970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       },
     ],
     productId: "",
     orderId: "",
-    rating: "5",
-    comment: "I am very happy with this product. I love it!",
-    photos: "",
+    rating: "4",
+    comment:
+      "The staff was great. The receptionists were very helpful and answered all our questions. The room was clean and bright, and the room service was always on time. Will be coming back! Thank you so much.",
+    photos: [
+      "https://images.unsplash.com/photo-1609409603774-260f88c914d8?q=80&w=2030&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1609406316383-64330d0c6ca9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
     reply: "Hello Reply",
   },
 ];
