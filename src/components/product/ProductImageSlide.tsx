@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { IconHeart } from "@tabler/icons-react";
+import { IconEye } from "@tabler/icons-react";
 
 interface IProductImageSlideProps {
   product: IProduct;
@@ -57,11 +58,11 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
   return (
     <div className="w-full flex justify-between ">
       <div className="flex flex-col gap-2 ">
-        <p className="bg-[#E73C17]  w-[40px] h-[40px] rounded-full flex items-center justify-center text-white text-[12px]">
+        <p className="bg-[#E73C17]  w-[20px] h-[20px] md:h-[40px] md:w-[40px]  rounded-full flex items-center justify-center text-white text-[6px] md:text-[12px]">
           {" "}
           50%
         </p>
-        <p className="bg-[#FA8232]  w-[40px] h-[40px] rounded-full flex items-center justify-center text-white text-[12px]">
+        <p className="bg-[#FA8232]  w-[20px] h-[20px] md:h-[40px] md:w-[40px]  rounded-full flex items-center justify-center text-white text-[6px] md:text-[12px]">
           {" "}
           50%
         </p>
@@ -99,11 +100,13 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
         </div>
       ))}
 
-      <div className="">
-        <p className="bg-[#E73C17]  w-[40px] h-[40px] rounded-full flex items-center justify-center text-white text-[12px]">
-          {" "}
-          50%
-        </p>
+      <div className="flex flex-col gap-2">
+        <button className=" cursor-pointer  md:text-[12px]  border  w-[20px] h-[20px] md:h-[40px] md:w-[40px] rounded-full flex justify-center items-center ">
+          <IconHeart className="p-[2px]" />
+        </button>
+        <button className=" cursor-pointer  md:text-[12px]  border  w-[20px] h-[20px] md:h-[40px] md:w-[40px] rounded-full flex justify-center items-center ">
+          <IconEye className="p-[2px]" />
+        </button>
       </div>
     </div>
   );
