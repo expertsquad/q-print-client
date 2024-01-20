@@ -51,7 +51,7 @@ export const shopByCategories = [
   },
 ];
 
-//Product View Page Data
+//Product View Page Data by Poran
 export const productViewStaticData = [
   {
     _id: 1,
@@ -79,7 +79,7 @@ export const productViewStaticData = [
   },
 ];
 
-//Product View Image
+//Product View Image by Poran
 export const productViewImage = [
   {
     _id: "1",
@@ -96,6 +96,149 @@ export const productViewImage = [
   {
     _id: "4",
     picture: "https://freepngimg.com/thumb/printer/11-printer-png-image.png",
+  },
+];
+
+//Product View Page menu by Poran
+export const productViewMenus = [
+  {
+    _id: 1,
+    name: "Specification",
+    hashtag: "specification",
+  },
+  {
+    _id: 1,
+    name: "Warranty",
+    hashtag: "warranty",
+  },
+  {
+    _id: 1,
+    name: "Description",
+    hashtag: "description",
+  },
+  {
+    _id: 4,
+    name: "Customer Review",
+    hashtag: "customerreview",
+  },
+];
+
+//Product View Specification by Poran
+export const productViewSpecification = [
+  //General
+  {
+    _id: 1,
+    title: "General",
+    specifications: [
+      {
+        _id: 1,
+        name: "Brand",
+        description: "Brother",
+      },
+      {
+        _id: 2,
+        name: "Model",
+        description: "Brother 1234",
+      },
+      {
+        _id: 3,
+        name: "Color",
+        description: "Black",
+      },
+    ],
+  },
+  //Print
+  {
+    _id: 2,
+    title: "Print",
+    specifications: [
+      {
+        _id: 1,
+        name: "Technology",
+        description: "Laser",
+      },
+      {
+        _id: 2,
+        name: "Print Speed",
+        description: "10MPH",
+      },
+      {
+        _id: 3,
+        name: "Color",
+        description: "Color",
+      },
+    ],
+  },
+  {
+    _id: 3,
+    title: "Paper Information",
+    specifications: [
+      {
+        _id: 1,
+        name: "Paper Size",
+        description:
+          "A4, Letter, A5, A5(Long Edge), A6, Executive, Legal, Folio, Mexico Legal, India Legal",
+      },
+      {
+        _id: 2,
+        name: "Paper Type",
+        description: "Matte, Glossy",
+      },
+      {
+        _id: 3,
+        name: "Paper Quality",
+        description: "High, Medium, Low",
+      },
+    ],
+  },
+];
+
+//Product View Customer Review
+export const productViewCustomerReview = [
+  {
+    reviewer: [
+      {
+        _id: 1,
+        name: "John Doe",
+        photo: "",
+      },
+    ],
+    productId: "",
+    orderId: "",
+    rating: "5",
+    comment: "I am very happy with this product. I love it!",
+    photos: "",
+    reply: "Hello Reply",
+  },
+  {
+    reviewer: [
+      {
+        _id: 2,
+        name: "John Doe",
+        photo: "",
+      },
+    ],
+    productId: "",
+    orderId: "",
+    rating: "5",
+    comment: "I am very happy with this product. I love it!",
+    photos: "",
+    reply: "Hello Reply",
+  },
+  {
+    reviewer: [
+      {
+        _id: 3,
+        name: "John Doe",
+        photo: "",
+      },
+    ],
+    productId: "",
+    orderId: "",
+    rating: "5",
+    comment: "I am very happy with this product. I love it!",
+    photos: "",
+    reply: "Hello Reply",
   },
 ];
 
