@@ -14,12 +14,15 @@ interface ICategory {
 
 const CategoriesCard = () => {
   return (
-    <ul className="menu w-56 rounded-box shadow-md mt-5 ">
+    <ul className="menu rounded-box shadow-md mt-5 ">
       <p className="pb-4 border-b px-4 text-[#00000066] font-semibold text-base ">
         CATEGORIES
       </p>
       {categories?.map((category, i: number) => (
-        <li key={i} className="">
+        <li
+          key={i}
+          className="hover:bg-gradient-to-r from-[#C83B62] to-[#7F35CD] hover:text-transparent hover:bg-clip-text"
+        >
           <details>
             <summary>{category?.title}</summary>
             <ul>

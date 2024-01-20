@@ -57,12 +57,14 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
   return (
     <div className="w-full flex justify-between ">
       <div className="flex flex-col gap-2 ">
-        <button className="btn btn-circle bg-[#E73C17]  hover:bg-[#E73C17]  text-white ">
-          Hot
-        </button>
-        <button className="btn btn-circle bg-[#FA8232] hover:bg-[#FA8232] text-white">
+        <p className="bg-[#E73C17]  w-[40px] h-[40px] rounded-full flex items-center justify-center text-white text-[12px]">
+          {" "}
           50%
-        </button>
+        </p>
+        <p className="bg-[#FA8232]  w-[40px] h-[40px] rounded-full flex items-center justify-center text-white text-[12px]">
+          {" "}
+          50%
+        </p>
       </div>
 
       {product.images.map((productImg: string, index: number) => (
@@ -87,7 +89,7 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
                 <div
                   key={dotIndex}
                   onClick={() => handleDotClick(dotIndex)}
-                  className={`indicator w-[10px] h-[10px] rounded-full cursor-pointer ${
+                  className={`indicator w-[8px] h-[8px] rounded-full cursor-pointer ${
                     dotIndex === currentSlide ? "bg-[#E73C17]" : "bg-gray-300"
                   }`}
                 />
@@ -98,9 +100,10 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
       ))}
 
       <div className="">
-        <button className="btn btn-circle  hover:bg-gradient-to-l from-[#C83B62] to-[#7F35CD] hover:text-white ">
-          <IconHeart />
-        </button>
+        <p className="bg-[#E73C17]  w-[40px] h-[40px] rounded-full flex items-center justify-center text-white text-[12px]">
+          {" "}
+          50%
+        </p>
       </div>
     </div>
   );

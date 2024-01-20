@@ -1,3 +1,4 @@
+import CategoryGridProductView from "@/components/CategoryViewPage/CategoryGridProductView";
 import CategoryLeftSideWidget from "@/components/CategoryViewPage/CategoryLeftSideWidget";
 import React from "react";
 
@@ -10,7 +11,9 @@ const CategoryViewPage = () => {
       </div>
 
       {/* product grid view started */}
-      <div>here is product grid view</div>
+      <section>
+        <CategoryGridProductView />
+      </section>
     </section>
   );
 };
