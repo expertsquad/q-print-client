@@ -12,7 +12,7 @@ const PriceRangeSlider = () => {
   };
 
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex items-center space-x-4 mt-5">
       <label className="text-sm">Price Range:</label>
       <div className="flex items-center space-x-4">
         <span>{rangeValues[0]}</span>

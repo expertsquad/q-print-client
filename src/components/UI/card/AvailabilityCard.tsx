@@ -2,7 +2,7 @@ import React from "react";
 
 const AvailabilityCard = () => {
   return (
-    <div className="px-5 py-8 rounded-xl shadow-custom3xl shadow-lg">
+    <div className="px-5 py-8 rounded-xl  shadow-md mt-5">
       <h1 className="text-[#00000066] font-semibold text-base">AVAILABILITY</h1>
       <hr className="my-5" />
       <div className="flex flex-col gap-5">

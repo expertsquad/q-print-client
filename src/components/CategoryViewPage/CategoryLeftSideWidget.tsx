@@ -6,12 +6,12 @@ import BrandsCard from "../UI/card/BrandsCard";
 
 const CategoryLeftSideWidget = () => {
   return (
-    <div>
+    <aside>
       <CategoriesCard />
       <PriceRangeCard />
       <AvailabilityCard />
       <BrandsCard />
-    </div>
+    </aside>
   );
 };
 

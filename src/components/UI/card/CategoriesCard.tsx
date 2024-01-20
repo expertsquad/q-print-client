@@ -14,8 +14,8 @@ interface ICategory {
 
 const CategoriesCard = () => {
   return (
-    <ul className="menu w-56 rounded-box shadow-lg ">
-      <p className="pb-4 border-b px-4 font-medium text-gray-400 ">
+    <ul className="menu w-56 rounded-box shadow-md mt-5 ">
+      <p className="pb-4 border-b px-4 text-[#00000066] font-semibold text-base ">
         CATEGORIES
       </p>
       {categories?.map((category, i: number) => (
