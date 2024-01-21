@@ -57,3 +57,15 @@
   scrollbar-width: none;
   overflow-x: hidden;
 }
+
+/* //Order Track Table */
+.order-item-data {
+  display: flex;
+  flex-basis: content;
+  gap: 5px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+/* Order page step track */

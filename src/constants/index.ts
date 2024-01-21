@@ -341,6 +341,60 @@ export const productViewCustomerReview = [
   },
 ];
 
+//Order Track data
+export const orderTrackData = [
+  {
+    _id: "1",
+    status: "Pending",
+    date: "2022-01-01",
+    productPhoto:
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    price: 1200,
+    quantity: 1,
+    description: "Brother HL-L3270CDW Single Function Color Laser Printer",
+  },
+  {
+    _id: "2",
+    status: "Shipped",
+    date: "2022-01-01",
+    productPhoto:
+      "https://images.unsplash.com/photo-1571845995697-28be270350de?q=80&w=2001&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    price: 1050,
+    quantity: 10,
+    description: "Brother HL-L3270CDW Single Function Color Laser Printer",
+  },
+  {
+    _id: "3",
+    status: "Delivered",
+    date: "2022-01-01",
+    productPhoto:
+      "https://images.unsplash.com/photo-1650094980833-7373de26feb6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    price: 150,
+    quantity: 1,
+    description: "Function Color Laser Printer Brother HL-L3270CDW Single",
+  },
+  {
+    _id: "4",
+    status: "Cancelled",
+    date: "2022-01-01",
+    productPhoto:
+      "https://images.unsplash.com/photo-1612814266697-e5814f3063cf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fHByaW50ZXJ8ZW58MHx8MHx8fDA%3D",
+    price: 700,
+    quantity: 2,
+    description: "Function Color Laser Printer Brother HL-L3270CDW Single",
+  },
+  {
+    _id: "5",
+    status: "Returned",
+    date: "2022-01-01",
+    productPhoto:
+      "https://images.unsplash.com/photo-1605364850023-a917c39f8fe9?q=80&w=2101&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    price: 1800,
+    quantity: 4,
+    description: "Function Color Laser Printer Brother HL-L3270CDW Single",
+  },
+];
+
 // hero section start added by zayed
 export const heroItems = [
   {
