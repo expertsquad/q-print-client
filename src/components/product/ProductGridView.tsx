@@ -1,5 +1,4 @@
 import React from "react";
-import AddToCartButton from "../UI/btn/AddToCartButton";
 import ProductCard from "./ProductCard";
 
 const ProductGridView = () => {
@@ -175,7 +174,7 @@ const ProductGridView = () => {
   ];
 
   return (
-    <div className=" grid md:grid-cols-4 grid-cols-2 gap-4 w-full ">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 w-full">
       {productObject?.map((product, i) => (
         <ProductCard key={i} product={product} />
       ))}

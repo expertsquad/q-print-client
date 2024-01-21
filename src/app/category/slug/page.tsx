@@ -6,7 +6,7 @@ const CategoryViewPage = () => {
   return (
     <section className="flex gap-5 max-w-[1280px] mx-auto">
       {/* category filter and widget start */}
-      <div>
+      <div className=" hidden md:block   ">
         <CategoryLeftSideWidget />
       </div>
 
