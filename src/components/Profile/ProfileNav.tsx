@@ -1,30 +1,34 @@
 "use client";
-
-import { statementSideNavItem } from "@/constants/statementSideNav";
-import { IStatementSideNav } from "@/type";
+import { profileNav } from "@/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+
+interface IProfileNav {
+  label: string;
+  key: string;
+  href: string;
+}
 
 const ProfileNav = () => {
   const pathName = usePathname();
 
   return (
-    <aside className="flex items-center justify-center flex-col  ">
-      {statementSideNavItem.map((sideNav: IStatementSideNav) => (
+    <div className="flex items-center justify-center flex-col border rounded-lg">
+      {profileNav?.map((profileNav: IProfileNav) => (
         <Link
-          href={sideNav?.href}
+          href={profileNav?.href}
           className={`${
-            pathName === sideNav?.href
-              ? "bg-customColor-100 text-textColor border-l-2 border-primary   px-5 py-2 font-semibold w-full "
-              : "list-none font-semibold  w-full   px-5 py-2"
-          } `}
-          key={sideNav?.key}
+            pathName === profileNav?.href
+              ? "text-textColor font-semibold w-full px-5 py-2 bg-gradient-to-r from-pink-100 to-purple-100"
+              : "list-none font-semibold w-full px-5 py-2"
+          }`}
+          key={profileNav?.key}
         >
-          {sideNav?.label}
+          {profileNav?.label}
         </Link>
       ))}
-    </aside>
+    </div>
   );
 };
 

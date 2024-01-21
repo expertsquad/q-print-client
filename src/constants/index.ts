@@ -388,7 +388,7 @@ export const profileNav = [
   {
     label: "My Profile",
     key: "myProfile",
-    href: "/profile/myProfile",
+    href: "/profile",
   },
   {
     label: "Order History",
