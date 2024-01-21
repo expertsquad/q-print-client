@@ -1,7 +1,7 @@
 import React from "react";
 import ProductGridView from "../product/ProductGridView";
-import { IconFilter } from "@tabler/icons-react";
 import FilterButton from "../UI/btn/FilterButton";
+import MostPopularSelectOption from "../UI/card/MostPopularSelectOption";
 
 const CategoryGridProductView = () => {
   return (
@@ -16,12 +16,7 @@ const CategoryGridProductView = () => {
           </p>
         </div>
         <div className="lg:block md:block hidden">
-          <select className="border px-4 py-3 rounded-md " name="" id="">
-            <option value="Most Popular">Most Popular</option>
-            <option value="Most Popular">Recent</option>
-            <option value="Most Popular">High Price</option>
-            <option value="Most Popular">Low Price</option>
-          </select>
+          <MostPopularSelectOption />
         </div>
         <div className="lg:hidden md:hidden block">
           {" "}

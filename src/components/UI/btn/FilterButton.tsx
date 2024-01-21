@@ -7,6 +7,7 @@ import AvailabilityCard from "../card/AvailabilityCard";
 import BrandsCard from "../card/BrandsCard";
 import DiscountWidgetCard from "../card/DiscountWidgetCard";
 import PriceRangeCard from "../card/PriceRangeCard";
+import MostPopularSelectOption from "../card/MostPopularSelectOption";
 
 const FilterButton = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -43,6 +44,7 @@ const FilterButton = () => {
             <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
               {/* Sidebar content here */}
 
+              <MostPopularSelectOption />
               <CategoriesCard />
               <PriceRangeCard />
               <AvailabilityCard />
