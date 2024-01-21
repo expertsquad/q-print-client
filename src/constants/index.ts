@@ -363,11 +363,15 @@ export const heroItems = [
   },
 ];
 
+// dummy categories adde here
+
 export const categories = [
   { title: "Printer", url: "/" },
   { title: "Cartridge", url: "/" },
   { title: "Ink", url: "/" },
 ];
+
+// dummy  brand added here
 
 export const brands = [
   { title: "Samsung", url: "/" },
@@ -377,4 +381,33 @@ export const brands = [
   { title: "Canon", url: "/" },
   { title: "Sony", url: "/" },
   { title: "Realme", url: "/" },
+];
+
+// profile nav added
+export const profileNav = [
+  {
+    label: "My Profile",
+    key: "myProfile",
+    href: "/profile/myProfile",
+  },
+  {
+    label: "Order History",
+    key: "orderHistory",
+    href: "/profile/orderHistory",
+  },
+  {
+    label: "Profile Settings",
+    key: "profileSettings",
+    href: "/profile/profileSettings",
+  },
+  {
+    label: "Notifications",
+    key: "notifications",
+    href: "/profile/notifications",
+  },
+  {
+    label: "Change Password",
+    key: "changePassword",
+    href: "/profile/changePassword",
+  },
 ];
