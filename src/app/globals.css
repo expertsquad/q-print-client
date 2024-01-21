@@ -57,3 +57,23 @@
   scrollbar-width: none;
   overflow-x: hidden;
 }
+
+/* menu items custom css */
+.menu :where(li > details > summary):after,
+.menu :where(li > .menu-dropdown-toggle):after {
+  transform: rotate(315deg) !important;
+}
+
+.menu :where(li > details[open] > summary):after,
+.menu :where(li > .menu-dropdown-toggle.menu-dropdown-show):after {
+  transform: rotate(404deg) !important;
+}
+
+.menu :where(li > details > summary)::after,
+.menu :where(li > .menu-dropdown-toggle)::after {
+  height: 9px !important;
+  width: 9px !important;
+}
+.menu :where(li ul):before {
+  visibility: hidden;
+}

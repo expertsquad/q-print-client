@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
-const PriceRangeSlider = () => {
+const PriceRangeCard = () => {
   const [range, setRange] = useState([2000, 8000]);
 
   const handleRangeChange = (newRange: any) => {
@@ -34,17 +34,17 @@ const PriceRangeSlider = () => {
         onChange={handleRangeChange}
         className="w-full mt-4"
         trackStyle={[{ background: gradientBackground.background }]}
+        railStyle={{ background: "#d593" }}
         handleStyle={[
           {
-            background: gradientBackground.background,
-            border: "2px solid #7F35CD",
+            background: "#fff",
+            border: "4px solid #7F35CD",
           },
           {
-            background: gradientBackground.background,
-            border: "2px solid #7F35CD",
+            background: "#fff",
+            border: "4px solid #7F35CD",
           },
         ]}
-        railStyle={{ background: "#d593" }}
       />
       <div className="flex justify-between items-center mt-4">
         <div className="rounded-lg">
@@ -68,4 +68,4 @@ const PriceRangeSlider = () => {
   );
 };
 
-export default PriceRangeSlider;
+export default PriceRangeCard;

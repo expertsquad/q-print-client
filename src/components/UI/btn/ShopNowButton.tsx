@@ -1,4 +1,4 @@
-import ShopNowIcon from "@/assets/svgIcons/ShopNowIcon";
+import { IconShoppingBag } from "@tabler/icons-react";
 import Link from "next/link";
 
 interface IShopNowButton {
@@ -7,8 +7,8 @@ interface IShopNowButton {
 
 const ShopNowButton = ({ href }: IShopNowButton) => {
   return (
-    <button className="px-4 py-2 rounded-md  main-bg-color flex items-center justify-center text-white gap-2 [font-size:_clamp(0.8em,4vw,1em)] ">
-      <Link href={href || "#"}>Shop Now</Link> <ShopNowIcon />
+    <button className="whitespace-nowrap px-4 md:py-2 py-1 rounded-md  main-bg-color flex items-center justify-center text-white gap-2 [font-size:_clamp(0.6em,5vw,1em)] ">
+      <Link href={href || "#"}>Shop Now</Link> <IconShoppingBag />
     </button>
   );
 };

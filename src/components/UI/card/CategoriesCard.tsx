@@ -19,10 +19,7 @@ const CategoriesCard = () => {
         CATEGORIES
       </p>
       {categories?.map((category, i: number) => (
-        <li
-          key={i}
-          className="hover:bg-gradient-to-r from-[#C83B62] to-[#7F35CD] hover:text-transparent hover:bg-clip-text"
-        >
+        <li key={i}>
           <details>
             <summary>{category?.title}</summary>
             <ul>

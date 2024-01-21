@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const DiscountWidgetCard = () => {
   return (
-    <div className=" bg-[#134231] w-[300px]  rounded-lg relative overflow-hidden h- mt-5 ">
+    <div className=" bg-[#134231] w-[300px]  rounded-lg relative overflow-hidden h- my-5 ">
       <div className="h-[60%] w-full bg-[#3d7c65] opacity-65 blur-2xl rounded-full  absolute  border border-red-600 "></div>
       <div className="items-center justify-between h-full p-4 relative flex flex-col  ">
         {/* Increased z-index value to 20 */}
