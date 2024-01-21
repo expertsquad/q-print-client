@@ -6,6 +6,7 @@ const nextConfig = {
       "freepngimg.com",
       "http://www.w3.org/2000/svg",
       "www.transparentpng.com",
+      "images.unsplash.com",
     ],
   },
 };

@@ -19,7 +19,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Providers>
       <html lang="en">
-        <body className={poppins.className}>
+        <body className={`${poppins.className} scroll-smooth`}>
           {/* <Header /> */}
           {children}
           <Footer />
