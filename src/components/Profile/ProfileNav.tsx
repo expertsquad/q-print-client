@@ -2,7 +2,17 @@
 import { profileNav } from "@/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import { IconLock } from "@tabler/icons-react";
+import { IconBell } from "@tabler/icons-react";
+import { IconSettings } from "@tabler/icons-react";
+import { IconHistory } from "@tabler/icons-react";
+import { IconUser } from "@tabler/icons-react";
+
+interface IProfileNav {
+  label: string;
+  key: string;
+  href: string;
+}
 
 interface IProfileNav {
   label: string;
@@ -14,18 +24,34 @@ const ProfileNav = () => {
   const pathName = usePathname();
 
   return (
-    <div className="flex items-center justify-center flex-col border rounded-lg">
+    <div className="flex items-center justify-center flex-col border rounded-lg  overflow-hidden md:w-[300px] w-full">
       {profileNav?.map((profileNav: IProfileNav) => (
         <Link
           href={profileNav?.href}
           className={`${
             pathName === profileNav?.href
-              ? "text-textColor font-semibold w-full px-5 py-2 bg-gradient-to-r from-pink-100 to-purple-100"
-              : "list-none font-semibold w-full px-5 py-2"
+              ? "text-textColor w-full px-5 py-3 bg-gradient-to-r from-pink-100 to-purple-100 group "
+              : "list-none  w-full px-5 py-3  "
           }`}
           key={profileNav?.key}
         >
-          {profileNav?.label}
+          <div
+            className={`${
+              pathName === profileNav?.href
+                ? "text-fuchsia-700 flex gap-2 "
+                : "flex gap-2 text-gray-400 "
+            }`}
+          >
+            {" "}
+            <span className="  ">
+              {profileNav?.key === "myProfile" && <IconUser />}
+              {profileNav?.key === "orderHistory" && <IconHistory />}
+              {profileNav?.key === "profileSettings" && <IconSettings />}
+              {profileNav?.key === "notifications" && <IconBell />}
+              {profileNav?.key === "changePassword" && <IconLock />}
+            </span>
+            <p>{profileNav?.label}</p>
+          </div>
         </Link>
       ))}
     </div>
