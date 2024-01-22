@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import OrderTrackButton from "./OrderTrackButton";
 
 const ProfileOrderHistory = () => {
   const orderHistory = [
@@ -134,7 +135,7 @@ const ProfileOrderHistory = () => {
                 {orderHistory?.orderStatus}
               </div>
             </div>
-            <div className="pt-5 flex flex-col gap-4">
+            <div className="py-5 flex flex-col gap-4 border-b border-dashed">
               {orderHistory?.product?.map((product) => (
                 <div
                   key={product?.id}
@@ -151,23 +152,37 @@ const ProfileOrderHistory = () => {
                       />
                     </div>
                     <div>
-                      <div className="flex flex-col md:items-center md:justify-between lg:items-center lg:justify-between ">
-                        <div>
-                          <h3 className="line-clamp-1 text-gray-800">
+                      <div className="flex flex-col md:flex-row lg:flex-row  md:items-center md:justify-between lg:items-center lg:justify-between  ">
+                        <div className="w-2/4 ">
+                          <h3 className="line-clamp-1 md:line-clamp-2 text-gray-800">
                             {product?.productName}
                           </h3>
                           <p className="text-[14px] text-gray-500">
                             {product?.brand}
                           </p>
                         </div>
-                        <div>price here</div>
+                        <div className="flex items-center justify-center gap-1  w-2/4">
+                          <p>
+                            {product?.quantity} X {product?.price}
+                          </p>
+                          <small>QAR</small>
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div>Final Price</div>
+                  <div>{product?.totalPrice} QAR</div>
                 </div>
               ))}
+            </div>
+            <div className="flex items-center justify-between pt-5">
+              <div>
+                <p>Total : </p>
+                <h3 className="bg-gradient-to-r from-[#7F35CD] to-[#C83B62] text-transparent bg-clip-text text-xl font-bold ">
+                  {orderHistory?.grandTotal} QAR
+                </h3>
+              </div>
+              <OrderTrackButton />
             </div>
           </div>
         ))}
