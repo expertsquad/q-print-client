@@ -6,7 +6,7 @@ const OrderedItemData = () => {
   return (
     <div>
       {orderTrackData.map((data: any) => (
-        <div className=" order-item-data" key={data._id}>
+        <div className="order-item-data" key={data._id}>
           <div className="border rounded-2xl p-1">
             <Image
               sizes="100vw"

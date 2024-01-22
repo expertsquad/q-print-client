@@ -60,12 +60,10 @@
 
 /* //Order Track Table */
 .order-item-data {
-  display: flex;
-  flex-basis: content;
-  gap: 5px;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 15px;
+  display: grid;
+  grid-template-columns: 0.5fr 2.5fr 0.8fr 0.5fr 1fr;
+  margin-top: 24px;
+  grid-gap: 5px;
 }
 
 /* Order page step track */

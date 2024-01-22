@@ -1,76 +1,75 @@
+import { FC } from "react";
 import {
   IconPackage,
   IconTruck,
   IconHeartHandshake,
+  IconBook2,
 } from "@tabler/icons-react";
 
-const OrderedStep = () => {
+interface StepProps {
+  icon: JSX.Element;
+  title: string;
+  date: string;
+  status?: "orderPlaced" | "packaging" | "orderShipped" | "orderReceived";
+}
+
+const Step: FC<StepProps> = ({ icon, title, date, status }) => {
+  const isEvenStep = status === "packaging";
+  // ||
+  // status === "orderReceived" ||
+  // status === "orderPlaced" ||
+  // status === "orderShipped";
+
   return (
-    // <div>
-    //   <ul className="steps steps-horizontal w-full">
-    //     <li className="step step-[#000]  relative">
-    //       <span className="step-icon absolute top-2 z-20">
-    //         <IconPackage className="w-6 h-6" />
-    //       </span>
-    //       Order Placed
-    //     </li>
-    //     <li className="step step-success">Packaging</li>
-    //     <li className="step">To Ship</li>
-    //     <li className="step">Order Received</li>
-    //     <li data-content="?" className="step step-neutral">
-    //       Step 1
-    //     </li>
-    //     <li
-    //       data-content={<IconPackage className="w-6 h-6" />}
-    //       className="step step-neutral"
-    //     >
-    //       Step 1
-    //     </li>
-    //   </ul>
-    // </div>
-    <div className="w-full mb-20 py-4">
-      <div className="relative flex items-center justify-between w-full">
-        <div className="absolute left-0 top-2/4 h-0.5 w-full -translate-y-2/4 bg-gray-300"></div>
-        <div className="absolute left-0 top-2/4 h-0.5 w-full -translate-y-2/4 bg-gray-900 transition-all duration-500"></div>
-        <div className="relative z-10 grid w-10 h-10 font-bold text-white transition-all duration-300 bg-gray-900 rounded-full place-items-center">
-          <IconPackage />
-          <div className="absolute -bottom-[4.5rem] w-max text-center">
-            <h6 className="block font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-gray-700">
-              Order Placed
-            </h6>
-            <p className="block font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
-              Details about yout account.
-            </p>
-            I
-          </div>
-        </div>
-        <div className="relative z-10 grid w-10 h-10 font-bold text-white transition-all duration-300 bg-gray-900 rounded-full place-items-center">
-          <IconTruck />
-          <div className="absolute -bottom-[4.5rem] w-max text-center">
-            <h6 className="block font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
-              Step 2
-            </h6>
-            <p className="block font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-              Details about yout account.
-            </p>
-            iI
-          </div>
-        </div>
-        <div className="relative z-10 grid w-10 h-10 font-bold text-gray-900 transition-all duration-300 bg-gray-300 rounded-full place-items-center">
-          <IconHeartHandshake />
-          <div className="absolute -bottom-[4.5rem] w-max text-center">
-            <h6 className="block font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-gray-700">
-              Step 3
-            </h6>
-            <p className="block font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
-              Details about yout account.
-            </p>
-            I
-          </div>
-        </div>
+    <div
+      className={`relative z-10 grid w-10 h-10 font-bold text-white transition-all duration-300 rounded-full place-items-center border border-dashed 
+      ${
+        isEvenStep ? "bg-white text-fuchsia-500" : "bg-fuchsia-500 text-white"
+      }`}
+    >
+      <span>{icon}</span>
+      <div className="absolute -bottom-[3rem] w-max text-center">
+        <h6 className="text-[14px] md:text-[18px] text-black">{title}</h6>
+        <p className="text-[12px] antialiased font-normal text-black opacity-50">
+          {date}
+        </p>
       </div>
     </div>
   );
 };
+
+const OrderedStep: FC = () => (
+  <div className="md:w-full mb-20 py-4">
+    <div className="relative flex items-center justify-between w-full">
+      <div className="absolute left-0 top-2/4 h-0.5 w-full -translate-y-2/4 bg-gray-300"></div>
+      <div className="absolute left-0 top-2/4 h-1 w-full -translate-y-2/4 bg-fuchsia-100 transition-all duration-500"></div>
+
+      <Step
+        icon={<IconBook2 />}
+        title="Order Placed"
+        date="12 Dec 2024"
+        status="orderPlaced"
+      />
+      <Step
+        icon={<IconPackage />}
+        title="Packaging"
+        date="12 Dec 2024"
+        status="packaging"
+      />
+      <Step
+        icon={<IconTruck />}
+        title="Order Shipped"
+        date="12 Dec 2024"
+        status="orderShipped"
+      />
+      <Step
+        icon={<IconHeartHandshake />}
+        title="Order Received"
+        date="12 Dec 2024"
+        status="orderReceived"
+      />
+    </div>
+  </div>
+);
 
 export default OrderedStep;
