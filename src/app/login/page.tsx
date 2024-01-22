@@ -1,25 +1,13 @@
-"use client";
 import Image from "next/image";
 import logo from "@/assets/logo.svg";
 import Link from "next/link";
-import { useForm, SubmitHandler } from "react-hook-form";
 
-interface IFormInput {
-  firstName: string;
-  lastName: string;
-  age: number;
-}
+import Facebook from "@/assets/FooterSVG/Facebook";
 
 const Login = () => {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
-  const onSubmit = (data: any) => console.log(data);
   return (
-    <div className="h-screen flex items-center justify-center">
-      <div className="md:max-w-[600px] bg-white shadow-modalShadow px-11 pb-7 rounded-2xl">
+    <div className="h-screen flex items-center justify-center mx-3">
+      <div className="md:max-w-[600px] bg-white shadow-modalShadow px-5 md:px-11 pb-7 rounded-2xl">
         {/* //Logo */}
         <div className="flex justify-center items-center mb-5 mt-12 md:mt-20">
           <Image src={logo} alt="Logo" />
@@ -27,26 +15,29 @@ const Login = () => {
         <p className="[font-size:_clamp(16px,2vw,18px)] text-black opacity-50 text-center">
           Best online e-commerce website for you
         </p>
+        {/* //Social Login */}
+        <div className="flex justify-center gap-5 mt-14">
+          <button className="border flex items-center gap-2 rounded w-full md:w-[160px] py-2 px-5">
+            <Facebook />
+            Google
+          </button>
+          <button className="border flex items-center gap-2 rounded w-full md:w-[160px] py-2 px-5">
+            <Facebook />
+            Facebook
+          </button>
+        </div>
         <div className="divider divider-[#548]">OR</div>
         {/* //Form */}
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form>
           <label htmlFor=""></label>
           <input
             placeholder="Email or Phone"
             className="border border-black border-opacity-10 py-4 w-full rounded-xl placeholder:pl-5 text-black opacity-50 outline-none"
-            {...register("mail", {
-              required: "Email Address or Phone Number is required",
-            })}
-            aria-invalid={errors.mail ? "true" : "false"}
           />
           <input
             type="password"
             placeholder="Type your password"
             className="mt-7 border border-black border-opacity-10 py-4 w-full rounded-xl placeholder:pl-5 text-black opacity-50 outline-none"
-            {...register("password", {
-              required: true,
-              minLength: 6,
-            })}
           />
           {/* //Submit Button */}
           <button
