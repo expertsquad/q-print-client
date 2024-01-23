@@ -3,6 +3,7 @@ import logo from "@/assets/logo.svg";
 import Link from "next/link";
 import Facebook from "@/assets/FooterSVG/Facebook";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
+import CustomInput from "@/components/shared/CustomInput";
 
 const Login = () => {
   return (
@@ -30,28 +31,28 @@ const Login = () => {
         {/* //Form */}
         <form>
           <label htmlFor=""></label>
-          <input
+          <CustomInput
+            type="number"
             placeholder="Email or Phone"
-            className="border border-black border-opacity-10 py-4 w-full rounded-xl placeholder:pl-5 text-black opacity-50 outline-none"
+            customClassName="my-custom-style"
           />
-          <div>
-            <input
-              type="password"
-              placeholder="Type your password"
-              className="mt-7 border border-black border-opacity-10 py-4 w-full rounded-xl placeholder:pl-5 text-black opacity-50 outline-none"
+          <div className="">
+            <CustomInput
+              type="number"
+              placeholder="Phone Number"
+              customClassName="my-custom-style"
             />
-            <span>
+            {/* <span className=" flex items-center justify-center">
               <IconEye />
               <IconEyeOff />
-            </span>
-            <div className="flex justify-end mt-1">
+            </span> */}
+            <div className="flex justify-end">
               <Link
                 className="text-[16px] text-black text-opacity-50 "
                 href="/forgetpassword"
               >
                 Forget Password
               </Link>
-              I I
             </div>
           </div>
           {/* //Submit Button */}
@@ -69,7 +70,7 @@ const Login = () => {
                 id="remember"
                 type="checkbox"
                 value=""
-                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                className="w-4 h-4 border rounded bg-gray-50 border-black border-opacity-20"
                 required
               />
             </div>
