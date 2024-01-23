@@ -67,3 +67,9 @@
 }
 
 /* Order page step track */
+
+.header-section-css {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  align-items: center;
+}
