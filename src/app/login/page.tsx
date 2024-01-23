@@ -1,8 +1,8 @@
 import Image from "next/image";
 import logo from "@/assets/logo.svg";
 import Link from "next/link";
-
 import Facebook from "@/assets/FooterSVG/Facebook";
+import { IconEye, IconEyeOff } from "@tabler/icons-react";
 
 const Login = () => {
   return (
@@ -34,11 +34,26 @@ const Login = () => {
             placeholder="Email or Phone"
             className="border border-black border-opacity-10 py-4 w-full rounded-xl placeholder:pl-5 text-black opacity-50 outline-none"
           />
-          <input
-            type="password"
-            placeholder="Type your password"
-            className="mt-7 border border-black border-opacity-10 py-4 w-full rounded-xl placeholder:pl-5 text-black opacity-50 outline-none"
-          />
+          <div>
+            <input
+              type="password"
+              placeholder="Type your password"
+              className="mt-7 border border-black border-opacity-10 py-4 w-full rounded-xl placeholder:pl-5 text-black opacity-50 outline-none"
+            />
+            <span>
+              <IconEye />
+              <IconEyeOff />
+            </span>
+            <div className="flex justify-end mt-1">
+              <Link
+                className="text-[16px] text-black text-opacity-50 "
+                href="/forgetpassword"
+              >
+                Forget Password
+              </Link>
+              I I
+            </div>
+          </div>
           {/* //Submit Button */}
           <button
             type="submit"
