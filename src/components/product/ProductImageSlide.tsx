@@ -18,8 +18,6 @@ interface IProduct {
 }
 
 const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
-  console.log(product);
-
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 

@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/Providers";
 import Footer from "@/components/Footer/Footer";
+import Header from "@/components/Header/Header";
 // import Header from "@/components/Header/Header";
 
 const poppins = Poppins({
@@ -20,7 +21,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <Providers>
       <html lang="en">
         <body className={`${poppins.className} scroll-smooth`}>
-          {/* <Header /> */}
+          <Header />
           {children}
           <Footer />
         </body>

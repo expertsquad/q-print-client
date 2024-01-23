@@ -76,3 +76,19 @@
 .menu :where(li ul):before {
   visibility: hidden;
 }
+
+/* //Order Track Table */
+.order-item-data {
+  display: grid;
+  grid-template-columns: 0.5fr 2.5fr 0.8fr 0.5fr 1fr;
+  margin-top: 24px;
+  grid-gap: 5px;
+}
+
+/* Order page step track */
+
+.header-section-css {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  align-items: center;
+}
