@@ -4,11 +4,18 @@ import {
   IconUser,
   IconSearch,
   IconAdjustmentsHorizontal,
+  IconMenu2,
+  IconChevronRight,
+  IconPrinter,
+  IconFence,
 } from "@tabler/icons-react";
 import IconButton from "./IconButton";
 import Image from "next/image";
 import qPrintLogo from "@/assets/logotwo.svg";
 import Link from "next/link";
+import demoBrandImg from "@/assets/menu-demo-image.svg";
+import Sidebar from "./Sidebar";
+import { IconMilk } from "@tabler/icons-react";
 
 const Header = () => {
   return (
@@ -19,7 +26,7 @@ const Header = () => {
           <Image src={qPrintLogo} alt="Logo" />
         </div>
         {/* ==SearchBar & Filter== */}
-        <div className="order-4 md:order-2 section-second-child flex items-center w-full gap-5">
+        <div className="order-4 md:order-2 section-second-child flex items-center w-full gap-5 col-span-3 md:col-span-1">
           <div className="relative w-full">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
               <IconSearch />
@@ -27,7 +34,7 @@ const Header = () => {
             <input
               type="search"
               id="default-search"
-              className="inline-block w-full rounded-full px-4 py-3 ps-10 text-sm text-gray-900 border border-gray-300 bg-gray-50 outline-none"
+              className="inline-block w-full rounded-full px-4 py-3 ps-10 text-sm text-black text-opacity-50 border border-gray-300 bg-gray-50 outline-none"
               placeholder="Search For Product"
             />
           </div>
@@ -37,7 +44,7 @@ const Header = () => {
           </div>
         </div>
         {/* ==Wishlist, Cart, and Profile== */}
-        <div className="order-3 md:order-3 section-last-child flex items-center gap-5">
+        <div className="order-3 md:order-3 section-last-child flex items-center gap-5 justify-end">
           <IconButton
             icon={<IconHeart />}
             badgeCount={99}
@@ -55,46 +62,195 @@ const Header = () => {
         </div>
         {/* ==Menubar== */}
         <div className="order-1 md:order-4 md:bg-[#FAFAFA] py-4 flex gap-6 md:col-span-3">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+          {/* ==Mobile Version== */}
+          {/* <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
+              <IconMenu2 />
+              {""}
             </div>
-            <ul
+            <div
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-[400px] bg-orange-600"
             >
-              <Link href="/home">Home</Link>
-              <Link href="/home">Brands</Link>
-              <Link href="/home">FInd Cartridge</Link>
-              <Link href="/home">Order a Design Printing </Link>
-              <Link href="/home">About Us</Link>
-              <Link href="/home">Privacy Policy</Link>
-            </ul>
+              <div className="w-full bg-slate-500 flex flex-col">
+                <Link href="/" className="w-full">
+                  Home
+                </Link>
+                <Link href="/home">Brands</Link>
+                <Link href="/home">FInd Cartridge</Link>
+                <Link href="/home">Order a Design Printing </Link>
+                <Link href="/home">About Us</Link>
+                <Link href="/home">Privacy Policy</Link>
+                {""}
+              </div>
+            </div>
+          </div> */}
+
+          <div className="drawer md:hidden">
+            <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content">
+              {/* Page content here */}
+              <label
+                htmlFor="my-drawer"
+                className="btn  drawer-button bg-transparent border-none"
+              >
+                <IconMenu2 />
+              </label>
+            </div>
+            <div className="drawer-side">
+              <label
+                htmlFor="my-drawer"
+                aria-label="close sidebar"
+                className="drawer-overlay"
+              ></label>
+              <ul className="menu p-4 w-full min-h-full bg-slate-400">
+                {/* Sidebar content here */}
+                Content Is comming!!
+              </ul>
+            </div>
           </div>
 
-          <div className="hidden lg:flex">
-            <ul className="menu menu-sm menu-horizontal px-1 flex gap-6">
-              <Link href="/home">Home</Link>
+          {/* ==Desktop Version== */}
+          <div className="hidden md:flex">
+            <div className="flex gap-7">
+              <div className="">
+                <details className="group relative">
+                  <summary className="flex items-center gap-2 marker:content-none hover:cursor-pointer">
+                    <span className="main-text-color">All Categories</span>
+                    <span className="transition group-open:rotate-90 main-text-color">
+                      <IconChevronRight className="" />
+                    </span>
+                  </summary>
+                  <article className="absolute top-10 md:max-w-[300px] bg-white shadow-lg rounded-lg px-5 py-3">
+                    <ul className="flex flex-col gap-5">
+                      <li className="flex relative justify-between">
+                        <div className="flex gap-3">
+                          <IconPrinter />
+                          <Link href="/" className="mr-10">
+                            Printer
+                          </Link>
+                        </div>
+                        <details className="group">
+                          <summary className="marker:content-none hover:cursor-pointer">
+                            <span className="transition group-open:rotate-90">
+                              <IconChevronRight />
+                            </span>
+                          </summary>
+                          <article className="absolute right-[-147px] p-5 rounded-md flex flex-col gap-5 bg-white shadow-sm ">
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                          </article>
+                        </details>
+                      </li>
+                      <li className="flex justify-between relative">
+                        <div className="flex gap-3">
+                          <IconFence />
+                          <Link href="/" className="mr-10">
+                            Cartridge
+                          </Link>
+                        </div>
+                        <details className="group">
+                          <summary className="marker:content-none hover:cursor-pointer">
+                            <span className="transition group-open:rotate-90">
+                              <IconChevronRight />
+                            </span>
+                          </summary>
+                          <article className="absolute right-[-147px] p-5 rounded-md flex flex-col gap-5 bg-white shadow-sm ">
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                          </article>
+                        </details>
+                      </li>
+                      <li className="flex justify-between relative">
+                        <div className="flex gap-3 items-center">
+                          <span className="text-fuchsia-300">
+                            <IconMilk />
+                          </span>
+                          <Link href="/" className="mr-10">
+                            Ink
+                          </Link>
+                        </div>
+                        <details className="group">
+                          <summary className="marker:content-none hover:cursor-pointer">
+                            <span className="transition group-open:rotate-90">
+                              <IconChevronRight />
+                            </span>
+                          </summary>
+                          <article className="absolute right-[-147px]  p-5 rounded-md flex flex-col gap-5 bg-white shadow-sm ">
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                          </article>
+                        </details>
+                      </li>
+                    </ul>
+                  </article>
+                </details>
+              </div>
+
+              <Link href="/">Home</Link>
               <Link href="/home">Brands</Link>
               <Link href="/home">FInd Cartridge</Link>
               <Link href="/home">Order a Design Printing </Link>
               <Link href="/home">About Us</Link>
               <Link href="/home">Privacy Policy</Link>
-            </ul>
+            </div>
+            {""}
           </div>
+          {/* <Sidebar /> */}
         </div>
       </section>
     </header>
