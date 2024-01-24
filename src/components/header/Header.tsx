@@ -4,6 +4,7 @@ import {
   IconUser,
   IconSearch,
   IconAdjustmentsHorizontal,
+  IconMenu2,
 } from "@tabler/icons-react";
 import IconButton from "./IconButton";
 import Image from "next/image";
@@ -19,7 +20,7 @@ const Header = () => {
           <Image src={qPrintLogo} alt="Logo" />
         </div>
         {/* ==SearchBar & Filter== */}
-        <div className="order-4 md:order-2 section-second-child flex items-center w-full gap-5">
+        <div className="order-4 md:order-2 section-second-child flex items-center w-full gap-5 col-span-3 md:col-span-1">
           <div className="relative w-full">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
               <IconSearch />
@@ -27,7 +28,7 @@ const Header = () => {
             <input
               type="search"
               id="default-search"
-              className="inline-block w-full rounded-full px-4 py-3 ps-10 text-sm text-gray-900 border border-gray-300 bg-gray-50 outline-none"
+              className="inline-block w-full rounded-full px-4 py-3 ps-10 text-sm text-black text-opacity-50 border border-gray-300 bg-gray-50 outline-none"
               placeholder="Search For Product"
             />
           </div>
@@ -37,7 +38,7 @@ const Header = () => {
           </div>
         </div>
         {/* ==Wishlist, Cart, and Profile== */}
-        <div className="order-3 md:order-3 section-last-child flex items-center gap-5">
+        <div className="order-3 md:order-3 section-last-child flex items-center gap-5 justify-end">
           <IconButton
             icon={<IconHeart />}
             badgeCount={99}
@@ -55,45 +56,50 @@ const Header = () => {
         </div>
         {/* ==Menubar== */}
         <div className="order-1 md:order-4 md:bg-[#FAFAFA] py-4 flex gap-6 md:col-span-3">
+          {/* ==Mobile Version== */}
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+            <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
+              <IconMenu2 />
+              {""}
             </div>
-            <ul
+            <div
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-[400px] bg-orange-600"
             >
-              <Link href="/home">Home</Link>
-              <Link href="/home">Brands</Link>
-              <Link href="/home">FInd Cartridge</Link>
-              <Link href="/home">Order a Design Printing </Link>
-              <Link href="/home">About Us</Link>
-              <Link href="/home">Privacy Policy</Link>
-            </ul>
+              <div className="w-full bg-slate-500 flex flex-col">
+                <Link href="/" className="w-full">
+                  Home
+                </Link>
+                <Link href="/home">Brands</Link>
+                <Link href="/home">FInd Cartridge</Link>
+                <Link href="/home">Order a Design Printing </Link>
+                <Link href="/home">About Us</Link>
+                <Link href="/home">Privacy Policy</Link>
+                {""}
+              </div>
+            </div>
           </div>
 
-          <div className="hidden lg:flex">
-            <ul className="menu menu-sm menu-horizontal px-1 flex gap-6">
-              <Link href="/home">Home</Link>
+          {/* ==Desktop Version== */}
+          <div className="hidden md:flex">
+            <div className="flex">
+              <select className="outline-none bg-transparent ">
+                <option selected disabled hidden>
+                  All Categories
+                </option>
+                <option value="">Printer</option>
+                <option value="saab">Cartridge</option>
+                <option value="opel">Ink</option>
+              </select>
+
+              <Link href="/">Home</Link>
               <Link href="/home">Brands</Link>
               <Link href="/home">FInd Cartridge</Link>
               <Link href="/home">Order a Design Printing </Link>
               <Link href="/home">About Us</Link>
               <Link href="/home">Privacy Policy</Link>
-            </ul>
+            </div>
+            {""}
           </div>
         </div>
       </section>
