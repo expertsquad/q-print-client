@@ -4,7 +4,6 @@ import "./globals.css";
 import Providers from "@/lib/Providers";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
-// import Header from "@/components/Header/Header";
 
 const poppins = Poppins({
   weight: ["400"],

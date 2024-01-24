@@ -5,11 +5,17 @@ import {
   IconSearch,
   IconAdjustmentsHorizontal,
   IconMenu2,
+  IconChevronRight,
+  IconPrinter,
+  IconFence,
 } from "@tabler/icons-react";
 import IconButton from "./IconButton";
 import Image from "next/image";
 import qPrintLogo from "@/assets/logotwo.svg";
 import Link from "next/link";
+import demoBrandImg from "@/assets/menu-demo-image.svg";
+import Sidebar from "./Sidebar";
+import { IconMilk } from "@tabler/icons-react";
 
 const Header = () => {
   return (
@@ -57,7 +63,7 @@ const Header = () => {
         {/* ==Menubar== */}
         <div className="order-1 md:order-4 md:bg-[#FAFAFA] py-4 flex gap-6 md:col-span-3">
           {/* ==Mobile Version== */}
-          <div className="dropdown">
+          {/* <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
               <IconMenu2 />
               {""}
@@ -78,19 +84,162 @@ const Header = () => {
                 {""}
               </div>
             </div>
+          </div> */}
+
+          <div className="drawer md:hidden">
+            <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content">
+              {/* Page content here */}
+              <label
+                htmlFor="my-drawer"
+                className="btn  drawer-button bg-transparent border-none"
+              >
+                <IconMenu2 />
+              </label>
+            </div>
+            <div className="drawer-side">
+              <label
+                htmlFor="my-drawer"
+                aria-label="close sidebar"
+                className="drawer-overlay"
+              ></label>
+              <ul className="menu p-4 w-full min-h-full bg-slate-400">
+                {/* Sidebar content here */}
+                Content Is comming!!
+              </ul>
+            </div>
           </div>
 
           {/* ==Desktop Version== */}
           <div className="hidden md:flex">
-            <div className="flex">
-              <select className="outline-none bg-transparent ">
-                <option selected disabled hidden>
-                  All Categories
-                </option>
-                <option value="">Printer</option>
-                <option value="saab">Cartridge</option>
-                <option value="opel">Ink</option>
-              </select>
+            <div className="flex gap-7">
+              <div className="">
+                <details className="group relative">
+                  <summary className="flex items-center gap-2 marker:content-none hover:cursor-pointer">
+                    <span className="main-text-color">All Categories</span>
+                    <span className="transition group-open:rotate-90 main-text-color">
+                      <IconChevronRight className="" />
+                    </span>
+                  </summary>
+                  <article className="absolute top-10 md:max-w-[300px] bg-white shadow-lg rounded-lg px-5 py-3">
+                    <ul className="flex flex-col gap-5">
+                      <li className="flex relative justify-between">
+                        <div className="flex gap-3">
+                          <IconPrinter />
+                          <Link href="/" className="mr-10">
+                            Printer
+                          </Link>
+                        </div>
+                        <details className="group">
+                          <summary className="marker:content-none hover:cursor-pointer">
+                            <span className="transition group-open:rotate-90">
+                              <IconChevronRight />
+                            </span>
+                          </summary>
+                          <article className="absolute right-[-147px] p-5 rounded-md flex flex-col gap-5 bg-white shadow-sm ">
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                          </article>
+                        </details>
+                      </li>
+                      <li className="flex justify-between relative">
+                        <div className="flex gap-3">
+                          <IconFence />
+                          <Link href="/" className="mr-10">
+                            Cartridge
+                          </Link>
+                        </div>
+                        <details className="group">
+                          <summary className="marker:content-none hover:cursor-pointer">
+                            <span className="transition group-open:rotate-90">
+                              <IconChevronRight />
+                            </span>
+                          </summary>
+                          <article className="absolute right-[-147px] p-5 rounded-md flex flex-col gap-5 bg-white shadow-sm ">
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                          </article>
+                        </details>
+                      </li>
+                      <li className="flex justify-between relative">
+                        <div className="flex gap-3 items-center">
+                          <span className="text-fuchsia-300">
+                            <IconMilk />
+                          </span>
+                          <Link href="/" className="mr-10">
+                            Ink
+                          </Link>
+                        </div>
+                        <details className="group">
+                          <summary className="marker:content-none hover:cursor-pointer">
+                            <span className="transition group-open:rotate-90">
+                              <IconChevronRight />
+                            </span>
+                          </summary>
+                          <article className="absolute right-[-147px]  p-5 rounded-md flex flex-col gap-5 bg-white shadow-sm ">
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                            <li className="flex gap-3">
+                              <Image src={demoBrandImg} alt="Demo Img" />
+                              <Link href="/">Printer</Link>
+                            </li>
+                          </article>
+                        </details>
+                      </li>
+                    </ul>
+                  </article>
+                </details>
+              </div>
 
               <Link href="/">Home</Link>
               <Link href="/home">Brands</Link>
@@ -101,6 +250,7 @@ const Header = () => {
             </div>
             {""}
           </div>
+          {/* <Sidebar /> */}
         </div>
       </section>
     </header>
