@@ -1,12 +1,11 @@
 import Image from "next/image";
-import { IconLogin2 } from "@tabler/icons-react";
-import UserIcon from "@/assets/svgIcons/UserIcon";
 import OrderIcon from "@/assets/svgIcons/OrderIcon";
 import ReviewIcon from "@/assets/svgIcons/ReviewIcon";
 import CompleteOrdersIcon from "@/assets/svgIcons/CompleteOrdersIcon";
 import ProfileLogoutButton from "./ProfileLogoutButton";
 import ProfileViewButton from "./ProfileViewButton";
 import ProfileUserIcon from "@/assets/svgIcons/ProfileUserIcon";
+import { IconCamera } from "@tabler/icons-react";
 
 const MyProfileCard = () => {
   return (
@@ -16,13 +15,25 @@ const MyProfileCard = () => {
         <div className="flex justify-between items-center pb-5  md:border-b lg:border-b">
           <div className="flex gap-2  justify-center  items-center">
             <div>
-              <Image
-                src="https://images.pexels.com/photos/162140/duckling-birds-yellow-fluffy-162140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="My profile image"
-                height={100}
-                width={100}
-                className=" h-[75px] w-[75px] md:h-[100px] md:w-[100px] lg:h-[100px] lg:w-[100px] rounded-full overflow-hidden  border  object-cover"
-              />
+              <div className="relative">
+                <Image
+                  src="https://images.pexels.com/photos/162140/duckling-birds-yellow-fluffy-162140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  alt="My profile image"
+                  height={100}
+                  width={100}
+                  className="h-[75px] w-[75px] md:h-[100px] md:w-[100px] lg:h-[100px] lg:w-[100px] rounded-full overflow-hidden border object-cover"
+                />
+                <div className="h-8 w-8 rounded-full flex items-center justify-center bg-gradient-to-r from-[#7F35CD] to-[#C83B62] text-white absolute bottom-0 right-0">
+                  <label htmlFor="profileFileInput">
+                    <IconCamera />
+                    <input
+                      id="profileFileInput"
+                      className="hidden"
+                      type="file"
+                    />
+                  </label>
+                </div>
+              </div>
             </div>
             <div>
               <p>Hello,</p>

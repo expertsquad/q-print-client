@@ -3,7 +3,7 @@ import resetPasswordImg from "@/assets/images/resetPasswordImg.png";
 const ChangePassword = () => {
   return (
     <div>
-      <section className="w-full">
+      <section className="w-full mb-7">
         <div className="lg:border rounded-lg lg:p-7 flex justify-between items-center gap-28">
           <div className="lg:w-6/12 w-full">
             <h1 className="text-black text-[22px] font-semibold">

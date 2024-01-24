@@ -3,7 +3,7 @@ import React from "react";
 
 const Notifications = () => {
   return (
-    <div className="flex flex-col gap-6 border rounded-lg p-7">
+    <div className="flex flex-col gap-6 border rounded-lg p-7 mb-7">
       <h4 className="text-xl text-black font-bold mb-2">Notification</h4>
       <h4 className="text-xl text-black font-medium">Today</h4>
       <div className="flex flex-col gap-5 lg:gap-6">

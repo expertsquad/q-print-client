@@ -3,7 +3,11 @@ import Image from "next/image";
 import React from "react";
 
 const ProfileSettings = () => {
-  return <PersonalInformation />;
+  return (
+    <div className="w-full mb-7">
+      <PersonalInformation />
+    </div>
+  );
 };
 
 export default ProfileSettings;

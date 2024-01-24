@@ -3,7 +3,7 @@ import React from "react";
 
 const OrderHistory = () => {
   return (
-    <div>
+    <div className="w-full mb-7">
       <div className="flex justify-between items-center mb-4">
         <h3 className="[font-size:_clamp(1em,4vw,1.5em)] font-bold">
           Order History
