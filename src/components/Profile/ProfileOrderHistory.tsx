@@ -176,7 +176,7 @@ const ProfileOrderHistory = () => {
               ))}
             </div>
             <div className="flex items-center justify-between pt-5">
-              <div>
+              <div className="flex   gap-2 md:items-center lg:items-center items-start md:justify-center lg:justify-center justify-start flex-col md:flex-row lg:flex-row">
                 <p>Total : </p>
                 <h3 className="bg-gradient-to-r from-[#7F35CD] to-[#C83B62] text-transparent bg-clip-text text-xl font-bold ">
                   {orderHistory?.grandTotal} QAR

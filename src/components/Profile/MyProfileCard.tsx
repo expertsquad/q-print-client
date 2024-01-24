@@ -6,6 +6,7 @@ import ReviewIcon from "@/assets/svgIcons/ReviewIcon";
 import CompleteOrdersIcon from "@/assets/svgIcons/CompleteOrdersIcon";
 import ProfileLogoutButton from "./ProfileLogoutButton";
 import ProfileViewButton from "./ProfileViewButton";
+import ProfileUserIcon from "@/assets/svgIcons/ProfileUserIcon";
 
 const MyProfileCard = () => {
   return (
@@ -37,8 +38,10 @@ const MyProfileCard = () => {
       <div className="grid  grid-cols-2 md:grid-cols-2 lg:grid-cols-4  gap-4 mt-5">
         {/* grid card 1 */}
         <div className=" border rounded-lg flex items-center justify-center flex-col p-5 gap-4 text-gray-500 ">
-          <UserIcon />
-          <p className="whitespace-nowrap text-gray-500">Profile Information</p>
+          <ProfileUserIcon />
+          <p className="whitespace-pre-wrap text-gray-500">
+            Profile Information
+          </p>
           <div>
             <ProfileViewButton />
           </div>
@@ -46,7 +49,10 @@ const MyProfileCard = () => {
         {/* grid card 2 */}
 
         <div className=" border rounded-lg flex items-center justify-center flex-col p-5 gap-4 text-gray-500 ">
-          <OrderIcon />
+          <h3 className="text-xl">
+            {" "}
+            <OrderIcon />
+          </h3>
           <p className="whitespace-nowrap text-gray-500">Orders</p>
           <div className="font-bold">50</div>
         </div>
@@ -63,7 +69,7 @@ const MyProfileCard = () => {
 
         <div className=" border rounded-lg flex items-center justify-center flex-col p-5 gap-4 text-gray-500 ">
           <CompleteOrdersIcon />
-          <p className="whitespace-nowrap text-gray-500">Complete Orders</p>
+          <p className="whitespace-pre-wrap text-gray-500">Complete Orders</p>
           <div className="font-bold">45</div>
         </div>
       </div>

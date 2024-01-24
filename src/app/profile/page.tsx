@@ -4,7 +4,7 @@ import React from "react";
 
 const Profile = () => {
   return (
-    <div className="w-full">
+    <div className="w-full mb-7">
       <MyProfileCard />
       <div>
         <h3 className="font-bold py-5">Recent Orders</h3>
