@@ -465,3 +465,56 @@ export const profileNav = [
     href: "/profile/changePassword",
   },
 ];
+
+// Wishlist Products Details By Poran
+export const wishlistProduct = [
+  {
+    _id: 1,
+    image:
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    title: "Brother HL - L3270CDW Single Function Color Laser Printer",
+    brandName: "Samsung",
+    price: 300,
+    availableProduct: "50 in Stock",
+  },
+  {
+    _id: 2,
+    image:
+      "https://images.unsplash.com/photo-1571845995697-28be270350de?q=80&w=2001&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    title:
+      "Lexmark CX517de Multifunction Color Laser Printer with Touch Screen Display",
+    brandName: "Adidas",
+    price: 2300,
+    availableProduct: "20 in Stock",
+  },
+  {
+    _id: 3,
+    image:
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    title:
+      "Canon PIXMA TR8520 Wireless Home Office All-In-One Printer with Mobile Printing",
+    brandName: "Nike",
+    price: 2300,
+    availableProduct: "40 in Stock",
+  },
+  {
+    _id: 4,
+    image:
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    title:
+      " Samsung Xpress C430W Wireless Color Laser Printer with NFC Printing",
+    brandName: "Samsung",
+    price: 300,
+    availableProduct: "50 in Stock",
+  },
+  {
+    _id: 5,
+    image:
+      "https://images.unsplash.com/photo-1571845995697-28be270350de?q=80&w=2001&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    title:
+      "Lexmark CX517de Multifunction Color Laser Printer with Touch Screen Display",
+    brandName: "Adidas",
+    price: 2300,
+    availableProduct: "20 in Stock",
+  },
+];

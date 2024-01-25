@@ -27,7 +27,7 @@ const IconButton = ({
           </span>
         )}
       </button>
-      <span className="hidden md:block">{label}</span>
+      <button className="hidden md:block">{label}</button>
     </div>
   );
 };

@@ -10,6 +10,9 @@ import Image from "next/image";
 import qPrintLogo from "@/assets/logotwo.svg";
 import Sidebar from "./Sidebar";
 import MobileVersion from "./MobileVersion";
+import WishlistAndCart from "./Wishlist";
+import Cart from "./Cart";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -17,7 +20,9 @@ const Header = () => {
       <section className="header-section-css pt-6 pb-6 mx-auto">
         {/* ==Logo== */}
         <div className="order-2 md:order-1 section-first-child ">
-          <Image src={qPrintLogo} alt="Logo" />
+          <Link href="/">
+            <Image src={qPrintLogo} alt="Logo" />
+          </Link>
         </div>
         {/* ==SearchBar & Filter== */}
         <div className="order-4 md:order-2 section-second-child flex items-center w-full gap-5 col-span-3 md:col-span-1">
@@ -39,19 +44,8 @@ const Header = () => {
         </div>
         {/* ==Wishlist, Cart, and Profile== */}
         <div className="order-3 md:order-3 section-last-child flex items-center gap-5 justify-end">
-          <IconButton
-            icon={<IconHeart />}
-            badgeCount={99}
-            label="Wishlist"
-            customStyles="flex gap-3"
-          />
-          <IconButton
-            icon={<IconShoppingCart />}
-            badgeCount={99}
-            label="Cart"
-            customStyles="flex gap-3"
-          />
-
+          <WishlistAndCart />
+          <Cart />
           <IconButton icon={<IconUser />} label="" />
         </div>
         {/* ==Menubar== */}

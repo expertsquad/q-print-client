@@ -5,11 +5,15 @@ import React from "react";
 const MobileVersion = () => {
   return (
     <div className="drawer md:hidden">
-      <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+      <input
+        id="wishlist-drawer-mobile-version"
+        type="checkbox"
+        className="drawer-toggle"
+      />
       <div className="drawer-content">
         {/* Page content here */}
         <label
-          htmlFor="my-drawer"
+          htmlFor="wishlist-drawer-mobile-version"
           className="btn  drawer-button bg-transparent border-none"
         >
           <IconMenu2 />
@@ -17,11 +21,11 @@ const MobileVersion = () => {
       </div>
       <div className="drawer-side z-50">
         <label
-          htmlFor="my-drawer"
+          htmlFor="wishlist-drawer-mobile-version"
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu w-full h-screen bg-white p-5">
+        <ul className="menu w-full h-screen bg-white p-5 relative">
           {/* Sidebar content here */}
           <label htmlFor="" className="text-black text-opacity-50 text-[16px]">
             Menus
@@ -49,6 +53,14 @@ const MobileVersion = () => {
               {link}
             </Link>
           ))}
+
+          <label
+            htmlFor="wishlist-drawer-mobile-version"
+            aria-label="close sidebar"
+            className="absolute bottom-36 bg-white shadow-xl text-[25px] p-2 rounded-full right-[50%] cursor-pointer"
+          >
+            x
+          </label>
         </ul>
       </div>
     </div>

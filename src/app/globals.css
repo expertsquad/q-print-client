@@ -57,6 +57,11 @@
   overflow-x: hidden;
 }
 
+.hello::-webkit-scrollbar {
+  display: none;
+  stroke-width: none;
+}
+
 /* menu items custom css */
 .menu :where(li > details > summary):after,
 .menu :where(li > .menu-dropdown-toggle):after {
@@ -83,6 +88,7 @@
   grid-template-columns: 0.5fr 2.5fr 0.8fr 0.5fr 1fr;
   margin-top: 24px;
   grid-gap: 5px;
+  align-items: center;
 }
 
 /* Order page step track */
