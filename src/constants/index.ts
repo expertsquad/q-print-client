@@ -447,12 +447,12 @@ export const profileNav = [
   {
     label: "Order History",
     key: "orderHistory",
-    href: "/profile/orderHistory",
+    href: "/profile/order-history",
   },
   {
     label: "Profile Settings",
     key: "profileSettings",
-    href: "/profile/profileSettings",
+    href: "/profile/profile-settings",
   },
   {
     label: "Notifications",
@@ -462,6 +462,6 @@ export const profileNav = [
   {
     label: "Change Password",
     key: "changePassword",
-    href: "/profile/changePassword",
+    href: "/profile/change-password",
   },
 ];

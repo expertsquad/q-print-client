@@ -1,11 +1,12 @@
 import PersonalInformation from "@/components/Profile/PersonalInformation";
-import Image from "next/image";
+import ShippingAddress from "@/components/Profile/ShippingAddress";
 import React from "react";
 
 const ProfileSettings = () => {
   return (
-    <div className="w-full mb-7">
+    <div className="lg:border rounded-lg lg:p-7 flex flex-col gap-8 mb-7">
       <PersonalInformation />
+      <ShippingAddress />
     </div>
   );
 };
