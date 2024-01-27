@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const PrintingRequestTotalOrder = () => {
@@ -36,9 +37,12 @@ const PrintingRequestTotalOrder = () => {
       </div>
 
       <div className="flex justify-center items-center px-5 py-4   ">
-        <button className="bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white hover:scale-105 shadow-sm hover:duration-500 hover:shadow-lg ">
+        <Link
+          href="/printing-request/your-information"
+          className="bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white hover:scale-105 shadow-sm hover:duration-500 hover:shadow-lg text-center "
+        >
           Place Order
-        </button>
+        </Link>
       </div>
     </div>
   );

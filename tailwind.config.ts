@@ -16,6 +16,7 @@ const config: Config = {
       boxShadow: {
         miniCardShadow: "0px 0px 15.958px 0px rgba(231, 60, 23, 0.10)",
         modalShadow: "0px 4px 30px 0px rgba(0, 0, 0, 0.15)",
+        printerCardShadow: "0px 4px 24px 0px rgba(127, 53, 205, 0.15)",
       },
     },
   },

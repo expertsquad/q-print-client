@@ -25,7 +25,7 @@ const PrintingTypeAndMode = () => {
           {paper?.typeOfPaper?.map((typeOfPaper, i) => (
             <li
               key={i}
-              className="list-none py-3 px-5 border whitespace-nowrap rounded-lg text-gray-500"
+              className="list-none py-3 px-5 border whitespace-nowrap rounded-lg text-gray-500 cursor-pointer hover:bg-gradient-to-r from-[#C83B62] to-[#7F35CD] hover:text-white hover:border-fuchsia-700 "
             >
               {typeOfPaper}
             </li>
@@ -40,7 +40,7 @@ const PrintingTypeAndMode = () => {
           {paper?.typeOfPaper?.map((typeOfPaper, i) => (
             <li
               key={i}
-              className="list-none py-3 px-5 border whitespace-nowrap rounded-lg text-gray-500"
+              className="list-none py-3 px-5 border whitespace-nowrap rounded-lg text-gray-500 cursor-pointer hover:bg-gradient-to-r from-[#C83B62] to-[#7F35CD] hover:text-white hover:border-fuchsia-700 "
             >
               {typeOfPaper}
             </li>
@@ -51,11 +51,11 @@ const PrintingTypeAndMode = () => {
       {/* Attachment */}
 
       <div className="pb-7 mt-7 ">
-        <h4 className="text-lg mb-5">Printing Mode</h4>
+        <h4 className="text-lg mb-5">Attachment</h4>
 
         <label
           htmlFor="profileFileInput"
-          className="border py-3 px-10 flex items-center justify-center gap-4 rounded-lg bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-transparent bg-clip-text  hover:border-fuchsia-700 hover:scale-105 hover:duration-500 "
+          className="border py-3 px-10 flex items-center justify-center gap-4 rounded-lg bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-transparent bg-clip-text  hover:border-fuchsia-700 hover:scale-105 hover:duration-500 cursor-pointer  "
         >
           <input id="profileFileInput" className="hidden" type="file" />{" "}
           <GradientUploadIcon />

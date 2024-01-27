@@ -1,7 +1,5 @@
 import UploadIcon from "@/assets/svgIcons/UploadIcon";
 import Image from "next/image";
-import React from "react";
-import ShippingAddress from "./ShippingAddress";
 
 const PersonalInformation = () => {
   return (
