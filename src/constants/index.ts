@@ -476,6 +476,7 @@ export const wishlistProduct = [
     brandName: "Samsung",
     price: 300,
     availableProduct: 50,
+    rating: 2,
   },
   {
     _id: 2,
@@ -486,6 +487,7 @@ export const wishlistProduct = [
     brandName: "Adidas",
     price: 2300,
     availableProduct: 20,
+    rating: 2,
   },
   {
     _id: 3,
@@ -496,6 +498,7 @@ export const wishlistProduct = [
     brandName: "Nike",
     price: 2300,
     availableProduct: 36,
+    rating: 2,
   },
   {
     _id: 4,
@@ -506,6 +509,7 @@ export const wishlistProduct = [
     brandName: "Samsung",
     price: 300,
     availableProduct: 55,
+    rating: 2,
   },
   {
     _id: 5,
@@ -598,6 +602,7 @@ export const cartProductsData = [
     brandName: "Samsung",
     price: 300,
     availableProduct: 50,
+    rating: 2,
   },
   {
     _id: 2,
@@ -608,6 +613,7 @@ export const cartProductsData = [
     brandName: "Adidas",
     price: 2300,
     availableProduct: 20,
+    rating: 3,
   },
   {
     _id: 3,
@@ -618,6 +624,7 @@ export const cartProductsData = [
     brandName: "Nike",
     price: 2300,
     availableProduct: 36,
+    rating: 4,
   },
   {
     _id: 4,
@@ -628,6 +635,7 @@ export const cartProductsData = [
     brandName: "Samsung",
     price: 300,
     availableProduct: 55,
+    rating: 2,
   },
   {
     _id: 5,
@@ -638,6 +646,7 @@ export const cartProductsData = [
     brandName: "Adidas",
     price: 2300,
     availableProduct: 0,
+    rating: 5,
   },
   {
     _id: 6,
@@ -648,6 +657,7 @@ export const cartProductsData = [
     brandName: "Samsung",
     price: 300,
     availableProduct: 0,
+    rating: 5,
   },
   {
     _id: 7,
@@ -657,6 +667,7 @@ export const cartProductsData = [
     brandName: "Samsung",
     price: 300,
     availableProduct: 50,
+    rating: 2,
   },
   {
     _id: 8,
@@ -667,6 +678,7 @@ export const cartProductsData = [
     brandName: "Adidas",
     price: 2300,
     availableProduct: 20,
+    rating: 4,
   },
   {
     _id: 9,
@@ -677,6 +689,7 @@ export const cartProductsData = [
     brandName: "Nike",
     price: 2300,
     availableProduct: 36,
+    rating: 3,
   },
   {
     _id: 10,
@@ -687,6 +700,7 @@ export const cartProductsData = [
     brandName: "Samsung",
     price: 300,
     availableProduct: 55,
+    rating: 2,
   },
   {
     _id: 11,
@@ -697,6 +711,7 @@ export const cartProductsData = [
     brandName: "Adidas",
     price: 2300,
     availableProduct: 0,
+    rating: 2,
   },
   {
     _id: 12,
@@ -707,5 +722,6 @@ export const cartProductsData = [
     brandName: "Samsung",
     price: 300,
     availableProduct: 0,
+    rating: 5,
   },
 ];

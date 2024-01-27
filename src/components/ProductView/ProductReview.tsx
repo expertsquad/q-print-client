@@ -120,7 +120,9 @@ const ProductReview = () => {
                 <div
                   style={{ width: `${rating.percentage}%` }}
                   className="h-full rounded main-bg-color"
-                ></div>
+                >
+                  {""}
+                </div>
               </div>
               <p className="text-base text-[#333] font-bold ml-3">
                 {rating.percentage}%

@@ -1,5 +1,6 @@
 import { wishlistProduct } from "@/constants";
 import {
+  IconArrowLeft,
   IconChevronRight,
   IconHeart,
   IconShoppingCart,
@@ -39,14 +40,19 @@ const WishlistAndCart = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <div className="menu-vertical p-4 w-full md:max-w-[430px] h-screen  text-base-content bg-slate-400 md:bg-white relative no-scrollbar">
+          <div className="menu-vertical p-4 w-full md:max-w-[430px] h-screen  text-base-content bg-white relative no-scrollbar">
             {/* Sidebar content here */}
             <label
               htmlFor="my-drawer-4-wishlist"
               aria-label="close sidebar"
-              className="-mb-6 -ml-6 bg-white  p-1 rounded-full w-7 h-7 flex justify-center items-center"
+              className="-mb-6 -ml-6 bg-white p-1 rounded-full w-7 h-7 flex justify-center items-center"
             >
-              <IconChevronRight />
+              <span className="hidden md:block">
+                <IconChevronRight />
+              </span>
+              <span className="block md:hidden">
+                <IconArrowLeft />
+              </span>
             </label>
             <h3 className="text-center text-black text-[20px] font-medium border-b pb-4 mb-7">
               Wishlist
@@ -68,7 +74,7 @@ const WishlistAndCart = () => {
                   <div>
                     {/* Title and Delete BTN */}
                     <div className="flex items-center gap-3">
-                      <h4 className="text-black text-opacity-90 text-[16px] line-clamp-2">
+                      <h4 className="text-black text-opacity-90 text-[16px] line-clamp-1">
                         {data?.title}
                       </h4>
                       <span className="cursor-pointer">

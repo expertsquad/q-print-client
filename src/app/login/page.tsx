@@ -13,7 +13,7 @@ const Login = () => {
         <div className="flex justify-center items-center mb-5 mt-12 md:mt-20">
           <Image src={logo} alt="Logo" />
         </div>
-        <p className="[font-size:_clamp(16px,2vw,18px)] text-black opacity-50 text-center">
+        <p className="[font-size:_clamp(15px,2vw,16px)] text-black opacity-50 text-center">
           Best online e-commerce website for you
         </p>
         {/* //Social Login */}
