@@ -91,10 +91,20 @@
   align-items: center;
 }
 
-/* Order page step track */
-
+/* ==Header responsive css== */
 .header-section-css {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   align-items: center;
+}
+
+/* ==View wishlist data responsive== */
+.wishlist-data {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 0.8fr 1.2fr 1fr;
+}
+/* ==view-cart-product-data== */
+.view-cart-product-data {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
 }

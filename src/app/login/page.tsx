@@ -1,9 +1,10 @@
+"use client";
 import Image from "next/image";
 import logo from "@/assets/logo.svg";
 import Link from "next/link";
 import Facebook from "@/assets/FooterSVG/Facebook";
-import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import CustomInput from "@/components/shared/CustomInput";
+import PasswordInput from "@/components/shared/PasswordInput";
 
 const Login = () => {
   return (
@@ -13,7 +14,7 @@ const Login = () => {
         <div className="flex justify-center items-center mb-5 mt-12 md:mt-20">
           <Image src={logo} alt="Logo" />
         </div>
-        <p className="[font-size:_clamp(16px,2vw,18px)] text-black opacity-50 text-center">
+        <p className="[font-size:_clamp(15px,2vw,16px)] text-black opacity-50 text-center">
           Best online e-commerce website for you
         </p>
         {/* //Social Login */}
@@ -32,24 +33,20 @@ const Login = () => {
         <form>
           <label htmlFor=""></label>
           <CustomInput
-            type="number"
+            type={"email" || "number"}
             placeholder="Email or Phone"
             customClassName="my-custom-style"
           />
           <div className="">
-            <CustomInput
-              type="number"
-              placeholder="Phone Number"
-              customClassName="my-custom-style"
+            <PasswordInput
+              onChange={(e) => console.log(e)}
+              placeholder="Type Your Password"
             />
-            {/* <span className=" flex items-center justify-center">
-              <IconEye />
-              <IconEyeOff />
-            </span> */}
+
             <div className="flex justify-end">
               <Link
                 className="text-[16px] text-black text-opacity-50 "
-                href="/forgetpassword"
+                href="/forgetPassword"
               >
                 Forget Password
               </Link>
