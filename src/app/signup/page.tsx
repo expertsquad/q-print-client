@@ -1,5 +1,7 @@
+"use client";
 import Facebook from "@/assets/FooterSVG/Facebook";
 import CustomInput from "@/components/shared/CustomInput";
+import PasswordInput from "@/components/shared/PasswordInput";
 import {
   IconMail,
   IconPhone,
@@ -21,37 +23,34 @@ const page = () => {
             type="text"
             placeholder="Full Name"
             placeholderIcon={<IconUser />}
-            customClassName=""
+            customClassName="mt-2"
           />
           <CustomInput
             type="text"
             placeholder="QID"
             placeholderIcon={<IconIdBadge2 />}
-            customClassName="my-custom-style"
+            customClassName="mt-2"
           />
           <CustomInput
             type="email"
             placeholder="Email"
             placeholderIcon={<IconMail />}
-            customClassName="my-custom-style"
+            customClassName="mt-2"
           />
           <CustomInput
             type="number"
             placeholder="Phone Number"
             placeholderIcon={<IconPhone />}
-            customClassName="my-custom-style"
+            customClassName="mt-2"
           />
-          <CustomInput
-            type="password"
-            placeholder="Password"
-            // placeholderIcon={<IconPhone />}
-            customClassName="my-custom-style"
+          <PasswordInput
+            onChange={(e) => console.log(e)}
+            placeholder="Type Password"
           />
-          <CustomInput
-            type="password"
+          <PasswordInput
+            onChange={(e) => console.log(e)}
             placeholder="Retype Password"
-            // placeholderIcon={<IconPhone />}
-            customClassName="my-custom-style"
+            inputStyle="mb-6"
           />
           <button className="main-bg-color text-white w-full py-3 rounded-lg">
             Create New Account
