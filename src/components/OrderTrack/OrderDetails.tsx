@@ -14,6 +14,7 @@ const OrderDetails = () => {
       {/* ==order-details order-summary order-items== */}
       <div className="flex md:flex-row flex-col justify-between gap-5">
         <div className="flex flex-col w-full">
+          {/* ==Ordered user data== */}
           <div className="border rounded-lg">
             <h5 className="border-b pl-6 py-5 font-medium text-[16px] md:text-[18px]">
               Order Details
@@ -39,6 +40,7 @@ const OrderDetails = () => {
               ))}
             </ul>
           </div>
+          {/* ==order item data == */}
           <div className="border mt-7 rounded-lg">
             <h5 className="text-[16px] md:text-[18px] font-medium pl-6 py-5 border-b">
               Items

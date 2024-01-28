@@ -1,3 +1,5 @@
+// Jaker Hossain
+//Product View page static services
 import { productViewStaticData } from "@/constants";
 import Image from "next/image";
 import freeShipping from "@/assets/free shipping.svg";
