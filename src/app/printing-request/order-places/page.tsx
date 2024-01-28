@@ -1,3 +1,4 @@
+import OrderDetails from "@/components/OrderTrack/OrderDetails";
 import OrderDetailsCard from "@/components/PrintingRequest/OrderDetailsCard";
 import ThankYouOrderPlaces from "@/components/PrintingRequest/ThankYouOrderPlaces";
 import React from "react";

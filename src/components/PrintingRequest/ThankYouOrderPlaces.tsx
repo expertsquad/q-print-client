@@ -14,7 +14,7 @@ const ThankYouOrderPlaces = () => {
         Lorem ipsum dolor sit amet consectetur. Tellus turpis morbi fermentum
         sed quis. fermentum sed quis.
       </p>
-      <div className="flex items-center justify-center gap-4 mt-5 ">
+      <div className="flex items-center justify-center gap-4 my-5 ">
         <GoToHomeButton />
         <OrderViewButton />
       </div>
