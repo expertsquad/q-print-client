@@ -1,8 +1,6 @@
-import PrintingRequestTotalOrder from "@/components/PrintingRequest/PrintingRequestTotalOrder";
 import ReturnToCardButton from "@/components/PrintingRequest/ReturnToCardButton";
 import ShoppingCartTotalItems from "@/components/UI/card/ShoppingCartTotalItems";
 import { IconUser } from "@tabler/icons-react";
-
 const YourInformation = () => {
   return (
     <section className="lg:w-[1280px] w-full mx-auto  mb-7">
