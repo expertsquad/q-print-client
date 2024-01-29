@@ -17,10 +17,10 @@ const ProductSpecification = () => {
                   key={spec._id}
                   className="flex justify-between items-center border-b"
                 >
-                  <h6 className="bg-[#F8F8F8] py-2 pl-4 [font-size:_clamp(14px,2vw,18px)] w-36 md:w-60 ">
+                  <h6 className="bg-[#F8F8F8] py-2 pl-4 [font-size:_clamp(13px,2vw,15px)] w-36 md:w-60 ">
                     {spec.name}
                   </h6>{" "}
-                  <p className="w-full [font-size:_clamp(14px,2vw,18px)] text-wrap pl-5">
+                  <p className="w-full [font-size:_clamp(13px,5vw,15px)] text-wrap pl-5">
                     {spec.description}
                   </p>
                 </div>

@@ -62,7 +62,17 @@ const ProductViewDescEtc = () => {
           </span>
         </div>
         {/* //range */}
-        <div className="mb-4">Range</div>
+        <div className="mb-4  text-fuchsia-500">
+          <input
+            type="range"
+            min="1"
+            max="100"
+            value="70"
+            width={value}
+            className="w-full in-range:hover:bg-gray-500"
+            id="myRange"
+          />
+        </div>
         <p className="mb-4 text-black text-opacity-60">
           Buy <span className="main-text-color">8</span> item more to get off{" "}
           <b className="text-black">15% Extra!</b>

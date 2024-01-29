@@ -18,13 +18,16 @@ const GlobalModal = ({
   onClose,
   modalController,
 }: GlobalModalProps) => {
+  if (isVisible) {
+    document.body.classList.add("overflow-hidden");
+  } else {
+    document.body.classList.remove("overflow-hidden");
+  }
+
   if (!isVisible) return null;
 
   const handleClickOutsideToClose = (e: any) => {
     if (e.target.id === "close-by-outside") onClose(true);
-
-    //   if(isVisible)
-    console.log(isVisible, "isVisible");
   };
   return (
     <div

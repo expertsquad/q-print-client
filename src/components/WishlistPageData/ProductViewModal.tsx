@@ -29,7 +29,7 @@ const ProductViewModal = () => {
           {/* //Here is a demo of close modal by icon, that's bellow down */}
 
           {/* {/|* ==main container of modal data== *|/} */}
-          <div>Kemon achen</div>
+          <div>Hello Modal</div>
         </div>
       </GlobalModal>
     </>

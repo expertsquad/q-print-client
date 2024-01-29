@@ -11,6 +11,8 @@ import Image from "next/image";
 import React from "react";
 import WishlistQuickOrderBTNModal from "./WishlistQuickOrderBTNModal";
 import ProductViewModal from "./ProductViewModal";
+import ExtraDiscountModal from "./ExtraDiscountModal";
+import ProductViewGlobalModal from "../UI/modal/ProductViewGlobalModal";
 
 const WishlistPageData = () => {
   return (
@@ -103,7 +105,7 @@ const WishlistPageData = () => {
                 </p>
 
                 <div>
-                  <ProductViewModal />
+                  <ProductViewGlobalModal />
                 </div>
                 <button className="border border-[#F2F2F2] rounded-full p-2.5 text-black text-opacity-50">
                   {""} <IconShoppingBag width={20} height={20} />
@@ -113,7 +115,8 @@ const WishlistPageData = () => {
 
             {/* ==Action== */}
             <div className="hidden md:block">
-              <WishlistQuickOrderBTNModal />
+              {/* <WishlistQuickOrderBTNModal /> */}
+              <ExtraDiscountModal />
             </div>
           </div>
         ))}
