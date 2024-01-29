@@ -5,7 +5,7 @@ interface CustomInputProps {
   placeholderIcon?: ReactNode;
   customClassName?: string;
   inputStyle?: string;
-  type?: "email" | "number";
+  type?: "text" | "email" | "number";
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -16,6 +16,12 @@ const CustomInput: React.FC<CustomInputProps> = ({
   type,
   ...rest
 }) => {
+  // const [inputValue, setInputValue] = useState('');
+
+  // const handleChange = (event) => {
+  //   setInputValue(event.target.value);
+  // };
+
   return (
     <div
       className={`w-full flex items-center justify-center relative ${customClassName}`}
@@ -31,6 +37,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
           placeholderIcon ? "pl-9" : "pl-3"
         } ${customClassName}`}
         placeholder={placeholder}
+        // value={inputValue}
+        // onChange={handleChange}
         {...rest}
       />
     </div>

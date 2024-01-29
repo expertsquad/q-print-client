@@ -63,6 +63,7 @@ const OrderedItemData = () => {
           </div>
         ))}
       </div>
+      {/* //Modal */}
       <GlobalModal
         isVisible={showModal}
         onClose={handleCloseModal}
@@ -81,13 +82,16 @@ const OrderedItemData = () => {
             Cancellation Request
           </h4>
           <form action="">
-            <label htmlFor="" className="text-black text-opacity-70">
+            <label
+              htmlFor="cancelation reason"
+              className="text-black text-opacity-70"
+            >
               Cancellation Reason
             </label>
             <select
               className={`group w-full border mt-3 py-3 pl-3 rounded-lg outline-none main-text-color mb-7 appearance-none focus:border-fuchsia-500 ${""}`}
-              name="dropdown"
-              id=""
+              name="cancelation reason"
+              id="cancelation reason"
             >
               {[
                 "Select Reason",
