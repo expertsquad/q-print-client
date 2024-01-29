@@ -1,3 +1,5 @@
+// Jaker Hossain
+//Product View main page
 import ProductViewTop from "./ProductViewTop";
 import QServices from "./QServices";
 import ProductViewImage from "./ProductViewImage";

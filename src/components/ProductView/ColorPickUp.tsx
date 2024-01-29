@@ -1,4 +1,6 @@
-// CircleButton.jsx
+// Jaker Hossain
+//Product View page color pick up
+
 "use client";
 
 import React, { useState } from "react";

@@ -1,3 +1,5 @@
+// Jaker Hossain
+//Product View page
 "use client";
 import { productViewCustomerReview } from "@/constants";
 import { IconStar } from "@tabler/icons-react";

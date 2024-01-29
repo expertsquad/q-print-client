@@ -1,3 +1,5 @@
+// Jaker Hossain
+//Product View page product specification
 import { productViewSpecification } from "@/constants";
 
 const ProductSpecification = () => {
