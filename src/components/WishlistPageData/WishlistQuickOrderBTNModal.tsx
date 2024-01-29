@@ -2,11 +2,11 @@
 import {
   IconBolt,
   IconEye,
-  IconLocation,
   IconMapPin,
   IconMinus,
   IconPhone,
   IconPlus,
+  IconTrash,
   IconUser,
   IconX,
 } from "@tabler/icons-react";
@@ -16,7 +16,7 @@ import CustomInput from "../shared/CustomInput";
 import Image from "next/image";
 import { cartProductsData } from "@/constants";
 
-const WishlistQuickViewBTNModal = () => {
+const WishlistQuickOrderBTNModal = () => {
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);
@@ -26,10 +26,9 @@ const WishlistQuickViewBTNModal = () => {
       <div>
         <button
           onClick={() => setShowModal(true)}
-          className="border border-[#F2F2F2] rounded-full p-3"
+          className="uppercase flex gap-2 main-bg-color text-white px-4 py-2 rounded-lg"
         >
-          {""}
-          <IconEye width={17} height={17} />
+          <IconBolt /> Quick Order
         </button>
       </div>
       <GlobalModal
@@ -40,9 +39,12 @@ const WishlistQuickViewBTNModal = () => {
         <div className="md:max-w-[900px] bg-white p-7 rounded-lg relative">
           {/* //Here is a demo of close modal by icon, that's bellow down */}
 
-          <div className="absolute top-5 right-5">
-            <button onClick={handleCloseModal}>
-              <IconX />
+          <div className="absolute top-5 right-5 text-black text-opacity-70">
+            <button
+              onClick={handleCloseModal}
+              className="text-black text-opacity-70"
+            >
+              <IconX width={20} height={20} />
               {""}
             </button>
           </div>
@@ -70,8 +72,8 @@ const WishlistQuickViewBTNModal = () => {
                         <p className="text-black text-opacity-90 text-[16px] line-clamp-1">
                           {data?.title}
                         </p>
-                        <span className="cursor-pointer">
-                          <IconX />
+                        <span className="cursor-pointer text-black text-opacity-50">
+                          <IconTrash width={20} height={20} />
                         </span>
                       </div>
                       {/* // */}
@@ -192,4 +194,4 @@ const WishlistQuickViewBTNModal = () => {
   );
 };
 
-export default WishlistQuickViewBTNModal;
+export default WishlistQuickOrderBTNModal;
