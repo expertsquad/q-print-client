@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import ShppingItemsProducts from "./ShppingItemsProducts";
 
 const ShoppingCartTotalItems = () => {
   return (
@@ -7,9 +8,8 @@ const ShoppingCartTotalItems = () => {
       <h4 className="px-5 py-4 text-lg font-medium">Shopping Items</h4>
       <div className=" border-y ">
         {/* total product in cart section */}
-        <div className="flex justify-between items-center px-5 py-4   ">
-          <small className="text-base text-gray-500">Item of print</small>{" "}
-          <p className="text-base text-gray-700">Coming</p>
+        <div className=" px-5 py-4   ">
+          <ShppingItemsProducts />
         </div>
       </div>
 

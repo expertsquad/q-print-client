@@ -28,28 +28,31 @@ const YourInformation = () => {
                 </p>
                 <form className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5  w-full pb-10 border-b">
                   <div className="w-full flex flex-col gap-2.5">
-                    <label htmlFor="user_email" className="text-base ">
+                    <label
+                      htmlFor="userEmail"
+                      className="text-base text-gray-500 "
+                    >
                       Email
                     </label>
                     <input
                       type="email"
-                      name="user_email"
-                      id="user_email"
+                      name="userEmail"
+                      id="userEmail"
                       className="border outline-none block w-full py-3.5 rounded-md px-4 "
                       value="dianne.russell@gmail.com"
                     />
                   </div>
                   <div className="w-full flex flex-col gap-2.5">
                     <label
-                      htmlFor="user_phone"
-                      className="text-base text-[#1a1a1ab3]"
+                      htmlFor="userPhone"
+                      className="text-base text-gray-500"
                     >
                       Phone Number
                     </label>
                     <input
                       type="text"
-                      name="user_phone"
-                      id="user_phone"
+                      name="userPhone"
+                      id="userPhone"
                       className="border outline-none block w-full py-3.5 rounded-md px-4"
                       value="08801835550123"
                       required
@@ -67,7 +70,10 @@ const YourInformation = () => {
                   </p>
                   <form className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5  w-full pb-10 ">
                     <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="firstName" className="text-base ">
+                      <label
+                        htmlFor="firstName"
+                        className="text-base text-gray-500 "
+                      >
                         First name
                       </label>
                       <input
@@ -79,7 +85,10 @@ const YourInformation = () => {
                       />
                     </div>
                     <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="lastName" className="text-base ">
+                      <label
+                        htmlFor="lastName"
+                        className="text-base text-gray-500 "
+                      >
                         Last name
                       </label>
                       <input
@@ -92,7 +101,10 @@ const YourInformation = () => {
                       />
                     </div>
                     <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="address" className="text-base ">
+                      <label
+                        htmlFor="address"
+                        className="text-base text-gray-500 "
+                      >
                         Street Address
                       </label>
                       <input
@@ -104,7 +116,10 @@ const YourInformation = () => {
                       />
                     </div>
                     <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="city" className="text-base ">
+                      <label
+                        htmlFor="city"
+                        className="text-base text-gray-500 "
+                      >
                         City
                       </label>
                       <input
@@ -117,7 +132,10 @@ const YourInformation = () => {
                       />
                     </div>
                     <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="country" className="text-base ">
+                      <label
+                        htmlFor="country"
+                        className="text-base text-gray-500 "
+                      >
                         Country / Region
                       </label>
                       <input
@@ -131,7 +149,7 @@ const YourInformation = () => {
                     <div className="w-full flex flex-col gap-2.5">
                       <label
                         htmlFor="companyName"
-                        className="text-base text-[#1a1a1ab3]"
+                        className="text-base text-gray-500"
                       >
                         Company Name (optional)
                       </label>
@@ -145,7 +163,10 @@ const YourInformation = () => {
                       />
                     </div>
                     <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="zipCode" className="text-base ">
+                      <label
+                        htmlFor="zipCode"
+                        className="text-base text-gray-500 "
+                      >
                         Zip Code
                       </label>
                       <input
@@ -157,7 +178,10 @@ const YourInformation = () => {
                       />
                     </div>
                     <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="phoneNumber" className="text-base ">
+                      <label
+                        htmlFor="phoneNumber"
+                        className="text-base text-gray-500 "
+                      >
                         Phone Number
                       </label>
                       <input
