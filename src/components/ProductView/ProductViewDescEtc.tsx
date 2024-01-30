@@ -66,6 +66,7 @@ const ProductViewDescEtc = () => {
         {/* //range */}
         <div className="mb-4  text-fuchsia-500">
           <input
+            title="Price Range"
             type="range"
             min="1"
             max="100"

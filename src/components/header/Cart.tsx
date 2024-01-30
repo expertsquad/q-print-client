@@ -138,6 +138,7 @@ const Cart = () => {
               <div className="mb-5">
                 <div className="mb-5">
                   <input
+                    title="Price Range"
                     id="default-range"
                     type="range"
                     value="50"
