@@ -29,7 +29,8 @@ const WishlistAndCart = () => {
             </label>
             <label
               htmlFor="my-drawer-4-wishlist"
-              className="drawer-button hidden md:block cursor-pointer text-black text-opacity-60"
+              className="drawer-button hidden md:block cursor-pointer text-black text-opacity-60
+              "
             >
               Wishlist
             </label>
