@@ -26,7 +26,7 @@ const WishlistQuickOrderBTNModal = () => {
       <div>
         <button
           onClick={() => setShowModal(true)}
-          className="uppercase flex gap-2 main-bg-color text-white px-4 py-2 rounded-lg"
+          className="uppercase flex gap-2 main-bg-color text-white px-4 py-2 rounded-lg w-full"
         >
           <IconBolt /> Quick Order
         </button>

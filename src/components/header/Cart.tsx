@@ -79,8 +79,8 @@ const Cart = () => {
                       <p className="text-black text-opacity-90 text-[16px] line-clamp-1">
                         {data?.title}
                       </p>
-                      <span className="cursor-pointer">
-                        <IconX />
+                      <span className="cursor-pointer text-black text-opacity-60">
+                        <IconX width={20} height={20} />
                       </span>
                     </div>
                     {/* // */}

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import OrderTrackButton from "./OrderTrackButton";
+import ProductReviewModal from "./ProductReviewModal";
 
 const ProfileOrderHistory = () => {
   const orderHistory = [
@@ -187,6 +188,7 @@ const ProfileOrderHistory = () => {
           </div>
         ))}
       </div>
+      <ProductReviewModal />
     </div>
   );
 };
