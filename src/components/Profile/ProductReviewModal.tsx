@@ -105,7 +105,7 @@ const ProductReviewModal = () => {
                 </div>
               ))}
             </div>
-            <form action="">
+            <form action="" className="mt-7">
               <label className="text-sm md:text-[18px]" htmlFor="review">
                 Add Written Review
               </label>

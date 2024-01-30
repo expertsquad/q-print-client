@@ -21,13 +21,15 @@ const WishlistAndCart = () => {
         />
         <div className="drawer-content">
           {/* //Drawer Cancel BTN// */}
-          <div className="flex">
+          <div className="flex items-start gap-1">
             <label htmlFor="my-drawer-4-wishlist" className="cursor-pointer">
-              <IconHeart />
+              <span className="text-black text-opacity-80">
+                <IconHeart width={24} height={24} />
+              </span>
             </label>
             <label
               htmlFor="my-drawer-4-wishlist"
-              className="drawer-button hidden md:block"
+              className="drawer-button hidden md:block cursor-pointer text-black text-opacity-60"
             >
               Wishlist
             </label>

@@ -22,13 +22,15 @@ const Cart = () => {
         <input id="my-drawer-cart" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content no-scrollbar">
           {/* //Drawer Cancel BTN// */}
-          <div className="flex">
+          <div className="flex items-start  gap-1">
             <label htmlFor="my-drawer-cart" className="cursor-pointer">
-              <IconShoppingBag />
+              <span className="text-black text-opacity-80">
+                <IconShoppingBag width={24} height={24} />
+              </span>
             </label>
             <label
               htmlFor="my-drawer-cart"
-              className="drawer-button hidden md:block"
+              className="drawer-button hidden md:block cursor-pointer text-black text-opacity-60 "
             >
               Cart
             </label>

@@ -13,6 +13,7 @@ import MobileVersion from "./MobileVersion";
 import WishlistAndCart from "./Wishlist";
 import Cart from "./Cart";
 import Link from "next/link";
+import Filter from "../UI/filter/Filter";
 
 const Header = () => {
   return (
@@ -25,29 +26,32 @@ const Header = () => {
           </Link>
         </div>
         {/* ==SearchBar & Filter== */}
-        <div className="order-4 md:order-2 section-second-child flex items-center w-full gap-5 col-span-3 md:col-span-1">
-          <div className="relative w-full">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
-              <IconSearch />
-            </div>
-            <input
-              type="search"
-              id="default-search"
-              className="inline-block w-full rounded-full px-4 py-3 ps-10 text-sm text-black text-opacity-50 border border-gray-300 bg-gray-50 outline-none"
-              placeholder="Search For Product"
-            />
+        <div className="order-4 md:order-2 section-second-child flex items-center w-full gap-5 col-span-3 md:col-span-1 relative">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <span className="text-black text-opacity-70">
+              <IconSearch width={24} height={24} />
+            </span>
           </div>
-          <div className="border border-black border-opacity-20 rounded-full px-3 py-2 flex items-center justify-center">
-            {""}
-            <IconButton icon={<IconAdjustmentsHorizontal />} label="" />
+          <input
+            type="search"
+            id="default-search"
+            className="inline-block w-full rounded-full px-4 py-3 ps-10 text-sm text-black text-opacity-50 border border-gray-300 bg-gray-50 outline-none"
+            placeholder="Search For Product"
+          />
+          <div className="border border-black border-opacity-20 rounded-full px-3 py-3 flex items-center justify-center cursor-pointer">
+            <Filter />
           </div>
         </div>
+
         {/* ==Wishlist, Cart, and Profile== */}
-        <div className="order-3 md:order-3 section-last-child flex items-center gap-5 justify-end">
+        <div className="order-3 md:order-3 section-last-child flex items-center justify-end gap-5">
           <WishlistAndCart />
           <Cart />
-          <IconButton icon={<IconUser />} label="" />
+          <span className="border rounded-full p-1 cursor-pointer text-black text-opacity-80">
+            <IconUser width={22} height={22} />
+          </span>
         </div>
+
         {/* ==Menubar== */}
         <div className="order-1 md:order-4 md:bg-[#FAFAFA] py-4 flex gap-6 md:col-span-3">
           {/* ==Mobile Version== */}
