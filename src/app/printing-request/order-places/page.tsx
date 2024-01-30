@@ -6,7 +6,7 @@ import React from "react";
 
 const OrderPlaces = () => {
   return (
-    <section className="lg:w-[1280px] w-full mx-auto  mb-7">
+    <section className="lg:w-[700px] w-full mx-auto  mb-7">
       <ThankYouOrderPlaces />
       <OrderDetailsCard />
 

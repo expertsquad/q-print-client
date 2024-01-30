@@ -66,7 +66,7 @@ const HeroItemSlide: React.FC = () => {
         <div
           key={item._id}
           id={item._id}
-          className="carousel-item w-full bg-[#f3f5f2] h-[250px] md:h-[480px] "
+          className="carousel-item w-full bg-[#f3f5f2] h-[350px] md:h-[480px] lg::h-[480px] "
           style={showSlide(index)}
         >
           <div className="flex items-center justify-between px-9 py-4 h-full">
@@ -81,9 +81,6 @@ const HeroItemSlide: React.FC = () => {
               >
                 {item.about}
               </p>
-              <h4 className="[font-size:_clamp(1.6em,4vw,1em)] main-text-color font-semibold mt-4 ">
-                2800 QAR
-              </h4>
 
               <div className="mt-4">
                 <ShopNowButton href="#" />
@@ -95,7 +92,7 @@ const HeroItemSlide: React.FC = () => {
                     key={index}
                     onClick={() => handleDotClick(index)}
                     className={`indicator w-[10px] h-[10px] rounded-full cursor-pointer ${
-                      index === currentSlide ? "bg-[#E73C17]" : "bg-gray-300"
+                      index === currentSlide ? "main-bg-color" : "bg-gray-300"
                     }`}
                   />
                 ))}

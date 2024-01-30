@@ -89,7 +89,7 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
                   key={dotIndex}
                   onClick={() => handleDotClick(dotIndex)}
                   className={`indicator w-[8px] h-[8px] rounded-full cursor-pointer ${
-                    dotIndex === currentSlide ? "bg-[#E73C17]" : "bg-gray-300"
+                    dotIndex === currentSlide ? "main-bg-color" : "bg-gray-300"
                   }`}
                 />
               ))}

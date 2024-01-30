@@ -13,12 +13,12 @@ const TabProductView = () => {
 
   return (
     <div className=" mx-auto mt-4 ">
-      <div className="flex justify-center items-center rounded-full ">
+      <div className="flex justify-center items-center rounded-full gap-1 md:gap-2 lg:gap-2 text-sm md:text-base lg:text-base bg-[#F1F3F5] max-w-fit mx-auto ">
         <button
           className={`px-6 py-2 rounded-full ${
             activeTab === "topSell"
-              ? "border-fuchsia-700 border-[1px]"
-              : "bg-gray-300"
+              ? "border-fuchsia-700 border-[1px] bg-white"
+              : ""
           }`}
           onClick={() => handleTabClick("topSell")}
         >
@@ -27,8 +27,8 @@ const TabProductView = () => {
         <button
           className={`px-6 py-2  rounded-full ${
             activeTab === "popular"
-              ? "border-fuchsia-700 border-[1px] "
-              : "bg-gray-300"
+              ? "border-fuchsia-700 border-[1px] bg-white "
+              : ""
           }`}
           onClick={() => handleTabClick("popular")}
         >
@@ -37,8 +37,8 @@ const TabProductView = () => {
         <button
           className={`px-6 py-2 rounded-full ${
             activeTab === "newest"
-              ? "border-fuchsia-700 border-[1px]"
-              : "bg-gray-300"
+              ? "border-fuchsia-700 border-[1px] bg-white"
+              : ""
           }`}
           onClick={() => handleTabClick("newest")}
         >

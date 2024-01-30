@@ -78,7 +78,7 @@ const BestDeals = () => {
       </div>
       <div className="flex items-center justify-between gap-3 overflow-x-auto scroll-smooth no-scrollbar">
         {/* <!-------------- event Card 01 -------------> */}
-        <div className="flex items-center space-x-4 max-w-[300px] pr-20 py-2 pl-2 shrink-0 rounded-xl bg-white border border-white hover:border hover:duration-500 cursor-pointer hover:border-red-500">
+        <div className="flex items-center space-x-4 max-w-[300px] pr-20 py-2 pl-2 shrink-0 rounded-xl bg-white border border-white hover:border hover:duration-500 cursor-pointer hover:border-fuchsia-700">
           <div className="w-20 h-20 rounded-lg bg-background-color">
             <img src="../images/EventCartImg/Ipad.png" alt="" />
           </div>
