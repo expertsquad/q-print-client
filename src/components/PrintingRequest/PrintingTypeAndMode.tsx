@@ -1,6 +1,4 @@
-// import GradientUploadIcon from "@/assets/svgIcons/gradientUploadIcon";
-
-import GradientUploadIcon from "@/assets/svgIcons/gradientUploadIcon";
+import GradientUploadIcon from "@/assets/svgIcons/GradientUploadIcon";
 
 const PrintingTypeAndMode = () => {
   const paper = {

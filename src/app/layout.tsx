@@ -4,6 +4,8 @@ import "./globals.css";
 import Providers from "@/lib/Providers";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
+import NextBreadcrumb from "@/components/shared/NextBreadcrumb";
+import { IconChevronRight } from "@tabler/icons-react";
 
 const poppins = Poppins({
   weight: ["400"],
@@ -21,6 +23,19 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <html lang="en">
         <body className={`${poppins.className} scroll-smooth`}>
           <Header />
+          <NextBreadcrumb
+            homeElement={"Home"}
+            separator={
+              <span className="text-black text-opacity-50">
+                {" "}
+                <IconChevronRight width={20} height={20} />{" "}
+              </span>
+            }
+            activeClasses="main-text-color"
+            containerClasses="flex items-center py-5"
+            listClasses="mx-2 text-black text-opacity-50 text-[16px]"
+            capitalizeLinks
+          />
           {children}
           <Footer />
         </body>

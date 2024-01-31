@@ -1,20 +1,8 @@
 import { IconTruckDelivery } from "@tabler/icons-react";
-import Breadcrumbs from "../shared/Breadcrumbs";
 
 const OrderTrackTop = () => {
-  const links = [
-    { label: "Home", href: "/" },
-    { label: "My Profile", href: "/myprofile" },
-    { label: "Order History", href: "/orderhistory" },
-    { label: "Order Track & ", href: "/ordertrack" },
-  ];
-
   return (
     <section>
-      {/* ===Breadcrumbs=== */}
-      <div>
-        <Breadcrumbs links={links} showSocialIcons={false} />
-      </div>
       {/* ===Title and Description=== */}
       <div className="mb-12">
         <h2 className="text-black text-opacity-70 text-xl md:text-3xl font-semibold mb-5">

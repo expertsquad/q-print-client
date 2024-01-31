@@ -14,6 +14,7 @@ const OTPInput = ({ length }: OTPInputProps) => {
     >
       {inputArray.map((i, index) => (
         <input
+          title="OTP Input"
           key={i}
           className={`main-text-color text-[34px] md:text-[45px] font-semibold m-2 border h-[70px] md:max-h-[100px] w-[60px] md:max-w-[90px] text-center form-control rounded outline-none ${
             i === i.valueOf()

@@ -11,7 +11,7 @@ const Filter = () => {
   return (
     <>
       <button onClick={() => setShowModal(true)}>
-        <span className="text-black text-opacity-70">
+        <span className="text-gray-500">
           <IconAdjustmentsHorizontal width={24} height={24} />
         </span>
         {""}

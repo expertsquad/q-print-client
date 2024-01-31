@@ -9,6 +9,7 @@ import {
 import demoBrandImg from "@/assets/menu-demo-image.svg";
 import Image from "next/image";
 import Link from "next/link";
+import NavigateItem from "./NavigateItem";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -89,19 +90,7 @@ const Sidebar = () => {
             </article>
           </details>
         </div>
-
-        {[
-          "Home",
-          "Brands",
-          "Find Cartridge",
-          "Order a Design Printing",
-          "About Us",
-          "Privacy Policy",
-        ].map((link, index) => (
-          <Link key={index} href={`/${link.toLowerCase().replace(" ", "-")}`}>
-            {link}
-          </Link>
-        ))}
+        <NavigateItem />
       </div>
     </div>
   );
