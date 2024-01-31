@@ -8,12 +8,14 @@ import ExploreNew from "@/components/exploreNew/ExploreNew";
 // import FeaturedProducts from "@/components/featuredProducts/FeaturedProducts";
 import NewProduct from "@/components/newProduct/NewProduct";
 import FeaturedProducts from "@/components/featuredProducts/FeaturedProducts";
+import LogoCarousel from "@/components/carousel/LogoCarousel";
 
 const Home = () => {
   return (
     <main className="max-w-[1280px] mx-auto">
       <Hero />
       <Carousel />
+
       <ShopByCategory />
 
       <FeaturedProducts />
