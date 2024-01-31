@@ -4,7 +4,7 @@ import React, { useState } from "react";
 const BillingAddress = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const handleOptionChange = (event) => {
+  const handleOptionChange = (event: any) => {
     setSelectedOption(event.target.value);
   };
 
