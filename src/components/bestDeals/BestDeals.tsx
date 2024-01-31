@@ -1,12 +1,15 @@
 import React from "react";
 import ShopNowButton from "../UI/btn/ShopNowButton";
+import Image from "next/image";
 
 const BestDeals = () => {
   return (
     <section className="bg-[#EDF2EE] py-4 px-2 md:py-7 md:px-8 space-y-9">
       <div className="flex items-center justify-between">
         <div className="w-1/4">
-          <img
+          <Image
+            height={50}
+            width={50}
             className="pb-36 sm:pb-0 md:pb-0 lg:pb-0"
             src="../images/productImg/multipleMobile-2.png"
             alt=""
@@ -69,7 +72,9 @@ const BestDeals = () => {
           </div>
         </div>
         <div className="w-1/4">
-          <img
+          <Image
+            height={50}
+            width={50}
             className="pb-36 sm:pb-0 md:pb-0 lg:pb-0"
             src="../images/productImg/computer.png"
             alt=""
@@ -80,7 +85,12 @@ const BestDeals = () => {
         {/* <!-------------- event Card 01 -------------> */}
         <div className="flex items-center space-x-4 max-w-[300px] pr-20 py-2 pl-2 shrink-0 rounded-xl bg-white border border-white hover:border hover:duration-500 cursor-pointer hover:border-fuchsia-700">
           <div className="w-20 h-20 rounded-lg bg-background-color">
-            <img src="../images/EventCartImg/Ipad.png" alt="" />
+            <Image
+              height={50}
+              width={50}
+              src="../images/EventCartImg/Ipad.png"
+              alt=""
+            />
           </div>
           <div className="flex justify-center flex-col gap-1">
             <h3 className="text-black">I Pad Mini</h3>
