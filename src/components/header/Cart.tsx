@@ -22,13 +22,15 @@ const Cart = () => {
         <input id="my-drawer-cart" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content no-scrollbar">
           {/* //Drawer Cancel BTN// */}
-          <div className="flex">
+          <div className="flex items-start  gap-1">
             <label htmlFor="my-drawer-cart" className="cursor-pointer">
-              <IconShoppingBag />
+              <span className="text-black text-opacity-80">
+                <IconShoppingBag width={24} height={24} />
+              </span>
             </label>
             <label
               htmlFor="my-drawer-cart"
-              className="drawer-button hidden md:block"
+              className="drawer-button hidden md:block cursor-pointer text-black text-opacity-60 "
             >
               Cart
             </label>
@@ -79,8 +81,8 @@ const Cart = () => {
                       <p className="text-black text-opacity-90 text-[16px] line-clamp-1">
                         {data?.title}
                       </p>
-                      <span className="cursor-pointer">
-                        <IconX />
+                      <span className="cursor-pointer text-black text-opacity-60">
+                        <IconX width={20} height={20} />
                       </span>
                     </div>
                     {/* // */}
@@ -136,6 +138,7 @@ const Cart = () => {
               <div className="mb-5">
                 <div className="mb-5">
                   <input
+                    title="Price Range"
                     id="default-range"
                     type="range"
                     value="50"

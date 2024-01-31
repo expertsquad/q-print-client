@@ -14,9 +14,11 @@ const MobileVersion = () => {
         {/* Page content here */}
         <label
           htmlFor="wishlist-drawer-mobile-version"
-          className="btn  drawer-button bg-transparent border-none"
+          className="drawer-button"
         >
-          <IconMenu2 />
+          <span className="text-black text-opacity-70 border-none bg-transparent">
+            <IconMenu2 width={24} height={24} />
+          </span>
         </label>
       </div>
       <div className="drawer-side z-50">

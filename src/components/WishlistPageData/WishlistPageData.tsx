@@ -9,7 +9,10 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import React from "react";
-import WishlistQuickViewBTNModal from "./WishlistQuickViewBTNModal";
+import WishlistQuickOrderBTNModal from "./WishlistQuickOrderBTNModal";
+import ProductViewModal from "./ProductViewModal";
+import ExtraDiscountModal from "./ExtraDiscountModal";
+import ProductViewGlobalModal from "../UI/modal/ProductViewGlobalModal";
 
 const WishlistPageData = () => {
   return (
@@ -102,9 +105,9 @@ const WishlistPageData = () => {
                 </p>
 
                 <div>
-                  <WishlistQuickViewBTNModal />
+                  <ProductViewGlobalModal />
                 </div>
-                <button className="border border-[#F2F2F2] rounded-full p-3">
+                <button className="border border-[#F2F2F2] rounded-full p-2.5 text-black text-opacity-50">
                   {""} <IconShoppingBag width={20} height={20} />
                 </button>
               </div>
@@ -112,9 +115,8 @@ const WishlistPageData = () => {
 
             {/* ==Action== */}
             <div className="hidden md:block">
-              <button className="uppercase flex gap-2 main-bg-color text-white px-4 py-2 rounded-lg">
-                <IconBolt /> Quick Order
-              </button>
+              {/* <WishlistQuickOrderBTNModal /> */}
+              <ExtraDiscountModal />
             </div>
           </div>
         ))}

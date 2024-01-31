@@ -5,6 +5,7 @@ import {
   IconHeart,
   IconMinus,
   IconPlus,
+  IconShoppingBag,
   IconShoppingCart,
   IconStar,
 } from "@tabler/icons-react";
@@ -13,6 +14,7 @@ import adidasBrand from "@/assets/adidas brand.svg";
 import ColorPickUp from "./ColorPickUp";
 import { useState } from "react";
 import CommonButton from "../UI/btn/CommonButton";
+import WishlistQuickOrderBTNModal from "../WishlistPageData/WishlistQuickOrderBTNModal";
 
 const ProductViewDescEtc = () => {
   const [value, setvalue] = useState(0);
@@ -57,12 +59,23 @@ const ProductViewDescEtc = () => {
           <del className="text-[#B3B3B3] [font-size:_clamp(14px,5vw,18px)] mr-5">
             1800.00 QAR
           </del>
-          <span className="[font-size:_clamp(14px,5vw,16px)] text-white main-bg-color py-1 px-3 rounded-md">
+          <span className="[font-size:_clamp(14px,5vw,16px)] text-red-500 bg-fuchsia-100 py-1 px-3 rounded-md">
             20% OFF
           </span>
         </div>
         {/* //range */}
-        <div className="mb-4">Range</div>
+        <div className="mb-4  text-fuchsia-500">
+          <input
+            title="Price Range"
+            type="range"
+            min="1"
+            max="100"
+            value="70"
+            width={value}
+            className="w-full in-range:hover:bg-gray-500"
+            id="myRange"
+          />
+        </div>
         <p className="mb-4 text-black text-opacity-60">
           Buy <span className="main-text-color">8</span> item more to get off{" "}
           <b className="text-black">15% Extra!</b>
@@ -81,7 +94,7 @@ const ProductViewDescEtc = () => {
             </button>
           </div>
           <div>
-            <button className="w-56 md:w-64 lg:w-80 flex justify-center items-center gap-3 bg-slate-400 main-text-color border border-fuchsia-700 py-2 rounded-lg">
+            <button className="w-56 md:w-64 lg:w-80 flex justify-center items-center gap-3 bg-slate-400 main-text-color border border-fuchsia-700 py-2 rounded-lg text-fuchsia-700">
               <IconShoppingCart
                 className="main-text-color"
                 width={20}
@@ -91,14 +104,15 @@ const ProductViewDescEtc = () => {
             </button>
           </div>
         </div>
-        <div className="my-4">
-          <button>
+        {/* //Quick order & Buy now button*/}
+        <div className="my-4 flex items-center justify-between gap-3">
+          <div>
+            <WishlistQuickOrderBTNModal />
+          </div>
+          <button className="flex items-center justify-center gap-2 text-white main-bg-color  py-2 rounded-lg">
             {""}
-            {/* <CommonButton title="QUICK ORDER" /> */}
-          </button>
-          <button>
-            {""}
-            {/* <CommonButton title="BUY NOW" /> */}
+            <IconShoppingBag />
+            BUY NOW
           </button>
         </div>
       </div>
