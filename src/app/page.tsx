@@ -6,8 +6,7 @@ import Hero from "@/components/hero/Hero";
 
 import ExploreNew from "@/components/exploreNew/ExploreNew";
 import NewProduct from "@/components/newProduct/NewProduct";
-import LogoCarousel from "@/components/carousel/LogoCarousel";
-import FeaturedProducts from "@/components/featuredProducts/featuredProducts";
+import FeaturedProducts from "@/components/featuredProducts/FeaturedProducts";
 
 const Home = () => {
   return (

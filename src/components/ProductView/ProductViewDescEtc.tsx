@@ -15,8 +15,12 @@ import ColorPickUp from "./ColorPickUp";
 import { useState } from "react";
 import CommonButton from "../UI/btn/CommonButton";
 import WishlistQuickOrderBTNModal from "../WishlistPageData/WishlistQuickOrderBTNModal";
+import Slider from "rc-slider";
+import GetDiscountRange from "./GetDiscountRange";
 
 const ProductViewDescEtc = () => {
+  const CustomHandle = () => {};
+
   const [value, setvalue] = useState(0);
   return (
     <section className="product-description">
@@ -59,23 +63,13 @@ const ProductViewDescEtc = () => {
           <del className="text-[#B3B3B3] [font-size:_clamp(14px,5vw,18px)] mr-5">
             1800.00 QAR
           </del>
-          <span className="[font-size:_clamp(14px,5vw,16px)] text-red-500 bg-fuchsia-100 py-1 px-3 rounded-md">
+          <span className="[font-size:_clamp(14px,5vw,16px)] text-red-500 bg-gradient-to-r from-pink-50 to-purple-50 py-1 px-3 rounded-md">
             20% OFF
           </span>
         </div>
-        {/* //range */}
-        <div className="mb-4  text-fuchsia-500">
-          <input
-            title="Price Range"
-            type="range"
-            min="1"
-            max="100"
-            value="70"
-            width={value}
-            className="w-full in-range:hover:bg-gray-500"
-            id="myRange"
-          />
-        </div>
+
+        <GetDiscountRange />
+
         <p className="mb-4 text-black text-opacity-60">
           Buy <span className="main-text-color">8</span> item more to get off{" "}
           <b className="text-black">15% Extra!</b>
