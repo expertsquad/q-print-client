@@ -6,6 +6,11 @@ const Confetti = () => {
   useEffect(() => {
     const container = document.getElementById("confetti-container");
 
+    if (!container) {
+      console.error("Container element not found");
+      return;
+    }
+
     const createConfetti = () => {
       const confetti = document.createElement("div");
       confetti.className = "confetti";

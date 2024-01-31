@@ -7,7 +7,7 @@ import GradientPaypalIcon from "@/assets/svgIcons/GradientPaypalIcon";
 const PaymentMethod = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const handleOptionChange = (event) => {
+  const handleOptionChange = (event: any) => {
     setSelectedOption(event.target.value);
   };
 
