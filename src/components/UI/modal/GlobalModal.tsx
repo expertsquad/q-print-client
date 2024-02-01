@@ -1,5 +1,5 @@
 import { IconX } from "@tabler/icons-react";
-import React from "react";
+import React, { useEffect } from "react";
 
 interface GlobalModalProps {
   children?: React.ReactNode;
@@ -18,23 +18,30 @@ const GlobalModal = ({
   onClose,
   modalController,
 }: GlobalModalProps) => {
-  if (isVisible) {
-    document.body.classList.add("overflow-hidden");
-  } else {
-    document.body.classList.remove("overflow-hidden");
-  }
+  useEffect(() => {
+    if (isVisible) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    const handleClickOutsideToClose = (e: any) => {
+      if (e.target.id === "close-by-outside") onClose(true);
+    };
+
+    if (isVisible) {
+      document.addEventListener("click", handleClickOutsideToClose);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickOutsideToClose);
+    };
+  }, [isVisible, onClose]);
 
   if (!isVisible) return null;
 
-  const handleClickOutsideToClose = (e: any) => {
-    if (e.target.id === "close-by-outside") onClose(true);
-  };
   return (
-    <div
-      className={`${modalController}`}
-      id="close-by-outside"
-      onClick={handleClickOutsideToClose}
-    >
+    <div className={`${modalController}`} id="close-by-outside">
       <div className={`${className}`}>
         <div className={`${yourCustomStyle}`}>{children}</div>
       </div>
