@@ -18,7 +18,7 @@ const PersonalInformation = () => {
               name="first_name"
               id="first_name"
               className="border outline-none block w-full py-3.5 rounded-md px-4"
-              value="John"
+              defaultValue="John"
               required
             />
           </div>
@@ -31,7 +31,7 @@ const PersonalInformation = () => {
               name="last_name"
               id="last_name"
               className="border outline-none block w-full py-3.5 rounded-md px-4"
-              value="Smith"
+              defaultValue="Smith"
               required
             />
           </div>
@@ -44,7 +44,7 @@ const PersonalInformation = () => {
               name="user_email"
               id="user_email"
               className="border outline-none block w-full py-3.5 rounded-md px-4 text-gray-300"
-              value="dianne.russell@gmail.com"
+              defaultValue="dianne.russell@gmail.com"
               readOnly
             />
           </div>
@@ -57,7 +57,7 @@ const PersonalInformation = () => {
               name="user_phone"
               id="user_phone"
               className="border outline-none block w-full py-3.5 rounded-md px-4"
-              value="08801835550123"
+              defaultValue="08801835550123"
               required
             />
           </div>

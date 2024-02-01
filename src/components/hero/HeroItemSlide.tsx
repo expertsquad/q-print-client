@@ -36,7 +36,7 @@ const HeroItemSlide: React.FC = () => {
         "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
     },
     {
-      _id: "2",
+      _id: "3",
       company: "New Arrived Product",
       about: "New product arrived deals here is will coming some description",
       picture:

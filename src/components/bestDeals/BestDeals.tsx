@@ -11,8 +11,8 @@ const BestDeals = () => {
             height={50}
             width={50}
             className="pb-36 sm:pb-0 md:pb-0 lg:pb-0"
-            src=""
-            alt=""
+            src="https://freepngimg.com/thumb/logo/62841-social-logo-computer-icons-free-clipart-hq.png"
+            alt="Test iamge"
           />
         </div>
         <div className="w-2/4 flex items-center flex-col space-y-6">
@@ -76,8 +76,8 @@ const BestDeals = () => {
             height={50}
             width={50}
             className="pb-36 sm:pb-0 md:pb-0 lg:pb-0"
-            src=""
-            alt=""
+            src="https://freepngimg.com/thumb/logo/62841-social-logo-computer-icons-free-clipart-hq.png"
+            alt="Test image with monitor"
           />
         </div>
       </div>
