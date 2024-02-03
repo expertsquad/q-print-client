@@ -24,7 +24,7 @@ const Cart = () => {
           {/* //Drawer Cancel BTN// */}
           <div className="flex items-start  gap-1">
             <label htmlFor="my-drawer-cart" className="cursor-pointer">
-              <span className="text-black text-opacity-80">
+              <span className="text-black text-opacity-50">
                 <IconShoppingBag width={24} height={24} />
               </span>
             </label>

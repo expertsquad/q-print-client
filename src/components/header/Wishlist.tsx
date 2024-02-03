@@ -23,7 +23,7 @@ const WishlistAndCart = () => {
           {/* //Drawer Cancel BTN// */}
           <div className="flex items-start gap-1">
             <label htmlFor="my-drawer-4-wishlist" className="cursor-pointer">
-              <span className="text-black text-opacity-80">
+              <span className="text-black text-opacity-50">
                 <IconHeart width={24} height={24} />
               </span>
             </label>

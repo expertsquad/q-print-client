@@ -1,5 +1,5 @@
 import { IconX } from "@tabler/icons-react";
-import React from "react";
+import React, { useEffect } from "react";
 
 interface GlobalModalProps {
   children?: React.ReactNode;
@@ -18,11 +18,15 @@ const GlobalModal = ({
   onClose,
   modalController,
 }: GlobalModalProps) => {
-  if (isVisible) {
-    document.body.classList.add("overflow-hidden");
-  } else {
-    document.body.classList.remove("overflow-hidden");
-  }
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      if (isVisible) {
+        document.body.classList.add("overflow-hidden");
+      } else {
+        document.body.classList.remove("overflow-hidden");
+      }
+    }
+  }, [isVisible]);
 
   if (!isVisible) return null;
 
