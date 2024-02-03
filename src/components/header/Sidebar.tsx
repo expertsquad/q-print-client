@@ -39,7 +39,7 @@ const Sidebar = () => {
   return (
     <div className="hidden md:flex">
       <div className="flex gap-7">
-        <div className="">
+        {/* <div className="">
           <details
             className="group relative"
             onMouseEnter={() => setIsOpen(true)}
@@ -89,6 +89,9 @@ const Sidebar = () => {
               </ul>
             </article>
           </details>
+        </div> */}
+        <div className="">
+          <h1>All Categories</h1>
         </div>
         <NavigateItem />
       </div>

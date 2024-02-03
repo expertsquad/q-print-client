@@ -63,7 +63,7 @@ const WishlistAndCart = () => {
             <div className="flex flex-col overflow-scroll no-scrollbar">
               {wishlistProduct.map((data: any) => (
                 <div className="flex gap-5 border-b mb-5" key={data._id}>
-                  <div className="flex items-center justify-center h-[55px] w-[70px] px-1 border">
+                  <div className="flex items-center justify-center h-[80px] w-[80px] px-1 border rounded-lg">
                     <Image
                       src={data?.image}
                       alt="Product Image"

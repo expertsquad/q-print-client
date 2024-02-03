@@ -1,12 +1,12 @@
 import { IconUser, IconSearch } from "@tabler/icons-react";
 import Image from "next/image";
 import qPrintLogo from "@/assets/logotwo.svg";
-import Sidebar from "./Sidebar";
-import MobileVersion from "./MobileVersion";
-import WishlistAndCart from "./Wishlist";
-import Cart from "./Cart";
 import Link from "next/link";
 import Filter from "../UI/filter/Filter";
+import WishlistAndCart from "./Wishlist";
+import Cart from "./Cart";
+import MobileVersion from "./MobileVersion";
+import Sidebar from "./Sidebar";
 
 const Header = () => {
   return (
