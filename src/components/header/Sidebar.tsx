@@ -9,7 +9,7 @@ import {
 import demoBrandImg from "@/assets/menu-demo-image.svg";
 import Image from "next/image";
 import Link from "next/link";
-import NavigateItem from "./NavigateItem";
+// import NavigateItem from "./NavigateItem";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -91,9 +91,9 @@ const Sidebar = () => {
           </details>
         </div> */}
         <div className="">
-          <h1>All Categories</h1>
+          <h1>All Categories Hello Hello dfdsdsf</h1>
         </div>
-        <NavigateItem />
+        {/* <NavigateItem /> */}
       </div>
     </div>
   );
