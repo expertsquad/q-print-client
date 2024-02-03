@@ -18,20 +18,10 @@ const GlobalModal = ({
   onClose,
   modalController,
 }: GlobalModalProps) => {
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      if (isVisible) {
-        document.body.classList.add("overflow-hidden");
-      } else {
-        document.body.classList.remove("overflow-hidden");
-      }
-    }
-  }, [isVisible]);
-
   if (!isVisible) return null;
 
   return (
-    <div className={`${modalController}`} id="close-by-outside">
+    <div className={`${modalController} `} id="close-by-outside">
       <div className={`${className}`}>
         <div className={`${yourCustomStyle}`}>{children}</div>
       </div>

@@ -3,10 +3,10 @@ import Image from "next/image";
 import qPrintLogo from "@/assets/logotwo.svg";
 import Link from "next/link";
 import Filter from "../UI/filter/Filter";
-// import WishlistAndCart from "./Wishlist";
-// import Cart from "./Cart";
-// import MobileVersion from "./MobileVersion";
-// import Sidebar from "./Sidebar";
+import WishlistAndCart from "./Wishlist";
+import Cart from "./Cart";
+import MobileVersion from "./MobileVersion";
+import Sidebar from "./Sidebar";
 
 const Header = () => {
   return (
@@ -38,8 +38,8 @@ const Header = () => {
 
         {/* ==Wishlist, Cart, and Profile== */}
         <div className="order-3 md:order-3 section-last-child flex items-center justify-end gap-5">
-          {/* <WishlistAndCart />
-          <Cart /> */}
+          <WishlistAndCart />
+          <Cart />
           <Link
             href="/profile"
             className="border rounded-full p-1 cursor-pointer text-black text-opacity-80"
@@ -49,11 +49,11 @@ const Header = () => {
         </div>
 
         {/* ==Menubar== */}
-        <div className="order-1 md:order-4 md:bg-[#FAFAFA] py-4 flex gap-6 md:col-span-3 md:my-5">
+        <div className="order-1 md:order-4 md:bg-[#FAFAFA] py-2 flex gap-6 md:col-span-3 md:my-5">
           {/* ==Mobile Version== */}
-          {/* <MobileVersion /> */}
+          <MobileVersion />
           {/* ==Desktop Version== */}
-          {/* <Sidebar /> */}
+          <Sidebar />
         </div>
       </section>
     </header>

@@ -21,7 +21,10 @@ const NavigateItem = () => {
     <>
       {menuItems.map((link, index) => (
         <React.Fragment key={link}>
-          <Link className="text-black text-opacity-70" href={hrefValues[index]}>
+          <Link
+            className="text-black text-opacity-70 hover:font-semibold active:text-fuchsia-500"
+            href={hrefValues[index]}
+          >
             {link}
           </Link>
         </React.Fragment>

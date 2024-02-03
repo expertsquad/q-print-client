@@ -67,7 +67,7 @@ const OrderedItemData = () => {
       <GlobalModal
         isVisible={showModal}
         onClose={handleCloseModal}
-        modalController="fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center backdrop-blur-sm z-50"
+        modalController={`fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center backdrop-blur-sm z-50`}
       >
         <div className="md:max-w-[650px] bg-white p-7 rounded-lg">
           {/* //Here is a demo of close modal by icon, that's bellow down */}

@@ -9,7 +9,7 @@ import moneyBack from "@/assets/money back.svg";
 
 const QServices: React.FC = () => {
   return (
-    <section className="border border-gray-300 mb-16 ">
+    <section className="border rounded-lg mb-16 ">
       <div className="flex items-center justify-between md:flex-row flex-col px-5 ">
         {productViewStaticData.map((item) => (
           <div key={item._id} className="py-5 md:py-10">
