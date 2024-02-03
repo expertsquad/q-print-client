@@ -1,15 +1,18 @@
 import React from "react";
 import ShopNowButton from "../UI/btn/ShopNowButton";
+import Image from "next/image";
 
 const BestDeals = () => {
   return (
     <section className="bg-[#EDF2EE] py-4 px-2 md:py-7 md:px-8 space-y-9">
       <div className="flex items-center justify-between">
         <div className="w-1/4">
-          <img
+          <Image
+            height={50}
+            width={50}
             className="pb-36 sm:pb-0 md:pb-0 lg:pb-0"
-            src="../images/productImg/multipleMobile-2.png"
-            alt=""
+            src="https://freepngimg.com/thumb/logo/62841-social-logo-computer-icons-free-clipart-hq.png"
+            alt="Test iamge"
           />
         </div>
         <div className="w-2/4 flex items-center flex-col space-y-6">
@@ -30,7 +33,7 @@ const BestDeals = () => {
           <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
             <div className="flex flex-col border p-3 rounded-lg items-center justify-center bg-white ">
               <span className="countdown [font-size:_clamp(0.9em,4vw,1.5em)]  ">
-                <span className="" style={{ "--value": 7 }}></span>
+                {/* <span className="" style={{ "--value": 7 }}></span> */}
               </span>
               <p className=" [font-size:_clamp(0.6em,4vw,0.8em)] font-bold bg-gradient-to-r from-[#C83B62]  to-[#7F35CD]  text-transparent bg-clip-text">
                 DAYS
@@ -38,7 +41,7 @@ const BestDeals = () => {
             </div>
             <div className="flex flex-col border p-3 rounded-lg items-center justify-center bg-white">
               <span className="countdown [font-size:_clamp(0.9em,4vw,1.5em)] ">
-                <span style={{ "--value": 15 }}></span>
+                {/* <span style={{ "--value": 15 }}></span> */}
               </span>
               <p className=" [font-size:_clamp(0.6em,4vw,0.8em)] font-bold bg-gradient-to-r from-[#C83B62]  to-[#7F35CD]  text-transparent bg-clip-text">
                 HOURS
@@ -46,7 +49,7 @@ const BestDeals = () => {
             </div>
             <div className="flex flex-col border p-3 rounded-lg items-center justify-center bg-white">
               <span className="countdown [font-size:_clamp(0.9em,4vw,1.5em)] ">
-                <span style={{ "--value": 48 }}></span>
+                {/* <span style={{ "--value": 48 }}></span> */}
               </span>
               <p className=" [font-size:_clamp(0.6em,4vw,0.8em)] font-bold bg-gradient-to-r from-[#C83B62]  to-[#7F35CD]  text-transparent bg-clip-text">
                 MIN
@@ -54,7 +57,7 @@ const BestDeals = () => {
             </div>
             <div className="flex flex-col border p-3 rounded-lg items-center justify-center bg-white ">
               <span className="countdown [font-size:_clamp(0.9em,4vw,1.5em)] ">
-                <span style={{ "--value": 31 }}></span>
+                {/* <span style={{ "--value": 31 }}></span> */}
               </span>
               <p className=" [font-size:_clamp(0.6em,4vw,0.8em)] font-bold bg-gradient-to-r from-[#C83B62]  to-[#7F35CD]  text-transparent bg-clip-text">
                 SEC
@@ -69,10 +72,12 @@ const BestDeals = () => {
           </div>
         </div>
         <div className="w-1/4">
-          <img
+          <Image
+            height={50}
+            width={50}
             className="pb-36 sm:pb-0 md:pb-0 lg:pb-0"
-            src="../images/productImg/computer.png"
-            alt=""
+            src="https://freepngimg.com/thumb/logo/62841-social-logo-computer-icons-free-clipart-hq.png"
+            alt="Test image with monitor"
           />
         </div>
       </div>
@@ -80,12 +85,12 @@ const BestDeals = () => {
         {/* <!-------------- event Card 01 -------------> */}
         <div className="flex items-center space-x-4 max-w-[300px] pr-20 py-2 pl-2 shrink-0 rounded-xl bg-white border border-white hover:border hover:duration-500 cursor-pointer hover:border-fuchsia-700">
           <div className="w-20 h-20 rounded-lg bg-background-color">
-            <img src="../images/EventCartImg/Ipad.png" alt="" />
+            <Image height={50} width={50} src="" alt="" />
           </div>
           <div className="flex justify-center flex-col gap-1">
             <h3 className="text-black">I Pad Mini</h3>
 
-            {/* rating started  small card rating */}
+            {/* rating started  small card rating  dfsd*/}
 
             {/* <div className="rating rating-xs md:rating-sm">
               <input

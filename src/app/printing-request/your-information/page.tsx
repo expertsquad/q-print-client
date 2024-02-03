@@ -1,3 +1,5 @@
+"use client";
+
 import PrintingRequestTotalOrder from "@/components/PrintingRequest/PrintingRequestTotalOrder";
 import ReturnToCardButton from "@/components/PrintingRequest/ReturnToCardButton";
 import { IconUser } from "@tabler/icons-react";
@@ -25,7 +27,10 @@ const YourInformation = () => {
                 <p className="text-base text-gray-500 mb-5">
                   Contact information
                 </p>
-                <form className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5  w-full pb-10 border-b">
+                <form
+                  onChange={() => console.log("change")}
+                  className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5  w-full pb-10 border-b"
+                >
                   <div className="w-full flex flex-col gap-2.5">
                     <label htmlFor="user_email" className="text-base ">
                       Email
@@ -35,7 +40,7 @@ const YourInformation = () => {
                       name="user_email"
                       id="user_email"
                       className="border outline-none block w-full py-3.5 rounded-md px-4 "
-                      value="dianne.russell@gmail.com"
+                      defaultValue="dianne.russell@gmail.com"
                     />
                   </div>
                   <div className="w-full flex flex-col gap-2.5">
@@ -50,7 +55,7 @@ const YourInformation = () => {
                       name="user_phone"
                       id="user_phone"
                       className="border outline-none block w-full py-3.5 rounded-md px-4"
-                      value="08801835550123"
+                      defaultValue="08801835550123"
                       required
                     />
                   </div>
@@ -74,7 +79,7 @@ const YourInformation = () => {
                         name="firstName"
                         id="firstName"
                         className="border outline-none block w-full py-3.5 rounded-md px-4 "
-                        value="Zayed"
+                        defaultValue="Zayed"
                       />
                     </div>
                     <div className="w-full flex flex-col gap-2.5">
@@ -86,7 +91,7 @@ const YourInformation = () => {
                         name="lastName"
                         id="lastName"
                         className="border outline-none block w-full py-3.5 rounded-md px-4"
-                        value="Hossain"
+                        defaultValue="Hossain"
                         required
                       />
                     </div>
@@ -99,7 +104,7 @@ const YourInformation = () => {
                         name="address"
                         id="address"
                         className="border outline-none block w-full py-3.5 rounded-md px-4 "
-                        value="Noakhali Chaprashirhat Road No. 13/x, House no. 1320/C, Flat No. 5D"
+                        defaultValue="Noakhali Chaprashirhat Road No. 13/x, House no. 1320/C, Flat No. 5D"
                       />
                     </div>
                     <div className="w-full flex flex-col gap-2.5">
@@ -111,7 +116,7 @@ const YourInformation = () => {
                         name="city"
                         id="city"
                         className="border outline-none block w-full py-3.5 rounded-md px-4"
-                        value="Dhaka"
+                        defaultValue="Dhaka"
                         required
                       />
                     </div>
@@ -124,7 +129,7 @@ const YourInformation = () => {
                         name="country"
                         id="country"
                         className="border outline-none block w-full py-3.5 rounded-md px-4 "
-                        value="Qater"
+                        defaultValue="Qater"
                       />
                     </div>
                     <div className="w-full flex flex-col gap-2.5">
@@ -139,7 +144,7 @@ const YourInformation = () => {
                         name="companyName"
                         id="companyName"
                         className="border outline-none block w-full py-3.5 rounded-md px-4"
-                        value="Q-Print"
+                        defaultValue="Q-Print"
                         required
                       />
                     </div>
@@ -152,7 +157,7 @@ const YourInformation = () => {
                         name="zipCode"
                         id="zipCode"
                         className="border outline-none block w-full py-3.5 rounded-md px-4 "
-                        value="2005"
+                        defaultValue="2005"
                       />
                     </div>
                     <div className="w-full flex flex-col gap-2.5">
@@ -164,7 +169,7 @@ const YourInformation = () => {
                         name="phoneNumber"
                         id="phoneNumber"
                         className="border outline-none block w-full py-3.5 rounded-md px-4"
-                        value="08801835550123"
+                        defaultValue="08801835550123"
                         required
                       />
                     </div>

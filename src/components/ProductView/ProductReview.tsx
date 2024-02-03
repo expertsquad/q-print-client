@@ -72,16 +72,17 @@ const ProductReview = () => {
             </div>
             {review.photos && review.photos.length > 0 && (
               <div className="flex gap-3">
-                {review.photos.map((photo: any, index: any) => (
-                  <Image
-                    key={index}
-                    src={photo}
-                    alt="user Photo"
-                    width={50}
-                    height={50}
-                    className="rounded-lg object-contain"
-                  />
-                ))}
+                {Array.isArray(review?.photos) &&
+                  review?.photos.map((photo: any, index: number) => (
+                    <Image
+                      key={index}
+                      src={photo}
+                      alt="user Photo"
+                      width={50}
+                      height={50}
+                      className="rounded-lg object-contain"
+                    />
+                  ))}
               </div>
             )}
             <p className="text-sm text-black opacity-60 mb-5">

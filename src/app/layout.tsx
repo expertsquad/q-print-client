@@ -3,9 +3,10 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/Providers";
 import Footer from "@/components/Footer/Footer";
-import Header from "@/components/Header/Header";
+
 import NextBreadcrumb from "@/components/shared/NextBreadcrumb";
 import { IconChevronRight } from "@tabler/icons-react";
+import Header from "@/components/header/Header";
 
 const poppins = Poppins({
   weight: ["400"],

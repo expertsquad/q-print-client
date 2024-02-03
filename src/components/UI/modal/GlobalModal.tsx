@@ -30,15 +30,8 @@ const GlobalModal = ({
 
   if (!isVisible) return null;
 
-  const handleClickOutsideToClose = (e: any) => {
-    if (e.target.id === "close-by-outside") onClose(true);
-  };
   return (
-    <div
-      className={`${modalController}`}
-      id="close-by-outside"
-      onClick={handleClickOutsideToClose}
-    >
+    <div className={`${modalController}`} id="close-by-outside">
       <div className={`${className}`}>
         <div className={`${yourCustomStyle}`}>{children}</div>
       </div>
