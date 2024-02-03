@@ -48,10 +48,10 @@ const WishlistAndCart = () => {
             <label
               htmlFor="my-drawer-4-wishlist"
               aria-label="close sidebar"
-              className="-mb-6 -ml-6 bg-white p-1 rounded-full w-7 h-7 flex justify-center items-center"
+              className="-mb-6 -ml-5 bg-white p-1 rounded-full w-7 h-7 flex justify-center items-center"
             >
-              <span className="hidden md:block">
-                <IconChevronRight />
+              <span className="hidden md:block text-black text-opacity-70">
+                <IconChevronRight width={24} height={24} />
               </span>
               <span className="block md:hidden">
                 <IconArrowLeft />
@@ -95,9 +95,9 @@ const WishlistAndCart = () => {
                           {data?.availableProduct} In Stock
                         </small>
                       </p>
-                      <button className="flex items-center border py-2 px-3 rounded-lg">
-                        <span>
-                          <IconShoppingCart />
+                      <button className="flex items-center border py-2 px-3 rounded-lg text-[12px]">
+                        <span className="text-black text-opacity-70 mr-1.5">
+                          <IconShoppingCart width={16} height={16} />
                         </span>
                         Add to Cart
                       </button>
