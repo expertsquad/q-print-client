@@ -48,7 +48,7 @@ const Cart = () => {
             <label
               htmlFor="my-drawer-cart"
               aria-label="close sidebar"
-              className="-mb-6 -ml-6 bg-white p-1 rounded-full w-7 h-7 flex justify-center items-center"
+              className="-mb-6 -ml-5 bg-white p-1 rounded-full w-7 h-7 flex justify-center items-center"
             >
               <span className="hidden md:block">
                 <IconChevronRight />
