@@ -13,7 +13,7 @@ import React from "react";
 const WishlistAndCart = () => {
   return (
     <div>
-      <div className="drawer drawer-end">
+      <div className="drawer drawer-end overscroll-none ">
         <input
           id="my-drawer-4-wishlist"
           type="checkbox"
@@ -63,15 +63,15 @@ const WishlistAndCart = () => {
             <div className="flex flex-col overflow-scroll no-scrollbar">
               {wishlistProduct.map((data: any) => (
                 <div className="flex gap-5 border-b mb-5" key={data._id}>
-                  <div className="flex items-center justify-center h-[80px] w-[80px] px-1 border rounded-lg">
+                  <div className="flex items-center justify-center h-[40px] w-[80px] px-1 border rounded-lg">
                     <Image
                       src={data?.image}
                       alt="Product Image"
                       width={66}
-                      height={66}
-                      style={{ objectFit: "cover" }}
+                      height={50}
+                      style={{ objectFit: "contain" }}
                       loading="lazy"
-                      className="w-full"
+                      // className="w-full h-full"
                     />
                   </div>
                   <div>

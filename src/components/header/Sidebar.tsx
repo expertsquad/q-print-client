@@ -10,6 +10,7 @@ import demoBrandImg from "@/assets/menu-demo-image.svg";
 import Image from "next/image";
 import Link from "next/link";
 import NavigateItem from "./NavigateItem";
+import { allCategoriesMenu } from "@/constants";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,29 +46,44 @@ const Sidebar = () => {
               All Categories
             </span>
             <span className="group-hover:rotate-90 main-text-color">
-              <IconChevronRight height={24} width={24} />
+              <IconChevronRight height={20} width={20} />
             </span>
           </div>
-          <div className="absolute z-50 w-72 bg-gray-100 px-4 py-1 text-gray-800 shadow-xl hidden group-hover:block">
-            <a className="flex items-center justify-between my-2  border-b border-gray-100 py-1 font-semibold text-gray-500 hover:text-black md:mx-2">
-              Printer
-              <span className="group-hover:rotate-90 ml-2">
-                <IconChevronRight height={24} width={24} />
-              </span>
-            </a>
 
-            <a className="flex items-center justify-between my-2  border-b border-gray-100 py-1 font-semibold text-gray-500 hover:text-black md:mx-2">
-              Cartridge{" "}
-              <span className="group-hover:rotate-90 ml-2">
-                <IconChevronRight height={24} width={24} />
-              </span>
-            </a>
-            <a className="flex items-center justify-between my-2  border-b border-gray-100 py-1 font-semibold text-gray-500 hover:text-black md:mx-2">
-              Ink{" "}
-              <span className="group-hover:rotate-90 ml-2">
-                <IconChevronRight height={24} width={24} />
-              </span>
-            </a>
+          <div className="absolute z-50 w-64 bg-white px-4 py-1 rounded-lg shadow-xl hidden group-hover:block">
+            {allCategoriesMenu.map((item) => (
+              <div
+                key={item.categoryName}
+                className="group/item relative cursor-pointer"
+              >
+                <div className="group flex items-center justify-between my-2 py-1 md:mx-2 ">
+                  <div>
+                    <span className="menu-hover text-black text-opacity-70 text-sm hover:font-medium">
+                      {item.categoryName}
+                    </span>
+                  </div>
+                  <span className="group-hover/item:rotate-90 text-black text-opacity-70 hover:font-medium">
+                    <IconChevronRight height={20} width={20} />
+                  </span>
+                </div>
+                <div
+                  className={`absolute bg-white shadow-md rounded-md right-[-165px] top-0 invisible group-hover/item:visible p-2`}
+                >
+                  {item.subcategory.map((subItem) => (
+                    <div
+                      key={subItem.name}
+                      className="cursor-pointer hover:bg-gray-200"
+                    >
+                      <div className=" items-center justify-between my-2 py-1  md:mx-2">
+                        <span className="menu-hover text-black text-opacity-70 text-sm">
+                          {subItem.name}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

@@ -745,6 +745,14 @@ export const allCategoriesMenu = [
         name: "Samsung Printer",
         icon: "",
       },
+      {
+        name: "Hello Printer",
+        icon: "",
+      },
+      {
+        name: "Brother Printer",
+        icon: "",
+      },
     ],
   },
   {
@@ -771,6 +779,18 @@ export const allCategoriesMenu = [
     categoryPhoto: "",
     icon: "",
     subcategory: [
+      {
+        name: "HP Printer",
+        icon: "",
+      },
+      {
+        name: "Brother Printer",
+        icon: "",
+      },
+      {
+        name: "Samsung Printer",
+        icon: "",
+      },
       {
         name: "HP Printer",
         icon: "",
