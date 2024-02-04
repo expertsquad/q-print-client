@@ -29,12 +29,13 @@ const ProductViewImage = () => {
               }`}
               onClick={() => handleChangePhoto(item)}
             >
-              <div className="flex items-center justify-center w-[50] h-[50] md:max-w-28 md:max-h-24 ">
+              <div className="flex items-center justify-center w-[50] h-[50] md:max-w-[100px] md:max-h-[120px] ">
                 <Image
                   src={item.picture}
                   alt="demo Printer"
-                  width={100}
-                  height={90}
+                  width={90}
+                  height={100}
+                  className="w-full h-full"
                 />
               </div>
             </div>

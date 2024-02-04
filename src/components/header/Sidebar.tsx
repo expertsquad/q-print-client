@@ -46,7 +46,7 @@ const Sidebar = () => {
             <span className="menu-hover text-base font-medium main-text-color ">
               All Categories
             </span>
-            <span className="group-hover:rotate-90 main-text-color">
+            <span className="group-hover:rotate-[-90deg] main-text-color">
               <MenuArrowIcon />
             </span>
           </div>
