@@ -70,7 +70,7 @@ const ProductViewDescEtc = () => {
 
         <GetDiscountRange />
 
-        <p className="mb-4 text-black text-opacity-60">
+        <p className="mb-4 text-black text-opacity-60 mt-5">
           Buy <span className="main-text-color">8</span> item more to get off{" "}
           <b className="text-black">15% Extra!</b>
         </p>
@@ -99,11 +99,11 @@ const ProductViewDescEtc = () => {
           </div>
         </div>
         {/* //Quick order & Buy now button*/}
-        <div className="my-4 flex items-center justify-between gap-3">
-          <div>
+        <div className="my-4 flex items-center justify-between gap-5">
+          <div className="w-full">
             <WishlistQuickOrderBTNModal />
           </div>
-          <button className="flex items-center justify-center gap-2 text-white main-bg-color  py-2 rounded-lg">
+          <button className="flex items-center justify-center gap-2 text-white main-bg-color  py-2 rounded-lg w-full">
             {""}
             <IconShoppingBag />
             BUY NOW
