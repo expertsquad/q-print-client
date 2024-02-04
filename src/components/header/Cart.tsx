@@ -14,6 +14,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import GetDiscountRange from "../ProductView/GetDiscountRange";
 
 const Cart = () => {
   return (
@@ -64,15 +65,15 @@ const Cart = () => {
             <div className="flex flex-col overflow-scroll no-scrollbar">
               {cartProductsData.map((data: any) => (
                 <div className="flex gap-5 border-b mb-5" key={data._id}>
-                  <div className="flex items-center justify-center h-[55px] w-[70px] px-1 border">
+                  <div className="flex items-center justify-center max-h-16 w-full max-w-16 p-2 border rounded-md">
                     <Image
                       src={data?.image}
                       alt="Product Image"
-                      width={66}
-                      height={66}
-                      style={{ objectFit: "cover" }}
+                      width={55}
+                      height={55}
+                      // style={{ objectFit: "contain" }}
                       loading="lazy"
-                      className="w-full"
+                      className="w-full h-full"
                     />
                   </div>
                   <div>
@@ -81,7 +82,7 @@ const Cart = () => {
                       <p className="text-black text-opacity-90 text-[16px] line-clamp-1">
                         {data?.title}
                       </p>
-                      <span className="cursor-pointer text-black text-opacity-60">
+                      <span className="cursor-pointer text-black text-opacity-70">
                         <IconX width={20} height={20} />
                       </span>
                     </div>
@@ -93,12 +94,12 @@ const Cart = () => {
                     </div>
                     <div className="flex items-center justify-between gap-2 mb-4">
                       <div className="flex items-center gap-2">
-                        <button className="border p-1 rounded-full">
+                        <button className="border p-1 rounded-full text-black text-opacity-70 text-[16px]">
                           {""}
                           <IconMinus width={14} height={14} />
                         </button>
                         <span>{data?.availableProduct}</span>
-                        <button className="border p-1 rounded-full">
+                        <button className="border p-1 rounded-full text-black text-opacity-70 text-[16px]">
                           {""}
                           <IconPlus width={14} height={14} />
                         </button>
@@ -137,13 +138,14 @@ const Cart = () => {
               {/* --Price range and Free shipping-- */}
               <div className="mb-5">
                 <div className="mb-5">
-                  <input
+                  {/* <input
                     title="Price Range"
                     id="default-range"
                     type="range"
                     value="50"
                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
-                  />
+                  /> */}
+                  <GetDiscountRange />
                 </div>
                 <div>
                   {[3000].length < 0 ? (

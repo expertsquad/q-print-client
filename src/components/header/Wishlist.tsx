@@ -63,15 +63,15 @@ const WishlistAndCart = () => {
             <div className="flex flex-col overflow-scroll no-scrollbar">
               {wishlistProduct.map((data: any) => (
                 <div className="flex gap-5 border-b mb-5" key={data._id}>
-                  <div className="flex items-center justify-center h-[40px] w-[80px] px-1 border rounded-lg">
+                  <div className="flex items-center justify-center max-h-16 w-full max-w-16 p-2 border rounded-md">
                     <Image
                       src={data?.image}
                       alt="Product Image"
-                      width={66}
-                      height={50}
-                      style={{ objectFit: "contain" }}
+                      width={55}
+                      height={55}
+                      // style={{ objectFit: "contain" }}
                       loading="lazy"
-                      // className="w-full h-full"
+                      className="w-full h-full"
                     />
                   </div>
                   <div>

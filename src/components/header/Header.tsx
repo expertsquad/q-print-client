@@ -9,6 +9,7 @@ import MobileVersion from "./MobileVersion";
 import Sidebar from "./Sidebar";
 
 const Header = () => {
+  const user = false;
   return (
     <header className="max-w-[1280px] mx-auto">
       <section className="header-section-css pt-6 pb-6 mx-auto">
@@ -41,7 +42,7 @@ const Header = () => {
           <WishlistAndCart />
           <Cart />
           <Link
-            href="/profile"
+            href={`${user ? "/profile" : "/login"}`}
             className="border rounded-full p-1 cursor-pointer text-black text-opacity-80"
           >
             <IconUser width={22} height={22} />
