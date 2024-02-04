@@ -46,7 +46,7 @@ const Sidebar = () => {
             onMouseLeave={() => setIsOpen(true)}
           >
             <summary className="flex items-center gap-2 marker:content-none hover:cursor-pointer">
-              <span className="main-text-color">All Categories</span>
+              <span className="main-text-color">All Poran</span>
               <span
                 className={`transition group-open:rotate-90 main-text-color ${
                   isOpen ? "rotate-90" : ""

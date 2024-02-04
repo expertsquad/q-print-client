@@ -12,7 +12,7 @@ const TabProductView = () => {
   };
 
   return (
-    <div className=" mx-auto mt-4 ">
+    <div className=" mx-auto mt-4 w-full ">
       <div className="flex justify-center items-center rounded-full gap-1 md:gap-2 lg:gap-2 text-sm md:text-base lg:text-base bg-[#F1F3F5] max-w-fit mx-auto ">
         <button
           className={`px-6 py-2 rounded-full ${

@@ -5,13 +5,13 @@ import Image from "next/image";
 const BestDeals = () => {
   return (
     <section className="bg-[#EDF2EE] py-4 px-2 md:py-7 md:px-8 space-y-9">
-      <div className="flex items-center justify-between">
-        <div className="w-1/4">
+      <div className="flex items-center justify-between gap-6">
+        <div className="w-1/4 ">
           <Image
-            height={50}
-            width={50}
+            height={200}
+            width={200}
             className="pb-36 sm:pb-0 md:pb-0 lg:pb-0"
-            src="https://freepngimg.com/thumb/logo/62841-social-logo-computer-icons-free-clipart-hq.png"
+            src="https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png"
             alt="Test iamge"
           />
         </div>
@@ -71,12 +71,12 @@ const BestDeals = () => {
             <ShopNowButton href="#" />
           </div>
         </div>
-        <div className="w-1/4">
+        <div className="w-1/4 ">
           <Image
-            height={50}
-            width={50}
+            height={200}
+            width={200}
             className="pb-36 sm:pb-0 md:pb-0 lg:pb-0"
-            src="https://freepngimg.com/thumb/logo/62841-social-logo-computer-icons-free-clipart-hq.png"
+            src="https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png"
             alt="Test image with monitor"
           />
         </div>
@@ -85,10 +85,15 @@ const BestDeals = () => {
         {/* <!-------------- event Card 01 -------------> */}
         <div className="flex items-center space-x-4 max-w-[300px] pr-20 py-2 pl-2 shrink-0 rounded-xl bg-white border border-white hover:border hover:duration-500 cursor-pointer hover:border-fuchsia-700">
           <div className="w-20 h-20 rounded-lg bg-background-color">
-            <Image height={50} width={50} src="" alt="" />
+            <Image
+              height={100}
+              width={100}
+              src="https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png"
+              alt=""
+            />
           </div>
           <div className="flex justify-center flex-col gap-1">
-            <h3 className="text-black">I Pad Mini</h3>
+            <h3 className="text-black">Hevy Printer</h3>
 
             {/* rating started  small card rating  dfsd*/}
 

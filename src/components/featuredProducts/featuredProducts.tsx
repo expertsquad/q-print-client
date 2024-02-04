@@ -2,7 +2,7 @@ import TabProductView from "./TabProductView";
 
 const FeaturedProducts = () => {
   return (
-    <section>
+    <section className="w-full">
       <div className="flex flex-col justify-center items-center w-full my-8 ">
         <h2 className="text-black [font-size:_clamp(1em,5vw,1.6em)] font-bold">
           FEATURED PRODUCTS

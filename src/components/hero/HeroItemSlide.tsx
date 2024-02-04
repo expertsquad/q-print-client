@@ -24,7 +24,8 @@ const HeroItemSlide: React.FC = () => {
     {
       _id: "1",
       company: "New Colectin Here",
-      about: "There is will coming some description ",
+      about:
+        "Save up to 50% on select Xbox games. Get 3 months of PC Game Pass for $2 USD. ",
       picture:
         "https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png",
     },
