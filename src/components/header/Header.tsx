@@ -12,7 +12,7 @@ const Header = () => {
   const user = false;
   return (
     <header className="max-w-[1280px] mx-auto">
-      <section className="header-section-css pt-6 pb-6 mx-auto">
+      <section className="header-section-css pt-6 mx-auto">
         {/* ==Logo== */}
         <div className="order-2 md:order-1 section-first-child ">
           <Link href="/">

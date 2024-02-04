@@ -56,7 +56,7 @@ const Sidebar = () => {
                 key={item.categoryName}
                 className="group/item relative cursor-pointer"
               >
-                <div className="group flex items-center justify-between my-2 py-1 md:mx-2 hover:bg-gray-200 px-4 py-1">
+                <div className="group flex items-center justify-between my-2 py-1 md:mx-2 hover:bg-gray-200 px-4 ">
                   <div>
                     <span className="menu-hover text-black text-opacity-70 text-sm hover:font-medium">
                       {item.categoryName}

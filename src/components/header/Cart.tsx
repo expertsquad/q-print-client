@@ -164,15 +164,15 @@ const Cart = () => {
                 </div>
               </div>
               {/* --Checkout & Quick Order btn-- */}
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center gap-5">
                 <Link
                   href="/cartView"
-                  className="border px-5 py-2 flex items-center justify-center rounded-lg text-black bg-black bg-opacity-15"
+                  className="border w-full py-2 flex gap-1.5 items-center justify-center rounded-lg text-black bg-black bg-opacity-15 hover:main-bg-color hover:text-white"
                 >
                   <IconShoppingCartCog />
                   CHECK OUT
                 </Link>
-                <button className="border px-5 py-2 flex items-center justify-center main-bg-color text-white rounded-lg">
+                <button className="border w-full py-2 flex gap-1.5 items-center justify-center main-bg-color text-white rounded-lg">
                   <IconBolt />
                   ORDER NOW
                 </button>
