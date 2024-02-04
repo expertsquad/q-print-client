@@ -16,8 +16,8 @@ import appleStore from "@/assets/applestore.svg";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1A1A1A] p-6">
-      <div className="space-y-5 md:grid md:grid-cols-3 items-center justify-center md:items-start mx-auto relative text-center py-5 gap-5">
+    <footer className="bg-[#1A1A1A] p-6 ">
+      <div className="space-y-5 md:grid md:grid-cols-3 items-center justify-center md:items-start relative text-center py-5 gap-5 md:max-w-[1280px] mx-auto">
         <div className="space-y-5">
           <div className="flex items-center justify-center">
             <Logo />

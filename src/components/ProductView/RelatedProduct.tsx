@@ -9,6 +9,7 @@ const RelatedProduct = () => {
         </h2>
         <button className="text-[#E73C17]">Show All</button>
       </div>
+      <h1>Data is loading!!</h1>
     </div>
   );
 };

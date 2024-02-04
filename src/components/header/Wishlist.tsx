@@ -13,7 +13,7 @@ import React from "react";
 const WishlistAndCart = () => {
   return (
     <div>
-      <div className="drawer drawer-end">
+      <div className="drawer drawer-end overscroll-none ">
         <input
           id="my-drawer-4-wishlist"
           type="checkbox"
@@ -23,7 +23,7 @@ const WishlistAndCart = () => {
           {/* //Drawer Cancel BTN// */}
           <div className="flex items-start gap-1">
             <label htmlFor="my-drawer-4-wishlist" className="cursor-pointer">
-              <span className="text-black text-opacity-80">
+              <span className="text-black text-opacity-50">
                 <IconHeart width={24} height={24} />
               </span>
             </label>
@@ -48,10 +48,10 @@ const WishlistAndCart = () => {
             <label
               htmlFor="my-drawer-4-wishlist"
               aria-label="close sidebar"
-              className="-mb-6 -ml-6 bg-white p-1 rounded-full w-7 h-7 flex justify-center items-center"
+              className="-mb-6 -ml-5 bg-white p-1 rounded-full w-7 h-7 flex justify-center items-center"
             >
-              <span className="hidden md:block">
-                <IconChevronRight />
+              <span className="hidden md:block text-black text-opacity-70">
+                <IconChevronRight width={24} height={24} />
               </span>
               <span className="block md:hidden">
                 <IconArrowLeft />
@@ -63,15 +63,15 @@ const WishlistAndCart = () => {
             <div className="flex flex-col overflow-scroll no-scrollbar">
               {wishlistProduct.map((data: any) => (
                 <div className="flex gap-5 border-b mb-5" key={data._id}>
-                  <div className="flex items-center justify-center h-[55px] w-[70px] px-1 border">
+                  <div className="flex items-center justify-center max-h-16 w-full max-w-16 p-2 border rounded-md">
                     <Image
                       src={data?.image}
                       alt="Product Image"
-                      width={66}
-                      height={66}
-                      style={{ objectFit: "cover" }}
+                      width={55}
+                      height={55}
+                      // style={{ objectFit: "contain" }}
                       loading="lazy"
-                      className="w-full"
+                      className="w-full h-full"
                     />
                   </div>
                   <div>
@@ -95,9 +95,9 @@ const WishlistAndCart = () => {
                           {data?.availableProduct} In Stock
                         </small>
                       </p>
-                      <button className="flex items-center border py-2 px-3 rounded-lg">
-                        <span>
-                          <IconShoppingCart />
+                      <button className="flex items-center border py-2 px-3 rounded-lg text-[12px]">
+                        <span className="text-black text-opacity-70 mr-1.5">
+                          <IconShoppingCart width={16} height={16} />
                         </span>
                         Add to Cart
                       </button>

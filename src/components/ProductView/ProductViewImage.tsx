@@ -29,18 +29,18 @@ const ProductViewImage = () => {
               }`}
               onClick={() => handleChangePhoto(item)}
             >
-              <div className="flex items-center justify-center w-[50] h-[50] md:max-w-[100px] md:h-[100px] ">
+              <div className="flex items-center justify-center w-[50] h-[50] md:max-w-28 md:max-h-24 ">
                 <Image
                   src={item.picture}
                   alt="demo Printer"
                   width={100}
-                  height={120}
+                  height={90}
                 />
               </div>
             </div>
           ))}
         </div>
-        <div className="flex items-center justify-center border border-gray-300 w-full md:max-w-[552px] md:max-h-[550px] h-full">
+        <div className="flex items-center justify-center border border-gray-300 w-full md:max-w-[552px] md:max-h-[550px] h-full rounded-lg">
           {selectedImage && (
             <div className="flex items-center justify-center rounded-lg">
               <Image

@@ -35,7 +35,7 @@ const GetDiscountRange = () => {
 
       {/* confitti added here */}
 
-      <Confetti />
+      {/* <Confetti /> */}
     </div>
   );
 };

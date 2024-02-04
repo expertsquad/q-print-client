@@ -283,7 +283,7 @@ export const productViewSpecification = [
   },
 ];
 
-//Product View Customer Review
+//Product View Customer Review by Poran
 export const productViewCustomerReview = [
   {
     reviewer: [
@@ -341,7 +341,7 @@ export const productViewCustomerReview = [
   },
 ];
 
-//Order Track data
+//Order Track data by Poran
 export const orderTrackData = [
   {
     _id: "1",
@@ -723,5 +723,86 @@ export const cartProductsData = [
     price: 300,
     availableProduct: 0,
     rating: 5,
+  },
+];
+
+// All categories item by Poran
+export const allCategoriesMenu = [
+  {
+    categoryName: "Printer",
+    categoryPhoto: "",
+    icon: "",
+    subcategory: [
+      {
+        name: "HP Printer",
+        icon: "",
+      },
+      {
+        name: "Brother Printer",
+        icon: "",
+      },
+      {
+        name: "Samsung Printer",
+        icon: "",
+      },
+      {
+        name: "Hello Printer",
+        icon: "",
+      },
+      {
+        name: "Brother Printer",
+        icon: "",
+      },
+    ],
+  },
+  {
+    categoryName: "Cartridge",
+    categoryPhoto: "",
+    icon: "",
+    subcategory: [
+      {
+        name: "HP Printer",
+        icon: "",
+      },
+      {
+        name: "Brother Printer",
+        icon: "",
+      },
+      {
+        name: "Samsung Printer",
+        icon: "",
+      },
+    ],
+  },
+  {
+    categoryName: "Ink",
+    categoryPhoto: "",
+    icon: "",
+    subcategory: [
+      {
+        name: "HP Printer",
+        icon: "",
+      },
+      {
+        name: "Brother Printer",
+        icon: "",
+      },
+      {
+        name: "Samsung Printer",
+        icon: "",
+      },
+      {
+        name: "HP Printer",
+        icon: "",
+      },
+      {
+        name: "Brother Printer",
+        icon: "",
+      },
+      {
+        name: "Samsung Printer",
+        icon: "",
+      },
+    ],
   },
 ];
