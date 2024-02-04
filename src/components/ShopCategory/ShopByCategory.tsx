@@ -13,7 +13,7 @@ const ShopByCategory = () => {
             Browser Our Hottest Categories
           </h3>
         </div>
-        <div className="flex gap-4 justify-between overflow-scroll no-scrollbar ">
+        <div className="flex gap-4 justify-between overflow-scroll no-scrollbar">
           {shopByCategories.map((item) => (
             <ShopCategoryCard key={item._id} category={item} />
           ))}

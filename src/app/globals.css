@@ -94,7 +94,7 @@
 /* ==Header responsive css== */
 .header-section-css {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 2.5fr 1.2fr;
   align-items: center;
 }
 
