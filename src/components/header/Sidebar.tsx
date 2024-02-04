@@ -11,6 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import NavigateItem from "./NavigateItem";
 import { allCategoriesMenu } from "@/constants";
+import MenuArrowIcon from "@/assets/svgIcons/MenuArrowIcon";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,12 +42,12 @@ const Sidebar = () => {
     <div className="hidden md:flex">
       <div className="flex items-center gap-7">
         <div className="group relative cursor-pointer">
-          <div className="bg-fuchsia-100 py-3 px-4 rounded-3xl group flex items-center justify-between gap-2.5 group-open:bg-slate-900 ">
-            <span className="menu-hover text-base font-medium main-text-color">
+          <div className="bg-gradient-to-l from-[#c83b621a] to-[#7f35cd1a] py-3 px-4 rounded-3xl group flex items-center justify-between gap-2.5 group-open:bg-slate-900 ">
+            <span className="menu-hover text-base font-medium main-text-color ">
               All Categories
             </span>
             <span className="group-hover:rotate-90 main-text-color">
-              <IconChevronRight height={20} width={20} />
+              <MenuArrowIcon />
             </span>
           </div>
 
@@ -56,7 +57,7 @@ const Sidebar = () => {
                 key={item.categoryName}
                 className="group/item relative cursor-pointer"
               >
-                <div className="group flex items-center justify-between my-2 py-1 md:mx-2 hover:bg-gray-200 px-4 py-1">
+                <div className="group flex items-center justify-between my-2 py-1 md:mx-2 hover:bg-gray-200 px-4 ">
                   <div>
                     <span className="menu-hover text-black text-opacity-70 text-sm hover:font-medium">
                       {item.categoryName}
