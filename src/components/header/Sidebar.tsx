@@ -16,27 +16,27 @@ import MenuArrowIcon from "@/assets/svgIcons/MenuArrowIcon";
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const categories = [
-    {
-      icon: <IconPrinter />,
-      label: "Printer",
-      subcategories: ["Printer", "Printer", "Printer", "Printer", "Printer"],
-    },
-    {
-      icon: <IconFence />,
-      label: "Cartridge",
-      subcategories: ["Printer", "Printer", "Printer", "Printer", "Printer"],
-    },
-    {
-      icon: (
-        <span className="text-fuchsia-300">
-          <IconMilk />
-        </span>
-      ),
-      label: "Ink",
-      subcategories: ["Printer", "Printer", "Printer", "Printer", "Printer"],
-    },
-  ];
+  // const categories = [
+  //   {
+  //     icon: <IconPrinter />,
+  //     label: "Printer",
+  //     subcategories: ["Printer", "Printer", "Printer", "Printer", "Printer"],
+  //   },
+  //   {
+  //     icon: <IconFence />,
+  //     label: "Cartridge",
+  //     subcategories: ["Printer", "Printer", "Printer", "Printer", "Printer"],
+  //   },
+  //   {
+  //     icon: (
+  //       <span className="text-fuchsia-300">
+  //         <IconMilk />
+  //       </span>
+  //     ),
+  //     label: "Ink",
+  //     subcategories: ["Printer", "Printer", "Printer", "Printer", "Printer"],
+  //   },
+  // ];
 
   return (
     <div className="hidden md:flex">
@@ -46,7 +46,7 @@ const Sidebar = () => {
             <span className="menu-hover text-base font-medium main-text-color ">
               All Categories
             </span>
-            <span className="group-hover:rotate-[-90deg] main-text-color">
+            <span className="group-hover:rotate-[-deg] rotate-[-90deg] main-text-color">
               <MenuArrowIcon />
             </span>
           </div>

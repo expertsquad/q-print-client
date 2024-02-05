@@ -69,7 +69,6 @@ const WishlistAndCart = () => {
                       alt="Product Image"
                       width={55}
                       height={55}
-                      // style={{ objectFit: "contain" }}
                       loading="lazy"
                       className="w-full h-full"
                     />

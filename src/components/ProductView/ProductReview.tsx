@@ -14,7 +14,7 @@ const ProductReview = () => {
     { value: 1.0, percentage: 6, totalCount: 643 },
   ];
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 ">
+    <section className="grid grid-cols-1 md:grid-cols-2">
       {/* ==Customer Review== */}
       <div id="customerreview" className="order-1 md:order-1 mb-7">
         <h2 className="text-black text-[17px] md:text-2xl font-semibold">
@@ -27,6 +27,7 @@ const ProductReview = () => {
           Customers Say
         </h2>
         <select
+          title="Top Reviews"
           className="select w-full md:max-w-40 border border-gray-300 outline-none focus:border-none"
           defaultValue="Top Reviews"
         >
@@ -39,20 +40,19 @@ const ProductReview = () => {
         </select>
       </div>
       {/* ==Reviewer Info== */}
-      <div className="order-4 md:order-3">
+      <div className="order-4 md:order-3 ">
         {productViewCustomerReview.map((review) => (
-          <div
-            className="border-b-2 border-b-[#E4E7E9] mb-5"
-            key={review.reviewer[0]._id}
-          >
+          <div className="border-b-[1px] mb-5" key={review.reviewer[0]._id}>
             <div className="flex items-center gap-3 mb-3">
-              <Image
-                src={review.reviewer[0].photo}
-                alt="user Photo"
-                width={48}
-                height="48"
-                className="rounded-full object-contain"
-              />
+              <div className="rounded-full h-[45px] w-[45px] overflow-hidden">
+                <Image
+                  src={review.reviewer[0].photo}
+                  alt="user Photo"
+                  width={45}
+                  height={45}
+                  className="object-contain"
+                />
+              </div>
               <div>
                 <h3 className="text-sm font-semibold">
                   {review.reviewer[0].name}
@@ -71,21 +71,22 @@ const ProductReview = () => {
               </div>
             </div>
             {review.photos && review.photos.length > 0 && (
-              <div className="flex gap-3">
+              <div className="flex gap-3 mb-3">
                 {Array.isArray(review?.photos) &&
                   review?.photos.map((photo: any, index: number) => (
-                    <Image
-                      key={index}
-                      src={photo}
-                      alt="user Photo"
-                      width={50}
-                      height={50}
-                      className="rounded-lg object-contain"
-                    />
+                    <div key={index} className="w-[50px] h-[50px]">
+                      <Image
+                        src={photo}
+                        alt="user Photo"
+                        width={50}
+                        height={60}
+                        className="rounded-sm h-full w-full object-cover"
+                      />
+                    </div>
                   ))}
               </div>
             )}
-            <p className="text-sm text-black opacity-60 mb-5">
+            <p className="text-xs md:text-sm text-black opacity-60 mb-5">
               {review.comment}
             </p>
           </div>
@@ -111,12 +112,23 @@ const ProductReview = () => {
         <div className="">
           {ratingsData.map((rating, index) => (
             <div key={index} className="flex items-center">
-              {[...Array(Math.round(rating.value))].map((starIndex) => (
-                <IconStar
-                  fill="currentColor"
-                  className="text-[#E73C17]"
+              {[...Array(5)].map((_, starIndex) => (
+                <span
                   key={starIndex}
-                />
+                  className={`
+                  ${
+                    starIndex < rating.value
+                      ? "text-[#E73C17]"
+                      : "text-gray-200 bg-transparent"
+                  }
+                `}
+                >
+                  <IconStar
+                    fill={starIndex < rating.value ? "#E73C17" : "currentColor"}
+                    width={18}
+                    height={18}
+                  />
+                </span>
               ))}
 
               <div className="bg-gray-300 rounded w-full h-1 ml-3">
@@ -130,7 +142,7 @@ const ProductReview = () => {
               <p className="text-base text-[#333] font-bold ml-3">
                 {rating.percentage}%
               </p>
-              <span>({rating.totalCount})</span>
+              <span className="hidden md:block">({rating.totalCount})</span>
             </div>
           ))}
         </div>

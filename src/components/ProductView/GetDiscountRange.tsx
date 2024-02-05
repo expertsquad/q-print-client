@@ -17,7 +17,7 @@ const GetDiscountRange = () => {
   const percentage = `${value}%`;
 
   return (
-    <div className="bg-white mt-5 rounded-lg flex items-center justify-center gap-4 ">
+    <div className="bg-white rounded-lg flex items-center justify-center gap-4 ">
       <Slider
         range={false}
         value={value}

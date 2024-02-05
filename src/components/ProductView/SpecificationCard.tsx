@@ -1,6 +1,12 @@
 "use client";
-import { IconMinus, IconPlus, IconShoppingCart } from "@tabler/icons-react";
+import {
+  IconBolt,
+  IconMinus,
+  IconPlus,
+  IconShoppingCart,
+} from "@tabler/icons-react";
 import React, { useState } from "react";
+import WishlistQuickOrderBTNModal from "../WishlistPageData/WishlistQuickOrderBTNModal";
 
 const SpecificationCard = () => {
   const [value, setvalue] = useState(0);
@@ -36,14 +42,16 @@ const SpecificationCard = () => {
           </button>
         </div>
         <div>
-          <button className="w-36 md:w-32 lg:w-40 flex justify-center items-center bg-slate-400 main-text-color border border-fuchsia-700 py-2 rounded-lg">
-            <IconShoppingCart className="" />
+          <button className="w-36 md:w-32 lg:w-40 flex gap-1 justify-center items-center bg-slate-400 main-text-color border border-fuchsia-700 py-2 rounded-lg text-[16px]">
+            <span className="main-text-color">
+              <IconBolt width={18} height={18} className="main-text-color" />
+            </span>
             Quick Order
           </button>
         </div>
       </div>
-      <button className="w-full flex justify-center items-center bg-slate-400 main-bg-color border border-fuchsia-700 py-2 rounded-lg text-white">
-        <IconShoppingCart className="" />
+      <button className="w-full flex gap-3 justify-center items-center bg-slate-400 main-bg-color border border-fuchsia-700 py-2 rounded-lg text-white">
+        <IconShoppingCart width={20} height={20} className="" />
         Quick Order
       </button>
     </div>

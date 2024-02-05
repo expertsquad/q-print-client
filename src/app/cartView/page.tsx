@@ -31,13 +31,14 @@ const CartView = () => {
               >
                 {/* ==Image, Text and Mobile V== */}
                 <div className="main-div flex gap-5">
-                  <div className="border border-black border-opacity-15 rounded-md p-3 w-[70px] h-[70px]">
+                  <div className="flex items-center justify-center max-h-16 w-full max-w-16 p-2 border rounded-md">
                     <Image
                       src={data?.image}
-                      alt="Product Photo"
-                      width={60}
-                      height={60}
-                      className="w-full"
+                      alt="Product Image"
+                      width={55}
+                      height={55}
+                      loading="lazy"
+                      className="w-full h-full"
                     />
                   </div>
                   {/* -Title rating and mobile v-- */}
