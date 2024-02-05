@@ -33,7 +33,7 @@ const OrderDetails = () => {
               ].map(({ icon, text }, index) => (
                 <li
                   key={index}
-                  className="flex items-center gap-2 text-[16px] md:text-[18px] text-black text-opacity-80 mb-4 text-wrap"
+                  className="flex items-center gap-2 text-[16px] md:text-[16px] text-black text-opacity-80 mb-4 text-wrap"
                 >
                   {icon} {text}
                 </li>

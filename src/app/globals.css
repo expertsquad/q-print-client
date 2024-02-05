@@ -101,7 +101,7 @@
 /* ==View wishlist data responsive== */
 .wishlist-data {
   display: grid;
-  grid-template-columns: 0.5fr 2fr 0.8fr 1.2fr 1fr;
+  grid-template-columns: 2.2fr 1.5fr 1.8fr 1fr;
 }
 /* ==view-cart-product-data== */
 .view-cart-product-data {

@@ -18,13 +18,13 @@ const OrderedItemData = () => {
             className="flex justify-between items-center py-3 px-2 border-b md:gap-3"
             key={data._id}
           >
-            <div className="border rounded-2xl p-1 h-[60px] w-[60px] md:w-1/1">
+            <div className="border rounded-md p-1 max-h-14 max-w-14 h-full mr-2 md:mr-0 md:w-1/1 overflow-hidden">
               <Image
-                src={data.productPhoto}
-                alt="Product photo"
-                width={70}
+                src={data?.productPhoto}
+                alt="Product Image"
+                width={50}
                 height={50}
-                style={{ objectFit: "cover", borderRadius: "5px" }}
+                loading="lazy"
                 className="w-full h-full"
               />
             </div>
@@ -33,15 +33,15 @@ const OrderedItemData = () => {
                 <h5 className="text-[16px] text-black text-opacity-90 text-wrap line-clamp-2">
                   {data.description}
                 </h5>
-                <span className="cursor-pointer block md:hidden">
-                  <IconX />
+                <span className="cursor-pointer block md:hidden text-black text-opacity-70">
+                  <IconX width={20} height={20} />
                 </span>
               </div>
               <div className="flex justify-between items-center md:hidden">
                 <p>
                   {data.quantity} x {data.price}
                 </p>
-                <span>
+                <span className="">
                   {data.quantity * data.price}{" "}
                   <small className="uppercase">qar</small>
                 </span>
@@ -51,12 +51,13 @@ const OrderedItemData = () => {
             <p className="hidden md:block md:w-1/1">
               {data.quantity} x {data.price} <small>QAR</small>
             </p>
-            <h6 className="hidden md:block md:w-1/1">
-              {data.quantity * data.price} <small>QAR</small>
+            <h6 className="hidden md:block md:w-1/1 main-text-color font-semibold">
+              {data.quantity * data.price}{" "}
+              <small className="font-medium">QAR</small>
             </h6>
             <button
               onClick={() => setShowModal(true)}
-              className="btn bg-transparent hidden md:block md:w-1/1"
+              className="py-1.5 border hover:border-fuchsia-500 px-3 rounded-md bg-transparent hidden md:block md:w-1/1"
             >
               Cancel{" "}
             </button>

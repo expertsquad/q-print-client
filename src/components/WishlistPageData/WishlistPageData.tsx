@@ -20,17 +20,19 @@ const WishlistPageData = () => {
       <h2 className="text-black text-opacity-80 text-xl md:text-3xl mb-10 px-3 md:px-0">
         My Wishlist
       </h2>
-      <div className="bg-[#F8F8F8]  py-3 hidden md:flex justify-between">
+      <div className="bg-[#F8F8F8]  py-3 hidden justify-between  wishlist-data">
         <h6>Product Name</h6>
         <h6>Price</h6>
         <h6>Stock Status</h6>
-        <h6>Action</h6>
+        <h6 className="flex items-center justify-center">Action</h6>
       </div>
       <div className="">
         {wishlistProduct.map((data) => (
           <div
             key={data._id}
-            className="flex items-center md:justify-between border-b py-5"
+            className=" wishlist-data flex  items-center md:justify-between border-b py-5
+
+            "
           >
             {/* ==Image, Text and Mobile V== */}
             <div className="main-div flex gap-5">
@@ -90,7 +92,7 @@ const WishlistPageData = () => {
             {/* ==Stock Status== */}
             <div className="hidden md:block">
               {/* ==Product View and Add to Cart== */}
-              <div className="flex items-center">
+              <div className="flex items-center justify-between">
                 <p
                   className={`${
                     data.availableProduct ? "text-[#03A609]" : "text-[#E73C17]"
@@ -105,17 +107,17 @@ const WishlistPageData = () => {
                   )}
                 </p>
 
-                <div>
+                <div className="flex items-center gap-3">
                   <ProductViewGlobalModal />
+                  <button className="border border-[#F2F2F2] rounded-full p-2.5 text-black text-opacity-50">
+                    {""} <IconShoppingBag width={20} height={20} />
+                  </button>
                 </div>
-                <button className="border border-[#F2F2F2] rounded-full p-2.5 text-black text-opacity-50">
-                  {""} <IconShoppingBag width={20} height={20} />
-                </button>
               </div>
             </div>
 
             {/* ==Action== */}
-            <div className="hidden md:block">
+            <div className="hidden md:flex items-center justify-center">
               {/* <WishlistQuickOrderBTNModal /> */}
               <ExtraDiscountModal />
             </div>

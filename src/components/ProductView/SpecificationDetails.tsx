@@ -43,10 +43,10 @@ const SpecificationDetails = () => {
           <h2 className="text-[18px] md:text-[24px] font-semibold mb-7">
             Warranty
           </h2>
-          <h6 className="main-text-color text-[14px] md:text-[18px] text-wrap">
+          <h6 className="main-text-color text-[14px] md:text-[16px] text-wrap">
             Apple I phone 14 pro 2 Year Warranty Support
           </h6>
-          <p className="text-[14px] md:text-[18px]">
+          <p className="text-[14px] md:text-[16px]">
             our Warranty Policy page for detailed information about our warranty
             coverage
           </p>

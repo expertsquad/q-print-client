@@ -18,11 +18,19 @@ const GlobalModal = ({
   onClose,
   modalController,
 }: GlobalModalProps) => {
+  const handleClose = () => {
+    onClose(false);
+  };
+
   if (!isVisible) return null;
 
   return (
-    <div className={`${modalController} `} id="close-by-outside">
-      <div className={`${className}`}>
+    <div
+      className={`${modalController} `}
+      id="close-by-outside"
+      onClick={handleClose}
+    >
+      <div className={`${className}`} onClick={(e) => e.stopPropagation()}>
         <div className={`${yourCustomStyle}`}>{children}</div>
       </div>
     </div>

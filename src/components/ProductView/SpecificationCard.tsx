@@ -17,7 +17,7 @@ const SpecificationCard = () => {
         Brother HL - L3270CDW Single Function Color Laser Printer
       </h2>
       <hr className="bg-black opacity-10 h-[2px] my-4 mb-6" />
-      <span className="[font-size:_clamp(14px,5vw,16px)] text-red-500 bg-fuchsia-300 bg-opacity-50 py-1 px-3 rounded-md">
+      <span className="[font-size:_clamp(14px,5vw,16px)] text-red-500 bg-gradient-to-r from-pink-50 to-purple-50 py-1 px-3 rounded-md">
         20% OFF
       </span>
       <div className="flex items-center flex-wrap my-6 text-wrap">
