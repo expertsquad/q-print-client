@@ -64,7 +64,10 @@ const Cart = () => {
             {/* --data container-- */}
             <div className="flex flex-col overflow-scroll no-scrollbar">
               {cartProductsData.map((data: any) => (
-                <div className="flex gap-5 border-b mb-5" key={data._id}>
+                <div
+                  className="flex gap-5 border-b mb-5 transition duration-300 ease-in-out hover:bg-gray-100"
+                  key={data._id}
+                >
                   <div className="flex items-center justify-center max-h-16 w-full max-w-16 p-2 border rounded-md">
                     <Image
                       src={data?.image}
