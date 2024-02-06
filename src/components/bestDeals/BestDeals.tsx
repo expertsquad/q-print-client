@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const BestDeals = () => {
   return (
-    <section className="bg-[#EDF2EE] py-4 px-2 md:py-7 md:px-8 space-y-9">
+    <section className="bg-[#EDF2EE] py-4 px-2 md:py-7 md:px-8  lg:mt-20 md:mt-20 mt-8 rounded-lg">
       <div className="flex items-center justify-between gap-6">
         <div className="w-1/4 ">
           <Image

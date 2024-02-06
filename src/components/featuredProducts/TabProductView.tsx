@@ -16,9 +16,7 @@ const TabProductView = () => {
       <div className="flex justify-center items-center rounded-full gap-1 md:gap-2 lg:gap-2 text-sm md:text-base lg:text-base bg-[#F1F3F5] max-w-fit mx-auto ">
         <button
           className={`px-6 py-2 rounded-full ${
-            activeTab === "topSell"
-              ? "border-fuchsia-700 border-[1px] bg-white"
-              : ""
+            activeTab === "topSell" ? "border-fuchsia-700 border bg-white" : ""
           }`}
           onClick={() => handleTabClick("topSell")}
         >
@@ -26,9 +24,7 @@ const TabProductView = () => {
         </button>
         <button
           className={`px-6 py-2  rounded-full ${
-            activeTab === "popular"
-              ? "border-fuchsia-700 border-[1px] bg-white "
-              : ""
+            activeTab === "popular" ? "border-fuchsia-700 border bg-white " : ""
           }`}
           onClick={() => handleTabClick("popular")}
         >
@@ -36,9 +32,7 @@ const TabProductView = () => {
         </button>
         <button
           className={`px-6 py-2 rounded-full ${
-            activeTab === "newest"
-              ? "border-fuchsia-700 border-[1px] bg-white"
-              : ""
+            activeTab === "newest" ? "border-fuchsia-700 border bg-white" : ""
           }`}
           onClick={() => handleTabClick("newest")}
         >
@@ -50,7 +44,7 @@ const TabProductView = () => {
         {activeTab === "topSell" && (
           <div>
             <Link
-              className="flex items-center justify-end gap-2 main-text-color py-2 "
+              className="flex items-center justify-end gap-2 main-text-color py-2 animate-bounce "
               href="#"
             >
               {" "}
@@ -62,7 +56,7 @@ const TabProductView = () => {
         {activeTab === "popular" && (
           <div>
             <Link
-              className="flex items-center justify-end gap-2 main-text-color py-2 "
+              className="flex items-center justify-end gap-2 main-text-color py-2 animate-bounce "
               href="#"
             >
               {" "}
@@ -74,7 +68,7 @@ const TabProductView = () => {
         {activeTab === "newest" && (
           <div>
             <Link
-              className="flex items-center justify-end gap-2 main-text-color py-2 "
+              className="flex items-center justify-end gap-2 main-text-color py-2 animate-bounce "
               href="#"
             >
               {" "}

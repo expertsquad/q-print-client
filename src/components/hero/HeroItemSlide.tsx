@@ -3,7 +3,6 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import ShopNowButton from "../UI/btn/ShopNowButton";
-import { Nunito } from "next/font/google";
 
 interface HeroItem {
   _id: string;
@@ -12,18 +11,13 @@ interface HeroItem {
   picture: string;
 }
 
-const nunito = Nunito({
-  weight: "400",
-  subsets: ["cyrillic"],
-});
-
 const HeroItemSlide: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
   const heroItems: HeroItem[] = [
     {
       _id: "1",
-      company: "New Colectin Here",
+      company: "New Colection",
       about:
         "Save up to 50% on select Xbox games. Get 3 months of PC Game Pass for $2 USD. ",
       picture:
@@ -38,7 +32,7 @@ const HeroItemSlide: React.FC = () => {
     },
     {
       _id: "3",
-      company: "New Arrived Product",
+      company: "New Arrived",
       about: "New product arrived deals here is will coming some description",
       picture:
         "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
@@ -67,18 +61,21 @@ const HeroItemSlide: React.FC = () => {
         <div
           key={item._id}
           id={item._id}
-          className="carousel-item w-full bg-[#f3f5f2] h-[350px] md:h-[480px] lg::h-[480px] "
+          className="carousel-item w-full bg-[#f3f5f2] h-[320px] md:h-[450px] lg::h-[450px] "
           style={showSlide(index)}
         >
-          <div className="flex items-center justify-between px-9 py-4 h-full">
-            <div className="flex flex-col  ">
+          <div className="flex items-center gap-5 justify-between lg:px-9 md:px-6 px-4 py-4 h-full w-full">
+            <div className="flex flex-col w-6/12  ">
+              <h3 className="font-bold main-text-color [font-size:_clamp(0.5em,60vw,0.9em)] animate-bounce">
+                -- THE BEST PLACE TO PLAY
+              </h3>
               <h2
-                className={` [font-size:_clamp(1em,5vw,3em)] font-bold leading-none  ${nunito.className}`}
+                className={` lg:text-4xl md:text-lg text-lg font-bold leading-0 line-clamp-2    `}
               >
                 {item.company}
               </h2>
               <p
-                className={`[font-size:_clamp(0.85em,5vw,1em)] ${nunito.className} text-gray-500 `}
+                className={`[font-size:_clamp(0.85em,5vw,1em)] text-gray-500 line-clamp-2 `}
               >
                 {item.about}
               </p>
@@ -99,12 +96,16 @@ const HeroItemSlide: React.FC = () => {
                 ))}
               </div>
             </div>
-            <div className="pr-0 px-5">
+
+            {/* hero img */}
+
+            <div className=" ">
               <Image
                 src={item.picture}
                 alt="hero item images"
-                width={280}
-                height={280}
+                width={260}
+                height={260}
+                className=" "
               />
             </div>
           </div>

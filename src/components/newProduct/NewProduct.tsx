@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const NewProduct = () => {
   return (
-    <section className="flex justify-between  gap-4 my-5 md:flex-row flex-col-reverse    ">
+    <section className="flex justify-between  gap-4 lg:mt-20 md:mt-20 mt-8 md:flex-row flex-col-reverse    ">
       <div className="  w-6/2 ">
         <NewProductDisountCard />
       </div>
@@ -15,7 +15,7 @@ const NewProduct = () => {
           </h3>
           <div>
             <Link
-              className="flex  justify-end gap-2 main-text-color py-2 "
+              className="flex  justify-end gap-2 main-text-color py-2 animate-bounce "
               href="#"
             >
               {" "}

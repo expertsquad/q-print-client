@@ -7,12 +7,15 @@ import Hero from "@/components/hero/Hero";
 import ExploreNew from "@/components/exploreNew/ExploreNew";
 import NewProduct from "@/components/newProduct/NewProduct";
 import FeaturedProducts from "@/components/featuredProducts/featuredProducts";
+import BrandCarousel from "@/components/carousel/BrandCarousel";
 
 const Home = () => {
   return (
     <main className="max-w-[1280px] mx-auto">
       <Hero />
       {/* <Carousel /> */}
+
+      <BrandCarousel />
 
       <ShopByCategory />
 
@@ -21,6 +24,7 @@ const Home = () => {
       <BestDeals />
 
       <DealOfTheDay />
+
       <NewProduct />
 
       <ExploreNew />

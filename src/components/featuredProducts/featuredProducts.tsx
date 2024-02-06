@@ -2,7 +2,7 @@ import TabProductView from "./TabProductView";
 
 const FeaturedProducts = () => {
   return (
-    <section className="w-full">
+    <section className="w-full lg:mt-20 md:mt-20 mt-8">
       <div className="flex flex-col justify-center items-center w-full my-8 ">
         <h2 className="text-black [font-size:_clamp(1em,5vw,1.6em)] font-bold">
           FEATURED PRODUCTS
@@ -12,13 +12,9 @@ const FeaturedProducts = () => {
         </p>
 
         {/* tabs start here */}
+        <TabProductView />
 
         {/* tabs end here */}
-
-        <TabProductView />
-        {/* Product card start here */}
-
-        {/* Product card end */}
       </div>
     </section>
   );

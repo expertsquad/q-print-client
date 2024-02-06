@@ -6,7 +6,7 @@ import { IconArrowRight } from "@tabler/icons-react";
 
 const DealOfTheDay = () => {
   return (
-    <section className="my-16">
+    <section className="lg:mt-20 md:mt-20 mt-8">
       <h2 className="main-text-color text-3xl font-medium mb-7">
         Deals Of The Day{" "}
       </h2>

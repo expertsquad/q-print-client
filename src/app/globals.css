@@ -138,3 +138,31 @@
     transform: translate(100vw, 100vh) rotate(45deg);
   }
 }
+
+/* brand carousel css */
+
+.logos {
+  display: flex;
+}
+
+.logos:hover .logos-slide {
+  animation-play-state: paused;
+}
+
+.logos-slide {
+  display: flex;
+  animation: 30s slide infinite linear;
+}
+
+.logos-slide img {
+  height: 50px;
+  margin: 0 70px;
+}
+@keyframes slide {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
