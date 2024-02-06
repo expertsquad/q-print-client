@@ -17,7 +17,7 @@ interface IProduct {
 }
 
 const ProductCard: React.FC<IProductImageSlideProps> = ({ product }) => {
-  const rating = 3;
+  const rating = 4;
   return (
     <div className=" border-[1px] hover:border-fuchsia-700 rounded-lg p-5 group shrink-0 ">
       <div>

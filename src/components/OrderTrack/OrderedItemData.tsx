@@ -15,7 +15,7 @@ const OrderedItemData = () => {
       <div>
         {orderTrackData.map((data: any) => (
           <div
-            className="flex justify-between items-center py-3 px-2 border-b md:gap-3"
+            className="flex md:order-item-data  py-3 px-2 border-b transition duration-300 ease-in-out hover:bg-gray-100"
             key={data._id}
           >
             {/* //Product Image */}
@@ -30,7 +30,7 @@ const OrderedItemData = () => {
               />
             </div>
             {/* //Product Description */}
-            <div className="md:w-1/3">
+            <div className="">
               <div className="flex">
                 <h5 className="text-[16px] text-black text-opacity-90 text-wrap line-clamp-2">
                   {data.description}
