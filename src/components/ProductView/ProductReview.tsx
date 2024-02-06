@@ -119,7 +119,7 @@ const ProductReview = () => {
                   ${
                     starIndex < rating.value
                       ? "text-[#E73C17]"
-                      : "text-gray-200 bg-transparent"
+                      : "text-[#ccc] bg-transparent"
                   }
                 `}
                 >

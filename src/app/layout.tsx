@@ -34,7 +34,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             }
             activeClasses="main-text-color"
             containerClasses="flex items-center pb-5"
-            listClasses="mx-2 text-black text-opacity-50 text-[16px]"
+            listClasses="mr-2 text-black text-opacity-50 text-[16px]"
             capitalizeLinks
           />
           {children}

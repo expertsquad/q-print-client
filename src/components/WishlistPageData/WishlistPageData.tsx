@@ -17,12 +17,12 @@ import ProductViewGlobalModal from "../UI/modal/ProductViewGlobalModal";
 const WishlistPageData = () => {
   return (
     <div className="max-w-[1280px] mx-auto">
-      <h2 className="text-black text-opacity-80 text-xl md:text-3xl mb-10 px-3 md:px-0">
+      <h2 className="text-black text-opacity-80 text-xl md:text-3xl md:mb-10 mb-3 md:px-0">
         My Wishlist
       </h2>
-      <div className="bg-[#F8F8F8]  py-3 hidden justify-between  wishlist-data">
+      <div className="bg-[#F8F8F8]  py-3 hidden justify-between  md:wishlist-data">
         <h6>Product Name</h6>
-        <h6>Price</h6>
+        <h6 className="flex items-center justify-center">Price</h6>
         <h6>Stock Status</h6>
         <h6 className="flex items-center justify-center">Action</h6>
       </div>
@@ -30,13 +30,11 @@ const WishlistPageData = () => {
         {wishlistProduct.map((data) => (
           <div
             key={data._id}
-            className=" wishlist-data flex  items-center md:justify-between border-b py-5
-
-            "
+            className="flex md:wishlist-data items-center md:justify-between border-b py-5"
           >
             {/* ==Image, Text and Mobile V== */}
             <div className="main-div flex gap-5">
-              <button className="hidden md:block text-gray-500">
+              <button className="hidden md:block text-black text-opacity-50">
                 {""}
                 <IconTrashX width={24} height={24} />
               </button>
@@ -57,7 +55,7 @@ const WishlistPageData = () => {
                   <h3 className="line-clamp-1 md:line-clamp-2 text-[16px] font-medium">
                     {data.title}
                   </h3>
-                  <button className="flex justify-end md:hidden">
+                  <button className="flex justify-end md:hidden text-black text-opacity-50">
                     <IconTrashX />
                     {""}
                   </button>
@@ -84,7 +82,7 @@ const WishlistPageData = () => {
               </div>
             </div>
             {/* ==Price== */}
-            <div className="hidden md:block">
+            <div className="hidden md:flex items-center justify-center">
               <span className="main-text-color">
                 {data.price} <small>QAR</small>
               </span>
@@ -92,7 +90,7 @@ const WishlistPageData = () => {
             {/* ==Stock Status== */}
             <div className="hidden md:block">
               {/* ==Product View and Add to Cart== */}
-              <div className="flex items-center justify-between">
+              <div className="flex items-center gap-10">
                 <p
                   className={`${
                     data.availableProduct ? "text-[#03A609]" : "text-[#E73C17]"
@@ -118,8 +116,8 @@ const WishlistPageData = () => {
 
             {/* ==Action== */}
             <div className="hidden md:flex items-center justify-center">
-              {/* <WishlistQuickOrderBTNModal /> */}
-              <ExtraDiscountModal />
+              <WishlistQuickOrderBTNModal />
+              {/* <ExtraDiscountModal /> */}
             </div>
           </div>
         ))}
