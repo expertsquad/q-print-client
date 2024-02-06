@@ -18,6 +18,7 @@ const OrderedItemData = () => {
             className="flex justify-between items-center py-3 px-2 border-b md:gap-3"
             key={data._id}
           >
+            {/* //Product Image */}
             <div className="border rounded-md p-1 max-h-14 max-w-14 h-full mr-2 md:mr-0 md:w-1/1 overflow-hidden">
               <Image
                 src={data?.productPhoto}
@@ -28,6 +29,7 @@ const OrderedItemData = () => {
                 className="w-full h-full"
               />
             </div>
+            {/* //Product Description */}
             <div className="md:w-1/3">
               <div className="flex">
                 <h5 className="text-[16px] text-black text-opacity-90 text-wrap line-clamp-2">
@@ -47,14 +49,16 @@ const OrderedItemData = () => {
                 </span>
               </div>
             </div>
-
+            {/* //Quantity & Price */}
             <p className="hidden md:block md:w-1/1">
               {data.quantity} x {data.price} <small>QAR</small>
             </p>
+            {/* //Total Amount */}
             <h6 className="hidden md:block md:w-1/1 main-text-color font-semibold">
               {data.quantity * data.price}{" "}
               <small className="font-medium">QAR</small>
             </h6>
+            {/* //Cancel Button */}
             <button
               onClick={() => setShowModal(true)}
               className="py-1.5 border hover:border-fuchsia-500 px-3 rounded-md bg-transparent hidden md:block md:w-1/1"

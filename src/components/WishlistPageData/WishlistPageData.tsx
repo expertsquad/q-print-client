@@ -20,7 +20,7 @@ const WishlistPageData = () => {
       <h2 className="text-black text-opacity-80 text-xl md:text-3xl md:mb-10 mb-3 md:px-0">
         My Wishlist
       </h2>
-      <div className="bg-[#F8F8F8]  py-3 hidden justify-between  md:wishlist-data">
+      <div className="bg-[#F8F8F8] py-3 pl-5 hidden justify-between  md:wishlist-data">
         <h6>Product Name</h6>
         <h6 className="flex items-center justify-center">Price</h6>
         <h6>Stock Status</h6>
@@ -30,7 +30,7 @@ const WishlistPageData = () => {
         {wishlistProduct.map((data) => (
           <div
             key={data._id}
-            className="flex md:wishlist-data items-center md:justify-between border-b py-5"
+            className="flex md:wishlist-data items-center md:justify-between border-b py-5 transition duration-300 ease-in-out hover:bg-gray-100"
           >
             {/* ==Image, Text and Mobile V== */}
             <div className="main-div flex gap-5">

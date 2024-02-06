@@ -27,7 +27,7 @@ const CartView = () => {
             {cartProductsData.map((data) => (
               <div
                 key={data._id}
-                className="flex md:view-cart-product-data border-b pt-5 md:py-5  "
+                className="flex md:view-cart-product-data border-b pt-5 md:py-5 transition duration-300 ease-in-out hover:bg-gray-100"
               >
                 {/* ==Image, Text and Mobile V== */}
                 <div className="main-div flex gap-5">

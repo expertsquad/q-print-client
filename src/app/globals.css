@@ -82,7 +82,7 @@
   visibility: hidden;
 }
 
-/* //Order Track Table */
+/* ==Order item data responsive== */
 .order-item-data {
   display: grid;
   grid-template-columns: 0.5fr 2.5fr 0.8fr 0.5fr 1fr;
