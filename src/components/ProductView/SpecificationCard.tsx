@@ -1,6 +1,12 @@
 "use client";
-import { IconMinus, IconPlus, IconShoppingCart } from "@tabler/icons-react";
+import {
+  IconBolt,
+  IconMinus,
+  IconPlus,
+  IconShoppingCart,
+} from "@tabler/icons-react";
 import React, { useState } from "react";
+import WishlistQuickOrderBTNModal from "../WishlistPageData/WishlistQuickOrderBTNModal";
 
 const SpecificationCard = () => {
   const [value, setvalue] = useState(0);
@@ -11,7 +17,7 @@ const SpecificationCard = () => {
         Brother HL - L3270CDW Single Function Color Laser Printer
       </h2>
       <hr className="bg-black opacity-10 h-[2px] my-4 mb-6" />
-      <span className="[font-size:_clamp(14px,5vw,16px)] text-red-500 bg-fuchsia-300 bg-opacity-50 py-1 px-3 rounded-md">
+      <span className="[font-size:_clamp(14px,5vw,16px)] text-red-500 bg-gradient-to-r from-pink-50 to-purple-50 py-1 px-3 rounded-md">
         20% OFF
       </span>
       <div className="flex items-center flex-wrap my-6 text-wrap">
@@ -36,14 +42,16 @@ const SpecificationCard = () => {
           </button>
         </div>
         <div>
-          <button className="w-36 md:w-32 lg:w-40 flex justify-center items-center bg-slate-400 main-text-color border border-fuchsia-700 py-2 rounded-lg">
-            <IconShoppingCart className="" />
+          <button className="w-36 md:w-32 lg:w-40 flex gap-1 justify-center items-center bg-slate-400 main-text-color border border-fuchsia-700 py-2 rounded-lg text-[16px]">
+            <span className="main-text-color">
+              <IconBolt width={18} height={18} className="main-text-color" />
+            </span>
             Quick Order
           </button>
         </div>
       </div>
-      <button className="w-full flex justify-center items-center bg-slate-400 main-bg-color border border-fuchsia-700 py-2 rounded-lg text-white">
-        <IconShoppingCart className="" />
+      <button className="w-full flex gap-3 justify-center items-center bg-slate-400 main-bg-color border border-fuchsia-700 py-2 rounded-lg text-white">
+        <IconShoppingCart width={20} height={20} className="" />
         Quick Order
       </button>
     </div>

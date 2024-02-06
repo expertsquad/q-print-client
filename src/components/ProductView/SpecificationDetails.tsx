@@ -11,7 +11,7 @@ const SpecificationDetails = () => {
       <div className="overflow-x-auto flex no-scrollbar mb-12 border-b">
         {productViewMenus.map((item) => (
           <Link
-            className="text-[16px md:text-[18px] text-black opacity-70 active:text-fuchsia-600 mr-7 hover:border-fuchsia-600 shrink-0 overflow-scroll text-nowrap no-scrollbar border-b-2 border-transparent hover:bg-gradient-to-r from-[#C83B62] to-[#7F35CD] hover:text-transparent hover:bg-clip-text"
+            className="text-[16px md:text-[18px] text-black opacity-70 active:text-fuchsia-600 mr-7 hover:border-fuchsia-600 shrink-0 overflow-scroll text-nowrap no-scrollbar border-b-2 border-transparent hover:bg-gradient-to-r from-[#C83B62] to-[#7F35CD] hover:text-transparent hover:bg-clip-text pb-2"
             key={item._id}
             href={item.hashtag}
           >
@@ -20,12 +20,15 @@ const SpecificationDetails = () => {
         ))}
       </div>
 
-      <div>
+      <div className="">
         <div>
           <h2 className="text-[18px] md:text-[24px] font-semibold mb-7">
             Specification
           </h2>
-          <div id="specification" className="flex justify-between gap-7">
+          <div
+            id="specification"
+            className="flex justify-between md:gap-7 gap-0 w-full"
+          >
             <div id="specification">
               <ProductSpecification />
             </div>
@@ -40,10 +43,10 @@ const SpecificationDetails = () => {
           <h2 className="text-[18px] md:text-[24px] font-semibold mb-7">
             Warranty
           </h2>
-          <h6 className="main-text-color text-[14px] md:text-[18px] text-wrap">
+          <h6 className="main-text-color text-[14px] md:text-[16px] text-wrap">
             Apple I phone 14 pro 2 Year Warranty Support
           </h6>
-          <p className="text-[14px] md:text-[18px]">
+          <p className="text-[14px] md:text-[16px]">
             our Warranty Policy page for detailed information about our warranty
             coverage
           </p>

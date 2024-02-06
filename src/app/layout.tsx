@@ -22,7 +22,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Providers>
       <html lang="en">
-        <body className={`${poppins.className} scroll-smooth`}>
+        <body className={`${poppins.className} scroll-smooth  px-3 md:px-0`}>
           <Header />
           <NextBreadcrumb
             homeElement={"Home"}
@@ -33,8 +33,8 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
               </span>
             }
             activeClasses="main-text-color"
-            containerClasses="flex items-center py-5"
-            listClasses="mx-2 text-black text-opacity-50 text-[16px]"
+            containerClasses="flex items-center pb-5"
+            listClasses="mr-2 text-black text-opacity-50 text-[16px]"
             capitalizeLinks
           />
           {children}

@@ -17,35 +17,36 @@ import ProductViewGlobalModal from "../UI/modal/ProductViewGlobalModal";
 const WishlistPageData = () => {
   return (
     <div className="max-w-[1280px] mx-auto">
-      <h2 className="text-black text-opacity-80 text-xl md:text-3xl mb-10 px-3 md:px-0">
+      <h2 className="text-black text-opacity-80 text-xl md:text-3xl md:mb-10 mb-3 md:px-0">
         My Wishlist
       </h2>
-      <div className="bg-[#F8F8F8]  py-3 hidden md:flex justify-between">
+      <div className="bg-[#F8F8F8] py-3 pl-5 hidden justify-between  md:wishlist-data">
         <h6>Product Name</h6>
-        <h6>Price</h6>
+        <h6 className="flex items-center justify-center">Price</h6>
         <h6>Stock Status</h6>
-        <h6>Action</h6>
+        <h6 className="flex items-center justify-center">Action</h6>
       </div>
       <div className="">
         {wishlistProduct.map((data) => (
           <div
             key={data._id}
-            className="flex items-center md:justify-between border-b py-5"
+            className="flex md:wishlist-data items-center md:justify-between border-b py-5 transition duration-300 ease-in-out hover:bg-gray-100"
           >
             {/* ==Image, Text and Mobile V== */}
             <div className="main-div flex gap-5">
-              <button className="hidden md:block text-gray-500">
+              <button className="hidden md:block text-black text-opacity-50">
                 {""}
                 <IconTrashX width={24} height={24} />
               </button>
 
-              <div className="border border-black border-opacity-15 rounded-md p-3 w-[70px] h-[70px]">
+              <div className="flex items-center justify-center max-h-16 w-full max-w-16 p-2 border rounded-md">
                 <Image
                   src={data?.image}
-                  alt="Product Photo"
-                  width={60}
-                  height={60}
-                  className="w-full"
+                  alt="Product Image"
+                  width={55}
+                  height={55}
+                  loading="lazy"
+                  className="w-full h-full"
                 />
               </div>
 
@@ -54,7 +55,7 @@ const WishlistPageData = () => {
                   <h3 className="line-clamp-1 md:line-clamp-2 text-[16px] font-medium">
                     {data.title}
                   </h3>
-                  <button className="flex justify-end md:hidden">
+                  <button className="flex justify-end md:hidden text-black text-opacity-50">
                     <IconTrashX />
                     {""}
                   </button>
@@ -81,7 +82,7 @@ const WishlistPageData = () => {
               </div>
             </div>
             {/* ==Price== */}
-            <div className="hidden md:block">
+            <div className="hidden md:flex items-center justify-center">
               <span className="main-text-color">
                 {data.price} <small>QAR</small>
               </span>
@@ -89,7 +90,7 @@ const WishlistPageData = () => {
             {/* ==Stock Status== */}
             <div className="hidden md:block">
               {/* ==Product View and Add to Cart== */}
-              <div className="flex items-center">
+              <div className="flex items-center gap-10">
                 <p
                   className={`${
                     data.availableProduct ? "text-[#03A609]" : "text-[#E73C17]"
@@ -104,19 +105,19 @@ const WishlistPageData = () => {
                   )}
                 </p>
 
-                <div>
+                <div className="flex items-center gap-3">
                   <ProductViewGlobalModal />
+                  <button className="border border-[#F2F2F2] rounded-full p-2.5 text-black text-opacity-50">
+                    {""} <IconShoppingBag width={20} height={20} />
+                  </button>
                 </div>
-                <button className="border border-[#F2F2F2] rounded-full p-2.5 text-black text-opacity-50">
-                  {""} <IconShoppingBag width={20} height={20} />
-                </button>
               </div>
             </div>
 
             {/* ==Action== */}
-            <div className="hidden md:block">
-              {/* <WishlistQuickOrderBTNModal /> */}
-              <ExtraDiscountModal />
+            <div className="hidden md:flex items-center justify-center">
+              <WishlistQuickOrderBTNModal />
+              {/* <ExtraDiscountModal /> */}
             </div>
           </div>
         ))}

@@ -13,9 +13,7 @@ import Image from "next/image";
 import adidasBrand from "@/assets/adidas brand.svg";
 import ColorPickUp from "./ColorPickUp";
 import { useState } from "react";
-import CommonButton from "../UI/btn/CommonButton";
 import WishlistQuickOrderBTNModal from "../WishlistPageData/WishlistQuickOrderBTNModal";
-import Slider from "rc-slider";
 import GetDiscountRange from "./GetDiscountRange";
 
 const ProductViewDescEtc = () => {
@@ -24,11 +22,11 @@ const ProductViewDescEtc = () => {
   const [value, setvalue] = useState(0);
   return (
     <section className="product-description">
-      <h2 className="[font-size:_clamp(16px,5vw,20px)] text-wrap">
+      <h2 className="[font-size:_clamp(16px,5vw,20px)] text-wrap mb-5 line-clamp-2">
         {/* //{title} */}
         Brother HL - L3270CDW Single Function Color Laser Printer
       </h2>
-      <div className="flex items-center my-4">
+      <div className="flex items-center mb-5">
         <Image src={adidasBrand} alt="Adidas Brand" />
         <h6 className="text-[16px] text-black opacity-60 mr-5 ml-1">Brother</h6>
         <IconStar
@@ -41,7 +39,7 @@ const ProductViewDescEtc = () => {
           4.8 <span>(14 people)</span>
         </p>
       </div>
-      <div className="flex items-center mb-4">
+      <div className="flex items-center mb-5">
         <p className="[font-size:_clamp(14px,5vw,16px)] mr-3">
           Category: <span className="text-black opacity-70">Printer</span>
         </p>{" "}
@@ -51,11 +49,11 @@ const ProductViewDescEtc = () => {
           Add To Wishlist
         </button>
       </div>
-      <div className="mb-4 flex">
+      <div className="mb-5 flex">
         <ColorPickUp />
       </div>
       <div className="">
-        <div className="flex items-center flex-wrap mb-4">
+        <div className="flex items-center flex-wrap">
           <h3 className="main-text-color [font-size:_clamp(20px,5vw,26px)] font-semibold mr-2">
             {/* //Price */}
             1500.00 <small className="uppercase">qar</small>
@@ -70,12 +68,12 @@ const ProductViewDescEtc = () => {
 
         <GetDiscountRange />
 
-        <p className="mb-4 text-black text-opacity-60">
+        <p className="my-5 text-black text-opacity-60">
           Buy <span className="main-text-color">8</span> item more to get off{" "}
           <b className="text-black">15% Extra!</b>
         </p>
         {/* //Item Increase and Decrease */}
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 mb-5">
           <div className="border border-gray-200 flex items-center gap-2 rounded-3xl p-2">
             <button className="p-2 bg-[#F2F2F2] rounded-full">
               {""}
@@ -99,11 +97,11 @@ const ProductViewDescEtc = () => {
           </div>
         </div>
         {/* //Quick order & Buy now button*/}
-        <div className="my-4 flex items-center justify-between gap-3">
-          <div>
+        <div className="mt-5 flex items-center justify-between gap-5">
+          <div className="w-full">
             <WishlistQuickOrderBTNModal />
           </div>
-          <button className="flex items-center justify-center gap-2 text-white main-bg-color  py-2 rounded-lg">
+          <button className="flex items-center justify-center gap-2 text-white main-bg-color  py-2 rounded-lg w-full">
             {""}
             <IconShoppingBag />
             BUY NOW

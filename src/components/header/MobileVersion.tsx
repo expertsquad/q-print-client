@@ -4,7 +4,7 @@ import React from "react";
 
 const MobileVersion = () => {
   return (
-    <div className="drawer md:hidden">
+    <div className="drawer md:hidden ">
       <input
         id="wishlist-drawer-mobile-version"
         type="checkbox"

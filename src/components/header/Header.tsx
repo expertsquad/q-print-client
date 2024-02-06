@@ -12,7 +12,7 @@ const Header = () => {
   const user = false;
   return (
     <header className="max-w-[1280px] mx-auto">
-      <section className="header-section-css pt-6 pb-6 mx-auto">
+      <section className="header-section-css pt-6 mx-auto">
         {/* ==Logo== */}
         <div className="order-2 md:order-1 section-first-child ">
           <Link href="/">
@@ -20,7 +20,7 @@ const Header = () => {
           </Link>
         </div>
         {/* ==SearchBar & Filter== */}
-        <div className="order-4 md:order-2 section-second-child flex items-center w-full gap-5 col-span-3 md:col-span-1 relative">
+        <div className="order-4 md:order-2 mb-5 md:mb-0 section-second-child flex items-center w-full gap-5 col-span-3 md:col-span-1 relative">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <span className="text-black text-opacity-50">
               <IconSearch width={24} height={24} />

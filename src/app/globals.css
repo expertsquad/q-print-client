@@ -82,7 +82,7 @@
   visibility: hidden;
 }
 
-/* //Order Track Table */
+/* ==Order item data responsive== */
 .order-item-data {
   display: grid;
   grid-template-columns: 0.5fr 2.5fr 0.8fr 0.5fr 1fr;
@@ -97,16 +97,29 @@
   grid-template-columns: 1fr 2.5fr 1.2fr;
   align-items: center;
 }
-
 /* ==View wishlist data responsive== */
 .wishlist-data {
-  display: grid;
-  grid-template-columns: 0.5fr 2fr 0.8fr 1.2fr 1fr;
+  display: flex;
 }
+
+/*This style applied for responsive wishlist page data, for mobile view*/
+@media (min-width: 768px) {
+  .md\:wishlist-data {
+    display: grid;
+    grid-template-columns: 2.8fr 1.5fr 1.8fr 1fr;
+  }
+}
+
 /* ==view-cart-product-data== */
 .view-cart-product-data {
-  display: grid;
-  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .md\:view-cart-product-data {
+    display: grid;
+    grid-template-columns: 2fr 0.8fr 1fr 1fr 0.2fr;
+  }
 }
 
 /* confetti start */

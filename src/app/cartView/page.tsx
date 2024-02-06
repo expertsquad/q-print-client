@@ -23,46 +23,61 @@ const CartView = () => {
         {/* --Product data & Cart total container-- */}
         <div>
           {/* -Product data- */}
-          <div className=" border rounded-lg px-3 md:px-7">
+          <div className=" border rounded-lg px-2 md:px-3">
             {cartProductsData.map((data) => (
               <div
                 key={data._id}
-                className="flex md:view-cart-product-data border-b py-5  "
+                className="flex md:view-cart-product-data border-b pt-5 md:py-5 transition duration-300 ease-in-out hover:bg-gray-100"
               >
                 {/* ==Image, Text and Mobile V== */}
                 <div className="main-div flex gap-5">
-                  <div className="border border-black border-opacity-15 rounded-md p-3 w-[70px] h-[70px]">
+                  <div className="flex items-center justify-center max-h-16 w-full max-w-16 p-2 border rounded-md">
                     <Image
                       src={data?.image}
-                      alt="Product Photo"
-                      width={60}
-                      height={60}
-                      className="w-full"
+                      alt="Product Image"
+                      width={55}
+                      height={55}
+                      loading="lazy"
+                      className="w-full h-full"
                     />
                   </div>
                   {/* -Title rating and mobile v-- */}
                   <div>
-                    <div className="flex justify-between w-full">
-                      <h3 className="line-clamp-1 md:line-clamp-2 text-[16px] font-medium">
+                    <div className="flex items-center justify-between w-full">
+                      <h3 className="line-clamp-1 md:line-clamp-2 text-[15px] font-medium">
                         {data.title}
                       </h3>
-                      <button className="flex justify-end md:hidden">
-                        <IconX />
+                      <button className="flex justify-end md:hidden text-black text-opacity-70">
+                        <IconX width={20} height={20} />
                         {""}
                       </button>
                     </div>
                     <div className="flex items-center mt-1">
-                      {[...Array(data.rating)].map((_, starIndex) => (
-                        <div key={starIndex}>
+                      {[...Array(5)].map((_, starIndex) => (
+                        <span
+                          key={starIndex}
+                          className={`
+                          ${
+                            starIndex < data.rating
+                              ? "text-[#E73C17]"
+                              : "text-[#ccc] bg-transparent"
+                          }
+                        `}
+                        >
                           <IconStar
+                            fill={
+                              starIndex < data?.rating
+                                ? "#E73C17"
+                                : "currentColor"
+                            }
                             width={14}
                             height={14}
-                            fill="currentColor"
-                            className="text-[#E73C17]"
                           />
-                        </div>
+                        </span>
                       ))}
-                      <span>({data?.rating}.0)</span>
+                      <span className="text-[15px] ml-1.5">
+                        ({data?.rating}.0)
+                      </span>
                     </div>
                     <div className="flex justify-between md:hidden mt-2">
                       <div className="flex items-center gap-2 mb-4">
@@ -86,22 +101,22 @@ const CartView = () => {
                   </div>
                 </div>
                 {/* ==Price== */}
-                <div className="hidden md:block">
-                  <span>Unite Price</span>
-                  <span className="main-text-color flex">
+                <div className="hidden md:block md:ml-3">
+                  <span className="text-[15px]">Unite Price</span>
+                  <span className="main-text-color flex items-center gap-1 text-[14px]">
                     {data.price} <small>QAR</small>
                   </span>
                 </div>
                 {/* ==Product increase decrease== */}
                 <div className="hidden md:block">
                   {/* ==Product add & minus== */}
-                  <div className="flex gap-3 items-center">
-                    <button className="border border-black border-opacity-20 rounded-full p-2">
+                  <div className="flex gap-3 items-center justify-center">
+                    <button className="border border-black border-opacity-20 rounded-full p-1">
                       <IconMinus width={14} height={14} />
                       {""}
                     </button>
-                    <span>{data.availableProduct}</span>
-                    <button className="border border-black border-opacity-20 rounded-full p-2">
+                    <span className="text-[15px]">{data.availableProduct}</span>
+                    <button className="border border-black border-opacity-20 rounded-full p-1">
                       <IconPlus width={14} height={14} />
                       {""}
                     </button>
@@ -109,15 +124,15 @@ const CartView = () => {
                 </div>
                 {/* ==Subtotal== */}
                 <div className="hidden md:block">
-                  <p>Subtotal Price</p>
-                  <span className="main-text-color font-semibold">
+                  <p className="text-[15px]">Subtotal Price</p>
+                  <span className="main-text-color font-semibold text-[15px]">
                     1330 QAR
                   </span>
                 </div>
                 {/* ==Delete Icon== */}
                 <div className="hidden md:block">
-                  <button className="flex justify-end">
-                    <IconX />
+                  <button className="flex justify-center text-black text-opacity-50">
+                    <IconX width={22} height={22} />
                     {""}
                   </button>
                 </div>

@@ -1,8 +1,10 @@
 import React from "react";
 import ShopNowButton from "../UI/btn/ShopNowButton";
 import Image from "next/image";
+import StarRating from "../product/StarRating";
 
 const BestDeals = () => {
+  const rating = 3;
   return (
     <section className="bg-[#EDF2EE] py-4 px-2 md:py-7 md:px-8  lg:mt-20 md:mt-20 mt-8 rounded-lg">
       <div className="flex items-center justify-between gap-6">
@@ -96,35 +98,7 @@ const BestDeals = () => {
             <h3 className="text-black">Hevy Printer</h3>
 
             {/* rating started  small card rating  dfsd*/}
-
-            {/* <div className="rating rating-xs md:rating-sm">
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-              />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-              />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-              />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-                checked
-              />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-              />
-            </div> */}
+            <StarRating rating={rating} />
 
             {/* rating end  small card rating */}
 

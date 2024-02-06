@@ -199,7 +199,7 @@ export const productViewSpecification = [
         _id: 1,
         name: "Paper Size",
         description:
-          "A4, Letter, A5, A5(Long Edge), A6, Executive, Legal, Folio, Mexico Legal, India Legal lorem loremddkjdjfkdl kjdkfjd",
+          "A4, Letter, A5, A5(Long Edge), A6, Executive, Legal, Folio, Mexico Legal, India Legal lorem A4, Letter, A5, A5(Long Edge), A6, Executive, Legal, Folio, Mexico Legal, India Legal lorem A4, Letter, A5, A5(Long Edge), A6, Executive, Legal, Folio, Mexico Legal, India Legal lorem",
       },
       {
         _id: 2,

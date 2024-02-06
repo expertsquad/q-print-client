@@ -22,32 +22,34 @@ const ProductViewImage = () => {
           {productViewImage.map((item) => (
             <div
               key={item._id}
-              className={`py-3 border cursor-pointer rounded-lg flex items-center justify-center overflow-hidden ${
+              className={` border cursor-pointer rounded-lg flex items-center justify-center overflow-hidden ${
                 selectedImage._id === item._id
                   ? "border-fuchsia-700 shadow-2xl"
                   : ""
               }`}
               onClick={() => handleChangePhoto(item)}
             >
-              <div className="flex items-center justify-center w-[50] h-[50] md:max-w-28 md:max-h-24 ">
+              <div className="flex items-center justify-center py-2 w-full h-full max-w-20 max-h-32">
                 <Image
                   src={item.picture}
                   alt="demo Printer"
-                  width={100}
-                  height={90}
+                  width={80}
+                  height={100}
+                  className="w-full h-full"
                 />
               </div>
             </div>
           ))}
         </div>
-        <div className="flex items-center justify-center border border-gray-300 w-full md:max-w-[552px] md:max-h-[550px] h-full rounded-lg">
+        <div className="flex items-center justify-center border border-gray-300  rounded-lg w-full">
           {selectedImage && (
-            <div className="flex items-center justify-center rounded-lg">
+            <div className="flex items-center justify-center rounded-lg w-full h-full max-w-[450px] max-h-[550px]">
               <Image
-                className="object-cover"
+                // className="object-cover"
+                className="w-full h-full"
                 src={selectedImage.picture}
                 alt="photo"
-                width={400}
+                width={350}
                 height={350}
               />
             </div>
@@ -56,7 +58,6 @@ const ProductViewImage = () => {
       </div>
       {/* ==== */}
       {/* Right Side */}
-      {/* ==== */}
       <div className="right-side">
         <ProductViewDescEtc />
       </div>
