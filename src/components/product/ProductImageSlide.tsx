@@ -56,13 +56,13 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
   return (
     <div className="w-full flex justify-between ">
       <div className="flex flex-col gap-2 ">
-        <p className="bg-[#E73C17]  w-[20px] h-[20px] md:h-[40px] md:w-[40px]  rounded-full flex items-center justify-center text-white text-[6px] md:text-[12px]">
+        <p className="bg-[#E73C17]  md:h-8 md:w-8 h-5 w-5  rounded-full flex items-center justify-center text-white text-[6px] md:text-[10px]">
           {" "}
           50%
         </p>
-        <p className="bg-[#FA8232]  w-[20px] h-[20px] md:h-[40px] md:w-[40px]  rounded-full flex items-center justify-center text-white text-[6px] md:text-[12px]">
+        <p className="bg-[#FA8232]  md:h-8 md:w-8 h-5 w-5  rounded-full flex items-center justify-center text-white text-[6px] md:text-[10px]">
           {" "}
-          50%
+          Hot
         </p>
       </div>
 
@@ -88,7 +88,7 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
                 <div
                   key={dotIndex}
                   onClick={() => handleDotClick(dotIndex)}
-                  className={`indicator w-[8px] h-[8px] rounded-full cursor-pointer ${
+                  className={`indicator w-[6px] h-[6px] rounded-full cursor-pointer ${
                     dotIndex === currentSlide ? "main-bg-color" : "bg-gray-300"
                   }`}
                 />
@@ -99,11 +99,11 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
       ))}
 
       <div className="flex flex-col gap-2">
-        <button className=" cursor-pointer  md:text-[12px]  border  w-[20px] h-[20px] md:h-[40px] md:w-[40px] rounded-full flex justify-center items-center ">
-          <IconHeart className="p-[2px]" />
+        <button className=" cursor-pointer  md:text-[12px]  border hover:text-fuchsia-700  md:h-8 md:w-8 h-5 w-5 rounded-full flex justify-center items-center hover:bg-gray-100  ">
+          <IconHeart className="md:h-4 md:w-4 h-[10px] w-[10px]" />
         </button>
-        <button className=" cursor-pointer  md:text-[12px]  border  w-[20px] h-[20px] md:h-[40px] md:w-[40px] rounded-full flex justify-center items-center ">
-          <IconEye className="p-[2px]" />
+        <button className="  cursor-pointer  md:text-[12px]  border hover:text-fuchsia-700  md:h-8 md:w-8 h-5 w-5 rounded-full flex justify-center items-center hover:bg-gray-100  ">
+          <IconEye className="md:h-4 md:w-4 h-[10px] w-[10px] " />
         </button>
       </div>
     </div>
