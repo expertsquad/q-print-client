@@ -1,1 +1,1 @@
-console.log("define type here");
+export * from "./comonType";
