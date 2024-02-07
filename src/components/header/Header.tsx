@@ -50,7 +50,7 @@ const Header = () => {
         </div>
 
         {/* ==Menubar== */}
-        <div className="order-1 md:order-4 md:bg-[#FAFAFA] py-2 flex gap-6 md:col-span-3 md:my-5">
+        <div className="order-1 md:rounded-md md:order-4 md:bg-gradient-to-r from-transparent  via-[#f8f0f0] via-100% to-transparent    py-2 flex gap-6 md:col-span-3 md:my-5">
           {/* ==Mobile Version== */}
           <MobileVersion />
           {/* ==Desktop Version== */}
