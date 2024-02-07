@@ -32,9 +32,9 @@ const OrderedItemData = () => {
             {/* //Product Description */}
             <div className="">
               <div className="flex">
-                <h5 className="text-[16px] text-black text-opacity-90 text-wrap line-clamp-2">
+                <span className="text-[16px] text-black text-opacity-90 line-clamp-1 md:line-clamp-2">
                   {data.description}
-                </h5>
+                </span>
                 <span className="cursor-pointer block md:hidden text-black text-opacity-70">
                   <IconX width={20} height={20} />
                 </span>

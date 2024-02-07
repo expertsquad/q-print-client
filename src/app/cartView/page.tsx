@@ -1,3 +1,4 @@
+import GetDiscountRange from "@/components/ProductView/GetDiscountRange";
 import { cartProductsData } from "@/constants";
 import {
   IconArrowLeft,
@@ -142,13 +143,7 @@ const CartView = () => {
           {/* -Price Range- */}
           <div className="mt-5">
             <div className="mb-5">
-              <input
-                title="Price Range"
-                id="default-range"
-                type="range"
-                value="50"
-                className="w-full h-2  rounded-lg appearance-none cursor-pointer main-bg-color"
-              />
+              <GetDiscountRange />
             </div>
             <div>
               {[3000].length > 0 ? (

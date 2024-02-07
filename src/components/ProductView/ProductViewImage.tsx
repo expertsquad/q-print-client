@@ -13,29 +13,26 @@ const ProductViewImage = () => {
     setSelectedImage(item);
   };
   return (
-    <div className="grid md:grid-cols-2 grid-cols-1 mb-16 md:gap-3 gap-7">
-      {/* ==== */}
-      {/* Left Side */}
-      {/* ==== */}
-      <div className="flex md:flex-row flex-col-reverse items-center gap-5">
+    <div className="grid lg:grid-cols-2 grid-cols-1 mb-16 md:gap-3 gap-7">
+      {/* ==Left Side== */}
+      <div className="flex md:flex-row flex-col-reverse items-center gap-5 md:flex-1">
         <div className=" flex md:flex-col gap-3">
           {productViewImage.map((item) => (
             <div
               key={item._id}
-              className={` border cursor-pointer rounded-lg flex items-center justify-center overflow-hidden ${
-                selectedImage._id === item._id
-                  ? "border-fuchsia-700 shadow-2xl"
-                  : ""
+              className={`border cursor-pointer rounded-lg flex items-center justify-center hover:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)] overflow-hidden ${
+                selectedImage._id === item._id ? "border-fuchsia-700 " : ""
               }`}
               onClick={() => handleChangePhoto(item)}
             >
-              <div className="flex items-center justify-center py-2 w-full h-full max-w-20 max-h-32">
+              <div className="py-2 w-14 h-14 md:w-20 md:h-24 relative">
                 <Image
                   src={item.picture}
                   alt="demo Printer"
-                  width={80}
-                  height={100}
-                  className="w-full h-full"
+                  fill
+                  sizes="(max-width: 80px) 10vw, (max-width: 100px) 10vw, 15vw"
+                  objectFit="contain"
+                  className="md:p-2"
                 />
               </div>
             </div>
@@ -43,22 +40,22 @@ const ProductViewImage = () => {
         </div>
         <div className="flex items-center justify-center border border-gray-300  rounded-lg w-full">
           {selectedImage && (
-            <div className="flex items-center justify-center rounded-lg w-full h-full max-w-[450px] max-h-[550px]">
+            <div className="rounded-lg h-96 w-96 md:h-[420px] md:w-[400px] relative">
               <Image
-                // className="object-cover"
-                className="w-full h-full"
                 src={selectedImage.picture}
-                alt="photo"
-                width={350}
-                height={350}
+                alt="Product Photo"
+                fill
+                objectFit="contain"
+                sizes="(max-width: 350px) 50vw, (max-width: 350px) 60vw, 65vw"
+                className="md:p-5"
               />
             </div>
           )}
         </div>
       </div>
       {/* ==== */}
-      {/* Right Side */}
-      <div className="right-side">
+      {/* ==Right Side== */}
+      <div className="right-side md:flex-1">
         <ProductViewDescEtc />
       </div>
     </div>

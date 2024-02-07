@@ -43,8 +43,8 @@ const SpecificationCard = () => {
         </div>
         <div>
           <button className="w-36 md:w-32 lg:w-40 flex gap-1 justify-center items-center bg-slate-400 main-text-color border border-fuchsia-700 py-2 rounded-lg text-[16px]">
-            <span className="main-text-color">
-              <IconBolt width={18} height={18} className="main-text-color" />
+            <span className="text-fuchsia-700">
+              <IconBolt width={18} height={18} className="" />
             </span>
             Quick Order
           </button>
