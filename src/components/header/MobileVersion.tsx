@@ -1,8 +1,27 @@
-import { IconChevronRight, IconMenu2 } from "@tabler/icons-react";
+import {
+  IconArrowLeft,
+  IconChevronRight,
+  IconMenu2,
+} from "@tabler/icons-react";
 import Link from "next/link";
 import React from "react";
 
 const MobileVersion = () => {
+  const menuItems = [
+    "Home",
+    "Brands",
+    "Request a Printing",
+    "About Us",
+    "Privacy Policy",
+  ];
+  const hrefValues = [
+    "/",
+    "/brand/slug",
+    "/printing-request",
+    "/about-us",
+    "/privacy-policy",
+  ];
+
   return (
     <div className="drawer md:hidden ">
       <input
@@ -29,9 +48,23 @@ const MobileVersion = () => {
         ></label>
         <ul className="menu w-full h-screen bg-white p-5 relative">
           {/* Sidebar content here */}
-          <label htmlFor="" className="text-black text-opacity-50 text-[16px]">
-            Menus
-          </label>
+          <div className="flex items-center justify-between">
+            <label
+              htmlFor="wishlist-drawer-mobile-version"
+              aria-label="close sidebar"
+              className="cursor-pointer"
+            >
+              <span className="text-black text-opacity-50">
+                <IconArrowLeft width={20} height={20} />
+              </span>
+            </label>
+            <label
+              htmlFor=""
+              className="text-black text-opacity-50 text-[16px]"
+            >
+              Menus
+            </label>
+          </div>
 
           <div className="flex items-center justify-between bg-fuchsia-100 p-4 rounded-lg mb-7 mt-4">
             <span>All Categories</span>
@@ -39,30 +72,17 @@ const MobileVersion = () => {
               <IconChevronRight />
             </span>
           </div>
-          {[
-            "Home",
-            "Brands",
-            "Find Cartridge",
-            "Order a Design Printing",
-            "About Us",
-            "Privacy Policy",
-          ].map((link, index) => (
-            <Link
-              className="text-black text-opacity-50 mb-10 text-[18px]"
-              key={index}
-              href={`/${link.toLowerCase().replace(" ", "-")}`}
-            >
-              {link}
-            </Link>
+          {menuItems.map((link, index) => (
+            <React.Fragment key={index}>
+              <Link
+                className="text-black text-opacity-50 mb-10 text-[18px]"
+                key={index}
+                href={hrefValues[index]}
+              >
+                {link}
+              </Link>
+            </React.Fragment>
           ))}
-
-          <label
-            htmlFor="wishlist-drawer-mobile-version"
-            aria-label="close sidebar"
-            className="absolute bottom-36 bg-white shadow-xl text-[25px] p-2 rounded-full right-[50%] cursor-pointer"
-          >
-            x
-          </label>
         </ul>
       </div>
     </div>

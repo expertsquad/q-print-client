@@ -22,7 +22,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Providers>
       <html lang="en">
-        <body className={`${poppins.className} scroll-smooth  px-3 md:px-0`}>
+        <body
+          className={`${poppins.className} scroll-smooth  px-3 md:px-2 lg:px-0`}
+        >
           <Header />
           <NextBreadcrumb
             homeElement={"Home"}

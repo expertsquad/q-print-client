@@ -9,7 +9,7 @@ import MobileVersion from "./MobileVersion";
 import Sidebar from "./Sidebar";
 
 const Header = () => {
-  const user = false;
+  const user = true;
   return (
     <header className="max-w-[1280px] mx-auto">
       <section className="header-section-css pt-6 mx-auto">
@@ -32,7 +32,7 @@ const Header = () => {
             className="inline-block w-full rounded-full px-4 py-3 ps-10 text-sm text-black text-opacity-50 border bg-gray-50 outline-none"
             placeholder="Search For Product"
           />
-          <div className="border rounded-full px-3 py-3 flex items-center justify-center cursor-pointer hidden">
+          <div className="border rounded-full px-3 py-3  items-center justify-center cursor-pointer hidden">
             <Filter />
           </div>
         </div>
