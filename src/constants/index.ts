@@ -221,7 +221,7 @@ export const productViewSpecification = [
         _id: 1,
         name: "Paper Size",
         description:
-          "A4, Letter, A5, A5(Long Edge), A6, Executive, Legal, Folio, Mexico Legal, India Legal lorem loremddkjdjfkdl kjdkfjd",
+          "A4, Letter, A5, A5(Long Edge), A6, Executive, Legal, Folio, Mexico Legal, India Legal lorem ",
       },
       {
         _id: 2,
@@ -281,6 +281,72 @@ export const productViewSpecification = [
       },
     ],
   },
+  {
+    _id: 8,
+    title: "System Specs",
+    specifications: [
+      {
+        _id: 1,
+        name: "Paper Size",
+        description:
+          "A4, Letter, A5, A5(Long Edge), A6, Executive, Legal, Folio, Mexico Legal, India Legal lorem loremddkjdjfkdl kjdkfjd",
+      },
+      {
+        _id: 2,
+        name: "Paper Type",
+        description: "Matte, Glossy",
+      },
+      {
+        _id: 3,
+        name: "Paper Quality",
+        description: "High, Medium, Low",
+      },
+    ],
+  },
+  {
+    _id: 9,
+    title: "Technical Specs",
+    specifications: [
+      {
+        _id: 1,
+        name: "Paper Size",
+        description:
+          "A4, Letter, A5, A5(Long Edge), A6, Executive, Legal, Folio, Mexico Legal, India Legal lorem ",
+      },
+      {
+        _id: 2,
+        name: "Paper Type",
+        description: "Matte, Glossy",
+      },
+      {
+        _id: 3,
+        name: "Paper Quality",
+        description: "High, Medium, Low",
+      },
+    ],
+  },
+  {
+    _id: 10,
+    title: "Physical Specs",
+    specifications: [
+      {
+        _id: 1,
+        name: "Paper Size",
+        description:
+          "A4, Letter, A5, A5(Long Edge), A6, Executive, Legal, Folio, Mexico Legal, India Legal lorem loremddkjdjfkdl kjdkfjd",
+      },
+      {
+        _id: 2,
+        name: "Paper Type",
+        description: "Matte, Glossy",
+      },
+      {
+        _id: 3,
+        name: "Paper Quality",
+        description: "High, Medium, Low",
+      },
+    ],
+  },
 ];
 
 //Product View Customer Review by Poran
@@ -298,7 +364,7 @@ export const productViewCustomerReview = [
     orderId: "",
     rating: "2",
     comment:
-      "I got a pair of boots from store X and I’m very satisfied. They are high-quality and worth the money. The store also offered free shipping at that price so that’s a plus!",
+      "I got a pair of boots from store X and I’m very satisfied. They are high-quality and worth the money. The store also offered free shipping at that price so that’s a plus! got a pair of boots from store X and I’m very satisfied. They are high-quality and worth the money. The store also offered free shipping at that price so that’s a plus!",
     photos: "",
     reply: "Hello Reply",
   },

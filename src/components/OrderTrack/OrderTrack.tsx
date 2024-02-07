@@ -5,7 +5,7 @@ import OrderedStep from "./OrderedStep";
 
 const OrderTrack = () => {
   return (
-    <div className="px-2">
+    <div className="">
       <OrderTrackTop />
       <OrderedStep />
       <OrderDetails />

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import RequestPrinting from "../UI/RequestPrinting";
+// import RequestPrinting from "../UI/RequestPrinting";
 const NavigateItem = () => {
   const menuItems = [
     "Home",

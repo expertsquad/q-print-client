@@ -86,7 +86,7 @@ const ProductReview = () => {
                   ))}
               </div>
             )}
-            <p className="text-xs md:text-sm text-black opacity-60 mb-5">
+            <p className="text-xs md:text-sm text-black opacity-60 mb-5 italic">
               {review.comment}
             </p>
           </div>
@@ -109,9 +109,11 @@ const ProductReview = () => {
           </div>
           <p>Customer Rating (934,516)</p>
         </div>
+
+        {/* ==Rating & Percentage== */}
         <div className="">
           {ratingsData.map((rating, index) => (
-            <div key={index} className="flex items-center">
+            <div key={index} className="flex items-center justify-between">
               {[...Array(5)].map((_, starIndex) => (
                 <span
                   key={starIndex}
@@ -125,8 +127,7 @@ const ProductReview = () => {
                 >
                   <IconStar
                     fill={starIndex < rating.value ? "#E73C17" : "currentColor"}
-                    width={18}
-                    height={18}
+                    className="w-3.5 h-3.5 md:w-4.5 md:h-4.5"
                   />
                 </span>
               ))}
@@ -134,15 +135,18 @@ const ProductReview = () => {
               <div className="bg-gray-300 rounded w-full h-1 ml-3">
                 <div
                   style={{ width: `${rating.percentage}%` }}
-                  className="h-full rounded main-bg-color"
+                  className="h-full rounded main-bg-color w-full"
                 >
                   {""}
                 </div>
               </div>
-              <p className="text-base text-[#333] font-bold ml-3">
-                {rating.percentage}%
-              </p>
-              <span className="hidden md:block">({rating.totalCount})</span>
+              <div className="flex items-center">
+                {" "}
+                <p className="text-base text-[#333] font-bold ml-3">
+                  {rating.percentage}%
+                </p>
+                <span className="hidden md:block">({rating.totalCount})</span>
+              </div>
             </div>
           ))}
         </div>
