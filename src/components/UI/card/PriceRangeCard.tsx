@@ -52,7 +52,7 @@ const PriceRangeCard = () => {
             type="text"
             value={range[0]}
             onChange={(e) => handleInputChange(0, +e.target.value)}
-            className="w-[120px] p-2 rounded-lg border text-center focus:outline-none focus:border-fuchsia-700"
+            className="w-[120px] p-2 rounded-lg border text-center focus:outline-none focus:border-fuchsia-700 focus:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)]"
           />
         </div>
         <div className="rounded-lg">
@@ -60,7 +60,7 @@ const PriceRangeCard = () => {
             type="text"
             value={range[1]}
             onChange={(e) => handleInputChange(1, +e.target.value)}
-            className="w-[120px] p-2 rounded-lg border text-center focus:outline-none focus:border-fuchsia-700"
+            className="w-[120px] p-2 rounded-lg border text-center focus:outline-none focus:border-fuchsia-700 focus:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)]"
           />
         </div>
       </div>

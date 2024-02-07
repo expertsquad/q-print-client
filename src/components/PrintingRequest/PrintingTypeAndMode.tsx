@@ -55,7 +55,7 @@ const PrintingTypeAndMode = () => {
 
         <label
           htmlFor="profileFileInput"
-          className="border py-3 px-10 flex items-center justify-center gap-4 rounded-lg bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-transparent bg-clip-text  hover:border-fuchsia-700 hover:scale-105 hover:duration-500 cursor-pointer  "
+          className="border py-3 px-10 flex items-center justify-center gap-4 rounded-lg bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-transparent bg-clip-text  hover:border-fuchsia-700 hover:duration-500  cursor-pointer hover:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)]  "
         >
           <input id="profileFileInput" className="hidden" type="file" />{" "}
           <GradientUploadIcon />

@@ -3,8 +3,17 @@
 import PrintingRequestTotalOrder from "@/components/PrintingRequest/PrintingRequestTotalOrder";
 import ReturnToCardButton from "@/components/PrintingRequest/ReturnToCardButton";
 import { IconUser } from "@tabler/icons-react";
+import Link from "next/link";
+import { useState } from "react";
 
 const YourInformation = () => {
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
+  const handleOptionChange = () => {
+    setSelectedOption((prevSelected) =>
+      prevSelected === "select" ? null : "select"
+    );
+  };
   return (
     <section className="lg:w-[1280px] w-full mx-auto  mb-7">
       <div className="mb-7">
@@ -16,10 +25,13 @@ const YourInformation = () => {
         <div className="flex flex-col w-full md:w-8/12 lg:w-8/12 -5 ">
           <div className=" border rounded-lg ">
             {/* click here to login */}
-            <div className="flex items-center justify-center gap-2 border-b py-3 text-base text-gray-800 ">
+            <Link
+              href="/login"
+              className="flex items-center justify-center gap-2 border-b py-3 text-base text-gray-800 "
+            >
               {" "}
               <IconUser /> <p>Click here to login</p>{" "}
-            </div>
+            </Link>
 
             {/* personal Information  */}
             <div className="p-7">
@@ -58,6 +70,32 @@ const YourInformation = () => {
                       defaultValue="08801835550123"
                       required
                     />
+                  </div>
+                  {/* create an account */}
+
+                  <div className="h-10">
+                    <label className="inline-flex items-center">
+                      <div
+                        className={`w-5 h-5 rounded-full bg-white flex items-center justify-center border-fuchsia-700 border-2 ${
+                          selectedOption === "select"
+                            ? "border-fuchsia-700 border-2"
+                            : ""
+                        }`}
+                        onClick={handleOptionChange}
+                      >
+                        {selectedOption === "select" && (
+                          <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
+                        )}
+                      </div>
+                      <span className="ml-2 font-bold ">Create an account</span>
+                      <input
+                        type="radio"
+                        value="select"
+                        checked={selectedOption === "select"}
+                        onChange={() => {}} // This prevents default radio button behavior
+                        className="hidden"
+                      />
+                    </label>
                   </div>
                 </form>
               </div>
