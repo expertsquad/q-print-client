@@ -21,21 +21,37 @@ const OrderDetails = () => {
             </h5>
             <ul className="user-details pl-5 py-5">
               {[
-                { icon: <IconUser />, text: "Virat Kohli" },
                 {
-                  icon: <IconMapPin />,
+                  icon: <IconUser className="text-[#808080]" />,
+                  text: "Virat Kohli",
+                },
+                {
+                  icon: <IconMapPin className="text-[#808080]" />,
                   text: "Noakhali Chaprashirhat Road No. 13/x, House no. 1320/C, Flat No. 5D",
                 },
-                { icon: <IconMail />, text: "virat@king.gmail.com" },
-                { icon: <IconPhone />, text: "01850711231" },
-                { icon: <IconCash />, text: "Cash on Delivery" },
-                { icon: <IconTruckDelivery />, text: "Outside Dhaka" },
+                {
+                  icon: <IconMail className="text-[#808080]" />,
+                  text: "virat@king.gmail.com",
+                },
+                {
+                  icon: <IconPhone className="text-[#808080]" />,
+                  text: "01850711231",
+                },
+                {
+                  icon: <IconCash className="text-[#808080]" />,
+                  text: "Cash on Delivery",
+                },
+                {
+                  icon: <IconTruckDelivery className="text-[#808080]" />,
+                  text: "Outside Dhaka",
+                },
               ].map(({ icon, text }, index) => (
                 <li
                   key={index}
                   className="flex items-center gap-2 text-[16px] md:text-[16px] text-black text-opacity-80 mb-4 text-wrap"
                 >
-                  {icon} {text}
+                  <span>{icon}</span>
+                  <span>{text}</span>
                 </li>
               ))}
             </ul>

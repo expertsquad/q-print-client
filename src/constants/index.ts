@@ -872,3 +872,9 @@ export const allCategoriesMenu = [
     ],
   },
 ];
+
+//Status & Time by Poran
+export const shippingStatus = [
+  { status: ["Order", "Packaging", "Shipped", "Delivered"] },
+  { time: ["06:00", "09:00", "10:00", "13:00"] },
+];
