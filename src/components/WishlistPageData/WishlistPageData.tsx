@@ -34,7 +34,7 @@ const WishlistPageData = () => {
           >
             {/* ==Image, Text and Mobile V== */}
             <div className="main-div flex gap-5">
-              <button className="hidden md:block text-black text-opacity-50">
+              <button className="hidden md:block text-gray-400 ">
                 {""}
                 <IconTrashX width={24} height={24} />
               </button>
