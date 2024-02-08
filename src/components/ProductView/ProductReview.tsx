@@ -28,7 +28,7 @@ const ProductReview = () => {
         </h2>
         <select
           title="Top Reviews"
-          className="select w-full md:max-w-40 border border-gray-300 outline-none focus:border-none"
+          className="select w-full md:max-w-40 border border-gray-200  outline-none focus:border-none"
           defaultValue="Top Reviews"
         >
           {""}

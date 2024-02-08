@@ -871,4 +871,41 @@ export const allCategoriesMenu = [
       },
     ],
   },
+  {
+    categoryName: "Ink",
+    categoryPhoto: "",
+    icon: "",
+    subcategory: [
+      {
+        name: "HP Printer",
+        icon: "",
+      },
+      {
+        name: "Brother Printer",
+        icon: "",
+      },
+      {
+        name: "Samsung Printer",
+        icon: "",
+      },
+      {
+        name: "HP Printer",
+        icon: "",
+      },
+      {
+        name: "Brother Printer",
+        icon: "",
+      },
+      {
+        name: "Samsung Printer",
+        icon: "",
+      },
+    ],
+  },
+];
+
+//Status & Time by Poran
+export const shippingStatus = [
+  { status: ["Order", "Packaging", "Shipped", "Delivered"] },
+  { time: ["06:00", "09:00", "10:00", "13:00"] },
 ];

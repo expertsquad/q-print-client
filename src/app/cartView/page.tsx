@@ -1,3 +1,4 @@
+"use client";
 import GetDiscountRange from "@/components/ProductView/GetDiscountRange";
 import { cartProductsData } from "@/constants";
 import {
@@ -11,9 +12,18 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 const CartView = () => {
+  const [cartProducts, setCartProducts] = useState(cartProductsData);
+
+  // Function to handle item deletion
+  const handleDeleteItem = (id: any) => {
+    // Filter out the item with the specified ID
+    const updatedCart = cartProducts.filter((item) => item._id !== id);
+    // Update the state of the cart with the new array
+    setCartProducts(updatedCart);
+  };
   return (
     <div className="max-w-[1280px] mx-auto">
       <h4 className="text-black text-opacity-80 text-xl md:text-3xl mb-7 md:mb-10">
@@ -25,7 +35,7 @@ const CartView = () => {
         <div>
           {/* -Product data- */}
           <div className=" border rounded-lg px-2 md:px-3">
-            {cartProductsData.map((data) => (
+            {cartProducts.map((data) => (
               <div
                 key={data._id}
                 className="flex md:view-cart-product-data border-b pt-5 md:py-5 transition duration-300 ease-in-out hover:bg-gray-100"
@@ -38,7 +48,6 @@ const CartView = () => {
                       alt="Product Image"
                       width={55}
                       height={55}
-                      loading="lazy"
                       className="w-full h-full"
                     />
                   </div>
@@ -133,7 +142,11 @@ const CartView = () => {
                 {/* ==Delete Icon== */}
                 <div className="hidden md:block">
                   <button className="flex justify-center text-black text-opacity-50">
-                    <IconX width={22} height={22} />
+                    <IconX
+                      width={22}
+                      height={22}
+                      onClick={() => handleDeleteItem(data._id)}
+                    />
                     {""}
                   </button>
                 </div>

@@ -1,43 +1,10 @@
-"use client";
-import { useState } from "react";
-import {
-  IconChevronRight,
-  IconPrinter,
-  IconFence,
-  IconMilk,
-} from "@tabler/icons-react";
-import demoBrandImg from "@/assets/menu-demo-image.svg";
-import Image from "next/image";
-import Link from "next/link";
+import { IconChevronRight } from "@tabler/icons-react";
+
 import NavigateItem from "./NavigateItem";
 import { allCategoriesMenu } from "@/constants";
 import MenuArrowIcon from "@/assets/svgIcons/MenuArrowIcon";
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  // const categories = [
-  //   {
-  //     icon: <IconPrinter />,
-  //     label: "Printer",
-  //     subcategories: ["Printer", "Printer", "Printer", "Printer", "Printer"],
-  //   },
-  //   {
-  //     icon: <IconFence />,
-  //     label: "Cartridge",
-  //     subcategories: ["Printer", "Printer", "Printer", "Printer", "Printer"],
-  //   },
-  //   {
-  //     icon: (
-  //       <span className="text-fuchsia-300">
-  //         <IconMilk />
-  //       </span>
-  //     ),
-  //     label: "Ink",
-  //     subcategories: ["Printer", "Printer", "Printer", "Printer", "Printer"],
-  //   },
-  // ];
-
   return (
     <div className="hidden md:flex">
       <div className="flex items-center gap-7">

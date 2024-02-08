@@ -45,7 +45,6 @@ const WishlistPageData = () => {
                   alt="Product Image"
                   width={55}
                   height={55}
-                  loading="lazy"
                   className="w-full h-full"
                 />
               </div>
@@ -115,7 +114,7 @@ const WishlistPageData = () => {
             </div>
 
             {/* ==Action== */}
-            <div className="hidden md:flex items-center justify-center">
+            <div className="hidden md:flex items-center justify-center ">
               <WishlistQuickOrderBTNModal />
               {/* <ExtraDiscountModal /> */}
             </div>
