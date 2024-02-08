@@ -14,7 +14,7 @@ const PrintingRequest = () => {
   };
 
   return (
-    <section className="lg:max-w-[1280px] w-full mx-auto border border-rose-800  ">
+    <section className="lg:max-w-[1280px] w-full mx-auto   ">
       {/* top section start */}
       <div className="mb-7">
         <h3 className="[font-size:_clamp(1.2em,4vw,1.8em)] font-bold">

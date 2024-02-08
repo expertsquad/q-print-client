@@ -72,9 +72,9 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
           style={showSlide(index)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="flex justify-center items-center flex-col relative "
+          className="flex justify-center items-center flex-col relative  w-full  "
         >
-          <div className="h-[100px] w-[100px] flex mt-8 justify-center items-center">
+          <div className=" flex mt-8 justify-center items-center">
             <Image
               src={productImg}
               alt="hero item images"
@@ -98,7 +98,7 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
         </div>
       ))}
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 ">
         <button className=" cursor-pointer  md:text-[12px]  border hover:text-fuchsia-700  md:h-8 md:w-8 h-5 w-5 rounded-full flex justify-center items-center hover:bg-gray-100  ">
           <IconHeart className="md:h-4 md:w-4 h-[10px] w-[10px]" />
         </button>
