@@ -62,7 +62,6 @@ const WishlistQuickOrderBTNModal = () => {
                         width={66}
                         height={66}
                         style={{ objectFit: "cover" }}
-                        loading="lazy"
                         className="w-full"
                       />
                     </div>

@@ -25,7 +25,6 @@ const OrderedItemData = () => {
                 alt="Product Image"
                 width={50}
                 height={50}
-                loading="lazy"
                 className="w-full h-full"
               />
             </div>

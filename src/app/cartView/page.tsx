@@ -48,7 +48,6 @@ const CartView = () => {
                       alt="Product Image"
                       width={55}
                       height={55}
-                      loading="lazy"
                       className="w-full h-full"
                     />
                   </div>

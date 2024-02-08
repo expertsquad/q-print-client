@@ -12,7 +12,6 @@ const ShppingItemsProducts = () => {
             src="https://images.pexels.com/photos/162140/duckling-birds-yellow-fluffy-162140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             width={56}
             height={56}
-            loading="lazy"
             alt="Product image"
             className="rounded-lg h-16 w-16 p-2  border object-cover  "
           />
@@ -51,7 +50,6 @@ const ShppingItemsProducts = () => {
             alt="Product Image"
             width={56}
             height={56}
-            loading="lazy"
             className="rounded-lg h-16 w-16 p-2  border object-cover  "
           />
         </div>
@@ -88,7 +86,6 @@ const ShppingItemsProducts = () => {
             src="https://images.pexels.com/photos/162164/chicks-chicken-small-poultry-162164.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             width={56}
             height={56}
-            loading="lazy"
             alt=" Product image"
             className="rounded-lg h-16 w-16 p-2  border object-cover  "
           />
