@@ -12,7 +12,7 @@ const PaymentMethod = () => {
   };
 
   return (
-    <div className="flex justify-start md:justify-between lg:justify-between gap-5 my-5 flex-col md:flex-row lg:flex-row md:border lg:border   rounded-lg md:p-10 lg:p-10 p-0">
+    <div className="flex justify-start md:justify-between lg:justify-between  gap-5 my-5 flex-col md:flex-row lg:flex-row md:border lg:border   rounded-lg md:px-10 lg:px-10 py-5 p-0">
       {/* credit and debid card */}
       <label className="inline-flex items-center gap-2  ">
         <GradientCardIcon />
@@ -34,6 +34,8 @@ const PaymentMethod = () => {
           className="hidden"
         />
       </label>
+
+      <div className="md:border-r md:h-12 h-0 border-r-0 "></div>
 
       {/* paypal  */}
 

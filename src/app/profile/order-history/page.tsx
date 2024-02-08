@@ -9,11 +9,23 @@ const OrderHistory = () => {
           Order History
         </h3>
         <div>
-          <select className="border px-4 py-3 rounded-md " name="" id="">
-            <option value="Most Popular">Past 3 Month</option>
-            <option value="Most Popular">Past 6 Month</option>
-            <option value="Most Popular">Last 1 year</option>
-          </select>
+          <span className="border md:py-3 py-2 px-3 rounded-lg  w-fit ">
+            <select
+              className="py-2 rounded-md outline-none border-none w-min bg-transparent text-gray-700 "
+              name=""
+              id=""
+            >
+              <option value="MostPopular" className=" text-gray-800">
+                Past 3 Month
+              </option>
+              <option value="Recent" className=" text-gray-800">
+                Past 6 Month
+              </option>
+              <option value="HighPrice" className=" text-gray-800">
+                Last 1 year
+              </option>
+            </select>
+          </span>
         </div>
       </div>
       <ProfileOrderHistory />

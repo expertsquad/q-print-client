@@ -11,7 +11,7 @@ const BillingAddress = () => {
   };
 
   return (
-    <div className="flex justify-start md:justify-between lg:justify-between gap-5 my-5 flex-col md:flex-row lg:flex-row">
+    <div className="flex justify-start md:justify-start   gap-7 my-5 flex-col md:flex-row lg:flex-row">
       <label className="inline-flex items-center  ">
         <div
           className={`w-5 h-5 rounded-full bg-white  flex items-center justify-center border-fuchsia-700 border-2 ${
