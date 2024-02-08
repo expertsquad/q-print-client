@@ -55,7 +55,7 @@ const WishlistPageData = () => {
                     {data.title}
                   </h3>
                   <button className="flex justify-end md:hidden text-black text-opacity-50">
-                    <IconTrashX />
+                    <IconTrashX className=" text-rose-700" />
                     {""}
                   </button>
                 </div>

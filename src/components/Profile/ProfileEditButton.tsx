@@ -7,7 +7,7 @@ const ProfileEditButton = () => {
     <div>
       <div className=" hidden md:block lg:block">
         <Link
-          href="/profile/profileSettings"
+          href="/profile/profile-settings"
           className="flex items-center justify-center gap-1 border py-2 px-4 rounded-lg hover:border-fuchsia-700 hover:scale-105 hover:duration-500  hover:text-gray-500 shadow-md "
         >
           <IconEdit /> <span>Edit</span>
