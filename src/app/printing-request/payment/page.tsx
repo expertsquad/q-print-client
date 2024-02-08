@@ -8,7 +8,7 @@ import { IconMapPin } from "@tabler/icons-react";
 
 const Payment = () => {
   return (
-    <section className="lg:w-[1280px] w-full mx-auto  mb-7 ">
+    <section className="lg:max-w-[1280px] w-full mx-auto  mb-7 ">
       <div className="mb-7">
         <h3 className="[font-size:_clamp(1.2em,4vw,1.8em)] font-bold">
           Request for a Printing
