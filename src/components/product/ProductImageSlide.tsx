@@ -72,14 +72,17 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
           style={showSlide(index)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="flex justify-center items-center flex-col relative  w-full  "
+          className="flex justify-center  flex-col relative w-8/12 "
         >
-          <div className=" flex mt-8 justify-center items-center">
+          <div className="h-28 w-7 md:h-40 md:w-12">
             <Image
+              alt="Brand Carousel"
+              // width={170}
+              // height={120}
+              fill
+              objectFit="contain"
               src={productImg}
-              alt="hero item images"
-              width={150}
-              height={150}
+              sizes="(max-width: 768px) 30vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
           <div className=" ">
@@ -102,7 +105,7 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
         <button className=" cursor-pointer  md:text-[12px]  border hover:text-fuchsia-700  md:h-8 md:w-8 h-5 w-5 rounded-full flex justify-center items-center hover:bg-gray-100  ">
           <IconHeart className="md:h-4 md:w-4 h-[10px] w-[10px]" />
         </button>
-        <button className="  cursor-pointer  md:text-[12px]  border hover:text-fuchsia-700  md:h-8 md:w-8 h-5 w-5 rounded-full flex justify-center items-center hover:bg-gray-100  ">
+        <button className="  cursor-pointer  md:text-[12px]  invisible group-hover:visible group-hover:duration-500 border hover:text-fuchsia-700  md:h-8 md:w-8 h-5 w-5 rounded-full flex justify-center items-center hover:bg-gray-100  ">
           <IconEye className="md:h-4 md:w-4 h-[10px] w-[10px] " />
         </button>
       </div>
