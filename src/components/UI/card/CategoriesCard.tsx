@@ -19,15 +19,19 @@ const CategoriesCard = () => {
         CATEGORIES
       </p>
       {categories?.map((category, i: number) => (
-        <li key={i}>
+        <li className="text-[#475156] text-base cursor-pointer" key={i}>
           <details>
             <summary>{category?.title}</summary>
-            <ul>
+            <ul className="text-[#475156] text-base cursor-pointer">
               <li>
-                <a>Submenu 1</a>
+                <a className="text-[#475156] text-base cursor-pointer">
+                  Submenu 1
+                </a>
               </li>
               <li>
-                <a>Submenu 2</a>
+                <a className="text-[#475156] text-base cursor-pointer">
+                  Submenu 2
+                </a>
               </li>
               <li></li>
             </ul>

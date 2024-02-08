@@ -24,7 +24,7 @@ const PriceRangeCard = () => {
   };
 
   return (
-    <div className="bg-white p-6 mt-5 rounded-lg shadow-md">
+    <div className=" p-6 mt-5 rounded-lg shadow-md">
       <h1 className="text-[#00000066] font-semibold text-base">PRICE RANGE</h1>
       <Slider
         range
@@ -37,11 +37,11 @@ const PriceRangeCard = () => {
         railStyle={{ background: "#d593" }}
         handleStyle={[
           {
-            background: "#fff",
+            // background: "#fff",
             border: "4px solid #7F35CD",
           },
           {
-            background: "#fff",
+            // background: "#fff",
             border: "4px solid #7F35CD",
           },
         ]}
