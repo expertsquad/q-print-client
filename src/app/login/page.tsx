@@ -1,91 +1,96 @@
 "use client";
+
 import Image from "next/image";
 import logo from "@/assets/logo.svg";
+import { SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Facebook from "@/assets/FooterSVG/Facebook";
-import CustomInput from "@/components/shared/CustomInput";
-import PasswordInput from "@/components/shared/PasswordInput";
+import { useUserLoginMutation } from "@/redux/features/user/user";
+import Form from "@/components/form/Form";
+import GlobalInput from "@/components/form/GlobalInput";
+import ButtonPrimary from "@/components/shared/ButtonPrimary";
+import { storeUserInfo } from "@/services/auth.service";
+
+type FormValue = {
+  phoneNumber: string;
+  password: string;
+};
 
 const Login = () => {
-  return (
-    <div className="h-screen flex items-center justify-center mx-3">
-      <div className="md:max-w-[600px] bg-white shadow-modalShadow px-5 md:px-11 pb-7 rounded-2xl">
-        {/* //Logo */}
-        <div className="flex justify-center items-center mb-5 mt-12 md:mt-20">
-          <Image src={logo} alt="Logo" />
-        </div>
-        <p className="[font-size:_clamp(15px,2vw,16px)] text-black opacity-50 text-center">
-          Best online e-commerce website for you
-        </p>
-        {/* //Social Login */}
-        <div className="flex justify-center gap-5 mt-14">
-          <button className="border flex items-center gap-2 rounded w-full md:w-[160px] py-2 px-5">
-            <Facebook />
-            Google
-          </button>
-          <button className="border flex items-center gap-2 rounded w-full md:w-[160px] py-2 px-5">
-            <Facebook />
-            Facebook
-          </button>
-        </div>
-        <div className="divider divider-[#548]">OR</div>
-        {/* //Form */}
-        <form>
-          <label htmlFor=""></label>
-          <CustomInput
-            type={"email" || "number"}
-            placeholder="Email or Phone"
-            customClassName="my-custom-style"
-          />
-          <div className="">
-            <PasswordInput
-              onChange={(e) => console.log(e)}
-              placeholder="Type Your Password"
-            />
+  const [userLogin] = useUserLoginMutation();
 
-            <div className="flex justify-end">
+  const router = useRouter();
+
+  const onSubmit: SubmitHandler<FormValue> = async (data: any) => {
+    console.log(data);
+
+    try {
+      const res = await userLogin({ ...data }).unwrap();
+      console.log(res);
+      storeUserInfo({ accessToken: res?.data?.accessToken });
+      console.log(res?.data?.accessToken);
+      if (res?.data?.accessToken) {
+        router.push("/");
+      }
+    } catch (err: any) {
+      console.error(err.message);
+    }
+  };
+  return (
+    <div className="h-screen flex justify-center items-center shadow-product-card-shadow login-container-image bg-[url('/src/assets/login-background.png')] bg-slate-200">
+      <div className="bg-white p-5 md:p-12 rounded-custom-5px text-center">
+        <div className="flex items-center justify-center my-5">
+          <Image
+            src={logo}
+            className="[width:clamp(140px,50vw,160px)]"
+            alt="Logo"
+          />
+        </div>
+        <p className="text-center text-lg text-black-opacity-50">
+          Best online ecommerce website for you
+        </p>
+        <Form submitHandler={onSubmit}>
+          <div className="flex flex-col gap-5 mt-20">
+            <GlobalInput
+              name="phoneNumber"
+              placeholder="Email or Phone"
+              type="text"
+              className={`w-full md:w-[500px]`}
+            />
+            <GlobalInput
+              name="password"
+              placeholder="Password"
+              type="password"
+              className={`w-full md:w-[500px]`}
+            />
+            <div className="flex items-center justify-end">
               <Link
-                className="text-[16px] text-black text-opacity-50 "
-                href="/forgetPassword"
+                href={"/forget-password"}
+                className="text-base text-black-opacity-50 mt-3"
               >
                 Forget Password
               </Link>
             </div>
-          </div>
-          {/* //Submit Button */}
-          <button
-            type="submit"
-            className="main-bg-color w-full my-7 rounded-lg text-white py-3"
-          >
-            Login
-          </button>
-
-          {/* //Remember Me */}
-          <div className="flex items-center justify-center mb-5">
-            <div className="flex items-center mr-4">
+            <div></div>
+            <ButtonPrimary
+              buttonText="Log In"
+              type="submit"
+              className="w-full"
+            />
+            <div className="flex items-center justify-start gap-2">
               <input
-                id="remember"
                 type="checkbox"
-                value=""
-                className="w-4 h-4 border rounded bg-gray-50 border-black border-opacity-20"
-                required
+                id="remember-me"
+                name="remember-me"
+                value="remember-me"
+                className="checked:bg-fuchsia-400 border-main-border-color bg-red-700 checked:border-transparent rounded-lg"
               />
+              <label htmlFor="remember-me" className="text-black-opacity-50">
+                Remember Me for 30 days
+              </label>
             </div>
-            <label
-              htmlFor="remember"
-              className="[font-size:_clamp(16px,4vw,18px)] text-black opacity-50"
-            >
-              Remember me for 30 days
-            </label>
           </div>
-        </form>
-
-        <p className="[font-size:_clamp(16px,4vw,18px)] text-black opacity-50 text-center">
-          Don’t have your account?{" "}
-          <Link className="main-text-color" href="/signup">
-            Register Now
-          </Link>
-        </p>
+        </Form>
       </div>
     </div>
   );
