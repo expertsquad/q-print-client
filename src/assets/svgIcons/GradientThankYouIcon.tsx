@@ -22,8 +22,8 @@ const GradientThankYouIcon = () => {
           y2="50.5979"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#C83B62" />
-          <stop offset="1" stop-color="#7F35CD" />
+          <stop stopColor="#C83B62" />
+          <stop offset="1" stopColor="#7F35CD" />
         </linearGradient>
         <clipPath id="clip0_1291_4019">
           <rect width="100" height="100" fill="white" />

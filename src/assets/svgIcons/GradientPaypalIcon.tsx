@@ -24,8 +24,8 @@ const GradientPaypalIcon = () => {
           y2="12.059"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#C83B62" />
-          <stop offset="1" stop-color="#7F35CD" />
+          <stop stopColor="#C83B62" />
+          <stop offset="1" stopColor="#7F35CD" />
         </linearGradient>
         <clipPath id="clip0_2417_3318">
           <rect

@@ -13,23 +13,23 @@ const GradientHomeIcon = () => {
         <path
           d="M3 13.75L10.5 18.125L18 13.75"
           stroke="url(#paint0_linear_1291_4028)"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M3 10L10.5 14.375L18 10"
           stroke="url(#paint1_linear_1291_4028)"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M3 6.25L10.5 10.625L18 6.25L10.5 1.875L3 6.25Z"
           stroke="url(#paint2_linear_1291_4028)"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
       <defs>
@@ -41,8 +41,8 @@ const GradientHomeIcon = () => {
           y2="16.2812"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#C83B62" />
-          <stop offset="1" stop-color="#7F35CD" />
+          <stop stopColor="#C83B62" />
+          <stop offset="1" stopColor="#7F35CD" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_1291_4028"
@@ -52,8 +52,8 @@ const GradientHomeIcon = () => {
           y2="12.5312"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#C83B62" />
-          <stop offset="1" stop-color="#7F35CD" />
+          <stop stopColor="#C83B62" />
+          <stop offset="1" stopColor="#7F35CD" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_1291_4028"
@@ -63,8 +63,8 @@ const GradientHomeIcon = () => {
           y2="6.42194"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#C83B62" />
-          <stop offset="1" stop-color="#7F35CD" />
+          <stop stopColor="#C83B62" />
+          <stop offset="1" stopColor="#7F35CD" />
         </linearGradient>
         <clipPath id="clip0_1291_4028">
           <rect

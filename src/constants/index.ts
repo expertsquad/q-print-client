@@ -499,7 +499,7 @@ export const brands = [
   { title: "Xiomi", url: "/" },
   { title: "Oppo", url: "/" },
   { title: "Canon", url: "/" },
-  { title: "Sony", url: "/" },
+  { title: "Techno", url: "/" },
   { title: "Realme", url: "/" },
 ];
 

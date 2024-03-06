@@ -59,7 +59,7 @@
 
 .hello::-webkit-scrollbar {
   display: none;
-  stroke-width: none;
+  strokewidth: none;
 }
 
 /* menu items custom css */

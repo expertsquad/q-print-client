@@ -1,22 +1,17 @@
 import { IconLogin2 } from "@tabler/icons-react";
 import React from "react";
 
-const ProfileLogoutButton = () => {
+const ProfileLogoutButton = ({ handleLogout }: any) => {
   return (
-    <div>
-      <div className=" hidden md:block lg:block">
-        <button className="flex items-center justify-center gap-1 border py-2 px-4 rounded-lg hover:border-fuchsia-700 hover:scale-105 hover:duration-500  ">
-          <IconLogin2 /> <span>Log Out</span>
-        </button>
-      </div>
-      {/* sm logout button */}
-
-      <div className=" block md:hidden lg:hidden">
-        <button className="flex items-center justify-center gap-1 border py-2 px-4 rounded-lg hover:border-fuchsia-700 hover:scale-105 hover:duration-500  ">
-          <IconLogin2 />
-        </button>
-      </div>
-    </div>
+    <button
+      onClick={handleLogout}
+      className="active:border-fuchsia-800 focus:border-fuchsia-800 flex items-center gap-3 border px-3 py-2 rounded-sm"
+    >
+      <span className="">
+        <IconLogin2 />
+      </span>
+      <span className="hidden md:block">Log Out</span>
+    </button>
   );
 };
 

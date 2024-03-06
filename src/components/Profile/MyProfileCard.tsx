@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import OrderIcon from "@/assets/svgIcons/OrderIcon";
 import ReviewIcon from "@/assets/svgIcons/ReviewIcon";
@@ -6,8 +7,24 @@ import ProfileLogoutButton from "./ProfileLogoutButton";
 import ProfileViewButton from "./ProfileViewButton";
 import ProfileUserIcon from "@/assets/svgIcons/ProfileUserIcon";
 import { IconCamera } from "@tabler/icons-react";
+import { useGetUserQuery } from "@/redux/features/user/user";
+import { removeUserInfo } from "@/services/auth.service";
+import { authKey } from "@/constants/storageKey";
+import { useRouter } from "next/navigation";
 
 const MyProfileCard = () => {
+  const router = useRouter();
+
+  // <== User Logout Functionality ==>
+  const userLogout = () => {
+    removeUserInfo(authKey);
+    router.push("/login");
+  };
+
+  // <== Get data from user me ==>
+  const { data, isError, isLoading } = useGetUserQuery(undefined);
+  console.log(data, isError, "Undifined Data");
+
   return (
     <div className="border w-full p-10 rounded-lg ">
       {/* Profile image and logout section */}
@@ -37,13 +54,17 @@ const MyProfileCard = () => {
             </div>
             <div>
               <p>Hello,</p>
-              <h3 className="font-bold">Zayed Hossain</h3>
+              {data?.data?.fullName ? (
+                <h3 className="font-bold">{data?.data?.fullName}</h3>
+              ) : (
+                <h3 className="font-bold">User Name</h3>
+              )}
             </div>
           </div>
 
           {/*  logout button */}
 
-          <ProfileLogoutButton />
+          <ProfileLogoutButton handleLogout={userLogout} />
         </div>
       </div>
       <div className="grid  grid-cols-2 md:grid-cols-2 lg:grid-cols-4  gap-4 mt-5">
