@@ -11,6 +11,7 @@ import { useGetUserQuery } from "@/redux/features/user/user";
 import { removeUserInfo } from "@/services/auth.service";
 import { authKey } from "@/constants/storageKey";
 import { useRouter } from "next/navigation";
+import { imageUrl } from "@/constants/imageUrl";
 
 const MyProfileCard = () => {
   const router = useRouter();
@@ -34,7 +35,7 @@ const MyProfileCard = () => {
             <div>
               <div className="relative">
                 <Image
-                  src="https://images.pexels.com/photos/162140/duckling-birds-yellow-fluffy-162140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  src={`${imageUrl}${data?.data?.profilePhoto}`}
                   alt="My profile image"
                   height={100}
                   width={100}
