@@ -1,3 +1,4 @@
+"use client";
 import { IconUser, IconSearch } from "@tabler/icons-react";
 import Image from "next/image";
 import qPrintLogo from "@/assets/logotwo.svg";
@@ -7,9 +8,21 @@ import WishlistAndCart from "./Wishlist";
 import Cart from "./Cart";
 import MobileVersion from "./MobileVersion";
 import Sidebar from "./Sidebar";
+import { isLoggedIn } from "@/services/auth.service";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
-  const user = true;
+  const router = useRouter();
+
+  const handleProfile = () => {
+    const userLoggedIn = isLoggedIn();
+    if (userLoggedIn) {
+      router.push("/profile");
+    } else {
+      router.push("/login");
+    }
+  };
+
   return (
     <header className="max-w-[1280px] mx-auto">
       <section className="header-section-css pt-6 mx-auto">
@@ -41,12 +54,12 @@ const Header = () => {
         <div className="order-3 md:order-3 section-last-child flex items-center justify-end gap-5">
           <WishlistAndCart />
           <Cart />
-          <Link
-            href={`${user ? "/profile" : "/login"}`}
+          <button
+            onClick={handleProfile}
             className="border rounded-full p-1 cursor-pointer text-black text-opacity-80"
           >
             <IconUser width={22} height={22} />
-          </Link>
+          </button>
         </div>
 
         {/* ==Menubar== */}

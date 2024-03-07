@@ -10,6 +10,9 @@ const BrandsCard = () => {
   const { data, isLoading, isError } = useGetBrandsQuery(undefined);
   console.log(data?.data, "Logged By Poran");
 
+  //<== Take the first 10 items from data ==>
+  const firstTenData = data?.data?.slice(0, 10);
+
   return (
     <div className="px-5 py-8 rounded-xl shadow-md mt-5">
       <h1 className="text-[#00000066] font-semibold text-base">BRANDS</h1>
