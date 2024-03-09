@@ -153,10 +153,16 @@ const WishlistAndCart = () => {
           ref={drawerCheckboxRef}
         />
         <div className="drawer-content">
-          <div className="flex items-start gap-1">
-            <label htmlFor="my-drawer-4-wishlist" className="cursor-pointer">
-              <span className="text-black text-opacity-50">
+          <div className="flex items-start gap-2.5">
+            <label
+              htmlFor="my-drawer-4-wishlist"
+              className="cursor-pointer relative"
+            >
+              <span className="text-black text-opacity-50 ">
                 <IconHeart width={24} height={24} />
+              </span>
+              <span className="absolute top-0 -right-2 bg-[#E73C17] rounded-full h-4 w-[17px] text-[10px] flex items-center justify-center text-white">
+                45
               </span>
             </label>
             <label

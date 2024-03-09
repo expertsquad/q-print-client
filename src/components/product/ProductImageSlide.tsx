@@ -104,9 +104,11 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
       <div className="flex flex-col gap-2 ">
         <button className=" cursor-pointer  md:text-[12px]  border hover:text-fuchsia-700  md:h-8 md:w-8 h-5 w-5 rounded-full flex justify-center items-center hover:bg-gray-100  ">
           <IconHeart className="md:h-4 md:w-4 h-[10px] w-[10px]" />
+          {""}
         </button>
         <button className="  cursor-pointer  md:text-[12px]  invisible group-hover:visible group-hover:duration-500 border hover:text-fuchsia-700  md:h-8 md:w-8 h-5 w-5 rounded-full flex justify-center items-center hover:bg-gray-100  ">
           <IconEye className="md:h-4 md:w-4 h-[10px] w-[10px] " />
+          {""}
         </button>
       </div>
     </div>

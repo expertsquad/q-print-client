@@ -1,5 +1,7 @@
+"use client";
 import React from "react";
 import ProductCard from "./ProductCard";
+import { useGetProductsQuery } from "@/redux/features/products/productsApi";
 
 const ProductGridView = () => {
   const productObject = [
@@ -172,6 +174,9 @@ const ProductGridView = () => {
       rating: 4,
     },
   ];
+
+  // const { data, isError, isLoading } = useGetProductsQuery(undefined);
+  // console.log(data?.data, isError, "data");
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 w-full">

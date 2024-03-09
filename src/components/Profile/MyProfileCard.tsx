@@ -45,6 +45,7 @@ const MyProfileCard = () => {
                   <label htmlFor="profileFileInput">
                     <IconCamera />
                     <input
+                      title="Upload Profile Photo"
                       id="profileFileInput"
                       className="hidden"
                       type="file"
