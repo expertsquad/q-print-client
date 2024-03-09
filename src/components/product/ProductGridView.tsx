@@ -175,13 +175,13 @@ const ProductGridView = () => {
     },
   ];
 
-  // const { data, isError, isLoading } = useGetProductsQuery(undefined);
-  // console.log(data?.data, isError, "data");
+  // <== Products Query ==>
+  const { data } = useGetProductsQuery(undefined);
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 w-full">
-      {productObject?.map((product, i) => (
-        <ProductCard key={i} product={product} />
+    <div className="grid grid-cols-2 md:grid-cols-3  gap-4 w-full">
+      {data?.data?.map((product: any, index: any) => (
+        <ProductCard key={index} product={product} />
       ))}
     </div>
   );

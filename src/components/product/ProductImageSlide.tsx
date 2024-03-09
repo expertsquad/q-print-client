@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { IconHeart } from "@tabler/icons-react";
 import { IconEye } from "@tabler/icons-react";
+import { imageUrl } from "@/constants/imageUrl";
 
 interface IProductImageSlideProps {
   product: IProduct;
@@ -17,7 +18,7 @@ interface IProduct {
   rating: number;
 }
 
-const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
+const ProductImageSlide = ({ product }: any) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -26,7 +27,9 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
 
     const startSlideshow = () => {
       intervalId = setInterval(() => {
-        setCurrentSlide((prevSlide) => (prevSlide + 1) % product.images.length);
+        setCurrentSlide(
+          (prevSlide) => (prevSlide + 1) % product.productPhotos.length
+        );
       }, 3000);
     };
 
@@ -43,7 +46,7 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
     return () => {
       stopSlideshow();
     };
-  }, [isHovered, product.images.length]);
+  }, [isHovered, product.productPhotos.length]);
 
   const showSlide = (index: number) => {
     return { display: index === currentSlide ? "block" : "none" };
@@ -57,8 +60,7 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
     <div className="w-full flex justify-between ">
       <div className="flex flex-col gap-2 ">
         <p className="bg-[#E73C17]  md:h-8 md:w-8 h-5 w-5  rounded-full flex items-center justify-center text-white text-[6px] md:text-[10px]">
-          {" "}
-          50%
+          {product?.defaultVariant?.discountPercentage}%
         </p>
         <p className="bg-[#FA8232]  md:h-8 md:w-8 h-5 w-5  rounded-full flex items-center justify-center text-white text-[6px] md:text-[10px]">
           {" "}
@@ -66,7 +68,7 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
         </p>
       </div>
 
-      {product.images.map((productImg: string, index: number) => (
+      {product?.productPhotos?.map((productImg: string, index: number) => (
         <div
           key={index}
           style={showSlide(index)}
@@ -81,13 +83,13 @@ const ProductImageSlide: React.FC<IProductImageSlideProps> = ({ product }) => {
               // height={120}
               fill
               objectFit="contain"
-              src={productImg}
+              src={`${imageUrl}${productImg}`}
               sizes="(max-width: 768px) 30vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
           <div className=" ">
             <div className="indicators gap-2 flex mt-8 justify-center items-center ">
-              {product.images.map((_, dotIndex: number) => (
+              {product?.productPhotos?.map((_: any, dotIndex: number) => (
                 <div
                   key={dotIndex}
                   onClick={() => handleDotClick(dotIndex)}
