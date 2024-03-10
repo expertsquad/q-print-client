@@ -1,5 +1,6 @@
+"use client";
 import { categories } from "@/constants";
-import React from "react";
+import { useGetCategoryQuery } from "@/redux/features/category/categories";
 
 interface ISubmenu {
   title: string;
@@ -13,27 +14,27 @@ interface ICategory {
 }
 
 const CategoriesCard = () => {
+  // <== Get Category & SubCategory ==>
+  const { data } = useGetCategoryQuery(undefined);
+
   return (
     <ul className="menu rounded-box shadow-md mt-5 ">
       <p className="pb-4 border-b px-4 text-[#00000066] font-semibold text-base ">
         CATEGORIES
       </p>
-      {categories?.map((category, i: number) => (
-        <li className="text-[#475156] text-base cursor-pointer" key={i}>
+      {data?.data?.map((category: any) => (
+        <li
+          className="text-[#475156] text-base cursor-pointer"
+          key={category?._id}
+        >
           <details>
-            <summary>{category?.title}</summary>
+            <summary>{category?.categoryName}</summary>
             <ul className="text-[#475156] text-base cursor-pointer">
-              <li>
-                <a className="text-[#475156] text-base cursor-pointer">
-                  Submenu 1
-                </a>
-              </li>
-              <li>
-                <a className="text-[#475156] text-base cursor-pointer">
-                  Submenu 2
-                </a>
-              </li>
-              <li></li>
+              {category?.subcategories?.map((subcategory: any) => (
+                <li key={subcategory?.subcategoryId}>
+                  <a href="">{subcategory?.subcategoryName}</a>
+                </li>
+              ))}
             </ul>
           </details>
         </li>

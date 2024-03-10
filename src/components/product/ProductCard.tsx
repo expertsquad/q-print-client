@@ -2,8 +2,7 @@ import React from "react";
 import ProductImageSlide from "./ProductImageSlide";
 import AddToCartButton from "../UI/btn/AddToCartButton";
 import StarRating from "./StarRating";
-import Image from "next/image";
-import { imageUrl } from "@/constants/imageUrl";
+import ReviewRating from "../shared/ReviewRating";
 
 interface IProductImageSlideProps {
   product: IProduct;
@@ -34,9 +33,10 @@ const ProductCard = ({ product }: any) => {
           {" "}
           {product?.brand?.brandName}
         </p>
-        <div className="text-sm mb-2">
+        {/* <div className="text-sm mb-2">
           <StarRating rating={rating} />
-        </div>
+        </div> */}
+        <ReviewRating rating={3} />
 
         <div className="flex items-center justify-start gap-2 mb-2 whitespace-nowrap">
           <h4 className="[font-size:_clamp(0.6em,4vw,1.1em)] main-text-color font-bold">

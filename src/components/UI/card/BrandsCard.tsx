@@ -8,7 +8,6 @@ import { imageUrl } from "@/constants/imageUrl";
 
 const BrandsCard = () => {
   const { data, isLoading, isError } = useGetBrandsQuery(undefined);
-  console.log(data?.data, "Logged By Poran");
 
   //<== Take the first 10 items from data ==>
   const firstTenData = data?.data?.slice(0, 6);
