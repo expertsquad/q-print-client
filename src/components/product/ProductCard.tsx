@@ -1,8 +1,10 @@
 import React from "react";
 import ProductImageSlide from "./ProductImageSlide";
 import AddToCartButton from "../UI/btn/AddToCartButton";
-import StarRating from "./StarRating";
+
 import ReviewRating from "../shared/ReviewRating";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/features/cart/cartSlice";
 
 interface IProductImageSlideProps {
   product: IProduct;
@@ -18,7 +20,13 @@ interface IProduct {
 }
 
 const ProductCard = ({ product }: any) => {
-  const rating = 4;
+  const dispatch = useDispatch();
+
+  // <== Handle Add Product On Cart ==>
+  const handleAddToCart = (product: any) => {
+    dispatch(addToCart(product));
+  };
+
   return (
     <div className=" border-[1px] hover:border-fuchsia-700 rounded-lg p-5 group shrink-0 ">
       <div>
@@ -46,7 +54,8 @@ const ProductCard = ({ product }: any) => {
             {product?.defaultVariant?.sellingPrice} QAR
           </del>
         </div>
-        <AddToCartButton />
+
+        <AddToCartButton onClick={() => handleAddToCart(product)} />
       </div>
     </div>
   );

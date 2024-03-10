@@ -15,18 +15,40 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import GetDiscountRange from "../ProductView/GetDiscountRange";
+import { useAppSelector } from "@/redux/hook";
+import { imageUrl } from "@/constants/imageUrl";
+import { useDispatch } from "react-redux";
+import {
+  addToCart,
+  removeFromCart,
+  removeOneFromCart,
+} from "@/redux/features/cart/cartSlice";
 
 const Cart = () => {
+  const { products } = useAppSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  // console.log(products, "Cart Products");
+
+  // <== Calculate Subtotal, Total , and Shipping ==>
+  const subTotal = products?.forEach((product: any) => {
+    product?.defaultVariant?.discountedPrice * products?.length || 0;
+  });
+
+  // console.log(subTotal, "SubTotal");
+
   return (
     <div>
       <div className="drawer drawer-end no-scrollbar">
         <input id="my-drawer-cart" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content no-scrollbar">
           {/* //Drawer Cancel BTN// */}
-          <div className="flex items-start  gap-1">
-            <label htmlFor="my-drawer-cart" className="cursor-pointer">
+          <div className="flex items-start gap-2.5">
+            <label htmlFor="my-drawer-cart" className="cursor-pointer relative">
               <span className="text-black text-opacity-50">
                 <IconShoppingBag width={24} height={24} />
+              </span>
+              <span className="absolute top-0 -right-2 bg-[#E73C17] rounded-full h-4 w-[17px] text-[10px] flex items-center justify-center text-white">
+                {products?.length}
               </span>
             </label>
             <label
@@ -44,12 +66,12 @@ const Cart = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <div className="menu-vertical p-4 w-full md:max-w-[430px] h-screen  text-base-content bg-white relative">
+          <div className="menu-vertical  w-full md:max-w-[430px] h-screen  text-base-content bg-white relative pt-5">
             {/* Sidebar content here */}
             <label
               htmlFor="my-drawer-cart"
               aria-label="close sidebar"
-              className="-mb-6 -ml-5 bg-white p-1 rounded-full w-7 h-7 flex justify-center items-center"
+              className="-mb-6 -ml-2 bg-white p-1 rounded-full w-7 h-7 flex justify-center items-center cursor-pointer"
             >
               <span className="hidden md:block">
                 <IconChevronRight />
@@ -58,19 +80,19 @@ const Cart = () => {
                 <IconArrowLeft />
               </span>
             </label>
-            <h3 className="text-center text-black text-[20px] font-medium border-b pb-4 mb-5">
+            <h3 className="text-center text-black text-[20px] font-medium border-b pb-4">
               My Cart
             </h3>
             {/* --data container-- */}
             <div className="flex flex-col overflow-scroll no-scrollbar">
-              {cartProductsData.map((data: any) => (
+              {products?.map((product: any, index: number) => (
                 <div
-                  className="flex gap-5 border-b mb-5 transition duration-300 ease-in-out hover:bg-gray-100"
-                  key={data._id}
+                  className="flex gap-5 border-b transition duration-300 ease-in-out hover:bg-gray-100 p-3"
+                  key={index}
                 >
                   <div className="flex items-center justify-center max-h-16 w-full max-w-16 p-2 border rounded-md">
                     <Image
-                      src={data?.image}
+                      src={`${imageUrl}${product?.productPhotos?.[1]}`}
                       alt="Product Image"
                       width={55}
                       height={55}
@@ -81,45 +103,61 @@ const Cart = () => {
                     {/* Title and Delete BTN */}
                     <div className="flex items-center gap-3">
                       <p className="text-black text-opacity-90 text-[16px] line-clamp-1">
-                        {data?.title}
+                        {product?.productName}
                       </p>
-                      <span className="cursor-pointer text-black text-opacity-70">
-                        <IconX width={20} height={20} />
-                      </span>
+                      <button onClick={() => dispatch(removeFromCart(product))}>
+                        <span className="cursor-pointer text-black text-opacity-70">
+                          <IconX width={20} height={20} />
+                        </span>
+                        {""}
+                      </button>
                     </div>
                     {/* // */}
                     <div className="my-2">
                       <p className="text-black text-opacity-50 text-[12px]">
-                        {data?.brandName}
+                        {product?.brand?.brandName}
                       </p>
                     </div>
-                    <div className="flex items-center justify-between gap-2 mb-4">
+                    <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <button className="border p-1 rounded-full text-black text-opacity-70 text-[16px]">
+                        <button
+                          onClick={() => dispatch(removeOneFromCart(product))}
+                          className="border p-1 rounded-full text-black text-opacity-70 text-[16px]"
+                        >
                           {""}
                           <IconMinus width={14} height={14} />
                         </button>
-                        <span>{data?.availableProduct}</span>
-                        <button className="border p-1 rounded-full text-black text-opacity-70 text-[16px]">
+                        <span>{product?.quantity}</span>
+                        <button
+                          onClick={() => dispatch(addToCart(product))}
+                          className="border p-1 rounded-full text-black text-opacity-70 text-[16px]"
+                        >
                           {""}
                           <IconPlus width={14} height={14} />
                         </button>
                         <span className="text-[12px]">x</span>
-                        <span>{data?.price} QAR</span>
+                        <span>
+                          {product?.defaultVariant?.discountedPrice} QAR
+                        </span>
                       </div>
-                      <b className="main-text-color">{data.price} QAR</b>
+                      <b className="main-text-color">
+                        {product?.quantity *
+                          product?.defaultVariant?.discountedPrice}{" "}
+                        QAR
+                      </b>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
             {/* --fixed data container-- */}
-            <div className="border-t border-t-black border-opacity-10">
+            <div className="border-t border-t-black border-opacity-10 px-3">
               {/* --Subtotal & Price-- */}
               <div className="flex items-center justify-between my-5">
                 <p className="">Subtotal</p>
                 <span>
-                  1500.00<small className="uppercase">qar</small>
+                  {subTotal}
+                  <small className="uppercase">qar</small>
                 </span>
               </div>
               {/* --Shipping & Price-- */}
@@ -139,13 +177,6 @@ const Cart = () => {
               {/* --Price range and Free shipping-- */}
               <div className="mb-5">
                 <div className="mb-5">
-                  {/* <input
-                    title="Price Range"
-                    id="default-range"
-                    type="range"
-                    value="50"
-                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
-                  /> */}
                   <GetDiscountRange />
                 </div>
                 <div>
