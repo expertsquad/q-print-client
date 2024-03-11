@@ -34,11 +34,11 @@ const CartView = () => {
         {/* --Product data & Cart total container-- */}
         <div>
           {/* -Product data- */}
-          <div className=" border rounded-lg px-2 md:px-3">
+          <div className=" border rounded-lg ">
             {cartProducts.map((data) => (
               <div
                 key={data._id}
-                className="flex md:view-cart-product-data border-b pt-5 md:py-5 transition duration-300 ease-in-out hover:bg-gray-100"
+                className="flex md:view-cart-product-data border-b pt-5 md:py-5 transition duration-300 ease-in-out hover:bg-gray-100 px-2 md:px-3"
               >
                 {/* ==Image, Text and Mobile V== */}
                 <div className="main-div flex gap-5">

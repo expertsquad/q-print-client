@@ -27,14 +27,15 @@ import {
 const Cart = () => {
   const { products } = useAppSelector((state) => state.cart);
   const dispatch = useDispatch();
-  // console.log(products, "Cart Products");
 
   // <== Calculate Subtotal, Total , and Shipping ==>
-  const subTotal = products?.forEach((product: any) => {
-    product?.defaultVariant?.discountedPrice * products?.length || 0;
-  });
+  const subTotal = products?.reduce((total: number, product: any) => {
+    return total + product?.defaultVariant?.discountedPrice * product?.quantity;
+  }, 0);
 
-  // console.log(subTotal, "SubTotal");
+  const shippingCharge = 80;
+
+  const calculateTotal = subTotal + shippingCharge;
 
   return (
     <div>
@@ -90,6 +91,7 @@ const Cart = () => {
                   className="flex gap-5 border-b transition duration-300 ease-in-out hover:bg-gray-100 p-3"
                   key={index}
                 >
+                  {/* --Image-- */}
                   <div className="flex items-center justify-center max-h-16 w-full max-w-16 p-2 border rounded-md">
                     <Image
                       src={`${imageUrl}${product?.productPhotos?.[1]}`}
@@ -100,7 +102,7 @@ const Cart = () => {
                     />
                   </div>
                   <div>
-                    {/* Title and Delete BTN */}
+                    {/* --Title and Delete BTN-- */}
                     <div className="flex items-center gap-3">
                       <p className="text-black text-opacity-90 text-[16px] line-clamp-1">
                         {product?.productName}
@@ -112,28 +114,29 @@ const Cart = () => {
                         {""}
                       </button>
                     </div>
-                    {/* // */}
+                    {/* --BrandName-- */}
                     <div className="my-2">
                       <p className="text-black text-opacity-50 text-[12px]">
                         {product?.brand?.brandName}
                       </p>
                     </div>
+                    {/* --Increase and Decrease BTN etc-- */}
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => dispatch(removeOneFromCart(product))}
-                          className="border p-1 rounded-full text-black text-opacity-70 text-[16px]"
+                          className="border border-fuchsia-800 p-1 rounded-full text-black text-opacity-70 "
                         >
                           {""}
-                          <IconMinus width={14} height={14} />
+                          <IconMinus stroke={3} width={13} height={13} />
                         </button>
                         <span>{product?.quantity}</span>
                         <button
                           onClick={() => dispatch(addToCart(product))}
-                          className="border p-1 rounded-full text-black text-opacity-70 text-[16px]"
+                          className="border border-fuchsia-800 p-1 rounded-full text-black text-opacity-70 "
                         >
                           {""}
-                          <IconPlus width={14} height={14} />
+                          <IconPlus stroke={3} width={13} height={13} />
                         </button>
                         <span className="text-[12px]">x</span>
                         <span>
@@ -164,23 +167,25 @@ const Cart = () => {
               <div className="flex items-center justify-between border-b border-b-black border-opacity-10">
                 <p className="mb-5">Shipping</p>
                 <span>
-                  19.30<small className="uppercase">qar</small>
+                  {shippingCharge}
+                  <small className="uppercase">qar</small>
                 </span>
               </div>
               {/* --Total & Price-- */}
               <div className="flex items-center justify-between my-5">
                 <p className="font-bold text-[16px]">Total</p>
                 <span className="font-bold text-[16px]">
-                  1500.00<small className="uppercase">qar</small>
+                  {calculateTotal}
+                  <small className="uppercase">qar</small>
                 </span>
               </div>
               {/* --Price range and Free shipping-- */}
               <div className="mb-5">
                 <div className="mb-5">
-                  <GetDiscountRange />
+                  <GetDiscountRange priceRange={calculateTotal} />
                 </div>
                 <div>
-                  {[3000].length < 0 ? (
+                  {subTotal < 3000 ? (
                     <p className="text-center">
                       Spend <b className="main-text-color">3000 QAR</b> more to
                       reach <b className="font-medium">FREE SHIPPING!</b>
