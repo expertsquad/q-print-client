@@ -20,6 +20,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
+import noproductFound from "@/assets/empty-card-photo.svg";
 
 const CartView = () => {
   const { products } = useAppSelector((state) => state.cart);
@@ -244,7 +245,14 @@ const CartView = () => {
           </div>
         </>
       ) : (
-        <div>Data None</div>
+        <div className="flex items-center justify-center">
+          <Image
+            src={noproductFound}
+            width={130}
+            height={130}
+            alt="No Products Found"
+          />
+        </div>
       )}
       {/* --Continue Shopping Link-- */}
       <div className="hidden md:block my-12">
