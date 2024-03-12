@@ -12,7 +12,7 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useRef } from "react";
 import GetDiscountRange from "../ProductView/GetDiscountRange";
 import { useAppSelector } from "@/redux/hook";
 import { imageUrl } from "@/constants/imageUrl";
@@ -33,13 +33,24 @@ const Cart = () => {
   }, 0);
 
   const shippingCharge = 80;
-
   const calculateTotal = subTotal + shippingCharge;
+
+  const drawerCheckboxRef = useRef<HTMLInputElement>(null);
+  const handleViewCart = () => {
+    if (drawerCheckboxRef.current) {
+      drawerCheckboxRef.current.checked = false;
+    }
+  };
 
   return (
     <div>
       <div className="drawer drawer-end no-scrollbar">
-        <input id="my-drawer-cart" type="checkbox" className="drawer-toggle" />
+        <input
+          id="my-drawer-cart"
+          type="checkbox"
+          className="drawer-toggle"
+          ref={drawerCheckboxRef}
+        />
         <div className="drawer-content no-scrollbar">
           {/* //Drawer Cancel BTN// */}
           <div className="flex items-start gap-2.5">
@@ -209,6 +220,7 @@ const Cart = () => {
                   <div className="flex justify-between items-center gap-5">
                     <Link
                       href="/cartView"
+                      onClick={handleViewCart}
                       className="border w-full py-2 flex gap-1.5 items-center justify-center rounded-lg text-black bg-black bg-opacity-15 hover:main-bg-color hover:text-white"
                     >
                       <IconShoppingCartCog />

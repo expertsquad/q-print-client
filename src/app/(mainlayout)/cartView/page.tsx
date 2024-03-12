@@ -1,4 +1,3 @@
-"use client";
 import GetDiscountRange from "@/components/ProductView/GetDiscountRange";
 import ReviewRating from "@/components/shared/ReviewRating";
 import { imageUrl } from "@/constants/imageUrl";
@@ -245,17 +244,22 @@ const CartView = () => {
           </div>
         </>
       ) : (
-        <div className="flex items-center justify-center">
+        <div className="flex flex-col gap-5 items-center justify-center">
           <Image
             src={noproductFound}
             width={130}
             height={130}
             alt="No Products Found"
           />
+          <p className="">No product added</p>
         </div>
       )}
       {/* --Continue Shopping Link-- */}
-      <div className="hidden md:block my-12">
+      <div
+        className={`hidden md:flex my-12 ${
+          !products.length ? "flex items-center justify-center mx-auto" : ""
+        }`}
+      >
         <Link
           href="/"
           className="items-center p-2 border border-black border-opacity-15 rounded-lg inline-flex gap-1"

@@ -41,9 +41,7 @@ const ProductCard = ({ product }: any) => {
           {" "}
           {product?.brand?.brandName}
         </p>
-        {/* <div className="text-sm mb-2">
-          <StarRating rating={rating} />
-        </div> */}
+
         <ReviewRating rating={3} />
 
         <div className="flex items-center justify-start gap-2 mb-2 whitespace-nowrap">

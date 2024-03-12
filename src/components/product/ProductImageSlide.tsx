@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { IconHeart } from "@tabler/icons-react";
 import { IconEye } from "@tabler/icons-react";
 import { imageUrl } from "@/constants/imageUrl";
+import { useDispatch } from "react-redux";
+import { addToFavourite } from "@/redux/features/wishlist/favouriteSlice";
 
 interface IProductImageSlideProps {
   product: IProduct;
@@ -56,6 +58,15 @@ const ProductImageSlide = ({ product }: any) => {
     setCurrentSlide(index);
   };
 
+  const dispatch = useDispatch();
+  // <== Add To Favourite ==>
+  const handleAddToFavourite = (product: any) => {
+    dispatch(addToFavourite(product));
+  };
+
+  // <== Click To View Product ==>
+  const handleViewProduct = () => {};
+
   return (
     <div className="w-full flex justify-between ">
       <div className="flex flex-col gap-2 ">
@@ -104,7 +115,10 @@ const ProductImageSlide = ({ product }: any) => {
       ))}
 
       <div className="flex flex-col gap-2 ">
-        <button className=" cursor-pointer  md:text-[12px]  border hover:text-fuchsia-700  md:h-8 md:w-8 h-5 w-5 rounded-full flex justify-center items-center hover:bg-gray-100  ">
+        <button
+          onClick={() => handleAddToFavourite(product)}
+          className=" cursor-pointer  md:text-[12px]  border hover:text-fuchsia-700  md:h-8 md:w-8 h-5 w-5 rounded-full flex justify-center items-center hover:bg-gray-100  "
+        >
           <IconHeart className="md:h-4 md:w-4 h-[10px] w-[10px]" />
           {""}
         </button>
