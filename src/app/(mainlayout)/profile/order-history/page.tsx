@@ -1,7 +1,14 @@
+"use client";
+import OrderHistoryLayout from "@/components/Profile/OrderHistoryLayout";
 import ProfileOrderHistory from "@/components/Profile/ProfileOrderHistory";
+import { useGetOnlineOrderQuery } from "@/redux/features/online-order/online-orderApi";
 import React from "react";
 
 const OrderHistory = () => {
+  // <== Get data from order history query ==>
+  const { data, isError } = useGetOnlineOrderQuery(undefined);
+  // console.log(data?.data, "dkfdkkd");
+
   return (
     <div className="w-full mb-7">
       <div className="flex justify-between items-center mb-4">
@@ -29,6 +36,7 @@ const OrderHistory = () => {
         </div>
       </div>
       <ProfileOrderHistory />
+      <OrderHistoryLayout orderedItem={data?.data} />
     </div>
   );
 };

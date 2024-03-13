@@ -1,4 +1,6 @@
+"use client";
 import GradientUploadIcon from "@/assets/svgIcons/GradientUploadIcon";
+import { useGetPrintingRequestsQuery } from "@/redux/features/printing-request/printing-requestSlice";
 import Link from "next/link";
 
 const PrintingRequest = () => {
@@ -13,8 +15,15 @@ const PrintingRequest = () => {
     ],
   };
 
+  const { data, isError } = useGetPrintingRequestsQuery(undefined);
+
+  // <== Set printing data in a variable ==>
+  const printingRequest = data?.data?.map((data: any) => {
+    return data;
+  });
+
   return (
-    <section className="lg:max-w-[1280px] w-full mx-auto   ">
+    <section className="lg:max-w-[1280px] w-full mx-auto">
       {/* top section start */}
       <div className="mb-7">
         <h3 className="[font-size:_clamp(1.2em,4vw,1.8em)] font-bold">
@@ -35,15 +44,18 @@ const PrintingRequest = () => {
             <div>
               <h4 className="text-lg mb-3">Printing Paper size (Feet)</h4>
               <div className="mb-7 flex flex-wrap gap-6 ">
-                <div className=" hover:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)] h-24 w-24 border hover:border-fuchsia-700 flex items-center justify-center rounded-lg cursor-pointer ">
-                  14 X 14
-                </div>
-                <div className=" hover:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)] printerCardShadow h-24 w-24 border hover:border-fuchsia-700 flex items-center justify-center rounded-lg cursor-pointer ">
-                  8 X 14
-                </div>
-                <div className="hover:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)] h-24 w-24 border hover:border-fuchsia-700 flex items-center justify-center rounded-lg cursor-pointer ">
-                  24 X 14
-                </div>
+                {printingRequest?.map((item: any, index: number) => (
+                  <div
+                    key={index}
+                    // style={{
+                    //   width: `${item.paperSize.width}px`,
+                    //   height: `${item.paperSize.height}px`,
+                    // }}
+                    className={`hover:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)] border hover:border-fuchsia-700 flex items-center justify-center rounded-lg cursor-pointer w-[100px] h-[150px]`}
+                  >
+                    {item?.paperSize?.width} x {item?.paperSize?.height}
+                  </div>
+                ))}
               </div>
             </div>
             {/* Custom paper size Order */}
@@ -92,12 +104,12 @@ const PrintingRequest = () => {
             <div className="border-b pb-7">
               <h4 className="text-lg mb-5">What type of paper do you need?</h4>
               <div className="flex flex-wrap gap-5 ">
-                {paper?.typeOfPaper?.map((typeOfPaper, i) => (
+                {printingRequest?.map((item: any, index: number) => (
                   <li
-                    key={i}
+                    key={index}
                     className="list-none py-3 px-5 border whitespace-nowrap rounded-lg text-gray-500 cursor-pointer hover:bg-gradient-to-r from-[#C83B62] to-[#7F35CD] hover:text-white hover:border-fuchsia-700 "
                   >
-                    {typeOfPaper}
+                    {item?.paperType}
                   </li>
                 ))}
               </div>
@@ -107,12 +119,12 @@ const PrintingRequest = () => {
             <div className="border-b pb-7 mt-7 ">
               <h4 className="text-lg mb-5">Printing Mode</h4>
               <div className="flex flex-wrap gap-5 ">
-                {paper?.typeOfPaper?.map((typeOfPaper, i) => (
+                {printingRequest?.map((item: any, index: number) => (
                   <li
-                    key={i}
+                    key={index}
                     className="list-none py-3 px-5 border whitespace-nowrap rounded-lg text-gray-500 cursor-pointer hover:bg-gradient-to-r from-[#C83B62] to-[#7F35CD] hover:text-white hover:border-fuchsia-700 "
                   >
-                    {typeOfPaper}
+                    {item?.printingColorMode}
                   </li>
                 ))}
               </div>
@@ -180,7 +192,7 @@ const PrintingRequest = () => {
             <div className="flex justify-center items-center px-5 py-4   ">
               <Link
                 href="/printing-request/your-information"
-                className="bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white  shadow-sm hover:duration-500 hover:shadow-lg text-center  "
+                className="bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white  shadow-sm hover:duration-500 hover:shadow-lg text-center cursor-wait"
               >
                 Place Order
               </Link>

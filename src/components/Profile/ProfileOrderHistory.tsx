@@ -188,7 +188,7 @@ const ProfileOrderHistory = () => {
           </div>
         ))}
       </div>
-      <ProductReviewModal />
+      {/* <ProductReviewModal /> */}
     </div>
   );
 };

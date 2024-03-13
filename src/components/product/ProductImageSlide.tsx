@@ -6,6 +6,7 @@ import { IconEye } from "@tabler/icons-react";
 import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
 import { addToFavourite } from "@/redux/features/wishlist/favouriteSlice";
+import { useRouter } from "next/navigation";
 
 interface IProductImageSlideProps {
   product: IProduct;
@@ -23,6 +24,7 @@ interface IProduct {
 const ProductImageSlide = ({ product }: any) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
@@ -65,7 +67,9 @@ const ProductImageSlide = ({ product }: any) => {
   };
 
   // <== Click To View Product ==>
-  const handleViewProduct = () => {};
+  const handleProductView = () => {
+    router.push(`/product/id`);
+  };
 
   return (
     <div className="w-full flex justify-between ">
@@ -122,7 +126,10 @@ const ProductImageSlide = ({ product }: any) => {
           <IconHeart className="md:h-4 md:w-4 h-[10px] w-[10px]" />
           {""}
         </button>
-        <button className="  cursor-pointer  md:text-[12px]  invisible group-hover:visible group-hover:duration-500 border hover:text-fuchsia-700  md:h-8 md:w-8 h-5 w-5 rounded-full flex justify-center items-center hover:bg-gray-100  ">
+        <button
+          onClick={handleProductView}
+          className="  cursor-pointer  md:text-[12px]  invisible group-hover:visible group-hover:duration-500 border hover:text-fuchsia-700  md:h-8 md:w-8 h-5 w-5 rounded-full flex justify-center items-center hover:bg-gray-100  "
+        >
           <IconEye className="md:h-4 md:w-4 h-[10px] w-[10px] " />
           {""}
         </button>

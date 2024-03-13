@@ -6,5 +6,12 @@ export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery({ baseUrl: getBaseUrl() }),
   endpoints: (builder) => ({}),
-  tagTypes: ["user", "brands", "products", "category"],
+  tagTypes: [
+    "user",
+    "brands",
+    "products",
+    "category",
+    "printingRequests",
+    "onlineOrders",
+  ],
 });
