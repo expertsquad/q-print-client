@@ -27,8 +27,6 @@ const GetDiscountRange = ({ priceRange }: PriceRangeProps) => {
     }
   }, [priceRange]);
 
-  // Rest of your component code...
-
   const gradientBackground = {
     background:
       "-webkit-linear-gradient(90deg, #c83b62 0.32%, #7f35cd 102.21%)",

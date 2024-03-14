@@ -1,8 +1,3 @@
-// interface IOrder{
-//     orderId: string,
-
-// }
-
 const OrderHistoryLayout = ({ orderedItem }: any) => {
   console.log(orderedItem, "ordered item");
 
@@ -10,7 +5,8 @@ const OrderHistoryLayout = ({ orderedItem }: any) => {
     <div>
       {orderedItem?.map((item: any) => (
         <div key={item?._id}>
-          <p>Order Id: {item?._id}</p>
+          <p>Order Id: {item?.orderId}</p>
+          <span>{item?.updatedAt}</span>
         </div>
       ))}
     </div>

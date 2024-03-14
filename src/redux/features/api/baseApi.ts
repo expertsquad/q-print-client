@@ -13,5 +13,6 @@ export const baseApi = createApi({
     "category",
     "printingRequests",
     "onlineOrders",
+    "review",
   ],
 });

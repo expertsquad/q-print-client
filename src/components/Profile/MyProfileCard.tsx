@@ -12,6 +12,8 @@ import { removeUserInfo } from "@/services/auth.service";
 import { authKey } from "@/constants/storageKey";
 import { useRouter } from "next/navigation";
 import { imageUrl } from "@/constants/imageUrl";
+import { useGetOnlineOrderQuery } from "@/redux/features/online-order/online-orderApi";
+import { useGetReviewQuery } from "@/redux/features/review/reviewApi";
 
 const MyProfileCard = () => {
   const router = useRouter();
@@ -24,7 +26,12 @@ const MyProfileCard = () => {
 
   // <== Get data from user me ==>
   const { data, isError, isLoading } = useGetUserQuery(undefined);
-  console.log(data, isError, "Undifined Data");
+
+  // <== Get Order Data by Online Order Query ==>
+  const onlineOrderData = useGetOnlineOrderQuery(undefined).data;
+
+  // <== Get review data by review Query ==>
+  const reviewData = useGetReviewQuery(undefined).data;
 
   return (
     <div className="border w-full p-10 rounded-lg ">
@@ -88,7 +95,7 @@ const MyProfileCard = () => {
             <OrderIcon />
           </h3>
           <p className="whitespace-nowrap text-gray-500">Orders</p>
-          <div className="font-bold">50</div>
+          <span className="font-bold">{onlineOrderData?.data?.length}</span>
         </div>
 
         {/* grid card 3 */}
@@ -96,7 +103,7 @@ const MyProfileCard = () => {
         <div className=" border rounded-lg flex items-center justify-center flex-col p-5 gap-4 text-gray-500 ">
           <ReviewIcon />
           <p className="whitespace-nowrap text-gray-500">Review</p>
-          <div className="font-bold">12</div>
+          <span className="font-bold">{reviewData?.data?.length}</span>
         </div>
 
         {/* grid card 4 */}

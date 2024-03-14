@@ -18,6 +18,7 @@ const OrderHistory = () => {
         <div>
           <span className="border md:py-3 py-2 px-3 rounded-lg  w-fit ">
             <select
+              title="Month Filter"
               className="py-2 rounded-md outline-none border-none w-min bg-transparent text-gray-700 "
               name=""
               id=""

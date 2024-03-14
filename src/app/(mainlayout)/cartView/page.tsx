@@ -1,3 +1,4 @@
+"use client";
 import GetDiscountRange from "@/components/ProductView/GetDiscountRange";
 import ReviewRating from "@/components/shared/ReviewRating";
 import { imageUrl } from "@/constants/imageUrl";

@@ -6,7 +6,7 @@ import { IconEye } from "@tabler/icons-react";
 import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
 import { addToFavourite } from "@/redux/features/wishlist/favouriteSlice";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface IProductImageSlideProps {
   product: IProduct;
@@ -24,7 +24,6 @@ interface IProduct {
 const ProductImageSlide = ({ product }: any) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
@@ -64,11 +63,6 @@ const ProductImageSlide = ({ product }: any) => {
   // <== Add To Favourite ==>
   const handleAddToFavourite = (product: any) => {
     dispatch(addToFavourite(product));
-  };
-
-  // <== Click To View Product ==>
-  const handleProductView = () => {
-    router.push(`/product/id`);
   };
 
   return (
@@ -126,13 +120,13 @@ const ProductImageSlide = ({ product }: any) => {
           <IconHeart className="md:h-4 md:w-4 h-[10px] w-[10px]" />
           {""}
         </button>
-        <button
-          onClick={handleProductView}
+        <Link
+          href={`/product/${product?._id}`}
           className="  cursor-pointer  md:text-[12px]  invisible group-hover:visible group-hover:duration-500 border hover:text-fuchsia-700  md:h-8 md:w-8 h-5 w-5 rounded-full flex justify-center items-center hover:bg-gray-100  "
         >
           <IconEye className="md:h-4 md:w-4 h-[10px] w-[10px] " />
           {""}
-        </button>
+        </Link>
       </div>
     </div>
   );

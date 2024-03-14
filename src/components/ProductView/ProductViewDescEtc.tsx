@@ -1,5 +1,3 @@
-// Jaker Hossain
-//Product View Description page
 "use client";
 import {
   IconHeart,
@@ -15,20 +13,34 @@ import ColorPickUp from "./ColorPickUp";
 import { useState } from "react";
 import WishlistQuickOrderBTNModal from "../WishlistPageData/WishlistQuickOrderBTNModal";
 import GetDiscountRange from "./GetDiscountRange";
+import { imageUrl } from "@/constants/imageUrl";
+import { useDispatch } from "react-redux";
+import { addToCart, removeOneFromCart } from "@/redux/features/cart/cartSlice";
+import { useAppSelector } from "@/redux/hook";
 
-const ProductViewDescEtc = () => {
-  const CustomHandle = () => {};
+const ProductViewDescEtc = ({ productDesc }: any) => {
+  const dispatch = useDispatch();
+  const { products } = useAppSelector((state) => state.cart);
 
-  const [value, setvalue] = useState(0);
+  const productQuantity = products?.map((product: any) => {
+    return product?.quantity;
+  });
+
   return (
     <section className="product-description">
       <h2 className="[font-size:_clamp(16px,5vw,20px)] text-wrap mb-5 line-clamp-2">
-        {/* //{title} */}
-        Brother HL - L3270CDW Single Function Color Laser Printer
+        {productDesc?.productName}
       </h2>
       <div className="flex items-center mb-5">
-        <Image src={adidasBrand} alt="Adidas Brand" />
-        <h6 className="text-[16px] text-black opacity-60 mr-5 ml-1">Brother</h6>
+        <Image
+          src={`${imageUrl}${productDesc?.brand?.brandPhoto}`}
+          width={50}
+          height={50}
+          alt="Adidas Brand"
+        />
+        <h6 className="text-[16px] text-black opacity-60 mr-5 ml-1">
+          {productDesc?.brand?.brandName}
+        </h6>
         <IconStar
           fill="currentColor"
           width={18}
@@ -41,7 +53,10 @@ const ProductViewDescEtc = () => {
       </div>
       <div className="flex items-center mb-5">
         <p className="[font-size:_clamp(14px,5vw,16px)] mr-3">
-          Category: <span className="text-black opacity-70">Printer</span>
+          Category:{" "}
+          <span className="text-black opacity-70">
+            {productDesc?.category?.categoryName}
+          </span>
         </p>{" "}
         |
         <button className="flex items-center gap-2 ml-3 text-[#475156] [font-size:_clamp(13px,5vw,14px)]">
@@ -55,14 +70,14 @@ const ProductViewDescEtc = () => {
       <div className="">
         <div className="flex items-center flex-wrap">
           <h3 className="main-text-color [font-size:_clamp(20px,5vw,26px)] font-semibold mr-2">
-            {/* //Price */}
-            1500.00 <small className="uppercase">qar</small>
+            {productDesc?.defaultVariant?.discountedPrice}{" "}
+            <small className="uppercase">qar</small>
           </h3>
           <del className="text-[#B3B3B3] [font-size:_clamp(14px,5vw,18px)] mr-5">
-            1800.00 QAR
+            {productDesc?.defaultVariant?.sellingPrice} QAR
           </del>
           <span className="[font-size:_clamp(14px,5vw,16px)] text-red-500 bg-gradient-to-r from-pink-50 to-purple-50 py-1 px-3 rounded-md">
-            20% OFF
+            {productDesc?.defaultVariant?.discountPercentage}% OFF
           </span>
         </div>
 
@@ -75,18 +90,27 @@ const ProductViewDescEtc = () => {
         {/* //Item Increase and Decrease */}
         <div className="flex items-center gap-5 mb-5">
           <div className="border border-gray-200 flex items-center gap-2 rounded-3xl p-2">
-            <button className="p-2 bg-[#F2F2F2] rounded-full">
+            <button
+              onClick={() => dispatch(removeOneFromCart(productDesc))}
+              className="p-2 bg-[#F2F2F2] rounded-full"
+            >
               {""}
               <IconMinus width={14} height={14} />
             </button>
-            <span>{value}</span>
-            <button className="p-2 bg-[#F2F2F2] rounded-full">
+            <span>{0 + productQuantity}</span>
+            <button
+              onClick={() => dispatch(addToCart(productDesc))}
+              className="p-2 bg-[#F2F2F2] rounded-full"
+            >
               {""}
               <IconPlus width={14} height={14} />
             </button>
           </div>
           <div>
-            <button className="w-56 md:w-64 lg:w-80 flex justify-center items-center gap-3 bg-slate-400 main-text-color border border-fuchsia-700 py-2 rounded-lg text-fuchsia-700">
+            <button
+              onClick={() => dispatch(addToCart(productDesc))}
+              className="w-56 md:w-64 lg:w-80 flex justify-center items-center gap-3 bg-slate-400 main-text-color border border-fuchsia-700 py-2 rounded-lg text-fuchsia-700"
+            >
               <IconShoppingCart
                 className="main-text-color"
                 width={20}

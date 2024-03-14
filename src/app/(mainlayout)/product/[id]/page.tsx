@@ -1,9 +1,9 @@
 import ProductView from "@/components/ProductView/ProductView";
 
-const page = () => {
+const page = ({ params }: any) => {
   return (
     <div className="max-w-[1280px] mx-auto">
-      <ProductView />
+      <ProductView id={params?.id} />
     </div>
   );
 };
