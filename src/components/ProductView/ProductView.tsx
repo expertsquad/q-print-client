@@ -20,7 +20,7 @@ const ProductView = ({ id }: any) => {
         <RelatedProduct />
       </div>
       <div>
-        <SpecificationDetails />
+        <SpecificationDetails specification={data?.data} />
       </div>
     </section>
   );

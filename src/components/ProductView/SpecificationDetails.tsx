@@ -5,7 +5,7 @@ import { productViewMenus } from "@/constants";
 import ProductSpecification from "./ProductSpecification";
 import ProductReview from "./ProductReview";
 
-const SpecificationDetails = () => {
+const SpecificationDetails = ({ specification }: any) => {
   return (
     <section>
       <div className="overflow-x-auto flex no-scrollbar mb-12 border-b">
@@ -33,7 +33,7 @@ const SpecificationDetails = () => {
               <ProductSpecification />
             </div>
             <div className=" ">
-              <SpecificationCard />
+              <SpecificationCard specificationCard={specification} />
             </div>
           </div>
         </div>
