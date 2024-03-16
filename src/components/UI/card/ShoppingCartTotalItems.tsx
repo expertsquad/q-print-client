@@ -1,8 +1,11 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import ShppingItemsProducts from "./ShppingItemsProducts";
+import { useAppSelector } from "@/redux/hook";
 
 const ShoppingCartTotalItems = () => {
+  const { products } = useAppSelector((state) => state.cart);
   return (
     <div className=" border rounded-lg pb-5 mb-5">
       <h4 className="px-5 py-4 text-lg font-medium">Shopping Items</h4>

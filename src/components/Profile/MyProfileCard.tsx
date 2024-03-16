@@ -7,7 +7,10 @@ import ProfileLogoutButton from "./ProfileLogoutButton";
 import ProfileViewButton from "./ProfileViewButton";
 import ProfileUserIcon from "@/assets/svgIcons/ProfileUserIcon";
 import { IconCamera } from "@tabler/icons-react";
-import { useGetUserQuery } from "@/redux/features/user/user";
+import {
+  useGetUserLoggedQuery,
+  useGetUserQuery,
+} from "@/redux/features/user/user";
 import { removeUserInfo } from "@/services/auth.service";
 import { authKey } from "@/constants/storageKey";
 import { useRouter } from "next/navigation";
@@ -25,8 +28,8 @@ const MyProfileCard = () => {
   };
 
   // <== Get data from user me ==>
-  const { data, isError, isLoading } = useGetUserQuery(undefined);
-
+  const { data, isError, isLoading } = useGetUserLoggedQuery(undefined);
+  console.log(data, "profile data");
   // <== Get Order Data by Online Order Query ==>
   const onlineOrderData = useGetOnlineOrderQuery(undefined).data;
 

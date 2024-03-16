@@ -144,7 +144,7 @@
   width: 10px;
   height: 10px;
   background-color: #f00; /* Change color as needed */
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  clippath: polygon(50% 0%, 0% 100%, 100% 100%);
   transform: rotate(45deg);
   animation: fall linear infinite;
 }

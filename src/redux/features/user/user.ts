@@ -24,6 +24,15 @@ export const authApi = baseApi.injectEndpoints({
       }),
       providesTags: ["user"],
     }),
+    // <== Get User logged data ==>
+    getUserLogged: build.query({
+      query: (data) => ({
+        url: "/user-address/me",
+        method: "GET",
+        data,
+      }),
+      providesTags: ["user"],
+    }),
     // <== User Sign Up Mutation ==>
     userSignUp: build.mutation({
       query: (signUpData) => ({
@@ -36,5 +45,9 @@ export const authApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useUserLoginMutation, useUserSignUpMutation, useGetUserQuery } =
-  authApi;
+export const {
+  useUserLoginMutation,
+  useUserSignUpMutation,
+  useGetUserQuery,
+  useGetUserLoggedQuery,
+} = authApi;

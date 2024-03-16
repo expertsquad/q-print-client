@@ -6,6 +6,7 @@ import { useGetUserQuery } from "@/redux/features/user/user";
 const ProfileSettings = () => {
   // <== Get User Personal Information ==>
   const { data, isError, isLoading } = useGetUserQuery(undefined);
+  console.log(data, "Profile setting");
   return (
     <div className="lg:border rounded-lg lg:p-7 flex flex-col gap-8 mb-7">
       <PersonalInformation

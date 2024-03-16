@@ -7,7 +7,6 @@ import React from "react";
 const OrderHistory = () => {
   // <== Get data from order history query ==>
   const { data, isError } = useGetOnlineOrderQuery(undefined);
-  // console.log(data?.data, "dkfdkkd");
 
   return (
     <div className="w-full mb-7">

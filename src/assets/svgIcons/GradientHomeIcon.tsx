@@ -9,7 +9,7 @@ const GradientHomeIcon = () => {
       viewBox="0 0 21 20"
       fill="none"
     >
-      <g clip-path="url(#clip0_1291_4028)">
+      <g clipPath="url(#clip0_1291_4028)">
         <path
           d="M3 13.75L10.5 18.125L18 13.75"
           stroke="url(#paint0_linear_1291_4028)"
