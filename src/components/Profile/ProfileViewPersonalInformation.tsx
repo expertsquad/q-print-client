@@ -1,5 +1,5 @@
 const ProfileViewPersonalInformation = ({ personalInformation }: any) => {
-  // console.log(personalInformation, "Personal Information");
+  console.log(personalInformation, "personalInformation");
   return (
     <div className="border rounded-lg lg:p-8 p-2.5">
       <h1 className="lg:text-xl text-base text-black  mb-5">

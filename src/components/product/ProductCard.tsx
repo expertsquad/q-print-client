@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import ProductImageSlide from "./ProductImageSlide";
 import AddToCartButton from "../UI/btn/AddToCartButton";
@@ -5,6 +6,7 @@ import AddToCartButton from "../UI/btn/AddToCartButton";
 import ReviewRating from "../shared/ReviewRating";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/features/cart/cartSlice";
+import { useRouter } from "next/navigation";
 
 interface IProductImageSlideProps {
   product: IProduct;
@@ -21,14 +23,24 @@ interface IProduct {
 
 const ProductCard = ({ product }: any) => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   // <== Handle Add Product On Cart ==>
   const handleAddToCart = (product: any) => {
     dispatch(addToCart(product));
   };
 
+  // <== Product View Function ==>
+  const handleViewProduct = (e: any) => {
+    e.stopPropagation();
+    router.push(`/product/${product?._id}`);
+  };
+
   return (
-    <div className=" border-[1px] hover:border-fuchsia-700 rounded-lg p-5 group shrink-0 ">
+    <div
+      onClick={handleViewProduct}
+      className=" border-[1px] hover:border-fuchsia-700 rounded-lg p-5 group shrink-0 "
+    >
       <div>
         <ProductImageSlide product={product} />
       </div>

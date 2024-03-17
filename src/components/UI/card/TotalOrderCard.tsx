@@ -9,7 +9,7 @@ import { IconMinus } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { addToCart, removeOneFromCart } from "@/redux/features/cart/cartSlice";
 
-const ShoppingCartTotalItems = () => {
+const TotalOrderCard = () => {
   const { products } = useAppSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -32,7 +32,6 @@ const ShoppingCartTotalItems = () => {
   // const calculateTotal = subTotal + shippingCharge;
   // <== Calculate Total ==>
   const calculateTotalWithDiscount = subTotal + shippingCharge - discountPrice;
-
   return (
     <div className=" border rounded-lg pb-5 mb-5">
       <h4 className="px-5 py-4 text-lg font-medium">Shopping Items</h4>
@@ -129,7 +128,7 @@ const ShoppingCartTotalItems = () => {
 
       <div className="flex justify-center items-center px-5 py-4   ">
         <Link
-          href="/printing-request/payment"
+          href="/order-track"
           className="bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white hover:scale-105 shadow-sm hover:duration-500 hover:shadow-lg text-center "
         >
           Place Order
@@ -139,4 +138,4 @@ const ShoppingCartTotalItems = () => {
   );
 };
 
-export default ShoppingCartTotalItems;
+export default TotalOrderCard;

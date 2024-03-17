@@ -4,7 +4,6 @@ import ProfileEditButton from "./ProfileEditButton";
 import { imageUrl } from "@/constants/imageUrl";
 
 const ViewProfilleEdit = ({ profileInfo }: any) => {
-  // console.log(profileInfo, "Profile Info");
   return (
     <div className="border rounded-lg py-9 lg:px-10 px-5 flex justify-between items-center">
       <div className="flex items-center justify-between lg:gap-8 gap-2">

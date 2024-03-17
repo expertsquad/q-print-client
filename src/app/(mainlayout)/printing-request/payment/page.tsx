@@ -2,6 +2,7 @@ import BillingAddress from "@/components/PrintingRequest/BillingAddress";
 import EditButton from "@/components/PrintingRequest/EditButton";
 import PaymentMethod from "@/components/PrintingRequest/PaymentMethod";
 import PrintingRequestTotalOrder from "@/components/PrintingRequest/PrintingRequestTotalOrder";
+import TotalOrderCard from "@/components/UI/card/TotalOrderCard";
 import { IconMail } from "@tabler/icons-react";
 import { IconPhone } from "@tabler/icons-react";
 import { IconMapPin } from "@tabler/icons-react";
@@ -89,7 +90,8 @@ const Payment = () => {
         </div>
 
         <div className="w-full md:w-4/12 ">
-          <PrintingRequestTotalOrder />
+          <TotalOrderCard />
+          {/* <PrintingRequestTotalOrder /> */}
         </div>
       </div>
     </section>

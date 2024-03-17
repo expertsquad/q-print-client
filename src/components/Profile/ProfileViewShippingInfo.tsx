@@ -1,5 +1,4 @@
 const ProfileViewShippingInfo = ({ shippingInformation }: any) => {
-  console.log(shippingInformation, "Shipping Information");
   return (
     <div className="border rounded-lg lg:p-8 p-2.5">
       <h1 className="lg:text-xl text-base text-black  mb-5">

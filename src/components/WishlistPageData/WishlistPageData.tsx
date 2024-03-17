@@ -119,7 +119,7 @@ const WishlistPageData = ({ products }: any) => {
                     </p>
 
                     <div className="flex items-center gap-3">
-                      <ProductViewGlobalModal />
+                      <ProductViewGlobalModal product={product} />
                       <button className="border border-[#F2F2F2] rounded-full p-2.5 text-black text-opacity-50">
                         {""} <IconShoppingBag width={20} height={20} />
                       </button>
@@ -137,7 +137,7 @@ const WishlistPageData = ({ products }: any) => {
           </div>
         </>
       ) : (
-        <div className="flex flex-col gap-5 items-center justify-center">
+        <div className="flex flex-col gap-5 items-center justify-center min-h-[420px]">
           <Image
             src={noproductFound}
             width={130}

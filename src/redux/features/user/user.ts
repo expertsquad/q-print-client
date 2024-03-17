@@ -27,9 +27,11 @@ export const authApi = baseApi.injectEndpoints({
     // <== Get User logged data ==>
     getUserLogged: build.query({
       query: (data) => ({
-        url: "/user-address/me",
+        url: `/user-address/me?${data}`,
         method: "GET",
-        data,
+        headers: {
+          Authorization: `Bearer ${getFromLocalStorage(authKey)}`,
+        },
       }),
       providesTags: ["user"],
     }),

@@ -1,5 +1,4 @@
 "use client";
-import { productViewImage } from "@/constants";
 import Image from "next/image";
 import React, { useState } from "react";
 import ProductViewDescEtc from "./ProductViewDescEtc";
@@ -7,9 +6,8 @@ import { imageUrl } from "@/constants/imageUrl";
 
 const ProductViewImage = ({ product }: any) => {
   console.log(product);
-  const [selectedImage, setSelectedImage] = useState(product?.productPhotos[0]);
-
-  console.log(selectedImage?.[0], "dkjfdfjk");
+  const [selectedImage, setSelectedImage] = useState(product?.productPhotos[1]);
+  console.log(selectedImage, "from product view");
 
   const handleChangePhoto = (item: any) => {
     setSelectedImage(item);
@@ -44,7 +42,7 @@ const ProductViewImage = ({ product }: any) => {
           {selectedImage && (
             <div className="rounded-lg h-96 w-96 md:h-[420px] md:w-[400px] relative">
               <Image
-                src={`${imageUrl}${selectedImage?.image}`}
+                src={`${imageUrl}${selectedImage}`}
                 alt="Product Photo"
                 fill
                 objectFit="contain"

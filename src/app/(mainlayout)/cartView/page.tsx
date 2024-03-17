@@ -112,9 +112,7 @@ const CartView = () => {
                               {product?.defaultVariant?.discountedPrice} QAR
                             </span>
                           </div>
-                          <span className="font-bold bg-slate-400">
-                            {/* //Total Amount */}${subTotal}
-                          </span>
+                          <span className="font-bold ">${subTotal}</span>
                         </div>
                       </div>
                     </div>
