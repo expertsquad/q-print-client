@@ -13,6 +13,15 @@ export const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["user"],
     }),
+    // <== User Sign Up Mutation ==>
+    userSignUp: build.mutation({
+      query: (signUpData) => ({
+        url: `/user/signup`,
+        method: "POST",
+        data: signUpData,
+      }),
+      invalidatesTags: ["user"],
+    }),
     // <== Get Logged In User Info ==>
     getUser: build.query({
       query: () => ({
@@ -34,15 +43,6 @@ export const authApi = baseApi.injectEndpoints({
         },
       }),
       providesTags: ["user"],
-    }),
-    // <== User Sign Up Mutation ==>
-    userSignUp: build.mutation({
-      query: (signUpData) => ({
-        url: `/user/signup`,
-        method: "POST",
-        data: signUpData,
-      }),
-      invalidatesTags: ["user"],
     }),
   }),
 });

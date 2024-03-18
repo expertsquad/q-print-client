@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import logo from "@/assets/logo.svg";
 import { SubmitHandler } from "react-hook-form";

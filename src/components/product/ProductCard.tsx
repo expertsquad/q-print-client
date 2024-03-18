@@ -22,11 +22,13 @@ interface IProduct {
 }
 
 const ProductCard = ({ product }: any) => {
+  console.log(product, "product");
   const dispatch = useDispatch();
   const router = useRouter();
 
   // <== Handle Add Product On Cart ==>
-  const handleAddToCart = (product: any) => {
+  const handleAddToCart = (event: React.MouseEvent, product: any) => {
+    event.stopPropagation();
     dispatch(addToCart(product));
   };
 
@@ -65,7 +67,9 @@ const ProductCard = ({ product }: any) => {
           </del>
         </div>
 
-        <AddToCartButton onClick={() => handleAddToCart(product)} />
+        <AddToCartButton
+          onClick={(event: React.MouseEvent) => handleAddToCart(event, product)}
+        />
       </div>
     </div>
   );

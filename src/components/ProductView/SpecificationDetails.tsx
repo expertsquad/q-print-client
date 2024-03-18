@@ -30,7 +30,9 @@ const SpecificationDetails = ({ specification }: any) => {
             className="flex justify-between md:gap-7 gap-0 w-full"
           >
             <div id="specification">
-              <ProductSpecification />
+              <ProductSpecification
+                productSpecification={specification?.specifications}
+              />
             </div>
             <div className=" ">
               <SpecificationCard specificationCard={specification} />

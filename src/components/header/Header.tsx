@@ -8,7 +8,7 @@ import WishlistAndCart from "./Wishlist";
 import Cart from "./Cart";
 import MobileVersion from "./MobileVersion";
 import Sidebar from "./Sidebar";
-import { isLoggedIn } from "@/services/auth.service";
+import { isLoggedIn, isUserSignedIn } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import { useGetUserQuery } from "@/redux/features/user/user";
 import { imageUrl } from "@/constants/imageUrl";
@@ -16,15 +16,16 @@ import { imageUrl } from "@/constants/imageUrl";
 const Header = () => {
   const router = useRouter();
   const userLoggedIn = isLoggedIn();
+  const userSignedIn = isUserSignedIn();
 
   const { data, isError, isLoading } = useGetUserQuery(undefined);
 
   // <== Check if the user is logged in or not ==>
   const handleUserProfile = () => {
-    if (userLoggedIn) {
+    if (userSignedIn) {
       router.push("/profile");
     } else {
-      router.push("/login");
+      router.push("/signup");
     }
   };
 

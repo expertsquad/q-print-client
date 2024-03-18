@@ -6,6 +6,7 @@ import ButtonPrimary from "@/components/shared/ButtonPrimary";
 import CustomInput from "@/components/shared/CustomInput";
 import PasswordInput from "@/components/shared/PasswordInput";
 import { useUserLoginMutation } from "@/redux/features/user/user";
+import { storeUserInfo } from "@/services/auth.service";
 import {
   IconMail,
   IconPhone,
@@ -27,16 +28,18 @@ type FormValue = {
 
 const SignUp = () => {
   const [userSignUp] = useUserLoginMutation();
-  const router = useRouter;
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<FormValue> = async (data: any) => {
-    // console.log(data);
+    console.log(data);
     try {
       const res = await userSignUp({ ...data }).unwrap();
       console.log(res);
-      // if (res?.data?.accessToken) {
-      //   router.push("/");
-      // }
+      storeUserInfo({ accessToken: res?.data?.accessToken });
+      console.log(res?.data?.accessToken);
+      if (res?.data?.accessToken) {
+        router.push("/");
+      }
     } catch (err: any) {
       console.error(err.message);
     }

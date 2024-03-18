@@ -12,8 +12,6 @@ interface ShopCategoryCardProps {
 }
 
 const ShopCategoryCard = ({ category }: any) => {
-  // const { _id, picture, title } = category;
-  console.log(category, "logeeeekekrejkke");
   return (
     <div className="relative bg-[#F2F4F5] rounded-xl  shrink-0 overflow-scroll no-scrollbar p-10 w-52 md:w-64 lg:w-96 group/item transition-all duration-500 cursor-pointer">
       <div className="grid place-content-center">
