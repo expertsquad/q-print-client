@@ -2,7 +2,8 @@ import CategoryGridProductView from "@/components/CategoryViewPage/CategoryGridP
 import CategoryLeftSideWidget from "@/components/CategoryViewPage/CategoryLeftSideWidget";
 import React from "react";
 
-const CategoryViewPage = () => {
+const CategoryViewPage = ({ params }: { params: { slug: string } }) => {
+  console.log(params?.slug?.length, "from Brand Page");
   return (
     <section className="flex gap-5 max-w-[1280px] mx-auto">
       {/* category filter and widget start */}

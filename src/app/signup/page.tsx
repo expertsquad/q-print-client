@@ -1,11 +1,17 @@
 "use client";
 import Facebook from "@/assets/FooterSVG/Facebook";
-import Form from "@/components/form/Form";
-import GlobalInput from "@/components/form/GlobalInput";
-import ButtonPrimary from "@/components/shared/ButtonPrimary";
 import CustomInput from "@/components/shared/CustomInput";
 import PasswordInput from "@/components/shared/PasswordInput";
-import { useUserLoginMutation } from "@/redux/features/user/user";
+import {
+  setConfirmPassword,
+  setEmail,
+  setFullName,
+  setPassword,
+  setPhoneNumber,
+  setQid,
+} from "@/redux/features/user/signUpSlice";
+import { useUserSignUpMutation } from "@/redux/features/user/user";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { storeUserInfo } from "@/services/auth.service";
 import {
   IconMail,
@@ -15,25 +21,27 @@ import {
 } from "@tabler/icons-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { SubmitHandler } from "react-hook-form";
-
-type FormValue = {
-  fullName: string;
-  qid?: number;
-  email?: string;
-  phoneNumber: string;
-  password: string;
-  confirmPassword: string;
-};
 
 const SignUp = () => {
-  const [userSignUp] = useUserLoginMutation();
+  const [userSignUp] = useUserSignUpMutation();
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
-  const onSubmit: SubmitHandler<FormValue> = async (data: any) => {
-    console.log(data);
+  const { fullName, email, password, confirmPassword, qid, phoneNumber } =
+    useAppSelector((state) => state.signUp);
+
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("fullName", fullName);
+    formData.append("password", password);
+    formData.append("confirmPassword", confirmPassword);
+    formData.append("phoneNumber", phoneNumber);
+    formData.append("qid", qid);
+
     try {
-      const res = await userSignUp({ ...data }).unwrap();
+      const res = await userSignUp(formData).unwrap();
       console.log(res);
       storeUserInfo({ accessToken: res?.data?.accessToken });
       console.log(res?.data?.accessToken);
@@ -51,93 +59,54 @@ const SignUp = () => {
         <h4 className="mt-7 md:mt-10 font-bold text-center [font-size:_clamp(20px,5vw,26px)] mb-7">
           Sign Up
         </h4>
-        {/* <form action="">
+        <form onSubmit={onSubmit} action="">
           <CustomInput
+            name="fullName"
             type="text"
             placeholder="Full Name"
             placeholderIcon={<IconUser />}
             customClassName="mt-2"
+            onChange={(e) => dispatch(setFullName(e.target.value))}
           />
           <CustomInput
+            name="qid"
             type="text"
             placeholder="QID"
             placeholderIcon={<IconIdBadge2 />}
             customClassName="mt-2"
+            onChange={(e) => dispatch(setQid(e.target.value))}
           />
           <CustomInput
+            name="email"
             type="email"
             placeholder="Email"
             placeholderIcon={<IconMail />}
             customClassName="mt-2"
+            onChange={(e) => dispatch(setEmail(e.target.value))}
           />
           <CustomInput
+            name="phoneNumber"
             type="number"
             placeholder="Phone Number"
             placeholderIcon={<IconPhone />}
             customClassName="mt-2"
+            onChange={(e) => dispatch(setPhoneNumber(e.target.value))}
           />
           <PasswordInput
-            onChange={(e) => console.log(e)}
+            name="password"
+            onChange={(e) => dispatch(setPassword(e.target.value))}
             placeholder="Type Password"
           />
           <PasswordInput
-            onChange={(e) => console.log(e)}
+            name="confirmPassword"
             placeholder="Retype Password"
             inputStyle="mb-6"
+            onChange={(e) => dispatch(setConfirmPassword(e.target.value))}
           />
           <button className="main-bg-color text-white w-full py-3 rounded-lg">
             Create New Account
           </button>
-        </form> */}
-
-        {/* ==Test== */}
-        <Form submitHandler={onSubmit}>
-          <div className="flex flex-col gap-5 mt-20">
-            <GlobalInput
-              name="fullName"
-              placeholder="Full Name"
-              type="text"
-              className={`w-full md:w-[500px]`}
-            />
-            <GlobalInput
-              name="qid"
-              placeholder="QID"
-              type="text"
-              className="w-full md:w-[500px]"
-            />
-            <GlobalInput
-              name="email"
-              placeholder="Email"
-              type="email"
-              className={`w-full md:w-[500px]`}
-            />
-            <GlobalInput
-              name="phoneNumber"
-              placeholder="Phone Number"
-              type="number"
-              className={`w-full md:w-[500px]`}
-            />
-            <GlobalInput
-              name="password"
-              placeholder="Password"
-              type="password"
-              className={`w-full md:w-[500px]`}
-            />
-            <GlobalInput
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              type="password"
-              className={`w-full md:w-[500px]`}
-            />
-
-            <ButtonPrimary
-              buttonText="Sign Up"
-              type="submit"
-              className="w-full"
-            />
-          </div>
-        </Form>
-        {/* ==Test== */}
+        </form>
 
         {/* ==Divider */}
         <div className="divider divider-[#548]">OR</div>

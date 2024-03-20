@@ -22,7 +22,7 @@ interface IProduct {
 }
 
 const ProductCard = ({ product }: any) => {
-  console.log(product, "product");
+  // console.log(product, "product");
   const dispatch = useDispatch();
   const router = useRouter();
 
