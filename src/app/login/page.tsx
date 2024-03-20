@@ -11,7 +11,7 @@ import ButtonPrimary from "@/components/shared/ButtonPrimary";
 import { storeUserInfo } from "@/services/auth.service";
 
 type FormValue = {
-  phoneNumber: string;
+  email: string;
   password: string;
 };
 
@@ -51,7 +51,7 @@ const Login = () => {
         <Form submitHandler={onSubmit}>
           <div className="flex flex-col gap-5 mt-20">
             <GlobalInput
-              name="phoneNumber"
+              name="email"
               placeholder="Email or Phone"
               type="text"
               className={`w-full md:w-[500px]`}

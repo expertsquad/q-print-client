@@ -129,7 +129,7 @@ const ShoppingCartTotalItems = () => {
 
       <div className="flex justify-center items-center px-5 py-4   ">
         <Link
-          href="/printing-request/payment"
+          href="/payment"
           className="bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white hover:scale-105 shadow-sm hover:duration-500 hover:shadow-lg text-center "
         >
           Place Order

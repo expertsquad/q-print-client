@@ -5,8 +5,19 @@ import {
   useGetUserLoggedQuery,
   useGetUserQuery,
 } from "@/redux/features/user/user";
+import { isLoggedIn } from "@/services/auth.service";
+import { useLayoutEffect } from "react";
+import { redirect } from "next/navigation";
 
 const ProfileSettings = () => {
+  useLayoutEffect(() => {
+    const userLoggedCheck = isLoggedIn();
+
+    if (!userLoggedCheck) {
+      redirect("/");
+    }
+  }, []);
+
   // <== Get User Address ==>
   const { data: address } = useGetUserLoggedQuery("isDefault=true");
   return (

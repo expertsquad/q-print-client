@@ -22,10 +22,10 @@ const Header = () => {
 
   // <== Check if the user is logged in or not ==>
   const handleUserProfile = () => {
-    if (userSignedIn) {
+    if (userLoggedIn) {
       router.push("/profile");
     } else {
-      router.push("/signup");
+      router.push("/login");
     }
   };
 
