@@ -1,10 +1,28 @@
+"use client";
 import React from "react";
 import ShopNowButton from "../UI/btn/ShopNowButton";
 import Image from "next/image";
 import StarRating from "../product/StarRating";
+import { useGetBestDealsQuery } from "@/redux/features/dealWidgetSliderEtc/bestDeal";
+import { imageUrl } from "@/constants/imageUrl";
+import { useRouter } from "next/navigation";
 
 const BestDeals = () => {
-  const rating = 3;
+  const { data } = useGetBestDealsQuery("");
+  const router = useRouter();
+
+  // <== Get Product Data From Best Deals ==>
+  const productData = data?.data?.products?.map((product: any) => {
+    return product;
+  });
+
+  // <== Product View Functionality ==>
+  const handleViewProduct = (e: any) => {
+    e.stopPropagation();
+    const product = productData?.map((product: any) => {
+      return router.push(`/product/${product?._id}`);
+    });
+  };
   return (
     <section className="bg-[#EDF2EE] py-4 px-2 md:py-7 md:px-8  lg:mt-20 md:mt-20 mt-8 rounded-lg">
       <div className="flex items-center justify-between gap-6">
@@ -14,6 +32,7 @@ const BestDeals = () => {
             width={200}
             className="pb-36 sm:pb-0 md:pb-0 lg:pb-0"
             src="https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png"
+            // src={`${imageUrl}${data?.data?.firstProductPhoto}`}
             alt="Test iamge"
           />
         </div>
@@ -23,10 +42,10 @@ const BestDeals = () => {
               BEST DEALS
             </h4>
             <h1 className=" line-clamp-2 [font-size:_clamp(0.95em,4vw,1.9em)] main-text-color font-semibold ">
-              Brother HL - L3270CDW Singel Function Color Laser Printer
+              {data?.data?.title}
             </h1>
             <p className=" line-clamp-2 [font-size:_clamp(0.6em,4vw,1.2em)] text-gray-500">
-              Hurry & Get Discounts on all Brother Device up to 30% Off
+              {data?.data?.description}
             </p>
           </div>
 
@@ -79,35 +98,47 @@ const BestDeals = () => {
             width={200}
             className="pb-36 sm:pb-0 md:pb-0 lg:pb-0"
             src="https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png"
+            // src={`${imageUrl}${data?.data?.secondProductPhoto}`}
             alt="Test image with monitor"
           />
         </div>
       </div>
       <div className="flex items-center justify-between gap-3 overflow-x-auto scroll-smooth no-scrollbar">
-        {/* <!-------------- event Card 01 -------------> */}
-        <div className="flex items-center space-x-4 max-w-[300px] pr-20 py-2 pl-2 shrink-0 rounded-xl bg-white border border-white hover:border hover:duration-500 cursor-pointer hover:border-fuchsia-700">
-          <div className="w-20 h-20 rounded-lg bg-background-color">
-            <Image
-              height={100}
-              width={100}
-              src="https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png"
-              alt=""
-            />
+        {/* === Event Product Card === */}
+        {productData?.map((product: any) => (
+          <div
+            onClick={handleViewProduct}
+            key={product?._id}
+            className="flex items-center space-x-4 max-w-[300px] pr-20 py-2 pl-2 shrink-0 rounded-xl bg-white border border-white hover:border hover:duration-500 cursor-pointer hover:border-fuchsia-700"
+          >
+            <div className="w-12 h-12 md:w-20 md:h-20 relative bg-background-color">
+              <Image
+                objectFit="cover"
+                fill
+                src="https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png"
+                // src={`${imageUrl}${product?.productPhoto}`}
+                className="w-full h-full top-0 left-0 object-cover"
+                alt=""
+              />
+            </div>
+            <div className="flex justify-center flex-col gap-1">
+              <span className="text-black line-clamp-1">
+                {product?.productName}
+              </span>
+
+              <StarRating rating={4} />
+
+              <div className="flex items-center gap-2.5">
+                <span className="text-black flex items-baseline gap-1 main-text-color text-xs md:text-base font-semibold">
+                  {product?.sellingPrice} <small>QAR</small>
+                </span>
+                <del className="flex items-baseline gap-1 text-[10px] md:text-sm">
+                  {product?.sellingPrice} <small>QAR</small>
+                </del>
+              </div>
+            </div>
           </div>
-          <div className="flex justify-center flex-col gap-1">
-            <h3 className="text-black">Hevy Printer</h3>
-
-            {/* rating started  small card rating  dfsd*/}
-            <StarRating rating={rating} />
-
-            {/* rating end  small card rating */}
-
-            <strong className="text-red-regular font-bold">
-              $86.33
-              <del className="text-gray-400 pl-2 font-semibold">$100</del>
-            </strong>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );

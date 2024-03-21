@@ -14,5 +14,7 @@ export const baseApi = createApi({
     "printingRequests",
     "onlineOrders",
     "review",
+    "dealOfTheDay",
+    "bestDeals",
   ],
 });

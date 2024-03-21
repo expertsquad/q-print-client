@@ -1,26 +1,22 @@
 "use client";
 import GradientUploadIcon from "@/assets/svgIcons/GradientUploadIcon";
 import { useGetPrintingRequestsQuery } from "@/redux/features/printing-request/printing-requestSlice";
+import { IconPlus } from "@tabler/icons-react";
+import { IconMinus } from "@tabler/icons-react";
 import Link from "next/link";
 
 const PrintingRequest = () => {
-  const paper = {
-    typeOfPaper: [
-      "Inkjet printer paper",
-      "Laser Printer paper",
-      "Matte paper",
-      "Glossy paper",
-      "Card stock paper",
-      "Bond & Label paper",
-    ],
-  };
-
   const { data, isError } = useGetPrintingRequestsQuery(undefined);
 
   // <== Set printing data in a variable ==>
   const printingRequest = data?.data?.map((data: any) => {
     return data;
   });
+
+  // <== Get Paper Size Type ==>
+  // const getTypeOfPaper = printingRequest?.map((data: any) => {
+  //   return data;
+  // });
 
   return (
     <section className="lg:max-w-[1280px] w-full mx-auto">
@@ -42,15 +38,11 @@ const PrintingRequest = () => {
           <div className=" border rounded-lg p-7 ">
             {/* Printing Paper size (Feet) */}
             <div>
-              <h4 className="text-lg mb-3">Printing Paper size (Feet)</h4>
+              <h4 className="text-lg mb-3">Printing Paper size ( Feet )</h4>
               <div className="mb-7 flex flex-wrap gap-6 ">
                 {printingRequest?.map((item: any, index: number) => (
                   <div
                     key={index}
-                    // style={{
-                    //   width: `${item.paperSize.width}px`,
-                    //   height: `${item.paperSize.height}px`,
-                    // }}
                     className={`hover:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)] border hover:border-fuchsia-700 flex items-center justify-center rounded-lg cursor-pointer w-[100px] h-[150px]`}
                   >
                     {item?.paperSize?.width} x {item?.paperSize?.height}
@@ -161,7 +153,18 @@ const PrintingRequest = () => {
             <div className=" border-y ">
               <div className="flex justify-between items-center px-5 py-4   ">
                 <small className="text-base text-gray-500">Item of print</small>{" "}
-                <p className="text-base text-gray-700">Coming</p>
+                {/* <p className="text-base text-gray-700">Coming</p> */}
+                <div className="flex items-center gap-2">
+                  <button className="border border-fuchsia-800 p-1 rounded-full text-black text-opacity-70 ">
+                    {""}
+                    <IconMinus stroke={3} width={13} height={13} />
+                  </button>
+                  <span>0</span>
+                  <button className="border border-fuchsia-800 p-1 rounded-full text-black text-opacity-70 ">
+                    {""}
+                    <IconPlus stroke={3} width={13} height={13} />
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -192,7 +195,7 @@ const PrintingRequest = () => {
             <div className="flex justify-center items-center px-5 py-4   ">
               <Link
                 href="/printing-request/your-information"
-                className="bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white  shadow-sm hover:duration-500 hover:shadow-lg text-center cursor-wait"
+                className="bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white  shadow-sm hover:duration-500 hover:shadow-lg text-center"
               >
                 Place Order
               </Link>

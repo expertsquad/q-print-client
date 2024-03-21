@@ -63,7 +63,7 @@ const ProductCard = ({ product }: any) => {
             <strong> {product?.defaultVariant?.discountedPrice}</strong> QAR
           </h4>
           <del className="text-md text text-gray-500 [font-size:_clamp(0.5em,4vw,0.8em)] ">
-            {product?.defaultVariant?.sellingPrice} QAR
+            {product?.variants[0]?.sellingPrice} QAR
           </del>
         </div>
 

@@ -88,13 +88,13 @@ const YourInformation = () => {
                         )}
                       </div>
                       <span className="ml-2 font-bold ">Create an account</span>
-                      <input
+                      {/* <input
                         type="radio"
                         value="select"
                         checked={selectedOption === "select"}
                         onChange={() => {}} // This prevents default radio button behavior
                         className="hidden"
-                      />
+                      /> */}
                     </label>
                   </div>
                 </form>
