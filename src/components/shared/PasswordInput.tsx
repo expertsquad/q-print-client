@@ -41,9 +41,9 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
         className="absolute top-6 right-0 flex items-center px-3 text-gray-500"
       >
         {showPassword ? (
-          <IconEye width={24} height={24} /> // Replace with your eye icon component
+          <IconEye width={24} height={24} />
         ) : (
-          <IconEyeOff width={24} height={24} /> // Replace with your eye-off icon component
+          <IconEyeOff width={24} height={24} />
         )}
       </button>
     </div>

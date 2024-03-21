@@ -3,46 +3,47 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import ShopNowButton from "../UI/btn/ShopNowButton";
+import { imageUrl } from "@/constants/imageUrl";
 
 interface HeroItem {
   _id: string;
   company: string;
   about: string;
   picture: string;
+  sliderTag: string;
 }
 
-const HeroItemSlide: React.FC = () => {
+const HeroItemSlide = ({ firstSlider, secondSlider, thirdSlider }: any) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
   const heroItems: HeroItem[] = [
     {
-      _id: "1",
-      company: "New Colection",
-      about:
-        "Save up to 50% on select Xbox games. Get 3 months of PC Game Pass for $2 USD. ",
-      picture:
-        "https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png",
+      _id: firstSlider?._id,
+      sliderTag: firstSlider?.sliderTag,
+      company: firstSlider?.title,
+      about: firstSlider?.title,
+      picture: firstSlider?.productPhoto,
     },
     {
-      _id: "2",
-      company: "Get Best Deals",
-      about: "Get the best deals here is will coming some description",
-      picture:
-        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
+      _id: secondSlider?._id,
+      sliderTag: secondSlider?.sliderTag,
+      company: secondSlider?.title,
+      about: secondSlider?.title,
+      picture: secondSlider?.productPhoto,
     },
     {
-      _id: "3",
-      company: "New Arrived",
-      about: "New product arrived deals here is will coming some description",
-      picture:
-        "https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png",
+      _id: thirdSlider?._id,
+      sliderTag: thirdSlider?.sliderTag,
+      company: thirdSlider?.title,
+      about: thirdSlider?.title,
+      picture: thirdSlider?.productPhoto,
     },
   ];
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % heroItems.length);
-    }, 7000);
+    }, 3000);
 
     return () => clearInterval(intervalId);
   }, [heroItems.length]);
@@ -67,7 +68,7 @@ const HeroItemSlide: React.FC = () => {
           <div className="flex items-center gap-5 justify-between lg:px-9 md:px-6 px-4 py-4 h-full w-full">
             <div className="flex flex-col w-6/12  ">
               <h3 className="font-bold main-text-color [font-size:_clamp(0.5em,60vw,0.9em)] animate-bounce">
-                -- THE BEST PLACE TO PLAY
+                {item?.sliderTag}
               </h3>
               <h2
                 className={` lg:text-4xl md:text-lg text-lg font-bold leading-0 line-clamp-2    `}
@@ -101,7 +102,7 @@ const HeroItemSlide: React.FC = () => {
 
             <div className=" ">
               <Image
-                src={item.picture}
+                src={`${imageUrl}${item.picture}`}
                 alt="hero item images"
                 width={260}
                 height={260}

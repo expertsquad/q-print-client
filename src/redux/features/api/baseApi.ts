@@ -16,5 +16,6 @@ export const baseApi = createApi({
     "review",
     "dealOfTheDay",
     "bestDeals",
+    "hero-slider",
   ],
 });
