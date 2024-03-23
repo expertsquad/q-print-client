@@ -2,6 +2,7 @@
 import { imageUrl } from "@/constants/imageUrl";
 import { useGetOnlineOrderQuery } from "@/redux/features/online-order/online-orderApi";
 import Image from "next/image";
+import OrderTrackButton from "./OrderTrackButton";
 
 const OrderHistoryShippingLayout = () => {
   // <== Get data from order history query ==>
@@ -12,9 +13,9 @@ const OrderHistoryShippingLayout = () => {
       {data?.data?.map((shippingData: any) => (
         <div key={shippingData?._id}>
           {/* == Basic Information == */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-baseline justify-between pb-3.5 md:pb-7 border-b mb-3.5 md:mb-7">
             <div className="flex flex-col">
-              <span className="font-semibold text-sm md:text-lg">
+              <span className="font-semibold text-xs md:text-base">
                 Order Id: {shippingData?.orderId}
               </span>
               <span className="text-black-opacity-60 text-sm">
@@ -30,27 +31,52 @@ const OrderHistoryShippingLayout = () => {
             {shippingData?.orderItems?.map((product: any) => (
               <div
                 key={product?._id}
-                className="flex items-center justify-between"
+                className="flex items-center md:justify-between mb-3.5 md:mb-7"
               >
-                <div className="w-[60px] h-[60px] relative">
-                  <Image
-                    src={`${imageUrl}${product?.productPhotos[0]}`}
-                    fill
-                    objectFit="cover"
-                    alt="Product Photo"
-                    className="w-full h-full top-0 left-0 object-cover p-1.5 border rounded-md"
-                  />
+                <div className="">
+                  <div className="w-[60px] h-[60px] relative mr-2.5 md:mr-5">
+                    <Image
+                      src={`${imageUrl}${product?.productPhotos[0]}`}
+                      fill
+                      objectFit="cover"
+                      alt="Product Photo"
+                      className="w-full h-full top-0 left-0 object-cover p-1.5 border rounded-md"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <span>{product?.productName}</span>
-                  <span>{product?.brand?.brandName}</span>
+                <div className="flex flex-col w-full md:w-auto">
+                  <span className="font-semibold text-sm md:text-base line-clamp-1 md:line-clamp-2">
+                    {product?.productName}
+                  </span>
+                  <span className="text-black-opacity-70 text-xs md:text-sm">
+                    {product?.brand?.brandName}
+                  </span>
+                  <div className="flex justify-between items-center md:hidden w-full">
+                    <div className="">
+                      <span className="font-medium text-sm md:text-lg text-black-opacity-80">
+                        {product?.orderQuantity}
+                      </span>
+                      x
+                      <span className="font-medium text-sm md:text-lgtext-black-opacity-80">
+                        {product?.variant?.sellingPrice}
+                      </span>
+                      <small className="text-sm">QAR</small>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="font-semibold text-sm md:text-lgtext-black-opacity-80">
+                        {product?.orderQuantity *
+                          product?.variant?.sellingPrice}
+                      </span>
+                      <small className="text-sm">QAR</small>
+                    </div>
+                  </div>
                 </div>
-                <div>
+                <div className=" hidden md:block">
                   <span>{product?.orderQuantity}</span>X
                   <span>{product?.variant?.sellingPrice}</span>
                   <small>QAR</small>
                 </div>
-                <div>
+                <div className="hidden md:flex items-center gap-1 justify-end">
                   <span>
                     {product?.orderQuantity * product?.variant?.sellingPrice}
                   </span>
@@ -60,14 +86,17 @@ const OrderHistoryShippingLayout = () => {
             ))}
           </div>
           {/* == Summary == */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between border-t border-dashed pt-3.5 md:pt-6">
             <div>
-              <span>{shippingData?.orderItems?.length} Items,</span>
-              <span>Total: {shippingData?.totalPrice} QAR</span>
+              <span className="md:text-base text-sm">
+                {shippingData?.orderItems?.length} Items,
+              </span>
+              <span className="text-sm md:text-base">
+                Total: <b className="font-bold">{shippingData?.totalPrice}</b>
+                QAR
+              </span>
             </div>
-            <button>
-              <span>Track Order</span>
-            </button>
+            <OrderTrackButton />
           </div>
         </div>
       ))}

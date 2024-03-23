@@ -1,3 +1,4 @@
+import OrderHistoryDeliveredLayout from "@/components/Profile/OrderHistoryDeliveredLayout";
 import OrderHistoryOrderPlacedLayout from "@/components/Profile/OrderHistoryOrderPlacedLayout";
 import OrderHistoryPackagingLayout from "@/components/Profile/OrderHistoryPackagingLayout";
 import OrderHistoryShippingLayout from "@/components/Profile/OrderHistoryShippingLayout";
@@ -33,10 +34,11 @@ const OrderHistory = () => {
           </span>
         </div>
       </div>
-      <ProfileOrderHistory />
+      {/* <ProfileOrderHistory /> */}
       <OrderHistoryOrderPlacedLayout />
       <OrderHistoryPackagingLayout />
       <OrderHistoryShippingLayout />
+      <OrderHistoryDeliveredLayout />
     </div>
   );
 };
