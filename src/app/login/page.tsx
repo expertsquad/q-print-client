@@ -76,11 +76,9 @@ const Login = () => {
               </Link>
             </div>
             <div></div>
-            <ButtonPrimary
-              buttonText="Log In"
-              type="submit"
-              className="w-full"
-            />
+            <button className="main-bg-color text-white w-full py-3 rounded-lg">
+              Create New Account
+            </button>
             <div className="flex items-center justify-start gap-2">
               <input
                 type="checkbox"
