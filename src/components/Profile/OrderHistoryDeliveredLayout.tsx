@@ -19,7 +19,7 @@ const OrderHistoryDeliveredLayout = () => {
       }`}
     >
       {data?.data?.map((deliveredData: any) => (
-        <div key={deliveredData?._id} className={`mb-5 border p-2`}>
+        <div key={deliveredData?._id} className={`mb-5 border rounded-md p-2`}>
           {/* == Basic Information == */}
           <div className="flex items-baseline justify-between pb-3.5 md:pb-7 border-b mb-3.5 md:mb-7">
             <div className="flex flex-col">

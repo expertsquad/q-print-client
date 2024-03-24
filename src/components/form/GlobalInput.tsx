@@ -12,6 +12,7 @@ interface GlobalInputProps {
   disabled?: boolean;
   name: string;
   value?: string;
+  onChange?: (e: any) => void;
 }
 
 const GlobalInput = ({
@@ -24,6 +25,7 @@ const GlobalInput = ({
   disabled,
   name,
   value,
+  onChange,
 }: GlobalInputProps) => {
   const { control } = useFormContext();
 
@@ -59,6 +61,7 @@ const GlobalInput = ({
                 className={`${className} border py-3 px-3.5 bg-transparent outline-none rounded-custom-5px active:border-fuchsia-800 focus:border-fuchsia-800 `}
                 disabled={disabled}
                 value={value ? value : field?.value}
+                onChange={onChange}
               />
             );
           }
