@@ -45,7 +45,7 @@ const PersonalInformation = ({ personalInformation }: any) => {
               name="user_email"
               id="user_email"
               className="border outline-none block w-full py-3.5 rounded-md px-4 text-gray-300"
-              defaultValue="dianne.russell@gmail.com"
+              defaultValue={personalInformation?.email}
               readOnly
             />
           </div>

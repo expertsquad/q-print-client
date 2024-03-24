@@ -25,13 +25,13 @@ const MyProfileCard = () => {
   };
 
   // <== Get data from user me ==>
-  const { data, isError, isLoading } = useGetUserQuery(undefined);
-  console.log(data, "profile data");
+  const { data, isError, isLoading } = useGetUserQuery("");
+  console.log(data?.data, "profile data");
   // <== Get Order Data by Online Order Query ==>
-  const onlineOrderData = useGetOnlineOrderQuery(undefined).data;
+  const onlineOrderData = useGetOnlineOrderQuery("").data;
 
   // <== Get review data by review Query ==>
-  const reviewData = useGetReviewQuery(undefined).data;
+  const reviewData = useGetReviewQuery("").data;
 
   return (
     <div className="border w-full p-10 rounded-lg ">
@@ -42,7 +42,7 @@ const MyProfileCard = () => {
             <div>
               <div className="relative">
                 <Image
-                  src={`${imageUrl}${data?.data?.profilePhoto}`}
+                  src={`${imageUrl}${data?.profilePhoto}`}
                   alt="My profile image"
                   height={100}
                   width={100}

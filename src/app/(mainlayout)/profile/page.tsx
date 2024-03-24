@@ -1,4 +1,5 @@
 import MyProfileCard from "@/components/Profile/MyProfileCard";
+import OrderHistoryDeliveredLayout from "@/components/Profile/OrderHistoryDeliveredLayout";
 import OrderHistoryOrderPlacedLayout from "@/components/Profile/OrderHistoryOrderPlacedLayout";
 import OrderHistoryPackagingLayout from "@/components/Profile/OrderHistoryPackagingLayout";
 import OrderHistoryShippingLayout from "@/components/Profile/OrderHistoryShippingLayout";
@@ -15,6 +16,7 @@ const Profile = () => {
         <OrderHistoryOrderPlacedLayout />
         <OrderHistoryPackagingLayout />
         <OrderHistoryShippingLayout />
+        <OrderHistoryDeliveredLayout />
       </div>
     </div>
   );

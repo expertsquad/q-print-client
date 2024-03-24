@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import GlobalModal from "../UI/modal/GlobalModal";
 import { IconArrowLeft, IconX } from "@tabler/icons-react";
 import Image from "next/image";
+import { useAddReviewMutation } from "@/redux/features/review/reviewApi";
+import { useAppSelector } from "@/redux/hook";
 
 const ProductReviewModal = () => {
   const [showModal, setShowModal] = useState(false);
@@ -29,12 +31,31 @@ const ProductReviewModal = () => {
     },
   ];
 
+  // <== Handle Add Review ==>
+  const [addReview] = useAddReviewMutation();
+  const { orderId, productId, rating, comment, reviewPhotos } = useAppSelector(
+    (state) => state.addReview
+  );
+
+  // = Functionality =
+  const handleAddReviewSubmit = async (e: any) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("orderId", orderId);
+    formData.append("productId", productId);
+    formData.append("rating", rating ? rating.toString() : "");
+    formData.append("comment", comment);
+    if (reviewPhotos instanceof File || reviewPhotos instanceof Blob) {
+      formData.append("reviewPhotos", reviewPhotos);
+    }
+  };
+
   return (
     <>
       <div>
         <button
           onClick={() => setShowModal(true)}
-          className="border border-[#F2F2F2] rounded-full p-2.5 text-black text-opacity-50"
+          className="border border-fuchsia-800 rounded-md py-1 px-2 md:px-3.5 main-text-color text-xs md:text-base"
         >
           Review
           {""}

@@ -1,5 +1,4 @@
 const ProfileViewPersonalInformation = ({ personalInformation }: any) => {
-  console.log(personalInformation, "personalInformation");
   return (
     <div className="border rounded-lg lg:p-8 p-2.5">
       <h1 className="lg:text-xl text-base text-black  mb-5">
@@ -10,18 +9,18 @@ const ProfileViewPersonalInformation = ({ personalInformation }: any) => {
         <div className="flex flex-col justify-start gap-4 ">
           <small className="text-gray-400 text-base"> First Name</small>
           <p className="text-base text-black">
-            {personalInformation?.firstName}
+            {personalInformation?.fullName}
           </p>
         </div>
         <div className="flex flex-col justify-start gap-4 ">
           <small className="text-gray-400 text-base"> Last Name</small>
           <p className="text-base text-black">
-            {personalInformation?.lastName}
+            {personalInformation?.fullName}
           </p>
         </div>
         <div className="flex flex-col justify-start gap-4 ">
           <small className="text-gray-400 text-base"> Email</small>
-          <p className="text-base text-black">zayedhossain120@gmail.com</p>
+          <p className="text-base text-black">{personalInformation?.email}</p>
         </div>
         <div className="flex flex-col justify-start gap-4 ">
           <small className="text-gray-400 text-base"> Phone Number</small>

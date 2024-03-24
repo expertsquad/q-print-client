@@ -3,23 +3,29 @@ import ProfileViewPersonalInformation from "@/components/Profile/ProfileViewPers
 import ProfileViewShippingInfo from "@/components/Profile/ProfileViewShippingInfo";
 import ViewProfilleEdit from "@/components/Profile/ViewProfilleEdit";
 import {
-  useGetUserLoggedQuery,
+  useGetUserAddressQuery,
   useGetUserQuery,
 } from "@/redux/features/user/user";
 
 const ViewProfile = () => {
   // <== Get User Personal Information ==>
-  const { data, isError, isLoading } = useGetUserQuery(undefined);
+  const { data: personalInformation } = useGetUserQuery("");
 
   // <== Get User Address ==>
-  const { data: address } = useGetUserLoggedQuery("isDefault=true");
-  console.log(address, "address");
+  const { data: shippingInformation } =
+    useGetUserAddressQuery("isDefault=true");
+
+  console.log(shippingInformation?.data, "isDefault=true");
 
   return (
     <section className=" w-full flex flex-col gap-7 mb-7">
-      <ViewProfilleEdit profileInfo={data?.data} />
-      <ProfileViewPersonalInformation personalInformation={address?.data[0]} />
-      <ProfileViewShippingInfo shippingInformation={address?.data[0]} />
+      <ViewProfilleEdit profileInfo={personalInformation?.data} />
+      <ProfileViewPersonalInformation
+        personalInformation={personalInformation?.data}
+      />
+      <ProfileViewShippingInfo
+        shippingInformation={shippingInformation?.data}
+      />
     </section>
   );
 };

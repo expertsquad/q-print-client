@@ -29,12 +29,13 @@ export const authApi = baseApi.injectEndpoints({
       providesTags: ["user"],
     }),
     // <== Get User logged data ==>
-    getUserLogged: build.query({
+    getUserAddress: build.query({
       query: (data) => ({
-        url: `/user-address/me?${data}`,
+        url: `user-address/me?${data}`,
         method: "GET",
+        data,
       }),
-      providesTags: ["user"],
+      providesTags: ["address"],
     }),
   }),
 });
@@ -43,5 +44,5 @@ export const {
   useUserLoginMutation,
   useUserSignUpMutation,
   useGetUserQuery,
-  useGetUserLoggedQuery,
+  useGetUserAddressQuery,
 } = authApi;
