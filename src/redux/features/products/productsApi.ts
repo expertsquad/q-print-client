@@ -17,8 +17,8 @@ export const productsApi = baseApi.injectEndpoints({
     }),
     // <== Get Product By Id ==>
     getProductById: build.query({
-      query: (productId) => ({
-        url: `/product/${productId}`,
+      query: (data) => ({
+        url: `/product/${data}`,
         method: "GET",
       }),
     }),

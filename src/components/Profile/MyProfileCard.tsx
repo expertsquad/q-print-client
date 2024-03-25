@@ -26,7 +26,7 @@ const MyProfileCard = () => {
 
   // <== Get data from user me ==>
   const { data, isError, isLoading } = useGetUserQuery("");
-  console.log(data?.data, "profile data");
+
   // <== Get Order Data by Online Order Query ==>
   const onlineOrderData = useGetOnlineOrderQuery("").data;
 

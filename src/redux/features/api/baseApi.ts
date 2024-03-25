@@ -18,5 +18,6 @@ export const baseApi = createApi({
     "bestDeals",
     "hero-slider",
     "address",
+    "singleOnlineOrder",
   ],
 });

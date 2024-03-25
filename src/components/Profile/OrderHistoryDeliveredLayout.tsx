@@ -10,6 +10,8 @@ const OrderHistoryDeliveredLayout = () => {
   // <== Get data from order history query ==>
   const { data } = useGetOnlineOrderQuery("orderStatus.status=Delivered");
 
+  console.log(data?.data, "data");
+
   return (
     <div
       className={`${
@@ -87,7 +89,10 @@ const OrderHistoryDeliveredLayout = () => {
                 </span>
                 <small>QAR</small>
               </div>
-              <ProductReviewModal />
+              <ProductReviewModal
+                orderId={deliveredData?._id}
+                productId={product?._id}
+              />
             </div>
           ))}
           {/* == Summary == */}

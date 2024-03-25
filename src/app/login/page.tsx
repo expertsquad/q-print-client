@@ -4,12 +4,12 @@ import logo from "@/assets/logo.svg";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useUserLoginMutation } from "@/redux/features/user/user";
-import Form from "@/components/form/Form";
-import GlobalInput from "@/components/form/GlobalInput";
-import ButtonPrimary from "@/components/shared/ButtonPrimary";
 import { storeUserInfo } from "@/services/auth.service";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { setPassword, setPhoneNumber } from "@/redux/features/user/loginSlice";
+import {
+  setLoginPassword,
+  setLoginPhoneNumber,
+} from "@/redux/features/user/loginSlice";
 import { IconPhone } from "@tabler/icons-react";
 import CustomInput from "@/components/shared/CustomInput";
 import PasswordInput from "@/components/shared/PasswordInput";
@@ -60,11 +60,11 @@ const Login = () => {
               placeholder="Phone Number"
               placeholderIcon={<IconPhone />}
               customClassName="mt-2"
-              onChange={(e) => dispatch(setPhoneNumber(e.target.value))}
+              onChange={(e) => dispatch(setLoginPhoneNumber(e.target.value))}
             />
             <PasswordInput
               name="password"
-              onChange={(e) => dispatch(setPassword(e.target.value))}
+              onChange={(e) => dispatch(setLoginPassword(e.target.value))}
               placeholder="Type Password"
             />
             <div className="flex items-center justify-end">

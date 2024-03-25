@@ -10,8 +10,17 @@ export const onlineOrderApi = baseApi.injectEndpoints({
       }),
       providesTags: ["onlineOrders"],
     }),
+    // <== Get Single Order By Query ==>
+    getOnlineOrderById: build.query({
+      query: (data) => ({
+        url: `/online-order/${data}`,
+        method: "GET",
+      }),
+      providesTags: ["singleOnlineOrder"],
+    }),
   }),
 });
 
 // == Export Method ==
-export const { useGetOnlineOrderQuery } = onlineOrderApi;
+export const { useGetOnlineOrderQuery, useGetOnlineOrderByIdQuery } =
+  onlineOrderApi;

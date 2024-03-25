@@ -1,5 +1,5 @@
 import React from "react";
-import { IconStar, IconStarFilled } from "@tabler/icons-react";
+import { IconStarFilled } from "@tabler/icons-react";
 
 const StarRating = ({ rating }: any) => {
   const maxRating = 5;

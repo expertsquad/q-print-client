@@ -11,14 +11,14 @@ const loginSlice = createSlice({
   name: "login",
   initialState,
   reducers: {
-    setPhoneNumber: (state, action) => {
+    setLoginPhoneNumber: (state, action) => {
       state.phoneNumber = action.payload;
     },
-    setPassword: (state, action) => {
+    setLoginPassword: (state, action) => {
       state.password = action.payload;
     },
   },
 });
 
-export const { setPhoneNumber, setPassword } = loginSlice.actions;
+export const { setLoginPhoneNumber, setLoginPassword } = loginSlice.actions;
 export default loginSlice.reducer;
