@@ -12,7 +12,7 @@ import { useGetOnlineOrderByIdQuery } from "@/redux/features/online-order/online
 
 const OrderDetails = ({ id }: any) => {
   const { data } = useGetOnlineOrderByIdQuery(id);
-  console.log(data?.data, "data logged logged");
+  // console.log(data?.data, "data logged logged");
   return (
     <div className="rounded-xl mb-7">
       {/* ==order-details order-summary order-items== */}

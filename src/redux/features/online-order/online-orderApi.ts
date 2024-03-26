@@ -12,10 +12,12 @@ export const onlineOrderApi = baseApi.injectEndpoints({
     }),
     // <== Get Single Order By Query ==>
     getOnlineOrderById: build.query({
-      query: (id) => ({
-        url: `/online-order/${id}`,
-        method: "GET",
-      }),
+      query: (id) => {
+        return {
+          url: `/online-order/${id}`,
+          method: "GET",
+        };
+      },
       providesTags: ["singleOnlineOrder"],
     }),
   }),

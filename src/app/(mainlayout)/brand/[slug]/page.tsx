@@ -4,7 +4,6 @@ import CategoryLeftSideWidget from "@/components/CategoryViewPage/CategoryLeftSi
 import React from "react";
 
 const BrandViewPage = ({ params }: { params: { slug: string } }) => {
-  console.log(params?.slug?.length, "from Brand Page");
   return (
     <section className="flex gap-5 max-w-[1280px] mx-auto">
       {/* category filter and widget start */}

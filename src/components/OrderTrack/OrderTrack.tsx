@@ -3,12 +3,12 @@ import OrderTrackTop from "./OrderTrackTop";
 import OrderDetails from "./OrderDetails";
 import OrderedStep from "./OrderedStep";
 
-const OrderTrack = ({ params }: any) => {
+const OrderTrack = ({ id }: any) => {
   return (
     <div className="">
-      <OrderTrackTop id={params?.id} />
+      <OrderTrackTop id={id} />
       <OrderedStep />
-      <OrderDetails id={params?.id} />
+      <OrderDetails id={id} />
     </div>
   );
 };
