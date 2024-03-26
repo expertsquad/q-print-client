@@ -5,23 +5,25 @@ import OrderTrackButton from "./OrderTrackButton";
 import Image from "next/image";
 import { imageUrl } from "@/constants/imageUrl";
 import ProductReviewModal from "./ProductReviewModal";
+import { formatDate } from "@/constants/formatDate";
+import { IconX } from "@tabler/icons-react";
 
 const OrderHistoryDeliveredLayout = () => {
   // <== Get data from order history query ==>
   const { data } = useGetOnlineOrderQuery("orderStatus.status=Delivered");
 
-  console.log(data?.data, "data");
+  // const deliveredData = data?.data?.map((data) => {
+  //   return deliveredData;
+  // });
+  // const getId = deliveredData?
 
   return (
-    <div
-      className={`${
-        data?.data?.length > 1
-          ? "border rounded-lg my-5 p-2 md:p-4"
-          : "p-4 md:p-[30px] rounded-lg"
-      }`}
-    >
+    <div>
       {data?.data?.map((deliveredData: any) => (
-        <div key={deliveredData?._id} className={`mb-5 border rounded-md p-2`}>
+        <div
+          key={deliveredData?._id}
+          className={`mb-5 border rounded-md p-4 md:p-[30px]`}
+        >
           {/* == Basic Information == */}
           <div className="flex items-baseline justify-between pb-3.5 md:pb-7 border-b mb-3.5 md:mb-7">
             <div className="flex flex-col">
@@ -29,7 +31,7 @@ const OrderHistoryDeliveredLayout = () => {
                 Order Id: {deliveredData?.orderId}
               </span>
               <span className="text-black-opacity-60 text-sm">
-                {deliveredData?.createdAt}
+                {formatDate(deliveredData?.createdAt)}
               </span>
             </div>
             <span className="text-[#0D9755] bg-[#0D9755] bg-opacity-10 py-1 px-2 rounded-full text-xs md:text-base">
@@ -41,7 +43,7 @@ const OrderHistoryDeliveredLayout = () => {
           {deliveredData?.orderItems?.map((product: any) => (
             <div
               key={product?._id}
-              className="flex items-center md:justify-between mb-3.5 md:mb-7"
+              className="flex md:order-delivered-card-style mb-3.5 md:mb-7"
             >
               <div className="w-[60px] h-[60px] relative mr-2.5 md:mr-5 shrink-0">
                 <Image
@@ -53,7 +55,7 @@ const OrderHistoryDeliveredLayout = () => {
                 />
               </div>
               <div className="flex flex-col w-full md:w-auto">
-                <span className="font-semibold text-sm md:text-base line-clamp-1 md:line-clamp-2">
+                <span className="font-medium text-sm md:text-base line-clamp-1 md:line-clamp-2">
                   {product?.productName}
                 </span>
                 <span className="text-black-opacity-70 text-xs md:text-sm">
@@ -78,8 +80,9 @@ const OrderHistoryDeliveredLayout = () => {
                   </div>
                 </div>
               </div>
-              <div className="hidden md:block">
-                <span>{product?.orderQuantity}</span>X
+              <div className="hidden md:flex items-center gap-0.5">
+                <span>{product?.orderQuantity}</span>
+                <IconX stroke={2} height={15} width={15} />
                 <span>{product?.variant?.sellingPrice}</span>
                 <small>QAR</small>
               </div>
@@ -89,15 +92,17 @@ const OrderHistoryDeliveredLayout = () => {
                 </span>
                 <small>QAR</small>
               </div>
-              <ProductReviewModal
-                orderId={deliveredData?._id}
-                productId={product?._id}
-              />
+              <div className="md:flex items-center justify-end">
+                <ProductReviewModal
+                  orderId={deliveredData?._id}
+                  productId={product?._id}
+                />
+              </div>
             </div>
           ))}
           {/* == Summary == */}
           <div className="flex items-center justify-between border-t border-dashed pt-3.5 md:pt-6">
-            <div>
+            <div className="flex items-center gap-1">
               <span className="md:text-base text-sm">
                 {deliveredData?.orderItems?.length} Items,
               </span>
@@ -106,7 +111,7 @@ const OrderHistoryDeliveredLayout = () => {
                 QAR
               </span>
             </div>
-            <OrderTrackButton />
+            <OrderTrackButton id={deliveredData?._id} />
           </div>
         </div>
       ))}

@@ -3,15 +3,24 @@ import { imageUrl } from "@/constants/imageUrl";
 import { useGetOnlineOrderQuery } from "@/redux/features/online-order/online-orderApi";
 import Image from "next/image";
 import OrderTrackButton from "./OrderTrackButton";
+import { formatDate } from "@/constants/formatDate";
+import { IconX } from "@tabler/icons-react";
 
 const OrderHistoryShippingLayout = () => {
   // <== Get data from order history query ==>
   const { data } = useGetOnlineOrderQuery("orderStatus.status=Shipping");
 
   return (
-    <div className="border p-4 md:p-[30px] rounded-lg">
+    <div>
       {data?.data?.map((shippingData: any) => (
-        <div key={shippingData?._id}>
+        <div
+          key={shippingData?._id}
+          className={`${
+            data?.data?.length > 1
+              ? "mb-5 border rounded-md p-4 md:p-[30px]"
+              : "mb-5 border rounded-md p-4 md:p-[30px]"
+          }`}
+        >
           {/* == Basic Information == */}
           <div className="flex items-baseline justify-between pb-3.5 md:pb-7 border-b mb-3.5 md:mb-7">
             <div className="flex flex-col">
@@ -19,7 +28,7 @@ const OrderHistoryShippingLayout = () => {
                 Order Id: {shippingData?.orderId}
               </span>
               <span className="text-black-opacity-60 text-sm">
-                {shippingData?.createdAt}
+                {formatDate(shippingData?.createdAt)}
               </span>
             </div>
             <span className="text-[#5A8BF2] bg-[#5A8BF2] bg-opacity-10 py-1 px-2 rounded-full text-xs md:text-base">
@@ -31,7 +40,7 @@ const OrderHistoryShippingLayout = () => {
             {shippingData?.orderItems?.map((product: any) => (
               <div
                 key={product?._id}
-                className="flex items-center md:justify-between mb-3.5 md:mb-7"
+                className="flex md:order-packaging-shipped-order-placed-card-style mb-3.5 md:mb-7"
               >
                 <div className="">
                   <div className="w-[60px] h-[60px] relative mr-2.5 md:mr-5">
@@ -45,7 +54,7 @@ const OrderHistoryShippingLayout = () => {
                   </div>
                 </div>
                 <div className="flex flex-col w-full md:w-auto">
-                  <span className="font-semibold text-sm md:text-base line-clamp-1 md:line-clamp-2">
+                  <span className="font-medium text-sm md:text-base line-clamp-1 md:line-clamp-2">
                     {product?.productName}
                   </span>
                   <span className="text-black-opacity-70 text-xs md:text-sm">
@@ -71,8 +80,9 @@ const OrderHistoryShippingLayout = () => {
                     </div>
                   </div>
                 </div>
-                <div className=" hidden md:block">
-                  <span>{product?.orderQuantity}</span>X
+                <div className="hidden md:flex items-center gap-0.5">
+                  <span>{product?.orderQuantity}</span>
+                  <IconX stroke={2} height={15} width={15} />
                   <span>{product?.variant?.sellingPrice}</span>
                   <small>QAR</small>
                 </div>
@@ -96,7 +106,7 @@ const OrderHistoryShippingLayout = () => {
                 QAR
               </span>
             </div>
-            <OrderTrackButton />
+            <OrderTrackButton id={shippingData?._id} />
           </div>
         </div>
       ))}

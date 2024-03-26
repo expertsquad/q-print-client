@@ -1,12 +1,18 @@
+"use client";
+import { useGetOnlineOrderByIdQuery } from "@/redux/features/online-order/online-orderApi";
 import { IconTruckDelivery } from "@tabler/icons-react";
 
-const OrderTrackTop = () => {
+const OrderTrackTop = ({ id }: any) => {
+  // <== Get Online Orders Query ==>
+  const { data } = useGetOnlineOrderByIdQuery(id);
+
+  console.log(data?.data, "data logged logged");
   return (
     <section>
       {/* ===Title and Description=== */}
       <div className="mb-12">
         <h2 className="text-black text-opacity-70 text-xl md:text-3xl font-semibold mb-5">
-          Order ID: {"3354654654526"}
+          Order ID: {data?.data?.buyer?.userId}
         </h2>
         <div className="flex text-wrap flex-wrap mb-7">
           <p className="text-[16px] flex flex-wrap mr-1">

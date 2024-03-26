@@ -7,7 +7,6 @@ import { imageUrl } from "@/constants/imageUrl";
 
 const Hero = () => {
   const { data } = useGetHeroSliderQuery("");
-  console.log(data?.data?.topOffer, "from slider");
 
   // <== Get the right side slider card Top Offer ==>
   const topOffer = data?.data?.topOffer;

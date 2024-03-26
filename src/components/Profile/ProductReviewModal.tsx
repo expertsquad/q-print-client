@@ -16,11 +16,9 @@ const ProductReviewModal = ({
 }: any) => {
   // <== Get Onile Order By Order Id ==>
   const { data: order } = useGetOnlineOrderByIdQuery(reviewOrderId);
-  console.log(order?.data, "Helloddkjfkdjkfdjk");
 
   // <== Get Product By Product Id ==>
   const { data: product } = useGetProductByIdQuery(reviewProductId);
-  console.log(product?.data, "Logged Product");
 
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {

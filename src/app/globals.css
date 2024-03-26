@@ -193,3 +193,32 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+/* <== order-delivered-card-style ==> */
+.order-delivered-card-style {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ccc;
+}
+@media (min-width: 768px) {
+  .md\:order-delivered-card-style {
+    display: grid;
+    grid-template-columns: 0.2fr 2.2fr 0.7fr 0.7fr 0.7fr;
+    align-items: center;
+  }
+}
+/* <== order-packaging-shipped-order-placed-card-style ==> */
+.order-packaging-shipped-order-placed-card-style {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ccc;
+}
+@media (min-width: 768px) {
+  .md\:order-packaging-shipped-order-placed-card-style {
+    display: grid;
+    grid-template-columns: 0.2fr 2.2fr 0.7fr 0.7fr;
+    align-items: center;
+  }
+}

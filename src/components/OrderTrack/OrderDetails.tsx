@@ -1,3 +1,4 @@
+"use client";
 import {
   IconUser,
   IconMapPin,
@@ -7,8 +8,11 @@ import {
   IconTruckDelivery,
 } from "@tabler/icons-react";
 import OrderedItemData from "./OrderedItemData";
+import { useGetOnlineOrderByIdQuery } from "@/redux/features/online-order/online-orderApi";
 
-const OrderDetails = () => {
+const OrderDetails = ({ id }: any) => {
+  const { data } = useGetOnlineOrderByIdQuery(id);
+  console.log(data?.data, "data logged logged");
   return (
     <div className="rounded-xl mb-7">
       {/* ==order-details order-summary order-items== */}

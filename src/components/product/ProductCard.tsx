@@ -41,7 +41,7 @@ const ProductCard = ({ product }: any) => {
   return (
     <div
       onClick={handleViewProduct}
-      className=" border-[1px] hover:border-fuchsia-700 rounded-lg p-5 group shrink-0 "
+      className="border-[1px] hover:border-fuchsia-700 rounded-lg p-5 group shrink-0"
     >
       <div>
         <ProductImageSlide product={product} />
