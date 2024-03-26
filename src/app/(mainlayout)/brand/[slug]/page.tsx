@@ -13,7 +13,7 @@ const BrandViewPage = ({ params }: { params: { slug: string } }) => {
       </div>
 
       {/* product grid view started */}
-      <section>
+      <section className="w-full">
         <CategoryGridProductView />
       </section>
     </section>

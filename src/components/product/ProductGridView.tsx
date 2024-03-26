@@ -8,7 +8,7 @@ const ProductGridView = () => {
   const { data } = useGetProductsQuery("isDefault=true");
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3  gap-4 w-full">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
       {data?.data?.map((product: any, index: any) => (
         <ProductCard key={index} product={product} />
       ))}

@@ -5,10 +5,11 @@ import { useGetCategoryQuery } from "@/redux/features/category/categories";
 
 const ShopByCategory = () => {
   // <== Get Category ==>
-  const { data } = useGetCategoryQuery(undefined);
+  const { data } = useGetCategoryQuery("");
 
   // <== Slice 0-3 for show at home page ==>
   const slicedCategory = data?.data?.slice(0, 3);
+
   return (
     <section className=" lg:mt-20 md:mt-20 mt-8">
       <div>
@@ -21,7 +22,7 @@ const ShopByCategory = () => {
           </h3>
         </div>
         <div className="flex gap-4 justify-between overflow-scroll no-scrollbar ">
-          {data?.data?.map((category: any, index: number) => (
+          {slicedCategory?.map((category: any, index: number) => (
             <ShopCategoryCard key={index} category={category} />
           ))}
         </div>

@@ -11,7 +11,7 @@ const CategoryViewPage = () => {
       </div>
 
       {/* product grid view started */}
-      <section>
+      <section className="w-full">
         <CategoryGridProductView />
       </section>
     </section>
