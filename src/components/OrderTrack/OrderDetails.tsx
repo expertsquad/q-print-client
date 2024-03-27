@@ -1,18 +1,13 @@
 "use client";
-import {
-  IconUser,
-  IconMapPin,
-  IconMail,
-  IconPhone,
-  IconCash,
-  IconTruckDelivery,
-} from "@tabler/icons-react";
 import OrderedItemData from "./OrderedItemData";
 import { useGetOnlineOrderByIdQuery } from "@/redux/features/online-order/online-orderApi";
+import OrderSummaryCard from "./OrderSummaryCard";
+import OrderedUserDetails from "./OrderedUserDetails";
 
 const OrderDetails = ({ id }: any) => {
+  // <== Get Online Orders Query ==>
   const { data } = useGetOnlineOrderByIdQuery(id);
-  // console.log(data?.data, "data logged logged");
+
   return (
     <div className="rounded-xl mb-7">
       {/* ==order-details order-summary order-items== */}
@@ -23,42 +18,7 @@ const OrderDetails = ({ id }: any) => {
             <h5 className="border-b pl-6 py-5 font-medium text-[16px] md:text-[18px]">
               Order Details
             </h5>
-            <ul className="user-details pl-5 py-5">
-              {[
-                {
-                  icon: <IconUser className="text-[#808080]" />,
-                  text: "Virat Kohli",
-                },
-                {
-                  icon: <IconMapPin className="text-[#808080]" />,
-                  text: "Noakhali Chaprashirhat Road No. 13/x, House no. 1320/C, Flat No. 5D",
-                },
-                {
-                  icon: <IconMail className="text-[#808080]" />,
-                  text: "virat@king.gmail.com",
-                },
-                {
-                  icon: <IconPhone className="text-[#808080]" />,
-                  text: "01850711231",
-                },
-                {
-                  icon: <IconCash className="text-[#808080]" />,
-                  text: "Cash on Delivery",
-                },
-                {
-                  icon: <IconTruckDelivery className="text-[#808080]" />,
-                  text: "Outside Dhaka",
-                },
-              ].map(({ icon, text }, index) => (
-                <li
-                  key={index}
-                  className="flex items-center gap-2 text-[16px] md:text-[16px] text-black text-opacity-80 mb-4 text-wrap"
-                >
-                  <span>{icon}</span>
-                  <span>{text}</span>
-                </li>
-              ))}
-            </ul>
+            <OrderedUserDetails details={data?.data?.buyer} />
           </div>
           {/* ==order item data == */}
           <div className="border mt-7 rounded-lg">
@@ -66,48 +26,16 @@ const OrderDetails = ({ id }: any) => {
               Items
             </h5>
             <div>
-              <OrderedItemData />
+              <OrderedItemData
+                orderedItems={data?.data?.orderItems}
+                totalQuantity={data?.data?.totalQuantity}
+                totalPrice={data?.data?.totalPrice}
+              />
             </div>
           </div>
         </div>
         {/* ==order summary== */}
-        <div className="w-full h-full md:max-w-[438px] border rounded-lg">
-          <h5 className="text-[16px] md:text-[18px] font-medium pl-6 py-5 border-b">
-            Order Summary
-          </h5>
-          <ul className="px-5 md:px-7">
-            {[
-              { label: "Sub Total", amount: 1500 },
-              { label: "Shipping", amount: 15 },
-              { label: "Discount", amount: -15, borderBottom: true },
-            ].map(({ label, amount, borderBottom }, index, array) => (
-              <li
-                key={index}
-                className={`flex justify-between mt-5 text-[#5F6C72] ${
-                  borderBottom ? "border-b" : ""
-                } ${
-                  index === array?.length - 1 && amount === -15
-                    ? "main-text-color"
-                    : ""
-                }`}
-              >
-                {label}{" "}
-                <span>
-                  {amount} <small>QAR</small>
-                </span>
-              </li>
-            ))}
-          </ul>
-          <div className="flex justify-between px-5 md:px-7 mt-5 mb-2">
-            <h6 className="font-medium">Total</h6>
-            <span className="text-[18px] font-medium main-text-color">
-              1500.00 <small>QAR</small>
-            </span>
-          </div>
-          <p className="px-5 md:px-7 text-[#5F6C72] mb-5 md:mb-7">
-            6 Item, 3 Package
-          </p>
-        </div>
+        <OrderSummaryCard productInfo={data?.data} />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 "use client";
+import { formatDate } from "@/constants/formatDate";
 import { useGetOnlineOrderByIdQuery } from "@/redux/features/online-order/online-orderApi";
 import { IconTruckDelivery } from "@tabler/icons-react";
 
@@ -6,17 +7,18 @@ const OrderTrackTop = ({ id }: any) => {
   // <== Get Online Orders Query ==>
   const { data } = useGetOnlineOrderByIdQuery(id);
 
-  console.log(data?.data, "data logged logged");
+  // console.log(data?.data, "data logged logged");
   return (
     <section>
       {/* ===Title and Description=== */}
       <div className="mb-12">
         <h2 className="text-black text-opacity-70 text-xl md:text-3xl font-semibold mb-5">
-          Order ID: {data?.data?.buyer?.userId}
+          Order ID: {data?.data?.orderId}
         </h2>
         <div className="flex text-wrap flex-wrap mb-7">
           <p className="text-[16px] flex flex-wrap mr-1">
-            Order Date: <strong className="mx-1">{"Feb 16, 2024"}</strong> |{" "}
+            Order Date:{" "}
+            <span className="mx-1">{formatDate(data?.data?.createdAt)}</span>|
             <span className="flex items-center mx-1 text-[#12B76A]">
               <IconTruckDelivery />
               Estimated Delivery:{" "}
