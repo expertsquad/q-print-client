@@ -15,8 +15,6 @@ const ViewProfile = () => {
   const { data: shippingInformation } =
     useGetUserAddressQuery("isDefault=true");
 
-  console.log(shippingInformation?.data, "isDefault=true");
-
   return (
     <section className=" w-full flex flex-col gap-7 mb-7">
       <ViewProfilleEdit profileInfo={personalInformation?.data} />

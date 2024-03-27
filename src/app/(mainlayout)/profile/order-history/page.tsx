@@ -2,9 +2,6 @@ import OrderHistoryDeliveredLayout from "@/components/Profile/OrderHistoryDelive
 import OrderHistoryOrderPlacedLayout from "@/components/Profile/OrderHistoryOrderPlacedLayout";
 import OrderHistoryPackagingLayout from "@/components/Profile/OrderHistoryPackagingLayout";
 import OrderHistoryShippingLayout from "@/components/Profile/OrderHistoryShippingLayout";
-import ProfileOrderHistory from "@/components/Profile/ProfileOrderHistory";
-
-import React from "react";
 
 const OrderHistory = () => {
   return (

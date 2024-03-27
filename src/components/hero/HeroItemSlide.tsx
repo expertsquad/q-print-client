@@ -60,7 +60,7 @@ const HeroItemSlide = ({ firstSlider, secondSlider, thirdSlider }: any) => {
     <div className="carousel w-full rounded-lg ">
       {heroItems?.map((item, index) => (
         <div
-          key={item._id}
+          key={index}
           id={item._id}
           className="carousel-item w-full bg-[#f3f5f2] h-[320px] md:h-[450px] lg::h-[450px] "
           style={showSlide(index)}

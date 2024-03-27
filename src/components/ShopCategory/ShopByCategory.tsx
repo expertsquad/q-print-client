@@ -1,5 +1,5 @@
 "use client";
-import { shopByCategories } from "@/constants";
+
 import ShopCategoryCard from "./ShopCategoryCard";
 import { useGetCategoryQuery } from "@/redux/features/category/categories";
 
@@ -21,7 +21,7 @@ const ShopByCategory = () => {
             Browser Our Hottest Categories
           </h3>
         </div>
-        <div className="flex gap-4 justify-between overflow-scroll no-scrollbar ">
+        <div className="flex justify-between gap-4 overflow-scroll no-scrollbar ">
           {slicedCategory?.map((category: any, index: number) => (
             <ShopCategoryCard key={index} category={category} />
           ))}

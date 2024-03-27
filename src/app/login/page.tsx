@@ -29,9 +29,9 @@ const Login = () => {
 
     try {
       const res = await userLogin(formData).unwrap();
-      console.log(res);
+      // console.log(res);
       storeUserInfo({ accessToken: res?.data?.accessToken });
-      console.log(res?.data?.accessToken);
+      // console.log(res?.data?.accessToken);
       if (res?.data?.accessToken) {
         router.push("/");
       }

@@ -1,150 +1,22 @@
+"use client";
+import { imageUrl } from "@/constants/imageUrl";
+import { useGetBrandsQuery } from "@/redux/features/brand/brandsApi";
 import Image from "next/image";
 
-interface BrandCarouselProps {
-  // Add any props if needed
-}
-
-const BrandCarousel: React.FC<BrandCarouselProps> = () => {
+const BrandCarousel = () => {
+  const { data } = useGetBrandsQuery("");
   return (
     <div className="logos overflow-hidden mx-auto max-w-[1280px] lg:mt-20 md:mt-20 mt-8">
-      <div className="logos-slide shrink-0 md:w-screen overflow-hidden">
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          sizes="(max-width: 170px) 100vw, 33vw"
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          sizes="(max-width: 170px) 100vw, 33vw"
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          sizes="(max-width: 170px) 100vw, 33vw"
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          sizes="(max-width: 170px) 100vw, 33vw"
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          sizes="(max-width: 170px) 100vw, 33vw"
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          sizes="(max-width: 170px) 100vw, 33vw"
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          sizes="(max-width: 170px) 100vw, 33vw"
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          sizes="(max-width: 170px) 100vw, 33vw"
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          sizes="(max-width: 170px) 100vw, 33vw"
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          sizes="(max-width: 170px) 100vw, 33vw"
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-      </div>
-      <div className="logos-slide shrink-0 md:w-screen overflow-hidden">
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          sizes="(max-width: 170px) 100vw, 33vw"
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          sizes="(max-width: 170px) 100vw, 33vw"
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          sizes="(max-width: 170px) 100vw, 33vw"
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          sizes="(max-width: 170px) 100vw, 33vw"
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-        <Image
-          alt="Brand Carousel"
-          width={170}
-          height={120}
-          src="https://pngimg.com/uploads/nike/nike_PNG16.png"
-        />
-      </div>
+      {data?.data?.map((brand: any, i: number) => (
+        <div className="logos-slide" key={i}>
+          <Image
+            alt="Brand Carousel"
+            width={60}
+            height={60}
+            src={`${imageUrl}${brand?.brandPhoto}`}
+          />
+        </div>
+      ))}
     </div>
   );
 };

@@ -65,7 +65,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         </button>
       </div>
       <div className="mb-5 flex">
-        <ColorPickUp />
+        <ColorPickUp variants={productDesc?.variants} />
       </div>
       <div className="">
         <div className="flex items-center flex-wrap">

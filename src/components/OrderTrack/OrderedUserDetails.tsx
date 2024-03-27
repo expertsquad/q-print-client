@@ -8,7 +8,6 @@ import { IconMapPin, IconUser } from "@tabler/icons-react";
 import React from "react";
 
 const OrderedUserDetails = ({ details }: any) => {
-  console.log(details?.shippingAddress, "details");
   const userAddress = details?.shippingAddress;
   return (
     <ul className="user-details pl-5 py-5">

@@ -19,11 +19,8 @@ const Sidebar = () => {
           </div>
 
           <div className="absolute z-50 w-64 bg-white  rounded-lg shadow-xl hidden group-hover:block">
-            {allCategoriesMenu.map((item) => (
-              <div
-                key={item.categoryName}
-                className="group/item relative cursor-pointer"
-              >
+            {allCategoriesMenu.map((item, index) => (
+              <div key={index} className="group/item relative cursor-pointer">
                 <div className="group flex items-center justify-between my-2 py-1 md:mx-2 hover:bg-gray-200 px-4 ">
                   <div>
                     <span className="menu-hover text-black text-opacity-70 text-sm hover:font-medium">
@@ -37,9 +34,9 @@ const Sidebar = () => {
                 <div
                   className={`absolute bg-white shadow-md rounded-md right-[-148px] top-0 invisible group-hover/item:visible p-2`}
                 >
-                  {item.subcategory.map((subItem) => (
+                  {item.subcategory.map((subItem, index) => (
                     <div
-                      key={subItem.name}
+                      key={index}
                       className="cursor-pointer hover:bg-gray-200"
                     >
                       <div className=" items-center justify-between my-2 py-1  md:mx-2">

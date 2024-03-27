@@ -7,7 +7,6 @@ const OrderTrackTop = ({ id }: any) => {
   // <== Get Online Orders Query ==>
   const { data } = useGetOnlineOrderByIdQuery(id);
 
-  // console.log(data?.data, "data logged logged");
   return (
     <section>
       {/* ===Title and Description=== */}

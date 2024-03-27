@@ -1,13 +1,12 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import defaultImg from "@/assets/images/defaultImg.png";
-import { brands } from "@/constants";
+
 import { useGetBrandsQuery } from "@/redux/features/brand/brandsApi";
 import { imageUrl } from "@/constants/imageUrl";
 
 const BrandsCard = () => {
-  const { data, isLoading, isError } = useGetBrandsQuery(undefined);
+  const { data, isLoading, isError } = useGetBrandsQuery("");
 
   //<== Take the first 10 items from data ==>
   const firstTenData = data?.data?.slice(0, 6);
@@ -23,9 +22,11 @@ const BrandsCard = () => {
               <Image
                 src={`${imageUrl}${brand?.brandPhoto}`}
                 alt="Brand Photo"
-                objectFit="cover"
+                // objectFit="cover"
+
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 fill
-                className="w-full h-full top-0 left-0 object-contain"
+                className="w-full h-full top-0 left-0 object-contain aspect-auto"
               />
             </div>
             <small className="text-base hover:text-[#000] cursor-pointer text-[#00000099]">

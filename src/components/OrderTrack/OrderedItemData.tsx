@@ -8,7 +8,6 @@ import { OrderedItemsTypes } from "@/types/orderTrackPage";
 import { imageUrl } from "@/constants/imageUrl";
 
 const OrderedItemData = ({ orderedItems, totalQuantity, totalPrice }: any) => {
-  console.log(orderedItems);
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);
@@ -92,12 +91,12 @@ const OrderedItemData = ({ orderedItems, totalQuantity, totalPrice }: any) => {
         <div className="md:max-w-[650px] bg-white p-7 rounded-lg">
           {/* //Here is a demo of close modal by icon, that's bellow down */}
 
-          {/* <div className="flex justify-end ">
+          <div className="flex justify-end ">
             <button onClick={handleCloseModal}>
               <IconX />
               {""}
             </button>
-          </div> */}
+          </div>
           <h4 className="text-black text-opacity-80 text-[18px] font-semibold mb-7 md:mb-11 text-center">
             Cancellation Request
           </h4>

@@ -12,11 +12,6 @@ const OrderHistoryDeliveredLayout = () => {
   // <== Get data from order history query ==>
   const { data } = useGetOnlineOrderQuery("orderStatus.status=Delivered");
 
-  // const deliveredData = data?.data?.map((data) => {
-  //   return deliveredData;
-  // });
-  // const getId = deliveredData?
-
   return (
     <div>
       {data?.data?.map((deliveredData: any) => (

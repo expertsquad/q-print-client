@@ -1,5 +1,4 @@
 const ProductSpecification = ({ productSpecification }: any) => {
-  console.log(productSpecification, "productSpecification");
   return (
     <div className="">
       <div className="border rounded-lg w-full">
