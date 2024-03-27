@@ -8,17 +8,17 @@ import {
   IconStar,
 } from "@tabler/icons-react";
 import Image from "next/image";
-import ColorPickUp from "./ColorPickUp";
 import WishlistQuickOrderBTNModal from "../WishlistPageData/WishlistQuickOrderBTNModal";
-import GetDiscountRange from "./GetDiscountRange";
 import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
 import { addToCart, removeOneFromCart } from "@/redux/features/cart/cartSlice";
 import { useAppSelector } from "@/redux/hook";
+import ColorPickUp from "../ProductView/ColorPickUp";
+import GetDiscountRange from "../ProductView/GetDiscountRange";
 
-const ProductViewDescEtc = ({ productDesc }: any) => {
+const QuickViewDescription = ({ productDesc }: any) => {
   const dispatch = useDispatch();
-  const { products } = useAppSelector((state: any) => state.cart);
+  const { products } = useAppSelector((state) => state.cart);
 
   const productQuantity = products?.map((product: any) => {
     return product?.quantity;
@@ -121,7 +121,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         {/* //Quick order & Buy now button*/}
         <div className="mt-5 flex items-center justify-between gap-5">
           <div className="w-full">
-            <WishlistQuickOrderBTNModal id={productDesc?._id} />
+            <WishlistQuickOrderBTNModal />
           </div>
           <button className="flex items-center justify-center gap-2 text-white main-bg-color  py-2 rounded-lg w-full">
             {""}
@@ -134,4 +134,4 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
   );
 };
 
-export default ProductViewDescEtc;
+export default QuickViewDescription;

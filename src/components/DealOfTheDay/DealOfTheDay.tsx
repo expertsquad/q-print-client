@@ -29,10 +29,10 @@ const DealOfTheDay = () => {
             <button className="bg-[#EFD33D] animate-bounce py-1.5 px-3.5 rounded-md font-medium text-black mb-4">
               {firstDeal?.discount}% OFF
             </button>
-            <h2 className="font-semibold [font-size:_clamp(18px,4vw,24px)] mb-4">
+            <h2 className="font-semibold [font-size:_clamp(18px,4vw,24px)] mb-4 line-clamp-2">
               {firstDeal?.title}
             </h2>
-            <p className="mb-4">{firstDeal?.description}</p>
+            <p className="mb-4 line-clamp-2">{firstDeal?.description}</p>
             <Link
               href={`${firstDeal?.link}`}
               className="text-sm flex items-center justify-center gap-2 py-3 w-2/3 rounded-md uppercase main-bg-color text-white transition hover:translate-x-2 delay-150"
@@ -43,12 +43,10 @@ const DealOfTheDay = () => {
               </span>
             </Link>
           </div>
-          <div className="w-[150px] h-[150px] md:w-[260px] md:h-[260px] relative ">
+          <div className="w-[120px] h-[120px] md:w-[260px] md:h-[260px] relative shrink-0">
             <Image
-              // src={`${imageUrl}${firstDeal?.backgroundPhoto}`}
-              src={dealDayTwo}
+              src={`${imageUrl}${firstDeal?.backgroundPhoto}`}
               alt="profile"
-              objectFit="cover"
               fill
               className="w-full h-full top-0 left-0 object-cover"
             />

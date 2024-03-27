@@ -23,7 +23,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           </span>
         }
         activeClasses="main-text-color"
-        containerClasses="flex items-center pb-5"
+        containerClasses="flex items-center flex-wrap pb-5"
         listClasses="mr-2 text-black text-opacity-50 text-[16px]"
         capitalizeLinks
       />

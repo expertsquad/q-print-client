@@ -33,6 +33,11 @@ const MyProfileCard = () => {
   // <== Get review data by review Query ==>
   const reviewData = useGetReviewQuery("").data;
 
+  // <== Get Complete Order Data ==>
+  const { data: completeOrder } = useGetOnlineOrderQuery(
+    "orderStatus.status=Delivered"
+  );
+
   return (
     <div className="border w-full p-10 rounded-lg ">
       {/* Profile image and logout section */}
@@ -111,7 +116,7 @@ const MyProfileCard = () => {
         <div className=" border rounded-lg flex items-center justify-center flex-col p-5 gap-4 text-gray-500 ">
           <CompleteOrdersIcon />
           <p className="whitespace-pre-wrap text-gray-500">Complete Orders</p>
-          <div className="font-bold">45</div>
+          <div className="font-bold">{completeOrder?.data?.length}</div>
         </div>
       </div>
     </div>
