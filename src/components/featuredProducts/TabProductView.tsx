@@ -1,15 +1,31 @@
 "use client";
-
 import React, { useState } from "react";
 import Link from "next/link";
-import ProductGridView from "../product/ProductGridView";
+import { useGetProductsQuery } from "@/redux/features/products/productsApi";
+import ProductCard from "../product/ProductCard";
+import { IProduct } from "@/types/productsType";
 
 const TabProductView = () => {
   const [activeTab, setActiveTab] = useState("topSell");
 
-  const handleTabClick = (tab: any) => {
+  const handleTabClick = (tab: string) => {
     setActiveTab(tab);
   };
+
+  // <== Finding Top Selling Products ==>
+  const { data: topSelling } = useGetProductsQuery(
+    `sortBy=totalSoldQuantity&sortOrder=desc`
+  );
+
+  // <== Finding Popular Products ==>
+  const { data: mostPopular } = useGetProductsQuery(
+    `sortBy=averageRating&sortOrder=desc`
+  );
+
+  // <== Finding New Products ==>
+  const { data: newProduct } = useGetProductsQuery(
+    `sortBy=createdAt&sortOrder=desc`
+  );
 
   return (
     <div className=" mx-auto mt-4 w-full ">
@@ -50,7 +66,14 @@ const TabProductView = () => {
               {" "}
               See all &rarr;
             </Link>
-            <ProductGridView />
+
+            <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-5 ">
+              {topSelling?.data?.map((product: IProduct) => (
+                <div key={product?._id}>
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
           </div>
         )}
         {activeTab === "popular" && (
@@ -62,7 +85,13 @@ const TabProductView = () => {
               {" "}
               See all &rarr;
             </Link>
-            <ProductGridView />
+            <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-5 ">
+              {mostPopular?.data?.map((product: IProduct) => (
+                <div key={product?._id}>
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
           </div>
         )}
         {activeTab === "newest" && (
@@ -74,7 +103,13 @@ const TabProductView = () => {
               {" "}
               See all &rarr;
             </Link>
-            <ProductGridView />
+            <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-5 ">
+              {newProduct?.data?.map((product: IProduct) => (
+                <div key={product?._id}>
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import ProductViewDescEtc from "./ProductViewDescEtc";
 import { imageUrl } from "@/constants/imageUrl";
+import { IProduct } from "@/types/productsType";
 
 const ProductViewImage = ({ product }: any) => {
   const [selectedImage, setSelectedImage] = useState(product?.productPhotos[0]);

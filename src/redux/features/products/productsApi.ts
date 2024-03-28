@@ -1,6 +1,4 @@
-import { getFromLocalStorage } from "@/utils/local-storage";
 import { baseApi } from "../api/baseApi";
-import { authKey } from "@/constants/storageKey";
 
 export const productsApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -9,9 +7,6 @@ export const productsApi = baseApi.injectEndpoints({
       query: (data) => ({
         url: `/product?${data}`,
         method: "GET",
-        headers: {
-          Authorization: `Bearer ${getFromLocalStorage(authKey)}`,
-        },
       }),
       providesTags: ["products"],
     }),

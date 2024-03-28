@@ -7,6 +7,7 @@ import {
   useGetProductByIdQuery,
   useGetProductsQuery,
 } from "@/redux/features/products/productsApi";
+import { IProduct } from "@/types/productsType";
 
 const ProductView = ({ id }: any) => {
   const { data } = useGetProductByIdQuery(id);
@@ -16,7 +17,7 @@ const ProductView = ({ id }: any) => {
   );
 
   const filteredRelatedProducts = relatedData?.data?.filter(
-    (product: any) => product._id !== productdata?._id
+    (product: IProduct) => product._id !== productdata?._id
   );
 
   return (
@@ -39,7 +40,7 @@ const ProductView = ({ id }: any) => {
             "w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-5 "
               `}
         >
-          {filteredRelatedProducts?.map((product: any, index: any) => (
+          {filteredRelatedProducts?.map((product: IProduct, index: any) => (
             <RelatedProduct key={index} product={product} />
           ))}
         </div>

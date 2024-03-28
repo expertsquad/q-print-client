@@ -50,20 +50,19 @@ const ProductCard = ({ product }: any) => {
 
         <StarRating rating={Math.round(product?.averageRating)} />
 
-        {defaultVariant?.sellingPrice || defaultVariant?.discountedPrice ? (
-          <div className="flex items-center justify-start gap-2 my-1 whitespace-nowrap">
-            <h4 className="[font-size:_clamp(0.6em,4vw,1.1em)] main-text-color font-bold">
-              <span>{defaultVariant?.discountedPrice}</span> QAR
-            </h4>
-            <del className="text-md text text-gray-500 [font-size:_clamp(0.5em,4vw,0.8em)] ">
-              {defaultVariant?.sellingPrice} QAR
-            </del>
-          </div>
-        ) : (
+        <div className="flex items-baseline justify-start gap-2 my-1 whitespace-nowrap">
           <h4 className="[font-size:_clamp(0.6em,4vw,1.1em)] main-text-color font-bold">
             <span>{defaultVariant?.sellingPrice}</span> QAR
           </h4>
-        )}
+
+          {defaultVariant?.discountedPrice ? (
+            <del className="text-md text text-gray-500 [font-size:_clamp(0.5em,4vw,0.8em)] ">
+              {defaultVariant?.discountedPrice} QAR
+            </del>
+          ) : (
+            ""
+          )}
+        </div>
 
         <AddToCartButton
           onClick={(event: React.MouseEvent) => handleAddToCart(event, product)}
