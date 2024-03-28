@@ -11,7 +11,7 @@ const ShopByCategory = () => {
   const slicedCategory = data?.data?.slice(0, 3);
 
   return (
-    <section className=" lg:mt-20 md:mt-20 mt-8">
+    <section className="lg:mt-20 md:mt-20 mt-8">
       <div>
         <div className="flex items-center justify-center flex-col mb-6">
           <p className="[font-size:_clamp(0.75em,5vw,1em)] text-gray-500">

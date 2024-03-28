@@ -5,12 +5,10 @@ import React from "react";
 const CategoryViewPage = () => {
   return (
     <section className="flex gap-5 max-w-[1280px] mx-auto">
-      {/* category filter and widget start */}
-      <div className=" hidden md:block   ">
+      <div className="hidden md:block">
         <CategoryLeftSideWidget />
       </div>
 
-      {/* product grid view started */}
       <section className="w-full">
         <CategoryGridProductView />
       </section>

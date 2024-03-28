@@ -19,7 +19,6 @@ import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
 
 const WishlistQuickOrderBTNModal = ({ id }: any) => {
   const { data } = useGetProductByIdQuery(id);
-  console.log(data, "from quick order modal");
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);

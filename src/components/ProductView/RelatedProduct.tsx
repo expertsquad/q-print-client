@@ -1,15 +1,9 @@
-import React from "react";
+import ProductCard from "../product/ProductCard";
 
-const RelatedProduct = () => {
+const RelatedProduct = ({ product }: any) => {
   return (
-    <div className="mb-16">
-      <div className="flex justify-between items-center">
-        <h2 className="text-black text-[17px] md:text-2xl font-semibold">
-          Related Products
-        </h2>
-        <button className="text-[#E73C17]">Show All</button>
-      </div>
-      <h1>Data is loading!!</h1>
+    <div className="">
+      <ProductCard product={product} />
     </div>
   );
 };

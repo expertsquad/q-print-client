@@ -7,17 +7,17 @@ const StarRating = ({ rating }: any) => {
   const emptyStars = maxRating - filledStars;
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center gap-0.5">
       {[...Array(filledStars)].map((_, index) => (
         <IconStarFilled
           key={index}
-          className="text-[#E73C17] md:h-3 md:w-3 lg:h-3 lg:w-3 h-2 w-2"
+          className="text-[#E73C17] w-3.5 h-3.5 md:w-4.5 md:h-4.5"
         />
       ))}
       {[...Array(emptyStars)].map((_, index) => (
         <IconStarFilled
           key={`empty-${index}`}
-          className="text-gray-300 md:h-3 md:w-3 lg:h-3 lg:w-3 h-2 w-2"
+          className="text-gray-300 w-3.5 h-3.5 md:w-4.5 md:h-4.5"
         />
       ))}
     </div>

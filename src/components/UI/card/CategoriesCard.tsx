@@ -15,7 +15,7 @@ interface ICategory {
 
 const CategoriesCard = () => {
   // <== Get Category & SubCategory ==>
-  const { data } = useGetCategoryQuery(undefined);
+  const { data } = useGetCategoryQuery("");
 
   return (
     <ul className="menu rounded-box shadow-md mt-5 ">

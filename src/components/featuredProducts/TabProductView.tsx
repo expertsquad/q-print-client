@@ -28,7 +28,7 @@ const TabProductView = () => {
           }`}
           onClick={() => handleTabClick("popular")}
         >
-          POPULAE
+          POPULAR
         </button>
         <button
           className={`px-6 py-2 rounded-full ${

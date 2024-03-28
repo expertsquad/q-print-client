@@ -8,6 +8,8 @@ import { imageUrl } from "@/constants/imageUrl";
 const Hero = () => {
   const { data } = useGetHeroSliderQuery("");
 
+  const sliderArray = Object.values(data?.data?.slider || {});
+
   // <== Get the right side slider card Top Offer ==>
   const topOffer = data?.data?.topOffer;
 
@@ -18,11 +20,7 @@ const Hero = () => {
     <section className="flex w-full md:flex-row lg:flex-row flex-col gap-7">
       <div className="md:w-8/12 lg:w-8/12 w-full">
         {/* === Left side slider with three nested section === */}
-        <HeroItemSlide
-          firstSlider={data?.data?.slider?.firstSlider}
-          secondSlider={data?.data?.slider?.secondSlider}
-          thirdSlider={data?.data?.slider?.thirdSlider}
-        />
+        <HeroItemSlide sliderArray={sliderArray} />
       </div>
       {/* === Right side slider === */}
       <div className="flex flex-col gap-4  h-full md:h-auto lg:h-auto rounded-lg">

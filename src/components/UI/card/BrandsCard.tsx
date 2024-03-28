@@ -6,7 +6,7 @@ import { useGetBrandsQuery } from "@/redux/features/brand/brandsApi";
 import { imageUrl } from "@/constants/imageUrl";
 
 const BrandsCard = () => {
-  const { data, isLoading, isError } = useGetBrandsQuery("");
+  const { data } = useGetBrandsQuery("");
 
   //<== Take the first 10 items from data ==>
   const firstTenData = data?.data?.slice(0, 6);
@@ -22,8 +22,6 @@ const BrandsCard = () => {
               <Image
                 src={`${imageUrl}${brand?.brandPhoto}`}
                 alt="Brand Photo"
-                // objectFit="cover"
-
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 fill
                 className="w-full h-full top-0 left-0 object-contain aspect-auto"

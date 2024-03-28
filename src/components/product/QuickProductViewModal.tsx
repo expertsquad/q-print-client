@@ -8,7 +8,7 @@ import QuickViewDescription from "./QuickViewDescription";
 
 const QuickProductViewModal = ({ handleCloseModal, showModal, id }: any) => {
   const { data } = useGetProductByIdQuery(id);
-  console.log(data?.data, "quick product view modal");
+
   return (
     <div>
       <GlobalModal

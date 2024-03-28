@@ -13,40 +13,40 @@ interface HeroItem {
   sliderTag: string;
 }
 
-const HeroItemSlide = ({ firstSlider, secondSlider, thirdSlider }: any) => {
+const HeroItemSlide = ({ sliderArray }: any) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
-  const heroItems: HeroItem[] = [
-    {
-      _id: firstSlider?._id,
-      sliderTag: firstSlider?.sliderTag,
-      company: firstSlider?.title,
-      about: firstSlider?.title,
-      picture: firstSlider?.productPhoto,
-    },
-    {
-      _id: secondSlider?._id,
-      sliderTag: secondSlider?.sliderTag,
-      company: secondSlider?.title,
-      about: secondSlider?.title,
-      picture: secondSlider?.productPhoto,
-    },
-    {
-      _id: thirdSlider?._id,
-      sliderTag: thirdSlider?.sliderTag,
-      company: thirdSlider?.title,
-      about: thirdSlider?.title,
-      picture: thirdSlider?.productPhoto,
-    },
-  ];
+  // const heroItems: HeroItem[] = [
+  //   {
+  //     _id: firstSlider?._id,
+  //     sliderTag: firstSlider?.sliderTag,
+  //     company: firstSlider?.title,
+  //     about: firstSlider?.title,
+  //     picture: firstSlider?.productPhoto,
+  //   },
+  //   {
+  //     _id: secondSlider?._id,
+  //     sliderTag: secondSlider?.sliderTag,
+  //     company: secondSlider?.title,
+  //     about: secondSlider?.title,
+  //     picture: secondSlider?.productPhoto,
+  //   },
+  //   {
+  //     _id: thirdSlider?._id,
+  //     sliderTag: thirdSlider?.sliderTag,
+  //     company: thirdSlider?.title,
+  //     about: thirdSlider?.title,
+  //     picture: thirdSlider?.productPhoto,
+  //   },
+  // ];
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % heroItems.length);
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % sliderArray.length);
     }, 3000);
 
     return () => clearInterval(intervalId);
-  }, [heroItems.length]);
+  }, [sliderArray.length]);
 
   const showSlide = (index: number) => {
     return { display: index === currentSlide ? "block" : "none" };
@@ -58,7 +58,7 @@ const HeroItemSlide = ({ firstSlider, secondSlider, thirdSlider }: any) => {
 
   return (
     <div className="carousel w-full rounded-lg ">
-      {heroItems?.map((item, index) => (
+      {sliderArray?.map((item: any, index: any) => (
         <div
           key={index}
           id={item._id}
@@ -71,22 +71,22 @@ const HeroItemSlide = ({ firstSlider, secondSlider, thirdSlider }: any) => {
                 {item?.sliderTag}
               </h3>
               <h2
-                className={` lg:text-4xl md:text-lg text-lg font-bold leading-0 line-clamp-2    `}
+                className={` lg:text-4xl md:text-lg text-lg font-bold leading-0 line-clamp-2`}
               >
-                {item.company}
+                {item.title}
               </h2>
               <p
                 className={`[font-size:_clamp(0.85em,5vw,1em)] text-gray-500 line-clamp-2 `}
               >
-                {item.about}
+                {item.description}
               </p>
 
               <div className="mt-4">
-                <ShopNowButton href="#" />
+                <ShopNowButton href={item?.link} />
               </div>
 
               <div className="indicators  gap-2 flex mt-8 ">
-                {heroItems?.map((_, index) => (
+                {sliderArray?.map((_: any, index: number) => (
                   <div
                     key={index}
                     onClick={() => handleDotClick(index)}
@@ -97,16 +97,13 @@ const HeroItemSlide = ({ firstSlider, secondSlider, thirdSlider }: any) => {
                 ))}
               </div>
             </div>
-
-            {/* hero img */}
-
-            <div className=" ">
+            <div className="relative shrink-0 w-[250px] h-[100px]">
               <Image
-                src={`${imageUrl}${item.picture}`}
+                src={`${imageUrl}${item?.productPhoto}`}
                 alt="hero item images"
-                width={260}
-                height={260}
-                className=" "
+                layout="fill"
+                sizes="(max-width: 768px) 30vw, (max-width: 1200px) 50vw, 33vw"
+                className="w-full h-full top-0 left-0 object-contain"
               />
             </div>
           </div>

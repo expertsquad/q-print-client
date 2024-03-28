@@ -2,6 +2,7 @@ import React from "react";
 import ProductGridView from "../product/ProductGridView";
 import FilterButton from "../UI/btn/FilterButton";
 import MostPopularSelectOption from "../UI/card/MostPopularSelectOption";
+import ProductCard from "../product/ProductCard";
 
 const CategoryGridProductView = () => {
   return (

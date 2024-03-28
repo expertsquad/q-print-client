@@ -26,6 +26,12 @@ const WishlistAndCart = () => {
   const { products } = useAppSelector((state) => state.favourite);
   const dispatch = useAppDispatch();
 
+  const defaultVariant = products?.map((product: any) => {
+    return product.variants?.find((variant: any) => variant.isDefault === true);
+  });
+
+  // console.log(defaultVariant, "from product card");
+
   return (
     <div>
       <div className="drawer drawer-end overscroll-none ">
@@ -86,7 +92,7 @@ const WishlistAndCart = () => {
                 <div className="flex flex-col overflow-scroll no-scrollbar">
                   {products?.map((product: any) => (
                     <div
-                      className="flex gap-5 border-b mb-5 transition duration-300 ease-in-out hover:bg-gray-100 p-4"
+                      className="flex gap-5 border-b transition duration-300 ease-in-out hover:bg-gray-100 p-4"
                       key={product._id}
                     >
                       {/* --Image-- */}
@@ -122,12 +128,12 @@ const WishlistAndCart = () => {
                         <div className="flex items-center justify-between ">
                           <p>
                             <b className="main-text-color">
-                              {" "}
-                              {product?.defaultVariant?.discountedPrice} QAR
+                              {defaultVariant?.sellingPrice}
+                              QAR
                             </b>{" "}
                             |{" "}
                             <small className="text-green-500">
-                              {product?.defaultVariant?.inStock} In Stock
+                              {defaultVariant?.inStock} In Stock
                             </small>
                           </p>
                           <button

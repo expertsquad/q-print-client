@@ -7,23 +7,16 @@ import ReviewRating from "../shared/ReviewRating";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/features/cart/cartSlice";
 import { useRouter } from "next/navigation";
-
-interface IProductImageSlideProps {
-  product: IProduct;
-}
-
-interface IProduct {
-  images: string[];
-  name: string;
-  brandName: string;
-  price: number;
-  discount: number;
-  rating: number;
-}
+import StarRating from "./StarRating";
 
 const ProductCard = ({ product }: any) => {
   const dispatch = useDispatch();
   const router = useRouter();
+
+  // <== Take default variants by using find method ==>
+  const defaultVariant = product?.variants?.find(
+    (variant: any) => variant.isDefault === true
+  );
 
   // <== Handle Add Product On Cart ==>
   const handleAddToCart = (event: React.MouseEvent, product: any) => {
@@ -43,7 +36,7 @@ const ProductCard = ({ product }: any) => {
       className="border-[1px] hover:border-fuchsia-700 rounded-lg p-5 group max-w-[300px] min-w-[184px]"
     >
       <div>
-        <ProductImageSlide product={product} />
+        <ProductImageSlide product={product} defaultVariant={defaultVariant} />
       </div>
 
       <div className="mt-4 pt-4 border-t ">
@@ -55,16 +48,22 @@ const ProductCard = ({ product }: any) => {
           {product?.brand?.brandName}
         </p>
 
-        <ReviewRating rating={3} />
+        <StarRating rating={Math.round(product?.averageRating)} />
 
-        <div className="flex items-center justify-start gap-2 mb-2 whitespace-nowrap">
+        {defaultVariant?.sellingPrice || defaultVariant?.discountedPrice ? (
+          <div className="flex items-center justify-start gap-2 my-1 whitespace-nowrap">
+            <h4 className="[font-size:_clamp(0.6em,4vw,1.1em)] main-text-color font-bold">
+              <span>{defaultVariant?.discountedPrice}</span> QAR
+            </h4>
+            <del className="text-md text text-gray-500 [font-size:_clamp(0.5em,4vw,0.8em)] ">
+              {defaultVariant?.sellingPrice} QAR
+            </del>
+          </div>
+        ) : (
           <h4 className="[font-size:_clamp(0.6em,4vw,1.1em)] main-text-color font-bold">
-            <strong> {product?.defaultVariant?.discountedPrice}</strong> QAR
+            <span>{defaultVariant?.sellingPrice}</span> QAR
           </h4>
-          <del className="text-md text text-gray-500 [font-size:_clamp(0.5em,4vw,0.8em)] ">
-            {product?.variants[0]?.sellingPrice} QAR
-          </del>
-        </div>
+        )}
 
         <AddToCartButton
           onClick={(event: React.MouseEvent) => handleAddToCart(event, product)}
