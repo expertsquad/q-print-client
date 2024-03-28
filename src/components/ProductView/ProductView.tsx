@@ -35,11 +35,9 @@ const ProductView = ({ id }: any) => {
           <button className="text-[#E73C17]">Show All</button>
         </div>
         <div
-          className={`${
-            relatedData?.data?.length > 4
-              ? "w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-5 "
-              : ""
-          }`}
+          className={`
+            "w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-5 "
+              `}
         >
           {filteredRelatedProducts?.map((product: any, index: any) => (
             <RelatedProduct key={index} product={product} />

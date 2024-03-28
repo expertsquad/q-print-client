@@ -5,7 +5,7 @@ import { useGetProductsQuery } from "@/redux/features/products/productsApi";
 
 const ProductGridView = () => {
   // <== Products Query ==>
-  const { data } = useGetProductsQuery("isDefault=true");
+  const { data } = useGetProductsQuery("");
 
   return (
     <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-between flex-wrap gap-5 ">

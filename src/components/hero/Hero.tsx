@@ -26,17 +26,16 @@ const Hero = () => {
       <div className="flex flex-col gap-4  h-full md:h-auto lg:h-auto rounded-lg">
         {/* == Top One Card == */}
         <div className="bg-[#F2F4F5] flex justify-center items-center p-5 gap-4 rounded-lg flex-1">
-          <div className="">
+          <div className="shrink-0 relative w-36 h-36">
             <Image
-              // src="https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png"
               src={`${imageUrl}${topOffer?.productPhoto}`}
               alt="Hero discount item"
-              height={150}
-              width={150}
+              layout="fill"
+              className="w-full h-full top-0 left-0 object-cover"
             />
           </div>
           <div className="">
-            <h2 className="[font-size:_clamp(1em,5vw,1.5em)]">
+            <h2 className="[font-size:_clamp(1em,5vw,1.5em)] leading-7">
               {topOffer?.title}
             </h2>
             <h3 className="main-text-color font-bold">{topOffer?.price} QR</h3>
@@ -56,13 +55,13 @@ const Hero = () => {
             <ShopNowButton buttonText={bottomOffer?.buttonText} />
           </div>
 
-          <div className="overflow-hidden">
+          <div className="shrink-0 relative w-36 h-36">
             <Image
               src={`${imageUrl}${bottomOffer?.productPhoto}`}
               alt="Hero discount item"
-              height={150}
-              width={150}
-            ></Image>
+              layout="fill"
+              className="w-full h-full top-0 left-0 object-cover"
+            />
           </div>
         </div>
       </div>

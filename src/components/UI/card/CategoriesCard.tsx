@@ -1,17 +1,5 @@
 "use client";
-import { categories } from "@/constants";
 import { useGetCategoryQuery } from "@/redux/features/category/categories";
-
-interface ISubmenu {
-  title: string;
-  url: string;
-}
-
-interface ICategory {
-  title: string;
-  url: string;
-  submenus: ISubmenu[];
-}
 
 const CategoriesCard = () => {
   // <== Get Category & SubCategory ==>

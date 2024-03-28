@@ -97,7 +97,7 @@ const HeroItemSlide = ({ sliderArray }: any) => {
                 ))}
               </div>
             </div>
-            <div className="relative shrink-0 w-[250px] h-[100px]">
+            <div className="relative shrink-0 w-[250px] h-[250px]">
               <Image
                 src={`${imageUrl}${item?.productPhoto}`}
                 alt="hero item images"
