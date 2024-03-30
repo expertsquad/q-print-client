@@ -2,12 +2,21 @@
 import { useGetCategoryQuery } from "@/redux/features/category/categories";
 import FilterButton from "../UI/btn/FilterButton";
 import ProductGridView from "../product/ProductGridView";
+import { useGetProductsQuery } from "@/redux/features/products/productsApi";
+import ProductCard from "../product/ProductCard";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/redux/hook";
+import { setCategory } from "@/redux/features/brand/productsByCategorySlice";
 
 const BrandProductGridView = () => {
-  const { data } = useGetCategoryQuery("");
-  //   const category = data?.data?.map((category: any) => {
-  //     return category;
-  //   });
+  const dispatch = useDispatch();
+  const { category } = useAppSelector((state) => state.productByCategory);
+
+  const { data: allCategory } = useGetCategoryQuery("");
+
+  const { data: categoryWiseProducts } = useGetProductsQuery(
+    `category.categoryName=${category}`
+  );
 
   return (
     <div className="w-full  mt-5 ">
@@ -23,12 +32,14 @@ const BrandProductGridView = () => {
         <div className="lg:block md:block hidden">
           <select
             title="Category Name"
-            name=""
+            name={"category"}
             id=""
             className="border outline-none"
+            value={category}
+            onChange={(e) => dispatch(setCategory(e.target.value))}
           >
-            {data?.data?.map((category: any) => (
-              <option key={category?.categoryName} value="">
+            {allCategory?.data?.map((category: any) => (
+              <option key={category?.categoryId} value={category?.categoryName}>
                 {category?.categoryName}
               </option>
             ))}
@@ -40,8 +51,10 @@ const BrandProductGridView = () => {
         </div>
       </div>
 
-      <div className="mt-6 ">
-        <ProductGridView />
+      <div className="mt-6 flex flex-wrap gap-5">
+        {categoryWiseProducts?.data?.map((product: any) => (
+          <ProductCard key={product?._id} product={product} />
+        ))}
       </div>
     </div>
   );

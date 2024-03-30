@@ -11,7 +11,7 @@ const CategoryLeftSideWidget = () => {
     <aside>
       <CategoriesCard />
       <PriceRangeCard />
-      <AvailabilityCard />
+      {/* <AvailabilityCard /> */}
       <BrandsCard />
       <DiscountWidgetCard />
     </aside>

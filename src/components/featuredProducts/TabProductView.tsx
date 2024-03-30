@@ -69,7 +69,7 @@ const TabProductView = () => {
               See all &rarr;
             </Link>
 
-            <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-5 ">
+            <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-between flex-wrap gap-5 ">
               {slicedTopSellingProducts?.map((product: IProduct) => (
                 <div key={product?._id}>
                   <ProductCard product={product} />

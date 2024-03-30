@@ -9,7 +9,7 @@ const BrandLeftSideWidget = () => {
     <aside>
       <BrandsCard />
       <PriceRangeCard />
-      <AvailabilityCard />
+      {/* <AvailabilityCard /> */}
       <DiscountWidgetCard />
     </aside>
   );
