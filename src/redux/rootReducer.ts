@@ -4,6 +4,7 @@ import favouriteReducer from "@/redux/features/wishlist/favouriteSlice";
 import addReviewSlice from "./features/review/addReviewSlice";
 import signUpSlice from "./features/user/signUpSlice";
 import loginSlice from "./features/user/loginSlice";
+import categoryFilterSlice from "./features/category/categoryFilterSlice";
 
 export const reducer = {
   [baseApi.reducerPath]: baseApi.reducer,
@@ -12,4 +13,5 @@ export const reducer = {
   signUp: signUpSlice,
   login: loginSlice,
   addReview: addReviewSlice,
+  categoryOption: categoryFilterSlice,
 };

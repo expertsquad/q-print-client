@@ -16,16 +16,18 @@ const TabProductView = () => {
   const { data: topSelling } = useGetProductsQuery(
     `sortBy=totalSoldQuantity&sortOrder=desc`
   );
-
+  const slicedTopSellingProducts = topSelling?.data?.slice(0, 8);
   // <== Finding Popular Products ==>
   const { data: mostPopular } = useGetProductsQuery(
     `sortBy=averageRating&sortOrder=desc`
   );
+  const slicedMostPopularProducts = mostPopular?.data?.slice(0, 8);
 
   // <== Finding New Products ==>
   const { data: newProduct } = useGetProductsQuery(
     `sortBy=createdAt&sortOrder=desc`
   );
+  const slicedNewProductProducts = newProduct?.data?.slice(0, 8);
 
   return (
     <div className=" mx-auto mt-4 w-full ">
@@ -68,7 +70,7 @@ const TabProductView = () => {
             </Link>
 
             <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-5 ">
-              {topSelling?.data?.map((product: IProduct) => (
+              {slicedTopSellingProducts?.map((product: IProduct) => (
                 <div key={product?._id}>
                   <ProductCard product={product} />
                 </div>
@@ -86,7 +88,7 @@ const TabProductView = () => {
               See all &rarr;
             </Link>
             <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-5 ">
-              {mostPopular?.data?.map((product: IProduct) => (
+              {slicedMostPopularProducts?.map((product: IProduct) => (
                 <div key={product?._id}>
                   <ProductCard product={product} />
                 </div>
@@ -104,7 +106,7 @@ const TabProductView = () => {
               See all &rarr;
             </Link>
             <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-5 ">
-              {newProduct?.data?.map((product: IProduct) => (
+              {slicedNewProductProducts?.map((product: IProduct) => (
                 <div key={product?._id}>
                   <ProductCard product={product} />
                 </div>

@@ -2,6 +2,7 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import { useGetProductsQuery } from "@/redux/features/products/productsApi";
+import { IProduct } from "@/types/productsType";
 
 const ProductGridView = () => {
   // <== Products Query ==>
@@ -9,8 +10,8 @@ const ProductGridView = () => {
 
   return (
     <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-between flex-wrap gap-5 ">
-      {data?.data?.map((product: any, index: any) => (
-        <ProductCard key={index} product={product} />
+      {data?.data?.map((product: IProduct) => (
+        <ProductCard key={product?._id} product={product} />
       ))}
     </div>
   );

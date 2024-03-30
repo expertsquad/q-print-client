@@ -10,12 +10,12 @@ const NewProduct = () => {
   const { data } = useGetProductsQuery(`sortBy=createdAt&sortOrder=desc`);
   const firstThreeProducts = data?.data?.slice(0, 3);
   return (
-    <section className="flex justify-between  gap-4 lg:mt-20 md:mt-20 mt-8 md:flex-row flex-col-reverse    ">
-      <div className="  w-6/2 ">
+    <section className="flex justify-between gap-4 lg:mt-20 md:mt-20 mt-8 md:flex-row flex-col-reverse">
+      <div className="">
         <NewProductDisountCard />
       </div>
       <div className="w-full">
-        <div className="flex justify-between items-center  w-full">
+        <div className="flex justify-between items-center w-full mb-5">
           <h3 className="  [font-size:_clamp(1em,5vw,1.6em)] font-bold">
             New Product
           </h3>
@@ -29,8 +29,8 @@ const NewProduct = () => {
             </Link>
           </div>
         </div>
-        <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-5 ">
-          {firstThreeProducts?.data?.map((product: IProduct) => (
+        <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-1">
+          {firstThreeProducts?.map((product: IProduct) => (
             <div key={product?._id}>
               <ProductCard product={product} />
             </div>
