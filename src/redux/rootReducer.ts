@@ -6,6 +6,8 @@ import signUpSlice from "./features/user/signUpSlice";
 import loginSlice from "./features/user/loginSlice";
 import categoryFilterSlice from "./features/category/categoryFilterSlice";
 import productsByCategorySlice from "./features/brand/productsByCategorySlice";
+import brandNameSlice from "./features/brand/brandNameSlice";
+import FilterByPriceSlice from "./features/filterByPrice/FilterByPriceSlice";
 
 export const reducer = {
   [baseApi.reducerPath]: baseApi.reducer,
@@ -16,4 +18,6 @@ export const reducer = {
   addReview: addReviewSlice,
   categoryOption: categoryFilterSlice,
   productByCategory: productsByCategorySlice,
+  productByBrandName: brandNameSlice,
+  priceRangeSlice: FilterByPriceSlice,
 };

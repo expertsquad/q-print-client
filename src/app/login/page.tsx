@@ -56,28 +56,32 @@ const Login = () => {
           <div className="flex flex-col gap-5 mt-20">
             <CustomInput
               name="phoneNumber"
-              type="number"
+              type="text"
               placeholder="Phone Number"
-              placeholderIcon={<IconPhone />}
               customClassName="mt-2"
               onChange={(e) => dispatch(setLoginPhoneNumber(e.target.value))}
             />
-            <PasswordInput
-              name="password"
-              onChange={(e) => dispatch(setLoginPassword(e.target.value))}
-              placeholder="Type Password"
-            />
-            <div className="flex items-center justify-end">
-              <Link
-                href={"/forget-password"}
-                className="text-base text-black-opacity-50 mt-3"
-              >
-                Forget Password
-              </Link>
+            <div className="flex flex-col">
+              <PasswordInput
+                name="password"
+                onChange={(e) => dispatch(setLoginPassword(e.target.value))}
+                placeholder="Type Password"
+              />
+              <div className="flex items-center justify-end mt-1">
+                <Link
+                  href={"/forget-password"}
+                  className="text-sm text-black-opacity-50 "
+                >
+                  Forget Password
+                </Link>
+              </div>
             </div>
-            <div></div>
-            <button className="main-bg-color text-white w-full py-3 rounded-lg">
-              Create New Account
+
+            <button
+              type="submit"
+              className="main-bg-color text-white w-full py-3 rounded-lg"
+            >
+              Login
             </button>
             <div className="flex items-center justify-start gap-2">
               <input

@@ -1,12 +1,15 @@
 "use client";
 import Image from "next/image";
-import React from "react";
-
 import { useGetBrandsQuery } from "@/redux/features/brand/brandsApi";
 import { imageUrl } from "@/constants/imageUrl";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/redux/hook";
+import { setBrandName } from "@/redux/features/brand/brandNameSlice";
 
 const BrandsCard = () => {
   const { data } = useGetBrandsQuery("");
+  const dispatch = useDispatch();
+  const { brandName } = useAppSelector((state) => state.productByBrandName);
 
   //<== Take the first 10 items from data ==>
   const firstTenData = data?.data?.slice(0, 6);
@@ -27,7 +30,10 @@ const BrandsCard = () => {
                 className="w-full h-full top-0 left-0 object-contain aspect-auto"
               />
             </div>
-            <small className="text-base hover:text-[#000] cursor-pointer text-[#00000099]">
+            <small
+              onClick={() => dispatch(setBrandName(brand.brandName))}
+              className="text-base hover:text-[#000] cursor-pointer text-[#00000099]"
+            >
               {brand?.brandName}
             </small>
           </span>
