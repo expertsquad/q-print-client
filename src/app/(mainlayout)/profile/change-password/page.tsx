@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import resetPasswordImg from "@/assets/images/resetPasswordImg.png";
+import PasswordInput from "@/components/shared/PasswordInput";
 const ChangePassword = () => {
   return (
     <div>
@@ -13,79 +15,38 @@ const ChangePassword = () => {
               action=""
               className="form-control lg:gap-5 gap-4 lg:mt-12 mt-7"
             >
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col ">
                 <label
                   htmlFor="old-password"
                   className="text-lg text-small-gray-text-color"
                 >
                   Current Password
                 </label>
-                <div className="relative">
-                  <input
-                    type="password"
-                    id="old-password"
-                    name="old-password"
-                    className="w-full border outline-none px-5 py-3 rounded-md"
-                  />
-                  <span
-                    id="togglePassword"
-                    className="absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer"
-                  >
-                    <i id="eyeOff1" className="ti ti-eye-off"></i>
-                    <i id="eyeOn1" className="ti ti-eye hidden"></i>
-                  </span>
-                </div>
+                <PasswordInput name="password" placeholder="" />
               </div>
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col">
                 <label
                   htmlFor="new-password"
                   className="text-lg text-small-gray-text-color"
                 >
                   New Password
                 </label>
-                <div className="relative">
-                  <input
-                    type="password"
-                    id="new-password"
-                    name="new-passwords"
-                    className="w-full border outline-none px-5 py-3 rounded-md"
-                  />
-                  <span
-                    id="newTogglePassword"
-                    className="absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer"
-                  >
-                    <i id="eyeOff2" className="ti ti-eye-off"></i>
-                    <i id="eyeOn2" className="ti ti-eye hidden"></i>
-                  </span>
-                </div>
+                <PasswordInput name="password" placeholder="" />
               </div>
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col">
                 <label
                   htmlFor="re-enter-new-password"
                   className="text-lg text-small-gray-text-color"
                 >
                   Re-enter new password
                 </label>
-                <div className="relative">
-                  <input
-                    type="password"
-                    id="re-enter-new-password"
-                    name="re-enter-new-password"
-                    className="w-full border outline-none px-5 py-3 rounded-md"
-                  />
-                  <span
-                    id="renewTogglePassword"
-                    className="absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer"
-                  >
-                    <i id="eyeOff3" className="ti ti-eye-off"></i>
-                    <i id="eyeOn3" className="ti ti-eye hidden"></i>
-                  </span>
-                </div>
+                <PasswordInput name="password" placeholder="" />
               </div>
               <div className="flex lg:gap-12 gap-10 items-center">
                 <button
-                  className="   text-white uppercase bg-gradient-to-r from-[#C83B62] to-[#7F35CD]  
- px-5 py-3.5  lg:w-48 w-full hover:scale-105 hover:duration-500 rounded-3xl"
+                  type="submit"
+                  className="text-white uppercase bg-gradient-to-r from-[#C83B62] to-[#7F35CD]  
+ px-5 py-3.5  lg:w-48 w-full  rounded-3xl"
                 >
                   Update Password
                 </button>

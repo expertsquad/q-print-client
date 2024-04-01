@@ -1,8 +1,31 @@
 import UploadIcon from "@/assets/svgIcons/UploadIcon";
 import { imageUrl } from "@/constants/imageUrl";
 import Image from "next/image";
+import CustomInput from "../shared/CustomInput";
+
+interface PersonalInformationProps {
+  _id: string;
+  uid: string;
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+  role: string;
+  isVerified: boolean;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  id: string;
+}
 
 const PersonalInformation = ({ personalInformation }: any) => {
+  let firstName = "";
+  let lastName = "";
+
+  if (personalInformation && personalInformation.fullName) {
+    const nameParts = personalInformation.fullName.split(" ");
+    firstName = nameParts[0];
+    lastName = nameParts.slice(1).join(" ");
+  }
   return (
     <section className=" w-full">
       <h1 className="text-black text-xl mb-5 md:mb-8 lg:mb-8  ">
@@ -14,52 +37,48 @@ const PersonalInformation = ({ personalInformation }: any) => {
             <label htmlFor="first_name" className="text-base text-[#1a1a1ab3]">
               First name
             </label>
-            <input
+
+            <CustomInput
               type="text"
-              name="first_name"
-              id="first_name"
-              className="border outline-none block w-full py-3.5 rounded-md px-4"
-              defaultValue={personalInformation?.firstName}
-              required
+              name="firstName"
+              value={firstName}
+              placeholder=""
             />
           </div>
           <div className="w-full flex flex-col gap-2.5">
             <label htmlFor="last_name" className="text-base text-[#1a1a1ab3]">
               Last name
             </label>
-            <input
+
+            <CustomInput
               type="text"
-              name="last_name"
-              id="last_name"
-              className="border outline-none block w-full py-3.5 rounded-md px-4"
-              defaultValue={personalInformation?.lastName}
-              required
+              name="lastName"
+              value={lastName}
+              placeholder=""
             />
           </div>
           <div className="w-full flex flex-col gap-2.5">
             <label htmlFor="user_email" className="text-base text-[#1a1a1ab3]">
               Email
             </label>
-            <input
+            <CustomInput
               type="email"
-              name="user_email"
-              id="user_email"
-              className="border outline-none block w-full py-3.5 rounded-md px-4 text-gray-300"
-              defaultValue={personalInformation?.email}
-              readOnly
+              value={personalInformation?.email}
+              name="email"
+              placeholder=""
+              readonly
             />
           </div>
           <div className="w-full flex flex-col gap-2.5">
             <label htmlFor="user_phone" className="text-base text-[#1a1a1ab3]">
               Phone Number
             </label>
-            <input
+            <CustomInput
               type="number"
-              name="user_phone"
-              id="user_phone"
-              className="border outline-none block w-full py-3.5 rounded-md px-4"
-              defaultValue={personalInformation?.phoneNumber}
-              required
+              name="phoneNumber"
+              placeholder=""
+              value={personalInformation?.phoneNumber}
+              inputStyle="text-black"
             />
           </div>
         </form>

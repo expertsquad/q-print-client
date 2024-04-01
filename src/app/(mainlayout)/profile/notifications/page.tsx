@@ -1,108 +1,55 @@
+"use client";
+import { imageUrl } from "@/constants/imageUrl";
+import { useGetNotificationsQuery } from "@/redux/features/notifications/notificationsApi";
+import { NotificationsTypes } from "@/types/notificationsType";
 import Image from "next/image";
+import demoImg from "@/assets/demo printer.svg";
+import { formatDate, formatDateShorting } from "@/constants/formatDate";
 
 const Notifications = () => {
+  const { data } = useGetNotificationsQuery("");
   return (
-    <div className="flex flex-col gap-6 border rounded-lg p-7 mb-7">
+    <div className="flex flex-col gap-5 border rounded-lg p-3 md:p-7 mb-14">
       <h4 className="text-xl text-black font-bold mb-2">Notification</h4>
       <h4 className="text-xl text-black font-medium">Today</h4>
-      <div className="flex flex-col gap-5 lg:gap-6">
-        <div className="flex items-center justify-between">
-          <div className="flex lg:items-center gap-5">
-            <div className="lg:w-[70px] lg:h-[70px] w-[60px] h-[60px]">
-              <Image
-                className="border rounded-lg p-2.5"
-                src="https://images.pexels.com/photos/162140/duckling-birds-yellow-fluffy-162140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt=""
-                width={50}
-                height={50}
-              />
-            </div>
-            <div className="flex flex-col lg:gap-3 gap-1">
-              <span className="text-black lg:text-lg text-base">
-                Order collection date confirmed
-              </span>
 
-              <span className="lg:text-sm text-xs text-gray-400 line-clamp-1">
-                Your order ID #126980 has confirmed
-              </span>
-            </div>
+      {data?.data?.map((notification: NotificationsTypes) => (
+        <div
+          key={notification?._id}
+          className="flex gap-3 md:gap-0 items-center justify-between border-b py-3"
+        >
+          <div className="w-[40px] md:w-[60px] md:h-[60px] h-[40px] relative shrink-0 mr-2.5 md:mr-5">
+            <Image
+              // src={`${imageUrl}${product?.productPhotos[0]}`}
+              src={demoImg}
+              fill
+              objectFit="cover"
+              alt="Product Photo"
+              className="w-full h-full top-0 left-0 object-cover p-1.5 border rounded-md"
+            />
           </div>
-          <span className="lg:block md:block hidden text-lg font-medium text-black">
-            $150
+          <div className="flex flex-col md:gap-2 gap-1">
+            <span className="text-black text-[13px] md:text-lg line-clamp-2">
+              {notification?.title}
+            </span>
+
+            <span className="md:text-sm text-xs text-gray-400 line-clamp-1">
+              {notification?.subTitle}
+            </span>
+          </div>
+          <span className="md:block hidden text-lg font-medium text-black">
+            ${notification?.price}
           </span>
           <div className="flex flex-col items-start gap-3.5">
             <span className="text-xs lg:text-base text-gray-400 whitespace-nowrap">
-              1d ago
+              {formatDateShorting(notification?.createdAt)}
             </span>
-            <strong className="lg:hidden md:hidden text-base font-medium text-black">
-              $150
+            <strong className="block md:hidden font-medium text-black text-sm">
+              ${notification?.price}
             </strong>
           </div>
         </div>
-        <hr />
-        <div className="flex items-center justify-between">
-          <div className="flex lg:items-center gap-5">
-            <div className="lg:w-[70px] lg:h-[70px] w-[60px] h-[60px] object-cover">
-              <Image
-                className="border rounded-lg p-2.5"
-                src="https://images.pexels.com/photos/162140/duckling-birds-yellow-fluffy-162140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt=""
-                width={50}
-                height={50}
-              />
-            </div>
-            <div className="flex flex-col lg:gap-3 gap-1">
-              <span className="text-black lg:text-lg text-base">
-                Your Payment is successfull
-              </span>
-
-              <span className="lg:text-sm text-xs text-gray-400 line-clamp-1">
-                transaction number is TDLXD34565545
-              </span>
-            </div>
-          </div>
-          <span className="lg:block md:block hidden text-lg font-medium text-black">
-            $150
-          </span>
-          <div className="flex flex-col items-start gap-3.5">
-            <span className="text-xs lg:text-base text-gray-400 whitespace-nowrap">
-              1d ago
-            </span>
-            <strong className="lg:hidden md:hidden text-base font-medium text-black">
-              $150
-            </strong>
-          </div>
-        </div>
-        <hr />
-        <div className="flex items-center justify-between">
-          <div className="flex lg:items-center gap-5">
-            <div className="lg:w-[70px] lg:h-[70px] w-[60px] h-[60px]">
-              <Image
-                className="border rounded-lg p-2.5"
-                src="https://images.pexels.com/photos/162140/duckling-birds-yellow-fluffy-162140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt=""
-                width={50}
-                height={50}
-              />
-            </div>
-            <div className="flex flex-col lg:gap-3 gap-1">
-              <span className="text-black lg:text-lg text-base">
-                Your monthly coin update.
-              </span>
-
-              <span className="lg:text-sm text-xs text-gray-400 line-clamp-1">
-                you have 530 coin expiring this month, use them now to get
-                soothing get for your self.
-              </span>
-            </div>
-          </div>
-
-          <span className="text-xs lg:text-base text-gray-400 whitespace-nowrap">
-            1d ago
-          </span>
-        </div>
-        <hr />
-      </div>
+      ))}
     </div>
   );
 };

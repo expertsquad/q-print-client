@@ -9,6 +9,7 @@ interface CustomInputProps {
   onChange?: (e: any) => void;
   value?: string | number;
   name?: string;
+  readonly?: boolean;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -20,6 +21,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   onChange,
   value,
   name,
+  readonly,
 }) => {
   return (
     <div
@@ -35,7 +37,9 @@ const CustomInput: React.FC<CustomInputProps> = ({
         onChange={onChange}
         value={value}
         name={name}
-        className={`${inputStyle} w-full border border-black border-opacity-10 rounded-md py-3  pr-4 focus:outline-none focus:border-fuchsia-500 text-black text-opacity-50 placeholder:text-sm ${
+        className={`${inputStyle} w-full border border-black border-opacity-10 rounded-md py-3  pr-4 focus:outline-none focus:border-fuchsia-500 ${
+          readonly && "text-black text-opacity-50"
+        } placeholder:text-sm ${
           placeholderIcon ? "pl-9" : "pl-3"
         } ${customClassName}`}
         placeholder={placeholder}

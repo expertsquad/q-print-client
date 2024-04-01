@@ -1,4 +1,5 @@
 import React from "react";
+import CustomInput from "../shared/CustomInput";
 
 const ShippingAddress = ({ shippingInformation }: any) => {
   return (
@@ -12,39 +13,36 @@ const ShippingAddress = ({ shippingInformation }: any) => {
             <label htmlFor="country" className="text-base text-[#1a1a1ab3]">
               Country
             </label>
-            <input
+
+            <CustomInput
               type="text"
               name="country"
-              id="country"
-              className="border outline-none block w-full py-3.5 rounded-md px-4"
               value={shippingInformation?.country}
-              required
+              placeholder=""
             />
           </div>
           <div className="w-full flex flex-col gap-2.5">
             <label htmlFor="state" className="text-base text-[#1a1a1ab3]">
               State
             </label>
-            <input
+
+            <CustomInput
               type="text"
               name="state"
-              id="state"
-              className="border outline-none block w-full py-3.5 rounded-md px-4"
               value={shippingInformation?.state}
-              required
+              placeholder=""
             />
           </div>
           <div className="w-full flex flex-col gap-2.5">
             <label htmlFor="zip_code" className="text-base text-[#1a1a1ab3]">
               Zip Code
             </label>
-            <input
-              type="number"
-              name="zip_code"
-              id="zip_code"
-              className="border outline-none block w-full py-3.5 rounded-md px-4"
+
+            <CustomInput
+              type="text"
+              name="zipCode"
               value={shippingInformation?.zipCode}
-              required
+              placeholder=""
             />
           </div>
           <div className="w-full flex flex-col gap-2.5">
@@ -54,13 +52,11 @@ const ShippingAddress = ({ shippingInformation }: any) => {
             >
               Company Name ( Optional )
             </label>
-            <input
+            <CustomInput
               type="text"
-              name="company_name"
-              id="company_name"
-              className="border outline-none block w-full py-3.5 rounded-md px-4"
-              value="Sopne"
-              required
+              name="companyName"
+              // value={shippingInformation?.state}
+              placeholder="Company Name"
             />
           </div>
         </div>
@@ -68,13 +64,11 @@ const ShippingAddress = ({ shippingInformation }: any) => {
           <label htmlFor="streetAddress" className="text-base text-[#1a1a1ab3]">
             Street Address
           </label>
-          <input
+          <CustomInput
             type="text"
             name="streetAddress"
-            id="streetAddress"
-            className="border outline-none block w-full py-3.5 rounded-md px-4"
             value={shippingInformation?.streetAddress}
-            required
+            placeholder=""
           />
         </div>
       </form>

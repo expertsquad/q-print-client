@@ -19,19 +19,15 @@ const Login = () => {
   const dispatch = useAppDispatch();
 
   const { email, password } = useAppSelector((state) => state.login);
-  console.log(email, password);
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
-    const formData = new FormData();
-    console.log("email", email);
-    console.log("password", password);
 
     try {
-      const res = await userLogin(formData).unwrap();
-      // console.log(res);
+      const res = await userLogin({ email, password }).unwrap();
+
       storeUserInfo({ accessToken: res?.data?.accessToken });
-      // console.log(res?.data?.accessToken);
+      console.log(res, "API Response");
       if (res?.data?.accessToken) {
         router.push("/");
       }

@@ -5,28 +5,43 @@ import {
   useGetUserAddressQuery,
   useGetUserQuery,
 } from "@/redux/features/user/user";
-import { isLoggedIn } from "@/services/auth.service";
-import { useLayoutEffect } from "react";
-import { redirect } from "next/navigation";
+
+interface Address {
+  _id: string;
+  isDefault: boolean;
+  isBilling: boolean;
+  firstName: string;
+  lastName: string;
+  state: string;
+  country: string;
+  streetAddress: string;
+  phoneNumber: string;
+  zipCode: number;
+  userId: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
 
 const ProfileSettings = () => {
-  useLayoutEffect(() => {
-    const userLoggedCheck = isLoggedIn();
-
-    if (!userLoggedCheck) {
-      redirect("/");
-    }
-  }, []);
-
   // <== Get User Personal Information ==>
   const { data: personalInformation } = useGetUserQuery("");
 
   // <== Get User Address ==>
-  const { data: address } = useGetUserAddressQuery("isDefault=true");
+  const { data: address } = useGetUserAddressQuery("");
+  const defaultAddress = address?.data?.find(
+    (address: Address) => address.isDefault
+  );
+
   return (
     <div className="lg:border rounded-lg lg:p-7 flex flex-col gap-8 mb-7">
       <PersonalInformation personalInformation={personalInformation?.data} />
-      <ShippingAddress shippingInformation={address?.data[0]} />
+      <ShippingAddress shippingInformation={defaultAddress} />
+      <button className="flex items-start justify-start">
+        <span className="main-bg-color px-5 py-1.5 text-white rounded-md">
+          Update
+        </span>
+      </button>
     </div>
   );
 };

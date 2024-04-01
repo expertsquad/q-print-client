@@ -18,7 +18,6 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   value,
   name,
 }) => {
-  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePassword = () => {

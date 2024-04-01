@@ -31,9 +31,8 @@ export const authApi = baseApi.injectEndpoints({
     // <== Get User logged data ==>
     getUserAddress: build.query({
       query: (data) => ({
-        url: `user-address/me?${data}`,
+        url: `/user-address/me`,
         method: "GET",
-        data,
       }),
       providesTags: ["address"],
     }),
