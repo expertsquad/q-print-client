@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 type LoginState = {
-  phoneNumber: string;
+  email: string;
   password: string;
 };
 const initialState: LoginState = {
-  phoneNumber: "",
+  email: "",
   password: "",
 };
 const loginSlice = createSlice({
   name: "login",
   initialState,
   reducers: {
-    setLoginPhoneNumber: (state, action) => {
-      state.phoneNumber = action.payload;
+    setLoginEmail: (state, action) => {
+      state.email = action.payload;
     },
     setLoginPassword: (state, action) => {
       state.password = action.payload;
@@ -20,5 +20,5 @@ const loginSlice = createSlice({
   },
 });
 
-export const { setLoginPhoneNumber, setLoginPassword } = loginSlice.actions;
+export const { setLoginEmail, setLoginPassword } = loginSlice.actions;
 export default loginSlice.reducer;

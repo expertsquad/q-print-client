@@ -11,6 +11,12 @@ const BrandProductGridView = () => {
   const dispatch = useDispatch();
   const { brandName } = useAppSelector((state) => state.productByBrandName);
   const { category } = useAppSelector((state) => state.productByCategory);
+  // const { minPrice, maxPrice } = useAppSelector(
+  //   (state) => state.priceRangeSlice
+  // );
+
+  const minPrice = 0;
+  const maxPrice = 0;
 
   // <== Get category name for category wise product ==>
   const { data: allCategory } = useGetCategoryQuery("");
@@ -19,6 +25,10 @@ const BrandProductGridView = () => {
   const { data: filteredProducts } = useGetProductsQuery(
     `category.categoryName=${category}&${
       brandName && `&brand.brandName=${brandName}`
+    }&${
+      minPrice &&
+      maxPrice &&
+      `variants.sellingPrice[gte]=${minPrice}&variants.sellingPrice[lte]=${maxPrice}`
     }`
   );
 

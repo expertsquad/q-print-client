@@ -7,10 +7,9 @@ import { useUserLoginMutation } from "@/redux/features/user/user";
 import { storeUserInfo } from "@/services/auth.service";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
+  setLoginEmail,
   setLoginPassword,
-  setLoginPhoneNumber,
 } from "@/redux/features/user/loginSlice";
-import { IconPhone } from "@tabler/icons-react";
 import CustomInput from "@/components/shared/CustomInput";
 import PasswordInput from "@/components/shared/PasswordInput";
 
@@ -19,13 +18,14 @@ const Login = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const { phoneNumber, password } = useAppSelector((state) => state.login);
+  const { email, password } = useAppSelector((state) => state.login);
+  console.log(email, password);
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("phoneNumber", phoneNumber);
-    formData.append("password", password);
+    console.log("email", email);
+    console.log("password", password);
 
     try {
       const res = await userLogin(formData).unwrap();
@@ -36,7 +36,7 @@ const Login = () => {
         router.push("/");
       }
     } catch (err: any) {
-      console.error(err.message);
+      console.error(err.message.length);
     }
   };
   return (
@@ -55,11 +55,11 @@ const Login = () => {
         <form onSubmit={onSubmit}>
           <div className="flex flex-col gap-5 mt-20">
             <CustomInput
-              name="phoneNumber"
-              type="text"
-              placeholder="Phone Number"
+              name="email"
+              type="email"
+              placeholder="Enter Your Email"
               customClassName="mt-2"
-              onChange={(e) => dispatch(setLoginPhoneNumber(e.target.value))}
+              onChange={(e) => dispatch(setLoginEmail(e.target.value))}
             />
             <div className="flex flex-col">
               <PasswordInput
