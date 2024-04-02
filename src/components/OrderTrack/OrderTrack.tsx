@@ -1,14 +1,13 @@
-import React from "react";
 import OrderTrackTop from "./OrderTrackTop";
 import OrderDetails from "./OrderDetails";
 import OrderedStep from "./OrderedStep";
 
-const OrderTrack = () => {
+const OrderTrack = ({ id }: any) => {
   return (
     <div className="">
-      <OrderTrackTop />
+      <OrderTrackTop id={id} />
       <OrderedStep />
-      <OrderDetails />
+      <OrderDetails id={id} />
     </div>
   );
 };

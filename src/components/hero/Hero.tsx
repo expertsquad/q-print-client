@@ -1,52 +1,67 @@
+"use client";
 import Image from "next/image";
 import ShopNowButton from "../UI/btn/ShopNowButton";
 import HeroItemSlide from "./HeroItemSlide";
+import { useGetHeroSliderQuery } from "@/redux/features/dealWidgetSliderEtc/heroSlider";
+import { imageUrl } from "@/constants/imageUrl";
 
 const Hero = () => {
+  const { data } = useGetHeroSliderQuery("");
+
+  const sliderArray = Object.values(data?.data?.slider || {});
+
+  // <== Get the right side slider card Top Offer ==>
+  const topOffer = data?.data?.topOffer;
+
+  // <== Get the right side slider card Bottom Offer ==>
+  const bottomOffer = data?.data?.bottomOffer;
+
   return (
     <section className="flex w-full md:flex-row lg:flex-row flex-col gap-7">
       <div className="md:w-8/12 lg:w-8/12 w-full">
-        {/* hero item */}
-        <HeroItemSlide />
+        {/* === Left side slider with three nested section === */}
+        <HeroItemSlide sliderArray={sliderArray} />
       </div>
-      {/* right side card */}
+      {/* === Right side slider === */}
       <div className="flex flex-col gap-4  h-full md:h-auto lg:h-auto rounded-lg">
-        {/* top one card */}
+        {/* == Top One Card == */}
         <div className="bg-[#F2F4F5] flex justify-center items-center p-5 gap-4 rounded-lg flex-1">
-          <div className="">
+          <div className="shrink-0 relative w-36 h-36">
             <Image
-              src="https://www.transparentpng.com/thumb/printer/iqV2Vo-printer-free-download-transparent.png"
+              src={`${imageUrl}${topOffer?.productPhoto}`}
               alt="Hero discount item"
-              height={150}
-              width={150}
-            ></Image>
+              layout="fill"
+              className="w-full h-full top-0 left-0 object-cover"
+            />
           </div>
           <div className="">
-            <h2 className="[font-size:_clamp(1em,5vw,1.5em)]">
-              New Hp Cartridge
+            <h2 className="[font-size:_clamp(1em,5vw,1.5em)] leading-7">
+              {topOffer?.title}
             </h2>
-            <h3 className="main-text-color font-bold">2900 QR</h3>
-            <ShopNowButton />
+            <h3 className="main-text-color font-bold">{topOffer?.price} QR</h3>
+            <ShopNowButton buttonText={topOffer?.buttonText} />
           </div>
         </div>
 
-        {/* second one card */}
-        <div className="bg-[#3a42aa8e] flex justify-center items-center p-5 gap-4 rounded-lg flex-1">
+        {/* == Bottom One Card == */}
+        <div className="bg-[#3bd9f58e] flex justify-center items-center p-5 gap-4 rounded-lg flex-1">
           <div className="">
-            <h2 className="[font-size:_clamp(1em,5vw,1.5em)]">
-              New Hp Cartridge
+            <h2 className="[font-size:_clamp(1em,5vw,1.2em)]">
+              {bottomOffer?.offerTag}
             </h2>
-            <h3 className="main-text-color font-bold">2900 QR</h3>
-            <ShopNowButton />
+            <h2 className="[font-size:_clamp(1em,5vw,1.5em)] leading-6 my-1.5">
+              {bottomOffer?.title}
+            </h2>
+            <ShopNowButton buttonText={bottomOffer?.buttonText} />
           </div>
 
-          <div className="">
+          <div className="shrink-0 relative w-36 h-36">
             <Image
-              src="https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png"
+              src={`${imageUrl}${bottomOffer?.productPhoto}`}
               alt="Hero discount item"
-              height={150}
-              width={150}
-            ></Image>
+              layout="fill"
+              className="w-full h-full top-0 left-0 object-cover"
+            />
           </div>
         </div>
       </div>

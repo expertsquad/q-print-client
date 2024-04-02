@@ -1,11 +1,31 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import Confetti from "../shared/Confetti";
 
-const GetDiscountRange = () => {
-  const [value, setValue] = useState(80);
+interface PriceRangeProps {
+  priceRange?: any;
+}
+
+const GetDiscountRange = ({ priceRange }: PriceRangeProps) => {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (priceRange <= 599) {
+      setValue(0);
+    } else if (priceRange <= 1200) {
+      setValue(20);
+    } else if (priceRange <= 1800) {
+      setValue(40);
+    } else if (priceRange <= 2400) {
+      setValue(60);
+    } else if (priceRange <= 3000) {
+      setValue(80);
+    } else {
+      setValue(100);
+    }
+  }, [priceRange]);
 
   const gradientBackground = {
     background:

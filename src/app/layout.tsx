@@ -2,11 +2,6 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/Providers";
-import Footer from "@/components/Footer/Footer";
-
-import NextBreadcrumb from "@/components/shared/NextBreadcrumb";
-import { IconChevronRight } from "@tabler/icons-react";
-import Header from "@/components/header/Header";
 
 const poppins = Poppins({
   weight: ["400"],
@@ -22,25 +17,8 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Providers>
       <html lang="en">
-        <body
-          className={`${poppins.className} scroll-smooth  px-3 md:px-2 lg:px-0`}
-        >
-          <Header />
-          <NextBreadcrumb
-            homeElement={"Home"}
-            separator={
-              <span className="text-black text-opacity-50">
-                {" "}
-                <IconChevronRight width={20} height={20} />{" "}
-              </span>
-            }
-            activeClasses="main-text-color"
-            containerClasses="flex items-center pb-5"
-            listClasses="mr-2 text-black text-opacity-50 text-[16px]"
-            capitalizeLinks
-          />
+        <body className={`${poppins.className} scroll-smooth md:px-2 lg:px-0`}>
           {children}
-          <Footer />
         </body>
       </html>
     </Providers>

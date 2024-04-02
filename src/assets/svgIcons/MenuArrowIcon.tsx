@@ -12,8 +12,8 @@ const MenuArrowIcon = () => {
       <path
         d="M4.58317 7.79163L10.9998 14.2083L17.4165 7.79163"
         stroke="url(#paint0_linear_2812_417)"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <defs>
         <linearGradient
@@ -24,8 +24,8 @@ const MenuArrowIcon = () => {
           y2="11.1716"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#C83B62" />
-          <stop offset="1" stop-color="#7F35CD" />
+          <stop stopColor="#C83B62" />
+          <stop offset="1" stopColor="#7F35CD" />
         </linearGradient>
       </defs>
     </svg>

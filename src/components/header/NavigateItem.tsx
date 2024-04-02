@@ -12,7 +12,7 @@ const NavigateItem = () => {
 
   const hrefValues = [
     "/",
-    "/brand/slug",
+    "/brand",
     "/printing-request",
     "/about-us",
     "/privacy-policy",

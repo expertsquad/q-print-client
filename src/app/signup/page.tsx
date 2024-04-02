@@ -3,59 +3,111 @@ import Facebook from "@/assets/FooterSVG/Facebook";
 import CustomInput from "@/components/shared/CustomInput";
 import PasswordInput from "@/components/shared/PasswordInput";
 import {
+  setConfirmPassword,
+  setEmail,
+  setFullName,
+  setPassword,
+  setPhoneNumber,
+  setQid,
+} from "@/redux/features/user/signUpSlice";
+import { useUserSignUpMutation } from "@/redux/features/user/user";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { storeUserInfo } from "@/services/auth.service";
+import {
   IconMail,
   IconPhone,
   IconUser,
   IconIdBadge2,
 } from "@tabler/icons-react";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
 
-const page = () => {
+const SignUp = () => {
+  const [userSignUp] = useUserSignUpMutation();
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const { fullName, email, password, confirmPassword, qid, phoneNumber } =
+    useAppSelector((state) => state.signUp);
+
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("fullName", fullName);
+    formData.append("password", password);
+    formData.append("confirmPassword", confirmPassword);
+    formData.append("phoneNumber", phoneNumber);
+    formData.append("qid", qid);
+
+    try {
+      const res = await userSignUp(formData).unwrap();
+      console.log(res);
+      storeUserInfo({ accessToken: res?.data?.accessToken });
+      console.log(res?.data?.accessToken);
+      if (res?.data?.accessToken) {
+        router.push("/");
+      }
+    } catch (err: any) {
+      console.error(err.message);
+    }
+  };
+
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="md:max-w-[600px] bg-white shadow-modalShadow px-5 md:px-11 pb-7 rounded-2xl">
         <h4 className="mt-7 md:mt-10 font-bold text-center [font-size:_clamp(20px,5vw,26px)] mb-7">
           Sign Up
         </h4>
-        <form action="">
+        <form onSubmit={onSubmit} action="">
           <CustomInput
+            name="fullName"
             type="text"
             placeholder="Full Name"
             placeholderIcon={<IconUser />}
             customClassName="mt-2"
+            onChange={(e) => dispatch(setFullName(e.target.value))}
           />
           <CustomInput
+            name="qid"
             type="text"
             placeholder="QID"
             placeholderIcon={<IconIdBadge2 />}
             customClassName="mt-2"
+            onChange={(e) => dispatch(setQid(e.target.value))}
           />
           <CustomInput
+            name="email"
             type="email"
             placeholder="Email"
             placeholderIcon={<IconMail />}
             customClassName="mt-2"
+            onChange={(e) => dispatch(setEmail(e.target.value))}
           />
           <CustomInput
+            name="phoneNumber"
             type="number"
             placeholder="Phone Number"
             placeholderIcon={<IconPhone />}
             customClassName="mt-2"
+            onChange={(e) => dispatch(setPhoneNumber(e.target.value))}
           />
           <PasswordInput
-            onChange={(e) => console.log(e)}
+            name="password"
+            onChange={(e) => dispatch(setPassword(e.target.value))}
             placeholder="Type Password"
           />
           <PasswordInput
-            onChange={(e) => console.log(e)}
+            name="confirmPassword"
             placeholder="Retype Password"
             inputStyle="mb-6"
+            onChange={(e) => dispatch(setConfirmPassword(e.target.value))}
           />
           <button className="main-bg-color text-white w-full py-3 rounded-lg">
             Create New Account
           </button>
         </form>
+
         {/* ==Divider */}
         <div className="divider divider-[#548]">OR</div>
         {/* //Social Login */}
@@ -81,4 +133,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SignUp;

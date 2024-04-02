@@ -1,91 +1,102 @@
 "use client";
 import Image from "next/image";
 import logo from "@/assets/logo.svg";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Facebook from "@/assets/FooterSVG/Facebook";
+import { useUserLoginMutation } from "@/redux/features/user/user";
+import { storeUserInfo } from "@/services/auth.service";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import {
+  setLoginEmail,
+  setLoginPassword,
+} from "@/redux/features/user/loginSlice";
 import CustomInput from "@/components/shared/CustomInput";
 import PasswordInput from "@/components/shared/PasswordInput";
 
 const Login = () => {
+  const [userLogin] = useUserLoginMutation();
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const { email, password } = useAppSelector((state) => state.login);
+  console.log(email, password);
+
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
+    const formData = new FormData();
+    console.log("email", email);
+    console.log("password", password);
+
+    try {
+      const res = await userLogin(formData).unwrap();
+      // console.log(res);
+      storeUserInfo({ accessToken: res?.data?.accessToken });
+      // console.log(res?.data?.accessToken);
+      if (res?.data?.accessToken) {
+        router.push("/");
+      }
+    } catch (err: any) {
+      console.error(err.message.length);
+    }
+  };
   return (
-    <div className="h-screen flex items-center justify-center mx-3">
-      <div className="md:max-w-[600px] bg-white shadow-modalShadow px-5 md:px-11 pb-7 rounded-2xl">
-        {/* //Logo */}
-        <div className="flex justify-center items-center mb-5 mt-12 md:mt-20">
-          <Image src={logo} alt="Logo" />
-        </div>
-        <p className="[font-size:_clamp(15px,2vw,16px)] text-black opacity-50 text-center">
-          Best online e-commerce website for you
-        </p>
-        {/* //Social Login */}
-        <div className="flex justify-center gap-5 mt-14">
-          <button className="border flex items-center gap-2 rounded w-full md:w-[160px] py-2 px-5">
-            <Facebook />
-            Google
-          </button>
-          <button className="border flex items-center gap-2 rounded w-full md:w-[160px] py-2 px-5">
-            <Facebook />
-            Facebook
-          </button>
-        </div>
-        <div className="divider divider-[#548]">OR</div>
-        {/* //Form */}
-        <form>
-          <label htmlFor=""></label>
-          <CustomInput
-            type={"email" || "number"}
-            placeholder="Email or Phone"
-            customClassName="my-custom-style"
+    <div className="h-screen flex justify-center items-center shadow-product-card-shadow login-container-image bg-[url('/src/assets/login-background.png')] bg-slate-200">
+      <div className="bg-white p-5 md:p-12 rounded-custom-5px text-center">
+        <div className="flex items-center justify-center my-5">
+          <Image
+            src={logo}
+            className="[width:clamp(140px,50vw,160px)]"
+            alt="Logo"
           />
-          <div className="">
-            <PasswordInput
-              onChange={(e) => console.log(e)}
-              placeholder="Type Your Password"
+        </div>
+        <p className="text-center text-lg text-black-opacity-50">
+          Best online ecommerce website for you
+        </p>
+        <form onSubmit={onSubmit}>
+          <div className="flex flex-col gap-5 mt-20">
+            <CustomInput
+              name="email"
+              type="email"
+              placeholder="Enter Your Email"
+              customClassName="mt-2"
+              onChange={(e) => dispatch(setLoginEmail(e.target.value))}
             />
-
-            <div className="flex justify-end">
-              <Link
-                className="text-[16px] text-black text-opacity-50 "
-                href="/forgetPassword"
-              >
-                Forget Password
-              </Link>
-            </div>
-          </div>
-          {/* //Submit Button */}
-          <button
-            type="submit"
-            className="main-bg-color w-full my-7 rounded-lg text-white py-3"
-          >
-            Login
-          </button>
-
-          {/* //Remember Me */}
-          <div className="flex items-center justify-center mb-5">
-            <div className="flex items-center mr-4">
-              <input
-                id="remember"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 border rounded bg-gray-50 border-black border-opacity-20"
-                required
+            <div className="flex flex-col">
+              <PasswordInput
+                name="password"
+                onChange={(e) => dispatch(setLoginPassword(e.target.value))}
+                placeholder="Type Password"
               />
+              <div className="flex items-center justify-end mt-1">
+                <Link
+                  href={"/forget-password"}
+                  className="text-sm text-black-opacity-50 "
+                >
+                  Forget Password
+                </Link>
+              </div>
             </div>
-            <label
-              htmlFor="remember"
-              className="[font-size:_clamp(16px,4vw,18px)] text-black opacity-50"
+
+            <button
+              type="submit"
+              className="main-bg-color text-white w-full py-3 rounded-lg"
             >
-              Remember me for 30 days
-            </label>
+              Login
+            </button>
+            <div className="flex items-center justify-start gap-2">
+              <input
+                type="checkbox"
+                id="remember-me"
+                name="remember-me"
+                value="remember-me"
+                className="checked:bg-fuchsia-400 border-main-border-color bg-red-700 checked:border-transparent rounded-lg"
+              />
+              <label htmlFor="remember-me" className="text-black-opacity-50">
+                Remember Me for 30 days
+              </label>
+            </div>
           </div>
         </form>
-
-        <p className="[font-size:_clamp(16px,4vw,18px)] text-black opacity-50 text-center">
-          Don’t have your account?{" "}
-          <Link className="main-text-color" href="/signup">
-            Register Now
-          </Link>
-        </p>
       </div>
     </div>
   );

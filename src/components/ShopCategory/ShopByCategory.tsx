@@ -1,9 +1,17 @@
-import { shopByCategories } from "@/constants";
+"use client";
+
 import ShopCategoryCard from "./ShopCategoryCard";
+import { useGetCategoryQuery } from "@/redux/features/category/categories";
 
 const ShopByCategory = () => {
+  // <== Get Category ==>
+  const { data } = useGetCategoryQuery("");
+
+  // <== Slice 0-3 for show at home page ==>
+  const slicedCategory = data?.data?.slice(0, 3);
+
   return (
-    <section className=" lg:mt-20 md:mt-20 mt-8">
+    <section className="lg:mt-20 md:mt-20 mt-8">
       <div>
         <div className="flex items-center justify-center flex-col mb-6">
           <p className="[font-size:_clamp(0.75em,5vw,1em)] text-gray-500">
@@ -13,9 +21,9 @@ const ShopByCategory = () => {
             Browser Our Hottest Categories
           </h3>
         </div>
-        <div className="flex gap-4 justify-between overflow-scroll no-scrollbar ">
-          {shopByCategories.map((item) => (
-            <ShopCategoryCard key={item._id} category={item} />
+        <div className="flex justify-between gap-4 overflow-scroll no-scrollbar ">
+          {slicedCategory?.map((category: any, index: number) => (
+            <ShopCategoryCard key={index} category={category} />
           ))}
         </div>
       </div>

@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import OrderIcon from "@/assets/svgIcons/OrderIcon";
 import ReviewIcon from "@/assets/svgIcons/ReviewIcon";
@@ -6,8 +7,37 @@ import ProfileLogoutButton from "./ProfileLogoutButton";
 import ProfileViewButton from "./ProfileViewButton";
 import ProfileUserIcon from "@/assets/svgIcons/ProfileUserIcon";
 import { IconCamera } from "@tabler/icons-react";
+import { useGetUserQuery } from "@/redux/features/user/user";
+import { removeUserInfo } from "@/services/auth.service";
+import { authKey } from "@/constants/storageKey";
+import { useRouter } from "next/navigation";
+import { imageUrl } from "@/constants/imageUrl";
+import { useGetOnlineOrderQuery } from "@/redux/features/online-order/online-orderApi";
+import { useGetReviewQuery } from "@/redux/features/review/reviewApi";
 
 const MyProfileCard = () => {
+  const router = useRouter();
+
+  // <== User Logout Functionality ==>
+  const userLogout = () => {
+    removeUserInfo(authKey);
+    router.push("/signup");
+  };
+
+  // <== Get data from user me ==>
+  const { data, isError, isLoading } = useGetUserQuery("");
+
+  // <== Get Order Data by Online Order Query ==>
+  const onlineOrderData = useGetOnlineOrderQuery("").data;
+
+  // <== Get review data by review Query ==>
+  const reviewData = useGetReviewQuery("").data;
+
+  // <== Get Complete Order Data ==>
+  const { data: completeOrder } = useGetOnlineOrderQuery(
+    "orderStatus.status=Delivered"
+  );
+
   return (
     <div className="border w-full p-10 rounded-lg ">
       {/* Profile image and logout section */}
@@ -17,7 +47,7 @@ const MyProfileCard = () => {
             <div>
               <div className="relative">
                 <Image
-                  src="https://images.pexels.com/photos/162140/duckling-birds-yellow-fluffy-162140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  src={`${imageUrl}${data?.profilePhoto}`}
                   alt="My profile image"
                   height={100}
                   width={100}
@@ -27,6 +57,7 @@ const MyProfileCard = () => {
                   <label htmlFor="profileFileInput">
                     <IconCamera />
                     <input
+                      title="Upload Profile Photo"
                       id="profileFileInput"
                       className="hidden"
                       type="file"
@@ -37,13 +68,17 @@ const MyProfileCard = () => {
             </div>
             <div>
               <p>Hello,</p>
-              <h3 className="font-bold">Zayed Hossain</h3>
+              {data?.data?.fullName ? (
+                <h3 className="font-bold">{data?.data?.fullName}</h3>
+              ) : (
+                <h3 className="font-bold">User Name</h3>
+              )}
             </div>
           </div>
 
           {/*  logout button */}
 
-          <ProfileLogoutButton />
+          <ProfileLogoutButton handleLogout={userLogout} />
         </div>
       </div>
       <div className="grid  grid-cols-2 md:grid-cols-2 lg:grid-cols-4  gap-4 mt-5">
@@ -65,7 +100,7 @@ const MyProfileCard = () => {
             <OrderIcon />
           </h3>
           <p className="whitespace-nowrap text-gray-500">Orders</p>
-          <div className="font-bold">50</div>
+          <span className="font-bold">{onlineOrderData?.data?.length}</span>
         </div>
 
         {/* grid card 3 */}
@@ -73,7 +108,7 @@ const MyProfileCard = () => {
         <div className=" border rounded-lg flex items-center justify-center flex-col p-5 gap-4 text-gray-500 ">
           <ReviewIcon />
           <p className="whitespace-nowrap text-gray-500">Review</p>
-          <div className="font-bold">12</div>
+          <span className="font-bold">{reviewData?.data?.length}</span>
         </div>
 
         {/* grid card 4 */}
@@ -81,7 +116,7 @@ const MyProfileCard = () => {
         <div className=" border rounded-lg flex items-center justify-center flex-col p-5 gap-4 text-gray-500 ">
           <CompleteOrdersIcon />
           <p className="whitespace-pre-wrap text-gray-500">Complete Orders</p>
-          <div className="font-bold">45</div>
+          <div className="font-bold">{completeOrder?.data?.length}</div>
         </div>
       </div>
     </div>

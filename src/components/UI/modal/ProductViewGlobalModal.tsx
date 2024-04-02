@@ -7,7 +7,7 @@ import ProductViewImage from "@/components/ProductView/ProductViewImage";
 import { productViewImage } from "@/constants";
 import Image from "next/image";
 
-const ProductViewGlobalModal = () => {
+const ProductViewGlobalModal = ({ product }: any) => {
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);

@@ -36,6 +36,7 @@ const OrderedStep = () => {
         currentStep={currentStep}
         numberOfSteps={numberOfSteps}
         iconSize={`${30} md:${40}`}
+        iconStroke={1}
       />
       <div className="flex items-center justify-between">
         {orderStepData.map((step, index) => (

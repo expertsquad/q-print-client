@@ -12,16 +12,16 @@ const GradientReturnArrow = () => {
       <path
         d="M16.875 10H3.125"
         stroke="url(#paint0_linear_1291_3146)"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M8.75 4.375L3.125 10L8.75 15.625"
         stroke="url(#paint1_linear_1291_3146)"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <defs>
         <linearGradient
@@ -32,8 +32,8 @@ const GradientReturnArrow = () => {
           y2="11.7542"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#C83B62" />
-          <stop offset="1" stop-color="#7F35CD" />
+          <stop stopColor="#C83B62" />
+          <stop offset="1" stopColor="#7F35CD" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_1291_3146"
@@ -43,8 +43,8 @@ const GradientReturnArrow = () => {
           y2="10.0188"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#C83B62" />
-          <stop offset="1" stop-color="#7F35CD" />
+          <stop stopColor="#C83B62" />
+          <stop offset="1" stopColor="#7F35CD" />
         </linearGradient>
       </defs>
     </svg>

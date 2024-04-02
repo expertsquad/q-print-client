@@ -1,7 +1,8 @@
 import UploadIcon from "@/assets/svgIcons/UploadIcon";
+import { imageUrl } from "@/constants/imageUrl";
 import Image from "next/image";
 
-const PersonalInformation = () => {
+const PersonalInformation = ({ personalInformation }: any) => {
   return (
     <section className=" w-full">
       <h1 className="text-black text-xl mb-5 md:mb-8 lg:mb-8  ">
@@ -18,7 +19,7 @@ const PersonalInformation = () => {
               name="first_name"
               id="first_name"
               className="border outline-none block w-full py-3.5 rounded-md px-4"
-              defaultValue="John"
+              defaultValue={personalInformation?.firstName}
               required
             />
           </div>
@@ -31,7 +32,7 @@ const PersonalInformation = () => {
               name="last_name"
               id="last_name"
               className="border outline-none block w-full py-3.5 rounded-md px-4"
-              defaultValue="Smith"
+              defaultValue={personalInformation?.lastName}
               required
             />
           </div>
@@ -44,7 +45,7 @@ const PersonalInformation = () => {
               name="user_email"
               id="user_email"
               className="border outline-none block w-full py-3.5 rounded-md px-4 text-gray-300"
-              defaultValue="dianne.russell@gmail.com"
+              defaultValue={personalInformation?.email}
               readOnly
             />
           </div>
@@ -57,7 +58,7 @@ const PersonalInformation = () => {
               name="user_phone"
               id="user_phone"
               className="border outline-none block w-full py-3.5 rounded-md px-4"
-              defaultValue="08801835550123"
+              defaultValue={personalInformation?.phoneNumber}
               required
             />
           </div>
@@ -70,8 +71,8 @@ const PersonalInformation = () => {
               className="block w-40 h-40 group-hover:bg-gray-200 rounded-full overflow-hidden shadow-md text-center cursor-pointer transition duration-300 ease-in-out relative"
             >
               <Image
-                src="https://images.pexels.com/photos/162140/duckling-birds-yellow-fluffy-162140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt=""
+                src={`${imageUrl}${personalInformation?.profilePhoto}`}
+                alt="User Profile"
                 width={50}
                 height={50}
                 className="w-full h-full object-cover relative"

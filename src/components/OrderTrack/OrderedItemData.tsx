@@ -4,70 +4,88 @@ import { IconX } from "@tabler/icons-react";
 import Image from "next/image";
 import React, { useState } from "react";
 import GlobalModal from "../UI/modal/GlobalModal";
+import { OrderedItemsTypes } from "@/types/orderTrackPage";
+import { imageUrl } from "@/constants/imageUrl";
 
-const OrderedItemData = () => {
+const OrderedItemData = ({ orderedItems, totalQuantity, totalPrice }: any) => {
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);
   };
   return (
-    <>
+    <section>
       <div>
-        {orderTrackData.map((data: any) => (
+        {orderedItems?.map((data: OrderedItemsTypes) => (
           <div
-            className="flex md:order-item-data  py-3 px-2 border-b transition duration-300 ease-in-out hover:bg-gray-100"
+            className="flex items-center md:order-item-data  py-3 px-2 border-b transition duration-300 ease-in-out hover:bg-gray-100"
             key={data._id}
           >
             {/* //Product Image */}
-            <div className="border rounded-md p-1 max-h-14 max-w-14 h-full mr-2 md:mr-0 md:w-1/1 overflow-hidden">
+            <div className="w-[55px] h-[55px] relative shrink-0 mr-2 md:mr-0 md:w-1/1">
               <Image
-                src={data?.productPhoto}
-                alt="Product Image"
-                width={50}
-                height={50}
-                className="w-full h-full"
+                src={`${imageUrl}${data?.productPhotos[0]}`}
+                alt="Product"
+                fill
+                objectFit="cover"
+                className="w-full h-full top-0 left-0 object-cover border rounded-md p-1"
               />
             </div>
             {/* //Product Description */}
-            <div className="">
-              <div className="flex gap-3 md:gap-0">
+            <div className="w-full">
+              <div className="flex items-center justify-between w-full gap-3 md:gap-0">
                 <span className="text-[16px] text-black text-opacity-90 line-clamp-1 md:line-clamp-2">
-                  {data.description}
+                  {data.productName}
                 </span>
-                <span className="cursor-pointer block md:hidden text-black text-opacity-70 active:text-fuchsia-600">
+                <span
+                  onClick={() => setShowModal(true)}
+                  className="cursor-pointer block md:hidden text-black text-opacity-70 active:text-fuchsia-600"
+                >
                   <IconX width={20} height={20} />
                 </span>
               </div>
               <div className="flex justify-between items-center md:hidden">
-                <p>
-                  {data.quantity} x {data.price}
+                <p className="flex items-center">
+                  {data?.orderQuantity}{" "}
+                  <IconX stroke={1} height={20} width={20} /> $
+                  {data?.variant?.sellingPrice}
                 </p>
-                <span className="">
-                  {data.quantity * data.price}{" "}
-                  <small className="uppercase">qar</small>
+                <span className="main-text-color">
+                  {data?.orderQuantity * data?.variant?.sellingPrice}
+                  <small className="uppercase ml-0.5">qar</small>
                 </span>
               </div>
             </div>
             {/* //Quantity & Price */}
             <p className="hidden md:block md:w-1/1">
-              {data.quantity} x {data.price} <small>QAR</small>
+              {data?.orderQuantity} x {data?.variant?.sellingPrice}{" "}
+              <small className="">QAR</small>
             </p>
             {/* //Total Amount */}
             <h6 className="hidden md:block md:w-1/1 main-text-color font-semibold">
-              {data.quantity * data.price}{" "}
-              <small className="font-medium">QAR</small>
+              {data?.orderQuantity * data?.variant?.sellingPrice}
+              <small className="font-medium ml-0.5">QAR</small>
             </h6>
             {/* //Cancel Button */}
             <button
               onClick={() => setShowModal(true)}
               className="py-1.5 border hover:border-fuchsia-500 px-3 rounded-md bg-transparent hidden md:block md:w-1/1"
             >
-              Cancel{" "}
+              <span className="block md:hidden">
+                <IconX />
+              </span>
+              <span className="hidden md:block">Cancel</span>
             </button>
           </div>
         ))}
+        <div className="my-2.5 px-2">
+          <span>{totalQuantity} Items,</span>
+          <span>
+            Total: <b className="main-text-color">{totalPrice}</b>
+          </span>
+          <small className="main-text-color ml-0.5">QAR</small>
+        </div>
       </div>
-      {/* //Modal */}
+      {/* === Product Cancel Modal === */}
       <GlobalModal
         isVisible={showModal}
         onClose={handleCloseModal}
@@ -76,12 +94,12 @@ const OrderedItemData = () => {
         <div className="md:max-w-[650px] bg-white p-7 rounded-lg">
           {/* //Here is a demo of close modal by icon, that's bellow down */}
 
-          {/* <div className="flex justify-end ">
+          <div className="flex justify-end ">
             <button onClick={handleCloseModal}>
               <IconX />
               {""}
             </button>
-          </div> */}
+          </div>
           <h4 className="text-black text-opacity-80 text-[18px] font-semibold mb-7 md:mb-11 text-center">
             Cancellation Request
           </h4>
@@ -138,7 +156,7 @@ const OrderedItemData = () => {
           </form>
         </div>
       </GlobalModal>
-    </>
+    </section>
   );
 };
 

@@ -5,28 +5,26 @@ import {
   IconPlus,
   IconShoppingCart,
 } from "@tabler/icons-react";
-import React, { useState } from "react";
+import React from "react";
 import WishlistQuickOrderBTNModal from "../WishlistPageData/WishlistQuickOrderBTNModal";
 
-const SpecificationCard = () => {
-  const [value, setvalue] = useState(0);
+const SpecificationCard = ({ specificationCard }: any) => {
   return (
     <div className="sticky top-0 md:max-w-[340px] md:max-h-[380px] hidden md:block shadow-2xl p-6 rounded-lg">
       <h2 className="md:text-[16px] text-wrap text-black opacity-80">
-        {/* //{title} */}
-        Brother HL - L3270CDW Single Function Color Laser Printer
+        {specificationCard?.productName}
       </h2>
       <hr className="bg-black opacity-10 h-[2px] my-4 mb-6" />
       <span className="[font-size:_clamp(14px,5vw,16px)] text-red-500 bg-gradient-to-r from-pink-50 to-purple-50 py-1 px-3 rounded-md">
-        20% OFF
+        {specificationCard?.defaultVariant?.discountPercentage}% OFF
       </span>
       <div className="flex items-center flex-wrap my-6 text-wrap">
         <h3 className="main-text-color [font-size:_clamp(17px,3vw,20px)] font-semibold mr-2">
-          {/* //Price */}
-          1500.00 <small className="uppercase">qar</small>
+          {specificationCard?.defaultVariant?.discountedPrice}{" "}
+          <small className="uppercase">qar</small>
         </h3>
         <del className="text-[#B3B3B3] [font-size:_clamp(14px,3vw,17px)] mr-5">
-          1800.00 QAR
+          {specificationCard?.defaultVariant?.sellingPrice} QAR
         </del>
       </div>
       <div className="flex items-center gap-5 mb-6">
@@ -35,7 +33,7 @@ const SpecificationCard = () => {
             {""}
             <IconMinus width={14} height={14} />
           </button>
-          <span>{value}</span>
+          <span>{}</span>
           <button className="p-2 bg-[#F2F2F2] rounded-full">
             {""}
             <IconPlus width={14} height={14} />

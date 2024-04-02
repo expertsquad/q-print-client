@@ -3,8 +3,23 @@ import React, { useState } from "react";
 import GlobalModal from "../UI/modal/GlobalModal";
 import { IconArrowLeft, IconX } from "@tabler/icons-react";
 import Image from "next/image";
+import { useAddReviewMutation } from "@/redux/features/review/reviewApi";
+import { useAppSelector } from "@/redux/hook";
+import { useGetOnlineOrderByIdQuery } from "@/redux/features/online-order/online-orderApi";
+import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
+import { imageUrl } from "@/constants/imageUrl";
+import StarRating from "../product/StarRating";
 
-const ProductReviewModal = () => {
+const ProductReviewModal = ({
+  orderId: reviewOrderId,
+  productId: reviewProductId,
+}: any) => {
+  // <== Get Onile Order By Order Id ==>
+  const { data: order } = useGetOnlineOrderByIdQuery(reviewOrderId);
+
+  // <== Get Product By Product Id ==>
+  const { data: product } = useGetProductByIdQuery(reviewProductId);
+
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);
@@ -29,12 +44,31 @@ const ProductReviewModal = () => {
     },
   ];
 
+  // <== Handle Add Review ==>
+  const [addReview] = useAddReviewMutation();
+  const { orderId, productId, rating, comment, reviewPhotos } = useAppSelector(
+    (state) => state.addReview
+  );
+
+  // = Functionality =
+  const handleAddReviewSubmit = async (e: any) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("orderId", orderId);
+    formData.append("productId", productId);
+    formData.append("rating", rating ? rating.toString() : "");
+    formData.append("comment", comment);
+    if (reviewPhotos instanceof File || reviewPhotos instanceof Blob) {
+      formData.append("reviewPhotos", reviewPhotos);
+    }
+  };
+
   return (
     <>
       <div>
         <button
           onClick={() => setShowModal(true)}
-          className="border border-[#F2F2F2] rounded-full p-2.5 text-black text-opacity-50"
+          className="border border-fuchsia-800 rounded-md py-1 px-2 md:px-3.5 main-text-color text-xs md:text-base"
         >
           Review
           {""}
@@ -72,50 +106,47 @@ const ProductReviewModal = () => {
             <h1 className="text-center md:text-left text-black text-opacity-80 text-[18px] md:text-[24px] font-semibold mb-7">
               My Reviews
             </h1>
-            {/* ==Product Content== */}
-            <div className="border py-5 px-4 rounded-lg     ">
-              {reviewData.map((data: any) => (
-                <div key={data._id} className="">
-                  <div className="flex gap-4">
-                    <div className="border flex items-center justify-center h-[60px] w-[70px] rounded-md px-2">
-                      <Image
-                        className="object-contain"
-                        src={data.image}
-                        alt="Product Image"
-                        width={70}
-                        height={70}
-                      />
-                    </div>
-                    <div>
-                      <p className="line-clamp-2 text-black text-opacity-90 text-[16px] md:text-[18px]">
-                        {data.title}
-                      </p>
 
-                      <p className="text-black text-opacity-60 text-sm md:text-[18px]">
-                        {data.brand}
-                      </p>
-                    </div>
-                  </div>
-                  <div>
-                    <p className="text-[16px] md:text-[18px] mb-2.5">
-                      Select Product Rating
-                    </p>
-                    <span>Rating {data.rating} </span>
-                  </div>
+            {/* ==Product Content== */}
+            <div className="border py-5 px-4 rounded-lg flex justify-between">
+              <div className="flex gap-4">
+                <div className="h-[70px] w-[70px] shrink-0 relative">
+                  <Image
+                    className="object-contain w-full h-full top-0 left-0 p-1.5 border rounded-md"
+                    src={`${imageUrl}${product?.data?.productPhotos[0]}`}
+                    alt="Product Image"
+                    fill
+                    objectFit="cover"
+                  />
                 </div>
-              ))}
+                <div>
+                  <p className="text-black text-opacity-90 text-[16px] md:text-[18px] line-clamp-1">
+                    {product?.data?.productName}
+                  </p>
+
+                  <p className="text-black text-opacity-60 text-sm md:text-[18px]">
+                    {product?.data?.brand?.brandName}
+                  </p>
+                </div>
+              </div>
+              <div>
+                <p className="text-[16px] md:text-[18px] mb-2">
+                  Select Product Rating
+                </p>
+                <StarRating rating={5} />
+              </div>
             </div>
             <form action="" className="mt-7">
               <label className="text-sm md:text-[18px]" htmlFor="review">
                 Add Written Review
               </label>
               <textarea
-                className="border pt-2 pl-2 w-full outline-none rounded-lg text-black text-opacity-50 text-sm mt-4 resize-none"
+                className="border pt-2 pl-2 w-full outline-none rounded-lg text-black text-opacity-50 text-sm mt-2 resize-none"
                 placeholder="Write Review Here.."
                 name="review"
                 id="review"
                 cols={50}
-                rows={10}
+                rows={4}
                 maxLength={100}
                 value={reviewText}
                 onChange={handleReviewChange}

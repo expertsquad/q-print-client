@@ -15,8 +15,10 @@ import GlobalModal from "../UI/modal/GlobalModal";
 import CustomInput from "../shared/CustomInput";
 import Image from "next/image";
 import { cartProductsData } from "@/constants";
+import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
 
-const WishlistQuickOrderBTNModal = () => {
+const WishlistQuickOrderBTNModal = ({ id }: any) => {
+  const { data } = useGetProductByIdQuery(id);
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);

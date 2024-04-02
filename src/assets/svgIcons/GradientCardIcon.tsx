@@ -14,35 +14,35 @@ const GradientCardIcon = () => {
         d="M3.25 10.084H20.75V17.7496H3.25V10.084Z"
         fill="url(#paint0_linear_1291_3536)"
         stroke="url(#paint1_linear_1291_3536)"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         d="M21 5.25H3C2.58579 5.25 2.25 5.58579 2.25 6V18C2.25 18.4142 2.58579 18.75 3 18.75H21C21.4142 18.75 21.75 18.4142 21.75 18V6C21.75 5.58579 21.4142 5.25 21 5.25Z"
         stroke="url(#paint2_linear_1291_3536)"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M15.75 15.75H18.75"
         stroke="url(#paint3_linear_1291_3536)"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M11.25 15.75H12.75"
         stroke="url(#paint4_linear_1291_3536)"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M2.25 9.08398H21.75"
         stroke="url(#paint5_linear_1291_3536)"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <defs>
         <linearGradient
@@ -53,8 +53,8 @@ const GradientCardIcon = () => {
           y2="14.1798"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#C83B62" />
-          <stop offset="1" stop-color="#7F35CD" />
+          <stop stopColor="#C83B62" />
+          <stop offset="1" stopColor="#7F35CD" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_1291_3536"
@@ -64,8 +64,8 @@ const GradientCardIcon = () => {
           y2="14.1798"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#C83B62" />
-          <stop offset="1" stop-color="#7F35CD" />
+          <stop stopColor="#C83B62" />
+          <stop offset="1" stopColor="#7F35CD" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_1291_3536"
@@ -75,8 +75,8 @@ const GradientCardIcon = () => {
           y2="12.1883"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#C83B62" />
-          <stop offset="1" stop-color="#7F35CD" />
+          <stop stopColor="#C83B62" />
+          <stop offset="1" stopColor="#7F35CD" />
         </linearGradient>
         <linearGradient
           id="paint3_linear_1291_3536"
@@ -86,8 +86,8 @@ const GradientCardIcon = () => {
           y2="16.3102"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#C83B62" />
-          <stop offset="1" stop-color="#7F35CD" />
+          <stop stopColor="#C83B62" />
+          <stop offset="1" stopColor="#7F35CD" />
         </linearGradient>
         <linearGradient
           id="paint4_linear_1291_3536"
@@ -97,8 +97,8 @@ const GradientCardIcon = () => {
           y2="16.265"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#C83B62" />
-          <stop offset="1" stop-color="#7F35CD" />
+          <stop stopColor="#C83B62" />
+          <stop offset="1" stopColor="#7F35CD" />
         </linearGradient>
         <linearGradient
           id="paint5_linear_1291_3536"
@@ -108,8 +108,8 @@ const GradientCardIcon = () => {
           y2="12.0864"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#C83B62" />
-          <stop offset="1" stop-color="#7F35CD" />
+          <stop stopColor="#C83B62" />
+          <stop offset="1" stopColor="#7F35CD" />
         </linearGradient>
       </defs>
     </svg>

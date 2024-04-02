@@ -1,3 +1,4 @@
+"use client";
 import { IconUser, IconSearch } from "@tabler/icons-react";
 import Image from "next/image";
 import qPrintLogo from "@/assets/logotwo.svg";
@@ -7,9 +8,27 @@ import WishlistAndCart from "./Wishlist";
 import Cart from "./Cart";
 import MobileVersion from "./MobileVersion";
 import Sidebar from "./Sidebar";
+import { isLoggedIn, isUserSignedIn } from "@/services/auth.service";
+import { useRouter } from "next/navigation";
+import { useGetUserQuery } from "@/redux/features/user/user";
+import { imageUrl } from "@/constants/imageUrl";
 
 const Header = () => {
-  const user = true;
+  const router = useRouter();
+  const userLoggedIn = isLoggedIn();
+  const userSignedIn = isUserSignedIn();
+
+  const { data, isError, isLoading } = useGetUserQuery(undefined);
+
+  // <== Check if the user is logged in or not ==>
+  const handleUserProfile = () => {
+    if (userLoggedIn) {
+      router.push("/profile");
+    } else {
+      router.push("/login");
+    }
+  };
+
   return (
     <header className="max-w-[1280px] mx-auto">
       <section className="header-section-css pt-6 mx-auto">
@@ -41,12 +60,30 @@ const Header = () => {
         <div className="order-3 md:order-3 section-last-child flex items-center justify-end gap-5">
           <WishlistAndCart />
           <Cart />
-          <Link
-            href={`${user ? "/profile" : "/login"}`}
-            className="border rounded-full p-1 cursor-pointer text-black text-opacity-80"
-          >
-            <IconUser width={22} height={22} />
-          </Link>
+
+          <div className="cursor-pointer" onClick={handleUserProfile}>
+            {userLoggedIn ? (
+              data?.data?.profilePhoto ? (
+                <div className="w-[30px] h-[30px] shrink-0 relative">
+                  <Image
+                    src={`${imageUrl}${data?.data?.profilePhoto}`}
+                    alt="profile"
+                    objectFit="cover"
+                    fill
+                    className="w-full h-full top-0 left-0 object-cover rounded-full"
+                  />
+                </div>
+              ) : (
+                <div>
+                  <IconUser width={24} height={24} />
+                </div>
+              )
+            ) : (
+              <div>
+                <IconUser width={24} height={24} />
+              </div>
+            )}
+          </div>
         </div>
 
         {/* ==Menubar== */}

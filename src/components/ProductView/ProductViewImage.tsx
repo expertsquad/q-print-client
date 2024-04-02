@@ -1,13 +1,12 @@
-// Jaker Hossain
-//Product View image
 "use client";
-import { productViewImage } from "@/constants";
 import Image from "next/image";
 import React, { useState } from "react";
 import ProductViewDescEtc from "./ProductViewDescEtc";
+import { imageUrl } from "@/constants/imageUrl";
+import { IProduct } from "@/types/productsType";
 
-const ProductViewImage = () => {
-  const [selectedImage, setSelectedImage] = useState(productViewImage[0]);
+const ProductViewImage = ({ product }: any) => {
+  const [selectedImage, setSelectedImage] = useState(product?.productPhotos[0]);
 
   const handleChangePhoto = (item: any) => {
     setSelectedImage(item);
@@ -17,17 +16,17 @@ const ProductViewImage = () => {
       {/* ==Left Side== */}
       <div className="flex md:flex-row flex-col-reverse items-center gap-5 md:flex-1">
         <div className=" flex md:flex-col gap-3">
-          {productViewImage.map((item) => (
+          {product?.productPhotos?.map((image: any) => (
             <div
-              key={item._id}
+              key={image._id}
               className={`border cursor-pointer rounded-lg flex items-center justify-center hover:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)] overflow-hidden ${
-                selectedImage._id === item._id ? "border-fuchsia-700 " : ""
+                selectedImage === image ? "border-fuchsia-700 " : ""
               }`}
-              onClick={() => handleChangePhoto(item)}
+              onClick={() => handleChangePhoto(image)}
             >
               <div className="py-2 w-14 h-14 md:w-20 md:h-24 relative">
                 <Image
-                  src={item.picture}
+                  src={`${imageUrl}${image}`}
                   alt="demo Printer"
                   fill
                   sizes="(max-width: 80px) 10vw, (max-width: 100px) 10vw, 15vw"
@@ -42,7 +41,7 @@ const ProductViewImage = () => {
           {selectedImage && (
             <div className="rounded-lg h-96 w-96 md:h-[420px] md:w-[400px] relative">
               <Image
-                src={selectedImage.picture}
+                src={`${imageUrl}${selectedImage}`}
                 alt="Product Photo"
                 fill
                 objectFit="contain"
@@ -56,7 +55,7 @@ const ProductViewImage = () => {
       {/* ==== */}
       {/* ==Right Side== */}
       <div className="right-side md:flex-1">
-        <ProductViewDescEtc />
+        <ProductViewDescEtc productDesc={product} />
       </div>
     </div>
   );

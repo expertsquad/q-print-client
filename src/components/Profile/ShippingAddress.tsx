@@ -1,6 +1,6 @@
 import React from "react";
 
-const ShippingAddress = () => {
+const ShippingAddress = ({ shippingInformation }: any) => {
   return (
     <div>
       <h1 className="text-black text-xl mb-5 md:mb-8 lg:mb-8 ">
@@ -17,7 +17,7 @@ const ShippingAddress = () => {
               name="country"
               id="country"
               className="border outline-none block w-full py-3.5 rounded-md px-4"
-              value="Bangladesh"
+              value={shippingInformation?.country}
               required
             />
           </div>
@@ -30,7 +30,7 @@ const ShippingAddress = () => {
               name="state"
               id="state"
               className="border outline-none block w-full py-3.5 rounded-md px-4"
-              value="Smith"
+              value={shippingInformation?.state}
               required
             />
           </div>
@@ -43,7 +43,7 @@ const ShippingAddress = () => {
               name="zip_code"
               id="zip_code"
               className="border outline-none block w-full py-3.5 rounded-md px-4"
-              value="45896"
+              value={shippingInformation?.zipCode}
               required
             />
           </div>
@@ -73,7 +73,7 @@ const ShippingAddress = () => {
             name="streetAddress"
             id="streetAddress"
             className="border outline-none block w-full py-3.5 rounded-md px-4"
-            value="Meshaab street, Dammam al-khobar "
+            value={shippingInformation?.streetAddress}
             required
           />
         </div>

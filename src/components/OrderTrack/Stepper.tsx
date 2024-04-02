@@ -8,7 +8,12 @@ import React from "react";
 
 const icons = [IconBook2, IconPackage, IconTruckDelivery, IconHeartHandshake];
 
-export default function Stepper({ currentStep, numberOfSteps, iconSize }: any) {
+export default function Stepper({
+  currentStep,
+  numberOfSteps,
+  iconSize,
+  iconStroke,
+}: any) {
   const activeColor = (index: any) =>
     currentStep >= index
       ? "main-bg-color text-white font-thin"
@@ -24,11 +29,14 @@ export default function Stepper({ currentStep, numberOfSteps, iconSize }: any) {
               index
             )}`}
           >
-            {React.createElement(icons[index], { size: iconSize })}
+            {React.createElement(icons[index], {
+              size: iconSize,
+              stroke: iconStroke,
+            })}
           </div>
           {isFinalStep(index) ? null : (
             <div
-              className={`w-full h-1.5 bg-fuchsia-100 ${activeColor(index)}`}
+              className={`w-full h-1 bg-fuchsia-100 ${activeColor(index)}`}
             ></div>
           )}
         </React.Fragment>
