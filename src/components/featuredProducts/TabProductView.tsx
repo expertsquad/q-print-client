@@ -44,7 +44,7 @@ const TabProductView = () => {
         {activeTab === "topSell" && (
           <div>
             <Link
-              className="flex items-center justify-end gap-2 main-text-color py-2 animate-bounce "
+              className="flex items-center justify-end gap-2 main-text-color py-2  "
               href="#"
             >
               {" "}
@@ -56,7 +56,7 @@ const TabProductView = () => {
         {activeTab === "popular" && (
           <div>
             <Link
-              className="flex items-center justify-end gap-2 main-text-color py-2 animate-bounce "
+              className="flex items-center justify-end gap-2 main-text-color py-2  "
               href="#"
             >
               {" "}
@@ -68,7 +68,7 @@ const TabProductView = () => {
         {activeTab === "newest" && (
           <div>
             <Link
-              className="flex items-center justify-end gap-2 main-text-color py-2 animate-bounce "
+              className="flex items-center justify-end gap-2 main-text-color py-2  "
               href="#"
             >
               {" "}
