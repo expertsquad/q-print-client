@@ -222,3 +222,8 @@ input[type="number"]::-webkit-outer-spin-button {
     align-items: center;
   }
 }
+
+.order-track-step-counter {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}

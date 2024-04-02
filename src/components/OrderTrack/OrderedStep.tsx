@@ -1,49 +1,32 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import Stepper from "./Stepper";
-import { shippingStatus } from "@/constants";
+import { useGetOnlineOrderByIdQuery } from "@/redux/features/online-order/online-orderApi";
+import { formatDate } from "@/constants/formatDate";
 
-const OrderedStep = () => {
-  //Status Data
-  const orderStepData = [
-    "Order Placed",
-    "Packaging",
-    "To Ship",
-    "Order Received",
-  ];
+const OrderedStep = ({ id }: any) => {
+  const { data } = useGetOnlineOrderByIdQuery(id);
+  const orderStatus = parseFloat(data?.data?.orderStatus);
 
-  const shippingStatusData = shippingStatus[0]?.status;
-
-  const [currentStep, setCurrentStep] = React.useState(0);
-  // if (shippingStatusData?.find((data: any) => console.log(data))) {
-
-  //step increase decrease by status--
-
-  // if (currentStep === 0 && shippingStatusData?.includes("Packaging")) {
-  //   setCurrentStep(1);
-  // } else if (currentStep === 1 && shippingStatusData?.includes("Shipped")) {
-  //   setCurrentStep(2);
-  // } else if (currentStep === 2 && shippingStatusData?.includes("Delivered")) {
-  //   setCurrentStep(3);
-  // } else {
-  //   setCurrentStep(0);
-  // }
-  const numberOfSteps = shippingStatusData?.length;
+  const [currentStep, setCurrentStep] = React.useState(3);
 
   return (
     <div className="mb-10">
       <Stepper
-        currentStep={currentStep}
-        numberOfSteps={numberOfSteps}
-        iconSize={`${30} md:${40}`}
+        currentStep={0}
+        numberOfSteps={4}
+        iconSize={`${50} md:${40}`}
         iconStroke={1}
+        customStepStyle={`relative`}
       />
-      <div className="flex items-center justify-between">
-        {orderStepData.map((step, index) => (
-          <div key={index} className="flex flex-col items-center">
-            <span className="text-[12px] md:text-[16px] italic">{step}</span>
+      <div className="order-track-step-counter">
+        {data?.data?.orderStatus?.map((status: any, index: number) => (
+          <div key={status?._id} className="flex flex-col items-center">
+            <span className="text-[11px] md:text-[16px] italic">
+              {status?.status}
+            </span>
             <span className="text-black text-opacity-50 text-[11px] md:text-sm italic">
-              {new Date().toLocaleDateString()}
+              {formatDate(status?.time)}
             </span>
           </div>
         ))}

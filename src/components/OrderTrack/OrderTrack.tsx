@@ -6,7 +6,7 @@ const OrderTrack = ({ id }: any) => {
   return (
     <div className="">
       <OrderTrackTop id={id} />
-      <OrderedStep />
+      <OrderedStep id={id} />
       <OrderDetails id={id} />
     </div>
   );

@@ -14,7 +14,7 @@ const ChangePassword = () => {
   const [changePassword] = useChangePasswordMutation();
   const dispatch = useAppDispatch();
   const [error, setError] = useState("");
-  console.log(error, "Hello From error");
+
   const { oldPassword, newPassword, confirmPassword } = useAppSelector(
     (state) => state.changePasswordSlice
   );
@@ -30,7 +30,7 @@ const ChangePassword = () => {
       }).unwrap();
       console.log(res);
     } catch (err: any) {
-      setError(err);
+      setError(err.message);
     }
   };
 
