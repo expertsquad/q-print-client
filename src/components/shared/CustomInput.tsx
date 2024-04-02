@@ -37,7 +37,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
         onChange={onChange}
         value={value}
         name={name}
-        className={`${inputStyle} w-full border border-black border-opacity-10 rounded-md py-3  pr-4 focus:outline-none focus:border-fuchsia-500 ${
+        className={`${inputStyle} w-full border border-black border-opacity-10 rounded-md py-3  pr-4 focus:outline-none focus:border-fuchsia-200 ${
           readonly && "text-black text-opacity-50"
         } placeholder:text-sm ${
           placeholderIcon ? "pl-9" : "pl-3"

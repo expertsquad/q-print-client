@@ -37,7 +37,7 @@ const ProfileSettings = () => {
     <div className="lg:border rounded-lg lg:p-7 flex flex-col gap-8 mb-7">
       <PersonalInformation personalInformation={personalInformation?.data} />
       <ShippingAddress shippingInformation={defaultAddress} />
-      <button className="flex items-start justify-start">
+      <button type="submit" className="flex items-start justify-start">
         <span className="main-bg-color px-5 py-1.5 text-white rounded-md">
           Update
         </span>

@@ -2,7 +2,43 @@
 import Image from "next/image";
 import resetPasswordImg from "@/assets/images/resetPasswordImg.png";
 import PasswordInput from "@/components/shared/PasswordInput";
+import { useChangePasswordMutation } from "@/redux/features/user/user";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import {
+  setConfirmPassword,
+  setNewPassword,
+  setOldPassword,
+} from "@/redux/features/user/changePassword";
+import { useState } from "react";
 const ChangePassword = () => {
+  const [changePassword] = useChangePasswordMutation();
+  const dispatch = useAppDispatch();
+  const [error, setError] = useState("");
+  console.log(error, "Hello From error");
+  const { oldPassword, newPassword, confirmPassword } = useAppSelector(
+    (state) => state.changePasswordSlice
+  );
+
+  const handlePasswordChange = async (event: any) => {
+    event.preventDefault();
+
+    try {
+      const res = await changePassword({
+        oldPassword,
+        newPassword,
+        confirmPassword,
+      }).unwrap();
+      console.log(res);
+    } catch (err: any) {
+      setError(err);
+    }
+  };
+
+  const handleResetField = () => {
+    dispatch(setOldPassword(""));
+    dispatch(setNewPassword(""));
+    dispatch(setConfirmPassword(""));
+  };
   return (
     <div>
       <section className="w-full mb-7">
@@ -12,35 +48,49 @@ const ChangePassword = () => {
               Reset Your Password
             </h1>
             <form
+              onSubmit={handlePasswordChange}
               action=""
               className="form-control lg:gap-5 gap-4 lg:mt-12 mt-7"
             >
               <div className="flex flex-col ">
                 <label
                   htmlFor="old-password"
-                  className="text-lg text-small-gray-text-color"
+                  className="text-base text-small-gray-text-color"
                 >
                   Current Password
                 </label>
-                <PasswordInput name="password" placeholder="" />
+                <PasswordInput
+                  name="oldPassword"
+                  placeholder=""
+                  onChange={(e) => dispatch(setOldPassword(e.target.value))}
+                />
+                {error && <span className="text-red-500 text-xs">{error}</span>}
               </div>
               <div className="flex flex-col">
                 <label
                   htmlFor="new-password"
-                  className="text-lg text-small-gray-text-color"
+                  className="text-base text-small-gray-text-color"
                 >
                   New Password
                 </label>
-                <PasswordInput name="password" placeholder="" />
+                <PasswordInput
+                  name="newPassword"
+                  placeholder=""
+                  onChange={(e) => dispatch(setNewPassword(e.target.value))}
+                />
               </div>
               <div className="flex flex-col">
                 <label
                   htmlFor="re-enter-new-password"
-                  className="text-lg text-small-gray-text-color"
+                  className="text-base text-small-gray-text-color"
                 >
                   Re-enter new password
                 </label>
-                <PasswordInput name="password" placeholder="" />
+                <PasswordInput
+                  name="confirmPassword"
+                  placeholder=""
+                  onChange={(e) => dispatch(setConfirmPassword(e.target.value))}
+                />
               </div>
               <div className="flex lg:gap-12 gap-10 items-center">
                 <button
@@ -50,7 +100,11 @@ const ChangePassword = () => {
                 >
                   Update Password
                 </button>
-                <button className="lg:text-lg text-base font-normal lg:font-medium text-text-Gray-colors">
+                <button
+                  type="submit"
+                  onClick={handleResetField}
+                  className="lg:text-lg text-base font-normal lg:font-medium text-text-Gray-colors"
+                >
                   Cancel
                 </button>
               </div>

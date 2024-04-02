@@ -8,6 +8,7 @@ import categoryFilterSlice from "./features/category/categoryFilterSlice";
 import productsByCategorySlice from "./features/brand/productsByCategorySlice";
 import brandNameSlice from "./features/brand/brandNameSlice";
 import FilterByPriceSlice from "./features/filterByPrice/FilterByPriceSlice";
+import changePassword from "./features/user/changePassword";
 
 export const reducer = {
   [baseApi.reducerPath]: baseApi.reducer,
@@ -20,4 +21,5 @@ export const reducer = {
   productByCategory: productsByCategorySlice,
   productByBrandName: brandNameSlice,
   priceRangeSlice: FilterByPriceSlice,
+  changePasswordSlice: changePassword,
 };

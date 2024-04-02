@@ -2,6 +2,7 @@ import UploadIcon from "@/assets/svgIcons/UploadIcon";
 import { imageUrl } from "@/constants/imageUrl";
 import Image from "next/image";
 import CustomInput from "../shared/CustomInput";
+import { useState } from "react";
 
 interface PersonalInformationProps {
   _id: string;
@@ -18,6 +19,10 @@ interface PersonalInformationProps {
 }
 
 const PersonalInformation = ({ personalInformation }: any) => {
+  const [imageSrc, setImageSrc] = useState(
+    `${imageUrl}${personalInformation?.profilePhoto}`
+  );
+
   let firstName = "";
   let lastName = "";
 
@@ -26,6 +31,20 @@ const PersonalInformation = ({ personalInformation }: any) => {
     firstName = nameParts[0];
     lastName = nameParts.slice(1).join(" ");
   }
+
+  const handleImageUpload = (event: any) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (typeof reader.result === "string") {
+          setImageSrc(reader.result);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <section className=" w-full">
       <h1 className="text-black text-xl mb-5 md:mb-8 lg:mb-8  ">
@@ -84,18 +103,25 @@ const PersonalInformation = ({ personalInformation }: any) => {
         </form>
         <div className="max-w-xs mx-auto">
           <div className="group relative">
-            <input type="file" id="profileImage" className="hidden" />
+            <input
+              type="file"
+              id="profileImage"
+              className="hidden"
+              onChange={handleImageUpload}
+            />
             <label
               htmlFor="profileImage"
               className="block w-40 h-40 group-hover:bg-gray-200 rounded-full overflow-hidden shadow-md text-center cursor-pointer transition duration-300 ease-in-out relative"
             >
-              <Image
-                src={`${imageUrl}${personalInformation?.profilePhoto}`}
-                alt="User Profile"
-                width={50}
-                height={50}
-                className="w-full h-full object-cover relative"
-              />
+              <div className="">
+                <Image
+                  src={imageSrc}
+                  alt=""
+                  width={50}
+                  height={50}
+                  className="w-full h-full object-cover relative"
+                />
+              </div>
 
               <span className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-3.5 z-50 bg-black bg-opacity-20">
                 <UploadIcon />

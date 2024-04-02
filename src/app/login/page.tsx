@@ -20,6 +20,7 @@ const Login = () => {
 
   const { email, password } = useAppSelector((state) => state.login);
 
+  let wrongPass;
   const onSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -32,7 +33,8 @@ const Login = () => {
         router.push("/");
       }
     } catch (err: any) {
-      console.error(err.message.length);
+      // console.error(err.message.length);
+      wrongPass = err.errorMessages;
     }
   };
   return (
@@ -72,6 +74,7 @@ const Login = () => {
                 </Link>
               </div>
             </div>
+            <p>{wrongPass}</p>
 
             <button
               type="submit"
