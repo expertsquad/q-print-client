@@ -1,12 +1,14 @@
 "use client";
-
-import PrintingRequestTotalOrder from "@/components/PrintingRequest/PrintingRequestTotalOrder";
+import PringtingRequestOrderCard from "@/components/PrintingRequest/PringtingRequestOrderCard";
 import ReturnToCardButton from "@/components/PrintingRequest/ReturnToCardButton";
+import { isLoggedIn } from "@/services/auth.service";
 import { IconUser } from "@tabler/icons-react";
 import Link from "next/link";
 import { useState } from "react";
 
 const YourInformation = () => {
+  const isUserLoggedIn = isLoggedIn();
+
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const handleOptionChange = () => {
@@ -25,13 +27,22 @@ const YourInformation = () => {
         <div className="flex flex-col w-full md:w-8/12 lg:w-8/12 -5 ">
           <div className=" border rounded-lg ">
             {/* click here to login */}
-            <Link
-              href="/login"
-              className="flex items-center justify-center gap-2 border-b py-3 text-base text-gray-800 "
-            >
-              {" "}
-              <IconUser /> <p>Click here to login</p>{" "}
-            </Link>
+
+            <div>
+              {isUserLoggedIn ? (
+                <>
+                  <p></p>
+                </>
+              ) : (
+                <Link
+                  href="/login"
+                  className="flex items-center justify-center gap-2 border-b py-3 text-base text-gray-800 "
+                >
+                  {" "}
+                  <IconUser /> <p>Click here to login</p>{" "}
+                </Link>
+              )}
+            </div>
 
             {/* personal Information  */}
             <div className="p-7">
@@ -225,7 +236,8 @@ const YourInformation = () => {
 
         {/* total order card */}
         <div className="w-full md:w-4/12 lg:w-4/12">
-          <PrintingRequestTotalOrder />
+          {/* <PrintingRequestTotalOrder /> */}
+          <PringtingRequestOrderCard href={"/printing-request/payment"} />
         </div>
 
         <div className="block md:hidden lg:hidden w-full ">

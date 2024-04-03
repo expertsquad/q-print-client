@@ -2,7 +2,7 @@
 import { profileNav } from "@/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { IconLock } from "@tabler/icons-react";
+import { IconLock, IconPrinter } from "@tabler/icons-react";
 import { IconBell } from "@tabler/icons-react";
 import { IconSettings } from "@tabler/icons-react";
 import { IconHistory } from "@tabler/icons-react";
@@ -44,11 +44,16 @@ const ProfileNav = () => {
           >
             {" "}
             <span className="  ">
-              {profileNav?.key === "myProfile" && <IconUser />}
-              {profileNav?.key === "orderHistory" && <IconHistory />}
-              {profileNav?.key === "profileSettings" && <IconSettings />}
-              {profileNav?.key === "notifications" && <IconBell />}
-              {profileNav?.key === "changePassword" && <IconLock />}
+              {profileNav?.key === "myProfile" && <IconUser stroke={1} />}
+              {profileNav?.key === "orderHistory" && <IconHistory stroke={1} />}
+              {profileNav?.key === "printingOrder" && (
+                <IconPrinter stroke={1} />
+              )}
+              {profileNav?.key === "profileSettings" && (
+                <IconSettings stroke={1} />
+              )}
+              {profileNav?.key === "notifications" && <IconBell stroke={1} />}
+              {profileNav?.key === "changePassword" && <IconLock stroke={1} />}
             </span>
             <p>{profileNav?.label}</p>
           </div>

@@ -1,6 +1,7 @@
 import BillingAddress from "@/components/PrintingRequest/BillingAddress";
 import EditButton from "@/components/PrintingRequest/EditButton";
 import PaymentMethod from "@/components/PrintingRequest/PaymentMethod";
+import PringtingRequestOrderCard from "@/components/PrintingRequest/PringtingRequestOrderCard";
 import PrintingRequestTotalOrder from "@/components/PrintingRequest/PrintingRequestTotalOrder";
 import TotalOrderCard from "@/components/UI/card/TotalOrderCard";
 import { IconMail } from "@tabler/icons-react";
@@ -90,8 +91,7 @@ const Payment = () => {
         </div>
 
         <div className="w-full md:w-4/12 ">
-          <TotalOrderCard />
-          {/* <PrintingRequestTotalOrder /> */}
+          <PringtingRequestOrderCard href={"order-track"} />
         </div>
       </div>
     </section>

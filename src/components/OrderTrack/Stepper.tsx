@@ -26,7 +26,7 @@ export default function Stepper({
       {Array.from({ length: numberOfSteps }).map((_, index) => (
         <React.Fragment key={index}>
           <div
-            className={`w-20 h- md:w-[135px] md:h-[55px] flex items-center justify-center p-1 md:p-3 rounded-full text-fuchsia-700 ${activeColor(
+            className={`w-20  md:w-[135px] md:h-[55px] flex items-center justify-center p-1 md:p-3 rounded-full text-fuchsia-700 ${activeColor(
               index
             )}`}
           >
