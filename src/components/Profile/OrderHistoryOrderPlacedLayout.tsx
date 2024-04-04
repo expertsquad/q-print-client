@@ -5,6 +5,7 @@ import Image from "next/image";
 import OrderTrackButton from "./OrderTrackButton";
 import { IconX } from "@tabler/icons-react";
 import { formatDate } from "@/constants/formatDate";
+import { OrderHistoryProduct } from "@/types/orderTrackPage";
 
 const OrderHistoryOrderPlacedLayout = () => {
   // <== Get data from order history query ==>
@@ -34,7 +35,7 @@ const OrderHistoryOrderPlacedLayout = () => {
           </div>
           {/* == Ordered Items == */}
           <div>
-            {orderPlaced?.orderItems?.map((product: any) => (
+            {orderPlaced?.orderItems?.map((product: OrderHistoryProduct) => (
               <div
                 key={product?._id}
                 className="flex md:order-packaging-shipped-order-placed-card-style mb-3.5 md:mb-7"
