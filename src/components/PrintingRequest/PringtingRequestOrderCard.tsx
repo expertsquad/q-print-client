@@ -9,15 +9,16 @@ import Link from "next/link";
 import React from "react";
 
 const PringtingRequestOrderCard = ({ href, buttonText }: any) => {
-  const { quantity, totalAmount } = useAppSelector(
+  const { quantity, totalAmount, file } = useAppSelector(
     (state) => state.printingReqTotalAmount
   );
-  const dispatch = useAppDispatch();
 
+  const dispatch = useAppDispatch();
+  // <==  Hanlde incrementQuantity ==>
   const handleIncrement = () => {
     dispatch(incrementQuantity());
   };
-
+  // <== Hanlde decreament quantity ==>
   const handleDecrement = () => {
     dispatch(decrementQuantity());
   };
@@ -29,6 +30,7 @@ const PringtingRequestOrderCard = ({ href, buttonText }: any) => {
   return (
     <div className=" border rounded-lg pb-5 mb-5">
       <h4 className="px-5 py-4 text-lg font-medium">Total Order</h4>
+      <span>{file?.name}</span>
       <div className="border-y">
         <div className="flex justify-between items-center px-5 py-4   ">
           <small className="text-base text-gray-500">Item of print</small>

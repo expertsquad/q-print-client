@@ -2,7 +2,10 @@
 import GradientUploadIcon from "@/assets/svgIcons/GradientUploadIcon";
 import PringtingRequestOrderCard from "@/components/PrintingRequest/PringtingRequestOrderCard";
 import { useGetPrintingRequestsQuery } from "@/redux/features/printing-request/printing-request";
-import { setPrintingTotalAmount } from "@/redux/features/printing-request/totalAmountSlice";
+import {
+  setFile,
+  setPrintingTotalAmount,
+} from "@/redux/features/printing-request/totalAmountSlice";
 import { PrintingSetupTypes } from "@/types/printingRequestTypes";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -59,7 +62,13 @@ const PrintingRequest = () => {
         price
     );
   };
+  // <== get uploaded file fn ==>
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] || null;
+    dispatch(setFile(file));
+  };
 
+  // <== paperSize, paperType,colorMode API's ===>
   const { data: paperSize } = useGetPrintingRequestsQuery(
     "printingSetupType=Paper Size"
   );
@@ -149,7 +158,12 @@ const PrintingRequest = () => {
                 htmlFor="profileFileInput"
                 className="border py-3 px-10 flex items-center justify-center gap-4 rounded-lg bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-transparent bg-clip-text  hover:border-fuchsia-700 hover:duration-500  cursor-pointer hover:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)]  "
               >
-                <input id="profileFileInput" className="hidden" type="file" />{" "}
+                <input
+                  id="profileFileInput"
+                  onChange={handleFileUpload}
+                  className="hidden"
+                  type="file"
+                />{" "}
                 <GradientUploadIcon />
                 file upload
               </label>

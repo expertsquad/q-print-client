@@ -94,7 +94,7 @@ const Payment = () => {
         <div className="w-full md:w-4/12 ">
           <PringtingRequestOrderCard
             buttonText={"Place Order"}
-            href={"order-track"}
+            href={"order-places"}
           />
         </div>
       </div>

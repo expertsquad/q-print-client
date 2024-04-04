@@ -5,7 +5,7 @@ import PringtingOrderHistoryTable from "./PringtingOrderHistoryTable";
 
 const PrintingRequestOrderPlaced = () => {
   const { data } = usePrintingRequestOrderHistoryQuery(
-    "orderStatus.status=Pending"
+    "orderStatus.status=Order placed"
   );
   console.log(data?.data, "From printig");
   return (

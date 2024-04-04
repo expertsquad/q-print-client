@@ -2,7 +2,10 @@
 import PringtingRequestOrderCard from "@/components/PrintingRequest/PringtingRequestOrderCard";
 import ReturnToCardButton from "@/components/PrintingRequest/ReturnToCardButton";
 import CustomInput from "@/components/shared/CustomInput";
-import { useGetUserQuery } from "@/redux/features/user/user";
+import {
+  useGetUserAddressQuery,
+  useGetUserQuery,
+} from "@/redux/features/user/user";
 import { isLoggedIn } from "@/services/auth.service";
 import { IconUser } from "@tabler/icons-react";
 import Link from "next/link";
@@ -10,8 +13,13 @@ import { useState } from "react";
 
 const YourInformation = () => {
   const isUserLoggedIn = isLoggedIn();
-
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [hasDefaultAddress, setHasDefaultAddress] = useState(true);
+  // <== Get User Address ==>
+  const { data: address } = useGetUserAddressQuery("");
+  const defaultAddress = address?.data?.find(
+    (address: any) => address.isDefault
+  );
 
   const handleOptionChange = () => {
     setSelectedOption((prevSelected) =>
@@ -19,6 +27,10 @@ const YourInformation = () => {
     );
   };
 
+  // addNewShippingAddress
+  const addNewShippingAddress = () => {
+    setHasDefaultAddress(false);
+  };
   // <== Get User Personal Information ==>
   const { data: personalInformation } = useGetUserQuery("");
   return (
@@ -57,7 +69,7 @@ const YourInformation = () => {
                 </p>
                 <form
                   onChange={() => console.log("change")}
-                  className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5  w-full pb-10 border-b"
+                  className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 w-full  mb-5"
                 >
                   <CustomInput
                     label="Email"
@@ -71,91 +83,227 @@ const YourInformation = () => {
                     value={personalInformation?.data?.phoneNumber}
                     placeholder=""
                   />
-
-                  {isUserLoggedIn ? (
-                    ""
-                  ) : (
-                    <div className="h-10">
-                      <label className="inline-flex items-center">
-                        <div
-                          className={`w-5 h-5 rounded-full bg-white flex items-center justify-center border-fuchsia-700 border-2 ${
-                            selectedOption === "select"
-                              ? "border-fuchsia-700 border-2"
-                              : ""
-                          }`}
-                          onClick={handleOptionChange}
-                        >
-                          {selectedOption === "select" && (
-                            <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
-                          )}
-                        </div>
-                        <span className="ml-2 font-bold ">
-                          Create an account
-                        </span>
-                      </label>
-                    </div>
-                  )}
                 </form>
+
+                {isUserLoggedIn && (
+                  <div className="flex flex-col mb-5 border p-3">
+                    <span className="text-black-opacity-60 mb-3">
+                      Default shipping address
+                    </span>
+                    <p>{defaultAddress?.streetAddress}</p>
+                    <p>{defaultAddress?.phoneNumber}</p>
+                  </div>
+                )}
+
+                {isUserLoggedIn ? (
+                  <div className="h-10">
+                    <label
+                      onClick={addNewShippingAddress}
+                      className="inline-flex items-center"
+                    >
+                      <div
+                        className={`w-5 h-5 rounded-full bg-white flex items-center justify-center border-fuchsia-700 border-2 ${
+                          selectedOption === "select"
+                            ? "border-fuchsia-700 border-2"
+                            : ""
+                        }`}
+                        onClick={handleOptionChange}
+                      >
+                        {selectedOption === "select" && (
+                          <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
+                        )}
+                      </div>
+                      <span className="ml-2 font-bold ">
+                        Add new shipping address
+                      </span>
+                    </label>
+                  </div>
+                ) : (
+                  <div className="h-10">
+                    <label className="inline-flex items-center">
+                      <div
+                        className={`w-5 h-5 rounded-full bg-white flex items-center justify-center border-fuchsia-700 border-2 ${
+                          selectedOption === "select"
+                            ? "border-fuchsia-700 border-2"
+                            : ""
+                        }`}
+                        onClick={handleOptionChange}
+                      >
+                        {selectedOption === "select" && (
+                          <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
+                        )}
+                      </div>
+                      <span className="ml-2 font-bold ">Create an account</span>
+                    </label>
+                  </div>
+                )}
               </div>
             </div>
             {/* shipping Information  */}
             <div>
               <div className="px-7">
-                <div className="">
-                  <p className="text-base text-gray-500 mb-5">
-                    Shipping Address
-                  </p>
-                  <form className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5  w-full pb-10 ">
-                    <CustomInput
-                      label="First Name"
-                      type="text"
-                      placeholder=""
-                      value={""}
-                    />
-                    <CustomInput
-                      label="Last Name"
-                      type="text"
-                      placeholder=""
-                      value={""}
-                    />
-                    <CustomInput
-                      label="Street Address"
-                      type="text"
-                      placeholder=""
-                      value={""}
-                    />
-                    <CustomInput
-                      label="City"
-                      type="text"
-                      placeholder=""
-                      value={""}
-                    />
-                    <CustomInput
-                      label="Country / Region"
-                      type="text"
-                      placeholder=""
-                      value={""}
-                    />
-                    <CustomInput
-                      label="Company Name (optional)"
-                      type="text"
-                      placeholder=""
-                      value={""}
-                    />
-                    <CustomInput
-                      label="Zip Code"
-                      type="text"
-                      placeholder=""
-                      value={""}
-                    />
-                    <CustomInput
-                      label="Phone Number"
-                      type="text"
-                      placeholder=""
-                      value={""}
-                    />
-                  </form>
-                </div>
+                {hasDefaultAddress ? (
+                  <>
+                    <div className="">
+                      <p className="text-base text-gray-500 mb-5">
+                        Shipping Address
+                      </p>
+                      <form className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5  w-full pb-10 ">
+                        <CustomInput
+                          label="First Name"
+                          name="firstName"
+                          type="text"
+                          placeholder="Enter First Name"
+                        />
+                        <CustomInput
+                          label="Last Name"
+                          name="lastName"
+                          type="text"
+                          placeholder="Enter Last Name"
+                        />
+                        <CustomInput
+                          label="Street Address"
+                          name="streetAddress"
+                          type="text"
+                          placeholder="Your Address"
+                        />
+                        <CustomInput
+                          label="City"
+                          name="state"
+                          type="text"
+                          placeholder="Your City"
+                        />
+                        <CustomInput
+                          label="Country / Region"
+                          name="country"
+                          type="text"
+                          placeholder="Your Country"
+                        />
+                        <CustomInput
+                          label="Company Name (optional)"
+                          type="text"
+                          placeholder="Enter Company Name"
+                          value={""}
+                        />
+                        <CustomInput
+                          label="Zip Code"
+                          name="zipCode"
+                          type="text"
+                          placeholder="Your Zipcode"
+                        />
+                        <CustomInput
+                          label="Phone Number"
+                          name="phoneNumber"
+                          type="text"
+                          placeholder="Phone Number"
+                        />
+                      </form>
+                      <div className="pb-3">
+                        <label className="inline-flex items-center">
+                          <div
+                            className={`w-5 h-5 rounded-full bg-white flex items-center justify-center border-fuchsia-700 border-2 ${
+                              selectedOption === "select"
+                                ? "border-fuchsia-700 border-2"
+                                : ""
+                            }`}
+                            onClick={handleOptionChange}
+                          >
+                            {selectedOption === "select" && (
+                              <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
+                            )}
+                          </div>
+                          <span className="ml-2 font-bold ">
+                            Use as default address
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="">
+                      <p className="text-base text-gray-500 mb-5">
+                        Shipping Address
+                      </p>
+                      <form className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5  w-full pb-10 ">
+                        <CustomInput
+                          label="First Name"
+                          name="firstName"
+                          type="text"
+                          placeholder=""
+                          value={defaultAddress?.firstName}
+                        />
+                        <CustomInput
+                          label="Last Name"
+                          name="lastName"
+                          type="text"
+                          placeholder=""
+                          value={defaultAddress?.lastName}
+                        />
+                        <CustomInput
+                          label="Street Address"
+                          name="streetAddress"
+                          type="text"
+                          placeholder=""
+                          value={defaultAddress?.streetAddress}
+                        />
+                        <CustomInput
+                          label="City"
+                          name="state"
+                          type="text"
+                          placeholder=""
+                          value={defaultAddress?.state}
+                        />
+                        <CustomInput
+                          label="Country / Region"
+                          name="country"
+                          type="text"
+                          placeholder=""
+                          value={defaultAddress?.country}
+                        />
+                        <CustomInput
+                          label="Company Name (optional)"
+                          type="text"
+                          placeholder="Enter Company Name"
+                          value={""}
+                        />
+                        <CustomInput
+                          label="Zip Code"
+                          name="zipCode"
+                          type="text"
+                          placeholder=""
+                          value={defaultAddress?.zipCode}
+                        />
+                        <CustomInput
+                          label="Phone Number"
+                          name="phoneNumber"
+                          type="text"
+                          placeholder=""
+                          value={defaultAddress?.phoneNumber}
+                        />
+                      </form>
+                      <div className="pb-3">
+                        <label className="inline-flex items-center">
+                          <div
+                            className={`w-5 h-5 rounded-full bg-white flex items-center justify-center border-fuchsia-700 border-2 ${
+                              selectedOption === "select"
+                                ? "border-fuchsia-700 border-2"
+                                : ""
+                            }`}
+                            onClick={handleOptionChange}
+                          >
+                            {selectedOption === "select" && (
+                              <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
+                            )}
+                          </div>
+                          <span className="ml-2 font-bold ">
+                            Use as default address
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
