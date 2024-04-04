@@ -2,8 +2,6 @@
 import React from "react";
 import ProductImageSlide from "./ProductImageSlide";
 import AddToCartButton from "../UI/btn/AddToCartButton";
-
-import ReviewRating from "../shared/ReviewRating";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/features/cart/cartSlice";
 import { useRouter } from "next/navigation";

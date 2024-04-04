@@ -1,25 +1,53 @@
+import {
+  decrementQuantity,
+  incrementQuantity,
+} from "@/redux/features/printing-request/totalAmountSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { IconPlus } from "@tabler/icons-react";
 import { IconMinus } from "@tabler/icons-react";
 import Link from "next/link";
 import React from "react";
 
-const PringtingRequestOrderCard = ({ href, totalAmount }: any) => {
+const PringtingRequestOrderCard = ({ href, buttonText }: any) => {
+  const { quantity, totalAmount } = useAppSelector(
+    (state) => state.printingReqTotalAmount
+  );
+  const dispatch = useAppDispatch();
+
+  const handleIncrement = () => {
+    dispatch(incrementQuantity());
+  };
+
+  const handleDecrement = () => {
+    dispatch(decrementQuantity());
+  };
+
+  const deliveryCharge = 60;
+  const printingPriceSubTotal = quantity * totalAmount;
+  const grandTotal = printingPriceSubTotal + deliveryCharge;
+
   return (
     <div className=" border rounded-lg pb-5 mb-5">
       <h4 className="px-5 py-4 text-lg font-medium">Total Order</h4>
-      <div className=" border-y ">
+      <div className="border-y">
         <div className="flex justify-between items-center px-5 py-4   ">
-          <small className="text-base text-gray-500">Item of print</small>{" "}
-          {/* <p className="text-base text-gray-700">Coming</p> */}
+          <small className="text-base text-gray-500">Item of print</small>
+
           <div className="flex items-center gap-2">
-            <button className="border border-fuchsia-800 p-1 rounded-full text-black text-opacity-70 ">
+            <button
+              onClick={handleDecrement}
+              className="border border-fuchsia-800 p-0.5 text-black text-opacity-70 "
+            >
               {""}
-              <IconMinus stroke={3} width={13} height={13} />
+              <IconMinus stroke={3} width={15} height={15} />
             </button>
-            <span>0</span>
-            <button className="border border-fuchsia-800 p-1 rounded-full text-black text-opacity-70 ">
+            <span>{quantity}</span>
+            <button
+              onClick={handleIncrement}
+              className="border border-fuchsia-800 p-0.5 text-black text-opacity-70 "
+            >
               {""}
-              <IconPlus stroke={3} width={13} height={13} />
+              <IconPlus stroke={3} width={15} height={15} />
             </button>
           </div>
         </div>
@@ -28,27 +56,31 @@ const PringtingRequestOrderCard = ({ href, totalAmount }: any) => {
       {/* Printing price */}
       <div className="flex justify-between items-center px-5 py-4   ">
         <small className="text-base text-gray-500">Printing Price</small>{" "}
-        <p className="text-lg font-medium text-gray-800">{totalAmount} QAR</p>
+        <p className="text-lg font-medium text-gray-800">
+          {printingPriceSubTotal} QAR
+        </p>
       </div>
       {/* delivery Charge */}
       <div className="flex justify-between items-center px-5 py-4   ">
         <small className="text-base text-gray-500">Delivery Charge</small>{" "}
-        <p className="text-lg font-medium ">50 QAR</p>
+        <p className="text-lg font-medium ">{deliveryCharge} QAR</p>
       </div>
 
       <div className="flex justify-between items-center px-5 py-4 border-t">
         <small className="text-lg font-medium text-gray-900">Total</small>{" "}
         <p className=" text-[22px]  font-bold bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-transparent bg-clip-text">
-          1350 QAR
+          {grandTotal} QAR
         </p>
       </div>
 
       <div className="flex justify-center items-center px-5 py-4   ">
         <Link
           href={`${href}`}
-          className="bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white  shadow-sm hover:duration-500 hover:shadow-lg text-center"
+          className={`bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white  shadow-sm hover:duration-500 hover:shadow-lg text-center ${
+            grandTotal ? "cursor-pointer" : "cursor-not-allowed btn-disabled"
+          }`}
         >
-          Place Order
+          {buttonText}
         </Link>
       </div>
     </div>

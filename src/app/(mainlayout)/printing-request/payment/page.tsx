@@ -1,3 +1,4 @@
+"use client";
 import BillingAddress from "@/components/PrintingRequest/BillingAddress";
 import EditButton from "@/components/PrintingRequest/EditButton";
 import PaymentMethod from "@/components/PrintingRequest/PaymentMethod";
@@ -91,7 +92,10 @@ const Payment = () => {
         </div>
 
         <div className="w-full md:w-4/12 ">
-          <PringtingRequestOrderCard href={"order-track"} />
+          <PringtingRequestOrderCard
+            buttonText={"Place Order"}
+            href={"order-track"}
+          />
         </div>
       </div>
     </section>

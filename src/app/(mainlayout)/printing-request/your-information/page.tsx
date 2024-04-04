@@ -1,6 +1,8 @@
 "use client";
 import PringtingRequestOrderCard from "@/components/PrintingRequest/PringtingRequestOrderCard";
 import ReturnToCardButton from "@/components/PrintingRequest/ReturnToCardButton";
+import CustomInput from "@/components/shared/CustomInput";
+import { useGetUserQuery } from "@/redux/features/user/user";
 import { isLoggedIn } from "@/services/auth.service";
 import { IconUser } from "@tabler/icons-react";
 import Link from "next/link";
@@ -16,6 +18,9 @@ const YourInformation = () => {
       prevSelected === "select" ? null : "select"
     );
   };
+
+  // <== Get User Personal Information ==>
+  const { data: personalInformation } = useGetUserQuery("");
   return (
     <section className="lg:max-w-[1280px] w-full mx-auto  mb-7">
       <div className="mb-7">
@@ -39,7 +44,7 @@ const YourInformation = () => {
                   className="flex items-center justify-center gap-2 border-b py-3 text-base text-gray-800 "
                 >
                   {" "}
-                  <IconUser /> <p>Click here to login</p>{" "}
+                  <IconUser /> <p>Click here to login</p>
                 </Link>
               )}
             </div>
@@ -54,60 +59,42 @@ const YourInformation = () => {
                   onChange={() => console.log("change")}
                   className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5  w-full pb-10 border-b"
                 >
-                  <div className="w-full flex flex-col gap-2.5">
-                    <label htmlFor="user_email" className="text-base ">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      name="user_email"
-                      id="user_email"
-                      className="border outline-none block w-full py-3.5 rounded-md px-4 "
-                      defaultValue="dianne.russell@gmail.com"
-                    />
-                  </div>
-                  <div className="w-full flex flex-col gap-2.5">
-                    <label
-                      htmlFor="user_phone"
-                      className="text-base text-[#1a1a1ab3]"
-                    >
-                      Phone Number
-                    </label>
-                    <input
-                      type="text"
-                      name="user_phone"
-                      id="user_phone"
-                      className="border outline-none block w-full py-3.5 rounded-md px-4"
-                      defaultValue="08801835550123"
-                      required
-                    />
-                  </div>
-                  {/* create an account */}
+                  <CustomInput
+                    label="Email"
+                    type="email"
+                    value={personalInformation?.data?.email}
+                    placeholder=""
+                  />
+                  <CustomInput
+                    label="Phone Number"
+                    type="number"
+                    value={personalInformation?.data?.phoneNumber}
+                    placeholder=""
+                  />
 
-                  <div className="h-10">
-                    <label className="inline-flex items-center">
-                      <div
-                        className={`w-5 h-5 rounded-full bg-white flex items-center justify-center border-fuchsia-700 border-2 ${
-                          selectedOption === "select"
-                            ? "border-fuchsia-700 border-2"
-                            : ""
-                        }`}
-                        onClick={handleOptionChange}
-                      >
-                        {selectedOption === "select" && (
-                          <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
-                        )}
-                      </div>
-                      <span className="ml-2 font-bold ">Create an account</span>
-                      {/* <input
-                        type="radio"
-                        value="select"
-                        checked={selectedOption === "select"}
-                        onChange={() => {}} // This prevents default radio button behavior
-                        className="hidden"
-                      /> */}
-                    </label>
-                  </div>
+                  {isUserLoggedIn ? (
+                    ""
+                  ) : (
+                    <div className="h-10">
+                      <label className="inline-flex items-center">
+                        <div
+                          className={`w-5 h-5 rounded-full bg-white flex items-center justify-center border-fuchsia-700 border-2 ${
+                            selectedOption === "select"
+                              ? "border-fuchsia-700 border-2"
+                              : ""
+                          }`}
+                          onClick={handleOptionChange}
+                        >
+                          {selectedOption === "select" && (
+                            <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
+                          )}
+                        </div>
+                        <span className="ml-2 font-bold ">
+                          Create an account
+                        </span>
+                      </label>
+                    </div>
+                  )}
                 </form>
               </div>
             </div>
@@ -119,109 +106,54 @@ const YourInformation = () => {
                     Shipping Address
                   </p>
                   <form className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5  w-full pb-10 ">
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="firstName" className="text-base ">
-                        First name
-                      </label>
-                      <input
-                        type="text"
-                        name="firstName"
-                        id="firstName"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4 "
-                        defaultValue="Zayed"
-                      />
-                    </div>
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="lastName" className="text-base ">
-                        Last name
-                      </label>
-                      <input
-                        type="text"
-                        name="lastName"
-                        id="lastName"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4"
-                        defaultValue="Hossain"
-                        required
-                      />
-                    </div>
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="address" className="text-base ">
-                        Street Address
-                      </label>
-                      <input
-                        type="text"
-                        name="address"
-                        id="address"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4 "
-                        defaultValue="Noakhali Chaprashirhat Road No. 13/x, House no. 1320/C, Flat No. 5D"
-                      />
-                    </div>
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="city" className="text-base ">
-                        City
-                      </label>
-                      <input
-                        type="text"
-                        name="city"
-                        id="city"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4"
-                        defaultValue="Dhaka"
-                        required
-                      />
-                    </div>
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="country" className="text-base ">
-                        Country / Region
-                      </label>
-                      <input
-                        type="text"
-                        name="country"
-                        id="country"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4 "
-                        defaultValue="Qater"
-                      />
-                    </div>
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label
-                        htmlFor="companyName"
-                        className="text-base text-[#1a1a1ab3]"
-                      >
-                        Company Name (optional)
-                      </label>
-                      <input
-                        type="text"
-                        name="companyName"
-                        id="companyName"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4"
-                        defaultValue="Q-Print"
-                        required
-                      />
-                    </div>
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="zipCode" className="text-base ">
-                        Zip Code
-                      </label>
-                      <input
-                        type="text"
-                        name="zipCode"
-                        id="zipCode"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4 "
-                        defaultValue="2005"
-                      />
-                    </div>
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="phoneNumber" className="text-base ">
-                        Phone Number
-                      </label>
-                      <input
-                        type="text"
-                        name="phoneNumber"
-                        id="phoneNumber"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4"
-                        defaultValue="08801835550123"
-                        required
-                      />
-                    </div>
+                    <CustomInput
+                      label="First Name"
+                      type="text"
+                      placeholder=""
+                      value={""}
+                    />
+                    <CustomInput
+                      label="Last Name"
+                      type="text"
+                      placeholder=""
+                      value={""}
+                    />
+                    <CustomInput
+                      label="Street Address"
+                      type="text"
+                      placeholder=""
+                      value={""}
+                    />
+                    <CustomInput
+                      label="City"
+                      type="text"
+                      placeholder=""
+                      value={""}
+                    />
+                    <CustomInput
+                      label="Country / Region"
+                      type="text"
+                      placeholder=""
+                      value={""}
+                    />
+                    <CustomInput
+                      label="Company Name (optional)"
+                      type="text"
+                      placeholder=""
+                      value={""}
+                    />
+                    <CustomInput
+                      label="Zip Code"
+                      type="text"
+                      placeholder=""
+                      value={""}
+                    />
+                    <CustomInput
+                      label="Phone Number"
+                      type="text"
+                      placeholder=""
+                      value={""}
+                    />
                   </form>
                 </div>
               </div>
@@ -237,7 +169,10 @@ const YourInformation = () => {
         {/* total order card */}
         <div className="w-full md:w-4/12 lg:w-4/12">
           {/* <PrintingRequestTotalOrder /> */}
-          <PringtingRequestOrderCard href={"/printing-request/payment"} />
+          <PringtingRequestOrderCard
+            buttonText={"Continue to Payment"}
+            href={"/printing-request/payment"}
+          />
         </div>
 
         <div className="block md:hidden lg:hidden w-full ">

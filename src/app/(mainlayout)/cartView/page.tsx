@@ -24,6 +24,7 @@ import noproductFound from "@/assets/empty-card-photo.svg";
 
 const CartView = () => {
   const { products } = useAppSelector((state) => state.cart);
+  console.log(products, "all cart Products");
   const dispatch = useDispatch();
 
   // <== Calculate Subtotal, Total , and Shipping || Discount ==>
