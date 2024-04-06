@@ -28,10 +28,10 @@ export const authApi = baseApi.injectEndpoints({
       }),
       providesTags: ["user"],
     }),
-    // <== Get User logged data ==>
+    // <== Get User logged address ==>
     getUserAddress: build.query({
       query: (data) => ({
-        url: `/user-address/me`,
+        url: `/user-address/me?${data}`,
         method: "GET",
       }),
       providesTags: ["address"],
@@ -45,6 +45,15 @@ export const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["user"],
     }),
+    // <== Shipping address update ==>
+    addShippingAddress: build.mutation({
+      query: (data) => ({
+        url: `/user-address/${data.id}`,
+        method: "PUT",
+        data: data.data,
+      }),
+      invalidatesTags: ["shipping-address"],
+    }),
   }),
 });
 
@@ -54,4 +63,5 @@ export const {
   useGetUserQuery,
   useGetUserAddressQuery,
   useChangePasswordMutation,
+  useAddShippingAddressMutation,
 } = authApi;

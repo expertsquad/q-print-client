@@ -7,7 +7,7 @@ const PrintingRequestOrderPlaced = () => {
   const { data } = usePrintingRequestOrderHistoryQuery(
     "orderStatus.status=Order placed"
   );
-  console.log(data?.data, "From printig");
+
   return (
     <div>
       {data?.data?.map((element: any) => (
@@ -18,6 +18,11 @@ const PrintingRequestOrderPlaced = () => {
             createdAt={element?.createdAt}
             orderStatus={element?.orderStatus?.status}
             quantity={element?.totalQuantity}
+            paperSize={element?.paperSize}
+            paperType={element?.paperType}
+            printingMode={element?.printingColorMode}
+            attachment={element?.printingRequestFile}
+            unit={element?.unit}
             id={element?._id}
           />
         </div>

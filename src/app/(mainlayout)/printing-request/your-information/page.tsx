@@ -150,55 +150,40 @@ const YourInformation = () => {
             <div>
               <div className="px-7">
                 <div className="">
-                  <form className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5  w-full pb-10 ">
-                    <CustomInput
-                      label="First Name"
-                      name="firstName"
-                      type="text"
-                      placeholder="Enter First Name"
-                    />
-                    <CustomInput
-                      label="Last Name"
-                      name="lastName"
-                      type="text"
-                      placeholder="Enter Last Name"
-                    />
-                    <CustomInput
-                      label="Street Address"
-                      name="streetAddress"
-                      type="text"
-                      placeholder="Your Address"
-                    />
-                    <CustomInput
-                      label="City"
-                      name="state"
-                      type="text"
-                      placeholder="Your City"
-                    />
-                    <CustomInput
-                      label="Country / Region"
-                      name="country"
-                      type="text"
-                      placeholder="Your Country"
-                    />
-                    <CustomInput
-                      label="Company Name (optional)"
-                      type="text"
-                      placeholder="Enter Company Name"
-                      value={""}
-                    />
-                    <CustomInput
-                      label="Zip Code"
-                      name="zipCode"
-                      type="text"
-                      placeholder="Your Zipcode"
-                    />
-                    <CustomInput
-                      label="Phone Number"
-                      name="phoneNumber"
-                      type="text"
-                      placeholder="Phone Number"
-                    />
+                  <form>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5  w-full pb-10 ">
+                      <CustomInput
+                        label="Street Address"
+                        name="streetAddress"
+                        type="text"
+                        placeholder="Your Address"
+                      />
+                      <CustomInput
+                        label="State"
+                        name="state"
+                        type="text"
+                        placeholder="Your City"
+                      />
+                      <CustomInput
+                        label="Country / Region"
+                        name="country"
+                        type="text"
+                        placeholder="Your Country"
+                      />
+                      <CustomInput
+                        label="Company Name (optional)"
+                        type="text"
+                        placeholder="Enter Company Name"
+                        value={""}
+                      />
+                      <CustomInput
+                        label="Zip Code"
+                        name="zipCode"
+                        type="text"
+                        placeholder="Your Zipcode"
+                      />
+                    </div>
+
                     <div className="pb-3">
                       <label className="inline-flex items-center">
                         <div

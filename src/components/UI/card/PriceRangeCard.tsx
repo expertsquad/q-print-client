@@ -14,27 +14,15 @@ const PriceRangeCard = () => {
     priceRange.maxPrice,
   ]);
 
+  const [minPrice, maxPrice] = range;
+
   useEffect(() => {
-    setRange([priceRange.minPrice, priceRange.maxPrice]);
-  }, [priceRange]);
+    dispatch(setPriceRange({ minPrice: minPrice, maxPrice: maxPrice }));
+  }, [range]);
 
   const handleRangeChange = (newRange: any) => {
     setRange(newRange);
   };
-
-  // const handleInputChange = (index: any, value: string) => {
-  //   // Convert the input value to a number
-  //   const numericValue = parseFloat(value);
-
-  //   // Check if the input value is a valid number
-  //   if (!isNaN(numericValue)) {
-  //     const newRange = [...range];
-  //     newRange[index] = numericValue;
-  //     setRange(newRange);
-  //     dispatch(setPriceRange({ minPrice: newRange[0], maxPrice: newRange[1] }));
-  //     dispatch(setPriceRange({ minPrice: newRange[0], maxPrice: newRange[1] }));
-  //   }
-  // };
 
   const gradientBackground = {
     background:
@@ -73,7 +61,6 @@ const PriceRangeCard = () => {
             type="text"
             name="priceRange"
             value={range[0]}
-            onChange={(e) => dispatch(setPriceRange(e.target.value))}
             className="w-[120px] p-2 rounded-lg border text-center focus:outline-none focus:border-fuchsia-700 focus:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)]"
           />
         </div>
@@ -83,7 +70,6 @@ const PriceRangeCard = () => {
             name="priceRange"
             type="text"
             value={range[1]}
-            onChange={(e) => dispatch(setPriceRange(e.target.value))}
             className="w-[120px] p-2 rounded-lg border text-center focus:outline-none focus:border-fuchsia-700 focus:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)]"
           />
         </div>

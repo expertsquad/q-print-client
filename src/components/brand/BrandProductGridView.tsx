@@ -15,8 +15,11 @@ const BrandProductGridView = () => {
   //   (state) => state.priceRangeSlice
   // );
 
-  const minPrice = 0;
-  const maxPrice = 0;
+  const { minPrice, maxPrice } = useAppSelector(
+    (state) => state.priceRangeSlice
+  );
+
+  console.log(minPrice, maxPrice, "from main page");
 
   // <== Get category name for category wise product ==>
   const { data: allCategory } = useGetCategoryQuery("");

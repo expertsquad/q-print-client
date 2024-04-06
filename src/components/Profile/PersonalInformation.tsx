@@ -4,34 +4,12 @@ import Image from "next/image";
 import CustomInput from "../shared/CustomInput";
 import { useState } from "react";
 
-interface PersonalInformationProps {
-  _id: string;
-  uid: string;
-  fullName: string;
-  email: string;
-  phoneNumber: string;
-  role: string;
-  isVerified: boolean;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-  id: string;
-}
-
 const PersonalInformation = ({ personalInformation }: any) => {
   const [imageSrc, setImageSrc] = useState(
     `${imageUrl}${personalInformation?.profilePhoto}`
   );
 
-  let firstName = "";
-  let lastName = "";
-
-  if (personalInformation && personalInformation.fullName) {
-    const nameParts = personalInformation.fullName.split(" ");
-    firstName = nameParts[0];
-    lastName = nameParts.slice(1).join(" ");
-  }
-
+  // <== Image upload fn ==>
   const handleImageUpload = (event: any) => {
     const file = event.target.files[0];
     if (file) {
@@ -52,57 +30,34 @@ const PersonalInformation = ({ personalInformation }: any) => {
       </h1>
       <div className="flex lg:flex-row flex-col-reverse items-center lg:justify-between gap-12">
         <form className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 lg:w-9/12 w-full">
-          <div className="w-full flex flex-col gap-2.5">
-            <label htmlFor="first_name" className="text-base text-[#1a1a1ab3]">
-              First name
-            </label>
+          <CustomInput
+            label="First Name"
+            type="text"
+            name="firstName"
+            value={personalInformation?.fullName}
+            placeholder=""
+          />
 
-            <CustomInput
-              type="text"
-              name="firstName"
-              value={firstName}
-              placeholder=""
-            />
-          </div>
-          <div className="w-full flex flex-col gap-2.5">
-            <label htmlFor="last_name" className="text-base text-[#1a1a1ab3]">
-              Last name
-            </label>
+          <CustomInput
+            type="email"
+            label="Email"
+            value={personalInformation?.email}
+            name="email"
+            placeholder=""
+            readonly
+          />
 
-            <CustomInput
-              type="text"
-              name="lastName"
-              value={lastName}
-              placeholder=""
-            />
-          </div>
-          <div className="w-full flex flex-col gap-2.5">
-            <label htmlFor="user_email" className="text-base text-[#1a1a1ab3]">
-              Email
-            </label>
-            <CustomInput
-              type="email"
-              value={personalInformation?.email}
-              name="email"
-              placeholder=""
-              readonly
-            />
-          </div>
-          <div className="w-full flex flex-col gap-2.5">
-            <label htmlFor="user_phone" className="text-base text-[#1a1a1ab3]">
-              Phone Number
-            </label>
-            <CustomInput
-              type="number"
-              name="phoneNumber"
-              placeholder=""
-              value={personalInformation?.phoneNumber}
-              inputStyle="text-black"
-            />
-          </div>
+          <CustomInput
+            label="Phone Number"
+            type="number"
+            name="phoneNumber"
+            placeholder=""
+            value={personalInformation?.phoneNumber}
+            inputStyle="text-black"
+          />
         </form>
-        <div className="max-w-xs mx-auto">
-          <div className="group relative">
+        <div className="max-w-xs mx-auto ">
+          <div className="group relative ">
             <input
               type="file"
               id="profileImage"
@@ -111,7 +66,7 @@ const PersonalInformation = ({ personalInformation }: any) => {
             />
             <label
               htmlFor="profileImage"
-              className="block w-40 h-40 group-hover:bg-gray-200 rounded-full overflow-hidden shadow-md text-center cursor-pointer transition duration-300 ease-in-out relative"
+              className="block w-40 h-40 group-hover:bg-gray-200 rounded-full overflow-hidden text-center cursor-pointer transition duration-300 ease-in-out relative shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)]"
             >
               <div className="">
                 <Image
@@ -123,7 +78,11 @@ const PersonalInformation = ({ personalInformation }: any) => {
                 />
               </div>
 
-              <span className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-3.5 z-50 bg-black bg-opacity-20">
+              <span
+                className={`absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-3.5 z-50 bg-black bg-opacity-20 ${
+                  imageSrc ? "hidden" : "block"
+                }`}
+              >
                 <UploadIcon />
                 <small className="text-white text-sm font-medium">
                   Upload Image

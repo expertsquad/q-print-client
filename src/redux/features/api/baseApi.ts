@@ -20,5 +20,6 @@ export const baseApi = createApi({
     "address",
     "singleOnlineOrder",
     "notification",
+    "shipping-address",
   ],
 });
