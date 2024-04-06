@@ -37,7 +37,7 @@ const PriceRangeCard = () => {
       <Slider
         range
         min={0}
-        max={200000}
+        max={100000}
         value={range}
         onChange={handleRangeChange}
         className="w-full mt-4"
