@@ -4,6 +4,7 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { setPriceRange } from "@/redux/features/filterByPrice/FilterByPriceSlice";
+import { useGetProductsQuery } from "@/redux/features/products/productsApi";
 
 const PriceRangeCard = () => {
   const dispatch = useAppDispatch();
@@ -30,6 +31,11 @@ const PriceRangeCard = () => {
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
   };
+
+  // <== Get minimum and maximum price for price range ==>
+  const { data } = useGetProductsQuery("");
+
+  // Find the product with maximum selling quantity
 
   return (
     <div className=" p-6 mt-5 rounded-lg shadow-md">

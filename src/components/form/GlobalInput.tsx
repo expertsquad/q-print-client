@@ -32,7 +32,7 @@ const GlobalInput = ({
   return (
     <div className={`flex flex-col gap-2.5 w-full ${containerStyle}`}>
       {/* <== Custom Input Label ==> */}
-      <label htmlFor={label?.toLowerCase()} className="text-black-opacity-60">
+      <label htmlFor={name} className="text-black-opacity-60">
         {label}
       </label>
       {/* <== Custom Input Textarea or Input ==> */}

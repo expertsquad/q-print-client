@@ -19,6 +19,7 @@ const ProductReviewModal = ({
 
   // <== Get Product By Product Id ==>
   const { data: product } = useGetProductByIdQuery(reviewProductId);
+  console.log(product, "From review page");
 
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
@@ -31,18 +32,6 @@ const ProductReviewModal = ({
     const text = event.target.value;
     setReviewText(text);
   };
-
-  //demo data
-  const reviewData = [
-    {
-      _id: "HUDYFUFJFJFJFNdkfjdkfjdkfdkfdjf120",
-      image:
-        "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      title: "Brother HL-L327 0CDW Single Function Color Laser Printer",
-      rating: 3,
-      brand: "Rocket X Native ",
-    },
-  ];
 
   // <== Handle Add Review ==>
   const [addReview] = useAddReviewMutation();
@@ -137,9 +126,11 @@ const ProductReviewModal = ({
               </div>
             </div>
             <form action="" className="mt-7">
+              <span> product id{reviewProductId}</span>
               <label className="text-sm md:text-[18px]" htmlFor="review">
                 Add Written Review
               </label>
+              <span>order id: {reviewOrderId}</span>
               <textarea
                 className="border pt-2 pl-2 w-full outline-none rounded-lg text-black text-opacity-50 text-sm mt-2 resize-none"
                 placeholder="Write Review Here.."

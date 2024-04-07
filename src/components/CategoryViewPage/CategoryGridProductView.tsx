@@ -1,6 +1,5 @@
 "use client";
 import { useAppSelector } from "@/redux/hook";
-import ProductGridView from "../product/ProductGridView";
 import FilterButton from "../UI/btn/FilterButton";
 import MostPopularSelectOption from "../UI/card/MostPopularSelectOption";
 import { useGetProductsQuery } from "@/redux/features/products/productsApi";
@@ -9,23 +8,55 @@ import { IProduct } from "@/types/productsType";
 
 const CategoryGridProductView = () => {
   const { options } = useAppSelector((state) => state.categoryOption);
+  const { maxPrice, minPrice } = useAppSelector(
+    (state) => state.priceRangeSlice
+  );
+
+  function useGetProductsSortedQuery(
+    sortBy: string,
+    sortOrder: string,
+    minPrice: number,
+    maxPrice: number
+  ) {
+    const queryString = `sortBy=${sortBy}&sortOrder=${sortOrder}&${
+      minPrice &&
+      maxPrice &&
+      `variants.sellingPrice[gte]=${minPrice}&variants.sellingPrice[lte]=${maxPrice}`
+    }`;
+
+    return useGetProductsQuery(queryString);
+  }
 
   // <== Most Popular ==>
-  const { data: mostPopular } = useGetProductsQuery(
-    `sortBy=averageRating&sortOrder=desc`
+  const { data: mostPopular } = useGetProductsSortedQuery(
+    "averageRating",
+    "desc",
+    minPrice,
+    maxPrice
   );
 
   // <== Recent | New Products ==>
-  const { data: newProduct } = useGetProductsQuery(
-    `sortBy=createdAt&sortOrder=desc`
+  const { data: newProduct } = useGetProductsSortedQuery(
+    "createdAt",
+    "desc",
+    minPrice,
+    maxPrice
   );
+
   // <== High Price ==>
-  const { data: highPrice } = useGetProductsQuery(
-    `sortBy=variants.sellingPrice&sortOrder=desc`
+  const { data: highPrice } = useGetProductsSortedQuery(
+    "variants.sellingPrice",
+    "desc",
+    minPrice,
+    maxPrice
   );
+
   // <== Low Price ==>
-  const { data: lowPrice } = useGetProductsQuery(
-    `sortBy=variants.sellingPrice&sortOrder=asc`
+  const { data: lowPrice } = useGetProductsSortedQuery(
+    "variants.sellingPrice",
+    "asc",
+    minPrice,
+    maxPrice
   );
 
   let productsData;

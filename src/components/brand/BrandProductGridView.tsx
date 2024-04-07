@@ -11,15 +11,10 @@ const BrandProductGridView = () => {
   const dispatch = useDispatch();
   const { brandName } = useAppSelector((state) => state.productByBrandName);
   const { category } = useAppSelector((state) => state.productByCategory);
-  // const { minPrice, maxPrice } = useAppSelector(
-  //   (state) => state.priceRangeSlice
-  // );
 
   const { minPrice, maxPrice } = useAppSelector(
     (state) => state.priceRangeSlice
   );
-
-  console.log(minPrice, maxPrice, "from main page");
 
   // <== Get category name for category wise product ==>
   const { data: allCategory } = useGetCategoryQuery("");
@@ -37,9 +32,13 @@ const BrandProductGridView = () => {
 
   // <== Get all products length ==>
   const { data: allProducts } = useGetProductsQuery("");
+  // <== Get all products by brand length ==>
+  const { data: productsByBrand } = useGetProductsQuery(
+    `brand.brandName=${brandName}`
+  );
 
   return (
-    <div className="w-full  mt-5 ">
+    <div className="w-full mt-5">
       <div className="flex justify-between">
         <div>
           <span className="text-2xl font-bold">
@@ -47,8 +46,9 @@ const BrandProductGridView = () => {
           </span>
           <p className="text-gray-500">
             <span className="text-black font-bold">
-              {" "}
-              {allProducts?.data?.length}{" "}
+              {brandName
+                ? productsByBrand?.data?.length
+                : allProducts?.data?.length}
             </span>
             Results found.
           </p>
@@ -75,7 +75,7 @@ const BrandProductGridView = () => {
         </div>
       </div>
 
-      <div className="mt-6 flex justify-between flex-wrap ">
+      <div className="mt-6 flex items-center justify-between flex-wrap  gap-y-5">
         {filteredProducts?.data?.map((product: any) => (
           <ProductCard key={product?._id} product={product} />
         ))}
