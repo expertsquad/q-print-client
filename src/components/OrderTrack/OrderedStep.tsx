@@ -13,7 +13,7 @@ const OrderedStep = ({ id }: any) => {
   return (
     <div className="mb-10">
       <Stepper
-        currentStep={0}
+        currentStep={3}
         numberOfSteps={4}
         iconSize={`${50} md:${40}`}
         iconStroke={1}

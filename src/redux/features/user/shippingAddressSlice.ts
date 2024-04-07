@@ -15,7 +15,6 @@ const initialState: IShippingAddress = {};
 const shippingAddressSlice = createSlice({
   name: "updateShippingInfo",
   initialState,
-
   reducers: {
     setShippingData: (
       state,

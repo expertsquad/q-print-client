@@ -17,6 +17,20 @@ export const printingRequestApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    printingRequestById: build.query({
+      query: (data) => ({
+        url: "/printing-request/660ec8f6e1d99e7fdccc7d25",
+        method: "GET",
+      }),
+      providesTags: ["printingRequests"],
+    }),
+    printingRequestPost: build.mutation({
+      query: (data) => ({
+        url: "/printing-request/add",
+        method: "POST",
+        data: data.data,
+      }),
+    }),
   }),
 });
 
@@ -24,4 +38,5 @@ export const printingRequestApi = baseApi.injectEndpoints({
 export const {
   useGetPrintingRequestsQuery,
   usePrintingRequestOrderHistoryQuery,
+  usePrintingRequestByIdQuery,
 } = printingRequestApi;

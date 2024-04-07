@@ -11,6 +11,7 @@ import { IconX } from "@tabler/icons-react";
 const OrderHistoryDeliveredLayout = () => {
   // <== Get data from order history query ==>
   const { data } = useGetOnlineOrderQuery("orderStatus.status=Delivered");
+  console.log(data?.data, "Programming Hero");
 
   return (
     <div>

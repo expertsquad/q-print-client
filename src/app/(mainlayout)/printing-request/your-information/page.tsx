@@ -43,170 +43,93 @@ const YourInformation = () => {
       <div className="flex flex-col md:flex-row lg:flex-row gap-7 justify-between">
         <div className="flex flex-col w-full md:w-8/12 lg:w-8/12 -5 ">
           <div className=" border rounded-lg ">
-            {/* click here to login */}
+            {/* == Click here to login btn == */}
+            {!isUserLoggedIn && (
+              <Link
+                href="/login"
+                className="flex items-center justify-center gap-2 border-b py-3 text-base text-gray-800"
+              >
+                <span className="flex items-center gap-2">
+                  <IconUser width={20} height={20} /> <p>Click here to login</p>
+                </span>
+              </Link>
+            )}
 
-            <div>
-              {!isUserLoggedIn && (
-                <div>
-                  <Link
-                    href="/login"
-                    className="flex items-center justify-center gap-2 border-b py-3 text-base text-gray-800"
+            <form action="" className="p-4 md:p-7">
+              {/* == Personal Information == */}
+
+              <p className="text-base text-gray-500 mb-5">
+                Contact information
+              </p>
+              <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 w-full mb-8">
+                <CustomInput
+                  label="Email"
+                  type="email"
+                  value={personalInformation?.data?.email}
+                  placeholder="Enter Your Email"
+                />
+                <CustomInput
+                  label="Phone Number"
+                  type="number"
+                  value={personalInformation?.data?.phoneNumber}
+                  placeholder="Enter Your Number"
+                />
+              </div>
+
+              {/* == shipping address or shipping information == */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 w-full pb-10">
+                <CustomInput
+                  label="Street Address"
+                  name="streetAddress"
+                  type="text"
+                  placeholder="Your Address"
+                />
+                <CustomInput
+                  label="State"
+                  name="state"
+                  type="text"
+                  placeholder="Your City"
+                />
+                <CustomInput
+                  label="Country / Region"
+                  name="country"
+                  type="text"
+                  placeholder="Your Country"
+                />
+                <CustomInput
+                  label="Company Name (optional)"
+                  type="text"
+                  placeholder="Enter Company Name"
+                  value={""}
+                />
+                <CustomInput
+                  label="Zip Code"
+                  name="zipCode"
+                  type="text"
+                  placeholder="Your Zipcode"
+                />
+              </div>
+
+              <div className="pb-3">
+                <label className="inline-flex items-center">
+                  <div
+                    className={`w-5 h-5 rounded-full bg-white flex items-center justify-center border-fuchsia-700 border-2 ${
+                      selectedOption === "select"
+                        ? "border-fuchsia-700 border-2"
+                        : ""
+                    }`}
+                    onClick={handleOptionChange}
                   >
-                    <span className="flex items-center gap-2">
-                      <IconUser width={20} height={20} />{" "}
-                      <p>Click here to login</p>
-                    </span>
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            {/* personal Information  */}
-            <div className="p-7">
-              <div className="">
-                <p className="text-base text-gray-500 mb-5">
-                  Contact information
-                </p>
-                <form
-                  onChange={() => console.log("change")}
-                  className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 w-full mb-8"
-                >
-                  <CustomInput
-                    label="Email"
-                    type="email"
-                    value={personalInformation?.data?.email}
-                    placeholder="Enter Your Email"
-                  />
-                  <CustomInput
-                    label="Phone Number"
-                    type="number"
-                    value={personalInformation?.data?.phoneNumber}
-                    placeholder="Enter Your Number"
-                  />
-                </form>
-
-                <div>
-                  {isUserLoggedIn && (
-                    <div className="flex flex-col mb-5 border p-3 rounded-md">
-                      <span className="text-black-opacity-60 mb-3 text-base ">
-                        Default shipping address
-                      </span>
-                      <p className="text-lg text-wrap">
-                        {defaultAddress?.streetAddress}
-                      </p>
-                      <p className="text-lg text-wrap">
-                        {defaultAddress?.phoneNumber}
-                      </p>
-                    </div>
-                  )}
-                </div>
-
-                <div>
-                  {isUserLoggedIn ? (
-                    <div className="h-10">
-                      <label
-                        onClick={addNewShippingAddress}
-                        className="inline-flex items-center"
-                      >
-                        <div
-                          className={`w-5 h-5 rounded-full bg-white flex items-center justify-center border-fuchsia-700 border-2 ${
-                            selectedOption === "select"
-                              ? "border-fuchsia-700 border-2"
-                              : ""
-                          }`}
-                          onClick={handleOptionChange}
-                        >
-                          {selectedOption === "select" && (
-                            <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
-                          )}
-                        </div>
-                        <span className="ml-2 font-bold ">
-                          Add new shipping address
-                        </span>
-                      </label>
-                    </div>
-                  ) : (
-                    <div className="flex items-center">
-                      <input
-                        title="create account"
-                        type="radio"
-                        name="create-account-radio"
-                        className="radio radio-error"
-                        checked
-                        style={{
-                          background:
-                            "linear-gradient(to right, #C83B62, #7F35CD)",
-                          border:
-                            "5px solid linear-gradient(to right, #C83B62, #7F35CD)",
-                        }}
-                      />
-                      <span className="ml-2 font-bold ">Create an account</span>
-                    </div>
-                  )}
-                </div>
+                    {selectedOption === "select" && (
+                      <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
+                    )}
+                  </div>
+                  <span className="ml-2 font-bold ">
+                    Use as default address
+                  </span>
+                </label>
               </div>
-            </div>
-            {/* shipping Information  */}
-            <div>
-              <div className="px-7">
-                <div className="">
-                  <form>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5  w-full pb-10 ">
-                      <CustomInput
-                        label="Street Address"
-                        name="streetAddress"
-                        type="text"
-                        placeholder="Your Address"
-                      />
-                      <CustomInput
-                        label="State"
-                        name="state"
-                        type="text"
-                        placeholder="Your City"
-                      />
-                      <CustomInput
-                        label="Country / Region"
-                        name="country"
-                        type="text"
-                        placeholder="Your Country"
-                      />
-                      <CustomInput
-                        label="Company Name (optional)"
-                        type="text"
-                        placeholder="Enter Company Name"
-                        value={""}
-                      />
-                      <CustomInput
-                        label="Zip Code"
-                        name="zipCode"
-                        type="text"
-                        placeholder="Your Zipcode"
-                      />
-                    </div>
-
-                    <div className="pb-3">
-                      <label className="inline-flex items-center">
-                        <div
-                          className={`w-5 h-5 rounded-full bg-white flex items-center justify-center border-fuchsia-700 border-2 ${
-                            selectedOption === "select"
-                              ? "border-fuchsia-700 border-2"
-                              : ""
-                          }`}
-                          onClick={handleOptionChange}
-                        >
-                          {selectedOption === "select" && (
-                            <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
-                          )}
-                        </div>
-                        <span className="ml-2 font-bold ">
-                          Use as default address
-                        </span>
-                      </label>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
+            </form>
           </div>
 
           {/* == Return to previous page == */}

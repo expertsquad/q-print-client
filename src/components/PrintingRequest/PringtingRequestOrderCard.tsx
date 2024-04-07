@@ -8,7 +8,7 @@ import { IconMinus } from "@tabler/icons-react";
 import Link from "next/link";
 import React from "react";
 
-const PringtingRequestOrderCard = ({ href, buttonText }: any) => {
+const PringtingRequestOrderCard = ({ href, buttonText, handleOrder }: any) => {
   const { quantity, totalAmount } = useAppSelector(
     (state) => state.printingReqTotalAmount
   );
@@ -35,23 +35,25 @@ const PringtingRequestOrderCard = ({ href, buttonText }: any) => {
         <div className="flex justify-between items-center px-5 py-4   ">
           <small className="text-base text-gray-500">Item of print</small>
 
-          <div className="flex items-center gap-2">
-            <button
-              onClick={handleDecrement}
-              className="border border-fuchsia-800 p-0.5 text-black text-opacity-70 "
-            >
-              {""}
-              <IconMinus stroke={3} width={15} height={15} />
-            </button>
-            <span>{quantity}</span>
-            <button
-              onClick={handleIncrement}
-              className="border border-fuchsia-800 p-0.5 text-black text-opacity-70 "
-            >
-              {""}
-              <IconPlus stroke={3} width={15} height={15} />
-            </button>
-          </div>
+          {totalAmount && (
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleDecrement}
+                className="border border-fuchsia-800 p-0.5 text-black text-opacity-70 "
+              >
+                {""}
+                <IconMinus stroke={3} width={15} height={15} />
+              </button>
+              <span>{quantity}</span>
+              <button
+                onClick={handleIncrement}
+                className="border border-fuchsia-800 p-0.5 text-black text-opacity-70 "
+              >
+                {""}
+                <IconPlus stroke={3} width={15} height={15} />
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
@@ -77,6 +79,7 @@ const PringtingRequestOrderCard = ({ href, buttonText }: any) => {
 
       <div className="flex justify-center items-center px-5 py-4   ">
         <Link
+          onClick={handleOrder}
           href={`${href}`}
           className={`bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white  shadow-sm hover:duration-500 hover:shadow-lg text-center ${
             grandTotal ? "cursor-pointer" : "cursor-not-allowed btn-disabled"

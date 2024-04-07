@@ -13,7 +13,7 @@ const PrintingRequestOrderPlaced = () => {
       {data?.data?.map((element: any) => (
         <div key={element?._id}>
           <PringtingOrderHistoryTable
-            totalPrice={element?.totalPrice}
+            totalPrice={element?.totalPayable}
             orderId={element?.orderId}
             createdAt={element?.createdAt}
             orderStatus={element?.orderStatus?.status}
