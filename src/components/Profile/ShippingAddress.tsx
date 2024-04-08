@@ -9,6 +9,7 @@ const ShippingAddress = () => {
   const [addShippingInfo] = useAddShippingAddressMutation();
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.updateShippingInfo);
+  console.log(data?._id, "From Shipping");
 
   const handleUpdateShippingInfo = async (event: any) => {
     event.preventDefault();

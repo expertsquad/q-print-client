@@ -11,6 +11,7 @@ import FilterByPriceSlice from "./features/filterByPrice/FilterByPriceSlice";
 import changePassword from "./features/user/changePassword";
 import totalAmountSlice from "./features/printing-request/totalAmountSlice";
 import shippingAddressSlice from "./features/user/shippingAddressSlice";
+import postPrintingRequestSlice from "./features/printing-request/postPrintingRequestSlice";
 
 export const reducer = {
   [baseApi.reducerPath]: baseApi.reducer,
@@ -26,4 +27,5 @@ export const reducer = {
   changePasswordSlice: changePassword,
   printingReqTotalAmount: totalAmountSlice,
   updateShippingInfo: shippingAddressSlice,
+  printingRequestOrder: postPrintingRequestSlice,
 };

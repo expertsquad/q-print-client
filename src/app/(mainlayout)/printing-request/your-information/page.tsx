@@ -21,13 +21,14 @@ const YourInformation = () => {
   const [addShippingInfo] = useAddShippingAddressMutation();
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.updateShippingInfo);
+  console.log(data?._id, "select from");
 
   const handleAddShipping = () => {
     setAddNewShipping((prevState) => !prevState);
   };
 
   // <== Get User Address ==>
-  const { data: address } = useGetUserAddressQuery("");
+  const { data: address, isLoading } = useGetUserAddressQuery("");
   const defaultAddress = address?.data?.find(
     (address: any) => address.isDefault
   );
@@ -74,7 +75,6 @@ const YourInformation = () => {
               className="p-4 md:p-7"
             >
               {/* == Personal Information == */}
-
               <p className="text-base text-gray-500 mb-5">
                 Contact information
               </p>
@@ -95,15 +95,21 @@ const YourInformation = () => {
 
               {/* == Existing User Address == */}
               {isUserLoggedIn && (
-                <div className="flex flex-col mb-5 border p-3 rounded-md">
-                  <span className="text-black-opacity-60">
-                    Shipping Address
-                  </span>
-                  <span className="mt-2.5">
-                    {defaultAddress?.streetAddress}
-                  </span>
-                  <span>{defaultAddress?.phoneNumber}</span>
-                </div>
+                <>
+                  {isLoading ? (
+                    <p>Loading...</p>
+                  ) : (
+                    <div className="flex flex-col mb-5 border p-3 rounded-md">
+                      <span className="text-black-opacity-60">
+                        Shipping Address
+                      </span>
+                      <span className="mt-2.5">
+                        {defaultAddress?.streetAddress}
+                      </span>
+                      <span>{defaultAddress?.phoneNumber}</span>
+                    </div>
+                  )}
+                </>
               )}
 
               {/* == If user logged in then dropdown for new shipping address, else create an account == */}
@@ -113,6 +119,7 @@ const YourInformation = () => {
                     onClick={handleAddShipping}
                     title="radio"
                     type="radio"
+                    className="checked"
                   />
                   <span>Add new shipping address</span>
                 </div>
@@ -123,11 +130,47 @@ const YourInformation = () => {
                 <div>
                   <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 w-full">
                     <CustomInput
+                      label="First Name"
+                      type="text"
+                      name="firstName"
+                      value={data?.firstName}
+                      placeholder={"First Name"}
+                      onChange={(e) =>
+                        dispatch(
+                          setShippingData({ [e.target.name]: e.target.value })
+                        )
+                      }
+                    />
+                    <CustomInput
+                      label="Last Name"
+                      type="text"
+                      name="lastName"
+                      value={data?.lastName}
+                      placeholder={"Last Name"}
+                      onChange={(e) =>
+                        dispatch(
+                          setShippingData({ [e.target.name]: e.target.value })
+                        )
+                      }
+                    />
+                    <CustomInput
+                      label="Phone Number"
+                      type="text"
+                      name="phoneNumber"
+                      value={data?.phoneNumber}
+                      placeholder={"Phone Number"}
+                      onChange={(e) =>
+                        dispatch(
+                          setShippingData({ [e.target.name]: e.target.value })
+                        )
+                      }
+                    />
+                    <CustomInput
                       label="Street Address"
                       type="text"
                       name="streetAddress"
                       value={data?.streetAddress}
-                      placeholder=""
+                      placeholder="Your Street Address"
                       onChange={(e) =>
                         dispatch(
                           setShippingData({ [e.target.name]: e.target.value })
@@ -139,7 +182,7 @@ const YourInformation = () => {
                       type="text"
                       name="state"
                       value={data?.state}
-                      placeholder=""
+                      placeholder="Your State"
                       onChange={(e) =>
                         dispatch(
                           setShippingData({ [e.target.name]: e.target.value })
@@ -151,7 +194,7 @@ const YourInformation = () => {
                       type="text"
                       name="country"
                       value={data?.country}
-                      placeholder={""}
+                      placeholder={"Country"}
                     />
                     <CustomInput
                       label=" Company Name ( Optional )"
@@ -170,7 +213,7 @@ const YourInformation = () => {
                       type="text"
                       name="zipCode"
                       value={data?.zipCode}
-                      placeholder=""
+                      placeholder="Your ZipCode"
                       onChange={(e) =>
                         dispatch(
                           setShippingData({
@@ -199,7 +242,7 @@ const YourInformation = () => {
         {/* == Total Amount Card == */}
         <div className="w-full md:w-4/12 lg:w-4/12">
           <PringtingRequestOrderCard
-            handleOrder={updateShippingInformation}
+            // handleOrder={updateShippingInformation}
             buttonText={"Continue to Payment"}
             href={"/printing-request/payment"}
           />
