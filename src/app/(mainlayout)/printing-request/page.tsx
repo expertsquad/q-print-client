@@ -6,11 +6,14 @@ import {
   setFile,
   setPrintingTotalAmount,
 } from "@/redux/features/printing-request/totalAmountSlice";
+import { isLoggedIn } from "@/services/auth.service";
 import { PrintingSetupTypes } from "@/types/printingRequestTypes";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 const PrintingRequest = () => {
+  const isUserLoggedIn = isLoggedIn();
+
   const [printingPaperSize, setPrintingPaperSize] =
     useState<PrintingSetupTypes | null>(null);
   const [selectPaperType, setSelectPaperType] =
@@ -174,7 +177,9 @@ const PrintingRequest = () => {
         <div className="w-full md:w-4/12 lg:w-4/12">
           <PringtingRequestOrderCard
             buttonText={"Proceed To Checkout"}
-            href={"printing-request/your-information"}
+            href={
+              isUserLoggedIn ? "printing-request/your-information" : "/login"
+            }
           />
         </div>
       </div>

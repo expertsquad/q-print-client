@@ -3,6 +3,7 @@ import CustomInput from "../shared/CustomInput";
 import { useAddShippingAddressMutation } from "@/redux/features/user/user";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { setShippingData } from "@/redux/features/user/shippingAddressSlice";
+import { toast } from "react-toastify";
 
 const ShippingAddress = () => {
   const [addShippingInfo] = useAddShippingAddressMutation();
@@ -14,6 +15,12 @@ const ShippingAddress = () => {
 
     try {
       const res = await addShippingInfo({ data: data, id: data?._id });
+      if ("data" in res) {
+        toast.success((res as { data: any }).data.message);
+      }
+      if ("error" in res) {
+        toast.error((res as { error: any }).error.message);
+      }
     } catch (err: any) {
       console.log(err.errorMessages);
     }
@@ -26,6 +33,37 @@ const ShippingAddress = () => {
       </h1>
       <form onSubmit={handleUpdateShippingInfo}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-7">
+          <CustomInput
+            label="First Name"
+            type="text"
+            name="firstName"
+            value={data?.firstName}
+            placeholder={""}
+            onChange={(e) =>
+              dispatch(setShippingData({ [e.target.name]: e.target.value }))
+            }
+          />
+          <CustomInput
+            label="Last Name"
+            type="text"
+            name="lastName"
+            value={data?.lastName}
+            placeholder={""}
+            onChange={(e) =>
+              dispatch(setShippingData({ [e.target.name]: e.target.value }))
+            }
+          />
+          <CustomInput
+            label="Phone Number"
+            type="text"
+            name="phoneNumber"
+            value={data?.phoneNumber}
+            placeholder={""}
+            onChange={(e) =>
+              dispatch(setShippingData({ [e.target.name]: e.target.value }))
+            }
+          />
+
           <CustomInput
             label="Country"
             type="text"
@@ -84,7 +122,7 @@ const ShippingAddress = () => {
           type="submit"
           className="flex items-start justify-start mt-5 md:mt-7"
         >
-          <span className="main-bg-color px-5 py-1.5 text-white rounded-md">
+          <span className="main-bg-color px-7 py-2 text-white rounded-md">
             Update
           </span>
         </button>

@@ -4,6 +4,8 @@ import NextBreadcrumb from "@/components/shared/NextBreadcrumb";
 import { IconChevronRight } from "@tabler/icons-react";
 import { Poppins } from "next/font/google";
 import React from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const poppins = Poppins({
   weight: ["400"],
@@ -29,6 +31,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       />
       {children}
       <Footer />
+      <ToastContainer />
     </div>
   );
 };

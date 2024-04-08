@@ -20,7 +20,7 @@ const BrandProductGridView = () => {
   const { data: allCategory } = useGetCategoryQuery("");
 
   // <== Brand and Category filtered products ==>
-  const { data: filteredProducts } = useGetProductsQuery(
+  const { data: filteredProducts, isLoading } = useGetProductsQuery(
     `category.categoryName=${category}&${
       brandName && `&brand.brandName=${brandName}`
     }&${
@@ -36,6 +36,20 @@ const BrandProductGridView = () => {
   const { data: productsByBrand } = useGetProductsQuery(
     `brand.brandName=${brandName}`
   );
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        {["L", "O", "A", "D", "I", "N", "G", ".", ".", "."].map(
+          (letter, index) => (
+            <span key={index} className="text-4xl font-bold">
+              {letter}
+            </span>
+          )
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="w-full mt-5">

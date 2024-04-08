@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type IShippingAddress = {
+  firstName?: string;
+  lastName?: string;
+  phoneNumber?: string;
   state?: string;
   streetAddress?: string;
   zipCode?: number;

@@ -17,13 +17,18 @@ const PriceRangeCard = () => {
 
   const [minPrice, maxPrice] = range;
 
-  useEffect(() => {
-    dispatch(setPriceRange({ minPrice: minPrice, maxPrice: maxPrice }));
-  }, [range]);
-
   const handleRangeChange = (newRange: any) => {
     setRange(newRange);
   };
+
+  // <== Set debounce for stop unlimited  requests to server ==>
+  useEffect(() => {
+    const debounceTimer = setTimeout(() => {
+      dispatch(setPriceRange({ minPrice: minPrice, maxPrice: maxPrice }));
+    }, 300);
+
+    return () => clearTimeout(debounceTimer);
+  }, [range]);
 
   const gradientBackground = {
     background:
