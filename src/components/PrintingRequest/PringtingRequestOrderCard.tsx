@@ -79,8 +79,8 @@ const PringtingRequestOrderCard = ({ href, buttonText, handleOrder }: any) => {
 
       <div className="flex justify-center items-center px-5 py-4   ">
         <Link
-          onClick={handleOrder}
           href={`${href}`}
+          onClick={handleOrder}
           className={`bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white  shadow-sm hover:duration-500 hover:shadow-lg text-center ${
             grandTotal ? "cursor-pointer" : "cursor-not-allowed btn-disabled"
           }`}

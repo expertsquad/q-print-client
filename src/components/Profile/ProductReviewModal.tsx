@@ -19,7 +19,6 @@ const ProductReviewModal = ({
 
   // <== Get Product By Product Id ==>
   const { data: product } = useGetProductByIdQuery(reviewProductId);
-  console.log(product, "From review page");
 
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
