@@ -1,31 +1,23 @@
-import {
-  decrementQuantity,
-  incrementQuantity,
-} from "@/redux/features/printing-request/totalAmountSlice";
+import { setPrintingRequest } from "@/redux/features/printing-request/postPrintingRequestSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { IconPlus } from "@tabler/icons-react";
 import { IconMinus } from "@tabler/icons-react";
 import Link from "next/link";
 import React from "react";
 
-const PringtingRequestOrderCard = ({ href, buttonText, handleOrder }: any) => {
-  const { quantity, totalAmount } = useAppSelector(
-    (state) => state.printingReqTotalAmount
-  );
+const PringtingRequestOrderCard = ({ href, buttonText, handleSubmit }: any) => {
+  const data = useAppSelector((state) => state.printingRequestOrder);
 
   const dispatch = useAppDispatch();
-  // <==  Hanlde incrementQuantity ==>
-  const handleIncrement = () => {
-    dispatch(incrementQuantity());
-  };
-  // <== Hanlde decreament quantity ==>
-  const handleDecrement = () => {
-    dispatch(decrementQuantity());
-  };
 
+  const calculateHeightWidth = data?.paperSize?.height * data?.paperSize?.width;
+  const heightWidthMultiplyByType = calculateHeightWidth * data?.paperTypePrice;
+
+  const heightWidthMultiplyMode =
+    calculateHeightWidth * data?.printingModePrice;
   const deliveryCharge = 60;
-  const printingPriceSubTotal = quantity * totalAmount;
-  const grandTotal = printingPriceSubTotal + deliveryCharge;
+  const totalAmount = heightWidthMultiplyByType + heightWidthMultiplyMode;
+  const totalAmountWithQuantity = totalAmount * data?.totalQuantity;
 
   return (
     <div className=" border rounded-lg pb-5 mb-5">
@@ -35,18 +27,33 @@ const PringtingRequestOrderCard = ({ href, buttonText, handleOrder }: any) => {
         <div className="flex justify-between items-center px-5 py-4   ">
           <small className="text-base text-gray-500">Item of print</small>
 
-          {totalAmount && (
+          {totalAmountWithQuantity && (
             <div className="flex items-center gap-2">
               <button
-                onClick={handleDecrement}
-                className="border border-fuchsia-800 p-0.5 text-black text-opacity-70 "
+                onClick={() =>
+                  dispatch(
+                    setPrintingRequest({
+                      ...data,
+                      totalQuantity: data?.totalQuantity - 1,
+                    })
+                  )
+                }
+                className="border border-fuchsia-800 p-0.5 text-black text-opacity-70"
               >
                 {""}
                 <IconMinus stroke={3} width={15} height={15} />
               </button>
-              <span>{quantity}</span>
+
+              <span>{data?.totalQuantity}</span>
               <button
-                onClick={handleIncrement}
+                onClick={() =>
+                  dispatch(
+                    setPrintingRequest({
+                      ...data,
+                      totalQuantity: data?.totalQuantity + 1,
+                    })
+                  )
+                }
                 className="border border-fuchsia-800 p-0.5 text-black text-opacity-70 "
               >
                 {""}
@@ -61,7 +68,7 @@ const PringtingRequestOrderCard = ({ href, buttonText, handleOrder }: any) => {
       <div className="flex justify-between items-center px-5 py-4   ">
         <small className="text-base text-gray-500">Printing Price</small>{" "}
         <p className="text-lg font-medium text-gray-800">
-          {printingPriceSubTotal} QAR
+          {totalAmountWithQuantity || 0} QAR
         </p>
       </div>
       {/* delivery Charge */}
@@ -73,21 +80,25 @@ const PringtingRequestOrderCard = ({ href, buttonText, handleOrder }: any) => {
       <div className="flex justify-between items-center px-5 py-4 border-t">
         <small className="text-lg font-medium text-gray-900">Total</small>{" "}
         <p className=" text-[22px]  font-bold bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-transparent bg-clip-text">
-          {grandTotal} QAR
+          {totalAmountWithQuantity + deliveryCharge || 0} QAR
         </p>
       </div>
 
-      <div className="flex justify-center items-center px-5 py-4   ">
+      <form
+        onSubmit={handleSubmit}
+        className="flex justify-center items-center px-5 py-4   "
+      >
         <Link
           href={`${href}`}
-          onClick={handleOrder}
           className={`bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white  shadow-sm hover:duration-500 hover:shadow-lg text-center ${
-            grandTotal ? "cursor-pointer" : "cursor-not-allowed btn-disabled"
+            totalAmountWithQuantity
+              ? "cursor-pointer"
+              : "cursor-not-allowed btn-disabled"
           }`}
         >
           {buttonText}
         </Link>
-      </div>
+      </form>
     </div>
   );
 };

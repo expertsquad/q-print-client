@@ -1,76 +1,19 @@
 "use client";
 import GradientUploadIcon from "@/assets/svgIcons/GradientUploadIcon";
 import PringtingRequestOrderCard from "@/components/PrintingRequest/PringtingRequestOrderCard";
+import { setPrintingRequest } from "@/redux/features/printing-request/postPrintingRequestSlice";
 import { useGetPrintingRequestsQuery } from "@/redux/features/printing-request/printing-request";
-import {
-  setFile,
-  setPrintingTotalAmount,
-} from "@/redux/features/printing-request/totalAmountSlice";
+import { setFile } from "@/redux/features/printing-request/totalAmountSlice";
+import { useAppSelector } from "@/redux/hook";
 import { isLoggedIn } from "@/services/auth.service";
-import { PrintingSetupTypes } from "@/types/printingRequestTypes";
-import { useEffect, useState } from "react";
+
 import { useDispatch } from "react-redux";
 
 const PrintingRequest = () => {
   const isUserLoggedIn = isLoggedIn();
-
-  const [printingPaperSize, setPrintingPaperSize] =
-    useState<PrintingSetupTypes | null>(null);
-  const [selectPaperType, setSelectPaperType] =
-    useState<PrintingSetupTypes | null>(null);
-  const [selectColorMode, setSelectColorMode] =
-    useState<PrintingSetupTypes | null>(null);
-  const [totalAmount, setTotalAmount] = useState<number>(0);
-
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setPrintingTotalAmount(totalAmount));
-  }, [totalAmount]);
-
-  // <== Get Paper Size fn ==>
-  const handleGetPaperSize = (
-    itemId: string,
-    height: number,
-    width: number
-  ) => {
-    setPrintingPaperSize(
-      paperSize?.data.find((item: any) => item._id === itemId) || null
-    );
-    setTotalAmount(
-      (selectPaperType?.price || 0) * height * width +
-        (selectColorMode?.price || 0)
-    );
-  };
-  // <== Get Paper Type fn ==>
-  const handleGetPaperType = (itemId: string, price: number) => {
-    setSelectPaperType(
-      paperType?.data.find((item: any) => item._id === itemId) || null
-    );
-    setTotalAmount(
-      (printingPaperSize?.height || 0) *
-        (printingPaperSize?.width || 0) *
-        price +
-        (selectColorMode?.price || 0)
-    );
-  };
-  // <== Get Color Mode fn ==>
-  const handleGetColorMode = (itemId: string, price: number) => {
-    setSelectColorMode(
-      colorMode?.data.find((item: any) => item._id === itemId) || null
-    );
-    setTotalAmount(
-      (printingPaperSize?.height || 0) *
-        (printingPaperSize?.width || 0) *
-        (selectPaperType?.price || 0) +
-        price
-    );
-  };
-  // <== get uploaded file fn ==>
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0] || null;
-    dispatch(setFile(file));
-  };
-
+  const data = useAppSelector((state) => state.printingRequestOrder);
+  console.log(data);
   // <== paperSize, paperType,colorMode API's ===>
   const { data: paperSize } = useGetPrintingRequestsQuery(
     "printingSetupType=Paper Size"
@@ -81,6 +24,21 @@ const PrintingRequest = () => {
   const { data: colorMode } = useGetPrintingRequestsQuery(
     "printingSetupType=Printing Color Mode"
   );
+
+  // <== get uploaded file fn ==>
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] || null;
+    if (file) {
+      const { name } = file;
+      dispatch(
+        setPrintingRequest({
+          printingRequestFile: {
+            name,
+          },
+        })
+      );
+    }
+  };
 
   return (
     <section className="lg:max-w-[1280px] w-full mx-auto">
@@ -101,14 +59,19 @@ const PrintingRequest = () => {
               {paperSize?.data?.map((item: any) => (
                 <div
                   key={item._id}
+                  onClick={() =>
+                    dispatch(
+                      setPrintingRequest({
+                        paperSize: { ...item },
+                        totalQuantity: 1,
+                      })
+                    )
+                  }
                   className={`${
-                    item._id === printingPaperSize?._id
+                    item._id === data?.paperSize?._id
                       ? "shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)] border border-fuchsia-700"
                       : ""
                   } flex items-center justify-center rounded-lg cursor-pointer w-[100px] h-[150px] border hover:border-fuchsia-700`}
-                  onClick={() =>
-                    handleGetPaperSize(item._id, item.height, item.width)
-                  }
                 >
                   {item.width} x {item.height}
                 </div>
@@ -123,12 +86,19 @@ const PrintingRequest = () => {
                 {paperType?.data?.map((item: any) => (
                   <span
                     key={item._id}
+                    onClick={() =>
+                      dispatch(
+                        setPrintingRequest({
+                          paperTypeId: item?._id,
+                          paperTypePrice: item?.price,
+                        })
+                      )
+                    }
                     className={`list-none py-3 px-5 border whitespace-nowrap rounded-lg text-gray-500 cursor-pointer ${
-                      item._id === selectPaperType?._id
+                      item._id === data?.paperTypeId
                         ? "bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-white border-fuchsia-700"
                         : ""
                     }`}
-                    onClick={() => handleGetPaperType(item._id, item.price)}
                   >
                     {item.paperType}
                   </span>
@@ -142,12 +112,19 @@ const PrintingRequest = () => {
                 {colorMode?.data?.map((item: any) => (
                   <span
                     key={item._id}
+                    onClick={() =>
+                      dispatch(
+                        setPrintingRequest({
+                          printingColorModeId: item?._id,
+                          printingModePrice: item?.price,
+                        })
+                      )
+                    }
                     className={`list-none py-3 px-5 border whitespace-nowrap rounded-lg text-gray-500 cursor-pointer ${
-                      item._id === selectColorMode?._id
+                      item._id === data?.printingColorModeId
                         ? "bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-white border-fuchsia-700"
                         : ""
                     }`}
-                    onClick={() => handleGetColorMode(item._id, item.price)}
                   >
                     {item.printingColorMode}
                   </span>
@@ -176,6 +153,7 @@ const PrintingRequest = () => {
 
         <div className="w-full md:w-4/12 lg:w-4/12">
           <PringtingRequestOrderCard
+            data={data}
             buttonText={"Proceed To Checkout"}
             href={
               isUserLoggedIn ? "printing-request/your-information" : "/login"

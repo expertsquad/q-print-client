@@ -12,13 +12,22 @@ import { isLoggedIn, isUserSignedIn } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import { useGetUserQuery } from "@/redux/features/user/user";
 import { imageUrl } from "@/constants/imageUrl";
+import CustomInput from "../shared/CustomInput";
+import { useProductsBySearchQuery } from "@/redux/features/products/productsApi";
+import { useState } from "react";
+import ProductSearchModal from "./ProductSearchModal";
 
 const Header = () => {
   const router = useRouter();
   const userLoggedIn = isLoggedIn();
   const userSignedIn = isUserSignedIn();
+  const [searchValue, setSearchValue] = useState("");
 
-  const { data, isError, isLoading } = useGetUserQuery(undefined);
+  const handleSearchInputChange = (e: any) => {
+    setSearchValue(e.target.value);
+  };
+  console.log(searchValue, "searchValue");
+  const { data } = useGetUserQuery(``);
 
   // <== Check if the user is logged in or not ==>
   const handleUserProfile = () => {
@@ -28,6 +37,8 @@ const Header = () => {
       router.push("/login");
     }
   };
+
+  // <== Get products by searchTerm ==>
 
   return (
     <header className="max-w-[1280px] mx-auto">
@@ -45,12 +56,14 @@ const Header = () => {
               <IconSearch width={24} height={24} />
             </span>
           </div>
-          <input
-            type="search"
-            id="default-search"
-            className="inline-block w-full rounded-full px-4 py-3 ps-10 text-sm text-black text-opacity-50 border bg-gray-50 outline-none"
-            placeholder="Search For Product"
+
+          <CustomInput
+            placeholder="Search For Products"
+            inputStyle="w-full rounded-full"
+            value={searchValue}
+            onChange={handleSearchInputChange}
           />
+          {searchValue && <ProductSearchModal data={searchValue} />}
           <div className="border rounded-full px-3 py-3  items-center justify-center cursor-pointer hidden">
             <Filter />
           </div>

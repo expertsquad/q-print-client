@@ -103,7 +103,7 @@ const BestDeals = () => {
           />
         </div>
       </div>
-      <div className="flex items-center justify-between gap-3 overflow-x-auto scroll-smooth no-scrollbar">
+      <div className="flex items-center justify-between gap-3 overflow-x-auto scroll-smooth no-scrollbar mt-5">
         {/* === Event Product Card === */}
         {productData?.map((product: any) => (
           <div
@@ -111,14 +111,13 @@ const BestDeals = () => {
             key={product?._id}
             className="flex items-center space-x-4 max-w-[300px] pr-20 py-2 pl-2 shrink-0 rounded-xl bg-white border border-white hover:border hover:duration-500 cursor-pointer hover:border-fuchsia-700"
           >
-            <div className="w-12 h-12 md:w-20 md:h-20 relative bg-background-color">
+            <div className="w-[60px] h-[60px] relative mr-2.5 md:mr-5 shrink-0">
               <Image
-                objectFit="cover"
+                src={`${imageUrl}${product?.productPhoto}`}
                 fill
-                src="https://www.transparentpng.com/thumb/printer/TdXPfS-canon-printer-icon.png"
-                // src={`${imageUrl}${product?.productPhoto}`}
-                className="w-full h-full top-0 left-0 object-cover"
-                alt=""
+                objectFit="cover"
+                alt="Product Photo"
+                className="w-full h-full top-0 left-0 object-cover p-1.5 border rounded-md"
               />
             </div>
             <div className="flex justify-center flex-col gap-1">

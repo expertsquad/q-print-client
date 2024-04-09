@@ -2,6 +2,7 @@
 import PringtingRequestOrderCard from "@/components/PrintingRequest/PringtingRequestOrderCard";
 import ReturnToCardButton from "@/components/PrintingRequest/ReturnToCardButton";
 import CustomInput from "@/components/shared/CustomInput";
+import { setPrintingRequest } from "@/redux/features/printing-request/postPrintingRequestSlice";
 import { setShippingData } from "@/redux/features/user/shippingAddressSlice";
 import {
   useAddShippingAddressMutation,
@@ -17,15 +18,11 @@ import { useState } from "react";
 const YourInformation = () => {
   const isUserLoggedIn = isLoggedIn();
   const [addNewShipping, setAddNewShipping] = useState(false);
-
-  const [addShippingInfo] = useAddShippingAddressMutation();
   const dispatch = useAppDispatch();
-  const data = useAppSelector((state) => state.updateShippingInfo);
-  console.log(data?._id, "select from");
-
   const handleAddShipping = () => {
     setAddNewShipping((prevState) => !prevState);
   };
+  const [addShipping] = useAddShippingAddressMutation();
 
   // <== Get User Address ==>
   const { data: address, isLoading } = useGetUserAddressQuery("");
@@ -36,17 +33,16 @@ const YourInformation = () => {
   // <== Get User Personal Information ==>
   const { data: personalInformation } = useGetUserQuery("");
 
-  // <== Update shipping address ==>
-  const updateShippingInformation = async (event: any) => {
-    event.preventDefault();
+  const data = useAppSelector((state) => state.printingRequestOrder);
 
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
     try {
-      const res = await addShippingInfo({ data: data, id: data?._id });
-      console.log(res, "data");
-    } catch (err: any) {
-      console.log(err.errorMessages);
-    }
+      const res = await addShipping(data?.shippingAddress);
+      console.log(res, "from res");
+    } catch {}
   };
+
   return (
     <section className="lg:max-w-[1280px] w-full mx-auto  mb-7">
       <div className="mb-7">
@@ -69,11 +65,7 @@ const YourInformation = () => {
               </Link>
             )}
 
-            <form
-              action=""
-              onSubmit={updateShippingInformation}
-              className="p-4 md:p-7"
-            >
+            <div className="p-4 md:p-7">
               {/* == Personal Information == */}
               <p className="text-base text-gray-500 mb-5">
                 Contact information
@@ -133,11 +125,17 @@ const YourInformation = () => {
                       label="First Name"
                       type="text"
                       name="firstName"
-                      value={data?.firstName}
+                      value={data?.shippingAddress?.firstName}
                       placeholder={"First Name"}
                       onChange={(e) =>
                         dispatch(
-                          setShippingData({ [e.target.name]: e.target.value })
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              [e.target.name]: e.target.value,
+                            },
+                          })
                         )
                       }
                     />
@@ -145,11 +143,17 @@ const YourInformation = () => {
                       label="Last Name"
                       type="text"
                       name="lastName"
-                      value={data?.lastName}
+                      value={data?.shippingAddress?.lastName}
                       placeholder={"Last Name"}
                       onChange={(e) =>
                         dispatch(
-                          setShippingData({ [e.target.name]: e.target.value })
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              [e.target.name]: e.target.value,
+                            },
+                          })
                         )
                       }
                     />
@@ -157,11 +161,17 @@ const YourInformation = () => {
                       label="Phone Number"
                       type="text"
                       name="phoneNumber"
-                      value={data?.phoneNumber}
+                      value={data?.shippingAddress?.phoneNumber}
                       placeholder={"Phone Number"}
                       onChange={(e) =>
                         dispatch(
-                          setShippingData({ [e.target.name]: e.target.value })
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              [e.target.name]: e.target.value,
+                            },
+                          })
                         )
                       }
                     />
@@ -169,11 +179,17 @@ const YourInformation = () => {
                       label="Street Address"
                       type="text"
                       name="streetAddress"
-                      value={data?.streetAddress}
+                      value={data?.shippingAddress?.streetAddress}
                       placeholder="Your Street Address"
                       onChange={(e) =>
                         dispatch(
-                          setShippingData({ [e.target.name]: e.target.value })
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              [e.target.name]: e.target.value,
+                            },
+                          })
                         )
                       }
                     />
@@ -181,11 +197,17 @@ const YourInformation = () => {
                       label="State"
                       type="text"
                       name="state"
-                      value={data?.state}
+                      value={data?.shippingAddress?.state}
                       placeholder="Your State"
                       onChange={(e) =>
                         dispatch(
-                          setShippingData({ [e.target.name]: e.target.value })
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              [e.target.name]: e.target.value,
+                            },
+                          })
                         )
                       }
                     />
@@ -193,18 +215,35 @@ const YourInformation = () => {
                       label="Country"
                       type="text"
                       name="country"
-                      value={data?.country}
+                      value={data?.shippingAddress?.country}
                       placeholder={"Country"}
+                      onChange={(e) =>
+                        dispatch(
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              [e.target.name]: e.target.value,
+                            },
+                          })
+                        )
+                      }
                     />
                     <CustomInput
                       label=" Company Name ( Optional )"
                       type="text"
                       name="companyName"
-                      value={data?.companyName}
+                      value={data?.shippingAddress?.companyName}
                       placeholder="Company Name"
                       onChange={(e) =>
                         dispatch(
-                          setShippingData({ [e.target.name]: e.target.value })
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              [e.target.name]: e.target.value,
+                            },
+                          })
                         )
                       }
                     />
@@ -212,25 +251,45 @@ const YourInformation = () => {
                       label="ZipCode"
                       type="text"
                       name="zipCode"
-                      value={data?.zipCode}
+                      value={data?.shippingAddress?.zipCode}
                       placeholder="Your ZipCode"
                       onChange={(e) =>
                         dispatch(
-                          setShippingData({
-                            [e.target.name]: Number(e.target.value),
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...(data.shippingAddress || {}),
+                              [e.target.name]: e.target.value,
+                            },
                           })
                         )
                       }
                     />
                   </div>
                   <div className="mb-3 flex gap-1.5 items-center mt-7">
-                    <input name="isDefault" title="inputradio" type="radio" />
+                    <input
+                      name="isDefault"
+                      onChange={(e) =>
+                        dispatch(
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              isDefault: !data.shippingAddress.isDefault,
+                            },
+                          })
+                        )
+                      }
+                      title="inputradio"
+                      type="checkbox"
+                      checked={data?.shippingAddress?.isDefault}
+                    />
+
                     <span>Use as default address</span>
                   </div>
-                  <button type="submit">update</button>
                 </div>
               )}
-            </form>
+            </div>
           </div>
 
           {/* == Return to previous page == */}
@@ -242,7 +301,7 @@ const YourInformation = () => {
         {/* == Total Amount Card == */}
         <div className="w-full md:w-4/12 lg:w-4/12">
           <PringtingRequestOrderCard
-            // handleOrder={updateShippingInformation}
+            handleSubmit={handleSubmit}
             buttonText={"Continue to Payment"}
             href={"/printing-request/payment"}
           />

@@ -9,7 +9,6 @@ import productsByCategorySlice from "./features/brand/productsByCategorySlice";
 import brandNameSlice from "./features/brand/brandNameSlice";
 import FilterByPriceSlice from "./features/filterByPrice/FilterByPriceSlice";
 import changePassword from "./features/user/changePassword";
-import totalAmountSlice from "./features/printing-request/totalAmountSlice";
 import shippingAddressSlice from "./features/user/shippingAddressSlice";
 import postPrintingRequestSlice from "./features/printing-request/postPrintingRequestSlice";
 
@@ -25,7 +24,6 @@ export const reducer = {
   productByBrandName: brandNameSlice,
   priceRangeSlice: FilterByPriceSlice,
   changePasswordSlice: changePassword,
-  printingReqTotalAmount: totalAmountSlice,
   updateShippingInfo: shippingAddressSlice,
   printingRequestOrder: postPrintingRequestSlice,
 };

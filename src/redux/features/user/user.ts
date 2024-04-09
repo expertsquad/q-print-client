@@ -54,6 +54,15 @@ export const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["shipping-address"],
     }),
+    // <== Add new user address ==>
+    addNewUserAddress: build.mutation({
+      query: (data) => ({
+        url: "/user-address/add",
+        method: "POST",
+        data,
+      }),
+      invalidatesTags: ["address"],
+    }),
   }),
 });
 
@@ -64,4 +73,5 @@ export const {
   useGetUserAddressQuery,
   useChangePasswordMutation,
   useAddShippingAddressMutation,
+  useAddNewUserAddressMutation,
 } = authApi;

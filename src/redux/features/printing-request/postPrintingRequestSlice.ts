@@ -13,15 +13,21 @@ type IPrintingRequestOrder = {
     state: string;
     country: string;
     zipCode: string;
+    companyName?: string;
+    isDefault: boolean;
   };
   paperSize: {
-    height: string;
-    width: string;
+    height: string | number;
+    width: string | number;
+    _id?: string;
   };
   printingColorModeId: string;
   paperTypeId: string;
-  printingRequestFile: File | null;
+  printingRequestFile: File | null | any;
   totalQuantity: number;
+
+  paperTypePrice: number;
+  printingModePrice: number;
 };
 
 const initialState: IPrintingRequestOrder | Record<string | number, unknown> =
@@ -44,9 +50,12 @@ const postPrintingRequest = createSlice({
         };
       }
     },
+    resetPrinting: (state) => {
+      return initialState;
+    },
   },
 });
 
-export const { setPrintingRequest: setShippingData } =
+export const { setPrintingRequest, resetPrinting } =
   postPrintingRequest.actions;
 export default postPrintingRequest.reducer;
