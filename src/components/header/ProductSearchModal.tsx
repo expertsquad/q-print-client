@@ -5,6 +5,7 @@ import Image from "next/image";
 import { imageUrl } from "@/constants/imageUrl";
 import { IProduct } from "@/types/productsType";
 import { useRouter } from "next/navigation";
+import emptydata from "@/assets/empty-data.png";
 
 const ProductSearchModal = ({ data }: any) => {
   const [showModal, setShowModal] = useState(false);
@@ -14,15 +15,19 @@ const ProductSearchModal = ({ data }: any) => {
   };
 
   const { data: products } = useProductsBySearchQuery(`${data}`);
-  console.log(products, "EID SHOPPING");
+  //   console.log(products, "EID SHOPPING");
 
   // <== Product View Function ==>
   const handleViewProduct = (e: any) => {
     router.push(`/product/${e?._id}`);
   };
 
+  const defaultVariants = products?.data.map((product) =>
+    product.variants.find((variant) => variant?.isDefault)
+  );
+
   return (
-    <div className="absolute top-[80px] bg-white md:w-[600px] lg:w-[680px] w-full h-[400px] z-50 backdrop-blur-lg shadow-xl rounded-lg p-3 md:p-5 overflow-y-scroll no-scrollbar">
+    <div className="absolute top-[80px] bg-white md:w-[600px] lg:w-[680px] w-full h-[250px] md:h-[400px] z-50 backdrop-blur-lg shadow-xl rounded-lg p-3 md:p-5 overflow-y-scroll no-scrollbar">
       {products?.data?.length > 0 ? (
         products?.data?.map((product: IProduct) => (
           <div
@@ -45,20 +50,29 @@ const ProductSearchModal = ({ data }: any) => {
                 <div className="flex items-center gap-3">
                   <span>{product?.brand?.brandName}</span>
                   <span className="block md:hidden main-text-color">
-                    {product?.variants?.sellingPrice | 200}
+                    {defaultVariants?.sellingPrice}
                   </span>
                 </div>
               </div>
               <div>
-                <span className="font-bold main-text-color md:block hidden">
-                  {product?.variants?.sellingPrice | 200} <small>QAR</small>
-                </span>
+                {/* <span className="font-bold main-text-color md:block hidden">
+                  {defaultVariants?.sellingPrice} <small>QAR</small>
+                </span> */}
+
+                {defaultVariants && (
+                  <span className="font-bold main-text-color">
+                    {defaultVariants?.sellingPrice} <small>QAR</small>
+                  </span>
+                )}
               </div>
             </div>
           </div>
         ))
       ) : (
-        <div className="flex items-center justify-center ">No data found</div>
+        <div className="flex flex-col items-center justify-center ">
+          <Image src={emptydata} alt="Empty data" width={200} height={200} />
+          <span>No Products Found!!</span>
+        </div>
       )}
     </div>
   );

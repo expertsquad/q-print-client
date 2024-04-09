@@ -7,20 +7,8 @@ import Link from "next/link";
 import React from "react";
 
 const MobileVersion = () => {
-  const menuItems = [
-    "Home",
-    "Brands",
-    "Request a Printing",
-    "About Us",
-    "Privacy Policy",
-  ];
-  const hrefValues = [
-    "/",
-    "/brand/slug",
-    "/printing-request",
-    "/about-us",
-    "/privacy-policy",
-  ];
+  const menuItems = ["Home", "Brands", "Request a Printing", "Products"];
+  const hrefValues = ["/", "/brand", "/printing-request", "/products"];
 
   return (
     <div className="drawer md:hidden ">

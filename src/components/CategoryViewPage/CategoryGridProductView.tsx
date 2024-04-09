@@ -72,7 +72,7 @@ const CategoryGridProductView = () => {
     productsData = newProduct;
   }
   return (
-    <div className="w-full  mt-5 ">
+    <div className="w-full mt-5 ">
       {/* category page grid view  header section */}
       <div className="flex justify-between">
         <div>

@@ -26,7 +26,6 @@ const Header = () => {
   const handleSearchInputChange = (e: any) => {
     setSearchValue(e.target.value);
   };
-  console.log(searchValue, "searchValue");
   const { data } = useGetUserQuery(``);
 
   // <== Check if the user is logged in or not ==>
