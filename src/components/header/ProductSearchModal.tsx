@@ -1,34 +1,44 @@
 "use client";
-import { useState } from "react";
 import { useProductsBySearchQuery } from "@/redux/features/products/productsApi";
 import Image from "next/image";
 import { imageUrl } from "@/constants/imageUrl";
 import { IProduct } from "@/types/productsType";
 import { useRouter } from "next/navigation";
 import emptydata from "@/assets/empty-data.png";
+import { IconX } from "@tabler/icons-react";
 
-const ProductSearchModal = ({ data }: any) => {
-  const [showModal, setShowModal] = useState(false);
+const ProductSearchModal = ({ data, setSearchValue }: any) => {
   const router = useRouter();
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
 
-  const { data: products } = useProductsBySearchQuery(`${data}`);
-  //   console.log(products, "EID SHOPPING");
-
-  // <== Product View Function ==>
-  const handleViewProduct = (e: any) => {
-    router.push(`/product/${e?._id}`);
-  };
+  const { data: products, isLoading } = useProductsBySearchQuery(`${data}`);
 
   const defaultVariants = products?.data.map((product) =>
     product.variants.find((variant) => variant?.isDefault)
   );
 
+  const handleCloseModal = () => {
+    setSearchValue("");
+  };
+  // <== Product View Function ==>
+  const handleViewProduct = (e: any) => {
+    router.push(`/product/${e?._id}`);
+    handleCloseModal();
+  };
+
   return (
-    <div className="absolute top-[80px] bg-white md:w-[600px] lg:w-[680px] w-full h-[250px] md:h-[400px] z-50 backdrop-blur-lg shadow-xl rounded-lg p-3 md:p-5 overflow-y-scroll no-scrollbar">
-      {products?.data?.length > 0 ? (
+    <div className="absolute top-[60px] md:top-[70px] bg-white md:w-[600px] lg:w-[680px] w-full h-[250px] md:h-[400px] z-50 backdrop-blur-lg shadow-xl rounded-lg p-3 md:p-5 overflow-y-scroll no-scrollbar drop-shadow-lg">
+      <span
+        className="absolute top-2 right-2 cursor-pointer"
+        onClick={handleCloseModal}
+      >
+        <IconX stroke={2} height={20} width={20} />
+      </span>
+      {isLoading ? (
+        <div className="flex items-center justify-center h-full">
+          {/* <span className="font-bold">Loading...</span> */}
+          <span className="loading loading-dots loading-lg text-secondary"></span>
+        </div>
+      ) : products?.data?.length > 0 ? (
         products?.data?.map((product: IProduct) => (
           <div
             key={product?._id}
@@ -69,7 +79,7 @@ const ProductSearchModal = ({ data }: any) => {
           </div>
         ))
       ) : (
-        <div className="flex flex-col items-center justify-center ">
+        <div className="flex flex-col items-center justify-center h-full">
           <Image src={emptydata} alt="Empty data" width={200} height={200} />
           <span>No Products Found!!</span>
         </div>

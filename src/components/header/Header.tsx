@@ -62,7 +62,12 @@ const Header = () => {
             value={searchValue}
             onChange={handleSearchInputChange}
           />
-          {searchValue && <ProductSearchModal data={searchValue} />}
+          {searchValue && (
+            <ProductSearchModal
+              data={searchValue}
+              setSearchValue={setSearchValue}
+            />
+          )}
           <div className="border rounded-full px-3 py-3  items-center justify-center cursor-pointer hidden">
             <Filter />
           </div>
