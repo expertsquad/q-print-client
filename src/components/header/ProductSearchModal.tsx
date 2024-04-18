@@ -35,7 +35,6 @@ const ProductSearchModal = ({ data, setSearchValue }: any) => {
       </span>
       {isLoading ? (
         <div className="flex items-center justify-center h-full">
-          {/* <span className="font-bold">Loading...</span> */}
           <span className="loading loading-dots loading-lg text-secondary"></span>
         </div>
       ) : products?.data?.length > 0 ? (

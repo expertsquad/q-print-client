@@ -158,31 +158,21 @@
   }
 }
 
-/* brand carousel css */
-
-.logos {
-  display: flex;
-}
-
+/* == Brand carousel css by jackdev == */
 .logos:hover .logos-slide {
   animation-play-state: paused;
 }
 
 .logos-slide {
-  display: flex;
-  animation: 0.9s slide infinite linear;
+  animation: 8s slide infinite linear;
 }
 
-.logos-slide img {
-  height: 50px;
-  margin: 0 70px;
-}
 @keyframes slide {
   from {
-    transform: translateX(0%);
+    transform: translate(0, 0);
   }
   to {
-    transform: translateX(-100%);
+    transform: translate(calc(-100% + (6 * 300px)));
   }
 }
 
