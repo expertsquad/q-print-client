@@ -6,6 +6,7 @@ import { IProduct } from "@/types/productsType";
 import { useRouter } from "next/navigation";
 import emptydata from "@/assets/empty-data.png";
 import { IconX } from "@tabler/icons-react";
+import ModalCloseBtn from "../shared/ModalCloseBtn";
 
 const ProductSearchModal = ({ data, setSearchValue }: any) => {
   const router = useRouter();
@@ -27,11 +28,8 @@ const ProductSearchModal = ({ data, setSearchValue }: any) => {
 
   return (
     <div className="absolute top-[60px] md:top-[70px] bg-white md:w-[600px] lg:w-[680px] w-full h-[250px] md:h-[400px] z-50 backdrop-blur-lg shadow-xl rounded-lg p-3 md:p-5 overflow-y-scroll no-scrollbar drop-shadow-lg">
-      <span
-        className="absolute top-2 right-2 cursor-pointer"
-        onClick={handleCloseModal}
-      >
-        <IconX stroke={2} height={20} width={20} />
+      <span className="absolute top-2 right-2 cursor-pointer">
+        <ModalCloseBtn handleClose={handleCloseModal} />
       </span>
       {isLoading ? (
         <div className="flex items-center justify-center h-full">

@@ -14,7 +14,7 @@ interface BrandCarouselProps {
 
 const BrandCarousel = () => {
   const { data } = useGetBrandsQuery("");
-  console.log(data?.data, "nizam bhai ");
+
   return (
     <div className="logos flex justify-between overflow-hidden mx-auto max-w-[1280px] lg:mt-20 md:mt-20 mt-8">
       {data?.data?.map((brand: BrandCarouselProps) => (

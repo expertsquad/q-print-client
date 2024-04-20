@@ -5,6 +5,7 @@ import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
 import ProductViewImage from "../ProductView/ProductViewImage";
 import QuickViewImage from "./QuickViewImage";
 import QuickViewDescription from "./QuickViewDescription";
+import ModalCloseBtn from "../shared/ModalCloseBtn";
 
 const QuickProductViewModal = ({ handleCloseModal, showModal, id }: any) => {
   const { data } = useGetProductByIdQuery(id);
@@ -18,14 +19,11 @@ const QuickProductViewModal = ({ handleCloseModal, showModal, id }: any) => {
       >
         <div className="md:max-w-[850px] bg-white p-7 rounded-lg">
           <div className="flex justify-end ">
-            <button onClick={handleCloseModal}>
-              <IconX />
-              {""}
-            </button>
+            <ModalCloseBtn handleClose={handleCloseModal} />
           </div>
-          <div className="grid lg:grid-cols-2 grid-cols-1 mb-16 md:gap-3 gap-7">
+          <div className="grid md:grid-cols-2 grid-cols-1 mb-16 md:gap-3 gap-7">
             <QuickViewImage product={data?.data} />
-            {/* <QuickViewDescription /> */}
+            <QuickViewDescription product={data?.data} />
           </div>
         </div>
       </GlobalModal>
