@@ -24,14 +24,14 @@ const ProductViewImage = ({ product }: any) => {
               }`}
               onClick={() => handleChangePhoto(image)}
             >
-              <div className="py-2 w-14 h-14 md:w-20 md:h-24 relative">
+              <div className="w-14 h-14 md:w-20 md:h-24 shrink-0 relative">
                 <Image
                   src={`${imageUrl}${image}`}
                   alt="demo Printer"
                   fill
+                  objectFit="cover"
                   sizes="(max-width: 80px) 10vw, (max-width: 100px) 10vw, 15vw"
-                  objectFit="contain"
-                  className="md:p-2"
+                  className="w-full h-full top-0 left-0 object-contain p-2"
                 />
               </div>
             </div>
@@ -39,20 +39,19 @@ const ProductViewImage = ({ product }: any) => {
         </div>
         <div className="flex items-center justify-center border border-gray-300  rounded-lg w-full">
           {selectedImage && (
-            <div className="rounded-lg h-96 w-96 md:h-[420px] md:w-[400px] relative">
+            <div className="relative shrink-0 h-96 w-96 md:h-[420px] md:w-[400px]">
               <Image
                 src={`${imageUrl}${selectedImage}`}
                 alt="Product Photo"
                 fill
-                objectFit="contain"
+                objectFit="cover"
                 sizes="(max-width: 350px) 50vw, (max-width: 350px) 60vw, 65vw"
-                className="md:p-5"
+                className="w-full h-full top-0 left-0 object-cover p-10 rounded-lg"
               />
             </div>
           )}
         </div>
       </div>
-      {/* ==== */}
       {/* ==Right Side== */}
       <div className="right-side md:flex-1">
         <ProductViewDescEtc productDesc={product} />

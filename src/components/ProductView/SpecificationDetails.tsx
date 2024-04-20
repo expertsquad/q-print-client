@@ -6,6 +6,7 @@ import ProductSpecification from "./ProductSpecification";
 import ProductReview from "./ProductReview";
 
 const SpecificationDetails = ({ specification }: any) => {
+  console.log(specification, "specification");
   return (
     <section>
       <div className="overflow-x-auto flex no-scrollbar mb-12 border-b">
@@ -29,7 +30,7 @@ const SpecificationDetails = ({ specification }: any) => {
             id="specification"
             className="flex justify-between md:gap-7 gap-0 w-full"
           >
-            <div id="specification">
+            <div id="specification" className="w-full">
               <ProductSpecification
                 productSpecification={specification?.specifications}
               />
@@ -40,18 +41,19 @@ const SpecificationDetails = ({ specification }: any) => {
           </div>
         </div>
 
-        {/* --warranty */}
+        {/* == warranty == */}
         <div id="warranty" className="warranty my-14">
           <h2 className="text-[18px] md:text-[24px] font-semibold mb-7">
             Warranty
           </h2>
           <h6 className="main-text-color text-[14px] md:text-[16px] text-wrap">
-            Apple I phone 14 pro 2 Year Warranty Support
+            {specification?.productName} 2 Year Warranty Support
           </h6>
-          <p className="text-[14px] md:text-[16px]">
+          {/* == This paragraps mutd for this version == */}
+          {/* <p className="text-[14px] md:text-[16px]">
             our Warranty Policy page for detailed information about our warranty
             coverage
-          </p>
+          </p> */}
         </div>
         {/* --description */}
         <div id="description" className="description mb-7">

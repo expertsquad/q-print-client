@@ -11,14 +11,18 @@ import Image from "next/image";
 import WishlistQuickOrderBTNModal from "../WishlistPageData/WishlistQuickOrderBTNModal";
 import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
-import { addToCart, removeOneFromCart } from "@/redux/features/cart/cartSlice";
+
 import { useAppSelector } from "@/redux/hook";
 import ColorPickUp from "../ProductView/ColorPickUp";
 import GetDiscountRange from "../ProductView/GetDiscountRange";
+import {
+  addToCart,
+  removeOneFromCart,
+} from "@/redux/features/cart/productCartSlice";
 
 const QuickViewDescription = ({ product }: any) => {
   const dispatch = useDispatch();
-  const { products } = useAppSelector((state) => state.cart);
+  const { products } = useAppSelector((state) => state.productCartSlice);
 
   const productQuantity = products?.map((product: any) => {
     return product?.quantity;
@@ -89,11 +93,11 @@ const QuickViewDescription = ({ product }: any) => {
         <GetDiscountRange />
 
         <p className="my-5 text-black text-opacity-60">
-          Buy <span className="main-text-color">{product?.bulk?.minOrder}</span>{" "}
-          item more to get off{" "}
+          Buy <span className="main-text-color">{product?.bulk?.minOrder}</span>
+          item more to get off
           <b className="text-black">{product?.bulk?.discount}% Extra!</b>
         </p>
-        {/* //Item Increase and Decrease */}
+        {/* == Item increase & decrease fn == */}
         <div className="flex items-center gap-5 mb-5">
           <div className="border border-gray-200 flex items-center gap-2 rounded-3xl p-2">
             <button
@@ -103,7 +107,7 @@ const QuickViewDescription = ({ product }: any) => {
               {""}
               <IconMinus width={14} height={14} />
             </button>
-            <span>{0 + productQuantity}</span>
+            <span>{0 || productQuantity}</span>
             <button
               onClick={() => dispatch(addToCart(product))}
               className="p-2 bg-[#F2F2F2] rounded-full"

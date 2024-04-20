@@ -21,20 +21,18 @@ import {
   addToCart,
   removeFromCart,
   removeOneFromCart,
-} from "@/redux/features/cart/cartSlice";
+} from "@/redux/features/cart/productCartSlice";
 
 const Cart = () => {
-  const { products } = useAppSelector((state) => state.cart);
+  const { products, subTotal } = useAppSelector(
+    (state) => state.productCartSlice
+  );
   const dispatch = useDispatch();
-
-  // <== Calculate Subtotal, Total , and Shipping ==>
-  const subTotal = products?.reduce((total: number, product: any) => {
-    return total + product?.defaultVariant?.discountedPrice * product?.quantity;
-  }, 0);
 
   const shippingCharge = 80;
   const calculateTotal = subTotal + shippingCharge;
 
+  // == Drawer close fn ==
   const drawerCheckboxRef = useRef<HTMLInputElement>(null);
   const handleViewCart = () => {
     if (drawerCheckboxRef.current) {
@@ -146,7 +144,7 @@ const Cart = () => {
                               {""}
                               <IconMinus stroke={3} width={13} height={13} />
                             </button>
-                            <span>{product?.quantity}</span>
+                            <span>{product?.orderQuantity}</span>
                             <button
                               onClick={() => dispatch(addToCart(product))}
                               className="border border-fuchsia-800 p-1 rounded-full text-black text-opacity-70 "
@@ -155,13 +153,10 @@ const Cart = () => {
                               <IconPlus stroke={3} width={13} height={13} />
                             </button>
                             <span className="text-[12px]">x</span>
-                            <span>
-                              {product?.defaultVariant?.discountedPrice} QAR
-                            </span>
+                            <span>{product?.price} QAR</span>
                           </div>
                           <b className="main-text-color">
-                            {product?.quantity *
-                              product?.defaultVariant?.discountedPrice}{" "}
+                            {product?.orderQuantity * product?.price}
                             QAR
                           </b>
                         </div>

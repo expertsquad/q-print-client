@@ -13,16 +13,31 @@ import WishlistQuickOrderBTNModal from "../WishlistPageData/WishlistQuickOrderBT
 import GetDiscountRange from "./GetDiscountRange";
 import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
-import { addToCart, removeOneFromCart } from "@/redux/features/cart/cartSlice";
+// import { addToCart, removeOneFromCart } from "@/redux/features/cart/cartSlice";
 import { useAppSelector } from "@/redux/hook";
+import {
+  addToCart,
+  removeOneFromCart,
+} from "@/redux/features/cart/productCartSlice";
 
 const ProductViewDescEtc = ({ productDesc }: any) => {
   const dispatch = useDispatch();
-  const { products } = useAppSelector((state: any) => state.cart);
+  const { products } = useAppSelector((state) => state.productCartSlice);
 
-  const productQuantity = products?.map((product: any) => {
-    return product?.quantity;
-  });
+  // <== Handle Add Product In Cart ==>
+  const handleAddToCart = (event: React.MouseEvent, product: any) => {
+    event.stopPropagation();
+    dispatch(
+      addToCart({
+        ...product,
+        ...product?.variants[0],
+        price: product?.variants[0].discountedPrice
+          ? product?.variants[0].discountedPrice
+          : product?.variants[0].sellingPrice,
+        orderQuantity: 1,
+      })
+    );
+  };
 
   return (
     <section className="product-description">
@@ -50,14 +65,14 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         </p>
       </div>
       <div className="flex items-center mb-5">
-        <p className="[font-size:_clamp(14px,5vw,16px)] mr-3">
+        <p className="[font-size:_clamp(13px,5vw,14px)] mr-3 whitespace-nowrap">
           Category:{" "}
-          <span className="text-black opacity-70">
+          <span className="text-black-opacity-60 whitespace-nowrap">
             {productDesc?.category?.categoryName}
           </span>
         </p>{" "}
         |
-        <button className="flex items-center gap-2 ml-3 text-[#475156] [font-size:_clamp(13px,5vw,14px)]">
+        <button className="flex items-center gap-2 ml-3 text-black-opacity-60 [font-size:_clamp(13px,5vw,14px)] whitespace-nowrap">
           <IconHeart className="text-[#E73C17]" />
           Add To Wishlist
         </button>
@@ -82,10 +97,14 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         <GetDiscountRange />
 
         <p className="my-5 text-black text-opacity-60">
-          Buy <span className="main-text-color">8</span> item more to get off{" "}
-          <b className="text-black">15% Extra!</b>
+          Buy{" "}
+          <span className="main-text-color">
+            {productDesc?.bulk?.minOrder}{" "}
+          </span>
+          item more to get off
+          <b className="text-black"> {productDesc?.bulk?.discount} % Extra!</b>
         </p>
-        {/* //Item Increase and Decrease */}
+        {/* == Increase & Decrease fn == */}
         <div className="flex items-center gap-5 mb-5">
           <div className="border border-gray-200 flex items-center gap-2 rounded-3xl p-2">
             <button
@@ -95,7 +114,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
               {""}
               <IconMinus width={14} height={14} />
             </button>
-            <span>{0 + productQuantity}</span>
+            <span>{0}</span>
             <button
               onClick={() => dispatch(addToCart(productDesc))}
               className="p-2 bg-[#F2F2F2] rounded-full"
@@ -106,7 +125,9 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
           </div>
           <div>
             <button
-              onClick={() => dispatch(addToCart(productDesc))}
+              onClick={(event: React.MouseEvent) =>
+                handleAddToCart(event, productDesc)
+              }
               className="w-56 md:w-64 lg:w-80 flex justify-center items-center gap-3 bg-slate-400 main-text-color border border-fuchsia-700 py-2 rounded-lg text-fuchsia-700"
             >
               <IconShoppingCart

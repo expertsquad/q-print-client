@@ -63,7 +63,7 @@ const TabProductView = () => {
           <div>
             <Link
               className="flex items-center justify-end gap-2 main-text-color py-2 animate-bounce "
-              href="#"
+              href="/products"
             >
               {" "}
               See all &rarr;

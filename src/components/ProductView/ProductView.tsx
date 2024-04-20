@@ -46,7 +46,7 @@ const ProductView = ({ id }: any) => {
         </div>
       </div>
       <div>
-        <SpecificationDetails specification={relatedData?.data} />
+        <SpecificationDetails specification={productdata} />
       </div>
     </section>
   );

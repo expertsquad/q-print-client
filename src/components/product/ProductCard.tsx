@@ -3,11 +3,12 @@ import React from "react";
 import ProductImageSlide from "./ProductImageSlide";
 import AddToCartButton from "../UI/btn/AddToCartButton";
 import { useDispatch } from "react-redux";
-import { addToCart } from "@/redux/features/cart/cartSlice";
 import { useRouter } from "next/navigation";
 import StarRating from "./StarRating";
+import { addToCart } from "@/redux/features/cart/productCartSlice";
 
 const ProductCard = ({ product }: any) => {
+  console.log(product, "from product card");
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -16,10 +17,19 @@ const ProductCard = ({ product }: any) => {
     (variant: any) => variant.isDefault === true
   );
 
-  // <== Handle Add Product On Cart ==>
+  // <== Handle Add Product In Cart ==>
   const handleAddToCart = (event: React.MouseEvent, product: any) => {
     event.stopPropagation();
-    dispatch(addToCart(product));
+    dispatch(
+      addToCart({
+        ...product,
+        ...product?.variants[0],
+        price: product?.variants[0].discountedPrice
+          ? product?.variants[0].discountedPrice
+          : product?.variants[0].sellingPrice,
+        orderQuantity: 1,
+      })
+    );
   };
 
   // <== Product View Function ==>
@@ -50,15 +60,13 @@ const ProductCard = ({ product }: any) => {
 
         <div className="flex items-baseline justify-start gap-2 my-1 whitespace-nowrap">
           <h4 className="[font-size:_clamp(0.6em,4vw,1.1em)] main-text-color font-bold">
-            <span>{defaultVariant?.sellingPrice}</span> QAR
+            {defaultVariant?.discountedPrice || defaultVariant?.sellingPrice}{" "}
+            QAR
           </h4>
-
-          {defaultVariant?.discountedPrice ? (
+          {defaultVariant?.discountedPrice && (
             <del className="text-md text text-gray-500 [font-size:_clamp(0.5em,4vw,0.8em)] ">
-              {defaultVariant?.discountedPrice} QAR
+              {defaultVariant.sellingPrice} QAR
             </del>
-          ) : (
-            ""
           )}
         </div>
 
