@@ -5,22 +5,8 @@ import { IconHeart } from "@tabler/icons-react";
 import { IconEye } from "@tabler/icons-react";
 import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
-import { addToFavourite } from "@/redux/features/wishlist/favouriteSlice";
-import Link from "next/link";
 import QuickProductViewModal from "./QuickProductViewModal";
-
-interface IProductImageSlideProps {
-  product: IProduct;
-}
-
-interface IProduct {
-  images: string[];
-  name: string;
-  brandName: string;
-  price: number;
-  discount: number;
-  rating: number;
-}
+import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 
 const ProductImageSlide = ({ product, defaultVariant }: any) => {
   // console.log(product, "product image slide");
@@ -67,7 +53,16 @@ const ProductImageSlide = ({ product, defaultVariant }: any) => {
   // <== Add To Favourite ==>
   const handleAddToFavourite = (event: React.MouseEvent, product: any) => {
     event.stopPropagation();
-    dispatch(addToFavourite(product));
+    dispatch(
+      addToFavourite({
+        ...product,
+        ...product?.variants[0],
+        price: product?.variants[0].discountedPrice
+          ? product?.variants[0].discountedPrice
+          : product?.variants[0].sellingPrice,
+        orderQuantity: 1,
+      })
+    );
   };
 
   // <== Handle Quick Product View ==>

@@ -75,7 +75,7 @@ const Cart = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <div className="menu-vertical  w-full md:max-w-[430px] h-screen  text-base-content bg-white relative pt-5">
+          <div className="menu-vertical w-full md:max-w-[430px] h-screen text-base-content bg-white relative pt-5">
             {/* Sidebar content here */}
             <label
               htmlFor="my-drawer-cart"
@@ -113,12 +113,13 @@ const Cart = () => {
                       </div>
                       <div>
                         {/* --Title and Delete BTN-- */}
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center justify-between w-full ">
                           <p className="text-black text-opacity-90 text-[16px] line-clamp-1">
                             {product?.productName}
                           </p>
                           <button
                             onClick={() => dispatch(removeFromCart(product))}
+                            className="justify-items-end"
                           >
                             <span className="cursor-pointer text-black text-opacity-70">
                               <IconX width={20} height={20} />
@@ -139,7 +140,7 @@ const Cart = () => {
                               onClick={() =>
                                 dispatch(removeOneFromCart(product))
                               }
-                              className="border border-fuchsia-800 p-1 rounded-full text-black text-opacity-70 "
+                              className="border border-main-border-color p-1 rounded-full text-black-opacity-70 "
                             >
                               {""}
                               <IconMinus stroke={3} width={13} height={13} />
@@ -147,7 +148,7 @@ const Cart = () => {
                             <span>{product?.orderQuantity}</span>
                             <button
                               onClick={() => dispatch(addToCart(product))}
-                              className="border border-fuchsia-800 p-1 rounded-full text-black text-opacity-70 "
+                              className="border border-main-border-color p-1 rounded-full text-black-opacity-70 "
                             >
                               {""}
                               <IconPlus stroke={3} width={13} height={13} />

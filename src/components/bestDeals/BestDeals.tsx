@@ -23,7 +23,7 @@ const BestDeals = () => {
     <section className="bg-[#EDF2EE] py-4 px-2 md:py-7 md:px-8  lg:mt-20 md:mt-20 mt-8 rounded-lg">
       <div className="flex items-center justify-between gap-6">
         <div className="w-1/4">
-          <div className="relative w-48 h-48 shrink-0">
+          <div className="relative w-16 md:w-48 h-16 md:h-48 shrink-0">
             <Image
               src={`${imageUrl}${data?.data?.firstProductPhoto}`}
               alt="Offer Image"
@@ -38,17 +38,17 @@ const BestDeals = () => {
             <h4 className="[font-size:_clamp(0.6em,4vw,0.9em)] main-text-color ">
               BEST DEALS
             </h4>
-            <h1 className=" line-clamp-2 [font-size:_clamp(0.95em,4vw,1.9em)] main-text-color font-semibold ">
+            <h1 className="line-clamp-2 text-sm md:text-lg main-text-color font-semibold ">
               {data?.data?.title}
             </h1>
-            <p className=" line-clamp-2 [font-size:_clamp(0.6em,4vw,1.2em)] text-gray-500">
+            <p className="line-clamp-2 text-sm md:text-lg text-gray-500">
               {data?.data?.description}
             </p>
           </div>
           <CountdownTimer endDate={endDate} />
         </div>
         <div className="w-1/4 flex items-end justify-end">
-          <div className="relative shrink-0 w-48 h-48">
+          <div className="relative w-16 md:w-48 h-16 md:h-48 shrink-0">
             <Image
               src={`${imageUrl}${data?.data?.secondProductPhoto}`}
               alt="Offer Image"

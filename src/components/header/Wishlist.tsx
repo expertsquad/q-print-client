@@ -1,6 +1,6 @@
 import { imageUrl } from "@/constants/imageUrl";
-import { addToCart } from "@/redux/features/cart/cartSlice";
-import { removeFromFavourite } from "@/redux/features/wishlist/favouriteSlice";
+import { addToCart } from "@/redux/features/cart/productCartSlice";
+import { removeFromFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
   IconArrowLeft,
@@ -14,6 +14,7 @@ import Link from "next/link";
 import React, { useRef } from "react";
 
 const WishlistAndCart = () => {
+  const { products } = useAppSelector((state) => state.favouriteCartSlice);
   // <== Handle view wishlist click ==>
   const drawerCheckboxRef = useRef<HTMLInputElement>(null);
   const handleViewWishlistClick = () => {
@@ -23,15 +24,26 @@ const WishlistAndCart = () => {
   };
 
   // <== Get wishlist data by wishlist slice ==>
-  const { products } = useAppSelector((state) => state.favourite);
   const dispatch = useAppDispatch();
 
   const defaultVariant = products?.map((product: any) => {
     return product.variants?.find((variant: any) => variant.isDefault === true);
   });
 
-  // console.log(defaultVariant, "from product card");
-
+  // <== Handle Add Product In Cart ==>
+  const handleAddToCart = (event: React.MouseEvent, product: any) => {
+    event.stopPropagation();
+    dispatch(
+      addToCart({
+        ...product,
+        ...product?.variants[0],
+        price: product?.variants[0].discountedPrice
+          ? product?.variants[0].discountedPrice
+          : product?.variants[0].sellingPrice,
+        orderQuantity: 1,
+      })
+    );
+  };
   return (
     <div>
       <div className="drawer drawer-end overscroll-none ">
@@ -128,16 +140,18 @@ const WishlistAndCart = () => {
                         <div className="flex items-center justify-between ">
                           <p>
                             <b className="main-text-color">
-                              {defaultVariant?.sellingPrice}
+                              {product?.price}
                               QAR
                             </b>{" "}
                             |{" "}
                             <small className="text-green-500">
-                              {defaultVariant?.inStock} In Stock
+                              {0} In Stock
                             </small>
                           </p>
                           <button
-                            onClick={() => dispatch(addToCart(product))}
+                            onClick={(event: React.MouseEvent) =>
+                              handleAddToCart(event, product)
+                            }
                             className="flex items-center border py-2 px-3 rounded-lg text-[12px]"
                           >
                             <span className="text-black text-opacity-70 mr-1.5">

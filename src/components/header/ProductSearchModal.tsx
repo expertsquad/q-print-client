@@ -13,8 +13,8 @@ const ProductSearchModal = ({ data, setSearchValue }: any) => {
 
   const { data: products, isLoading } = useProductsBySearchQuery(`${data}`);
 
-  const defaultVariants = products?.data.map((product) =>
-    product.variants.find((variant) => variant?.isDefault)
+  const defaultVariants = products?.data.map((product: any) =>
+    product.variants.find((variant: any) => variant?.isDefault)
   );
 
   const handleCloseModal = () => {

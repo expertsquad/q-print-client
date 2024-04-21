@@ -40,16 +40,14 @@ const CountdownTimer: React.FC<CountdownProps> = ({ endDate }) => {
   }, [endDate]);
 
   return (
-    <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
+    <div className="flex items-center gap-5 md:gap-8">
       {Object.entries(timeLeft).map(([unit, value]) => (
         <div
           key={unit}
-          className="flex flex-col border p-3 rounded-lg items-center justify-center bg-white"
+          className="flex flex-col border p-2 rounded-lg items-center justify-center bg-white"
         >
-          <span className="countdown [font-size:_clamp(0.9em,4vw,1.5em)]">
-            {value}
-          </span>
-          <p className="[font-size:_clamp(0.6em,4vw,0.8em)] font-bold bg-gradient-to-r from-[#C83B62]  to-[#7F35CD]  text-transparent bg-clip-text">
+          <span className="countdown text-sm md:text-base">{value}</span>
+          <p className="text-xs md:text-base font-bold bg-gradient-to-r from-[#C83B62]  to-[#7F35CD]  text-transparent bg-clip-text">
             {unit.toUpperCase()}
           </p>
         </div>

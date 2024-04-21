@@ -41,10 +41,10 @@ const calculateSubTotal = (products: Product[]): number => {
 };
 
 const productCartSlice = createSlice({
-  name: "cart",
+  name: "favourite",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<Product>) => {
+    addToFavourite: (state, action: PayloadAction<Product>) => {
       const addedProduct = action.payload;
       const existingProductIndex = state.products.findIndex(
         (product) =>
@@ -60,7 +60,7 @@ const productCartSlice = createSlice({
 
       state.subTotal = calculateSubTotal(state.products);
     },
-    removeOneFromCart: (state, action: PayloadAction<Product>) => {
+    removeOneFromFavourite: (state, action: PayloadAction<Product>) => {
       const removedProduct = action.payload;
       const existingProductIndex = state.products.findIndex(
         (product) =>
@@ -77,7 +77,7 @@ const productCartSlice = createSlice({
 
       state.subTotal = calculateSubTotal(state.products);
     },
-    removeFromCart: (state, action: PayloadAction<Product>) => {
+    removeFromFavourite: (state, action: PayloadAction<Product>) => {
       const removedProduct = action.payload;
       state.products = state.products.filter(
         (product) =>
@@ -99,9 +99,9 @@ const productCartSlice = createSlice({
 });
 
 export const {
-  addToCart,
-  removeFromCart,
-  removeOneFromCart,
+  addToFavourite,
+  removeFromFavourite,
+  removeOneFromFavourite,
   setDiscount,
   resetCart,
 } = productCartSlice.actions;
