@@ -1,34 +1,36 @@
 "use client";
+import React, { useState } from "react";
 import {
   IconCheck,
+  IconEye,
   IconShoppingBag,
   IconShoppingCart,
   IconTrashX,
 } from "@tabler/icons-react";
 import Image from "next/image";
-import React, { useState } from "react";
-import WishlistQuickOrderBTNModal from "./WishlistQuickOrderBTNModal";
-import ProductViewGlobalModal from "../UI/modal/ProductViewGlobalModal";
-import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
-import noproductFound from "@/assets/empty-card-photo.svg";
 import { removeFromFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 import { addToCart } from "@/redux/features/cart/productCartSlice";
+import WishlistQuickOrderBTNModal from "./WishlistQuickOrderBTNModal";
+import noproductFound from "@/assets/empty-card-photo.svg";
+import { imageUrl } from "@/constants/imageUrl";
+import QuickProductViewModal from "../product/QuickProductViewModal";
 
 const WishlistPageData = ({ products }: any) => {
+  console.log(products, "wishlist page data");
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-  // <== Handle Quick Product View ==>
-  const handleQuickProductView = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    setShowModal(true);
+  const [productId, setProductId] = useState<string | null>(null);
+
+  const handleToggleModal = (id: string | null) => {
+    setProductId(id);
+    setShowModal(!showModal);
   };
-  // <== Close Product Quick View Modal ==>
+
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
-  // <== Handle Add Product In Cart ==>
   const handleAddToCart = (event: React.MouseEvent, product: any) => {
     event.stopPropagation();
     dispatch(
@@ -42,6 +44,7 @@ const WishlistPageData = ({ products }: any) => {
       })
     );
   };
+
   return (
     <section>
       <div className="max-w-[1280px] mx-auto">
@@ -50,28 +53,19 @@ const WishlistPageData = ({ products }: any) => {
         </h2>
         {products?.length ? (
           <>
-            <div className="bg-[#F8F8F8] py-3 pl-5 hidden justify-between  md:wishlist-data">
-              <h6>Product Name</h6>
-              <h6 className="flex items-center justify-center">Price</h6>
-              <h6>Stock Status</h6>
-              <h6 className="flex items-center justify-center">Action</h6>
-            </div>
-            <div className="">
+            <div>
               {products?.map((product: any) => (
                 <div
                   key={product._id}
                   className="flex md:wishlist-data items-center md:justify-between border-b py-5 transition duration-300 ease-in-out hover:bg-gray-100 pl-5"
                 >
-                  {/* ==Image, Text and Mobile V== */}
                   <div className="main-div flex gap-5">
                     <button
                       onClick={() => dispatch(removeFromFavourite(product))}
                       className="hidden md:block text-black text-opacity-50"
                     >
-                      {""}
                       <IconTrashX width={24} stroke={2} height={24} />
                     </button>
-
                     <div className="relative h-14 w-14 shrink-0">
                       <Image
                         src={`${imageUrl}${product?.productPhotos?.[1]}`}
@@ -81,15 +75,16 @@ const WishlistPageData = ({ products }: any) => {
                         className="w-full h-full top-0 left-0 object-cover border p-1.5 rounded-md"
                       />
                     </div>
-
                     <div>
                       <div className="flex justify-between w-full">
                         <h3 className="line-clamp-1 md:line-clamp-2 text-[16px] font-medium">
                           {product?.productName}
                         </h3>
-                        <button className="flex justify-end md:hidden text-black text-opacity-50">
+                        <button
+                          className="flex justify-end md:hidden text-black text-opacity-50"
+                          onClick={() => dispatch(removeFromFavourite(product))}
+                        >
                           <IconTrashX />
-                          {""}
                         </button>
                       </div>
                       <p>{product?.brand?.brandName}</p>
@@ -118,15 +113,12 @@ const WishlistPageData = ({ products }: any) => {
                       </div>
                     </div>
                   </div>
-                  {/* ==Price== */}
                   <div className="hidden md:flex items-center justify-center">
                     <span className="main-text-color">
                       {product?.price} <small>QAR</small>
                     </span>
                   </div>
-                  {/* ==Stock Status== */}
                   <div className="hidden md:block">
-                    {/* ==Product View and Add to Cart== */}
                     <div className="flex items-center gap-10">
                       <p
                         className={`${
@@ -143,25 +135,28 @@ const WishlistPageData = ({ products }: any) => {
                           <span>Out of stock</span>
                         )}
                       </p>
-
                       <div className="flex items-center gap-3">
-                        <ProductViewGlobalModal product={product} />
+                        <button
+                          className="border border-[#F2F2F2] rounded-full p-2.5 text-black text-opacity-50"
+                          onClick={() => handleToggleModal(product?._id)}
+                        >
+                          <span>
+                            <IconEye width={20} height={20} stroke={2} />
+                          </span>
+                        </button>
                         <button
                           onClick={(event: React.MouseEvent) =>
                             handleAddToCart(event, product)
                           }
                           className="border border-[#F2F2F2] rounded-full p-2.5 text-black text-opacity-50"
                         >
-                          {""} <IconShoppingBag width={20} height={20} />
+                          <IconShoppingBag width={20} height={20} />
                         </button>
                       </div>
                     </div>
                   </div>
-
-                  {/* ==Action== */}
                   <div className="hidden md:flex items-center justify-center ">
                     <WishlistQuickOrderBTNModal />
-                    {/* <ExtraDiscountModal /> */}
                   </div>
                 </div>
               ))}
@@ -179,6 +174,13 @@ const WishlistPageData = ({ products }: any) => {
           </div>
         )}
       </div>
+      {showModal && productId && (
+        <QuickProductViewModal
+          id={productId}
+          handleCloseModal={handleCloseModal}
+          showModal={showModal}
+        />
+      )}
     </section>
   );
 };

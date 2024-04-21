@@ -8,6 +8,7 @@ import QuickViewDescription from "./QuickViewDescription";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
 
 const QuickProductViewModal = ({ handleCloseModal, showModal, id }: any) => {
+  console.log(id, "from modal");
   const { data } = useGetProductByIdQuery(id);
 
   return (

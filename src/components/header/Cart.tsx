@@ -215,7 +215,7 @@ const Cart = () => {
                   {/* --Checkout & Quick Order btn-- */}
                   <div className="flex justify-between items-center gap-5">
                     <Link
-                      href="/cartView"
+                      href="/cart-view"
                       onClick={handleViewCart}
                       className="border w-full py-2 flex gap-1.5 items-center justify-center rounded-lg text-black bg-black bg-opacity-15 hover:main-bg-color hover:text-white"
                     >
