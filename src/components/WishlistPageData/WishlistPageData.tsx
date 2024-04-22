@@ -57,7 +57,7 @@ const WishlistPageData = ({ products }: any) => {
               {products?.map((product: any) => (
                 <div
                   key={product._id}
-                  className="flex md:wishlist-data items-center md:justify-between border-b py-5 transition duration-300 ease-in-out hover:bg-gray-100 pl-5"
+                  className="flex md:wishlist-data items-center md:justify-between border-b py-5 transition duration-300 ease-in-out hover:bg-gray-100 md:pl-5"
                 >
                   <div className="main-div flex gap-5">
                     <button
@@ -84,7 +84,7 @@ const WishlistPageData = ({ products }: any) => {
                           className="flex justify-end md:hidden text-black text-opacity-50"
                           onClick={() => dispatch(removeFromFavourite(product))}
                         >
-                          <IconTrashX />
+                          <IconTrashX stroke={2} width={24} height={24} />
                         </button>
                       </div>
                       <p>{product?.brand?.brandName}</p>
@@ -121,7 +121,7 @@ const WishlistPageData = ({ products }: any) => {
                   <div className="hidden md:block">
                     <div className="flex items-center gap-10">
                       <p
-                        className={`${
+                        className={`whitespace-nowrap ${
                           product?.defaultVariant?.inStock
                             ? "text-[#03A609]"
                             : "text-[#E73C17]"

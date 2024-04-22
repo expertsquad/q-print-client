@@ -83,7 +83,7 @@ const WishlistAndCart = () => {
             className="drawer-overlay"
           ></label>
           <div className="menu-vertical pt-4 w-full md:max-w-[430px] h-screen  text-base-content bg-white relative no-scrollbar">
-            {/* Sidebar content here */}
+            {/* == Drawer content here == */}
             <label
               htmlFor="my-drawer-4-wishlist"
               aria-label="close sidebar"
@@ -104,25 +104,25 @@ const WishlistAndCart = () => {
                 <div className="flex flex-col overflow-scroll no-scrollbar">
                   {products?.map((product: any) => (
                     <div
-                      className="flex gap-5 border-b transition duration-300 ease-in-out hover:bg-gray-100 p-4"
+                      className="flex gap-5 w-full border-b transition duration-300 ease-in-out hover:bg-gray-100 p-4"
                       key={product._id}
                     >
-                      {/* --Image-- */}
-                      <div className="flex items-center justify-center max-h-16 w-full max-w-16 p-2 border rounded-md">
+                      {/* == Image container == */}
+                      <div className="relative shrink-0 h-14 w-14">
                         <Image
                           src={`${imageUrl}${product?.productPhotos?.[1]}`}
                           alt="Product Image"
-                          width={55}
-                          height={55}
-                          className="w-full h-full"
+                          fill
+                          objectFit="cover"
+                          className="w-full h-full top-0 left-0 object-cover p-2 rounded-md border"
                         />
                       </div>
                       <div>
-                        {/* Title and Delete BTN */}
-                        <div className="flex items-center gap-3">
-                          <h4 className="text-black text-opacity-90 text-[16px] line-clamp-1">
+                        {/* == Product title and Delete btn == */}
+                        <div className="flex items-center justify-between gap-3 w-full">
+                          <span className="text-black text-opacity-90 text-[16px] line-clamp-1">
                             {product?.productName}
-                          </h4>
+                          </span>
                           <button
                             onClick={() =>
                               dispatch(removeFromFavourite(product))
@@ -133,12 +133,13 @@ const WishlistAndCart = () => {
                             {""}
                           </button>
                         </div>
-                        {/* // */}
+
                         <p className="text-black text-opacity-50 text-[12px]">
                           {product?.brand?.brandName}
                         </p>
-                        <div className="flex items-center justify-between ">
-                          <p>
+                        {/* == Stock summary & Add to cart button == */}
+                        <div className="flex items-center justify-between">
+                          <div className="w-full whitespace-nowrap">
                             <b className="main-text-color">
                               {product?.price}
                               QAR
@@ -147,15 +148,19 @@ const WishlistAndCart = () => {
                             <small className="text-green-500">
                               {0} In Stock
                             </small>
-                          </p>
+                          </div>
                           <button
                             onClick={(event: React.MouseEvent) =>
                               handleAddToCart(event, product)
                             }
-                            className="flex items-center border py-2 px-3 rounded-lg text-[12px]"
+                            className="flex items-center whitespace-nowrap border py-1 px-2 rounded-lg text-[12px]"
                           >
                             <span className="text-black text-opacity-70 mr-1.5">
-                              <IconShoppingCart width={16} height={16} />
+                              <IconShoppingCart
+                                width={15}
+                                stroke={1.5}
+                                height={15}
+                              />
                             </span>
                             Add to Cart
                           </button>
@@ -173,7 +178,7 @@ const WishlistAndCart = () => {
             <Link
               href="/wishlist"
               onClick={handleViewWishlistClick}
-              className="w-full main-bg-color text-white text-center py-3 rounded-md "
+              className=" main-bg-color text-white text-center py-3 rounded-md mx-5 mt-5"
             >
               View Wishlist
             </Link>
