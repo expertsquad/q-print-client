@@ -13,6 +13,7 @@ import shippingAddressSlice from "./features/user/shippingAddressSlice";
 import postPrintingRequestSlice from "./features/printing-request/postPrintingRequestSlice";
 import productCartSlice from "./features/cart/productCartSlice";
 import favouriteCartSlice from "./features/wishlist/favouriteCartSlice";
+import quickOrder from "./features/quick-order/quickOrder";
 
 export const reducer = {
   [baseApi.reducerPath]: baseApi.reducer,
@@ -30,4 +31,5 @@ export const reducer = {
   printingRequestOrder: postPrintingRequestSlice,
   productCartSlice: productCartSlice,
   favouriteCartSlice: favouriteCartSlice,
+  singleQuickOrder: quickOrder,
 };

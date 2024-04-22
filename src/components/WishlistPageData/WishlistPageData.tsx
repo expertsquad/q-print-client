@@ -11,13 +11,12 @@ import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { removeFromFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 import { addToCart } from "@/redux/features/cart/productCartSlice";
-import WishlistQuickOrderBTNModal from "./WishlistQuickOrderBTNModal";
 import noproductFound from "@/assets/empty-card-photo.svg";
 import { imageUrl } from "@/constants/imageUrl";
 import QuickProductViewModal from "../product/QuickProductViewModal";
+import SingleQuickOrder from "../quick-order/SingleQuickOrder";
 
 const WishlistPageData = ({ products }: any) => {
-  console.log(products, "wishlist page data");
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [productId, setProductId] = useState<string | null>(null);
@@ -66,9 +65,9 @@ const WishlistPageData = ({ products }: any) => {
                     >
                       <IconTrashX width={24} stroke={2} height={24} />
                     </button>
-                    <div className="relative h-14 w-14 shrink-0">
+                    <div className="relative h-16 w-16 shrink-0">
                       <Image
-                        src={`${imageUrl}${product?.productPhotos?.[1]}`}
+                        src={`${imageUrl}${product?.productPhotos[0]}`}
                         alt="Product Image"
                         fill
                         objectFit="cover"
@@ -87,7 +86,7 @@ const WishlistPageData = ({ products }: any) => {
                           <IconTrashX stroke={2} width={24} height={24} />
                         </button>
                       </div>
-                      <p>{product?.brand?.brandName}</p>
+                      <p className="text-sm">{product?.brand?.brandName}</p>
                       <div className="flex justify-between md:hidden">
                         <div>
                           <span className="main-text-color pr-2">
@@ -156,7 +155,7 @@ const WishlistPageData = ({ products }: any) => {
                     </div>
                   </div>
                   <div className="hidden md:flex items-center justify-center ">
-                    <WishlistQuickOrderBTNModal />
+                    <SingleQuickOrder id={product?._id} product={product} />
                   </div>
                 </div>
               ))}

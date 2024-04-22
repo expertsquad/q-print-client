@@ -14,6 +14,7 @@ interface Product {
   sellingPrice: number;
   stockAlert: number;
   price: number;
+  productId: string;
 }
 
 interface Variant {
@@ -95,6 +96,31 @@ const productCartSlice = createSlice({
     resetCart: (state) => {
       return initialState;
     },
+    increaseFavQuantity: (state, action: PayloadAction<Product>) => {
+      const { _id, variantName } = action.payload;
+      const existingProductIndex = state.products.findIndex(
+        (product) => product._id === _id && product.variantName === variantName
+      );
+
+      if (existingProductIndex !== -1) {
+        state.products[existingProductIndex].orderQuantity += 1;
+        state.subTotal = calculateSubTotal(state.products);
+      }
+    },
+    decreaseFavQuantity: (state, action: PayloadAction<Product>) => {
+      const { _id, variantName } = action.payload;
+      const existingProductIndex = state.products.findIndex(
+        (product) => product._id === _id && product.variantName === variantName
+      );
+
+      if (
+        existingProductIndex !== -1 &&
+        state.products[existingProductIndex].orderQuantity > 1
+      ) {
+        state.products[existingProductIndex].orderQuantity -= 1;
+        state.subTotal = calculateSubTotal(state.products);
+      }
+    },
   },
 });
 
@@ -104,5 +130,7 @@ export const {
   removeOneFromFavourite,
   setDiscount,
   resetCart,
+  increaseFavQuantity,
+  decreaseFavQuantity,
 } = productCartSlice.actions;
 export default productCartSlice.reducer;

@@ -12,6 +12,7 @@ import { IProduct } from "@/types/productsType";
 const ProductView = ({ id }: any) => {
   const { data } = useGetProductByIdQuery(id);
   const productdata = data?.data;
+
   const { data: relatedData } = useGetProductsQuery(
     `brand.brandName=${productdata?.brand?.brandName}`
   );

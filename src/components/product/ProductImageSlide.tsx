@@ -9,8 +9,6 @@ import QuickProductViewModal from "./QuickProductViewModal";
 import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 
 const ProductImageSlide = ({ product, defaultVariant }: any) => {
-  // console.log(product, "product image slide");
-
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -56,7 +54,6 @@ const ProductImageSlide = ({ product, defaultVariant }: any) => {
     dispatch(
       addToFavourite({
         ...product,
-        ...product?.variants[0],
         price: product?.variants[0].discountedPrice
           ? product?.variants[0].discountedPrice
           : product?.variants[0].sellingPrice,

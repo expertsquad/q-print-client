@@ -57,7 +57,7 @@ const WishlistAndCart = () => {
           <div className="flex items-start gap-2.5">
             <label
               htmlFor="my-drawer-4-wishlist"
-              className="cursor-pointer relative"
+              className="cursor-pointer relative drawer-button"
             >
               <span className="text-black text-opacity-50 ">
                 <IconHeart width={24} height={24} />
@@ -88,6 +88,7 @@ const WishlistAndCart = () => {
               htmlFor="my-drawer-4-wishlist"
               aria-label="close sidebar"
               className="-mb-6 -ml-2 bg-white p-1 rounded-full w-7 h-7 flex justify-center items-center"
+              onClick={handleViewWishlistClick}
             >
               <span className="hidden md:block text-black text-opacity-70">
                 <IconChevronRight width={24} height={24} />
@@ -172,7 +173,7 @@ const WishlistAndCart = () => {
               </>
             ) : (
               <>
-                <div>No data</div>
+                <div className="flex items-center justify-center">No data</div>
               </>
             )}
             <Link

@@ -8,7 +8,6 @@ import StarRating from "./StarRating";
 import { addToCart } from "@/redux/features/cart/productCartSlice";
 
 const ProductCard = ({ product }: any) => {
-  console.log(product, "from product card");
   const dispatch = useDispatch();
   const router = useRouter();
 

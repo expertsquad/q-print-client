@@ -3,7 +3,6 @@ import GradientUploadIcon from "@/assets/svgIcons/GradientUploadIcon";
 import PringtingRequestOrderCard from "@/components/PrintingRequest/PringtingRequestOrderCard";
 import { setPrintingRequest } from "@/redux/features/printing-request/postPrintingRequestSlice";
 import { useGetPrintingRequestsQuery } from "@/redux/features/printing-request/printing-request";
-import { setFile } from "@/redux/features/printing-request/totalAmountSlice";
 import { useAppSelector } from "@/redux/hook";
 import { isLoggedIn } from "@/services/auth.service";
 
