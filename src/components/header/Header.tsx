@@ -4,24 +4,27 @@ import Image from "next/image";
 import qPrintLogo from "@/assets/logotwo.svg";
 import Link from "next/link";
 import Filter from "../UI/filter/Filter";
-import WishlistAndCart from "./Wishlist";
-import Cart from "./Cart";
 import MobileVersion from "./MobileVersion";
 import Sidebar from "./Sidebar";
 import { isLoggedIn, isUserSignedIn } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import { useGetUserQuery } from "@/redux/features/user/user";
-import { imageUrl } from "@/constants/imageUrl";
 import CustomInput from "../shared/CustomInput";
-import { useProductsBySearchQuery } from "@/redux/features/products/productsApi";
 import { useState } from "react";
 import ProductSearchModal from "./ProductSearchModal";
+import CartDrawer from "./CartDrawer";
+import DrawerCartButton from "./DrawerCartButton";
+import UserProfileButton from "./UserProfileButton";
+import DrawerWishlistButton from "./DrawerWishlistButton";
+import WishlistDrawer from "./WishlistDrawer";
 
 const Header = () => {
   const router = useRouter();
   const userLoggedIn = isLoggedIn();
-  const userSignedIn = isUserSignedIn();
   const [searchValue, setSearchValue] = useState("");
+
+  const [openCartDrawer, setOpenCartDrawer] = useState(false);
+  const [openWishlistDrawer, setOpenWishlistDrawer] = useState(false);
 
   const handleSearchInputChange = (e: any) => {
     setSearchValue(e.target.value);
@@ -36,8 +39,6 @@ const Header = () => {
       router.push("/login");
     }
   };
-
-  // <== Get products by searchTerm ==>
 
   return (
     <header className="max-w-[1280px] mx-auto">
@@ -75,32 +76,12 @@ const Header = () => {
 
         {/* ==Wishlist, Cart, and Profile== */}
         <div className="order-3 md:order-3 section-last-child flex items-center justify-end gap-5">
-          <WishlistAndCart />
-          <Cart />
-
-          <div className="cursor-pointer" onClick={handleUserProfile}>
-            {userLoggedIn ? (
-              data?.data?.profilePhoto ? (
-                <div className="w-[30px] h-[30px] shrink-0 relative">
-                  <Image
-                    src={`${imageUrl}${data?.data?.profilePhoto}`}
-                    alt="profile"
-                    objectFit="cover"
-                    fill
-                    className="w-full h-full top-0 left-0 object-cover rounded-full"
-                  />
-                </div>
-              ) : (
-                <div>
-                  <IconUser width={24} height={24} />
-                </div>
-              )
-            ) : (
-              <div>
-                <IconUser width={24} height={24} />
-              </div>
-            )}
-          </div>
+          <DrawerWishlistButton setOpenWishlistDrawer={setOpenWishlistDrawer} />
+          <DrawerCartButton setOpenCartDrawer={setOpenCartDrawer} />
+          <UserProfileButton
+            handleUserProfile={handleUserProfile}
+            profilePhoto={data?.data?.profilePhoto}
+          />
         </div>
 
         {/* ==Menubar== */}
@@ -111,6 +92,18 @@ const Header = () => {
           <Sidebar />
         </div>
       </section>
+      {openCartDrawer && (
+        <CartDrawer
+          openCartDrawer={openCartDrawer}
+          setOpenCartDrawer={setOpenCartDrawer}
+        />
+      )}
+      {openWishlistDrawer && (
+        <WishlistDrawer
+          openWishlistDrawer={openWishlistDrawer}
+          setOpenWishlistDrawer={setOpenWishlistDrawer}
+        />
+      )}
     </header>
   );
 };
