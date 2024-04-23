@@ -14,7 +14,9 @@ const poppins = Poppins({
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className={`${poppins.className} scroll-smooth  px-3 md:px-2 lg:px-0`}>
+    <div
+      className={`${poppins.className} scroll-smooth no-scrollbar px-3 md:px-2 lg:px-0`}
+    >
       <Header />
       <NextBreadcrumb
         homeElement={"Home"}

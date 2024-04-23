@@ -101,10 +101,11 @@ const ProductImageSlide = ({ product, defaultVariant }: any) => {
             <div className="relative shrink-0 w-[120px] h-[120px] md:h-[130px] md:w-[150px] mx-auto">
               <Image
                 alt="Brand Carousel"
-                layout="fill"
+                fill
+                objectFit="cover"
                 src={`${imageUrl}${productImg}`}
                 sizes="(max-width: 768px) 30vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-contain  w-full h-full top-0 left-0"
+                className="w-full h-full top-0 left-0 object-cover"
               />
             </div>
             <div className=" ">

@@ -1,5 +1,4 @@
 "use client";
-import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
 import { IconBolt, IconPlus, IconTrash, IconX } from "@tabler/icons-react";
 import React, { useState } from "react";
 import GlobalModal from "../UI/modal/GlobalModal";
@@ -16,9 +15,7 @@ import {
 } from "@/redux/features/wishlist/favouriteCartSlice";
 
 const SingleQuickOrder = ({ product }: string | any) => {
-  const shippingFee = 50;
   const [showModal, setShowModal] = useState(false);
-  //   const [showDiscountModal, setShowDiscountModal] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -33,6 +30,7 @@ const SingleQuickOrder = ({ product }: string | any) => {
     dispatch(decreaseFavQuantity(product));
   };
 
+  const shippingFee = 50;
   const grantTotal = Math.round(product?.price) * product?.orderQuantity;
   const grantTotalWithShipping = grantTotal + shippingFee;
 
@@ -100,11 +98,11 @@ const SingleQuickOrder = ({ product }: string | any) => {
                         <span className="text-[12px]">
                           <IconX stroke={1} width={14} height={14} />
                         </span>
-                        <span>
+                        <span className="text-xs">
                           {product?.price} <small>QAR</small>
                         </span>
                       </div>
-                      <b className="main-text-color">
+                      <b className="main-text-color ">
                         {grantTotal} <small>QAR</small>
                       </b>
                     </div>

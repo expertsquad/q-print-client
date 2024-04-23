@@ -12,7 +12,6 @@ import {
   IconX,
 } from "@tabler/icons-react";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
 import noproductFound from "@/assets/empty-card-photo.svg";
@@ -30,18 +29,6 @@ const CartView = () => {
   );
   const dispatch = useDispatch();
 
-  // <== Calculate Subtotal, Total , and Shipping || Discount ==>
-  // const subTotal = products?.reduce((total: number, product: any) => {
-  //   return total + product?.defaultVariant?.discountedPrice * product?.quantity;
-  // }, 0);
-  // const discountPrice = products?.reduce((total: number, product: any) => {
-  //   return (
-  //     total +
-  //     product?.defaultVariant?.sellingPrice -
-  //     product?.defaultVariant?.discountedPrice
-  //   );
-  // }, 0);
-
   const shippingCharge = 80;
   const discountPrice = 100;
   const calculateTotalWithDiscount = subTotal + shippingCharge - discountPrice;
@@ -56,16 +43,16 @@ const CartView = () => {
           {/* --Product data, Price range, cart total container-- */}
           <div className="flex flex-col md:flex-row md:justify-between md:gap-5">
             {/* --Product data & Cart total container-- */}
-            <div>
+            <div className="w-full">
               {/* -Product data- */}
-              <div className=" border rounded-lg ">
+              <div className="border rounded-lg ">
                 {products?.map((product: any) => (
                   <div
                     key={product._id}
-                    className="flex md:view-cart-product-data border-b pt-5 md:py-5 transition duration-300 ease-in-out hover:bg-gray-100 px-2 md:px-3"
+                    className="flex items-center justify-between w-full md:view-cart-product-data border-b pt-5 md:py-5 transition duration-300 ease-in-out hover:bg-gray-100 px-2 md:px-3"
                   >
                     {/* ==Image, Text and Mobile V== */}
-                    <div className="main-div flex gap-5">
+                    <div className="flex gap-5 w-full">
                       <div className="flex items-center justify-center max-h-16 w-full max-w-16 p-2 border rounded-md">
                         <Image
                           src={`${imageUrl}${product?.productPhotos?.[1]}`}
@@ -76,7 +63,7 @@ const CartView = () => {
                         />
                       </div>
                       {/* -Title rating and mobile v-- */}
-                      <div>
+                      <div className="w-full">
                         <div className="flex items-center justify-between w-full">
                           <h3 className="line-clamp-1 md:line-clamp-2 text-[15px] font-medium">
                             {product?.productName}
@@ -91,7 +78,7 @@ const CartView = () => {
                         </div>
 
                         <ReviewRating rating={product?.averageRating} />
-                        <div className="flex justify-between md:hidden mt-2">
+                        <div className="flex justify-between gap-3 md:hidden mt-2 w-full">
                           <div className="flex items-center gap-2 mb-4">
                             <button
                               onClick={() =>
@@ -113,7 +100,9 @@ const CartView = () => {
                             <span className="text-[12px]">x</span>
                             <span>{product?.price} QAR</span>
                           </div>
-                          <span className="font-bold ">${subTotal}</span>
+                          <span className="font-bold main-text-color">
+                            ${subTotal}
+                          </span>
                         </div>
                       </div>
                     </div>

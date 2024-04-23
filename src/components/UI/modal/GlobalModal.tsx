@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 interface GlobalModalProps {
   children?: React.ReactNode;
   yourCustomStyle?: string;
-  className?: string;
+  mainClassName?: string;
   isVisible?: boolean;
   onClose: (value: boolean) => void;
   modalController?: string;
@@ -12,7 +12,7 @@ interface GlobalModalProps {
 
 const GlobalModal = ({
   children,
-  className,
+  mainClassName,
   yourCustomStyle,
   isVisible,
   onClose,
@@ -26,11 +26,14 @@ const GlobalModal = ({
 
   return (
     <div
-      className={`${modalController} `}
+      className={`${modalController} cursor-pointer w-dvw h-dvh fixed inset-0 bg-black z-50 bg-opacity-40 flex items-center justify-center`}
       id="close-by-outside"
       onClick={handleClose}
     >
-      <div className={`${className}`} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={`${mainClassName} rounded-lg bg-white`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className={`${yourCustomStyle}`}>{children}</div>
       </div>
     </div>

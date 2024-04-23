@@ -56,9 +56,9 @@ const WishlistPageData = ({ products }: any) => {
               {products?.map((product: any) => (
                 <div
                   key={product._id}
-                  className="flex md:wishlist-data items-center md:justify-between border-b py-5 transition duration-300 ease-in-out hover:bg-gray-100 md:pl-5"
+                  className="flex md:wishlist-data items-center md:justify-between border-b py-5 transition duration-300 ease-in-out hover:bg-gray-100 md:pl-5 w-full"
                 >
-                  <div className="main-div flex gap-5">
+                  <div className="main-div flex gap-5 w-full">
                     <button
                       onClick={() => dispatch(removeFromFavourite(product))}
                       className="hidden md:block text-black text-opacity-50"
@@ -74,21 +74,23 @@ const WishlistPageData = ({ products }: any) => {
                         className="w-full h-full top-0 left-0 object-cover border p-1.5 rounded-md"
                       />
                     </div>
-                    <div>
-                      <div className="flex justify-between w-full">
-                        <h3 className="line-clamp-1 md:line-clamp-2 text-[16px] font-medium">
+                    <div className="w-full">
+                      <div className="flex justify-between">
+                        <h3 className="line-clamp-1 md:line-clamp-2 md:text-base text-sm font-medium">
                           {product?.productName}
                         </h3>
                         <button
                           className="flex justify-end md:hidden text-black text-opacity-50"
                           onClick={() => dispatch(removeFromFavourite(product))}
                         >
-                          <IconTrashX stroke={2} width={24} height={24} />
+                          <IconTrashX stroke={2} width={20} height={20} />
                         </button>
                       </div>
-                      <p className="text-sm">{product?.brand?.brandName}</p>
-                      <div className="flex justify-between md:hidden">
-                        <div>
+                      <p className="text-xs md:text-sm">
+                        {product?.brand?.brandName}
+                      </p>
+                      <div className="flex items-center justify-between w-full md:hidden">
+                        <div className="whitespace-nowrap w-full">
                           <span className="main-text-color pr-2">
                             {" "}
                             {product?.price} <small>QAR</small>
@@ -102,10 +104,14 @@ const WishlistPageData = ({ products }: any) => {
                           onClick={(event: React.MouseEvent) =>
                             handleAddToCart(event, product)
                           }
-                          className="flex items-center text-sm text-black text-opacity-70 py-2 px-[10px] border border-black border-opacity-10 rounded-md"
+                          className="flex items-center gap-1 text-xs whitespace-nowrap text-black text-opacity-70 py-1 px-[10px] border border-black border-opacity-10 rounded-md"
                         >
                           <span className="">
-                            <IconShoppingCart width={16} height={16} />
+                            <IconShoppingCart
+                              width={14}
+                              stroke={1}
+                              height={14}
+                            />
                           </span>
                           Add To Cart
                         </button>

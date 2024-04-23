@@ -51,9 +51,9 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
         </h3>
         <div>
           {products?.length > 0 ? (
-            <>
+            <div className="flex flex-col justify-between md:h-[calc(100vh-80px)] h-[calc(100vh-60px)]">
               {/* --data container-- */}
-              <div className="flex flex-col overflow-scroll no-scrollbar">
+              <div className="flex flex-col overflow-y-auto no-scrollbar h-[550px]">
                 {products?.map((product: any, index: number) => (
                   <div
                     className="flex gap-5 border-b transition duration-300 ease-in-out hover:bg-gray-100 p-3"
@@ -69,7 +69,7 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                         className="w-full h-full"
                       />
                     </div>
-                    <div>
+                    <div className="w-full">
                       {/* --Title and Delete BTN-- */}
                       <div className="flex items-center justify-between w-full ">
                         <p className="text-black text-opacity-90 text-[16px] line-clamp-1">
@@ -122,7 +122,7 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                 ))}
               </div>
               {/* --fixed data container-- */}
-              <div className="border-t border-t-black border-opacity-10 px-3">
+              <div className="border-t px-3">
                 {/* --Subtotal & Price-- */}
                 <div className="flex items-center justify-between my-5">
                   <p className="">Subtotal</p>
@@ -179,15 +179,19 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                     CHECK OUT
                   </Link>
 
-                  <div className="w-full">
+                  <div
+                    className="w-full"
+                    onClick={() => setTimeout(() => handleCloseDrawer(), 1000)}
+                  >
                     <MultipleQuickOrder
+                      handleCloseDrawer={handleCloseDrawer}
                       products={products}
                       subTotal={subTotal}
                     />
                   </div>
                 </div>
               </div>
-            </>
+            </div>
           ) : (
             <div className="mx-5">
               <Link

@@ -46,82 +46,88 @@ const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
           Wishlist
         </h3>
         <div>
-          {products?.length ? (
-            <>
-              <div className="flex flex-col overflow-scroll no-scrollbar">
-                {products?.map((product: any) => (
-                  <div
-                    className="flex gap-5 w-full border-b transition duration-300 ease-in-out hover:bg-gray-100 p-4"
-                    key={product._id}
-                  >
-                    {/* == Image container == */}
-                    <div className="relative shrink-0 h-14 w-14">
-                      <Image
-                        src={`${imageUrl}${product?.productPhotos?.[1]}`}
-                        alt="Product Image"
-                        fill
-                        objectFit="cover"
-                        className="w-full h-full top-0 left-0 object-cover p-2 rounded-md border"
-                      />
-                    </div>
-                    <div>
-                      {/* == Product title and Delete btn == */}
-                      <div className="flex items-center justify-between gap-3 w-full">
-                        <span className="text-black text-opacity-90 text-[16px] line-clamp-1">
-                          {product?.productName}
-                        </span>
-                        <button
-                          onClick={() => dispatch(removeFromFavourite(product))}
-                          className="cursor-pointer text-black text-opacity-60"
-                        >
-                          <IconX width={20} height={20} />
-                          {""}
-                        </button>
+          <div>
+            {products?.length ? (
+              <>
+                <div className="flex flex-col overflow-y-scroll no-scrollbar">
+                  {products?.map((product: any) => (
+                    <div
+                      className="flex gap-5 w-full border-b transition duration-300 ease-in-out hover:bg-gray-100 p-4"
+                      key={product._id}
+                    >
+                      {/* == Image container == */}
+                      <div className="relative shrink-0 h-14 w-14">
+                        <Image
+                          src={`${imageUrl}${product?.productPhotos?.[1]}`}
+                          alt="Product Image"
+                          fill
+                          objectFit="cover"
+                          className="w-full h-full top-0 left-0 object-cover p-2 rounded-md border"
+                        />
                       </div>
-
-                      <p className="text-black text-opacity-50 text-[12px]">
-                        {product?.brand?.brandName}
-                      </p>
-                      {/* == Stock summary & Add to cart button == */}
-                      <div className="flex items-center justify-between">
-                        <div className="w-full whitespace-nowrap">
-                          <b className="main-text-color">
-                            {product?.price}
-                            QAR
-                          </b>{" "}
-                          |{" "}
-                          <small className="text-green-500">{0} In Stock</small>
-                        </div>
-                        <button
-                          onClick={(event: React.MouseEvent) =>
-                            handleAddToCart(event, product)
-                          }
-                          className="flex items-center whitespace-nowrap border py-1 px-2 rounded-lg text-[12px]"
-                        >
-                          <span className="text-black text-opacity-70 mr-1.5">
-                            <IconShoppingCart
-                              width={15}
-                              stroke={1.5}
-                              height={15}
-                            />
+                      <div className="w-full">
+                        {/* == Product title and Delete btn == */}
+                        <div className="flex items-center justify-between gap-3 w-full">
+                          <span className="text-black text-opacity-90 text-[16px] line-clamp-1">
+                            {product?.productName}
                           </span>
-                          Add to Cart
-                        </button>
+                          <button
+                            onClick={() =>
+                              dispatch(removeFromFavourite(product))
+                            }
+                            className="cursor-pointer text-black text-opacity-60"
+                          >
+                            <IconX width={20} height={20} />
+                            {""}
+                          </button>
+                        </div>
+
+                        <p className="text-black text-opacity-50 text-[12px]">
+                          {product?.brand?.brandName}
+                        </p>
+                        {/* == Stock summary & Add to cart button == */}
+                        <div className="flex items-center justify-between">
+                          <div className="w-full whitespace-nowrap">
+                            <b className="main-text-color">
+                              {product?.price}
+                              QAR
+                            </b>{" "}
+                            |{" "}
+                            <small className="text-green-500">
+                              {0} In Stock
+                            </small>
+                          </div>
+                          <button
+                            onClick={(event: React.MouseEvent) =>
+                              handleAddToCart(event, product)
+                            }
+                            className="flex items-center whitespace-nowrap border py-1 px-2 rounded-lg text-[12px]"
+                          >
+                            <span className="text-black text-opacity-70 mr-1.5">
+                              <IconShoppingCart
+                                width={15}
+                                stroke={1.5}
+                                height={15}
+                              />
+                            </span>
+                            Add to Cart
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="flex items-center justify-center">No data</div>
-            </>
-          )}
+                  ))}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center justify-center">No data</div>
+              </>
+            )}
+          </div>
           <Link
             href="/wishlist"
             onClick={handleCloseWishlist}
-            className="main-bg-color text-white text-center py-3 rounded-md mx-5 mt-10 flex items-center justify-center"
+            className="main-bg-color text-white text-center py-3 rounded-md mx-5 fixed bottom-0 mt-10 "
           >
             View Wishlist
           </Link>
