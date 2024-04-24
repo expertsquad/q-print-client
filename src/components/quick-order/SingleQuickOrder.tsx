@@ -1,6 +1,6 @@
 "use client";
 import { IconBolt, IconPlus, IconTrash, IconX } from "@tabler/icons-react";
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import GlobalModal from "../UI/modal/GlobalModal";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
 import CustomInput from "../shared/CustomInput";
@@ -13,14 +13,18 @@ import {
   decreaseFavQuantity,
   increaseFavQuantity,
 } from "@/redux/features/wishlist/favouriteCartSlice";
+import { setSingleQuickOrder } from "@/redux/features/quick-order/quickOrder";
+import { useAppSelector } from "@/redux/hook";
 
-const SingleQuickOrder = ({ product }: string | any) => {
+const SingleQuickOrder = ({ product, btnStyle }: string | any) => {
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
   const dispatch = useDispatch();
+  const data = useAppSelector((state) => state.singleQuickOrder);
+  console.log(data, "from quick order");
 
   const handleIncreaseQuantity = () => {
     dispatch(increaseFavQuantity(product));
@@ -34,11 +38,15 @@ const SingleQuickOrder = ({ product }: string | any) => {
   const grantTotal = Math.round(product?.price) * product?.orderQuantity;
   const grantTotalWithShipping = grantTotal + shippingFee;
 
+  useLayoutEffect(() => {
+    dispatch(setSingleQuickOrder(product));
+  }, []);
+
   return (
     <div>
       <button
         onClick={() => setShowModal(true)}
-        className="uppercase flex items-center justify-center gap-1 main-bg-color text-white p-2 rounded-lg w-full whitespace-nowrap text-sm"
+        className={`uppercase flex items-center justify-center gap-1 main-bg-color text-white p-2 rounded-lg w-full whitespace-nowrap text-sm ${btnStyle}`}
       >
         <IconBolt stroke={2} width={18} height={18} fill="#fff" /> Quick Order
       </button>
@@ -46,13 +54,13 @@ const SingleQuickOrder = ({ product }: string | any) => {
       <GlobalModal
         isVisible={showModal}
         onClose={handleCloseModal}
-        modalController="fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center backdrop-blur-sm z-50"
+        mainClassName="w-full md:w-[760px] h-full md:h-auto"
       >
-        <div className="w-[768px] bg-white p-7 rounded-lg relative">
+        <div className=" bg-white p-7 rounded-lg relative">
           <div className="absolute top-5 right-5 text-black text-opacity-70">
             <ModalCloseBtn handleClose={handleCloseModal} />
           </div>
-          <div className="flex items-center w-full">
+          <div className="flex flex-col-reverse md:flex-row items-center w-full">
             {/* == Product info & balance container == */}
             <div className="flex-1 pr-5 border-r w-full">
               <div className="flex flex-col overflow-scroll no-scrollbar max-w-[450px] max-h-[400px]">
@@ -125,24 +133,47 @@ const SingleQuickOrder = ({ product }: string | any) => {
               </p>
               <form action="" className="">
                 <CustomInput
+                  name="fullName"
                   placeholder="Type Name"
                   label="Full Name"
                   inputStyle="rounded-md "
                   customClassName="mb-3"
+                  onChange={(e) =>
+                    dispatch(
+                      setSingleQuickOrder({
+                        [e.target.name]: e.target.value,
+                      })
+                    )
+                  }
                 />
                 <CustomInput
+                  name="phoneNumber"
                   placeholder="+974"
                   label="Phone Number"
                   inputStyle="rounded-md"
                   customClassName="mb-3"
+                  onChange={(e) =>
+                    dispatch(
+                      setSingleQuickOrder({
+                        [e.target.name]: e.target.value,
+                      })
+                    )
+                  }
                 />
                 <CustomInput
+                  name="address"
                   placeholder="Delivey Address"
                   label="Address"
                   inputStyle="rounded-md"
                   customClassName="mb-3"
+                  onChange={(e) =>
+                    dispatch(
+                      setSingleQuickOrder({
+                        [e.target.name]: e.target.value,
+                      })
+                    )
+                  }
                 />
-
                 <button
                   type="submit"
                   className="flex gap-1 items-center justify-center py-3 rounded-lg main-bg-color text-white w-full mt-9 md:mt-12 whitespace-nowrap"

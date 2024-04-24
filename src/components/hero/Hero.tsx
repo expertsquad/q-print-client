@@ -23,9 +23,9 @@ const Hero = () => {
         <HeroItemSlide sliderArray={sliderArray} />
       </div>
       {/* === Right side slider === */}
-      <div className="flex flex-col gap-4  h-full md:h-auto lg:h-auto rounded-lg">
+      <div className="flex flex-col gap-4 h-full md:h-auto lg:h-auto rounded-lg">
         {/* == Top One Card == */}
-        <div className="bg-[#F2F4F5] flex justify-center items-center p-5 gap-4 rounded-lg flex-1">
+        <div className="bg-[#F2F4F5] flex justify-center items-center p-5 gap-4 rounded-lg flex-1 w-full">
           <div className="shrink-0 relative w-36 h-36">
             <Image
               src={`${imageUrl}${topOffer?.productPhoto}`}
@@ -44,7 +44,7 @@ const Hero = () => {
         </div>
 
         {/* == Bottom One Card == */}
-        <div className="bg-[#3bd9f58e] flex justify-center items-center p-5 gap-4 rounded-lg flex-1">
+        <div className="bg-[#3bd9f58e] flex justify-center items-center p-5 gap-4 rounded-lg flex-1 w-full">
           <div className="">
             <h2 className="[font-size:_clamp(1em,5vw,1.2em)]">
               {bottomOffer?.offerTag}

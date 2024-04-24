@@ -13,15 +13,23 @@ import WishlistQuickOrderBTNModal from "../WishlistPageData/WishlistQuickOrderBT
 import GetDiscountRange from "./GetDiscountRange";
 import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
-// import { addToCart, removeOneFromCart } from "@/redux/features/cart/cartSlice";
-import { useAppSelector } from "@/redux/hook";
 import {
   addToCart,
   removeOneFromCart,
 } from "@/redux/features/cart/productCartSlice";
+import { useState } from "react";
+import SingleQuickOrder from "../quick-order/SingleQuickOrder";
+import { useAppSelector } from "@/redux/hook";
 
 const ProductViewDescEtc = ({ productDesc }: any) => {
   const dispatch = useDispatch();
+  const [selectedVariant, setSelectedVariant] = useState(
+    productDesc?.variants[0]
+  );
+  const handleSelectVariant = (variant: any) => {
+    setSelectedVariant(variant);
+  };
+
   const { products } = useAppSelector((state) => state.productCartSlice);
 
   // <== Handle Add Product In Cart ==>
@@ -41,10 +49,10 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
 
   return (
     <section className="product-description">
-      <h2 className="[font-size:_clamp(16px,5vw,20px)] text-wrap mb-5 line-clamp-2">
+      <h2 className="[font-size:_clamp(16px,5vw,20px)] text-wrap line-clamp-2">
         {productDesc?.productName}
       </h2>
-      <div className="flex items-center mb-5">
+      <div className="flex items-center my-3">
         <Image
           src={`${imageUrl}${productDesc?.brand?.brandPhoto}`}
           width={50}
@@ -64,7 +72,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
           4.8 <span>(14 people)</span>
         </p>
       </div>
-      <div className="flex items-center mb-5">
+      <div className="flex items-center">
         <p className="[font-size:_clamp(13px,5vw,14px)] mr-3 whitespace-nowrap">
           Category:{" "}
           <span className="text-black-opacity-60 whitespace-nowrap">
@@ -77,33 +85,47 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
           Add To Wishlist
         </button>
       </div>
-      <div className="mb-5 flex">
-        <ColorPickUp variants={productDesc?.variants} />
+      <div className="my-3 flex">
+        <ColorPickUp
+          variants={productDesc?.variants}
+          onSelectVariant={handleSelectVariant}
+        />
       </div>
       <div className="">
         <div className="flex items-center flex-wrap">
           <h3 className="main-text-color [font-size:_clamp(20px,5vw,26px)] font-semibold mr-2">
-            {productDesc?.defaultVariant?.discountedPrice}{" "}
-            <small className="uppercase">qar</small>
+            {selectedVariant?.discountedPrice}
+            <small> QAR</small>
           </h3>
           <del className="text-[#B3B3B3] [font-size:_clamp(14px,5vw,18px)] mr-5">
-            {productDesc?.defaultVariant?.sellingPrice} QAR
+            {selectedVariant?.sellingPrice} QAR
           </del>
           <span className="[font-size:_clamp(14px,5vw,16px)] text-red-500 bg-gradient-to-r from-pink-50 to-purple-50 py-1 px-3 rounded-md">
-            {productDesc?.defaultVariant?.discountPercentage}% OFF
+            {selectedVariant?.discountPercentage}% OFF
           </span>
         </div>
 
         <GetDiscountRange />
 
-        <p className="my-5 text-black text-opacity-60">
-          Buy{" "}
-          <span className="main-text-color">
-            {productDesc?.bulk?.minOrder}{" "}
-          </span>
+        {/* <p className="my-3 text-black text-opacity-60 whitespace-nowrap">
+          Buy
+          <span className="main-text-color">{productDesc?.bulk?.minOrder}</span>
           item more to get off
           <b className="text-black"> {productDesc?.bulk?.discount} % Extra!</b>
-        </p>
+        </p> */}
+        {/* == Bulk Order == */}
+        <div className="my-3 whitespace-nowrap text-black-opacity-60">
+          <p>
+            Buy{" "}
+            <span className="font-semibold main-text-color">
+              {productDesc?.bulk?.minOrder}
+            </span>{" "}
+            item to get more{" "}
+            <span className="font-semibold text-black">
+              {productDesc?.bulk?.discount} extra!
+            </span>
+          </p>
+        </div>
         {/* == Increase & Decrease fn == */}
         <div className="flex items-center gap-5 mb-5">
           <div className="border border-gray-200 flex items-center gap-2 rounded-3xl p-2">
@@ -139,10 +161,11 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
             </button>
           </div>
         </div>
-        {/* //Quick order & Buy now button*/}
+        {/* == Single Quick Order & Buy Now BTN == */}
         <div className="mt-5 flex items-center justify-between gap-5">
           <div className="w-full">
-            <WishlistQuickOrderBTNModal id={productDesc?._id} />
+            {/* <WishlistQuickOrderBTNModal id={productDesc?._id} /> */}
+            <SingleQuickOrder product={productDesc} btnStyle="py-2.5" />
           </div>
           <button className="flex items-center justify-center gap-2 text-white main-bg-color  py-2 rounded-lg w-full">
             {""}

@@ -41,7 +41,7 @@ const GetDiscountRange = ({ priceRange }: PriceRangeProps) => {
       <Slider
         range={false}
         value={value}
-        className="w-full mt-4"
+        className="w-full"
         trackStyle={{ background: gradientBackground.background }}
         railStyle={{ background: "#d593" }}
         handleStyle={{

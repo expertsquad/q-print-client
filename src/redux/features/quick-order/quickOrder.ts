@@ -1,11 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type SingleQuickOrderProps = {
-  orderItems: {
-    productId: string;
-    variantName: string;
-    orderQuantity: number;
-  };
+  orderItems: [
+    {
+      productId: string;
+      variantName: string;
+      orderQuantity: number;
+    }
+  ];
+
   buyer: {
     fullName: string;
     phoneNumber: string;
@@ -38,5 +41,6 @@ const singleQuickOrderSlice = createSlice({
   },
 });
 
-export const { resetQuickOrder } = singleQuickOrderSlice.actions;
+export const { resetQuickOrder, setSingleQuickOrder } =
+  singleQuickOrderSlice.actions;
 export default singleQuickOrderSlice.reducer;

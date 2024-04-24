@@ -7,6 +7,7 @@ import {
 } from "@tabler/icons-react";
 import React from "react";
 import WishlistQuickOrderBTNModal from "../WishlistPageData/WishlistQuickOrderBTNModal";
+import SingleQuickOrder from "../quick-order/SingleQuickOrder";
 
 const SpecificationCard = ({ specificationCard }: any) => {
   return (
@@ -33,24 +34,19 @@ const SpecificationCard = ({ specificationCard }: any) => {
             {""}
             <IconMinus width={14} height={14} />
           </button>
-          <span>{}</span>
-          <button className="p-2 bg-[#F2F2F2] rounded-full">
+          <span>{0}</span>
+          <button className="p-2 bg-[#f2f2f2] rounded-full">
             {""}
             <IconPlus width={14} height={14} />
           </button>
         </div>
         <div>
-          <button className="w-36 md:w-32 lg:w-40 flex gap-1 justify-center items-center bg-slate-400 main-text-color border border-fuchsia-700 py-2 rounded-lg text-[16px]">
-            <span className="text-fuchsia-700">
-              <IconBolt width={18} height={18} className="" />
-            </span>
-            Quick Order
-          </button>
+          <SingleQuickOrder product={specificationCard} btnStyle="py-3" />
         </div>
       </div>
-      <button className="w-full flex gap-3 justify-center items-center bg-slate-400 main-bg-color border border-fuchsia-700 py-2 rounded-lg text-white">
-        <IconShoppingCart width={20} height={20} className="" />
-        Quick Order
+      <button className="w-full flex gap-1 justify-center items-center main-bg-color py-2 rounded-lg text-white">
+        <IconShoppingCart width={20} stroke={2} height={20} className="" />
+        Add To Cart
       </button>
     </div>
   );
