@@ -8,6 +8,7 @@ import {
   useGetProductsQuery,
 } from "@/redux/features/products/productsApi";
 import { IProduct } from "@/types/productsType";
+import Link from "next/link";
 
 const ProductView = ({ id }: any) => {
   const { data } = useGetProductByIdQuery(id);
@@ -34,7 +35,9 @@ const ProductView = ({ id }: any) => {
           <h2 className="text-black text-[17px] md:text-2xl font-semibold">
             Related Products
           </h2>
-          <button className="text-[#E73C17]">Show All</button>
+          <Link href={"/products"} className="text-[#E73C17]">
+            Show All
+          </Link>
         </div>
         <div
           className={`

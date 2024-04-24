@@ -19,6 +19,8 @@ import {
   addToCart,
   removeOneFromCart,
 } from "@/redux/features/cart/productCartSlice";
+import { useState } from "react";
+import SingleQuickOrder from "../quick-order/SingleQuickOrder";
 
 const QuickViewDescription = ({ product }: any) => {
   const dispatch = useDispatch();
@@ -28,6 +30,27 @@ const QuickViewDescription = ({ product }: any) => {
     return product?.quantity;
   });
 
+  const [selectedVariant, setSelectedVariant] = useState(product?.variants[0]);
+  const handleSelectVariant = (variant: any) => {
+    setSelectedVariant(variant);
+  };
+
+  // <== Handle Add Product In Cart ==>
+  const handleAddToCart = (event: React.MouseEvent, product: any) => {
+    event.stopPropagation();
+    dispatch(
+      addToCart({
+        ...product,
+        ...product?.variants[0],
+        price: selectedVariant?.discountedPrice
+          ? selectedVariant?.discountedPrice
+          : selectedVariant?.sellingPrice,
+        orderQuantity: 1,
+        variantName: selectedVariant?.variantName,
+        productId: product?._id,
+      })
+    );
+  };
   return (
     <section className="product-description">
       <h2 className="[font-size:_clamp(16px,5vw,20px)] text-wrap mb-5 line-clamp-2">
@@ -74,29 +97,40 @@ const QuickViewDescription = ({ product }: any) => {
         </button>
       </div>
       <div className="mb-5 flex">
-        <ColorPickUp variants={product?.variants} />
+        <ColorPickUp
+          variants={product?.variants}
+          onSelectVariant={handleSelectVariant}
+        />
       </div>
       <div className="">
         <div className="flex items-center flex-wrap">
           <h3 className="main-text-color [font-size:_clamp(20px,5vw,26px)] font-semibold mr-2">
-            {product?.defaultVariant?.discountedPrice}{" "}
+            {selectedVariant?.discountedPrice}{" "}
             <small className="uppercase">qar</small>
           </h3>
           <del className="text-[#B3B3B3] [font-size:_clamp(14px,5vw,18px)] mr-5">
-            {product?.defaultVariant?.sellingPrice} QAR
+            {selectedVariant?.sellingPrice} QAR
           </del>
           <span className="[font-size:_clamp(14px,5vw,16px)] text-red-500 bg-gradient-to-r from-pink-50 to-purple-50 py-1 px-3 rounded-md">
-            {product?.defaultVariant?.discountPercentage}% OFF
+            {selectedVariant?.discountPercentage}% OFF
           </span>
         </div>
 
         <GetDiscountRange />
 
-        <p className="my-5 text-black text-opacity-60">
-          Buy <span className="main-text-color">{product?.bulk?.minOrder}</span>
-          item more to get off
-          <b className="text-black">{product?.bulk?.discount}% Extra!</b>
-        </p>
+        {/* == Bulk Order == */}
+        <div className="my-3 whitespace-nowrap text-black-opacity-60">
+          <p>
+            Buy{" "}
+            <span className="font-semibold main-text-color">
+              {product?.bulk?.minOrder}
+            </span>{" "}
+            item to get more{" "}
+            <span className="font-semibold text-black">
+              {product?.bulk?.discount} extra!
+            </span>
+          </p>
+        </div>
         {/* == Item increase & decrease fn == */}
         <div className="flex items-center gap-5 mb-5">
           <div className="border border-gray-200 flex items-center gap-2 rounded-3xl p-2">
@@ -118,7 +152,9 @@ const QuickViewDescription = ({ product }: any) => {
           </div>
           <div className="w-full">
             <button
-              onClick={() => dispatch(addToCart(product))}
+              onClick={(event: React.MouseEvent) =>
+                handleAddToCart(event, product)
+              }
               className="w-full flex justify-center items-center gap-2 bg-slate-400 main-text-color border border-fuchsia-700 py-2 rounded-lg text-fuchsia-700 font-bold"
             >
               <IconShoppingCart
@@ -134,11 +170,12 @@ const QuickViewDescription = ({ product }: any) => {
         {/* == Quick order | Buy now button == */}
         <div className="mt-5 flex items-center justify-between gap-5">
           <div className="w-full">
-            <WishlistQuickOrderBTNModal />
+            {/* <WishlistQuickOrderBTNModal /> */}
+            <SingleQuickOrder product={product} />
           </div>
-          <button className="flex items-center justify-center gap-2 text-white main-bg-color  py-2 rounded-lg w-full">
+          <button className="flex items-center justify-center gap-2 text-white main-bg-color  py-2.5 rounded-lg w-full text-sm">
             {""}
-            <IconShoppingBag />
+            <IconShoppingBag width={18} stroke={2} height={18} />
             BUY NOW
           </button>
         </div>

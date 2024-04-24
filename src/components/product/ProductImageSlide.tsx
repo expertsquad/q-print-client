@@ -12,6 +12,7 @@ const ProductImageSlide = ({ product, defaultVariant }: any) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
@@ -21,7 +22,7 @@ const ProductImageSlide = ({ product, defaultVariant }: any) => {
         setCurrentSlide(
           (prevSlide) => (prevSlide + 1) % product.productPhotos.length
         );
-      }, 3000);
+      }, 1000);
     };
 
     const stopSlideshow = () => {
@@ -47,7 +48,6 @@ const ProductImageSlide = ({ product, defaultVariant }: any) => {
     setCurrentSlide(index);
   };
 
-  const dispatch = useDispatch();
   // <== Add To Favourite ==>
   const handleAddToFavourite = (event: React.MouseEvent, product: any) => {
     event.stopPropagation();
@@ -58,6 +58,7 @@ const ProductImageSlide = ({ product, defaultVariant }: any) => {
           ? product?.variants[0].discountedPrice
           : product?.variants[0].sellingPrice,
         orderQuantity: 1,
+        inStock: product?.variants[0].inStock,
       })
     );
   };

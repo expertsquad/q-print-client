@@ -8,10 +8,12 @@ import { addToCart } from "@/redux/features/cart/productCartSlice";
 import Image from "next/image";
 import { imageUrl } from "@/constants/imageUrl";
 import { removeFromFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
+import emptyCart from "@/assets/empty-card-photo.svg";
 
 const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
   const dispatch = useAppDispatch();
   const { products } = useAppSelector((state) => state.favouriteCartSlice);
+  console.log(products, "From wishlist");
 
   const handleCloseWishlist = () => {
     setOpenWishlistDrawer(false);
@@ -28,6 +30,7 @@ const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
           ? product?.variants[0].discountedPrice
           : product?.variants[0].sellingPrice,
         orderQuantity: 1,
+        productId: product?._id,
       })
     );
   };
@@ -48,8 +51,8 @@ const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
         <div>
           <div>
             {products?.length ? (
-              <>
-                <div className="flex flex-col overflow-y-scroll no-scrollbar">
+              <div className="overflow-y-scroll no-scrollbar">
+                <div className="flex flex-col overflow-y-scroll no-scrollbar h-[calc(100vh-170px)]">
                   {products?.map((product: any) => (
                     <div
                       className="flex gap-5 w-full border-b transition duration-300 ease-in-out hover:bg-gray-100 p-4"
@@ -90,23 +93,29 @@ const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
                           <div className="w-full whitespace-nowrap">
                             <b className="main-text-color">
                               {product?.price}
-                              QAR
+                              <small> QAR</small>
                             </b>{" "}
                             |{" "}
-                            <small className="text-green-500">
-                              {0} In Stock
+                            <small
+                              className={` ${
+                                product?.inStock > 0
+                                  ? "text-green-500"
+                                  : "text-red-500"
+                              }`}
+                            >
+                              {product?.inStock} In Stock
                             </small>
                           </div>
                           <button
                             onClick={(event: React.MouseEvent) =>
                               handleAddToCart(event, product)
                             }
-                            className="flex items-center whitespace-nowrap border py-1 px-2 rounded-lg text-[12px]"
+                            className="flex items-center whitespace-nowrap border py-1 px-2 rounded-lg text-[12px] hover:bg-main-bg-color hover:text-white"
                           >
-                            <span className="text-black text-opacity-70 mr-1.5">
+                            <span className="mr-1.5">
                               <IconShoppingCart
                                 width={15}
-                                stroke={1.5}
+                                stroke={2}
                                 height={15}
                               />
                             </span>
@@ -117,20 +126,33 @@ const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
                     </div>
                   ))}
                 </div>
-              </>
+                <div className="mx-5 mt-5">
+                  <Link
+                    onClick={handleCloseWishlist}
+                    href={"/wishlist"}
+                    className="flex items-center justify-center main-bg-color py-2 text-white rounded-lg w-full"
+                  >
+                    View Wishlist
+                  </Link>
+                </div>
+              </div>
             ) : (
-              <>
-                <div className="flex items-center justify-center">No data</div>
-              </>
+              <div className="mx-5 h-screen flex flex-col gap-y-5 items-center justify-center">
+                <div className="flex items-center justify-center">
+                  <Image src={emptyCart} alt="Empty Cart" />
+                </div>
+                <span className="text-lg text-red-500 font-semibold">
+                  Your Wishlist Is Empty!!
+                </span>
+                <Link
+                  href={"/"}
+                  className="flex items-center justify-center main-bg-color py-2 text-white rounded-lg w-full"
+                >
+                  Continue Shopping
+                </Link>
+              </div>
             )}
           </div>
-          <Link
-            href="/wishlist"
-            onClick={handleCloseWishlist}
-            className="main-bg-color text-white text-center py-3 rounded-md mx-5 fixed bottom-0 mt-10 "
-          >
-            View Wishlist
-          </Link>
         </div>
       </CustomGlobalDrawer>
     </div>

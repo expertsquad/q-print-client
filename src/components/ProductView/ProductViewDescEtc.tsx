@@ -31,6 +31,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
   };
 
   const { products } = useAppSelector((state) => state.productCartSlice);
+  console.log(products, "Add to cart");
 
   // <== Handle Add Product In Cart ==>
   const handleAddToCart = (event: React.MouseEvent, product: any) => {
@@ -39,10 +40,12 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
       addToCart({
         ...product,
         ...product?.variants[0],
-        price: product?.variants[0].discountedPrice
-          ? product?.variants[0].discountedPrice
-          : product?.variants[0].sellingPrice,
+        price: selectedVariant?.discountedPrice
+          ? selectedVariant?.discountedPrice
+          : selectedVariant?.sellingPrice,
         orderQuantity: 1,
+        variantName: selectedVariant?.variantName,
+        productId: product?._id,
       })
     );
   };
@@ -107,12 +110,6 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
 
         <GetDiscountRange />
 
-        {/* <p className="my-3 text-black text-opacity-60 whitespace-nowrap">
-          Buy
-          <span className="main-text-color">{productDesc?.bulk?.minOrder}</span>
-          item more to get off
-          <b className="text-black"> {productDesc?.bulk?.discount} % Extra!</b>
-        </p> */}
         {/* == Bulk Order == */}
         <div className="my-3 whitespace-nowrap text-black-opacity-60">
           <p>
@@ -167,9 +164,9 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
             {/* <WishlistQuickOrderBTNModal id={productDesc?._id} /> */}
             <SingleQuickOrder product={productDesc} btnStyle="py-2.5" />
           </div>
-          <button className="flex items-center justify-center gap-2 text-white main-bg-color  py-2 rounded-lg w-full">
+          <button className="flex items-center justify-center gap-2 text-white main-bg-color py-2.5 rounded-lg w-full text-sm">
             {""}
-            <IconShoppingBag />
+            <IconShoppingBag stroke={2} width={18} height={18} />
             BUY NOW
           </button>
         </div>

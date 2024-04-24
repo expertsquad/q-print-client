@@ -14,24 +14,24 @@ const poppins = Poppins({
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div
-      className={`${poppins.className} scroll-smooth no-scrollbar px-3 md:px-2 lg:px-0`}
-    >
-      <Header />
-      <NextBreadcrumb
-        homeElement={"Home"}
-        separator={
-          <span className="text-black text-opacity-50">
-            {" "}
-            <IconChevronRight width={20} height={20} />{" "}
-          </span>
-        }
-        activeClasses="main-text-color"
-        containerClasses="flex items-center flex-wrap pb-5"
-        listClasses="mr-2 text-black text-opacity-50 text-[16px]"
-        capitalizeLinks
-      />
-      {children}
+    <div className={`${poppins.className} scroll-smooth no-scrollbar`}>
+      <div className="px-3 md:px-3 lg:px-0">
+        <Header />
+        <NextBreadcrumb
+          homeElement={"Home"}
+          separator={
+            <span className="text-black text-opacity-50">
+              {" "}
+              <IconChevronRight width={20} height={20} />{" "}
+            </span>
+          }
+          activeClasses="main-text-color"
+          containerClasses="flex items-center flex-wrap pb-5"
+          listClasses="mr-2 text-black text-opacity-50 text-[16px]"
+          capitalizeLinks
+        />
+      </div>
+      <div className="px-3 md:px-3 lg:px-0">{children}</div>
       <Footer />
       <ToastContainer />
     </div>

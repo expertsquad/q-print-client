@@ -27,6 +27,7 @@ const ProductCard = ({ product }: any) => {
           ? product?.variants[0].discountedPrice
           : product?.variants[0].sellingPrice,
         orderQuantity: 1,
+        productId: product?._id,
       })
     );
   };
@@ -40,7 +41,7 @@ const ProductCard = ({ product }: any) => {
   return (
     <div
       onClick={handleViewProduct}
-      className="border-[1px] hover:border-fuchsia-700 rounded-lg p-5 group max-w-[300px] min-w-[184px] cursor-pointer"
+      className="border-[1px] hover:border-fuchsia-700 rounded-lg p-4 group max-w-[300px] min-w-[184px] cursor-pointer"
     >
       <div>
         <ProductImageSlide product={product} defaultVariant={defaultVariant} />

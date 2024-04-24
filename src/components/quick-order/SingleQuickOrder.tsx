@@ -24,7 +24,6 @@ const SingleQuickOrder = ({ product, btnStyle }: string | any) => {
 
   const dispatch = useDispatch();
   const data = useAppSelector((state) => state.singleQuickOrder);
-  console.log(data, "from quick order");
 
   const handleIncreaseQuantity = () => {
     dispatch(increaseFavQuantity(product));

@@ -14,6 +14,7 @@ interface Product {
   sellingPrice: number;
   stockAlert: number;
   price: number;
+  productId: string;
 }
 
 interface Variant {

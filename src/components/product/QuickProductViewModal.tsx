@@ -1,8 +1,6 @@
 "use client";
 import GlobalModal from "../UI/modal/GlobalModal";
-import { IconX } from "@tabler/icons-react";
 import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
-import ProductViewImage from "../ProductView/ProductViewImage";
 import QuickViewImage from "./QuickViewImage";
 import QuickViewDescription from "./QuickViewDescription";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
@@ -15,9 +13,9 @@ const QuickProductViewModal = ({ handleCloseModal, showModal, id }: any) => {
       <GlobalModal
         isVisible={showModal}
         onClose={handleCloseModal}
-        modalController={`fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center backdrop-blur-sm z-50`}
+        mainClassName="md:max-w-[850px] h-full md:h-auto w-full"
       >
-        <div className="md:max-w-[850px] bg-white p-7 rounded-lg">
+        <div className=" bg-white p-7 rounded-lg">
           <div className="flex justify-end ">
             <ModalCloseBtn handleClose={handleCloseModal} />
           </div>

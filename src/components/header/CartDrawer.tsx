@@ -22,6 +22,7 @@ import Link from "next/link";
 import MultipleQuickOrder from "../quick-order/MultipleQuickOrder";
 import { IconCheck } from "@tabler/icons-react";
 import GetDiscountRange from "../ProductView/GetDiscountRange";
+import emptyCart from "@/assets/empty-card-photo.svg";
 
 const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
   const dispatch = useDispatch();
@@ -32,6 +33,8 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
   const { products, subTotal } = useAppSelector(
     (state) => state.productCartSlice
   );
+
+  console.log(products, "Form Cart");
 
   const shippingCharge = 80;
   const calculateTotal = subTotal + shippingCharge;
@@ -60,13 +63,13 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                     key={index}
                   >
                     {/* --Image-- */}
-                    <div className="flex items-center justify-center max-h-16 w-full max-w-16 p-2 border rounded-md">
+                    <div className="w-16 h-16 relative shrink-0">
                       <Image
                         src={`${imageUrl}${product?.productPhotos?.[1]}`}
                         alt="Product Image"
-                        width={55}
-                        height={55}
-                        className="w-full h-full"
+                        fill
+                        objectFit="cover"
+                        className="w-full h-full top-0 left-0 object-cover p-1 border"
                       />
                     </div>
                     <div className="w-full">
@@ -86,10 +89,17 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                         </button>
                       </div>
                       {/* --BrandName-- */}
-                      <div className="my-2">
-                        <p className="text-black text-opacity-50 text-[12px]">
+                      <div className="my-1 flex items-center gap-2">
+                        <p className="text-black-opacity-80 text-xs">
                           {product?.brand?.brandName}
                         </p>
+                        <span
+                          className="w-3 h-3 rounded-full"
+                          style={{ backgroundColor: product?.variantName }}
+                        ></span>
+                        <span className="text-xs">
+                          {product?.variantName && product?.variantName}
+                        </span>
                       </div>
                       {/* --Increase and Decrease BTN etc-- */}
                       <div className="flex items-center justify-between gap-2">
@@ -99,7 +109,7 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                             className="border border-main-border-color p-1 rounded-full text-black-opacity-70 "
                           >
                             {""}
-                            <IconMinus stroke={3} width={13} height={13} />
+                            <IconMinus stroke={2} width={13} height={13} />
                           </button>
                           <span>{product?.orderQuantity}</span>
                           <button
@@ -107,7 +117,7 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                             className="border border-main-border-color p-1 rounded-full text-black-opacity-70 "
                           >
                             {""}
-                            <IconPlus stroke={3} width={13} height={13} />
+                            <IconPlus stroke={2} width={13} height={13} />
                           </button>
                           <span className="text-[12px]">x</span>
                           <span>{product?.price} QAR</span>
@@ -193,13 +203,19 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
               </div>
             </div>
           ) : (
-            <div className="mx-5">
+            <div className="mx-5 h-screen flex flex-col gap-y-5 items-center justify-center">
+              <div className="flex items-center justify-center">
+                <Image src={emptyCart} alt="Empty Cart" />
+              </div>
+              <span className="text-lg text-red-500 font-semibold">
+                Your Cart Is Empty!!
+              </span>
               <Link
                 href={"/"}
-                className="flex items-center justify-center main-bg-color py-2 text-white rounded-lg"
+                className="flex items-center justify-center main-bg-color py-2 text-white rounded-lg w-full"
               >
                 <span>
-                  <IconChevronLeft stroke={1} width={24} height={24} />
+                  <IconChevronLeft stroke={2} width={24} height={24} />
                 </span>
                 Continue Shopping
               </Link>

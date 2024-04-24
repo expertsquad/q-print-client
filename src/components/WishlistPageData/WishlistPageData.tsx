@@ -96,8 +96,14 @@ const WishlistPageData = ({ products }: any) => {
                             {product?.price} <small>QAR</small>
                           </span>
                           |
-                          <small className="text-[#03A609] pl-2">
-                            {product?.defaultVariant?.inStock} In stock
+                          <small
+                            className={`pl-2 ${
+                              product?.inStock > 0
+                                ? "text-green-500"
+                                : "text-red-500"
+                            }`}
+                          >
+                            {product?.inStock} In stock
                           </small>
                         </div>
                         <button
@@ -127,14 +133,13 @@ const WishlistPageData = ({ products }: any) => {
                     <div className="flex items-center gap-10">
                       <p
                         className={`whitespace-nowrap ${
-                          product?.defaultVariant?.inStock
-                            ? "text-[#03A609]"
-                            : "text-[#E73C17]"
+                          product?.inStock ? "text-[#03A609]" : "text-[#E73C17]"
                         }`}
                       >
-                        {product?.defaultVariant?.inStock ? (
-                          <span className={`flex `}>
-                            <IconCheck /> In stock
+                        {product?.inStock ? (
+                          <span className={`flex items-center gap-0.5`}>
+                            <IconCheck stroke={2} width={20} height={20} /> In
+                            stock
                           </span>
                         ) : (
                           <span>Out of stock</span>

@@ -12,23 +12,14 @@ type SortOption = "MostPopular" | "Recent" | "HighPrice" | "LowPrice";
 const ProductsWidgets = () => {
   const [visibleProducts, setVisibleProducts] = useState(4);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [limit, setLimit] = useState(10);
 
   const { options } = useAppSelector((state) => state.categoryOption);
 
-  // <== Handle show more products fn ==>
-  const handleShowMore = () => {
-    setLoadingMore(true);
-    setTimeout(() => {
-      setVisibleProducts((prevVisibleProducts) => prevVisibleProducts + 4);
-      setLoadingMore(false);
-    }, 1000);
-  };
-
   // <== This fn is used to get products sorted by sortBy and sortOrder ==>
-
   const useSortedProducts = (sortBy: string, sortOrder: string) => {
     const { data } = useGetProductsQuery(
-      `sortBy=${sortBy}&sortOrder=${sortOrder}`
+      `sortBy=${sortBy}&sortOrder=${sortOrder}&limit=${limit}`
     );
     return data;
   };
@@ -46,6 +37,16 @@ const ProductsWidgets = () => {
   };
 
   const productsData = sortOptions[options as SortOption] || newProduct;
+
+  // <== Handle show more products fn ==>
+  const handleShowMore = () => {
+    setLimit((preValue) => (preValue += 10));
+    setLoadingMore(true);
+    setTimeout(() => {
+      setVisibleProducts((prevVisibleProducts) => prevVisibleProducts + 4);
+      setLoadingMore(false);
+    }, 1000);
+  };
 
   return (
     <div className="max-w-[1280px] mx-auto mb-20">

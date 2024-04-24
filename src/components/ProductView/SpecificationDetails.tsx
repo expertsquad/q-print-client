@@ -26,7 +26,7 @@ const SpecificationDetails = ({ specification }: any) => {
                 productSpecification={specification?.specifications}
               />
             </div>
-            <div className=" ">
+            <div>
               <SpecificationCard specificationCard={specification} />
             </div>
           </div>
