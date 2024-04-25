@@ -19,6 +19,7 @@ export const baseApi = createApi({
     "hero-slider",
     "address",
     "singleOnlineOrder",
-    "notifications",
+    "notification",
+    "shipping-address",
   ],
 });

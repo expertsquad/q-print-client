@@ -19,8 +19,18 @@ export const reviewApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["review"],
     }),
+    // <== Get review by Id Query ==>
+    reviewById: build.query({
+      query: (data) => ({
+        url: `/review?${data}`,
+        method: "GET",
+      }),
+      providesTags: ["review"],
+    }),
   }),
 });
 
 // == Export Method ==
-export const { useGetReviewQuery, useAddReviewMutation } = reviewApi;
+export const { useGetReviewQuery, useAddReviewMutation, useReviewByIdQuery } =
+  reviewApi;
+export default reviewApi.reducer;

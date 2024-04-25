@@ -36,3 +36,30 @@ export interface OrderedItemsTypes {
   _id: string;
   id: string;
 }
+
+// <== Order Items Products ==>
+export interface OrderHistoryProduct {
+  productName: string;
+  productPhotos: string[];
+  productId: string;
+  brand: {
+    brandName: string;
+    brandId: string;
+  };
+  category: {
+    categoryName: string;
+    categoryId: string;
+    _id: string;
+  };
+  variant: {
+    variantName: string;
+    sellingPrice: number;
+    discountPercentage: number;
+    discountedPrice: number;
+    _id: string;
+  };
+  orderQuantity: number;
+  subTotalPayable: number;
+  isReviewed: boolean;
+  _id: string;
+}

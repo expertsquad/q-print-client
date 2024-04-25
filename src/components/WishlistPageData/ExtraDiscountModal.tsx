@@ -11,7 +11,6 @@ const ExtraDiscountModal = () => {
 
   const router = useRouter();
 
-  //Close modal functionality
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -47,7 +46,7 @@ const ExtraDiscountModal = () => {
           </button>
           <button
             onClick={() => router.back()}
-            className="text-black text-opacity-70"
+            className="text-black text-opacity-70 border-b"
           >
             No Thank You
           </button>

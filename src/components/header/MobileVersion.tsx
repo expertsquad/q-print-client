@@ -4,30 +4,26 @@ import {
   IconMenu2,
 } from "@tabler/icons-react";
 import Link from "next/link";
-import React from "react";
+import React, { useRef } from "react";
 
 const MobileVersion = () => {
-  const menuItems = [
-    "Home",
-    "Brands",
-    "Request a Printing",
-    "About Us",
-    "Privacy Policy",
-  ];
-  const hrefValues = [
-    "/",
-    "/brand/slug",
-    "/printing-request",
-    "/about-us",
-    "/privacy-policy",
-  ];
+  const drawerCheckboxRef = useRef<HTMLInputElement>(null);
+  const handleNavigateRoute = () => {
+    if (drawerCheckboxRef.current) {
+      drawerCheckboxRef.current.checked = false;
+    }
+  };
+
+  const menuItems = ["Home", "Brands", "Request a Printing", "Products"];
+  const hrefValues = ["/", "/brand", "/printing-request", "/products"];
 
   return (
-    <div className="drawer md:hidden ">
+    <div className="drawer md:hidden">
       <input
         id="wishlist-drawer-mobile-version"
         type="checkbox"
         className="drawer-toggle"
+        ref={drawerCheckboxRef}
       />
       <div className="drawer-content">
         {/* Page content here */}
@@ -78,6 +74,7 @@ const MobileVersion = () => {
                 className="text-black text-opacity-50 mb-10 text-[18px]"
                 key={index}
                 href={hrefValues[index]}
+                onClick={handleNavigateRoute}
               >
                 {link}
               </Link>

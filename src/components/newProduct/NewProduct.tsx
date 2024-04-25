@@ -19,17 +19,17 @@ const NewProduct = () => {
           <h3 className="  [font-size:_clamp(1em,5vw,1.6em)] font-bold">
             New Product
           </h3>
-          <div>
+          <div className="flex items-center gap-2 animate-bounce">
             <Link
-              className="flex  justify-end gap-2 main-text-color py-2 animate-bounce "
-              href="#"
+              className="flex  justify-end gap-2 main-text-color py-2 animate-bounce"
+              href="/products"
             >
               {" "}
-              See all &rarr;
+              More Products
             </Link>
           </div>
         </div>
-        <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-1">
+        <div className="w-full md:place-items-start place-items-center flex items-center gap-y-5 justify-center md:justify-between flex-wrap">
           {firstThreeProducts?.map((product: IProduct) => (
             <div key={product?._id}>
               <ProductCard product={product} />

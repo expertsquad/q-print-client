@@ -1,10 +1,10 @@
 const ProductSpecification = ({ productSpecification }: any) => {
   return (
-    <div className="">
+    <div className="w-full">
       <div className="border rounded-lg w-full">
         {productSpecification?.map((specification: any) => (
-          <div key={specification._id}>
-            <h2 className="main-text-color [font-size:_clamp(16px,4vw,20px)] py-2 pl-4 border-b-[1px]">
+          <div key={specification._id} className="w-full">
+            <h2 className="main-text-color [font-size:_clamp(16px,4vw,20px)] py-2 pl-4 border-b-[1px] ">
               {specification.sectionName}
             </h2>
             <div className="">

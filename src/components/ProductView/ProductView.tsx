@@ -8,10 +8,12 @@ import {
   useGetProductsQuery,
 } from "@/redux/features/products/productsApi";
 import { IProduct } from "@/types/productsType";
+import Link from "next/link";
 
 const ProductView = ({ id }: any) => {
   const { data } = useGetProductByIdQuery(id);
   const productdata = data?.data;
+
   const { data: relatedData } = useGetProductsQuery(
     `brand.brandName=${productdata?.brand?.brandName}`
   );
@@ -22,18 +24,23 @@ const ProductView = ({ id }: any) => {
 
   return (
     <section className="px-2">
+      {/* == Product view image & descripton == */}
       <div className="">
         <ProductViewImage product={data?.data} />
       </div>
+      {/* == Company Services == */}
       <div>
         <QServices />
       </div>
+      {/* == Related Products == */}
       <div className="mb-16">
         <div className="flex justify-between items-center mb-5 md:mb-7">
           <h2 className="text-black text-[17px] md:text-2xl font-semibold">
             Related Products
           </h2>
-          <button className="text-[#E73C17]">Show All</button>
+          <Link href={"/products"} className="text-[#E73C17]">
+            Show All
+          </Link>
         </div>
         <div
           className={`
@@ -45,8 +52,9 @@ const ProductView = ({ id }: any) => {
           ))}
         </div>
       </div>
+      {/* == Product specification == */}
       <div>
-        <SpecificationDetails specification={relatedData?.data} />
+        <SpecificationDetails specification={productdata} />
       </div>
     </section>
   );

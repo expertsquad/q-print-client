@@ -13,6 +13,7 @@ export default function Stepper({
   numberOfSteps,
   iconSize,
   iconStroke,
+  customStepStyle,
 }: any) {
   const activeColor = (index: any) =>
     currentStep >= index
@@ -21,16 +22,16 @@ export default function Stepper({
   const isFinalStep = (index: any) => index === numberOfSteps - 1;
 
   return (
-    <div className="flex items-center font-thin">
+    <div className={`flex items-center font-thin ${customStepStyle}`}>
       {Array.from({ length: numberOfSteps }).map((_, index) => (
         <React.Fragment key={index}>
           <div
-            className={`w-20 h- md:w-[135px] md:h-[55px] flex items-center justify-center p-1 md:p-3 rounded-full text-fuchsia-700 ${activeColor(
+            className={`w-20  md:w-[135px] md:h-[55px] flex items-center justify-center p-1 md:p-3 rounded-full text-fuchsia-700 ${activeColor(
               index
             )}`}
           >
             {React.createElement(icons[index], {
-              size: iconSize,
+              size: 25,
               stroke: iconStroke,
             })}
           </div>

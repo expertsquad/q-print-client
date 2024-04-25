@@ -1,19 +1,48 @@
 "use client";
-
-import PrintingRequestTotalOrder from "@/components/PrintingRequest/PrintingRequestTotalOrder";
+import PringtingRequestOrderCard from "@/components/PrintingRequest/PringtingRequestOrderCard";
 import ReturnToCardButton from "@/components/PrintingRequest/ReturnToCardButton";
+import CustomInput from "@/components/shared/CustomInput";
+import { setPrintingRequest } from "@/redux/features/printing-request/postPrintingRequestSlice";
+import { setShippingData } from "@/redux/features/user/shippingAddressSlice";
+import {
+  useAddShippingAddressMutation,
+  useGetUserAddressQuery,
+  useGetUserQuery,
+} from "@/redux/features/user/user";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { isLoggedIn } from "@/services/auth.service";
 import { IconUser } from "@tabler/icons-react";
 import Link from "next/link";
 import { useState } from "react";
 
 const YourInformation = () => {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
-
-  const handleOptionChange = () => {
-    setSelectedOption((prevSelected) =>
-      prevSelected === "select" ? null : "select"
-    );
+  const isUserLoggedIn = isLoggedIn();
+  const [addNewShipping, setAddNewShipping] = useState(false);
+  const dispatch = useAppDispatch();
+  const handleAddShipping = () => {
+    setAddNewShipping((prevState) => !prevState);
   };
+  const [addShipping] = useAddShippingAddressMutation();
+
+  // <== Get User Address ==>
+  const { data: address, isLoading } = useGetUserAddressQuery("");
+  const defaultAddress = address?.data?.find(
+    (address: any) => address.isDefault
+  );
+
+  // <== Get User Personal Information ==>
+  const { data: personalInformation } = useGetUserQuery("");
+
+  const data = useAppSelector((state) => state.printingRequestOrder);
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try {
+      const res = await addShipping(data?.shippingAddress);
+      console.log(res, "from res");
+    } catch {}
+  };
+
   return (
     <section className="lg:max-w-[1280px] w-full mx-auto  mb-7">
       <div className="mb-7">
@@ -24,211 +53,262 @@ const YourInformation = () => {
       <div className="flex flex-col md:flex-row lg:flex-row gap-7 justify-between">
         <div className="flex flex-col w-full md:w-8/12 lg:w-8/12 -5 ">
           <div className=" border rounded-lg ">
-            {/* click here to login */}
-            <Link
-              href="/login"
-              className="flex items-center justify-center gap-2 border-b py-3 text-base text-gray-800 "
-            >
-              {" "}
-              <IconUser /> <p>Click here to login</p>{" "}
-            </Link>
+            {/* == Click here to login btn == */}
+            {!isUserLoggedIn && (
+              <Link
+                href="/login"
+                className="flex items-center justify-center gap-2 border-b py-3 text-base text-gray-800"
+              >
+                <span className="flex items-center gap-2">
+                  <IconUser width={20} height={20} /> <p>Click here to login</p>
+                </span>
+              </Link>
+            )}
 
-            {/* personal Information  */}
-            <div className="p-7">
-              <div className="">
-                <p className="text-base text-gray-500 mb-5">
-                  Contact information
-                </p>
-                <form
-                  onChange={() => console.log("change")}
-                  className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5  w-full pb-10 border-b"
-                >
-                  <div className="w-full flex flex-col gap-2.5">
-                    <label htmlFor="user_email" className="text-base ">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      name="user_email"
-                      id="user_email"
-                      className="border outline-none block w-full py-3.5 rounded-md px-4 "
-                      defaultValue="dianne.russell@gmail.com"
-                    />
-                  </div>
-                  <div className="w-full flex flex-col gap-2.5">
-                    <label
-                      htmlFor="user_phone"
-                      className="text-base text-[#1a1a1ab3]"
-                    >
-                      Phone Number
-                    </label>
-                    <input
-                      type="text"
-                      name="user_phone"
-                      id="user_phone"
-                      className="border outline-none block w-full py-3.5 rounded-md px-4"
-                      defaultValue="08801835550123"
-                      required
-                    />
-                  </div>
-                  {/* create an account */}
-
-                  <div className="h-10">
-                    <label className="inline-flex items-center">
-                      <div
-                        className={`w-5 h-5 rounded-full bg-white flex items-center justify-center border-fuchsia-700 border-2 ${
-                          selectedOption === "select"
-                            ? "border-fuchsia-700 border-2"
-                            : ""
-                        }`}
-                        onClick={handleOptionChange}
-                      >
-                        {selectedOption === "select" && (
-                          <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
-                        )}
-                      </div>
-                      <span className="ml-2 font-bold ">Create an account</span>
-                      {/* <input
-                        type="radio"
-                        value="select"
-                        checked={selectedOption === "select"}
-                        onChange={() => {}} // This prevents default radio button behavior
-                        className="hidden"
-                      /> */}
-                    </label>
-                  </div>
-                </form>
+            <div className="p-4 md:p-7">
+              {/* == Personal Information == */}
+              <p className="text-base text-gray-500 mb-5">
+                Contact information
+              </p>
+              <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 w-full mb-8">
+                <CustomInput
+                  label="Email"
+                  type="email"
+                  value={personalInformation?.data?.email}
+                  placeholder="Enter Your Email"
+                />
+                <CustomInput
+                  label="Phone Number"
+                  type="number"
+                  value={personalInformation?.data?.phoneNumber}
+                  placeholder="Enter Your Number"
+                />
               </div>
-            </div>
-            {/* shipping Information  */}
-            <div>
-              <div className="px-7">
-                <div className="">
-                  <p className="text-base text-gray-500 mb-5">
-                    Shipping Address
-                  </p>
-                  <form className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5  w-full pb-10 ">
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="firstName" className="text-base ">
-                        First name
-                      </label>
-                      <input
-                        type="text"
-                        name="firstName"
-                        id="firstName"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4 "
-                        defaultValue="Zayed"
-                      />
+
+              {/* == Existing User Address == */}
+              {isUserLoggedIn && (
+                <>
+                  {isLoading ? (
+                    <p>Loading...</p>
+                  ) : (
+                    <div className="flex flex-col mb-5 border p-3 rounded-md">
+                      <span className="text-black-opacity-60">
+                        Shipping Address
+                      </span>
+                      <span className="mt-2.5">
+                        {defaultAddress?.streetAddress}
+                      </span>
+                      <span>{defaultAddress?.phoneNumber}</span>
                     </div>
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="lastName" className="text-base ">
-                        Last name
-                      </label>
-                      <input
-                        type="text"
-                        name="lastName"
-                        id="lastName"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4"
-                        defaultValue="Hossain"
-                        required
-                      />
-                    </div>
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="address" className="text-base ">
-                        Street Address
-                      </label>
-                      <input
-                        type="text"
-                        name="address"
-                        id="address"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4 "
-                        defaultValue="Noakhali Chaprashirhat Road No. 13/x, House no. 1320/C, Flat No. 5D"
-                      />
-                    </div>
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="city" className="text-base ">
-                        City
-                      </label>
-                      <input
-                        type="text"
-                        name="city"
-                        id="city"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4"
-                        defaultValue="Dhaka"
-                        required
-                      />
-                    </div>
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="country" className="text-base ">
-                        Country / Region
-                      </label>
-                      <input
-                        type="text"
-                        name="country"
-                        id="country"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4 "
-                        defaultValue="Qater"
-                      />
-                    </div>
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label
-                        htmlFor="companyName"
-                        className="text-base text-[#1a1a1ab3]"
-                      >
-                        Company Name (optional)
-                      </label>
-                      <input
-                        type="text"
-                        name="companyName"
-                        id="companyName"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4"
-                        defaultValue="Q-Print"
-                        required
-                      />
-                    </div>
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="zipCode" className="text-base ">
-                        Zip Code
-                      </label>
-                      <input
-                        type="text"
-                        name="zipCode"
-                        id="zipCode"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4 "
-                        defaultValue="2005"
-                      />
-                    </div>
-                    <div className="w-full flex flex-col gap-2.5">
-                      <label htmlFor="phoneNumber" className="text-base ">
-                        Phone Number
-                      </label>
-                      <input
-                        type="text"
-                        name="phoneNumber"
-                        id="phoneNumber"
-                        className="border outline-none block w-full py-3.5 rounded-md px-4"
-                        defaultValue="08801835550123"
-                        required
-                      />
-                    </div>
-                  </form>
+                  )}
+                </>
+              )}
+
+              {/* == If user logged in then dropdown for new shipping address, else create an account == */}
+              {isUserLoggedIn && (
+                <div className="mb-5 flex gap-1.5 items-center">
+                  <input
+                    onClick={handleAddShipping}
+                    title="radio"
+                    type="radio"
+                    className="checked"
+                  />
+                  <span>Add new shipping address</span>
                 </div>
-              </div>
+              )}
+
+              {/* == shipping address or shipping information == */}
+              {addNewShipping && (
+                <div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 w-full">
+                    <CustomInput
+                      label="First Name"
+                      type="text"
+                      name="firstName"
+                      value={data?.shippingAddress?.firstName}
+                      placeholder={"First Name"}
+                      onChange={(e) =>
+                        dispatch(
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              [e.target.name]: e.target.value,
+                            },
+                          })
+                        )
+                      }
+                    />
+                    <CustomInput
+                      label="Last Name"
+                      type="text"
+                      name="lastName"
+                      value={data?.shippingAddress?.lastName}
+                      placeholder={"Last Name"}
+                      onChange={(e) =>
+                        dispatch(
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              [e.target.name]: e.target.value,
+                            },
+                          })
+                        )
+                      }
+                    />
+                    <CustomInput
+                      label="Phone Number"
+                      type="text"
+                      name="phoneNumber"
+                      value={data?.shippingAddress?.phoneNumber}
+                      placeholder={"Phone Number"}
+                      onChange={(e) =>
+                        dispatch(
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              [e.target.name]: e.target.value,
+                            },
+                          })
+                        )
+                      }
+                    />
+                    <CustomInput
+                      label="Street Address"
+                      type="text"
+                      name="streetAddress"
+                      value={data?.shippingAddress?.streetAddress}
+                      placeholder="Your Street Address"
+                      onChange={(e) =>
+                        dispatch(
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              [e.target.name]: e.target.value,
+                            },
+                          })
+                        )
+                      }
+                    />
+                    <CustomInput
+                      label="State"
+                      type="text"
+                      name="state"
+                      value={data?.shippingAddress?.state}
+                      placeholder="Your State"
+                      onChange={(e) =>
+                        dispatch(
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              [e.target.name]: e.target.value,
+                            },
+                          })
+                        )
+                      }
+                    />
+                    <CustomInput
+                      label="Country"
+                      type="text"
+                      name="country"
+                      value={data?.shippingAddress?.country}
+                      placeholder={"Country"}
+                      onChange={(e) =>
+                        dispatch(
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              [e.target.name]: e.target.value,
+                            },
+                          })
+                        )
+                      }
+                    />
+                    <CustomInput
+                      label=" Company Name ( Optional )"
+                      type="text"
+                      name="companyName"
+                      value={data?.shippingAddress?.companyName}
+                      placeholder="Company Name"
+                      onChange={(e) =>
+                        dispatch(
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              [e.target.name]: e.target.value,
+                            },
+                          })
+                        )
+                      }
+                    />
+                    <CustomInput
+                      label="ZipCode"
+                      type="text"
+                      name="zipCode"
+                      value={data?.shippingAddress?.zipCode}
+                      placeholder="Your ZipCode"
+                      onChange={(e) =>
+                        dispatch(
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...(data.shippingAddress || {}),
+                              [e.target.name]: e.target.value,
+                            },
+                          })
+                        )
+                      }
+                    />
+                  </div>
+                  <div className="mb-3 flex gap-1.5 items-center mt-7">
+                    <input
+                      name="isDefault"
+                      onChange={(e) =>
+                        dispatch(
+                          setPrintingRequest({
+                            ...data,
+                            shippingAddress: {
+                              ...data.shippingAddress,
+                              isDefault: !data.shippingAddress.isDefault,
+                            },
+                          })
+                        )
+                      }
+                      title="inputradio"
+                      type="checkbox"
+                      checked={data?.shippingAddress?.isDefault}
+                    />
+
+                    <span>Use as default address</span>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-          {/* return button */}
 
-          <div className="hidden lg:block md:block w-max mt-8">
+          {/* == Return to previous page == */}
+          <div className="hidden md:block w-max mt-8">
             <ReturnToCardButton />
           </div>
         </div>
 
-        {/* total order card */}
+        {/* == Total Amount Card == */}
         <div className="w-full md:w-4/12 lg:w-4/12">
-          <PrintingRequestTotalOrder />
+          <PringtingRequestOrderCard
+            handleSubmit={handleSubmit}
+            buttonText={"Continue to Payment"}
+            href={"/printing-request/payment"}
+          />
         </div>
 
-        <div className="block md:hidden lg:hidden w-full ">
+        {/* == Return to previous page == */}
+        <div className="block md:hidden w-full ">
           <ReturnToCardButton />
         </div>
       </div>

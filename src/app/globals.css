@@ -85,8 +85,9 @@
 /* ==Header responsive css== */
 .header-section-css {
   display: grid;
-  grid-template-columns: 1fr 2.5fr 1.2fr;
+  grid-template-columns: 1fr 3.5fr 1.2fr;
   align-items: center;
+  grid-gap: 10px;
 }
 
 /* ==Order item data responsive== */
@@ -158,31 +159,21 @@
   }
 }
 
-/* brand carousel css */
-
-.logos {
-  display: flex;
-}
-
+/* == Brand carousel css by jackdev == */
 .logos:hover .logos-slide {
   animation-play-state: paused;
 }
 
 .logos-slide {
-  display: flex;
-  animation: 0.9s slide infinite linear;
+  animation: 8s slide infinite linear;
 }
 
-.logos-slide img {
-  height: 50px;
-  margin: 0 70px;
-}
 @keyframes slide {
   from {
-    transform: translateX(0%);
+    transform: translate(0, 0);
   }
   to {
-    transform: translateX(-100%);
+    transform: translate(calc(-100% + (6 * 300px)));
   }
 }
 
@@ -221,4 +212,9 @@ input[type="number"]::-webkit-outer-spin-button {
     grid-template-columns: 0.2fr 2.2fr 0.7fr 0.7fr;
     align-items: center;
   }
+}
+
+.order-track-step-counter {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }

@@ -516,6 +516,11 @@ export const profileNav = [
     href: "/profile/order-history",
   },
   {
+    label: "Printing Order History",
+    key: "printingOrder",
+    href: "/profile/printing-order-history",
+  },
+  {
     label: "Profile Settings",
     key: "profileSettings",
     href: "/profile/profile-settings",

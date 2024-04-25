@@ -1,6 +1,44 @@
+"use client";
 import Image from "next/image";
 import resetPasswordImg from "@/assets/images/resetPasswordImg.png";
+import PasswordInput from "@/components/shared/PasswordInput";
+import { useChangePasswordMutation } from "@/redux/features/user/user";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import {
+  setConfirmPassword,
+  setNewPassword,
+  setOldPassword,
+} from "@/redux/features/user/changePassword";
+import { useState } from "react";
 const ChangePassword = () => {
+  const [changePassword] = useChangePasswordMutation();
+  const dispatch = useAppDispatch();
+  const [error, setError] = useState("");
+
+  const { oldPassword, newPassword, confirmPassword } = useAppSelector(
+    (state) => state.changePasswordSlice
+  );
+
+  const handlePasswordChange = async (event: any) => {
+    event.preventDefault();
+
+    try {
+      const res = await changePassword({
+        oldPassword,
+        newPassword,
+        confirmPassword,
+      }).unwrap();
+      console.log(res);
+    } catch (err: any) {
+      setError(err.message);
+    }
+  };
+
+  const handleResetField = () => {
+    dispatch(setOldPassword(""));
+    dispatch(setNewPassword(""));
+    dispatch(setConfirmPassword(""));
+  };
   return (
     <div>
       <section className="w-full mb-7">
@@ -10,86 +48,63 @@ const ChangePassword = () => {
               Reset Your Password
             </h1>
             <form
+              onSubmit={handlePasswordChange}
               action=""
               className="form-control lg:gap-5 gap-4 lg:mt-12 mt-7"
             >
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col ">
                 <label
                   htmlFor="old-password"
-                  className="text-lg text-small-gray-text-color"
+                  className="text-base text-small-gray-text-color"
                 >
                   Current Password
                 </label>
-                <div className="relative">
-                  <input
-                    type="password"
-                    id="old-password"
-                    name="old-password"
-                    className="w-full border outline-none px-5 py-3 rounded-md"
-                  />
-                  <span
-                    id="togglePassword"
-                    className="absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer"
-                  >
-                    <i id="eyeOff1" className="ti ti-eye-off"></i>
-                    <i id="eyeOn1" className="ti ti-eye hidden"></i>
-                  </span>
-                </div>
+                <PasswordInput
+                  name="oldPassword"
+                  placeholder=""
+                  onChange={(e) => dispatch(setOldPassword(e.target.value))}
+                />
+                {error && <span className="text-red-500 text-xs">{error}</span>}
               </div>
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col">
                 <label
                   htmlFor="new-password"
-                  className="text-lg text-small-gray-text-color"
+                  className="text-base text-small-gray-text-color"
                 >
                   New Password
                 </label>
-                <div className="relative">
-                  <input
-                    type="password"
-                    id="new-password"
-                    name="new-passwords"
-                    className="w-full border outline-none px-5 py-3 rounded-md"
-                  />
-                  <span
-                    id="newTogglePassword"
-                    className="absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer"
-                  >
-                    <i id="eyeOff2" className="ti ti-eye-off"></i>
-                    <i id="eyeOn2" className="ti ti-eye hidden"></i>
-                  </span>
-                </div>
+                <PasswordInput
+                  name="newPassword"
+                  placeholder=""
+                  onChange={(e) => dispatch(setNewPassword(e.target.value))}
+                />
               </div>
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col">
                 <label
                   htmlFor="re-enter-new-password"
-                  className="text-lg text-small-gray-text-color"
+                  className="text-base text-small-gray-text-color"
                 >
                   Re-enter new password
                 </label>
-                <div className="relative">
-                  <input
-                    type="password"
-                    id="re-enter-new-password"
-                    name="re-enter-new-password"
-                    className="w-full border outline-none px-5 py-3 rounded-md"
-                  />
-                  <span
-                    id="renewTogglePassword"
-                    className="absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer"
-                  >
-                    <i id="eyeOff3" className="ti ti-eye-off"></i>
-                    <i id="eyeOn3" className="ti ti-eye hidden"></i>
-                  </span>
-                </div>
+                <PasswordInput
+                  name="confirmPassword"
+                  placeholder=""
+                  onChange={(e) => dispatch(setConfirmPassword(e.target.value))}
+                />
               </div>
               <div className="flex lg:gap-12 gap-10 items-center">
                 <button
-                  className="   text-white uppercase bg-gradient-to-r from-[#C83B62] to-[#7F35CD]  
- px-5 py-3.5  lg:w-48 w-full hover:scale-105 hover:duration-500 rounded-3xl"
+                  type="submit"
+                  className="text-white uppercase bg-gradient-to-r from-[#C83B62] to-[#7F35CD]  
+ px-5 py-3.5  lg:w-48 w-full  rounded-3xl"
                 >
                   Update Password
                 </button>
-                <button className="lg:text-lg text-base font-normal lg:font-medium text-text-Gray-colors">
+                <button
+                  type="submit"
+                  onClick={handleResetField}
+                  className="lg:text-lg text-base font-normal lg:font-medium text-text-Gray-colors"
+                >
                   Cancel
                 </button>
               </div>

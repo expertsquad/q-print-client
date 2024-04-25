@@ -62,8 +62,8 @@ const TabProductView = () => {
         {activeTab === "topSell" && (
           <div>
             <Link
-              className="flex items-center justify-end gap-2 main-text-color py-2  "
-              href="#"
+              className="flex items-center justify-end gap-2 main-text-color py-2 animate-bounce "
+              href="/products"
             >
               {" "}
               See all &rarr;

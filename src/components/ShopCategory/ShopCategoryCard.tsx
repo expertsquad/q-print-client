@@ -23,7 +23,7 @@ const ShopCategoryCard = ({ category }: any) => {
           className="object-contain w-full h-full top-0 left-0"
         />
       </div>
-      <h3 className="absolute font-medium text-xl bottom-2 left-11 md:invisible md:group-hover/item:visible md:group-hover/item:duration-500 transition-all">
+      <h3 className="absolute font-medium text-sm md:text-xl bottom-2 left-6 md:left-11 md:invisible md:group-hover/item:visible md:group-hover/item:duration-500 transition-all whitespace-nowrap">
         {category?.categoryName}
       </h3>
     </div>

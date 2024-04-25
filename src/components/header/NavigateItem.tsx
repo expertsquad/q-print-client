@@ -2,21 +2,9 @@ import Link from "next/link";
 import React from "react";
 // import RequestPrinting from "../UI/RequestPrinting";
 const NavigateItem = () => {
-  const menuItems = [
-    "Home",
-    "Brands",
-    "Request a Printing",
-    "About Us",
-    "Privacy Policy",
-  ];
+  const menuItems = ["Home", "Brands", "Request a Printing", "Products"];
 
-  const hrefValues = [
-    "/",
-    "/brand",
-    "/printing-request",
-    "/about-us",
-    "/privacy-policy",
-  ];
+  const hrefValues = ["/", "/brand", "/printing-request", "/products"];
   return (
     <>
       {menuItems.map((link, index) => (

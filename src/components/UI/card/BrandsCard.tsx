@@ -12,14 +12,14 @@ const BrandsCard = () => {
   const { brandName } = useAppSelector((state) => state.productByBrandName);
 
   //<== Take the first 10 items from data ==>
-  const firstTenData = data?.data?.slice(0, 6);
+  // const firstTenData = data?.data?.slice(0, 6);
 
   return (
     <div className="px-5 py-8 rounded-xl shadow-md mt-5">
       <h1 className="text-[#00000066] font-semibold text-base">BRANDS</h1>
       <hr className="my-5" />
       <div className="flex flex-col gap-4">
-        {firstTenData?.map((brand: any, i: number) => (
+        {data?.data?.map((brand: any, i: number) => (
           <span key={i} className="flex gap-4 justify-start items-center">
             <div className="w-[40px] h-[28px] shrink-0 relative ">
               <Image

@@ -8,6 +8,7 @@ interface PasswordInputProps {
   onChange?: (e: any) => void;
   value?: string | number;
   name?: string;
+  type?: string;
 }
 
 const PasswordInput: React.FC<PasswordInputProps> = ({
@@ -17,9 +18,9 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   inputStyle,
   value,
   name,
+  type,
 }) => {
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -28,12 +29,13 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   return (
     <div className={`relative ${className}`}>
       <input
-        type={showPassword ? "text" : "password"}
+        type={showPassword ? "password" : "text"}
+        // type="password"
         value={value}
         onChange={onChange}
         name={name}
         placeholder={placeholder}
-        className={`border w-full py-3 pl-3 outline-none focus:border-fuchsia-500 rounded-md mt-3 placeholder:text-sm ${inputStyle}`}
+        className={`border w-full py-3 pl-3 outline-none focus:border-fuchsia-200 rounded-md mt-3 placeholder:text-sm ${inputStyle}`}
       />
       <button
         type="button"
@@ -41,9 +43,9 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
         className="absolute top-7 right-0 flex items-center px-3 text-gray-500"
       >
         {showPassword ? (
-          <IconEye width={20} height={20} />
+          <IconEyeOff width={20} stroke={2} height={20} />
         ) : (
-          <IconEyeOff width={20} height={20} />
+          <IconEye width={20} stroke={2} height={20} />
         )}
       </button>
     </div>

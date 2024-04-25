@@ -21,7 +21,7 @@ const MyProfileCard = () => {
   // <== User Logout Functionality ==>
   const userLogout = () => {
     removeUserInfo(authKey);
-    router.push("/signup");
+    router.push("/login");
   };
 
   // <== Get data from user me ==>

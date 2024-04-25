@@ -1,32 +1,30 @@
 "use client";
 import PersonalInformation from "@/components/Profile/PersonalInformation";
 import ShippingAddress from "@/components/Profile/ShippingAddress";
+import { setShippingData } from "@/redux/features/user/shippingAddressSlice";
 import {
   useGetUserAddressQuery,
   useGetUserQuery,
 } from "@/redux/features/user/user";
-import { isLoggedIn } from "@/services/auth.service";
+import { useAppDispatch } from "@/redux/hook";
 import { useLayoutEffect } from "react";
-import { redirect } from "next/navigation";
 
 const ProfileSettings = () => {
-  useLayoutEffect(() => {
-    const userLoggedCheck = isLoggedIn();
-
-    if (!userLoggedCheck) {
-      redirect("/");
-    }
-  }, []);
-
   // <== Get User Personal Information ==>
   const { data: personalInformation } = useGetUserQuery("");
+  const dispatch = useAppDispatch();
 
   // <== Get User Address ==>
-  const { data: address } = useGetUserAddressQuery("isDefault=true");
+  const { data: defaultAddress } = useGetUserAddressQuery("isDefault=true");
+
+  useLayoutEffect(() => {
+    dispatch(setShippingData(defaultAddress?.data?.[0]));
+  }, [defaultAddress, dispatch]);
+
   return (
     <div className="lg:border rounded-lg lg:p-7 flex flex-col gap-8 mb-7">
       <PersonalInformation personalInformation={personalInformation?.data} />
-      <ShippingAddress shippingInformation={address?.data[0]} />
+      <ShippingAddress />
     </div>
   );
 };

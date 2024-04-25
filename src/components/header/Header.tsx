@@ -4,28 +4,39 @@ import Image from "next/image";
 import qPrintLogo from "@/assets/logotwo.svg";
 import Link from "next/link";
 import Filter from "../UI/filter/Filter";
-import WishlistAndCart from "./Wishlist";
-import Cart from "./Cart";
 import MobileVersion from "./MobileVersion";
 import Sidebar from "./Sidebar";
 import { isLoggedIn, isUserSignedIn } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import { useGetUserQuery } from "@/redux/features/user/user";
-import { imageUrl } from "@/constants/imageUrl";
+import CustomInput from "../shared/CustomInput";
+import { useState } from "react";
+import ProductSearchModal from "./ProductSearchModal";
+import CartDrawer from "./CartDrawer";
+import DrawerCartButton from "./DrawerCartButton";
+import UserProfileButton from "./UserProfileButton";
+import DrawerWishlistButton from "./DrawerWishlistButton";
+import WishlistDrawer from "./WishlistDrawer";
 
 const Header = () => {
   const router = useRouter();
   const userLoggedIn = isLoggedIn();
-  const userSignedIn = isUserSignedIn();
+  const [searchValue, setSearchValue] = useState("");
 
-  const { data, isError, isLoading } = useGetUserQuery(undefined);
+  const [openCartDrawer, setOpenCartDrawer] = useState(false);
+  const [openWishlistDrawer, setOpenWishlistDrawer] = useState(false);
+
+  const handleSearchInputChange = (e: any) => {
+    setSearchValue(e.target.value);
+  };
+  const { data } = useGetUserQuery(``);
 
   // <== Check if the user is logged in or not ==>
   const handleUserProfile = () => {
     if (userLoggedIn) {
       router.push("/profile");
     } else {
-      router.push("/login");
+      router.push("/signup");
     }
   };
 
@@ -45,12 +56,19 @@ const Header = () => {
               <IconSearch width={24} height={24} />
             </span>
           </div>
-          <input
-            type="search"
-            id="default-search"
-            className="inline-block w-full rounded-full px-4 py-3 ps-10 text-sm text-black text-opacity-50 border bg-gray-50 outline-none"
-            placeholder="Search For Product"
+
+          <CustomInput
+            placeholder="Search For Products"
+            inputStyle="w-full rounded-full"
+            value={searchValue}
+            onChange={handleSearchInputChange}
           />
+          {searchValue && (
+            <ProductSearchModal
+              data={searchValue}
+              setSearchValue={setSearchValue}
+            />
+          )}
           <div className="border rounded-full px-3 py-3  items-center justify-center cursor-pointer hidden">
             <Filter />
           </div>
@@ -58,32 +76,12 @@ const Header = () => {
 
         {/* ==Wishlist, Cart, and Profile== */}
         <div className="order-3 md:order-3 section-last-child flex items-center justify-end gap-5">
-          <WishlistAndCart />
-          <Cart />
-
-          <div className="cursor-pointer" onClick={handleUserProfile}>
-            {userLoggedIn ? (
-              data?.data?.profilePhoto ? (
-                <div className="w-[30px] h-[30px] shrink-0 relative">
-                  <Image
-                    src={`${imageUrl}${data?.data?.profilePhoto}`}
-                    alt="profile"
-                    objectFit="cover"
-                    fill
-                    className="w-full h-full top-0 left-0 object-cover rounded-full"
-                  />
-                </div>
-              ) : (
-                <div>
-                  <IconUser width={24} height={24} />
-                </div>
-              )
-            ) : (
-              <div>
-                <IconUser width={24} height={24} />
-              </div>
-            )}
-          </div>
+          <DrawerWishlistButton setOpenWishlistDrawer={setOpenWishlistDrawer} />
+          <DrawerCartButton setOpenCartDrawer={setOpenCartDrawer} />
+          <UserProfileButton
+            handleUserProfile={handleUserProfile}
+            profilePhoto={data?.data?.profilePhoto}
+          />
         </div>
 
         {/* ==Menubar== */}
@@ -94,6 +92,18 @@ const Header = () => {
           <Sidebar />
         </div>
       </section>
+      {openCartDrawer && (
+        <CartDrawer
+          openCartDrawer={openCartDrawer}
+          setOpenCartDrawer={setOpenCartDrawer}
+        />
+      )}
+      {openWishlistDrawer && (
+        <WishlistDrawer
+          openWishlistDrawer={openWishlistDrawer}
+          setOpenWishlistDrawer={setOpenWishlistDrawer}
+        />
+      )}
     </header>
   );
 };

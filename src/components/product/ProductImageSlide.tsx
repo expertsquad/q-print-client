@@ -5,29 +5,14 @@ import { IconHeart } from "@tabler/icons-react";
 import { IconEye } from "@tabler/icons-react";
 import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
-import { addToFavourite } from "@/redux/features/wishlist/favouriteSlice";
-import Link from "next/link";
 import QuickProductViewModal from "./QuickProductViewModal";
-
-interface IProductImageSlideProps {
-  product: IProduct;
-}
-
-interface IProduct {
-  images: string[];
-  name: string;
-  brandName: string;
-  price: number;
-  discount: number;
-  rating: number;
-}
+import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 
 const ProductImageSlide = ({ product, defaultVariant }: any) => {
-  // console.log(product, "product image slide");
-
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
@@ -37,7 +22,7 @@ const ProductImageSlide = ({ product, defaultVariant }: any) => {
         setCurrentSlide(
           (prevSlide) => (prevSlide + 1) % product.productPhotos.length
         );
-      }, 3000);
+      }, 1000);
     };
 
     const stopSlideshow = () => {
@@ -63,11 +48,19 @@ const ProductImageSlide = ({ product, defaultVariant }: any) => {
     setCurrentSlide(index);
   };
 
-  const dispatch = useDispatch();
   // <== Add To Favourite ==>
   const handleAddToFavourite = (event: React.MouseEvent, product: any) => {
     event.stopPropagation();
-    dispatch(addToFavourite(product));
+    dispatch(
+      addToFavourite({
+        ...product,
+        price: product?.variants[0].discountedPrice
+          ? product?.variants[0].discountedPrice
+          : product?.variants[0].sellingPrice,
+        orderQuantity: 1,
+        inStock: product?.variants[0].inStock,
+      })
+    );
   };
 
   // <== Handle Quick Product View ==>
@@ -109,10 +102,11 @@ const ProductImageSlide = ({ product, defaultVariant }: any) => {
             <div className="relative shrink-0 w-[120px] h-[120px] md:h-[130px] md:w-[150px] mx-auto">
               <Image
                 alt="Brand Carousel"
-                layout="fill"
+                fill
+                objectFit="cover"
                 src={`${imageUrl}${productImg}`}
                 sizes="(max-width: 768px) 30vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-contain  w-full h-full top-0 left-0"
+                className="w-full h-full top-0 left-0 object-cover"
               />
             </div>
             <div className=" ">

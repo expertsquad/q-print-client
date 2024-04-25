@@ -28,14 +28,40 @@ export const authApi = baseApi.injectEndpoints({
       }),
       providesTags: ["user"],
     }),
-    // <== Get User logged data ==>
+    // <== Get User logged address ==>
     getUserAddress: build.query({
       query: (data) => ({
-        url: `user-address/me?${data}`,
+        url: `/user-address/me?${data}`,
         method: "GET",
-        data,
       }),
       providesTags: ["address"],
+    }),
+    // <== Change Password ==>
+    changePassword: build.mutation({
+      query: (data) => ({
+        url: "/user/change-password",
+        method: "PUT",
+        data: data,
+      }),
+      invalidatesTags: ["user"],
+    }),
+    // <== Shipping address update ==>
+    addShippingAddress: build.mutation({
+      query: (data) => ({
+        url: `/user-address/${data.id}`,
+        method: "PUT",
+        data: data.data,
+      }),
+      invalidatesTags: ["shipping-address"],
+    }),
+    // <== Add new user address ==>
+    addNewUserAddress: build.mutation({
+      query: (data) => ({
+        url: "/user-address/add",
+        method: "POST",
+        data,
+      }),
+      invalidatesTags: ["address"],
     }),
   }),
 });
@@ -45,4 +71,7 @@ export const {
   useUserSignUpMutation,
   useGetUserQuery,
   useGetUserAddressQuery,
+  useChangePasswordMutation,
+  useAddShippingAddressMutation,
+  useAddNewUserAddressMutation,
 } = authApi;

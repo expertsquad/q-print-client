@@ -1,8 +1,28 @@
 import UploadIcon from "@/assets/svgIcons/UploadIcon";
 import { imageUrl } from "@/constants/imageUrl";
 import Image from "next/image";
+import CustomInput from "../shared/CustomInput";
+import { useState } from "react";
 
 const PersonalInformation = ({ personalInformation }: any) => {
+  const [imageSrc, setImageSrc] = useState(
+    `${imageUrl}${personalInformation?.profilePhoto}`
+  );
+
+  // <== Image upload fn ==>
+  const handleImageUpload = (event: any) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (typeof reader.result === "string") {
+          setImageSrc(reader.result);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <section className=" w-full">
       <h1 className="text-black text-xl mb-5 md:mb-8 lg:mb-8  ">
@@ -10,75 +30,59 @@ const PersonalInformation = ({ personalInformation }: any) => {
       </h1>
       <div className="flex lg:flex-row flex-col-reverse items-center lg:justify-between gap-12">
         <form className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 lg:w-9/12 w-full">
-          <div className="w-full flex flex-col gap-2.5">
-            <label htmlFor="first_name" className="text-base text-[#1a1a1ab3]">
-              First name
-            </label>
-            <input
-              type="text"
-              name="first_name"
-              id="first_name"
-              className="border outline-none block w-full py-3.5 rounded-md px-4"
-              defaultValue={personalInformation?.firstName}
-              required
-            />
-          </div>
-          <div className="w-full flex flex-col gap-2.5">
-            <label htmlFor="last_name" className="text-base text-[#1a1a1ab3]">
-              Last name
-            </label>
-            <input
-              type="text"
-              name="last_name"
-              id="last_name"
-              className="border outline-none block w-full py-3.5 rounded-md px-4"
-              defaultValue={personalInformation?.lastName}
-              required
-            />
-          </div>
-          <div className="w-full flex flex-col gap-2.5">
-            <label htmlFor="user_email" className="text-base text-[#1a1a1ab3]">
-              Email
-            </label>
-            <input
-              type="email"
-              name="user_email"
-              id="user_email"
-              className="border outline-none block w-full py-3.5 rounded-md px-4 text-gray-300"
-              defaultValue={personalInformation?.email}
-              readOnly
-            />
-          </div>
-          <div className="w-full flex flex-col gap-2.5">
-            <label htmlFor="user_phone" className="text-base text-[#1a1a1ab3]">
-              Phone Number
-            </label>
-            <input
-              type="number"
-              name="user_phone"
-              id="user_phone"
-              className="border outline-none block w-full py-3.5 rounded-md px-4"
-              defaultValue={personalInformation?.phoneNumber}
-              required
-            />
-          </div>
+          <CustomInput
+            label="First Name"
+            type="text"
+            name="firstName"
+            value={personalInformation?.fullName}
+            placeholder=""
+          />
+
+          <CustomInput
+            type="email"
+            label="Email"
+            value={personalInformation?.email}
+            name="email"
+            placeholder=""
+            readonly
+          />
+
+          <CustomInput
+            label="Phone Number"
+            type="number"
+            name="phoneNumber"
+            placeholder=""
+            value={personalInformation?.phoneNumber}
+            inputStyle="text-black"
+          />
         </form>
-        <div className="max-w-xs mx-auto">
-          <div className="group relative">
-            <input type="file" id="profileImage" className="hidden" />
+        <div className="max-w-xs mx-auto ">
+          <div className="group relative ">
+            <input
+              type="file"
+              id="profileImage"
+              className="hidden"
+              onChange={handleImageUpload}
+            />
             <label
               htmlFor="profileImage"
-              className="block w-40 h-40 group-hover:bg-gray-200 rounded-full overflow-hidden shadow-md text-center cursor-pointer transition duration-300 ease-in-out relative"
+              className="block w-40 h-40 group-hover:bg-gray-200 rounded-full overflow-hidden text-center cursor-pointer transition duration-300 ease-in-out relative shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)]"
             >
-              <Image
-                src={`${imageUrl}${personalInformation?.profilePhoto}`}
-                alt="User Profile"
-                width={50}
-                height={50}
-                className="w-full h-full object-cover relative"
-              />
+              <div className="">
+                <Image
+                  src={imageSrc}
+                  alt=""
+                  width={50}
+                  height={50}
+                  className="w-full h-full object-cover relative"
+                />
+              </div>
 
-              <span className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-3.5 z-50 bg-black bg-opacity-20">
+              <span
+                className={`absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-3.5 z-50 bg-black bg-opacity-20 ${
+                  imageSrc ? "hidden" : "block"
+                }`}
+              >
                 <UploadIcon />
                 <small className="text-white text-sm font-medium">
                   Upload Image

@@ -2,45 +2,28 @@
 import GetDiscountRange from "@/components/ProductView/GetDiscountRange";
 import ReviewRating from "@/components/shared/ReviewRating";
 import { imageUrl } from "@/constants/imageUrl";
+import { useAppSelector } from "@/redux/hook";
+import { IconCheck, IconMinus, IconPlus, IconX } from "@tabler/icons-react";
+import Image from "next/image";
+import React from "react";
+import { useDispatch } from "react-redux";
+import noproductFound from "@/assets/empty-card-photo.svg";
 import {
   addToCart,
   removeFromCart,
   removeOneFromCart,
-} from "@/redux/features/cart/cartSlice";
-import { useAppSelector } from "@/redux/hook";
-import {
-  IconArrowLeft,
-  IconArrowRight,
-  IconCheck,
-  IconMinus,
-  IconPlus,
-  IconX,
-} from "@tabler/icons-react";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { useDispatch } from "react-redux";
-import noproductFound from "@/assets/empty-card-photo.svg";
+} from "@/redux/features/cart/productCartSlice";
+import CartViewTotalCard from "@/components/cart-view/CartViewTotalCard";
+import ContinueShopping from "@/components/cart-view/ContinueShopping";
 
 const CartView = () => {
-  const { products } = useAppSelector((state) => state.cart);
+  const { products, subTotal } = useAppSelector(
+    (state) => state.productCartSlice
+  );
   const dispatch = useDispatch();
 
-  // <== Calculate Subtotal, Total , and Shipping || Discount ==>
-  const subTotal = products?.reduce((total: number, product: any) => {
-    return total + product?.defaultVariant?.discountedPrice * product?.quantity;
-  }, 0);
-  const discountPrice = products?.reduce((total: number, product: any) => {
-    return (
-      total +
-      product?.defaultVariant?.sellingPrice -
-      product?.defaultVariant?.discountedPrice
-    );
-  }, 0);
-
   const shippingCharge = 80;
-  // const discountPrice = 100;
-  // const calculateTotal = subTotal + shippingCharge;
+  const discountPrice = 100;
   const calculateTotalWithDiscount = subTotal + shippingCharge - discountPrice;
 
   return (
@@ -53,16 +36,16 @@ const CartView = () => {
           {/* --Product data, Price range, cart total container-- */}
           <div className="flex flex-col md:flex-row md:justify-between md:gap-5">
             {/* --Product data & Cart total container-- */}
-            <div>
+            <div className="w-full">
               {/* -Product data- */}
-              <div className=" border rounded-lg ">
+              <div className="border rounded-lg ">
                 {products?.map((product: any) => (
                   <div
                     key={product._id}
-                    className="flex md:view-cart-product-data border-b pt-5 md:py-5 transition duration-300 ease-in-out hover:bg-gray-100 px-2 md:px-3"
+                    className="flex items-center justify-between w-full md:view-cart-product-data border-b pt-5 md:py-5 transition duration-300 ease-in-out hover:bg-gray-100 px-2 md:px-3"
                   >
                     {/* ==Image, Text and Mobile V== */}
-                    <div className="main-div flex gap-5">
+                    <div className="flex gap-5 w-full">
                       <div className="flex items-center justify-center max-h-16 w-full max-w-16 p-2 border rounded-md">
                         <Image
                           src={`${imageUrl}${product?.productPhotos?.[1]}`}
@@ -73,7 +56,7 @@ const CartView = () => {
                         />
                       </div>
                       {/* -Title rating and mobile v-- */}
-                      <div>
+                      <div className="w-full">
                         <div className="flex items-center justify-between w-full">
                           <h3 className="line-clamp-1 md:line-clamp-2 text-[15px] font-medium">
                             {product?.productName}
@@ -87,8 +70,8 @@ const CartView = () => {
                           </button>
                         </div>
 
-                        <ReviewRating rating={3} />
-                        <div className="flex justify-between md:hidden mt-2">
+                        <ReviewRating rating={product?.averageRating} />
+                        <div className="flex justify-between gap-3 md:hidden mt-2 w-full">
                           <div className="flex items-center gap-2 mb-4">
                             <button
                               onClick={() =>
@@ -99,7 +82,7 @@ const CartView = () => {
                               {""}
                               <IconMinus width={14} height={14} />
                             </button>
-                            <span>{product?.quantity}</span>
+                            <span>{product?.orderQuantity}</span>
                             <button
                               onClick={() => dispatch(addToCart(product))}
                               className="border p-1 rounded-full"
@@ -107,12 +90,14 @@ const CartView = () => {
                               {""}
                               <IconPlus width={14} height={14} />
                             </button>
-                            <span className="text-[12px]">x</span>
+                            <IconX stroke={2} width={14} height={14} />
                             <span>
-                              {product?.defaultVariant?.discountedPrice} QAR
+                              {product?.price} <small>QAR</small>
                             </span>
                           </div>
-                          <span className="font-bold ">${subTotal}</span>
+                          <span className="font-bold main-text-color">
+                            ${subTotal}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -120,7 +105,7 @@ const CartView = () => {
                     <div className="hidden md:block md:ml-3">
                       <span className="text-[15px]">Unite Price</span>
                       <span className="main-text-color flex items-center gap-1 text-[14px]">
-                        {product?.defaultVariant?.discountedPrice}{" "}
+                        {product?.price}
                         <small>QAR</small>
                       </span>
                     </div>
@@ -136,7 +121,9 @@ const CartView = () => {
                           />
                           {""}
                         </button>
-                        <span className="text-[15px]">{product?.quantity}</span>
+                        <span className="text-[15px]">
+                          {product?.orderQuantity}
+                        </span>
                         <button
                           onClick={() => dispatch(addToCart(product))}
                           className="border border-black border-opacity-20 rounded-full p-1"
@@ -150,9 +137,7 @@ const CartView = () => {
                     <div className="hidden md:block">
                       <p className="text-[15px]">Subtotal Price</p>
                       <span className="main-text-color font-semibold text-[15px]">
-                        {product?.defaultVariant?.discountedPrice *
-                          product?.quantity}{" "}
-                        QAR
+                        {product?.price * product?.orderQuantity} QAR
                       </span>
                     </div>
                     {/* ==Delete Icon== */}
@@ -180,8 +165,8 @@ const CartView = () => {
                       reach <b className="font-medium">FREE SHIPPING!</b>
                     </p>
                   ) : (
-                    <p className=" flex gap-1 items-center justify-start text-[16px]">
-                      <span className="border rounded-full p-1 text-fuchsia-500 border-fuchsia-500">
+                    <p className="flex gap-1 items-center justify-start text-[16px]">
+                      <span className="border rounded-full p-0.5 text-fuchsia-500 border-fuchsia-500">
                         <IconCheck width={15} height={15} />
                       </span>
                       Congratulations! You’ve got free shipping.
@@ -190,56 +175,13 @@ const CartView = () => {
                 </div>
               </div>
             </div>
-            {/* --Cart Total-- */}
-            <div className="w-full h-full md:max-w-[438px] border rounded-lg">
-              <h5 className="text-[16px] md:text-[18px] font-medium pl-6 py-5 border-b">
-                Cart Total
-              </h5>
-              <ul className="px-5 md:px-7">
-                {[
-                  { label: "Sub Total", amount: subTotal },
-                  { label: "Shipping", amount: shippingCharge },
-                  {
-                    label: "Discount",
-                    amount: -discountPrice,
-                    borderBottom: true,
-                  },
-                ].map(({ label, amount, borderBottom }, index, array) => (
-                  <li
-                    key={index}
-                    className={`flex justify-between mt-5 text-[#5F6C72] ${
-                      borderBottom ? "border-b" : ""
-                    } ${
-                      index === array?.length - 1 && amount === -15
-                        ? "main-text-color"
-                        : ""
-                    }`}
-                  >
-                    {label}{" "}
-                    <span>
-                      {amount} <small>QAR</small>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex justify-between px-5 md:px-7 mt-5 mb-2">
-                <h6 className="font-medium">Total</h6>
-                <span className="text-[18px] font-medium main-text-color">
-                  {calculateTotalWithDiscount} <small>QAR</small>
-                </span>
-              </div>
-              <div className="flex items-center justify-center px-5 mb-5">
-                <Link
-                  href="/your-information"
-                  className="flex items-center justify-center main-bg-color w-full py-2 text-white rounded-lg"
-                >
-                  <span>Proceed To Checkout</span>
-                  <span>
-                    <IconArrowRight />
-                  </span>
-                </Link>
-              </div>
-            </div>
+            {/* == Calculate Cart Total == */}
+            <CartViewTotalCard
+              subTotal={subTotal}
+              shippingCharge={shippingCharge}
+              discountPrice={discountPrice}
+              calculateTotalWithDiscount={calculateTotalWithDiscount}
+            />
           </div>
         </>
       ) : (
@@ -253,22 +195,8 @@ const CartView = () => {
           <p className="">No product added</p>
         </div>
       )}
-      {/* --Continue Shopping Link-- */}
-      <div
-        className={`hidden md:flex my-12 ${
-          !products.length ? "flex items-center justify-center mx-auto" : ""
-        }`}
-      >
-        <Link
-          href="/"
-          className="items-center p-2 border border-black border-opacity-15 rounded-lg inline-flex gap-1"
-        >
-          <span>
-            <IconArrowLeft />
-          </span>
-          <span>Continue Shopping</span>
-        </Link>
-      </div>
+      {/* == Continue Shopping ==      */}
+      <ContinueShopping products={products} />
     </div>
   );
 };
