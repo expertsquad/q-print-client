@@ -84,9 +84,19 @@ const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
                           </button>
                         </div>
 
-                        <p className="text-black text-opacity-50 text-[12px]">
-                          {product?.brand?.brandName}
-                        </p>
+                        {/* --BrandName-- */}
+                        <div className="my-1 flex items-center gap-2">
+                          <p className="text-black-opacity-80 text-xs">
+                            {product?.brand?.brandName}
+                          </p>
+                          <span
+                            className="w-3 h-3 rounded-full"
+                            style={{ backgroundColor: product?.variantName }}
+                          ></span>
+                          <span className="text-xs">
+                            {product?.variantName && product?.variantName}
+                          </span>
+                        </div>
                         {/* == Stock summary & Add to cart button == */}
                         <div className="flex items-center justify-between">
                           <div className="w-full whitespace-nowrap">
