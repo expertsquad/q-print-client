@@ -34,8 +34,6 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
     (state) => state.productCartSlice
   );
 
-  console.log(products, "Form Cart");
-
   const shippingCharge = 80;
   const calculateTotal = subTotal + shippingCharge;
   return (

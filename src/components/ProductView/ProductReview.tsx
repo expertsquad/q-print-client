@@ -1,8 +1,6 @@
 "use client";
-import { productViewCustomerReview } from "@/constants";
 import { imageUrl } from "@/constants/imageUrl";
 import { useReviewByIdQuery } from "@/redux/features/review/reviewApi";
-import { IconStar } from "@tabler/icons-react";
 import Image from "next/image";
 import StarRating from "../product/StarRating";
 import { formatDateShorting } from "@/constants/formatDate";
@@ -31,17 +29,18 @@ interface ReviewProps {
   reply: string;
 }
 
-const ProductReview = ({ productId }: string | any) => {
+const ProductReview = ({ productId, averageRating }: string | any) => {
   const { data } = useReviewByIdQuery(productId);
   const reviewData = data?.data;
+  console.log(reviewData, averageRating, "hello");
 
   // <== Calculating average rating ==>
   const totalRating = reviewData?.reduce(
     (acc: number, review: ReviewProps) => acc + review?.rating,
     0
   );
-  const averageRating = totalRating / reviewData?.length;
-
+  // const averageRating = totalRating / reviewData?.length;
+  // console.log(Math.round(averageRating));
   return (
     <section className="grid grid-cols-1 md:grid-cols-2">
       {/* ==Customer Review== */}
@@ -97,7 +96,7 @@ const ProductReview = ({ productId }: string | any) => {
                 </div>
               </div>
             </div>
-            <p className="text-xs md:text-sm text-black opacity-60 mb-5 italic">
+            <p className="text-xs md:text-sm text-black-opacity-70 mb-5 italic">
               {review?.comment}
             </p>
           </div>
@@ -106,23 +105,48 @@ const ProductReview = ({ productId }: string | any) => {
       {/* == Summary Charts == */}
       <div className="order-2 md:order-4 mb-7 ml-0 md:ml-5">
         <div className="w-full md:max-w-[290px] bg-fuchsia-100 rounded-lg p-8 text-center mb-11">
-          <h6 className="text-4xl md:text-[56px]">{averageRating}</h6>
+          <h6 className="text-4xl md:text-[56px]">
+            {averageRating ? averageRating : 0}
+          </h6>
           <div className="my-3 flex items-center justify-center">
-            {/* <StarRating rating={roundedAverage} /> */}
-            Average rating er maire bnp
+            {/* <StarRating rating={averageRating} /> */}
           </div>
           <p>Customer Rating ({reviewData?.length})</p>
         </div>
 
         {/* ==Rating & Percentage== */}
-        <div className="">
+        {/* <div className="">
           {reviewData?.map((review: ReviewProps, index: number) => (
             <div key={index} className="flex items-center justify-between">
               <div key={index} className="flex flex-col">
-                <StarRating rating={review?.rating} />
+                <StarRating rating={5 - review?.rating} />
+              </div>
+              <div>
+                <div className="bg-gray-300 rounded w-full h-1 ml-3">
+                  <span
+                    style={{ width: `${100}%` }}
+                    className="h-full rounded main-bg-color w-full"
+                  ></span>
+                </div>
               </div>
             </div>
           ))}
+        </div> */}
+        <div className="flex items-center">
+          <div className="flex flex-col gap-y-3">
+            <StarRating rating={5} />
+            <StarRating rating={4} />
+            <StarRating rating={3} />
+            <StarRating rating={2} />
+            <StarRating rating={1} />
+          </div>
+          <div className="flex flex-col">
+            <span>1</span>
+            <span>1</span>
+            <span>1</span>
+            <span>1</span>
+            <span>1</span>
+          </div>
         </div>
       </div>
     </section>

@@ -4,6 +4,7 @@ import ProductReview from "./ProductReview";
 import ProductViewSpecMenus from "./ProductViewSpecMenus";
 
 const SpecificationDetails = ({ specification }: any) => {
+  console.log(specification, "specification");
   return (
     <section>
       <ProductViewSpecMenus />
@@ -50,7 +51,10 @@ const SpecificationDetails = ({ specification }: any) => {
           />
         </div>
         <div>
-          <ProductReview productId={specification?._id} />
+          <ProductReview
+            productId={specification?._id}
+            averageRating={specification?.averageRating}
+          />
         </div>
       </div>
     </section>

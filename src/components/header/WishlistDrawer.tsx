@@ -13,7 +13,6 @@ import emptyCart from "@/assets/empty-card-photo.svg";
 const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
   const dispatch = useAppDispatch();
   const { products } = useAppSelector((state) => state.favouriteCartSlice);
-  console.log(products, "From wishlist");
 
   const handleCloseWishlist = () => {
     setOpenWishlistDrawer(false);

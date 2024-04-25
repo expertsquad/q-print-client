@@ -61,17 +61,18 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
           height={50}
           alt="Adidas Brand"
         />
-        <h6 className="text-[16px] text-black opacity-60 mr-5 ml-1">
+        <h6 className="text-[16px] text-black-opacity-60 mr-5 ml-1">
           {productDesc?.brand?.brandName}
         </h6>
         <IconStar
           fill="currentColor"
-          width={18}
-          height={18}
+          width={20}
+          height={20}
           className="text-[#FF8A00] mr-1"
         />
-        <p className="text-black opacity-50 text-[16px]">
-          4.8 <span>(14 people)</span>
+        <p className="text-black-opacity-50 text-[16px]">
+          {productDesc?.averageRating}{" "}
+          <span>({productDesc?.totalReview} people)</span>
         </p>
       </div>
       <div className="flex items-center">
