@@ -118,11 +118,9 @@ const ProductReview = ({ productId }: string | any) => {
         <div className="">
           {reviewData?.map((review: ReviewProps, index: number) => (
             <div key={index} className="flex items-center justify-between">
-              {[...Array(5)]?.map((index: number) => (
-                <div key={index} className="flex flex-col">
-                  <StarRating rating={2} />
-                </div>
-              ))}
+              <div key={index} className="flex flex-col">
+                <StarRating rating={review?.rating} />
+              </div>
             </div>
           ))}
         </div>
