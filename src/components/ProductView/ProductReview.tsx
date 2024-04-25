@@ -36,21 +36,12 @@ const ProductReview = ({ productId }: string | any) => {
   const reviewData = data?.data;
 
   // <== Calculating average rating ==>
-  // const totalRating = data?.data?.reduce(
-  //   (acc: number, review: ReviewProps) => acc + review.rating,
-  //   0
-  // );
-  // const averageRating = totalRating / data.length;
+  const totalRating = reviewData?.reduce(
+    (acc: number, review: ReviewProps) => acc + review?.rating,
+    0
+  );
+  const averageRating = totalRating / reviewData?.length;
 
-  // console.log(averageRating, "Average");
-
-  const ratingsData = [
-    { value: 5.0, percentage: 86, totalCount: 94532 },
-    { value: 4.0, percentage: 33, totalCount: 6177 },
-    { value: 3.0, percentage: 16, totalCount: 714 },
-    { value: 2.0, percentage: 8, totalCount: 152 },
-    { value: 1.0, percentage: 6, totalCount: 643 },
-  ];
   return (
     <section className="grid grid-cols-1 md:grid-cols-2">
       {/* ==Customer Review== */}
@@ -69,12 +60,12 @@ const ProductReview = ({ productId }: string | any) => {
           className="select w-full md:max-w-40 border border-gray-200  outline-none focus:border-none"
           defaultValue="Top Reviews"
         >
-          {""}
-          <option disabled defaultValue="" hidden>
-            Top Reviews
-          </option>
-          <option>Strapi</option>
-          <option>Ghost</option>
+          <option value="">Top Reviews</option>
+          <option value="">Newest Review</option>
+          <option>4 Star Rating</option>
+          <option>3 Star Rating</option>
+          <option>2 Star Rating</option>
+          <option>1 Star Rating</option>
         </select>
       </div>
       {/* ==Reviewer Info== */}
@@ -102,71 +93,36 @@ const ProductReview = ({ productId }: string | any) => {
                   </span>
                 </div>
                 <div className="flex">
-                  <StarRating rating={review?.rating} />
+                  <StarRating rating={Math.round(review?.rating)} />
                 </div>
               </div>
             </div>
             <p className="text-xs md:text-sm text-black opacity-60 mb-5 italic">
-              {review.comment}
+              {review?.comment}
             </p>
           </div>
         ))}
       </div>
-      {/* ==Charts== */}
+      {/* == Summary Charts == */}
       <div className="order-2 md:order-4 mb-7 ml-0 md:ml-5">
         <div className="w-full md:max-w-[290px] bg-fuchsia-100 rounded-lg p-8 text-center mb-11">
-          <h6 className="text-4xl md:text-[56px]">4.7</h6>
-          <div className="flex items-center justify-center my-3">
-            {[...Array(5)].map((_, index) => (
-              <IconStar
-                width={16}
-                height={16}
-                fill="currentColor"
-                className="text-[#E73C17]"
-                key={index}
-              />
-            ))}
+          <h6 className="text-4xl md:text-[56px]">{averageRating}</h6>
+          <div className="my-3 flex items-center justify-center">
+            {/* <StarRating rating={roundedAverage} /> */}
+            Average rating er maire bnp
           </div>
-          <p>Customer Rating (934,516)</p>
+          <p>Customer Rating ({reviewData?.length})</p>
         </div>
 
         {/* ==Rating & Percentage== */}
         <div className="">
-          {ratingsData.map((rating, index) => (
+          {reviewData?.map((review: ReviewProps, index: number) => (
             <div key={index} className="flex items-center justify-between">
-              {[...Array(5)].map((_, starIndex) => (
-                <span
-                  key={starIndex}
-                  className={`
-                  ${
-                    starIndex < rating.value
-                      ? "text-[#E73C17]"
-                      : "text-[#ccc] bg-transparent"
-                  }
-                `}
-                >
-                  <IconStar
-                    fill={starIndex < rating.value ? "#E73C17" : "currentColor"}
-                    className="w-3.5 h-3.5 md:w-4.5 md:h-4.5"
-                  />
-                </span>
-              ))}
-
-              <div className="bg-gray-300 rounded w-full h-1 ml-3">
-                <div
-                  style={{ width: `${rating.percentage}%` }}
-                  className="h-full rounded main-bg-color w-full"
-                >
-                  {""}
+              {[...Array(5)]?.map((index: number) => (
+                <div key={index} className="flex flex-col">
+                  <StarRating rating={2} />
                 </div>
-              </div>
-              <div className="flex items-center">
-                {" "}
-                <p className="text-base text-[#333] font-bold ml-3">
-                  {rating.percentage}%
-                </p>
-                <span className="hidden md:block">({rating.totalCount})</span>
-              </div>
+              ))}
             </div>
           ))}
         </div>

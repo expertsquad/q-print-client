@@ -12,9 +12,9 @@ const ProductSearchModal = ({ data, setSearchValue }: any) => {
 
   const { data: products, isLoading } = useProductsBySearchQuery(`${data}`);
 
-  const defaultVariants = products?.data.map((product: any) =>
-    product.variants.find((variant: any) => variant?.isDefault)
-  );
+  // const defaultVariants = products?.data.map((product: any) =>
+  //   product.variants.find((variant: any) => variant?.isDefault)
+  // );
 
   const handleCloseModal = () => {
     setSearchValue("");
@@ -56,18 +56,15 @@ const ProductSearchModal = ({ data, setSearchValue }: any) => {
                 <div className="flex items-center gap-3">
                   <span>{product?.brand?.brandName}</span>
                   <span className="block md:hidden main-text-color">
-                    {defaultVariants?.sellingPrice}
+                    {product?.variants[0]?.sellingPrice}
+                    <small className="ml-1">QAR</small>
                   </span>
                 </div>
               </div>
-              <div>
-                {/* <span className="font-bold main-text-color md:block hidden">
-                  {defaultVariants?.sellingPrice} <small>QAR</small>
-                </span> */}
-
-                {defaultVariants && (
+              <div className="hidden md:block">
+                {product?.variants[0]?.sellingPrice && (
                   <span className="font-bold main-text-color">
-                    {defaultVariants?.sellingPrice} <small>QAR</small>
+                    {product?.variants[0]?.sellingPrice} <small>QAR</small>
                   </span>
                 )}
               </div>
