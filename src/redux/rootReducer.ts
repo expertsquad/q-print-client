@@ -13,6 +13,7 @@ import productCartSlice from "./features/cart/productCartSlice";
 import favouriteCartSlice from "./features/wishlist/favouriteCartSlice";
 import quickOrder from "./features/quick-order/quickOrder";
 import filterProductReview from "./features/review/filterProductReview";
+import multipleOrder from "./features/quick-order/multipleQuickOrder";
 
 export const reducer = {
   [baseApi.reducerPath]: baseApi.reducer,
@@ -29,5 +30,6 @@ export const reducer = {
   productCartSlice: productCartSlice,
   favouriteCartSlice: favouriteCartSlice,
   singleQuickOrder: quickOrder,
+  multipleQuickOrder: multipleOrder,
   filteredProductByReview: filterProductReview,
 };

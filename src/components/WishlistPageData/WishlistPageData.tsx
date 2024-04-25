@@ -86,9 +86,18 @@ const WishlistPageData = ({ products }: any) => {
                           <IconTrashX stroke={2} width={20} height={20} />
                         </button>
                       </div>
-                      <p className="text-xs md:text-sm">
-                        {product?.brand?.brandName}
-                      </p>
+                      <div className="my-1 flex items-center gap-2">
+                        <p className="text-black-opacity-80 text-xs">
+                          {product?.brand?.brandName}
+                        </p>
+                        <span
+                          className="w-3 h-3 rounded-full"
+                          style={{ backgroundColor: product?.variantName }}
+                        ></span>
+                        <span className="text-xs">
+                          {product?.variantName && product?.variantName}
+                        </span>
+                      </div>
                       <div className="flex items-center justify-between w-full md:hidden">
                         <div className="whitespace-nowrap w-full">
                           <span className="main-text-color pr-2">

@@ -7,9 +7,11 @@ import { IconX } from "@tabler/icons-react";
 import { formatDate } from "@/constants/formatDate";
 import { OrderHistoryProduct } from "@/types/orderTrackPage";
 
-const OrderHistoryOrderPlacedLayout = () => {
+const OrderHistoryOrderPlacedLayout = ({ id }: string | any) => {
   // <== Get data from order history query ==>
-  const { data } = useGetOnlineOrderQuery("orderStatus.status=Order placed");
+  const { data } = useGetOnlineOrderQuery(
+    `buyer.userId=${id}&orderStatus.status=Order placed`
+  );
 
   return (
     <div>

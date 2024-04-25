@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import GlobalModal from "../UI/modal/GlobalModal";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
 import {
@@ -13,26 +13,55 @@ import CustomInput from "../shared/CustomInput";
 import Image from "next/image";
 import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
-import {
-  decreaseFavQuantity,
-  increaseFavQuantity,
-} from "@/redux/features/wishlist/favouriteCartSlice";
 import TotalAndSubtTotalCard from "./TotalAndSubtTotalCard";
 import {
   addToCart,
   removeFromCart,
   removeOneFromCart,
 } from "@/redux/features/cart/productCartSlice";
+import { useAppSelector } from "@/redux/hook";
+import { useQuickOrderMutation } from "@/redux/features/quick-order/quickOrderApi";
+import { setMultipleQuickOrder } from "@/redux/features/quick-order/multipleQuickOrder";
 
 const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
+  const data = useAppSelector((state) => state.multipleQuickOrder);
+
+  const [quickOrder] = useQuickOrderMutation();
 
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
+  // set products data to state
+  useLayoutEffect(() => {
+    dispatch(setMultipleQuickOrder({ orderItems: products }));
+  }, [products, dispatch]);
+
   const shippingFee = 50;
+
+  // handle submit
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    const value = {
+      orderItems: data?.orderItems,
+      buyer: {
+        fullName: data?.fullName,
+        phoneNumber: data?.phoneNumber,
+        address: data?.address,
+      },
+    };
+
+    console.log(value, "My value");
+
+    try {
+      const res = await quickOrder(value);
+      console.log(res, "from res");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -121,7 +150,10 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
               </div>
               {/* ==shipping, subtotal, and total== */}
               <div>
-                <TotalAndSubtTotalCard subTotal={0} shippingFee={shippingFee} />
+                <TotalAndSubtTotalCard
+                  subTotal={subTotal}
+                  shippingFee={shippingFee}
+                />
               </div>
             </div>
             {/* == Buyer information container == */}
@@ -132,24 +164,48 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
               <p className="text-black text-opacity-50 text-[16px] mb-7 md:mb-9">
                 Enter Your shipping address
               </p>
-              <form action="" className="">
+              <form onSubmit={handleSubmit} action="" className="">
                 <CustomInput
+                  name="fullName"
                   placeholder="Type Name"
                   label="Full Name"
                   inputStyle="rounded-md "
                   customClassName="mb-3"
+                  onChange={(e) =>
+                    dispatch(
+                      setMultipleQuickOrder({
+                        [e.target.name]: e.target.value,
+                      })
+                    )
+                  }
                 />
                 <CustomInput
+                  name="phoneNumber"
                   placeholder="+974"
                   label="Phone Number"
                   inputStyle="rounded-md"
                   customClassName="mb-3"
+                  onChange={(e) =>
+                    dispatch(
+                      setMultipleQuickOrder({
+                        [e.target.name]: e.target.value,
+                      })
+                    )
+                  }
                 />
                 <CustomInput
+                  name="address"
                   placeholder="Delivey Address"
                   label="Address"
                   inputStyle="rounded-md"
                   customClassName="mb-3"
+                  onChange={(e) =>
+                    dispatch(
+                      setMultipleQuickOrder({
+                        [e.target.name]: e.target.value,
+                      })
+                    )
+                  }
                 />
 
                 <button
@@ -159,7 +215,7 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
                   <span>
                     <IconBolt fill="#fff" stroke={2} width={22} height={22} />
                   </span>
-                  CONFIRM ORDER - {0} QAR
+                  CONFIRM ORDER - {subTotal + shippingFee} QAR
                 </button>
               </form>
             </div>

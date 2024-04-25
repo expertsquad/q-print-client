@@ -8,10 +8,13 @@ import ProductReviewModal from "./ProductReviewModal";
 import { formatDate } from "@/constants/formatDate";
 import { IconX } from "@tabler/icons-react";
 
-const OrderHistoryDeliveredLayout = () => {
+const OrderHistoryDeliveredLayout = ({ id }: string | any) => {
   // <== Get data from order history query ==>
-  const { data } = useGetOnlineOrderQuery("orderStatus.status=Delivered");
+  const { data } = useGetOnlineOrderQuery(
+    `buyer.userId=660a858ee325971a9c3c08a7&orderStatus.status=Delivered`
+  );
 
+  console.log(data?.data, "from delivery");
   return (
     <div>
       {data?.data?.map((deliveredData: any) => (

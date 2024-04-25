@@ -19,6 +19,7 @@ import {
 } from "@/redux/features/cart/productCartSlice";
 import { useState } from "react";
 import SingleQuickOrder from "../quick-order/SingleQuickOrder";
+import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 
 const ProductViewDescEtc = ({ productDesc }: any) => {
   const dispatch = useDispatch();
@@ -42,6 +43,23 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         orderQuantity: 1,
         variantName: selectedVariant?.variantName,
         productId: product?._id,
+      })
+    );
+  };
+
+  // <== Handle Add Product In Favourite ==>
+  const handleAddToFavourite = (event: React.MouseEvent, product: any) => {
+    event.stopPropagation();
+    dispatch(
+      addToFavourite({
+        ...product,
+        ...product?.variants[0],
+        price: selectedVariant?.discountedPrice
+          ? selectedVariant?.discountedPrice
+          : selectedVariant?.sellingPrice,
+        orderQuantity: 1,
+        variantName: selectedVariant?.variantName,
+        inStock: product?.variants[0].inStock,
       })
     );
   };
@@ -85,7 +103,12 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
           </span>
         </p>{" "}
         |
-        <button className="flex items-center gap-2 ml-3 text-black-opacity-60 [font-size:_clamp(13px,5vw,14px)] whitespace-nowrap">
+        <button
+          onClick={(event: React.MouseEvent) =>
+            handleAddToFavourite(event, productDesc)
+          }
+          className="flex items-center gap-2 ml-3 text-black-opacity-60 [font-size:_clamp(13px,5vw,14px)] whitespace-nowrap"
+        >
           <IconHeart className="text-[#E73C17]" />
           Add To Wishlist
         </button>
