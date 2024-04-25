@@ -5,7 +5,6 @@ import { imageUrl } from "@/constants/imageUrl";
 import { IProduct } from "@/types/productsType";
 import { useRouter } from "next/navigation";
 import emptydata from "@/assets/empty-data.png";
-import { IconX } from "@tabler/icons-react";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
 
 const ProductSearchModal = ({ data, setSearchValue }: any) => {

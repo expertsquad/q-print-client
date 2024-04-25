@@ -24,12 +24,15 @@ const ProductView = ({ id }: any) => {
 
   return (
     <section className="px-2">
+      {/* == Product view image & descripton == */}
       <div className="">
         <ProductViewImage product={data?.data} />
       </div>
+      {/* == Company Services == */}
       <div>
         <QServices />
       </div>
+      {/* == Related Products == */}
       <div className="mb-16">
         <div className="flex justify-between items-center mb-5 md:mb-7">
           <h2 className="text-black text-[17px] md:text-2xl font-semibold">
@@ -49,6 +52,7 @@ const ProductView = ({ id }: any) => {
           ))}
         </div>
       </div>
+      {/* == Product specification == */}
       <div>
         <SpecificationDetails specification={productdata} />
       </div>

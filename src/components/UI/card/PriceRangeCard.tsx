@@ -25,7 +25,7 @@ const PriceRangeCard = () => {
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
       dispatch(setPriceRange({ minPrice: minPrice, maxPrice: maxPrice }));
-    }, 300);
+    }, 1000);
 
     return () => clearTimeout(debounceTimer);
   }, [range]);

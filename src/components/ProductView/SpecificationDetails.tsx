@@ -50,7 +50,7 @@ const SpecificationDetails = ({ specification }: any) => {
           />
         </div>
         <div>
-          <ProductReview />
+          <ProductReview productId={specification?._id} />
         </div>
       </div>
     </section>

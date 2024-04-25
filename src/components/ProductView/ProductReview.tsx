@@ -1,11 +1,49 @@
-// Jaker Hossain
-//Product View page
 "use client";
 import { productViewCustomerReview } from "@/constants";
+import { imageUrl } from "@/constants/imageUrl";
+import { useReviewByIdQuery } from "@/redux/features/review/reviewApi";
 import { IconStar } from "@tabler/icons-react";
 import Image from "next/image";
+import StarRating from "../product/StarRating";
+import { formatDateShorting } from "@/constants/formatDate";
 
-const ProductReview = () => {
+interface ReviewProps {
+  _id: string;
+  orderId: string;
+  reviewer: {
+    fullName: string;
+    profilePhoto: string;
+    email: string;
+    userId: string;
+  };
+  product: {
+    productName: string;
+    brandName: string;
+    productPhoto: string;
+    productId: string;
+  };
+  rating: number | any;
+  comment: string;
+  reviewPhotos: string[];
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  reply: string;
+}
+
+const ProductReview = ({ productId }: string | any) => {
+  const { data } = useReviewByIdQuery(productId);
+  const reviewData = data?.data;
+
+  // <== Calculating average rating ==>
+  // const totalRating = data?.data?.reduce(
+  //   (acc: number, review: ReviewProps) => acc + review.rating,
+  //   0
+  // );
+  // const averageRating = totalRating / data.length;
+
+  // console.log(averageRating, "Average");
+
   const ratingsData = [
     { value: 5.0, percentage: 86, totalCount: 94532 },
     { value: 4.0, percentage: 33, totalCount: 6177 },
@@ -41,51 +79,33 @@ const ProductReview = () => {
       </div>
       {/* ==Reviewer Info== */}
       <div className="order-4 md:order-3 ">
-        {productViewCustomerReview.map((review) => (
-          <div className="border-b-[1px] mb-5" key={review.reviewer[0]._id}>
+        {reviewData?.map((review: ReviewProps) => (
+          <div className="border-b-[1px] mb-5" key={review?._id}>
             <div className="flex items-center gap-3 mb-3">
-              <div className="rounded-full h-[45px] w-[45px] overflow-hidden">
+              <div className="h-[45px] w-[45px] relative shrink-0">
                 <Image
-                  src={review.reviewer[0].photo}
+                  src={`${imageUrl}${review?.reviewer?.profilePhoto}`}
                   alt="user Photo"
-                  width={45}
-                  height={45}
-                  className="object-contain"
+                  fill
+                  objectFit="cover"
+                  className="w-full h-full top-0 left-0 object-cover rounded-full"
                 />
               </div>
               <div>
-                <h3 className="text-sm font-semibold">
-                  {review.reviewer[0].name}
-                </h3>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-sm font-semibold">
+                    {review?.reviewer?.fullName}
+                  </h3>
+                  <span className="w-[6px] h-[6px] rounded-full bg-slate-400"></span>
+                  <span className="text-xs">
+                    {formatDateShorting(review?.createdAt)}
+                  </span>
+                </div>
                 <div className="flex">
-                  {[...Array(parseInt(review.rating))].map((_, index) => (
-                    <IconStar
-                      width={16}
-                      height={16}
-                      fill="currentColor"
-                      className="text-[#E73C17]"
-                      key={index}
-                    />
-                  ))}
+                  <StarRating rating={review?.rating} />
                 </div>
               </div>
             </div>
-            {review.photos && review.photos.length > 0 && (
-              <div className="flex gap-3 mb-3">
-                {Array.isArray(review?.photos) &&
-                  review?.photos.map((photo: any, index: number) => (
-                    <div key={index} className="w-[50px] h-[50px]">
-                      <Image
-                        src={photo}
-                        alt="user Photo"
-                        width={50}
-                        height={60}
-                        className="rounded-sm h-full w-full object-cover"
-                      />
-                    </div>
-                  ))}
-              </div>
-            )}
             <p className="text-xs md:text-sm text-black opacity-60 mb-5 italic">
               {review.comment}
             </p>

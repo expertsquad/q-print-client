@@ -31,7 +31,6 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
   };
 
   const { products } = useAppSelector((state) => state.productCartSlice);
-  console.log(products, "Add to cart");
 
   // <== Handle Add Product In Cart ==>
   const handleAddToCart = (event: React.MouseEvent, product: any) => {
