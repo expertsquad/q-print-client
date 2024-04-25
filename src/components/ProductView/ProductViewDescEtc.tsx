@@ -19,7 +19,6 @@ import {
 } from "@/redux/features/cart/productCartSlice";
 import { useState } from "react";
 import SingleQuickOrder from "../quick-order/SingleQuickOrder";
-import { useAppSelector } from "@/redux/hook";
 
 const ProductViewDescEtc = ({ productDesc }: any) => {
   const dispatch = useDispatch();
@@ -29,8 +28,6 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
   const handleSelectVariant = (variant: any) => {
     setSelectedVariant(variant);
   };
-
-  const { products } = useAppSelector((state) => state.productCartSlice);
 
   // <== Handle Add Product In Cart ==>
   const handleAddToCart = (event: React.MouseEvent, product: any) => {
@@ -55,12 +52,15 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         {productDesc?.productName}
       </h2>
       <div className="flex items-center my-3">
-        <Image
-          src={`${imageUrl}${productDesc?.brand?.brandPhoto}`}
-          width={50}
-          height={50}
-          alt="Adidas Brand"
-        />
+        <div className="w-[50px] h-[50px] relative shrink-0">
+          <Image
+            src={`${imageUrl}${productDesc?.brand?.brandPhoto}`}
+            alt="Brand Image"
+            fill
+            objectFit="cover"
+            className="top-0 left-0 w-full h-full object-cover"
+          />
+        </div>
         <h6 className="text-[16px] text-black-opacity-60 mr-5 ml-1">
           {productDesc?.brand?.brandName}
         </h6>
@@ -71,8 +71,10 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
           className="text-[#FF8A00] mr-1"
         />
         <p className="text-black-opacity-50 text-[16px]">
-          {productDesc?.averageRating}{" "}
-          <span>({productDesc?.totalReview} people)</span>
+          {productDesc?.averageRating ? productDesc?.averageRating : 0}{" "}
+          <span>
+            ({productDesc?.totalReview ? productDesc?.totalReview : 0} people)
+          </span>
         </p>
       </div>
       <div className="flex items-center">

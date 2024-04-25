@@ -3,14 +3,7 @@ import GetDiscountRange from "@/components/ProductView/GetDiscountRange";
 import ReviewRating from "@/components/shared/ReviewRating";
 import { imageUrl } from "@/constants/imageUrl";
 import { useAppSelector } from "@/redux/hook";
-import {
-  IconArrowLeft,
-  IconArrowRight,
-  IconCheck,
-  IconMinus,
-  IconPlus,
-  IconX,
-} from "@tabler/icons-react";
+import { IconCheck, IconMinus, IconPlus, IconX } from "@tabler/icons-react";
 import Image from "next/image";
 import React from "react";
 import { useDispatch } from "react-redux";
@@ -89,7 +82,7 @@ const CartView = () => {
                               {""}
                               <IconMinus width={14} height={14} />
                             </button>
-                            <span>{product?.quantity}</span>
+                            <span>{product?.orderQuantity}</span>
                             <button
                               onClick={() => dispatch(addToCart(product))}
                               className="border p-1 rounded-full"
@@ -97,8 +90,10 @@ const CartView = () => {
                               {""}
                               <IconPlus width={14} height={14} />
                             </button>
-                            <span className="text-[12px]">x</span>
-                            <span>{product?.price} QAR</span>
+                            <IconX stroke={2} width={14} height={14} />
+                            <span>
+                              {product?.price} <small>QAR</small>
+                            </span>
                           </div>
                           <span className="font-bold main-text-color">
                             ${subTotal}

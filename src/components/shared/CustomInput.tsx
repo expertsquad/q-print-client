@@ -30,7 +30,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
       className={`w-full flex items-center justify-center relative ${customClassName}`}
     >
       {placeholderIcon && (
-        <div className="absolute top-5 left-0 pl-2 pr-3  pointer-events-none text-black text-opacity-40">
+        <div className="absolute top-6 left-0 pl-2 pr-3  pointer-events-none text-black text-opacity-40">
           {placeholderIcon}
         </div>
       )}
@@ -46,7 +46,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
           onChange={onChange}
           value={value}
           name={name}
-          className={`${inputStyle} w-full border border-black border-opacity-10  py-3  pr-4 focus:outline-none focus:border-fuchsia-200 ${
+          className={`${inputStyle} w-full border border-black border-opacity-10  py-3  pr-4 focus:outline-none focus:border-fuchsia-200 rounded-md ${
             readonly ? "text-black-opacity-60" : "text-black"
           } placeholder:text-sm ${
             placeholderIcon ? "pl-9" : "pl-5"

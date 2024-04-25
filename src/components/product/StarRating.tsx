@@ -6,6 +6,10 @@ const StarRating = ({ rating }: number | any) => {
   const filledStars = Math.round(rating);
   const emptyStars = maxRating - filledStars;
 
+  if (isNaN(filledStars) || isNaN(emptyStars)) {
+    return null;
+  }
+
   return (
     <div className="flex items-center gap-0.5">
       {[...Array(filledStars)]?.map((_, index) => (

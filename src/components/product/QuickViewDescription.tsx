@@ -8,7 +8,6 @@ import {
   IconStar,
 } from "@tabler/icons-react";
 import Image from "next/image";
-import WishlistQuickOrderBTNModal from "../WishlistPageData/WishlistQuickOrderBTNModal";
 import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
 
@@ -68,7 +67,7 @@ const QuickViewDescription = ({ product }: any) => {
             />
           </div>
         ) : (
-          <div className="skeleton w-10 h-7"></div>
+          <div className="skeleton w-10 h-6"></div>
         )}
         <h6 className="text-[16px] text-black opacity-60 mr-5 ml-1">
           {product?.brand?.brandName}
@@ -79,8 +78,8 @@ const QuickViewDescription = ({ product }: any) => {
           height={18}
           className="text-[#FF8A00] mr-1"
         />
-        <p className="text-black opacity-50 text-[16px]">
-          4.8 <span>(14 people)</span>
+        <p className="text-black-opacity-50 text-[16px]">
+          {product?.averageRating} <span>({product?.totalReview} people)</span>
         </p>
       </div>
       <div className="flex items-center mb-5">

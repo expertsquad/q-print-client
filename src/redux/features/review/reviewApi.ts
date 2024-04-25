@@ -22,7 +22,7 @@ export const reviewApi = baseApi.injectEndpoints({
     // <== Get review by Id Query ==>
     reviewById: build.query({
       query: (data) => ({
-        url: `/review?product.productId=${data}`,
+        url: `/review?${data}`,
         method: "GET",
       }),
       providesTags: ["review"],

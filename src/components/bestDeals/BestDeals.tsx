@@ -23,7 +23,7 @@ const BestDeals = () => {
     <section className="bg-[#EDF2EE] py-4 px-2 md:py-7 md:px-8  lg:mt-20 md:mt-20 mt-8 rounded-lg">
       <div className="flex items-center justify-between gap-6">
         <div className="w-1/4">
-          <div className="relative w-16 md:w-48 h-16 md:h-48 shrink-0">
+          <div className="relative w-16 md:w-32 h-16 md:h-32 lg:w-48 lg:h-48 shrink-0">
             <Image
               src={`${imageUrl}${data?.data?.firstProductPhoto}`}
               alt="Offer Image"
@@ -48,7 +48,7 @@ const BestDeals = () => {
           <CountdownTimer endDate={endDate} />
         </div>
         <div className="w-1/4 flex items-end justify-end">
-          <div className="relative w-16 md:w-48 h-16 md:h-48 shrink-0">
+          <div className="relative w-16 md:w-32 h-16 md:h-32 lg:w-48 lg:h-48 shrink-0">
             <Image
               src={`${imageUrl}${data?.data?.secondProductPhoto}`}
               alt="Offer Image"

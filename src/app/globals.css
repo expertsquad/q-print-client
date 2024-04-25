@@ -85,8 +85,9 @@
 /* ==Header responsive css== */
 .header-section-css {
   display: grid;
-  grid-template-columns: 1fr 2.5fr 1.2fr;
+  grid-template-columns: 1fr 3.5fr 1.2fr;
   align-items: center;
+  grid-gap: 10px;
 }
 
 /* ==Order item data responsive== */

@@ -1,6 +1,4 @@
 import { baseApi } from "./features/api/baseApi";
-// import cartReducer from "@/redux/features/cart/cartSlice";
-// import favouriteReducer from "@/redux/features/wishlist/favouriteSlice";
 import addReviewSlice from "./features/review/addReviewSlice";
 import signUpSlice from "./features/user/signUpSlice";
 import loginSlice from "./features/user/loginSlice";
@@ -14,11 +12,10 @@ import postPrintingRequestSlice from "./features/printing-request/postPrintingRe
 import productCartSlice from "./features/cart/productCartSlice";
 import favouriteCartSlice from "./features/wishlist/favouriteCartSlice";
 import quickOrder from "./features/quick-order/quickOrder";
+import filterProductReview from "./features/review/filterProductReview";
 
 export const reducer = {
   [baseApi.reducerPath]: baseApi.reducer,
-  // cart: cartReducer,
-  // favourite: favouriteReducer,
   signUp: signUpSlice,
   login: loginSlice,
   addReview: addReviewSlice,
@@ -32,4 +29,5 @@ export const reducer = {
   productCartSlice: productCartSlice,
   favouriteCartSlice: favouriteCartSlice,
   singleQuickOrder: quickOrder,
+  filteredProductByReview: filterProductReview,
 };

@@ -22,7 +22,7 @@ const DealOfTheDay = () => {
       <h2 className="main-text-color text-3xl font-medium mb-7">
         Deals Of The Day
       </h2>
-      <div className="flex flex-col md:flex-row gap-8">
+      <div className="flex flex-col lg:flex-row gap-8">
         {/* === First Deal === */}
         <div className="main-section flex items-center justify-between bg-[#F4F4F4] rounded-xl p-8 flex-1">
           <div className=" gap-5">

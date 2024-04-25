@@ -41,13 +41,13 @@ const ProductCard = ({ product }: any) => {
   return (
     <div
       onClick={handleViewProduct}
-      className="border-[1px] hover:border-fuchsia-700 rounded-lg p-4 group max-w-[300px] min-w-[184px] cursor-pointer"
+      className="border-[1px] hover:border-fuchsia-700 rounded-lg p-4 group max-w-[300px] w-[300px] h-[405px] max-h-max cursor-pointer"
     >
       <div>
         <ProductImageSlide product={product} defaultVariant={defaultVariant} />
       </div>
 
-      <div className="mt-4 pt-4 border-t ">
+      <div className="mt-4 pt-4 border-t">
         <h3 className="[font-size:_clamp(0.7em,4vw,1em)] line-clamp-2 mb-2">
           {product?.productName}
         </h3>

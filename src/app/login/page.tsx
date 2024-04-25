@@ -38,8 +38,8 @@ const Login = () => {
     }
   };
   return (
-    <div className="h-screen flex justify-center items-center shadow-product-card-shadow login-container-image bg-[url('/src/assets/login-background.png')] bg-slate-200">
-      <div className="bg-white p-5 md:p-12 rounded-custom-5px text-center">
+    <div className="h-screen flex justify-center items-center shadow-product-card-shadow bg-slate-200">
+      <div className="bg-white p-5 md:p-10 rounded-custom-5px text-center">
         <div className="flex items-center justify-center my-5">
           <Image
             src={logo}
@@ -51,7 +51,7 @@ const Login = () => {
           Best online ecommerce website for you
         </p>
         <form onSubmit={onSubmit}>
-          <div className="flex flex-col gap-5 mt-20">
+          <div className="flex flex-col gap-5 mt-10">
             <CustomInput
               name="email"
               type="email"
@@ -78,7 +78,7 @@ const Login = () => {
 
             <button
               type="submit"
-              className="main-bg-color text-white w-full py-3 rounded-lg"
+              className="main-bg-color text-white w-full py-3 rounded-lg mt-10"
             >
               Login
             </button>
@@ -96,6 +96,12 @@ const Login = () => {
             </div>
           </div>
         </form>
+        <Link
+          className="flex items-center justify-center mt-5 font-bold"
+          href={"/"}
+        >
+          Back To Home
+        </Link>
       </div>
     </div>
   );
