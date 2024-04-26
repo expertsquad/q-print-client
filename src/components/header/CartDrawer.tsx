@@ -187,10 +187,7 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                     CHECK OUT
                   </Link>
 
-                  <div
-                    className="w-full"
-                    onClick={() => setTimeout(() => handleCloseDrawer(), 1000)}
-                  >
+                  <div className="w-full">
                     <MultipleQuickOrder
                       handleCloseDrawer={handleCloseDrawer}
                       products={products}

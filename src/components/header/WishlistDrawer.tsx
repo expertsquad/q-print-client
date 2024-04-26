@@ -25,10 +25,9 @@ const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
       addToCart({
         ...product,
         ...product?.variants[0],
-        price: product?.variants[0].discountedPrice
-          ? product?.variants[0].discountedPrice
-          : product?.variants[0].sellingPrice,
+        price: product?.price,
         orderQuantity: 1,
+        variantName: product?.variantName,
         productId: product?._id,
       })
     );
