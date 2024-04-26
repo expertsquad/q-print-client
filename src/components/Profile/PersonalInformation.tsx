@@ -2,24 +2,36 @@ import UploadIcon from "@/assets/svgIcons/UploadIcon";
 import { imageUrl } from "@/constants/imageUrl";
 import Image from "next/image";
 import CustomInput from "../shared/CustomInput";
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import {
+  setFullName,
+  setPhoneNumber,
+  setProfileLocalPhoto,
+  setProfilePhoto,
+} from "@/redux/features/user/profileEditSlice";
 
 const PersonalInformation = ({ personalInformation }: any) => {
-  const [imageSrc, setImageSrc] = useState(
-    `${imageUrl}${personalInformation?.profilePhoto}`
-  );
+  const dispatch = useAppDispatch();
+  const { fullName, profilePhoto, phoneNumber, profileLocalPhoto } =
+    useAppSelector((state) => state.profileEdit);
+  console.log(fullName, profilePhoto, phoneNumber);
+
+  // Update component state when Redux state changes
+  useEffect(() => {
+    dispatch(setFullName(personalInformation?.fullName));
+    dispatch(setPhoneNumber(personalInformation?.phoneNumber));
+    dispatch(setProfilePhoto(personalInformation?.profilePhoto));
+  }, [personalInformation, dispatch]);
 
   // <== Image upload fn ==>
   const handleImageUpload = (event: any) => {
     const file = event.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (typeof reader.result === "string") {
-          setImageSrc(reader.result);
-        }
-      };
-      reader.readAsDataURL(file);
+      dispatch(setProfilePhoto(file));
+
+      const reader = URL.createObjectURL(file);
+      dispatch(setProfileLocalPhoto(reader));
     }
   };
 
@@ -29,13 +41,14 @@ const PersonalInformation = ({ personalInformation }: any) => {
         Personal Information
       </h1>
       <div className="flex lg:flex-row flex-col-reverse items-center lg:justify-between gap-12">
-        <form className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 lg:w-9/12 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 lg:w-9/12 w-full">
           <CustomInput
-            label="First Name"
+            label="Full Name"
             type="text"
-            name="firstName"
-            value={personalInformation?.fullName}
+            name="fullName"
+            value={fullName}
             placeholder=""
+            onChange={(e) => dispatch(setFullName(e.target.value))}
           />
 
           <CustomInput
@@ -52,10 +65,11 @@ const PersonalInformation = ({ personalInformation }: any) => {
             type="number"
             name="phoneNumber"
             placeholder=""
-            value={personalInformation?.phoneNumber}
+            value={phoneNumber}
             inputStyle="text-black"
+            onChange={(e) => dispatch(setPhoneNumber(e.target.value))}
           />
-        </form>
+        </div>
         <div className="max-w-xs mx-auto ">
           <div className="group relative ">
             <input
@@ -70,7 +84,11 @@ const PersonalInformation = ({ personalInformation }: any) => {
             >
               <div className="">
                 <Image
-                  src={imageSrc}
+                  src={`${
+                    profileLocalPhoto
+                      ? profileLocalPhoto
+                      : imageUrl + profilePhoto
+                  }  `}
                   alt=""
                   width={50}
                   height={50}
@@ -80,7 +98,7 @@ const PersonalInformation = ({ personalInformation }: any) => {
 
               <span
                 className={`absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-3.5 z-50 bg-black bg-opacity-20 ${
-                  imageSrc ? "hidden" : "block"
+                  profilePhoto ? "hidden" : "block"
                 }`}
               >
                 <UploadIcon />
