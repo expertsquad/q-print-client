@@ -7,10 +7,10 @@ import { imageUrl } from "@/constants/imageUrl";
 import { IconPlus } from "@tabler/icons-react";
 import { IconMinus } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
-import { addToCart, removeOneFromCart } from "@/redux/features/cart/cartSlice";
+
 
 const ShoppingCartTotalItems = () => {
-  const { products } = useAppSelector((state) => state.cart);
+  const { products } = useAppSelector((state) => state.);
   const dispatch = useDispatch();
 
   // <== Calculate Subtotal, Total , and Shipping ==>

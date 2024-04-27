@@ -6,9 +6,11 @@ import OrderTrackButton from "./OrderTrackButton";
 import { formatDate } from "@/constants/formatDate";
 import { IconX } from "@tabler/icons-react";
 
-const OrderHistoryShippingLayout = () => {
+const OrderHistoryShippingLayout = ({ id }: string | any) => {
   // <== Get data from order history query ==>
-  const { data } = useGetOnlineOrderQuery("orderStatus.status=Shipping");
+  const { data } = useGetOnlineOrderQuery(
+    `buyer.userId=${id}&orderStatus.status=Shipping`
+  );
 
   return (
     <div>

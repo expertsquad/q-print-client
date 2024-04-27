@@ -20,6 +20,7 @@ import {
 } from "@/redux/features/cart/productCartSlice";
 import { useState } from "react";
 import SingleQuickOrder from "../quick-order/SingleQuickOrder";
+import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 
 const QuickViewDescription = ({ product }: any) => {
   const dispatch = useDispatch();
@@ -50,6 +51,24 @@ const QuickViewDescription = ({ product }: any) => {
       })
     );
   };
+
+  // <== Handle Add Product In Favourite ==>
+  const handleAddToFavourite = (event: React.MouseEvent, product: any) => {
+    event.stopPropagation();
+    dispatch(
+      addToFavourite({
+        ...product,
+        ...product?.variants[0],
+        price: selectedVariant?.discountedPrice
+          ? selectedVariant?.discountedPrice
+          : selectedVariant?.sellingPrice,
+        orderQuantity: 1,
+        variantName: selectedVariant?.variantName,
+        inStock: product?.variants[0].inStock,
+      })
+    );
+  };
+
   return (
     <section className="product-description">
       <h2 className="[font-size:_clamp(16px,5vw,20px)] text-wrap mb-5 line-clamp-2">
@@ -90,7 +109,12 @@ const QuickViewDescription = ({ product }: any) => {
           </span>
         </p>{" "}
         |
-        <button className="flex items-center gap-2 ml-3 text-black-opacity-60 [font-size:_clamp(13px,5vw,14px)] whitespace-nowrap">
+        <button
+          onClick={(event: React.MouseEvent) =>
+            handleAddToFavourite(event, product)
+          }
+          className="flex items-center gap-2 ml-3 text-black-opacity-60 [font-size:_clamp(13px,5vw,14px)] whitespace-nowrap"
+        >
           <IconHeart className="text-[#E73C17]" />
           Add To Wishlist
         </button>

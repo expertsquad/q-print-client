@@ -18,7 +18,13 @@ const ProfileSettings = () => {
   const { data: defaultAddress } = useGetUserAddressQuery("isDefault=true");
 
   useLayoutEffect(() => {
-    dispatch(setShippingData(defaultAddress?.data?.[0]));
+    dispatch(
+      setShippingData({
+        ...(defaultAddress?.data?.length
+          ? { ...defaultAddress.data[0], addNewAddress: true }
+          : { addNewAddress: false, isDefault: true }),
+      })
+    );
   }, [defaultAddress, dispatch]);
 
   return (

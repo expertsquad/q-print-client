@@ -15,6 +15,8 @@ interface BrandCarouselProps {
 
 const BrandCarousel = () => {
   const { data } = useGetBrandsQuery("");
+  console.log();
+  const image = data?.data[0]?.brandPhoto;
 
   useEffect(() => {
     const logosSlide = document.querySelector(".logos-slide");

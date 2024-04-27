@@ -8,9 +8,11 @@ import ProductReviewModal from "./ProductReviewModal";
 import { formatDate } from "@/constants/formatDate";
 import { IconX } from "@tabler/icons-react";
 
-const OrderHistoryDeliveredLayout = () => {
+const OrderHistoryDeliveredLayout = ({ id }: string | any) => {
   // <== Get data from order history query ==>
-  const { data } = useGetOnlineOrderQuery("orderStatus.status=Delivered");
+  const { data } = useGetOnlineOrderQuery(
+    `buyer.userId=${id}&orderStatus.status=Delivered`
+  );
 
   return (
     <div>
@@ -89,6 +91,7 @@ const OrderHistoryDeliveredLayout = () => {
               </div>
               <div className="md:flex items-center justify-end">
                 <ProductReviewModal
+                  isReviewed={product?.isReviewed}
                   orderId={deliveredData?._id}
                   productId={product?._id}
                 />

@@ -43,6 +43,7 @@
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -78,6 +79,7 @@
   height: 9px !important;
   width: 9px !important;
 }
+
 .menu :where(li ul):before {
   visibility: hidden;
 }
@@ -94,6 +96,7 @@
 .order-item-data {
   display: flex;
 }
+
 @media (min-width: 768px) {
   .md\:order-item-data {
     display: grid;
@@ -144,7 +147,8 @@
   position: absolute;
   width: 10px;
   height: 10px;
-  background-color: #f00; /* Change color as needed */
+  background-color: #f00;
+  /* Change color as needed */
   clippath: polygon(50% 0%, 0% 100%, 100% 100%);
   transform: rotate(45deg);
   animation: fall linear infinite;
@@ -154,26 +158,46 @@
   0% {
     transform: translate(0, 0) rotate(45deg);
   }
+
   100% {
     transform: translate(100vw, 100vh) rotate(45deg);
   }
 }
 
 /* == Brand carousel css by jackdev == */
+.logos {
+  display: flex;
+}
+
 .logos:hover .logos-slide {
   animation-play-state: paused;
+  cursor: pointer;
 }
 
 .logos-slide {
-  animation: 8s slide infinite linear;
+  animation: 30s slide infinite linear;
+}
+
+.logos-slide .img {
+  height: 50px;
+  margin: 0 70px;
 }
 
 @keyframes slide {
   from {
-    transform: translate(0, 0);
+    transform: translateX(10%);
   }
+
   to {
-    transform: translate(calc(-100% + (6 * 300px)));
+    transform: translateX(-100%);
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  .logos-slide .img {
+    height: 30px;
+    margin: 0 30px;
   }
 }
 
@@ -192,6 +216,7 @@ input[type="number"]::-webkit-outer-spin-button {
   justify-content: space-between;
   background: #ccc;
 }
+
 @media (min-width: 768px) {
   .md\:order-delivered-card-style {
     display: grid;
@@ -199,6 +224,7 @@ input[type="number"]::-webkit-outer-spin-button {
     align-items: center;
   }
 }
+
 /* <== order-packaging-shipped-order-placed-card-style ==> */
 .order-packaging-shipped-order-placed-card-style {
   display: flex;

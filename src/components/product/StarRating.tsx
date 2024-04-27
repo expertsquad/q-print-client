@@ -20,7 +20,7 @@ const StarRating = ({ rating }: number | any) => {
       ))}
       {[...Array(emptyStars)]?.map((_, index) => (
         <IconStarFilled
-          key={`empty-${index}`}
+          key={index}
           className="text-gray-300 w-3.5 h-3.5 md:w-4.5 md:h-4.5"
         />
       ))}

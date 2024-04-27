@@ -1,22 +1,19 @@
 "use client";
 import React, { useState } from "react";
 import GlobalModal from "../UI/modal/GlobalModal";
-import { IconArrowLeft, IconX } from "@tabler/icons-react";
+import { IconArrowLeft, IconStarFilled, IconX } from "@tabler/icons-react";
 import Image from "next/image";
 import { useAddReviewMutation } from "@/redux/features/review/reviewApi";
-import { useAppSelector } from "@/redux/hook";
-import { useGetOnlineOrderByIdQuery } from "@/redux/features/online-order/online-orderApi";
 import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
 import { imageUrl } from "@/constants/imageUrl";
-import StarRating from "../product/StarRating";
+import ModalCloseBtn from "../shared/ModalCloseBtn";
+import { toast } from "react-toastify";
 
 const ProductReviewModal = ({
   orderId: reviewOrderId,
   productId: reviewProductId,
+  isReviewed,
 }: any) => {
-  // <== Get Onile Order By Order Id ==>
-  const { data: order } = useGetOnlineOrderByIdQuery(reviewOrderId);
-
   // <== Get Product By Product Id ==>
   const { data: product } = useGetProductByIdQuery(reviewProductId);
 
@@ -26,6 +23,8 @@ const ProductReviewModal = ({
   };
 
   const [reviewText, setReviewText] = useState("");
+  const [starRating, setStarRating] = useState(0);
+  const [increaseRating, setIncreaseRating] = useState(0);
 
   const handleReviewChange = (event: any) => {
     const text = event.target.value;
@@ -34,21 +33,33 @@ const ProductReviewModal = ({
 
   // <== Handle Add Review ==>
   const [addReview] = useAddReviewMutation();
-  const { orderId, productId, rating, comment, reviewPhotos } = useAppSelector(
-    (state) => state.addReview
-  );
 
-  // = Functionality =
-  const handleAddReviewSubmit = async (e: any) => {
+  const handleStarClick = (index: number) => {
+    setStarRating(index);
+    setIncreaseRating(index + 1);
+  };
+
+  // <== Sending review product data to server ==>
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("orderId", orderId);
-    formData.append("productId", productId);
-    formData.append("rating", rating ? rating.toString() : "");
-    formData.append("comment", comment);
-    if (reviewPhotos instanceof File || reviewPhotos instanceof Blob) {
-      formData.append("reviewPhotos", reviewPhotos);
+    formData.append("orderId", reviewOrderId);
+    formData.append("productId", reviewProductId);
+    formData.append("rating", increaseRating.toString());
+    formData.append("comment", reviewText);
+
+    try {
+      const res = await addReview(formData);
+      if ("data" in res) {
+        toast.success((res as { data: any }).data.message);
+      }
+      if ("error" in res) {
+        toast.error((res as { error: any }).error.message);
+      }
+    } catch (error) {
+      console.log(error);
     }
+    handleCloseModal();
   };
 
   return (
@@ -58,35 +69,25 @@ const ProductReviewModal = ({
           onClick={() => setShowModal(true)}
           className="border border-fuchsia-800 rounded-md py-1 px-2 md:px-3.5 main-text-color text-xs md:text-base"
         >
-          Review
-          {""}
+          {isReviewed ? "Edit Review" : "Review"}
         </button>
       </div>
       <GlobalModal
         isVisible={showModal}
         onClose={handleCloseModal}
-        modalController="fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center backdrop-blur-sm z-50"
+        modalController=""
       >
-        <div className="w-full h-screen md:h-auto md:max-w-[800px] md:max-h-w-[660px] bg-white p-7 rounded-lg relative">
+        <div className="w-full h-screen md:w-[650px] md:h-auto  bg-white p-7 rounded-lg relative">
           {/* ||Handle close modal */}
-          <div className="absolute top-5 right-5 text-black text-opacity-70">
-            <button
-              onClick={handleCloseModal}
-              className="text-black text-opacity-70 hidden md:block"
-            >
-              <IconX width={20} height={20} />
-              {""}
-            </button>
+          <div className="absolute top-5 right-5 text-black text-opacity-70 hidden md:block">
+            <ModalCloseBtn handleClose={handleCloseModal} />
           </div>
           {/* ||Back btn */}
-          <div className="absolute top-8 left-5 text-black text-opacity-70">
-            <button
-              onClick={handleCloseModal}
-              className="text-black text-opacity-70 block md:hidden"
-            >
-              <IconArrowLeft width={24} height={24} />
-              {""}
-            </button>
+          <div className="absolute top-8 left-5 text-black text-opacity-70 block md:hidden">
+            <ModalCloseBtn
+              handleClose={handleCloseModal}
+              icon={<IconArrowLeft />}
+            />
           </div>
 
           {/* ==Main content== */}
@@ -96,7 +97,7 @@ const ProductReviewModal = ({
             </h1>
 
             {/* ==Product Content== */}
-            <div className="border py-5 px-4 rounded-lg flex justify-between">
+            <div className="border py-5 px-4 rounded-lg flex flex-col md:flex-row justify-between gap-3">
               <div className="flex gap-4">
                 <div className="h-[70px] w-[70px] shrink-0 relative">
                   <Image
@@ -108,28 +109,39 @@ const ProductReviewModal = ({
                   />
                 </div>
                 <div>
-                  <p className="text-black text-opacity-90 text-[16px] md:text-[18px] line-clamp-1">
+                  <p className="text-black text-opacity-90 text-base md:text-lg line-clamp-2 text-wrap">
                     {product?.data?.productName}
                   </p>
 
-                  <p className="text-black text-opacity-60 text-sm md:text-[18px]">
+                  <p className="text-black text-opacity-60 text-sm">
                     {product?.data?.brand?.brandName}
                   </p>
                 </div>
               </div>
               <div>
-                <p className="text-[16px] md:text-[18px] mb-2">
-                  Select Product Rating
-                </p>
-                <StarRating rating={5} />
+                <p className="text-base mb-2">Select Product Rating</p>
+                <div className="flex">
+                  {[...Array(5)]?.map((_, index) => (
+                    <IconStarFilled
+                      key={index}
+                      width={20}
+                      height={20}
+                      className={
+                        index <= starRating
+                          ? "text-yellow-500"
+                          : "text-gray-300"
+                      }
+                      onClick={() => handleStarClick(index)}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
-            <form action="" className="mt-7">
-              <span> product id{reviewProductId}</span>
+            <form onSubmit={handleSubmit} action="" className="mt-7">
               <label className="text-sm md:text-[18px]" htmlFor="review">
                 Add Written Review
               </label>
-              <span>order id: {reviewOrderId}</span>
+
               <textarea
                 className="border pt-2 pl-2 w-full outline-none rounded-lg text-black text-opacity-50 text-sm mt-2 resize-none"
                 placeholder="Write Review Here.."
@@ -146,7 +158,7 @@ const ProductReviewModal = ({
               </p>
               <button
                 type="submit"
-                className="main-bg-color text-white rounded-3xl w-full py-2  md:mt-9"
+                className="main-bg-color text-white rounded-3xl w-full py-2 mt-5 md:mt-9"
               >
                 Submit
               </button>

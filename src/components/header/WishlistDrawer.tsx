@@ -1,14 +1,20 @@
 import React from "react";
 import CustomGlobalDrawer from "../shared/CustomGlobalDrawer";
-import { IconArrowLeft, IconShoppingCart, IconX } from "@tabler/icons-react";
+import {
+  IconArrowLeft,
+  IconChevronLeft,
+  IconChevronRight,
+  IconShoppingCart,
+  IconX,
+} from "@tabler/icons-react";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { addToCart } from "@/redux/features/cart/productCartSlice";
 import Image from "next/image";
-import { imageUrl } from "@/constants/imageUrl";
 import { removeFromFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 import emptyCart from "@/assets/empty-card-photo.svg";
+import WishlistItem from "../WishlistPageData/WishlistItem";
 
 const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
   const dispatch = useAppDispatch();
@@ -19,20 +25,6 @@ const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
   };
 
   // <== Handle Add Product In Cart ==>
-  const handleAddToCart = (event: React.MouseEvent, product: any) => {
-    event.stopPropagation();
-    dispatch(
-      addToCart({
-        ...product,
-        ...product?.variants[0],
-        price: product?.variants[0].discountedPrice
-          ? product?.variants[0].discountedPrice
-          : product?.variants[0].sellingPrice,
-        orderQuantity: 1,
-        productId: product?._id,
-      })
-    );
-  };
   return (
     <div>
       <CustomGlobalDrawer
@@ -42,104 +34,25 @@ const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
       >
         <ModalCloseBtn
           handleClose={handleCloseWishlist}
-          icon={<IconArrowLeft stroke={2} width={20} height={20} />}
+          icon={<IconChevronRight stroke={1} width={24} height={24} />}
         />
         <h3 className="text-center text-black text-[20px] font-medium border-b pb-4 mb-7">
           Wishlist
         </h3>
-        <div>
+        <div className="p-5">
           <div>
             {products?.length ? (
-              <div className="overflow-y-scroll no-scrollbar">
-                <div className="flex flex-col overflow-y-scroll no-scrollbar h-[calc(100vh-170px)]">
+              <div className="overflow-y-scroll no-scrollbar flex flex-col gap-5 justify-between h-[calc(100vh-140px)]">
+                <div className="flex flex-col  overflow-y-scroll no-scrollbar ">
                   {products?.map((product: any) => (
-                    <div
-                      className="flex gap-5 w-full border-b transition duration-300 ease-in-out hover:bg-gray-100 p-4"
-                      key={product._id}
-                    >
-                      {/* == Image container == */}
-                      <div className="relative shrink-0 h-14 w-14">
-                        <Image
-                          src={`${imageUrl}${product?.productPhotos?.[1]}`}
-                          alt="Product Image"
-                          fill
-                          objectFit="cover"
-                          className="w-full h-full top-0 left-0 object-cover p-2 rounded-md border"
-                        />
-                      </div>
-                      <div className="w-full">
-                        {/* == Product title and Delete btn == */}
-                        <div className="flex items-center justify-between gap-3 w-full">
-                          <span className="text-black text-opacity-90 text-[16px] line-clamp-1">
-                            {product?.productName}
-                          </span>
-                          <button
-                            onClick={() =>
-                              dispatch(removeFromFavourite(product))
-                            }
-                            className="cursor-pointer text-black text-opacity-60"
-                          >
-                            <IconX width={20} height={20} />
-                            {""}
-                          </button>
-                        </div>
-
-                        {/* --BrandName-- */}
-                        <div className="my-1 flex items-center gap-2">
-                          <p className="text-black-opacity-80 text-xs">
-                            {product?.brand?.brandName}
-                          </p>
-                          <span
-                            className="w-3 h-3 rounded-full"
-                            style={{ backgroundColor: product?.variantName }}
-                          ></span>
-                          <span className="text-xs">
-                            {product?.variantName && product?.variantName}
-                          </span>
-                        </div>
-                        {/* == Stock summary & Add to cart button == */}
-                        <div className="flex items-center justify-between">
-                          <div className="w-full whitespace-nowrap">
-                            <b className="main-text-color">
-                              {product?.price}
-                              <small> QAR</small>
-                            </b>{" "}
-                            |{" "}
-                            <small
-                              className={` ${
-                                product?.inStock > 0
-                                  ? "text-green-500"
-                                  : "text-red-500"
-                              }`}
-                            >
-                              {product?.inStock} In Stock
-                            </small>
-                          </div>
-                          <button
-                            onClick={(event: React.MouseEvent) =>
-                              handleAddToCart(event, product)
-                            }
-                            className="flex items-center whitespace-nowrap border py-1 px-2 rounded-lg text-[12px] hover:bg-main-bg-color hover:text-white"
-                          >
-                            <span className="mr-1.5">
-                              <IconShoppingCart
-                                width={15}
-                                stroke={2}
-                                height={15}
-                              />
-                            </span>
-                            Add to Cart
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+                    <WishlistItem product={product} key={product._id} />
                   ))}
                 </div>
-                <div className="mx-5 mt-5">
+                <div>
                   <Link
                     onClick={handleCloseWishlist}
                     href={"/wishlist"}
-                    className="flex items-center justify-center main-bg-color py-2 text-white rounded-lg w-full"
+                    className="flex items-center hover:scale-105 transition-all bg-black justify-center main-bg-color py-3 text-white rounded-[5px] w-full"
                   >
                     View Wishlist
                   </Link>

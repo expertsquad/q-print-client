@@ -7,16 +7,31 @@ import ProfileLogoutButton from "./ProfileLogoutButton";
 import ProfileViewButton from "./ProfileViewButton";
 import ProfileUserIcon from "@/assets/svgIcons/ProfileUserIcon";
 import { IconCamera } from "@tabler/icons-react";
-import { useGetUserQuery } from "@/redux/features/user/user";
+import {
+  useGetUserQuery,
+  useUpdateMeMutation,
+} from "@/redux/features/user/user";
 import { removeUserInfo } from "@/services/auth.service";
 import { authKey } from "@/constants/storageKey";
 import { useRouter } from "next/navigation";
 import { imageUrl } from "@/constants/imageUrl";
 import { useGetOnlineOrderQuery } from "@/redux/features/online-order/online-orderApi";
 import { useGetReviewQuery } from "@/redux/features/review/reviewApi";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import {
+  setProfileLocalPhoto,
+  setProfilePhoto,
+} from "@/redux/features/user/profileEditSlice";
 
 const MyProfileCard = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { profileLocalPhoto, profilePhoto } = useAppSelector(
+    (state) => state.profileEdit
+  );
+  const [updateMe] = useUpdateMeMutation();
+
+  const formData = new FormData();
 
   // <== User Logout Functionality ==>
   const userLogout = () => {
@@ -38,6 +53,28 @@ const MyProfileCard = () => {
     "orderStatus.status=Delivered"
   );
 
+  // <== onsubmit ==>
+
+  const handleImageUpload = async (e: any) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    if (file) {
+      // Dispatch actions to update local state
+      dispatch(setProfilePhoto(file));
+      dispatch(setProfileLocalPhoto(URL.createObjectURL(file)));
+
+      // Append the file directly to formData
+      formData.append("profilePhoto", file);
+
+      try {
+        // Send data to server
+        const res = await updateMe(formData);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <div className="border w-full p-10 rounded-lg ">
       {/* Profile image and logout section */}
@@ -47,7 +84,11 @@ const MyProfileCard = () => {
             <div>
               <div className="relative">
                 <Image
-                  src={`${imageUrl}${data?.profilePhoto}`}
+                  src={`${
+                    profileLocalPhoto
+                      ? profileLocalPhoto
+                      : imageUrl + data?.data?.profilePhoto
+                  }  `}
                   alt="My profile image"
                   height={100}
                   width={100}
@@ -61,6 +102,7 @@ const MyProfileCard = () => {
                       id="profileFileInput"
                       className="hidden"
                       type="file"
+                      onChange={handleImageUpload}
                     />
                   </label>
                 </div>

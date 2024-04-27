@@ -15,12 +15,14 @@ import {
 } from "@/redux/features/wishlist/favouriteCartSlice";
 import { setSingleQuickOrder } from "@/redux/features/quick-order/quickOrder";
 import { useAppSelector } from "@/redux/hook";
+import { useQuickOrderMutation } from "@/redux/features/quick-order/quickOrderApi";
 
 const SingleQuickOrder = ({ product, btnStyle }: string | any) => {
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);
   };
+  const [quickOrder] = useQuickOrderMutation();
 
   const dispatch = useDispatch();
   const data = useAppSelector((state) => state.singleQuickOrder);
@@ -39,7 +41,33 @@ const SingleQuickOrder = ({ product, btnStyle }: string | any) => {
 
   useLayoutEffect(() => {
     dispatch(setSingleQuickOrder(product));
-  }, []);
+  }, [product, dispatch]);
+
+  // handle submit
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    const value = {
+      orderItems: [
+        {
+          productId: data?.productId,
+          variantName: data?.variantName,
+          orderQuantity: data?.orderQuantity,
+        },
+      ],
+      buyer: {
+        fullName: data?.fullName,
+        phoneNumber: data?.phoneNumber,
+        address: data?.address,
+      },
+    };
+
+    try {
+      const res = await quickOrder(value);
+      console.log(res, "here is res");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -78,11 +106,19 @@ const SingleQuickOrder = ({ product, btnStyle }: string | any) => {
                       {product?.productName}
                     </p>
 
-                    <div className="my-1">
-                      <p className="text-black-opacity-70 text-[12px]">
+                    <div className="my-1 flex items-center gap-2">
+                      <p className="text-black-opacity-80 text-xs">
                         {product?.brand?.brandName}
                       </p>
+                      <span
+                        className="w-3 h-3 rounded-full"
+                        style={{ backgroundColor: product?.variantName }}
+                      ></span>
+                      <span className="text-xs">
+                        {product?.variantName && product?.variantName}
+                      </span>
                     </div>
+
                     <div className="flex items-center justify-between gap-2 mb-4 whitespace-nowrap">
                       <div className="flex items-center gap-2">
                         <button
@@ -130,7 +166,7 @@ const SingleQuickOrder = ({ product, btnStyle }: string | any) => {
               <p className="text-black text-opacity-50 text-[16px] mb-7 md:mb-9">
                 Enter Your shipping address
               </p>
-              <form action="" className="">
+              <form onSubmit={handleSubmit} action="" className="">
                 <CustomInput
                   name="fullName"
                   placeholder="Type Name"
