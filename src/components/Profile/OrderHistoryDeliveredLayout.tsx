@@ -11,10 +11,14 @@ import { IconX } from "@tabler/icons-react";
 const OrderHistoryDeliveredLayout = ({ id }: string | any) => {
   // <== Get data from order history query ==>
   const { data } = useGetOnlineOrderQuery(
-    `buyer.userId=660a858ee325971a9c3c08a7&orderStatus.status=Delivered`
+    `buyer.userId=${id}&orderStatus.status=Delivered`
   );
 
-  console.log(data?.data, "from delivery");
+  console.log(data?.data, data?.data?.orderId, "from delivery");
+  const orderId = data?.data?.map((data) => {
+    return data?.orderId;
+  });
+  console.log(orderId, "By const");
   return (
     <div>
       {data?.data?.map((deliveredData: any) => (
@@ -92,7 +96,7 @@ const OrderHistoryDeliveredLayout = ({ id }: string | any) => {
               </div>
               <div className="md:flex items-center justify-end">
                 <ProductReviewModal
-                  orderId={deliveredData?._id}
+                  orderId={deliveredData.orderId}
                   productId={product?._id}
                 />
               </div>

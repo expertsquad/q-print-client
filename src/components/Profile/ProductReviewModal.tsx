@@ -14,6 +14,7 @@ const ProductReviewModal = ({
   orderId: reviewOrderId,
   productId: reviewProductId,
 }: any) => {
+  console.log(reviewOrderId, "From MOdal");
   // <== Get Onile Order By Order Id ==>
   const { data: order } = useGetOnlineOrderByIdQuery(reviewOrderId);
 

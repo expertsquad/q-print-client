@@ -15,6 +15,7 @@ const ShippingAddress = () => {
 
     try {
       const res = await addShippingInfo({ data: data, id: data?._id });
+      console.log(res, "From profile setting");
       if ("data" in res) {
         toast.success((res as { data: any }).data.message);
       }
