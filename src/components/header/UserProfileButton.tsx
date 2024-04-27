@@ -15,8 +15,9 @@ const UserProfileButton = ({ handleUserProfile, profilePhoto }: any) => {
             <Image
               src={`${imageUrl}${profilePhoto}`}
               alt="profile"
-              objectFit="cover"
+              sizes="(max-width: 80px) 10vw, (max-width: 100px) 10vw, 15vw"
               fill
+              priority={true}
               className="w-full h-full top-0 left-0 object-cover rounded-full"
             />
           </div>

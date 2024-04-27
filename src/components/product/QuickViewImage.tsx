@@ -27,7 +27,6 @@ const QuickViewImage = ({ product }: any) => {
                 src={`${imageUrl}${image}`}
                 alt="Product Photo"
                 fill
-                objectFit="cover"
                 sizes="(max-width: 80px) 10vw, (max-width: 100px) 10vw, 15vw"
                 className="w-full h-full top-0 left-0 object-contain p-2"
               />
@@ -42,7 +41,6 @@ const QuickViewImage = ({ product }: any) => {
               src={`${imageUrl}${selectedImage}`}
               alt="Product Photo"
               fill
-              objectFit="cover"
               sizes="(max-width: 350px) 50vw, (max-width: 350px) 60vw, 65vw"
               className="w-full h-full top-0 left-0 object-cover"
             />

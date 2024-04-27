@@ -88,6 +88,22 @@ const config: Config = {
         "custom-15px": "0.938rem",
         "custom-18px": "1.125rem",
       },
+      keyframes: {
+        wiggle: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-100%)" },
+        },
+        slide: {
+          "0%, ": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+      },
+
+      animation: {
+        animatedCard: "wiggle 9s linear infinite",
+        animatedCardPused: "paused",
+        secondAnimatedCard: "slide 9s infinite linear",
+      },
     },
   },
   plugins: [require("daisyui")],

@@ -15,13 +15,15 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Providers>
-      <html lang="en">
-        <body className={`${poppins.className} scroll-smooth md:px-2 lg:px-0`}>
-          {children}
-        </body>
-      </html>
-    </Providers>
+    <html lang="en">
+      <body>
+        <Providers>
+          <div className={`${poppins.className} scroll-smooth md:px-2 lg:px-0`}>
+            {children}
+          </div>
+        </Providers>
+      </body>
+    </html>
   );
 };
 

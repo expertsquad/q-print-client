@@ -206,6 +206,32 @@ input[type="number"]::-webkit-outer-spin-button {
   justify-content: space-between;
   background: #ccc;
 }
+
+/* nizam */
+.logos {
+  display: flex;
+}
+.logos:hover .logos-slide {
+  animation-play-state: paused;
+}
+
+.logos-slide {
+  display: flex;
+  animation: 30s slide infinite linear;
+}
+
+.logos-slide img {
+  height: 50px;
+  margin: 0 100px;
+}
+@keyframes slide {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
 @media (min-width: 768px) {
   .md\:order-packaging-shipped-order-placed-card-style {
     display: grid;
@@ -217,4 +243,8 @@ input[type="number"]::-webkit-outer-spin-button {
 .order-track-step-counter {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.logos-slide img {
+  height: 30px;
+  margin: 0 30px;
 }

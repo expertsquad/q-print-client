@@ -45,7 +45,7 @@ const ProductSearchModal = ({ data, setSearchValue }: any) => {
               <Image
                 src={`${imageUrl}${product?.productPhotos[0]}`}
                 fill
-                objectFit="cover"
+                sizes="400px"
                 alt="Product Photo"
                 className="w-full h-full top-0 left-0 object-cover p-1.5 border rounded-md"
               />
@@ -73,7 +73,13 @@ const ProductSearchModal = ({ data, setSearchValue }: any) => {
         ))
       ) : (
         <div className="flex flex-col items-center justify-center h-full">
-          <Image src={emptydata} alt="Empty data" width={200} height={200} />
+          <Image
+            src={emptydata}
+            alt="Empty data"
+            width={200}
+            height={200}
+            priority={true}
+          />
           <span>No Products Found!!</span>
         </div>
       )}

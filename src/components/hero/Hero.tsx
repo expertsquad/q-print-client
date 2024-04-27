@@ -26,13 +26,16 @@ const Hero = () => {
       <div className="flex flex-col gap-4 h-full md:h-auto lg:h-auto rounded-lg">
         {/* == Top One Card == */}
         <div className="bg-[#F2F4F5] flex justify-center items-center p-5 gap-4 rounded-lg flex-1 w-full">
-          <div className="shrink-0 relative w-36 h-36">
-            <Image
-              src={`${imageUrl}${topOffer?.productPhoto}`}
-              alt="Hero discount item"
-              layout="fill"
-              className="w-full h-full top-0 left-0 object-cover"
-            />
+          <div className="relative w-36 h-36">
+            <div className="absolute w-full h-full top-0 left-0 object-cover">
+              <Image
+                src={`${imageUrl}${topOffer?.productPhoto}`}
+                alt="Hero discount item"
+                fill
+                sizes="200px"
+                priority={true}
+              />
+            </div>
           </div>
           <div className="">
             <h2 className="[font-size:_clamp(1em,5vw,1.5em)] leading-7">
@@ -55,13 +58,16 @@ const Hero = () => {
             <ShopNowButton buttonText={bottomOffer?.buttonText} />
           </div>
 
-          <div className="shrink-0 relative w-36 h-36">
-            <Image
-              src={`${imageUrl}${bottomOffer?.productPhoto}`}
-              alt="Hero discount item"
-              layout="fill"
-              className="w-full h-full top-0 left-0 object-cover"
-            />
+          <div className=" relative w-36 h-36">
+            <div className="absolute w-full h-full top-0 left-0 object-cover">
+              <Image
+                src={`${imageUrl}${bottomOffer?.productPhoto}`}
+                alt="Hero discount item"
+                fill
+                sizes="200px"
+                priority={true}
+              />
+            </div>
           </div>
         </div>
       </div>

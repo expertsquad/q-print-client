@@ -101,7 +101,8 @@ const HeroItemSlide = ({ sliderArray }: any) => {
               <Image
                 src={`${imageUrl}${item?.productPhoto}`}
                 alt="hero item images"
-                layout="fill"
+                fill
+                priority={true}
                 sizes="(max-width: 768px) 30vw, (max-width: 1200px) 50vw, 33vw"
                 className="w-full h-full top-0 left-0 object-contain"
               />

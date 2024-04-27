@@ -29,8 +29,9 @@ const BestDealProduct = ({ productData }: any) => {
               <Image
                 src={`${imageUrl}${product?.productPhoto}`}
                 fill
-                objectFit="cover"
+                sizes="500px"
                 alt="Product Photo"
+                priority={true}
                 className="w-full h-full top-0 left-0 object-cover p-1.5 border rounded-md"
               />
             </div>

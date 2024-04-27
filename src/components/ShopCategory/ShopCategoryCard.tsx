@@ -17,7 +17,7 @@ const ShopCategoryCard = ({ category }: any) => {
       <div className="relative w-[120px] h-[120px] md:w-[250px] md:h-[250px] mx-auto">
         <Image
           src={`${imageUrl}${category?.categoryPhoto}`}
-          layout="fill"
+          fill
           alt={category?.categoryName}
           sizes="(max-width: 768px) 30vw, (max-width: 1200px) 50vw, 33vw"
           className="object-contain w-full h-full top-0 left-0"

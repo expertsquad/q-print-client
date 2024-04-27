@@ -50,7 +50,8 @@ const DealOfTheDay = () => {
               src={`${imageUrl}${firstDeal?.productPhoto}`}
               alt="profile"
               fill
-              objectFit="cover"
+              sizes="300px"
+              priority={true}
               className="w-full h-full top-0 left-0 object-cover"
             />
           </div>
@@ -82,7 +83,8 @@ const DealOfTheDay = () => {
               src={`${imageUrl}${secondDeal?.productPhoto}`}
               alt="Promotion Image"
               fill
-              objectFit="cover"
+              sizes="300px"
+              priority={true}
               className="top-0 left-0 w-full h-full object-cover"
             />
           </div>

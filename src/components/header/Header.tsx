@@ -46,7 +46,16 @@ const Header = () => {
         {/* ==Logo== */}
         <div className="order-2 md:order-1 section-first-child ">
           <Link href="/">
-            <Image src={qPrintLogo} alt="Logo" />
+            <div className="w-full h-auto">
+              <Image
+                src={qPrintLogo}
+                alt="Logo"
+                width={250}
+                height={250}
+                priority={true}
+                className="w-36"
+              />
+            </div>
           </Link>
         </div>
         {/* ==SearchBar & Filter== */}
@@ -92,7 +101,7 @@ const Header = () => {
           <Sidebar />
         </div>
       </section>
-      {openCartDrawer && (
+      {/* {openCartDrawer && (
         <CartDrawer
           openCartDrawer={openCartDrawer}
           setOpenCartDrawer={setOpenCartDrawer}
@@ -103,7 +112,7 @@ const Header = () => {
           openWishlistDrawer={openWishlistDrawer}
           setOpenWishlistDrawer={setOpenWishlistDrawer}
         />
-      )}
+      )} */}
     </header>
   );
 };

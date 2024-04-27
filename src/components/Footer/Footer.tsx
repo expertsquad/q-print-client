@@ -80,7 +80,7 @@ const Footer = () => {
               </p>
             </div>
             {/* //Social Links */}
-            <div className="flex gap-3 md:gap-4 md:pt-14">
+            {/* <div className="flex gap-3 md:gap-4 md:pt-14">
               <CombinedComponent
                 type="social"
                 socialIcon={<Reddit />}
@@ -106,7 +106,7 @@ const Footer = () => {
                 socialIcon={<Facebook />}
                 socialLinkHref="https://www.facebook.com"
               />
-            </div>
+            </div> */}
           </div>
           <p className="text-[#999] text-center md:text-start">
             Q-Print eCommerce © 2022. All Rights Reserved

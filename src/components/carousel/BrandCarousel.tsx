@@ -2,6 +2,7 @@
 import { imageUrl } from "@/constants/imageUrl";
 import { useGetBrandsQuery } from "@/redux/features/brand/brandsApi";
 import Image from "next/image";
+import { useEffect } from "react";
 
 interface BrandCarouselProps {
   _id: string;
@@ -15,22 +16,30 @@ interface BrandCarouselProps {
 const BrandCarousel = () => {
   const { data } = useGetBrandsQuery("");
 
+  useEffect(() => {
+    const logosSlide = document.querySelector(".logos-slide");
+    const logos = document.querySelector(".logos");
+    if (logosSlide && logos) {
+      const copy = logosSlide.cloneNode(true);
+      logos.appendChild(copy);
+    }
+  }, [data]);
   return (
-    <div className="logos flex justify-between overflow-hidden mx-auto max-w-[1280px] lg:mt-20 md:mt-20 mt-8">
-      {data?.data?.map((brand: BrandCarouselProps) => (
-        <div
-          className="logos-slide w-[60px] h-[60px] shrink-0 relative "
-          key={brand?._id}
-        >
-          <Image
-            src={`${imageUrl}${brand?.brandPhoto}`}
-            alt="Brand Carousel"
-            objectFit="cover"
-            fill
-            className="w-full h-full top-0 left-0 object-contain"
-          />
-        </div>
-      ))}
+    <div className="logos mx-auto whitespace-nowrap max-w-[1280px] lg:mt-20 md:mt-20 mt-8 overflow-hidden">
+      <div className="logos-slide flex items-center justify-between gap-[120px]">
+        {data?.data?.map((brand: BrandCarouselProps) => (
+          <div className="w-[60px] h-[60px] relative" key={brand?._id}>
+            <Image
+              src={`${imageUrl}${brand?.brandPhoto}`}
+              alt="Brand Carousel"
+              fill
+              sizes="200"
+              priority={true}
+              className="rounded-md"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

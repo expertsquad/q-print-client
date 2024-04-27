@@ -61,7 +61,7 @@ const QuickViewDescription = ({ product }: any) => {
             <Image
               src={`${imageUrl}${product?.brand?.brandPhoto}`}
               fill
-              objectFit="cover"
+              sizes="(max-width: 80px) 10vw, (max-width: 100px) 10vw, 15vw"
               alt="Brand Photo"
               className="w-full h-full top-0 left-0 object-contain"
             />

@@ -12,19 +12,12 @@ const Home = () => {
   return (
     <main className="max-w-[1280px] mx-auto">
       <Hero />
-
       <BrandCarousel />
-
       <ShopByCategory />
-
       <FeaturedProducts />
-
       <BestDeals />
-
       <DealOfTheDay />
-
       <NewProduct />
-
       <ExploreNew />
     </main>
   );

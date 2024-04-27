@@ -69,7 +69,7 @@ const SingleQuickOrder = ({ product, btnStyle }: string | any) => {
                       src={`${imageUrl}${product?.productPhotos[0]}`}
                       alt="Product Image"
                       fill
-                      objectFit="cover"
+                      sizes="(max-width: 80px) 10vw, (max-width: 100px) 10vw, 15vw"
                       className="w-full h-full top-0 left-0 object-cover border p-1.5 rounded-md"
                     />
                   </div>
