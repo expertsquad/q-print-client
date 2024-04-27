@@ -28,7 +28,6 @@ const ProductReviewModal = ({
   const dispatch = useDispatch();
   const { data: product } = useGetProductByIdQuery(reviewProductId);
   const { data } = useReviewByIdQuery(`orderId=${reviewOrderId}`);
-  console.log(data?.data[0]);
 
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
@@ -61,7 +60,6 @@ const ProductReviewModal = ({
 
     try {
       const res = await addReview(formData);
-      console.log(res, "From modal");
       if ("data" in res) {
         toast.success((res as { data: any }).data.message);
       }

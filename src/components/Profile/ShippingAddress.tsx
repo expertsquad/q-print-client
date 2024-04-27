@@ -7,7 +7,6 @@ import {
 } from "@/redux/features/user/user";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { setShippingData } from "@/redux/features/user/shippingAddressSlice";
-import { toast } from "react-toastify";
 
 const ShippingAddress = () => {
   // add shipping address mutation
