@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import Confetti from "../shared/Confetti";
 
 interface PriceRangeProps {
   priceRange?: any;
@@ -52,10 +51,6 @@ const GetDiscountRange = ({ priceRange }: PriceRangeProps) => {
       <div className="mt-2 text-center main-text-color font-extrabold">
         {percentage}
       </div>
-
-      {/* confitti added here */}
-
-      {/* <Confetti /> */}
     </div>
   );
 };

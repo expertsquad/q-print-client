@@ -36,16 +36,3 @@ const OrderedStep = ({ id }: any) => {
 };
 
 export default OrderedStep;
-
-// == Step Move Data
-// useEffect(() => {
-//   const interval = setInterval(() => {
-//     if (currentStep < NUMBER_OF_STEPS - 1) {
-//       setCurrentStep((prev) => prev + 1);
-//     } else {
-//       setCurrentStep(0);
-//     }
-//   }, 3000); // Change the interval duration as needed
-
-//   return () => clearInterval(interval);
-// }, [currentStep, NUMBER_OF_STEPS]);

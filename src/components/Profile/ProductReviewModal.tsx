@@ -31,14 +31,14 @@ const ProductReviewModal = ({
   const { data: product } = useGetProductByIdQuery(reviewProductId);
   const { data } = useReviewByIdQuery(`orderId=${reviewOrderId}`);
 
-  const reviewedData = data?.data?.map((data) => {
-    // console.log(data?.comment, "From backend");
-    return {
-      id: data?._id,
-      comment: data?.comment,
-      rating: data?.rating,
-    };
-  });
+  // const reviewedData = data?.data?.map((data) => {
+
+  //   return {
+  //     id: data?._id,
+  //     comment: data?.comment,
+  //     rating: data?.rating,
+  //   };
+  // });
 
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
@@ -58,7 +58,7 @@ const ProductReviewModal = ({
   useEffect(() => {
     dispatch(setOrderId(reviewOrderId));
     dispatch(setProductId(reviewProductId));
-  }, []);
+  }, [dispatch, reviewOrderId, reviewProductId]);
 
   // <== Sending review product data to server ==>
   const handleSubmit = async (e: any) => {

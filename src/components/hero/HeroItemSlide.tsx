@@ -16,30 +16,6 @@ interface HeroItem {
 const HeroItemSlide = ({ sliderArray }: any) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
-  // const heroItems: HeroItem[] = [
-  //   {
-  //     _id: firstSlider?._id,
-  //     sliderTag: firstSlider?.sliderTag,
-  //     company: firstSlider?.title,
-  //     about: firstSlider?.title,
-  //     picture: firstSlider?.productPhoto,
-  //   },
-  //   {
-  //     _id: secondSlider?._id,
-  //     sliderTag: secondSlider?.sliderTag,
-  //     company: secondSlider?.title,
-  //     about: secondSlider?.title,
-  //     picture: secondSlider?.productPhoto,
-  //   },
-  //   {
-  //     _id: thirdSlider?._id,
-  //     sliderTag: thirdSlider?.sliderTag,
-  //     company: thirdSlider?.title,
-  //     about: thirdSlider?.title,
-  //     picture: thirdSlider?.productPhoto,
-  //   },
-  // ];
-
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % sliderArray.length);
