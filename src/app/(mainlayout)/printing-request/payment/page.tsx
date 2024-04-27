@@ -13,16 +13,10 @@ import { IconPhone } from "@tabler/icons-react";
 import { IconMapPin } from "@tabler/icons-react";
 
 const Payment = () => {
-  // <== Get User Address ==>
-  const { data: address } = useGetUserAddressQuery("");
-  const defaultAddress = address?.data?.find(
-    (address: any) => address.isDefault
-  );
   // <== Get User Personal Information ==>
   const { data: personalInformation } = useGetUserQuery("");
 
   const data = useAppSelector((state) => state.printingRequestOrder);
-  console.log(data, "alsdlaska;lsdfkjasdlfkjlskj");
   return (
     <section className="lg:max-w-[1280px] w-full mx-auto  mb-7 ">
       <div className="mb-7">
@@ -61,7 +55,7 @@ const Payment = () => {
               </span>
             </div>
             <div className="w-2/12">
-              <EditButton link="profile/profile-settings" />
+              <EditButton />
             </div>
           </div>
 

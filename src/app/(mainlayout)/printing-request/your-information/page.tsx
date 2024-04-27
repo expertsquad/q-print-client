@@ -3,7 +3,6 @@ import PringtingRequestOrderCard from "@/components/PrintingRequest/PringtingReq
 import ReturnToCardButton from "@/components/PrintingRequest/ReturnToCardButton";
 import CustomInput from "@/components/shared/CustomInput";
 import { setPrintingRequest } from "@/redux/features/printing-request/postPrintingRequestSlice";
-import { setShippingData } from "@/redux/features/user/shippingAddressSlice";
 import {
   useAddShippingAddressMutation,
   useGetUserAddressQuery,
@@ -25,7 +24,7 @@ const YourInformation = () => {
   const [addShipping] = useAddShippingAddressMutation();
 
   // <== Get User Address ==>
-  const { data: address, isLoading } = useGetUserAddressQuery("");
+  const { data: address, isLoading } = useGetUserAddressQuery(`isDefault=true`);
   const defaultAddress = address?.data?.find(
     (address: any) => address.isDefault
   );

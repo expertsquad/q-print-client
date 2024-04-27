@@ -12,7 +12,7 @@ type IPrintingRequestOrder = {
     streetAddress: string;
     state: string;
     country: string;
-    zipCode: string;
+    zipCode: number;
     companyName?: string;
     isDefault: boolean;
   };

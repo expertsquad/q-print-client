@@ -1,5 +1,5 @@
 "use client";
-import { IconUser, IconSearch } from "@tabler/icons-react";
+import { IconSearch } from "@tabler/icons-react";
 import Image from "next/image";
 import qPrintLogo from "@/assets/logotwo.svg";
 import Link from "next/link";

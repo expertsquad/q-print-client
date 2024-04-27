@@ -7,38 +7,37 @@ import { imageUrl } from "@/constants/imageUrl";
 import { IconPlus } from "@tabler/icons-react";
 import { IconMinus } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
+import {
+  addToCart,
+  removeOneFromCart,
+} from "@/redux/features/cart/productCartSlice";
 
+interface ShoppingCartProps {
+  handleSubmit?: any;
+  btnText?: string;
+  btnLink?: string;
+}
 
-const ShoppingCartTotalItems = () => {
-  const { products } = useAppSelector((state) => state.);
+const ShoppingCartTotalItems = ({
+  handleSubmit,
+  btnText,
+  btnLink,
+}: ShoppingCartProps) => {
+  const { products, subTotal } = useAppSelector(
+    (state) => state.productCartSlice
+  );
   const dispatch = useDispatch();
 
-  // <== Calculate Subtotal, Total , and Shipping ==>
-  const subTotal = products?.reduce((total: number, product: any) => {
-    return total + product?.defaultVariant?.discountedPrice * product?.quantity;
-  }, 0);
-
-  // <== Calculate Discount ==>
-  const discountPrice = products?.reduce((total: number, product: any) => {
-    return (
-      total +
-      product?.defaultVariant?.sellingPrice -
-      product?.defaultVariant?.discountedPrice
-    );
-  }, 0);
-
+  const discountPrice = 100;
   const shippingCharge = 80;
-  // const discountPrice = 100;
-  // const calculateTotal = subTotal + shippingCharge;
-  // <== Calculate Total ==>
   const calculateTotalWithDiscount = subTotal + shippingCharge - discountPrice;
 
   return (
     <div className=" border rounded-lg pb-5 mb-5">
-      <h4 className="px-5 py-4 text-lg font-medium">Shopping Items</h4>
+      <h4 className="px-5 py-3 text-base font-medium">Shopping Items</h4>
       <div className=" border-y ">
         {/* == total product in cart section == */}
-        <div className="">
+        <div className="h-[300px] overflow-y-scroll no-scrollbar">
           {products?.map((product: any) => (
             <div
               className="flex items-center gap-4 py-2 px-3 hover:bg-slate-50"
@@ -50,12 +49,12 @@ const ShoppingCartTotalItems = () => {
                   alt="profile"
                   objectFit="cover"
                   fill
-                  className="w-full h-full top-0 left-0 object-cover border-[1px] p-1.5 rounded-md"
+                  className="w-full h-full top-0 left-0 object-cover border-[1px] p-1 rounded-md"
                 />
               </div>
 
-              <div>
-                <span className="line-clamp-1 text-base text-black text-opacity-90">
+              <div className="w-full">
+                <span className="line-clamp-1 text-base text-black-opacity-80">
                   {product?.productName}
                 </span>
 
@@ -71,7 +70,7 @@ const ShoppingCartTotalItems = () => {
                       />
                     </button>
                     <span className="text-black text-opacity-70 text-base">
-                      {product?.quantity}
+                      {product?.orderQuantity}
                     </span>
                     <button
                       onClick={() => dispatch(addToCart(product))}
@@ -81,12 +80,11 @@ const ShoppingCartTotalItems = () => {
                       <IconPlus stroke={1} width={13} height={13} />
                     </button>
                     <span className="text-[12px]">x</span>
-                    <span>{product?.defaultVariant?.discountedPrice} QAR</span>
+                    <span>{product?.price} QAR</span>
                   </div>
                   <div className="">
                     <b className="main-text-color flex items-end justify-end">
-                      {product?.quantity *
-                        product?.defaultVariant?.discountedPrice}{" "}
+                      {product?.orderQuantity * product?.price}
                       QAR
                     </b>
                   </div>
@@ -128,12 +126,21 @@ const ShoppingCartTotalItems = () => {
       </div>
 
       <div className="flex justify-center items-center px-5 py-4   ">
-        <Link
-          href="/payment"
-          className="bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white hover:scale-105 shadow-sm hover:duration-500 hover:shadow-lg text-center "
-        >
-          Place Order
-        </Link>
+        {btnText ? (
+          <Link
+            href={`/${btnLink}`}
+            className="bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white hover:scale-105 shadow-sm hover:duration-500 hover:shadow-lg text-center "
+          >
+            {btnText}
+          </Link>
+        ) : (
+          <button
+            className="bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white hover:scale-105 shadow-sm hover:duration-500 hover:shadow-lg text-center "
+            onClick={handleSubmit}
+          >
+            Place Order
+          </button>
+        )}
       </div>
     </div>
   );

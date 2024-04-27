@@ -1,14 +1,63 @@
+"use client";
 import BillingAddress from "@/components/PrintingRequest/BillingAddress";
 import EditButton from "@/components/PrintingRequest/EditButton";
 import PaymentMethod from "@/components/PrintingRequest/PaymentMethod";
-import TotalOrderCard from "@/components/UI/card/TotalOrderCard";
+import ShoppingCartTotalItems from "@/components/UI/card/ShoppingCartTotalItems";
+import { resetCart } from "@/redux/features/cart/productCartSlice";
+import { useOnlineOrderPostMutation } from "@/redux/features/online-order/online-orderApi";
+import {
+  useGetUserAddressQuery,
+  useGetUserQuery,
+} from "@/redux/features/user/user";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { IconMail } from "@tabler/icons-react";
 import { IconPhone } from "@tabler/icons-react";
 import { IconMapPin } from "@tabler/icons-react";
+import { toast } from "react-toastify";
 
 const Payment = () => {
+  // <== Get User Personal Information ==>
+  const { data: personalInformation } = useGetUserQuery("");
+  console.log(personalInformation, "personal information");
+
+  const { data: address, isLoading } = useGetUserAddressQuery(`isDefault=true`);
+  const dispatch = useAppDispatch();
+
+  const { products } = useAppSelector((state) => state.productCartSlice);
+  const data = useAppSelector((state) => state.printingRequestOrder);
+
+  const [onlineOrder] = useOnlineOrderPostMutation();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const value = {
+      orderItems: products,
+      shippingAddress: data?.shippingAddress
+        ? data?.shippingAddress
+        : address?.data[0],
+      payment: {
+        paymentStatus: "Unpaid",
+        paymentMethod: "COD",
+      },
+    };
+
+    try {
+      const res = await onlineOrder(value);
+      dispatch(resetCart());
+      if ("data" in res) {
+        toast.success((res as { data: any }).data.message);
+      }
+      if ("error" in res) {
+        toast.error((res as { error: any }).error.message);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <section className="lg:max-w-[1280px] w-full mx-auto  mb-7 ">
+    <section className="lg:max-w-[1280px] w-full mx-auto  mb-7">
       <div className="mb-7">
         <h3 className="[font-size:_clamp(1.2em,4vw,1.8em)] font-bold">
           Payment
@@ -18,52 +67,40 @@ const Payment = () => {
         {/* contact email phone number  */}
 
         <div className="w-full md:w-8/12  border rounded-lg  pt-5 ">
-          {/* email */}
-          <div className="   px-5 md:px-10">
-            <div className="flex items-center justify-start  pb-5 border-b gap-1">
-              <div className="text-gray-500 w-3/12 md:w-2/12  ">Contact </div>
-              <div className="flex  gap-5 flex-col md:flex-row lg-flex-row w-7/12 md:w-8/12 justify-start   text-sm md:text-base  ">
-                {/* email and phone number start */}
-                <div className="flex justify-start items-center gap-2 ">
-                  <div>
-                    {" "}
-                    <IconMail className="text-gray-400 md:w-5 md:h-5 h-4 w-4" />
-                  </div>
-                  <p>zayed120@gmail.com</p>
+          {/*== email ==*/}
+          <div className="flex items-center justify-start pt-5 px-5 md:px-10 border-b w-full pb-10 gap-1">
+            <span className="text-gray-500 w-3/12 md:w-2/12">Contact</span>
+            <div className="flex items-center justify-start pb-5 border-b gap-1">
+              <div className="flex flex-col lg:gap-5 lg:flex-row w-7/12 md:w-8/12 justify-start text-sm md:text-base">
+                <div className="flex justify-start items-center gap-2">
+                  <IconMail stroke={1} width={22} height={22} />
+                  <span>{personalInformation?.data?.email}</span>
                 </div>
                 <div className="flex justify-start items-center gap-2">
-                  <div>
-                    <div>
-                      {" "}
-                      <IconPhone className="text-gray-400 md:w-5 md:h-5 h-4 w-4" />
-                    </div>
-                  </div>
-                  <p>01612849451</p>
+                  <IconPhone stroke={1} width={22} height={22} />
+                  <span>{personalInformation?.data?.phoneNumber}</span>
                 </div>
-                {/* email and phone number start */}
               </div>
-              <div className="w-2/12">
-                <EditButton />
-              </div>
+            </div>
+            <div className="w-2/12">
+              <EditButton />
             </div>
           </div>
+          {/*== shipping to ==*/}
 
-          {/* shipping  */}
-          <div className="flex items-center justify-start pt-5 px-5 md:px-10 border-b w-full pb-10 gap-1 ">
-            <div className="text-gray-500 w-3/12 md:w-2/12  ">Ship to </div>
-            <div className="flex gap-5 w-7/12 md:w-8/12">
-              <div className="flex justify-start items-center gap-2">
-                <div>
-                  {" "}
-                  <IconMapPin className="text-gray-400 md:w-5 md:h-5 h-4 w-4" />{" "}
-                </div>
-                <p className="w-/12 line-clamp-3 text-sm md:text-base">
-                  Noakhali Chaprashirhat Road No. 13/x, House no. 1320/C, Flat
-                  No. 5D
-                </p>
-              </div>
+          <div className="flex items-center justify-start pt-5 px-5 md:px-10 border-b w-full pb-10 gap-1">
+            <span className="text-gray-500 w-3/12 md:w-2/12">Ship to</span>
+            <div className="flex w-7/12 md:w-8/12 justify-start items-center gap-1">
+              <span>
+                <IconMapPin width={22} height={22} stroke={1} />
+              </span>
+              <span className="w-/12 line-clamp-3 text-sm md:text-base">
+                {data?.shippingAddress?.streetAddress
+                  ? data?.shippingAddress?.streetAddress
+                  : address?.data[0]?.streetAddress}
+              </span>
             </div>
-            <div className="w-2/12 ">
+            <div className="w-2/12">
               <EditButton />
             </div>
           </div>
@@ -89,8 +126,7 @@ const Payment = () => {
         </div>
 
         <div className="w-full md:w-4/12 ">
-          <TotalOrderCard />
-          {/* <PrintingRequestTotalOrder /> */}
+          <ShoppingCartTotalItems handleSubmit={handleSubmit} />
         </div>
       </div>
     </section>

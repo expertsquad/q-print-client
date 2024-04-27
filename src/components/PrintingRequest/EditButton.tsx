@@ -1,3 +1,4 @@
+"use client";
 import GradientEditIcon from "@/assets/svgIcons/GradientEditIcon";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

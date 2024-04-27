@@ -35,15 +35,33 @@ const initialState: CartState = {
   discount: 0,
 };
 
-const calculateSubTotal = (products: Product[]): number => {
-  return products.reduce((total, product) => {
-    return total + product.price * product.orderQuantity;
-  }, 0);
+// Function to save state to localStorage
+const saveStateToLocalStorage = (state: CartState) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("cartState", serializedState);
+  } catch (err) {
+    console.error("Error saving state to localStorage:", err);
+  }
+};
+
+// Function to load state from localStorage
+const loadStateFromLocalStorage = (): CartState | undefined => {
+  try {
+    const serializedState = localStorage.getItem("cartState");
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (err) {
+    console.error("Error loading state from localStorage:", err);
+    return undefined;
+  }
 };
 
 const productCartSlice = createSlice({
   name: "cart",
-  initialState,
+  initialState: loadStateFromLocalStorage() || initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<Product>) => {
       const addedProduct = action.payload;
@@ -60,6 +78,7 @@ const productCartSlice = createSlice({
       }
 
       state.subTotal = calculateSubTotal(state.products);
+      saveStateToLocalStorage(state);
     },
     removeOneFromCart: (state, action: PayloadAction<Product>) => {
       const removedProduct = action.payload;
@@ -77,6 +96,7 @@ const productCartSlice = createSlice({
       }
 
       state.subTotal = calculateSubTotal(state.products);
+      saveStateToLocalStorage(state);
     },
     removeFromCart: (state, action: PayloadAction<Product>) => {
       const removedProduct = action.payload;
@@ -89,15 +109,24 @@ const productCartSlice = createSlice({
       );
 
       state.subTotal = calculateSubTotal(state.products);
+      saveStateToLocalStorage(state);
     },
     setDiscount: (state, action: PayloadAction<number>) => {
       state.discount = action.payload;
+      saveStateToLocalStorage(state);
     },
     resetCart: (state) => {
+      localStorage.removeItem("cartState");
       return initialState;
     },
   },
 });
+
+const calculateSubTotal = (products: Product[]): number => {
+  return products.reduce((total, product) => {
+    return total + product.price * product.orderQuantity;
+  }, 0);
+};
 
 export const {
   addToCart,
