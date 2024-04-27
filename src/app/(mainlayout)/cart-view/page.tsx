@@ -96,7 +96,7 @@ const CartView = () => {
                             </span>
                           </div>
                           <span className="font-bold main-text-color">
-                            ${subTotal}
+                            ${product?.price * product?.orderQuantity}
                           </span>
                         </div>
                       </div>

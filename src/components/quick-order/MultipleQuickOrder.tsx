@@ -69,9 +69,9 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
         onClick={() => {
           setShowModal(true);
         }}
-        className="uppercase flex items-center justify-center gap-1 main-bg-color text-white py-3 rounded-lg w-full whitespace-nowrap text-sm"
+        className="uppercase flex items-center justify-center gap-1 main-bg-color text-white py-3 rounded-[5px] w-full whitespace-nowrap text-sm"
       >
-        <IconBolt stroke={2} width={18} height={18} fill="#fff" /> Quick Order
+        <IconBolt stroke={1} width={18} height={18} fill="#fff" /> Quick Order
       </button>
       {/* == Here is a single quick order modal == */}
       <GlobalModal

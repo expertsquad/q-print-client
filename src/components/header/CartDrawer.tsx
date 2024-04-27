@@ -4,6 +4,7 @@ import ModalCloseBtn from "../shared/ModalCloseBtn";
 import {
   IconArrowLeft,
   IconChevronLeft,
+  IconChevronRight,
   IconMinus,
   IconPlus,
   IconShoppingCartCog,
@@ -23,6 +24,8 @@ import MultipleQuickOrder from "../quick-order/MultipleQuickOrder";
 import { IconCheck } from "@tabler/icons-react";
 import GetDiscountRange from "../ProductView/GetDiscountRange";
 import emptyCart from "@/assets/empty-card-photo.svg";
+import CartItem from "../cart-view/CartItem";
+import { IconShoppingCart } from "@tabler/icons-react";
 
 const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
   const dispatch = useDispatch();
@@ -45,88 +48,18 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
       >
         <ModalCloseBtn
           handleClose={handleCloseDrawer}
-          icon={<IconArrowLeft stroke={2} width={20} height={20} />}
+          icon={<IconChevronRight stroke={1} width={24} height={24} />}
         />
-        <h3 className="text-center text-black text-[20px] font-medium border-b pb-4">
+        <h3 className="text-center text-black-opacity-70 text-[20px] font-medium border-b pb-4">
           My Cart
         </h3>
         <div>
           {products?.length > 0 ? (
-            <div className="flex flex-col justify-between md:h-[calc(100vh-80px)] h-[calc(100vh-60px)]">
+            <div className="flex flex-col justify-between md:h-[calc(100vh-90px)] h-[calc(100vh-100px)]">
               {/* --data container-- */}
               <div className="flex flex-col overflow-y-auto no-scrollbar h-[550px]">
                 {products?.map((product: any, index: number) => (
-                  <div
-                    className="flex gap-5 border-b transition duration-300 ease-in-out hover:bg-gray-100 p-3"
-                    key={index}
-                  >
-                    {/* --Image-- */}
-                    <div className="w-16 h-16 relative shrink-0">
-                      <Image
-                        src={`${imageUrl}${product?.productPhotos?.[1]}`}
-                        alt="Product Image"
-                        fill
-                        objectFit="cover"
-                        className="w-full h-full top-0 left-0 object-cover p-1 border"
-                      />
-                    </div>
-                    <div className="w-full">
-                      {/* --Title and Delete BTN-- */}
-                      <div className="flex items-center justify-between w-full ">
-                        <p className="text-black text-opacity-90 text-[16px] line-clamp-1">
-                          {product?.productName}
-                        </p>
-                        <button
-                          onClick={() => dispatch(removeFromCart(product))}
-                          className="justify-items-end"
-                        >
-                          <span className="cursor-pointer text-black text-opacity-70">
-                            <IconX width={20} height={20} />
-                          </span>
-                          {""}
-                        </button>
-                      </div>
-                      {/* --BrandName-- */}
-                      <div className="my-1 flex items-center gap-2">
-                        <p className="text-black-opacity-80 text-xs">
-                          {product?.brand?.brandName}
-                        </p>
-                        <span
-                          className="w-3 h-3 rounded-full"
-                          style={{ backgroundColor: product?.variantName }}
-                        ></span>
-                        <span className="text-xs">
-                          {product?.variantName && product?.variantName}
-                        </span>
-                      </div>
-                      {/* --Increase and Decrease BTN etc-- */}
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => dispatch(removeOneFromCart(product))}
-                            className="border border-main-border-color p-1 rounded-full text-black-opacity-70 "
-                          >
-                            {""}
-                            <IconMinus stroke={2} width={13} height={13} />
-                          </button>
-                          <span>{product?.orderQuantity}</span>
-                          <button
-                            onClick={() => dispatch(addToCart(product))}
-                            className="border border-main-border-color p-1 rounded-full text-black-opacity-70 "
-                          >
-                            {""}
-                            <IconPlus stroke={2} width={13} height={13} />
-                          </button>
-                          <span className="text-[12px]">x</span>
-                          <span>{product?.price} QAR</span>
-                        </div>
-                        <b className="main-text-color">
-                          {product?.orderQuantity * product?.price}
-                          QAR
-                        </b>
-                      </div>
-                    </div>
-                  </div>
+                  <CartItem key={index} product={product} />
                 ))}
               </div>
               {/* --fixed data container-- */}
@@ -136,6 +69,7 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                   <p className="">Subtotal</p>
                   <span>
                     {subTotal}
+                    {" "}
                     <small className="uppercase">qar</small>
                   </span>
                 </div>
@@ -144,6 +78,7 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                   <p className="mb-5">Shipping</p>
                   <span>
                     {shippingCharge}
+                    {" "}
                     <small className="uppercase">qar</small>
                   </span>
                 </div>
@@ -152,6 +87,7 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                   <p className="font-bold text-[16px]">Total</p>
                   <span className="font-bold text-[16px]">
                     {calculateTotal}
+                    {" "}
                     <small className="uppercase">qar</small>
                   </span>
                 </div>
@@ -181,9 +117,9 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                   <Link
                     href="/cart-view"
                     onClick={handleCloseDrawer}
-                    className="border w-full py-2 flex gap-1.5 items-center justify-center rounded-lg text-black bg-black bg-opacity-15 hover:main-bg-color hover:text-white"
+                    className="border w-full text-sm py-3 px-2.5 flex gap-1.5 items-center justify-center rounded-[5px] text-black bg-black bg-opacity-[12%] hover:main-bg-color "
                   >
-                    <IconShoppingCartCog />
+                    <IconShoppingCart stroke={1} height={20} width={20} />
                     CHECK OUT
                   </Link>
 
