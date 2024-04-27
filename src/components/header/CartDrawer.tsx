@@ -4,6 +4,7 @@ import ModalCloseBtn from "../shared/ModalCloseBtn";
 import {
   IconArrowLeft,
   IconChevronLeft,
+  IconChevronRight,
   IconMinus,
   IconPlus,
   IconShoppingCartCog,
@@ -47,7 +48,7 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
       >
         <ModalCloseBtn
           handleClose={handleCloseDrawer}
-          icon={<IconChevronLeft stroke={2} width={20} height={20} />}
+          icon={<IconChevronRight stroke={1} width={24} height={24} />}
         />
         <h3 className="text-center text-black-opacity-70 text-[20px] font-medium border-b pb-4">
           My Cart

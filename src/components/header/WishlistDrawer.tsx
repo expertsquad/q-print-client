@@ -1,6 +1,6 @@
 import React from "react";
 import CustomGlobalDrawer from "../shared/CustomGlobalDrawer";
-import { IconArrowLeft, IconChevronLeft, IconShoppingCart, IconX } from "@tabler/icons-react";
+import { IconArrowLeft, IconChevronLeft, IconChevronRight, IconShoppingCart, IconX } from "@tabler/icons-react";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
@@ -29,7 +29,7 @@ const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
       >
         <ModalCloseBtn
           handleClose={handleCloseWishlist}
-          icon={<IconChevronLeft stroke={2} width={20} height={20} />}
+          icon={<IconChevronRight stroke={1} width={24} height={24} />}
         />
         <h3 className="text-center text-black text-[20px] font-medium border-b pb-4 mb-7">
           Wishlist
