@@ -46,7 +46,7 @@ const BestDeals = () => {
               {data?.data?.description}
             </p>
           </div>
-          {/* <CountdownTimer endDate={endDate} /> */}
+          <CountdownTimer endDate={endDate} />
         </div>
         <div className="w-1/4 flex items-end justify-end">
           <div className="relative w-16 md:w-32 h-16 md:h-32 lg:w-48 lg:h-48 shrink-0">

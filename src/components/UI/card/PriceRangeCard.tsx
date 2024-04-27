@@ -28,7 +28,7 @@ const PriceRangeCard = () => {
     }, 1000);
 
     return () => clearTimeout(debounceTimer);
-  }, [range]);
+  }, [range, dispatch, minPrice, maxPrice]);
 
   const gradientBackground = {
     background:
