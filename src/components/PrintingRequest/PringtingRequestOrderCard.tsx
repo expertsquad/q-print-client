@@ -5,18 +5,24 @@ import { IconMinus } from "@tabler/icons-react";
 import Link from "next/link";
 import React from "react";
 
+
 const PringtingRequestOrderCard = ({ href, buttonText, handleSubmit }: any) => {
   const data = useAppSelector((state) => state.printingRequestOrder);
 
   const dispatch = useAppDispatch();
 
+
+  // @ts-ignore
   const calculateHeightWidth = data?.paperSize?.height * data?.paperSize?.width;
+  // @ts-ignore
   const heightWidthMultiplyByType = calculateHeightWidth * data?.paperTypePrice;
 
   const heightWidthMultiplyMode =
+    // @ts-ignore
     calculateHeightWidth * data?.printingModePrice;
   const deliveryCharge = 60;
   const totalAmount = heightWidthMultiplyByType + heightWidthMultiplyMode;
+  // @ts-ignore
   const totalAmountWithQuantity = totalAmount * data?.totalQuantity;
 
   return (
@@ -34,6 +40,7 @@ const PringtingRequestOrderCard = ({ href, buttonText, handleSubmit }: any) => {
                   dispatch(
                     setPrintingRequest({
                       ...data,
+                      // @ts-ignore
                       totalQuantity: data?.totalQuantity - 1,
                     })
                   )
@@ -43,13 +50,14 @@ const PringtingRequestOrderCard = ({ href, buttonText, handleSubmit }: any) => {
                 {""}
                 <IconMinus stroke={3} width={15} height={15} />
               </button>
-
+              {/* @ts-ignore */}
               <span>{data?.totalQuantity}</span>
               <button
                 onClick={() =>
                   dispatch(
                     setPrintingRequest({
                       ...data,
+                      // @ts-ignore
                       totalQuantity: data?.totalQuantity + 1,
                     })
                   )
@@ -90,11 +98,10 @@ const PringtingRequestOrderCard = ({ href, buttonText, handleSubmit }: any) => {
       >
         <Link
           href={`${href}`}
-          className={`bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white  shadow-sm hover:duration-500 hover:shadow-lg text-center ${
-            totalAmountWithQuantity
-              ? "cursor-pointer"
-              : "cursor-not-allowed btn-disabled"
-          }`}
+          className={`bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white  shadow-sm hover:duration-500 hover:shadow-lg text-center ${totalAmountWithQuantity
+            ? "cursor-pointer"
+            : "cursor-not-allowed btn-disabled"
+            }`}
         >
           {buttonText}
         </Link>

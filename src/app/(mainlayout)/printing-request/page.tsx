@@ -61,20 +61,21 @@ const PrintingRequest = () => {
                   onClick={() =>
                     dispatch(
                       setPrintingRequest({
-                        paperSize: { ...item },
+                        paperSize: item,
                         totalQuantity: 1,
                       })
                     )
                   }
-                  className={`${
-                    item._id === data?.paperSize?._id
-                      ? "shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)] border border-fuchsia-700"
-                      : ""
-                  } flex items-center justify-center rounded-lg cursor-pointer w-[100px] h-[150px] border hover:border-fuchsia-700`}
+                  // @ts-ignore
+                  className={`${item._id === data?.paperSize?._id
+                    ? "shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)] border border-fuchsia-700"
+                    : ""
+                    } flex items-center justify-center rounded-lg cursor-pointer w-[100px] h-[150px] border hover:border-fuchsia-700`}
                 >
                   {item.width} x {item.height}
                 </div>
               ))}
+
             </div>
           </div>
 
@@ -93,11 +94,10 @@ const PrintingRequest = () => {
                         })
                       )
                     }
-                    className={`list-none py-3 px-5 border whitespace-nowrap rounded-lg text-gray-500 cursor-pointer ${
-                      item._id === data?.paperTypeId
-                        ? "bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-white border-fuchsia-700"
-                        : ""
-                    }`}
+                    className={`list-none py-3 px-5 border whitespace-nowrap rounded-lg text-gray-500 cursor-pointer ${item._id === data?.paperTypeId
+                      ? "bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-white border-fuchsia-700"
+                      : ""
+                      }`}
                   >
                     {item.paperType}
                   </span>
@@ -119,11 +119,10 @@ const PrintingRequest = () => {
                         })
                       )
                     }
-                    className={`list-none py-3 px-5 border whitespace-nowrap rounded-lg text-gray-500 cursor-pointer ${
-                      item._id === data?.printingColorModeId
-                        ? "bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-white border-fuchsia-700"
-                        : ""
-                    }`}
+                    className={`list-none py-3 px-5 border whitespace-nowrap rounded-lg text-gray-500 cursor-pointer ${item._id === data?.printingColorModeId
+                      ? "bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-white border-fuchsia-700"
+                      : ""
+                      }`}
                   >
                     {item.printingColorMode}
                   </span>
