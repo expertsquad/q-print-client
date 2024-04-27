@@ -46,7 +46,7 @@ export const authApi = baseApi.injectEndpoints({
       invalidatesTags: ["user"],
     }),
     // <== Shipping address update ==>
-    addShippingAddress: build.mutation({
+    updateShippingAddress: build.mutation({
       query: (data) => ({
         url: `/user-address/${data.id}`,
         method: "PUT",
@@ -54,6 +54,25 @@ export const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["shipping-address"],
     }),
+    // <== Shipping address update ==>
+    addShippingAddress: build.mutation({
+      query: (data) => ({
+        url: `/user-address/add`,
+        method: "POST",
+        data: data.data,
+      }),
+      invalidatesTags: ["shipping-address"],
+    }),
+    // update me
+    updateMe: build.mutation({
+      query: (data) => ({
+        url: "/user/update",
+        method: "PUT",
+        data: data,
+      }),
+      invalidatesTags: ["user"],
+    }),
+
     // <== Add new user address ==>
     addNewUserAddress: build.mutation({
       query: (data) => ({
@@ -67,6 +86,8 @@ export const authApi = baseApi.injectEndpoints({
 });
 
 export const {
+  useUpdateShippingAddressMutation,
+  useUpdateMeMutation,
   useUserLoginMutation,
   useUserSignUpMutation,
   useGetUserQuery,

@@ -13,6 +13,8 @@ import productCartSlice from "./features/cart/productCartSlice";
 import favouriteCartSlice from "./features/wishlist/favouriteCartSlice";
 import quickOrder from "./features/quick-order/quickOrder";
 import filterProductReview from "./features/review/filterProductReview";
+import { profile } from "console";
+import profileEditSlice from "./features/user/profileEditSlice";
 import multipleOrder from "./features/quick-order/multipleQuickOrder";
 
 export const reducer = {
@@ -32,4 +34,5 @@ export const reducer = {
   singleQuickOrder: quickOrder,
   multipleQuickOrder: multipleOrder,
   filteredProductByReview: filterProductReview,
+  profileEdit: profileEditSlice,
 };
