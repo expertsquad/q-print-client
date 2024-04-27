@@ -2,23 +2,13 @@
 import CustomGlobalDrawer from "../shared/CustomGlobalDrawer";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
 import {
-  IconArrowLeft,
+  IconArrowRight,
   IconChevronLeft,
   IconChevronRight,
-  IconMinus,
-  IconPlus,
-  IconShoppingCartCog,
-  IconX,
+
 } from "@tabler/icons-react";
 import Image from "next/image";
 import { useAppSelector } from "@/redux/hook";
-import { imageUrl } from "@/constants/imageUrl";
-import { useDispatch } from "react-redux";
-import {
-  addToCart,
-  removeFromCart,
-  removeOneFromCart,
-} from "@/redux/features/cart/productCartSlice";
 import Link from "next/link";
 import MultipleQuickOrder from "../quick-order/MultipleQuickOrder";
 import { IconCheck } from "@tabler/icons-react";
@@ -28,7 +18,6 @@ import CartItem from "../cart-view/CartItem";
 import { IconShoppingCart } from "@tabler/icons-react";
 
 const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
-  const dispatch = useDispatch();
   const handleCloseDrawer = () => {
     setOpenCartDrawer(false);
   };
@@ -142,13 +131,14 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                 Your Cart Is Empty!!
               </span>
               <Link
-                href={"/"}
-                className="flex items-center justify-center main-bg-color py-2 text-white rounded-lg w-full"
+                href={"/products"}
+                className="flex items-center gap-2 justify-center main-bg-color py-3.5 text-white rounded-[5px] w-full"
               >
-                <span>
-                  <IconChevronLeft stroke={2} width={24} height={24} />
-                </span>
+
                 Continue Shopping
+                <span>
+                  <IconArrowRight stroke={2} width={24} height={24} />
+                </span>
               </Link>
             </div>
           )}

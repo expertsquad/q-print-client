@@ -41,8 +41,8 @@ const Header = () => {
   };
 
   return (
-    <header className="max-w-[1280px] mx-auto">
-      <section className="header-section-css pt-6 mx-auto">
+    <header className="max-w-[1280px] mx-auto relative">
+      <section className="header-section-css pt-6  fixed top-0 left-0 right-0 z-40 bg-white max-w-[1280px] mx-auto md:px-0 px-5">
         {/* ==Logo== */}
         <div className="order-2 md:order-1 section-first-child ">
           <Link href="/">

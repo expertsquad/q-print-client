@@ -36,7 +36,7 @@ const CartView = () => {
           {/* --Product data, Price range, cart total container-- */}
           <div className="flex flex-col md:flex-row md:justify-between md:gap-5">
             {/* --Product data & Cart total container-- */}
-            <div className="w-full">
+            <div className="w-full md:h-auto h-[350px] overflow-y-auto">
               {/* -Product data- */}
               <div className="border rounded-lg ">
                 {products?.map((product: any) => (
