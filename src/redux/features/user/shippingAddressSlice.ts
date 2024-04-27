@@ -11,6 +11,7 @@ type IShippingAddress = {
   companyName?: string;
   country?: string;
   _id?: string;
+  addNewAddress?: boolean;
 };
 
 const initialState: IShippingAddress = {};

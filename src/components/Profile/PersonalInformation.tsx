@@ -15,7 +15,6 @@ const PersonalInformation = ({ personalInformation }: any) => {
   const dispatch = useAppDispatch();
   const { fullName, profilePhoto, phoneNumber, profileLocalPhoto } =
     useAppSelector((state) => state.profileEdit);
-  console.log(fullName, profilePhoto, phoneNumber);
 
   // Update component state when Redux state changes
   useEffect(() => {

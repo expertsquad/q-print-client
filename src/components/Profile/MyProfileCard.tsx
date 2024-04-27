@@ -30,7 +30,7 @@ const MyProfileCard = () => {
     (state) => state.profileEdit
   );
   const [updateMe] = useUpdateMeMutation();
-  console.log(profileLocalPhoto, profilePhoto);
+
   const formData = new FormData();
 
   // <== User Logout Functionality ==>
@@ -69,7 +69,6 @@ const MyProfileCard = () => {
       try {
         // Send data to server
         const res = await updateMe(formData);
-        console.log(res);
       } catch (error) {
         console.log(error);
       }
