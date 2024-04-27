@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { IconCreditCardPay } from "@tabler/icons-react";
+import { IconCreditCardPay, IconCurrencyDollar } from "@tabler/icons-react";
 import GradientCardIcon from "@/assets/svgIcons/GradientCardIcon";
 import GradientPaypalIcon from "@/assets/svgIcons/GradientPaypalIcon";
 
@@ -14,7 +14,7 @@ const PaymentMethod = () => {
   return (
     <div className="flex justify-start md:justify-between lg:justify-between  gap-5 my-5 flex-col md:flex-row lg:flex-row md:border lg:border   rounded-lg md:px-10 lg:px-10 py-5 p-0">
       {/* credit and debid card */}
-      <label className="inline-flex items-center gap-2  ">
+      <div className="inline-flex items-center gap-2  ">
         <GradientCardIcon />
         <span className="">Debid/Credit Card</span>
         <div
@@ -33,13 +33,12 @@ const PaymentMethod = () => {
           onChange={handleOptionChange}
           className="hidden"
         />
-      </label>
+      </div>
 
       <div className="md:border-r md:h-12 h-0 border-r-0 "></div>
 
       {/* paypal  */}
-
-      <label className="inline-flex items-center gap-2 ">
+      <div className="inline-flex items-center gap-2 ">
         <GradientPaypalIcon />
         <span className="">Paypal</span>
         <div
@@ -58,7 +57,17 @@ const PaymentMethod = () => {
           onChange={handleOptionChange}
           className="hidden"
         />
-      </label>
+      </div>
+      <div className="md:border-r md:h-12 h-0 border-r-0 "></div>
+
+      {/* == Cash On Delivery == */}
+      <div className="flex items-center gap-2">
+        <span>
+          <IconCurrencyDollar />{" "}
+        </span>
+        <span>Cash on Delivery</span>
+        <input type="radio" />
+      </div>
     </div>
   );
 };

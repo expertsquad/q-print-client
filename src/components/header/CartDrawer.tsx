@@ -5,10 +5,10 @@ import {
   IconArrowRight,
   IconChevronLeft,
   IconChevronRight,
-
 } from "@tabler/icons-react";
 import Image from "next/image";
 import { useAppSelector } from "@/redux/hook";
+import { useDispatch } from "react-redux";
 import Link from "next/link";
 import MultipleQuickOrder from "../quick-order/MultipleQuickOrder";
 import { IconCheck } from "@tabler/icons-react";
@@ -57,27 +57,21 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                 <div className="flex items-center justify-between my-5">
                   <p className="">Subtotal</p>
                   <span>
-                    {subTotal}
-                    {" "}
-                    <small className="uppercase">qar</small>
+                    {subTotal} <small className="uppercase">qar</small>
                   </span>
                 </div>
                 {/* --Shipping & Price-- */}
                 <div className="flex items-center justify-between border-b border-b-black border-opacity-10">
                   <p className="mb-5">Shipping</p>
                   <span>
-                    {shippingCharge}
-                    {" "}
-                    <small className="uppercase">qar</small>
+                    {shippingCharge} <small className="uppercase">qar</small>
                   </span>
                 </div>
                 {/* --Total & Price-- */}
                 <div className="flex items-center justify-between my-5">
                   <p className="font-bold text-[16px]">Total</p>
                   <span className="font-bold text-[16px]">
-                    {calculateTotal}
-                    {" "}
-                    <small className="uppercase">qar</small>
+                    {calculateTotal} <small className="uppercase">qar</small>
                   </span>
                 </div>
                 {/* --Price range and Free shipping-- */}
@@ -134,7 +128,6 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                 href={"/products"}
                 className="flex items-center gap-2 justify-center main-bg-color py-3.5 text-white rounded-[5px] w-full"
               >
-
                 Continue Shopping
                 <span>
                   <IconArrowRight stroke={2} width={24} height={24} />

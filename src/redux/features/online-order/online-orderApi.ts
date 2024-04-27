@@ -17,9 +17,20 @@ export const onlineOrderApi = baseApi.injectEndpoints({
       }),
       providesTags: ["singleOnlineOrder"],
     }),
+    // <== Online Order Post ==>
+    onlineOrderPost: build.mutation({
+      query: (data) => ({
+        url: "/online-order/add",
+        method: "POST",
+        data: data,
+      }),
+    }),
   }),
 });
 
 // == Export Method ==
-export const { useGetOnlineOrderQuery, useGetOnlineOrderByIdQuery } =
-  onlineOrderApi;
+export const {
+  useGetOnlineOrderQuery,
+  useGetOnlineOrderByIdQuery,
+  useOnlineOrderPostMutation,
+} = onlineOrderApi;

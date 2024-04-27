@@ -30,7 +30,7 @@ export const reviewApi = baseApi.injectEndpoints({
     //  <== Update Review ==>
     updateReview: build.mutation({
       query: (data) => ({
-        url: "/review/update",
+        url: `/review/${data.id}`,
         method: "PUT",
         data: data,
       }),

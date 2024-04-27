@@ -7,10 +7,13 @@ import { imageUrl } from "@/constants/imageUrl";
 import { IconPlus } from "@tabler/icons-react";
 import { IconMinus } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
-import { addToCart, removeOneFromCart } from "@/redux/features/cart/cartSlice";
+import {
+  addToCart,
+  removeOneFromCart,
+} from "@/redux/features/cart/productCartSlice";
 
 const TotalOrderCard = () => {
-  const { products } = useAppSelector((state) => state.cart);
+  const { products } = useAppSelector((state) => state.productCartSlice);
   const dispatch = useDispatch();
 
   // <== Calculate Subtotal, Total , and Shipping ==>

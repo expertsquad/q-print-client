@@ -1,5 +1,5 @@
 "use client";
-import { IconUser, IconSearch } from "@tabler/icons-react";
+import { IconSearch } from "@tabler/icons-react";
 import Image from "next/image";
 import qPrintLogo from "@/assets/logotwo.svg";
 import Link from "next/link";
@@ -101,7 +101,7 @@ const Header = () => {
           <Sidebar />
         </div>
       </section>
-      {/* {openCartDrawer && (
+      {openCartDrawer && (
         <CartDrawer
           openCartDrawer={openCartDrawer}
           setOpenCartDrawer={setOpenCartDrawer}
@@ -112,7 +112,7 @@ const Header = () => {
           openWishlistDrawer={openWishlistDrawer}
           setOpenWishlistDrawer={setOpenWishlistDrawer}
         />
-      )} */}
+      )}
     </header>
   );
 };

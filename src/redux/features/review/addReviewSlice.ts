@@ -3,17 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 type addReviewState = {
   orderId: string;
   productId: string;
-  rating?: number | string | Blob | null;
+  rating: number;
   comment: string;
-  reviewPhotos?: File | HTMLImageElement | null | [];
 };
 
 const initialState: addReviewState = {
   orderId: "",
   productId: "",
-  rating: null,
+  rating: 0,
   comment: "",
-  reviewPhotos: null,
 };
 
 const addReviewSlice = createSlice({
@@ -32,18 +30,10 @@ const addReviewSlice = createSlice({
     setComment: (state, action) => {
       state.comment = action.payload;
     },
-    setReviewPhotos: (state, action) => {
-      state.reviewPhotos = action.payload;
-    },
   },
 });
 
-export const {
-  setOrderId,
-  setProductId,
-  setRating,
-  setComment,
-  setReviewPhotos,
-} = addReviewSlice.actions;
+export const { setOrderId, setProductId, setRating, setComment } =
+  addReviewSlice.actions;
 
 export default addReviewSlice.reducer;

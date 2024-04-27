@@ -1,43 +1,64 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GlobalModal from "../UI/modal/GlobalModal";
 import { IconArrowLeft, IconStarFilled, IconX } from "@tabler/icons-react";
 import Image from "next/image";
-import { useAddReviewMutation } from "@/redux/features/review/reviewApi";
+import {
+  useAddReviewMutation,
+  useReviewByIdQuery,
+} from "@/redux/features/review/reviewApi";
 import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
 import { imageUrl } from "@/constants/imageUrl";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
 import { toast } from "react-toastify";
+import { useAppSelector } from "@/redux/hook";
+import { useDispatch } from "react-redux";
+import {
+  setComment,
+  setOrderId,
+  setProductId,
+  setRating,
+} from "@/redux/features/review/addReviewSlice";
 
 const ProductReviewModal = ({
   orderId: reviewOrderId,
   productId: reviewProductId,
   isReviewed,
 }: any) => {
+  // console.log(reviewOrderId, "From backednd");
+  const dispatch = useDispatch();
   // <== Get Product By Product Id ==>
   const { data: product } = useGetProductByIdQuery(reviewProductId);
+  const { data } = useReviewByIdQuery(`orderId=${reviewOrderId}`);
+
+  const reviewedData = data?.data?.map((data) => {
+    // console.log(data?.comment, "From backend");
+    return {
+      id: data?._id,
+      comment: data?.comment,
+      rating: data?.rating,
+    };
+  });
 
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
-  const [reviewText, setReviewText] = useState("");
-  const [starRating, setStarRating] = useState(0);
-  const [increaseRating, setIncreaseRating] = useState(0);
-
-  const handleReviewChange = (event: any) => {
-    const text = event.target.value;
-    setReviewText(text);
-  };
-
   // <== Handle Add Review ==>
+  const { orderId, productId, comment, rating } = useAppSelector(
+    (state) => state.addReview
+  );
   const [addReview] = useAddReviewMutation();
 
   const handleStarClick = (index: number) => {
-    setStarRating(index);
-    setIncreaseRating(index + 1);
+    dispatch(setRating(index + 1));
   };
+
+  useEffect(() => {
+    dispatch(setOrderId(reviewOrderId));
+    dispatch(setProductId(reviewProductId));
+  }, []);
 
   // <== Sending review product data to server ==>
   const handleSubmit = async (e: any) => {
@@ -45,11 +66,12 @@ const ProductReviewModal = ({
     const formData = new FormData();
     formData.append("orderId", reviewOrderId);
     formData.append("productId", reviewProductId);
-    formData.append("rating", increaseRating.toString());
-    formData.append("comment", reviewText);
+    formData.append("rating", rating.toString());
+    formData.append("comment", comment);
 
     try {
       const res = await addReview(formData);
+      console.log(res, "From modal");
       if ("data" in res) {
         toast.success((res as { data: any }).data.message);
       }
@@ -127,7 +149,7 @@ const ProductReviewModal = ({
                       width={20}
                       height={20}
                       className={
-                        index <= starRating
+                        index <= rating - 1
                           ? "text-yellow-500"
                           : "text-gray-300"
                       }
@@ -150,11 +172,11 @@ const ProductReviewModal = ({
                 cols={50}
                 rows={4}
                 maxLength={100}
-                value={reviewText}
-                onChange={handleReviewChange}
+                value={comment}
+                onChange={(e) => dispatch(setComment(e.target.value))}
               ></textarea>
               <p className="text-right text-sm text-black text-opacity-80">
-                {reviewText.length}/100
+                {comment.length}/100
               </p>
               <button
                 type="submit"
