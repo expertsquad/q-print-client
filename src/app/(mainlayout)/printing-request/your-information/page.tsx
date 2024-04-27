@@ -39,7 +39,7 @@ const YourInformation = () => {
     try {
       const res = await addShipping(data?.shippingAddress);
       console.log(res, "from res");
-    } catch {}
+    } catch { }
   };
 
   return (

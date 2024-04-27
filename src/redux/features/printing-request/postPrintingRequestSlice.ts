@@ -27,7 +27,7 @@ type IPrintingRequestOrder = {
   totalQuantity: number;
 
   paperTypePrice: number;
-  printingModePrice: number;
+  printingModePrice: number | null;
 };
 
 const initialState: IPrintingRequestOrder | Record<string | number, unknown> =
