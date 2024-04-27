@@ -1,10 +1,16 @@
+import { setClearReview } from "@/redux/features/review/addReviewSlice";
 import { IconX } from "@tabler/icons-react";
 
 const ModalCloseBtn = ({ handleClose, icon }: any) => {
   return (
     <button
-      onClick={handleClose}
-      className={`${icon ? "" : "hover:rotate-90 transition-all print:hidden "}`}
+      onClick={() => {
+        handleClose();
+        // setClearReview();
+      }}
+      className={`${
+        icon ? "" : "hover:rotate-90 transition-all print:hidden "
+      }`}
     >
       {icon ? (
         <div className="-mb-6 -ml-3 bg-white p-1 rounded-full md:drop-shadow-sm border">

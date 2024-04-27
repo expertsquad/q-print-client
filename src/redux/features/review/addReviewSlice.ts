@@ -30,10 +30,18 @@ const addReviewSlice = createSlice({
     setComment: (state, action) => {
       state.comment = action.payload;
     },
+    setClearReview: (state) => {
+      return initialState;
+    },
   },
 });
 
-export const { setOrderId, setProductId, setRating, setComment } =
-  addReviewSlice.actions;
+export const {
+  setOrderId,
+  setProductId,
+  setRating,
+  setComment,
+  setClearReview,
+} = addReviewSlice.actions;
 
 export default addReviewSlice.reducer;

@@ -25,27 +25,16 @@ const ProductReviewModal = ({
   productId: reviewProductId,
   isReviewed,
 }: any) => {
-  // console.log(reviewOrderId, "From backednd");
   const dispatch = useDispatch();
-  // <== Get Product By Product Id ==>
   const { data: product } = useGetProductByIdQuery(reviewProductId);
   const { data } = useReviewByIdQuery(`orderId=${reviewOrderId}`);
-
-  const reviewedData = data?.data?.map((data) => {
-    // console.log(data?.comment, "From backend");
-    return {
-      id: data?._id,
-      comment: data?.comment,
-      rating: data?.rating,
-    };
-  });
+  console.log(data?.data[0]);
 
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
-  // <== Handle Add Review ==>
   const { orderId, productId, comment, rating } = useAppSelector(
     (state) => state.addReview
   );
@@ -58,9 +47,10 @@ const ProductReviewModal = ({
   useEffect(() => {
     dispatch(setOrderId(reviewOrderId));
     dispatch(setProductId(reviewProductId));
-  }, []);
+    dispatch(setRating(data?.data?.length ? data?.data[0].rating : 0));
+    dispatch(setComment(data?.data?.length ? data?.data[0].comment : ""));
+  }, [data, dispatch, reviewOrderId, reviewProductId]);
 
-  // <== Sending review product data to server ==>
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const formData = new FormData();
@@ -100,11 +90,9 @@ const ProductReviewModal = ({
         modalController=""
       >
         <div className="w-full h-screen md:w-[650px] md:h-auto  bg-white p-7 rounded-lg relative">
-          {/* ||Handle close modal */}
           <div className="absolute top-5 right-5 text-black text-opacity-70 hidden md:block">
             <ModalCloseBtn handleClose={handleCloseModal} />
           </div>
-          {/* ||Back btn */}
           <div className="absolute top-8 left-5 text-black text-opacity-70 block md:hidden">
             <ModalCloseBtn
               handleClose={handleCloseModal}
@@ -112,13 +100,11 @@ const ProductReviewModal = ({
             />
           </div>
 
-          {/* ==Main content== */}
           <div className="relative">
             <h1 className="text-center md:text-left text-black text-opacity-80 text-[18px] md:text-[24px] font-semibold mb-7">
               My Reviews
             </h1>
 
-            {/* ==Product Content== */}
             <div className="border py-5 px-4 rounded-lg flex flex-col md:flex-row justify-between gap-3">
               <div className="flex gap-4">
                 <div className="h-[70px] w-[70px] shrink-0 relative">
