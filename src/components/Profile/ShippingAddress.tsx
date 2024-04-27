@@ -10,11 +10,14 @@ const ShippingAddress = () => {
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.updateShippingInfo);
 
+  console.log(data);
+
   const handleUpdateShippingInfo = async (event: any) => {
     event.preventDefault();
 
     try {
       const res = await addShippingInfo({ data: data, id: data?._id });
+      console.log(res);
       if ("data" in res) {
         toast.success((res as { data: any }).data.message);
       }
@@ -29,7 +32,7 @@ const ShippingAddress = () => {
   return (
     <div>
       <h1 className="text-black text-xl mb-5 md:mb-8 lg:mb-8 ">
-        Shipping Information {}
+        Shipping Information
       </h1>
       <form onSubmit={handleUpdateShippingInfo}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-7">
