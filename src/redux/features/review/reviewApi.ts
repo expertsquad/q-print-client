@@ -10,6 +10,14 @@ export const reviewApi = baseApi.injectEndpoints({
       }),
       providesTags: ["review"],
     }),
+    // <== Get review by Id Query ==>
+    reviewById: build.query({
+      query: (data) => ({
+        url: `/review?${data}`,
+        method: "GET",
+      }),
+      providesTags: ["review"],
+    }),
     // <== Add Review Query ==>
     addReview: build.mutation({
       query: (data) => ({
@@ -19,18 +27,22 @@ export const reviewApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["review"],
     }),
-    // <== Get review by Id Query ==>
-    reviewById: build.query({
+    //  <== Update Review ==>
+    updateReview: build.mutation({
       query: (data) => ({
-        url: `/review?${data}`,
-        method: "GET",
+        url: "/review/update",
+        method: "PUT",
+        data: data,
       }),
-      providesTags: ["review"],
+      invalidatesTags: ["review"],
     }),
   }),
 });
 
-// == Export Method ==
-export const { useGetReviewQuery, useAddReviewMutation, useReviewByIdQuery } =
-  reviewApi;
+export const {
+  useGetReviewQuery,
+  useAddReviewMutation,
+  useReviewByIdQuery,
+  useUpdateReviewMutation,
+} = reviewApi;
 export default reviewApi.reducer;

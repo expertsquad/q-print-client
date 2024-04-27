@@ -4,20 +4,16 @@ import GlobalModal from "../UI/modal/GlobalModal";
 import { IconArrowLeft, IconStarFilled, IconX } from "@tabler/icons-react";
 import Image from "next/image";
 import { useAddReviewMutation } from "@/redux/features/review/reviewApi";
-import { useAppSelector } from "@/redux/hook";
-import { useGetOnlineOrderByIdQuery } from "@/redux/features/online-order/online-orderApi";
 import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
 import { imageUrl } from "@/constants/imageUrl";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
+import { toast } from "react-toastify";
 
 const ProductReviewModal = ({
   orderId: reviewOrderId,
   productId: reviewProductId,
+  isReviewed,
 }: any) => {
-  console.log(reviewOrderId, "From MOdal");
-  // <== Get Onile Order By Order Id ==>
-  const { data: order } = useGetOnlineOrderByIdQuery(reviewOrderId);
-
   // <== Get Product By Product Id ==>
   const { data: product } = useGetProductByIdQuery(reviewProductId);
 
@@ -27,6 +23,8 @@ const ProductReviewModal = ({
   };
 
   const [reviewText, setReviewText] = useState("");
+  const [starRating, setStarRating] = useState(0);
+  const [increaseRating, setIncreaseRating] = useState(0);
 
   const handleReviewChange = (event: any) => {
     const text = event.target.value;
@@ -35,29 +33,33 @@ const ProductReviewModal = ({
 
   // <== Handle Add Review ==>
   const [addReview] = useAddReviewMutation();
-  const { orderId, productId, rating, comment } = useAppSelector(
-    (state) => state.addReview
-  );
 
   const handleStarClick = (index: number) => {
-    console.log("Clicked star index:", index + 1);
+    setStarRating(index);
+    setIncreaseRating(index + 1);
   };
 
-  // = sending data to server =
+  // <== Sending review product data to server ==>
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("orderId", orderId);
-    formData.append("productId", productId);
-    formData.append("rating", rating ? rating.toString() : "");
-    formData.append("comment", comment);
+    formData.append("orderId", reviewOrderId);
+    formData.append("productId", reviewProductId);
+    formData.append("rating", increaseRating.toString());
+    formData.append("comment", reviewText);
 
     try {
       const res = await addReview(formData);
-      console.log(res);
+      if ("data" in res) {
+        toast.success((res as { data: any }).data.message);
+      }
+      if ("error" in res) {
+        toast.error((res as { error: any }).error.message);
+      }
     } catch (error) {
       console.log(error);
     }
+    handleCloseModal();
   };
 
   return (
@@ -67,8 +69,7 @@ const ProductReviewModal = ({
           onClick={() => setShowModal(true)}
           className="border border-fuchsia-800 rounded-md py-1 px-2 md:px-3.5 main-text-color text-xs md:text-base"
         >
-          Review
-          {""}
+          {isReviewed ? "Edit Review" : "Review"}
         </button>
       </div>
       <GlobalModal
@@ -112,7 +113,7 @@ const ProductReviewModal = ({
                     {product?.data?.productName}
                   </p>
 
-                  <p className="text-black text-opacity-60 text-sm md:text-[18px]">
+                  <p className="text-black text-opacity-60 text-sm">
                     {product?.data?.brand?.brandName}
                   </p>
                 </div>
@@ -125,7 +126,11 @@ const ProductReviewModal = ({
                       key={index}
                       width={20}
                       height={20}
-                      className="text-gray-300"
+                      className={
+                        index <= starRating
+                          ? "text-yellow-500"
+                          : "text-gray-300"
+                      }
                       onClick={() => handleStarClick(index)}
                     />
                   ))}

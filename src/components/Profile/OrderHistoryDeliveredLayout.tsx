@@ -14,11 +14,6 @@ const OrderHistoryDeliveredLayout = ({ id }: string | any) => {
     `buyer.userId=${id}&orderStatus.status=Delivered`
   );
 
-  console.log(data?.data, data?.data?.orderId, "from delivery");
-  const orderId = data?.data?.map((data) => {
-    return data?.orderId;
-  });
-  console.log(orderId, "By const");
   return (
     <div>
       {data?.data?.map((deliveredData: any) => (
@@ -96,7 +91,8 @@ const OrderHistoryDeliveredLayout = ({ id }: string | any) => {
               </div>
               <div className="md:flex items-center justify-end">
                 <ProductReviewModal
-                  orderId={deliveredData.orderId}
+                  isReviewed={product?.isReviewed}
+                  orderId={deliveredData?._id}
                   productId={product?._id}
                 />
               </div>
