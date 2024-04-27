@@ -1,6 +1,3 @@
-import { IconX } from "@tabler/icons-react";
-import React, { useEffect } from "react";
-
 interface GlobalModalProps {
   children?: React.ReactNode;
   yourCustomStyle?: string;

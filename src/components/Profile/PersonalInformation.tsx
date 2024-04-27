@@ -2,7 +2,7 @@ import UploadIcon from "@/assets/svgIcons/UploadIcon";
 import { imageUrl } from "@/constants/imageUrl";
 import Image from "next/image";
 import CustomInput from "../shared/CustomInput";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
   setFullName,
