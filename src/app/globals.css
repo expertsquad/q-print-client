@@ -248,7 +248,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .logos-slide img {
   height: 50px;
-  margin: 0 100px;
+  margin: 0 70px;
 }
 @keyframes slide {
   from {
