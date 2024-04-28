@@ -10,7 +10,7 @@ import {
 import { IProduct } from "@/types/productsType";
 import Link from "next/link";
 
-const ProductView = ({ id }: any) => {
+const ProductView = ({ id }: { id: string }) => {
   const { data } = useGetProductByIdQuery(id);
   const productdata = data?.data;
 

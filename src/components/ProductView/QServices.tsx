@@ -7,7 +7,7 @@ import customerSupport from "@/assets/customer support.svg";
 import securePayment from "@/assets/secure payment.svg";
 import moneyBack from "@/assets/money back.svg";
 
-const QServices: React.FC = () => {
+const QServices = () => {
   return (
     <section className="border rounded-lg mb-16 ">
       <div className="flex items-center justify-between md:flex-row flex-col px-5 ">

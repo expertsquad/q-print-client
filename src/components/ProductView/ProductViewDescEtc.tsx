@@ -1,4 +1,4 @@
-"use client";
+import { useEffect, useState } from "react";
 import {
   IconHeart,
   IconMinus,
@@ -9,7 +9,6 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import ColorPickUp from "./ColorPickUp";
-import WishlistQuickOrderBTNModal from "../WishlistPageData/WishlistQuickOrderBTNModal";
 import GetDiscountRange from "./GetDiscountRange";
 import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
@@ -17,20 +16,27 @@ import {
   addToCart,
   removeOneFromCart,
 } from "@/redux/features/cart/productCartSlice";
-import { useState } from "react";
 import SingleQuickOrder from "../quick-order/SingleQuickOrder";
 import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 
 const ProductViewDescEtc = ({ productDesc }: any) => {
   const dispatch = useDispatch();
-  const [selectedVariant, setSelectedVariant] = useState(
-    productDesc?.variants[0]
-  );
+  const [selectedVariant, setSelectedVariant] = useState<any>(null);
+
+  useEffect(() => {
+    const storedSelectedVariant = localStorage.getItem("selectedVariant");
+    if (storedSelectedVariant) {
+      setSelectedVariant(JSON.parse(storedSelectedVariant));
+    } else {
+      setSelectedVariant(productDesc?.variants[0]);
+    }
+  }, [productDesc]);
+
   const handleSelectVariant = (variant: any) => {
     setSelectedVariant(variant);
+    localStorage.setItem("selectedVariant", JSON.stringify(variant));
   };
 
-  // <== Handle Add Product In Cart ==>
   const handleAddToCart = (event: React.MouseEvent, product: any) => {
     event.stopPropagation();
     dispatch(
@@ -47,7 +53,6 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
     );
   };
 
-  // <== Handle Add Product In Favourite ==>
   const handleAddToFavourite = (event: React.MouseEvent, product: any) => {
     event.stopPropagation();
     dispatch(
@@ -135,7 +140,6 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
 
         <GetDiscountRange />
 
-        {/* == Bulk Order == */}
         <div className="my-3 whitespace-nowrap text-black-opacity-60">
           <p>
             Buy{" "}
@@ -148,7 +152,6 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
             </span>
           </p>
         </div>
-        {/* == Increase & Decrease fn == */}
         <div className="flex items-center gap-5 mb-5">
           <div className="border border-gray-200 flex items-center gap-2 rounded-3xl p-2">
             <button
@@ -183,10 +186,8 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
             </button>
           </div>
         </div>
-        {/* == Single Quick Order & Buy Now BTN == */}
         <div className="mt-5 flex items-center justify-between gap-5">
           <div className="w-full">
-            {/* <WishlistQuickOrderBTNModal id={productDesc?._id} /> */}
             <SingleQuickOrder product={productDesc} btnStyle="py-2.5" />
           </div>
           <button className="flex items-center justify-center gap-2 text-white main-bg-color py-2.5 rounded-lg w-full text-sm">
