@@ -6,7 +6,7 @@ import { useState } from "react";
 import { IconLoader } from "@tabler/icons-react";
 
 const ExploreNew = () => {
-  const [visibleProducts, setVisibleProducts] = useState(4);
+  const [visibleProducts, setVisibleProducts] = useState(8);
   const [limit, setLimit] = useState(10);
   const [loadingMore, setLoadingMore] = useState(false);
 
@@ -15,16 +15,15 @@ const ExploreNew = () => {
   const handleShowMore = () => {
     setLimit((preValue) => (preValue += 10));
     setLoadingMore(true);
-
     setTimeout(() => {
-      setVisibleProducts((prevVisibleProducts) => prevVisibleProducts + 4);
+      setVisibleProducts((prevVisibleProducts) => prevVisibleProducts + 8);
       setLoadingMore(false);
-    }, 1000);
+    }, 2000);
   };
   return (
-    <section className="lg:my-20 md:my-20 my-8">
+    <section className="md:my-20 my-8">
       <div className="flex items-center justify-center flex-col py-7">
-        <small className="[font-size:_clamp(0.9em,4vw,1.1em)] main-text-color ">
+        <small className="[font-size:_clamp(0.9em,4vw,1.1em)] main-text-color">
           Explore Now
         </small>
         <h3 className="[font-size:_clamp(1em,5vw,1.6em)] font-bold">
@@ -33,9 +32,11 @@ const ExploreNew = () => {
       </div>
 
       {isLoading ? (
-        <span className="flex items-center justify-center">loading...</span>
+        <span className="flex items-center justify-center text-3xl">
+          loading...
+        </span>
       ) : (
-        <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-between flex-wrap gap-5 ">
+        <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-between flex-wrap gap-5">
           {data?.data?.slice(0, visibleProducts)?.map((product: IProduct) => (
             <div key={product?._id}>
               <ProductCard product={product} />

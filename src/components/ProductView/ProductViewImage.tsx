@@ -1,9 +1,8 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import { useState } from "react";
 import ProductViewDescEtc from "./ProductViewDescEtc";
 import { imageUrl } from "@/constants/imageUrl";
-import { IProduct } from "@/types/productsType";
 
 const ProductViewImage = ({ product }: any) => {
   const [selectedImage, setSelectedImage] = useState(product?.productPhotos[0]);
@@ -11,12 +10,14 @@ const ProductViewImage = ({ product }: any) => {
   const handleChangePhoto = (item: any) => {
     setSelectedImage(item);
   };
+
+  const slicedProducts = product?.productPhotos.slice(0, 4);
   return (
     <div className="grid lg:grid-cols-2 grid-cols-1 mb-16 md:gap-3 gap-7">
       {/* ==Left Side== */}
       <div className="flex md:flex-row flex-col-reverse items-center gap-5 md:flex-1">
         <div className=" flex md:flex-col gap-3">
-          {product?.productPhotos?.map((image: any) => (
+          {slicedProducts?.map((image: any) => (
             <div
               key={image._id}
               className={`border cursor-pointer rounded-lg flex items-center justify-center hover:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)] overflow-hidden ${

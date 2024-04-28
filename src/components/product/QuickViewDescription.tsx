@@ -62,7 +62,6 @@ const QuickViewDescription = ({ product }: any) => {
         price: selectedVariant?.discountedPrice
           ? selectedVariant?.discountedPrice
           : selectedVariant?.sellingPrice,
-        orderQuantity: 1,
         variantName: selectedVariant?.variantName,
         inStock: product?.variants[0].inStock,
       })
