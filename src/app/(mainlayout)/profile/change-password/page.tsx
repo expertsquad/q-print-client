@@ -10,10 +10,17 @@ import {
   setOldPassword,
 } from "@/redux/features/user/changePassword";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import Spinner from "@/components/shared/Spinner";
+
+
+
+
 const ChangePassword = () => {
   const [changePassword] = useChangePasswordMutation();
   const dispatch = useAppDispatch();
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { oldPassword, newPassword, confirmPassword } = useAppSelector(
     (state) => state.changePasswordSlice
@@ -21,6 +28,7 @@ const ChangePassword = () => {
 
   const handlePasswordChange = async (event: any) => {
     event.preventDefault();
+    setLoading(true);
 
     try {
       const res = await changePassword({
@@ -28,9 +36,14 @@ const ChangePassword = () => {
         newPassword,
         confirmPassword,
       }).unwrap();
-      console.log(res);
+
+      toast.success(res?.message)
+
     } catch (err: any) {
       setError(err.message);
+      toast.error(err?.message)
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -41,7 +54,13 @@ const ChangePassword = () => {
   };
   return (
     <div>
-      <section className="w-full mb-7">
+      <section className="w-full mb-7 relative">
+        {
+          loading &&
+          <div onClick={(e) => e.stopPropagation()} className="absolute bg-white bg-opacity-60 z-10 h-full w-full flex items-center justify-center">
+            <Spinner />
+          </div>
+        }
         <div className="lg:border rounded-lg lg:p-7 flex justify-between items-center gap-28">
           <div className="lg:w-6/12 w-full">
             <h1 className="text-black text-[22px] font-semibold">
@@ -114,8 +133,8 @@ const ChangePassword = () => {
             <Image src={resetPasswordImg} alt="resetPasswordImg" />
           </div>
         </div>
-      </section>
-    </div>
+      </section >
+    </div >
   );
 };
 
