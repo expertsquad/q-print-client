@@ -1,7 +1,7 @@
 "use client";
 import { IconSearch } from "@tabler/icons-react";
 import Image from "next/image";
-import qPrintLogo from "@/assets/logotwo.svg";
+import qPrintLogo from "@/assets/logo.svg";
 import Link from "next/link";
 import Filter from "../UI/filter/Filter";
 import MobileVersion from "./MobileVersion";
