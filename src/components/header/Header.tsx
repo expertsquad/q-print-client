@@ -45,18 +45,16 @@ const Header = () => {
       <section className="header-section-css pt-6  fixed top-0 left-0 right-0 z-40 bg-white max-w-[1280px] mx-auto md:px-0 px-5">
         {/* ==Logo== */}
         <div className="order-2 md:order-1 section-first-child ">
-          <Link href="/">
-            <div className="w-full h-auto">
-              <Image
-                src={qPrintLogo}
-                alt="Logo"
-                width={250}
-                height={250}
-                priority={true}
-                className="w-36"
-              />
-            </div>
-          </Link>
+          <div onClick={() => router.push("/")} className="w-full h-auto cursor-pointer">
+            <Image
+              src={qPrintLogo}
+              alt="Logo"
+              width={250}
+              height={250}
+              priority={true}
+              className="w-36"
+            />
+          </div>
         </div>
         {/* ==SearchBar & Filter== */}
         <div className="order-4 md:order-2 mb-5 md:mb-0 section-second-child flex items-center w-full gap-5 col-span-3 md:col-span-1 relative">

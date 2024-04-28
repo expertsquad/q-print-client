@@ -8,7 +8,7 @@ const UserProfileButton = ({ handleUserProfile, profilePhoto }: any) => {
   const userLoggedIn = isLoggedIn();
 
   return (
-    <div className="cursor-pointer" onClick={handleUserProfile}>
+    <div className="cursor-pointer border rounded-full" onClick={handleUserProfile}>
       {userLoggedIn ? (
         profilePhoto ? (
           <div className="w-[30px] h-[30px] shrink-0 relative">

@@ -1,3 +1,4 @@
+"use client"
 import { useAppSelector } from "@/redux/hook";
 import { IconShoppingBag } from "@tabler/icons-react";
 import React from "react";
