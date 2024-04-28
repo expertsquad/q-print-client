@@ -57,7 +57,6 @@ const ProductImageSlide = ({ product, defaultVariant }: any) => {
         price: product?.variants[0].discountedPrice
           ? product?.variants[0].discountedPrice
           : product?.variants[0].sellingPrice,
-        orderQuantity: 1,
         variantName: product?.variants[0]?.variantName,
         inStock: product?.variants[0].inStock,
         productId: product._id,

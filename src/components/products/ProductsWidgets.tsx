@@ -10,9 +10,9 @@ import { useAppSelector } from "@/redux/hook";
 type SortOption = "MostPopular" | "Recent" | "HighPrice" | "LowPrice";
 
 const ProductsWidgets = () => {
-  const [visibleProducts, setVisibleProducts] = useState(4);
+  const [visibleProducts, setVisibleProducts] = useState(8);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(12);
 
   const { options } = useAppSelector((state) => state.categoryOption);
 
@@ -43,9 +43,9 @@ const ProductsWidgets = () => {
     setLimit((preValue) => (preValue += 10));
     setLoadingMore(true);
     setTimeout(() => {
-      setVisibleProducts((prevVisibleProducts) => prevVisibleProducts + 4);
+      setVisibleProducts((prevVisibleProducts) => prevVisibleProducts + 8);
       setLoadingMore(false);
-    }, 1000);
+    }, 2000);
   };
 
   return (

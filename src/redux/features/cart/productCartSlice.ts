@@ -35,7 +35,7 @@ const initialState: CartState = {
   discount: 0,
 };
 
-// Function to save state to localStorage
+// <== Function to save state into localStorage ==>
 const saveStateToLocalStorage = (state: CartState) => {
   try {
     const serializedState = JSON.stringify(state);
@@ -45,7 +45,7 @@ const saveStateToLocalStorage = (state: CartState) => {
   }
 };
 
-// Function to load state from localStorage
+// <== Function to load state from localStorage ==>
 const loadStateFromLocalStorage = (): CartState | undefined => {
   try {
     const serializedState = localStorage.getItem("cartState");

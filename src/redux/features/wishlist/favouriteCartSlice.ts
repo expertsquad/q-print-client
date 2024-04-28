@@ -35,15 +35,33 @@ const initialState: CartState = {
   discount: 0,
 };
 
-const calculateSubTotal = (products: Product[]): number => {
-  return products.reduce((total, product) => {
-    return total + product.price * product.orderQuantity;
-  }, 0);
+// <== Function to save state into localStorage ==>
+const saveStateToLocalStorage = (state: CartState) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("favourite", serializedState);
+  } catch (err) {
+    console.error("Error saving state to localStorage:", err);
+  }
+};
+
+// <== Function to load state from localStorage ==>
+const loadStateFromLocalStorage = (): CartState | undefined => {
+  try {
+    const serializedState = localStorage.getItem("favourite");
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (err) {
+    console.error("Error loading state from localStorage:", err);
+    return undefined;
+  }
 };
 
 const productCartSlice = createSlice({
   name: "favourite",
-  initialState,
+  initialState: loadStateFromLocalStorage() || initialState,
   reducers: {
     addToFavourite: (state, action: PayloadAction<Product>) => {
       const addedProduct = action.payload;
@@ -54,12 +72,14 @@ const productCartSlice = createSlice({
       );
 
       if (existingProductIndex !== -1) {
-        state.products[existingProductIndex].orderQuantity += 1;
+        return;
+        // state.products[existingProductIndex].orderQuantity += 1;
       } else {
         state.products.push(addedProduct);
       }
 
       state.subTotal = calculateSubTotal(state.products);
+      saveStateToLocalStorage(state);
     },
     removeOneFromFavourite: (state, action: PayloadAction<Product>) => {
       const removedProduct = action.payload;
@@ -77,6 +97,7 @@ const productCartSlice = createSlice({
       }
 
       state.subTotal = calculateSubTotal(state.products);
+      saveStateToLocalStorage(state);
     },
     removeFromFavourite: (state, action: PayloadAction<Product>) => {
       const removedProduct = action.payload;
@@ -89,12 +110,11 @@ const productCartSlice = createSlice({
       );
 
       state.subTotal = calculateSubTotal(state.products);
+      saveStateToLocalStorage(state);
     },
     setDiscount: (state, action: PayloadAction<number>) => {
       state.discount = action.payload;
-    },
-    resetCart: (state) => {
-      return initialState;
+      saveStateToLocalStorage(state);
     },
     increaseFavQuantity: (state, action: PayloadAction<Product>) => {
       const { _id, variantName } = action.payload;
@@ -105,6 +125,7 @@ const productCartSlice = createSlice({
       if (existingProductIndex !== -1) {
         state.products[existingProductIndex].orderQuantity += 1;
         state.subTotal = calculateSubTotal(state.products);
+        saveStateToLocalStorage(state);
       }
     },
     decreaseFavQuantity: (state, action: PayloadAction<Product>) => {
@@ -119,10 +140,21 @@ const productCartSlice = createSlice({
       ) {
         state.products[existingProductIndex].orderQuantity -= 1;
         state.subTotal = calculateSubTotal(state.products);
+        saveStateToLocalStorage(state);
       }
+    },
+    resetCart: (state) => {
+      localStorage.removeItem("favourite");
+      return initialState;
     },
   },
 });
+
+const calculateSubTotal = (products: Product[]): number => {
+  return products.reduce((total, product) => {
+    return total + product.price * product.orderQuantity;
+  }, 0);
+};
 
 export const {
   addToFavourite,
