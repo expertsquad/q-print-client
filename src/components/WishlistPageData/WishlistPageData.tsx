@@ -175,7 +175,7 @@ const WishlistPageData = ({ products }: any) => {
                     </div>
                   </div>
                   <div className="hidden md:flex items-center justify-center ">
-                    <SingleQuickOrder id={product?._id} product={product} />
+                    <SingleQuickOrder product={product} />
                   </div>
                 </div>
               ))}

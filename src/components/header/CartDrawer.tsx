@@ -8,7 +8,6 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import { useAppSelector } from "@/redux/hook";
-import { useDispatch } from "react-redux";
 import Link from "next/link";
 import MultipleQuickOrder from "../quick-order/MultipleQuickOrder";
 import { IconCheck } from "@tabler/icons-react";

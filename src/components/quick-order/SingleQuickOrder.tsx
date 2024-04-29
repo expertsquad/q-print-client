@@ -1,5 +1,5 @@
 "use client";
-import { IconBolt, IconPlus, IconTrash, IconX } from "@tabler/icons-react";
+import { IconBolt, IconPlus, IconX } from "@tabler/icons-react";
 import React, { useLayoutEffect, useState } from "react";
 import GlobalModal from "../UI/modal/GlobalModal";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
@@ -16,8 +16,10 @@ import {
 import { setSingleQuickOrder } from "@/redux/features/quick-order/quickOrder";
 import { useAppSelector } from "@/redux/hook";
 import { useQuickOrderMutation } from "@/redux/features/quick-order/quickOrderApi";
+import { toast } from "react-toastify";
 
-const SingleQuickOrder = ({ product, btnStyle }: string | any) => {
+const SingleQuickOrder = ({ product, btnStyle, price }: string | any) => {
+  // console.log(product, "Products");
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);
@@ -43,7 +45,7 @@ const SingleQuickOrder = ({ product, btnStyle }: string | any) => {
     dispatch(setSingleQuickOrder(product));
   }, [product, dispatch]);
 
-  // handle submit
+  // <== Hanlde submit to send data into server ==>
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const value = {
@@ -63,9 +65,10 @@ const SingleQuickOrder = ({ product, btnStyle }: string | any) => {
 
     try {
       const res = await quickOrder(value);
-      console.log(res, "here is res");
+      console.log(res, "Quick order check");
+      toast.success(res?.message);
     } catch (error) {
-      console.log(error);
+      toast.error(error?.message);
     }
   };
 
@@ -129,7 +132,7 @@ const SingleQuickOrder = ({ product, btnStyle }: string | any) => {
                           <IconMinus width={14} stroke={2} height={14} />
                         </button>
                         <span className="text-sm">
-                          {product?.orderQuantity}
+                          {product?.orderQuantity ? product?.orderQuantity : 0}
                         </span>
                         <button
                           onClick={handleIncreaseQuantity}
@@ -142,7 +145,8 @@ const SingleQuickOrder = ({ product, btnStyle }: string | any) => {
                           <IconX stroke={1} width={14} height={14} />
                         </span>
                         <span className="text-xs">
-                          {product?.price} <small>QAR</small>
+                          {product?.price ? product?.price : price}{" "}
+                          <small>QAR</small>
                         </span>
                       </div>
                       <b className="main-text-color ">

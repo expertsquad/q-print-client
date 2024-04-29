@@ -195,7 +195,15 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         </div>
         <div className="mt-5 flex items-center justify-between gap-5">
           <div className="w-full">
-            <SingleQuickOrder product={productDesc} btnStyle="py-2.5" />
+            <SingleQuickOrder
+              product={productDesc}
+              price={
+                selectedVariant?.discountedPrice
+                  ? selectedVariant?.discountedPrice
+                  : selectedVariant?.sellingPrice
+              }
+              btnStyle="py-2.5"
+            />
           </div>
           <button className="flex items-center justify-center gap-2 text-white main-bg-color py-2.5 rounded-lg w-full text-sm">
             {""}
