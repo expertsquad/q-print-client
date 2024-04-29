@@ -105,6 +105,7 @@ const ProductImageSlide = ({ product, defaultVariant }: any) => {
                 alt="Brand Carousel"
                 fill
                 src={`${imageUrl}${productImg}`}
+                priority
                 sizes="(max-width: 768px) 30vw, (max-width: 1200px) 50vw, 33vw"
                 className="w-full h-full top-0 left-0 object-cover"
               />
