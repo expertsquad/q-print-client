@@ -4,7 +4,6 @@ import ProductReview from "./ProductReview";
 import ProductViewSpecMenus from "./ProductViewSpecMenus";
 
 const SpecificationDetails = ({ specification }: any) => {
-  console.log(specification, "specification");
   return (
     <section>
       <ProductViewSpecMenus />
