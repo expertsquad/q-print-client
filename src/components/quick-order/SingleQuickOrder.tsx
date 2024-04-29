@@ -13,7 +13,10 @@ import {
   decreaseFavQuantity,
   increaseFavQuantity,
 } from "@/redux/features/wishlist/favouriteCartSlice";
-import { setSingleQuickOrder } from "@/redux/features/quick-order/quickOrder";
+import {
+  resetQuickOrder,
+  setSingleQuickOrder,
+} from "@/redux/features/quick-order/quickOrder";
 import { useAppSelector } from "@/redux/hook";
 import { useQuickOrderMutation } from "@/redux/features/quick-order/quickOrderApi";
 import { toast } from "react-toastify";
@@ -28,6 +31,7 @@ const SingleQuickOrder = ({ product, btnStyle, price }: string | any) => {
 
   const dispatch = useDispatch();
   const data = useAppSelector((state) => state.singleQuickOrder);
+  console.log(data, "data from ");
 
   const handleIncreaseQuantity = () => {
     dispatch(increaseFavQuantity(product));
@@ -63,10 +67,14 @@ const SingleQuickOrder = ({ product, btnStyle, price }: string | any) => {
       },
     };
 
+    console.log(value, "value");
+
     try {
       const res = await quickOrder(value);
-      console.log(res, "Quick order check");
+      console.log(res, "Order check");
       toast.success(res?.message);
+      dispatch(resetQuickOrder());
+      handleCloseModal();
     } catch (error) {
       toast.error(error?.message);
     }

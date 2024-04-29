@@ -20,13 +20,18 @@ import {
 } from "@/redux/features/cart/productCartSlice";
 import { useAppSelector } from "@/redux/hook";
 import { useQuickOrderMutation } from "@/redux/features/quick-order/quickOrderApi";
-import { setMultipleQuickOrder } from "@/redux/features/quick-order/multipleQuickOrder";
+import {
+  resetQuickOrder,
+  setMultipleQuickOrder,
+} from "@/redux/features/quick-order/multipleQuickOrder";
 import QuickOrderCartItem from "./QuickOrderCartItem";
+import { toast } from "react-toastify";
 
 const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const data = useAppSelector((state) => state.multipleQuickOrder);
+  console.log(data, "data from ");
 
   const [quickOrder] = useQuickOrderMutation();
 
@@ -58,13 +63,16 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
     try {
       const res = await quickOrder(value);
       console.log(res, "from res");
+      toast.success(res?.message);
+      dispatch(resetQuickOrder());
+      handleCloseModal();
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div >
+    <div>
       <button
         onClick={() => {
           setShowModal(true);
@@ -86,14 +94,16 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
           <div className="flex flex-col-reverse md:justify-normal justify-between  md:flex-row items-center w-full">
             {/* == Product info & balance container == */}
             <div className="flex-1 w-full md:py-0 py-5">
-              <span className="block md:hidden mb-5 text-base text-black-opacity-50">Item Lists</span>
+              <span className="block md:hidden mb-5 text-base text-black-opacity-50">
+                Item Lists
+              </span>
               <div className="flex flex-col overflow-y-auto border-t  no-scrollbar gap-5 border-b  md:h-[380px] h-[100px] bg-white">
                 {products?.map((product: any) => (
                   <QuickOrderCartItem key={product?._id} product={product} />
                 ))}
               </div>
               {/* ==shipping, subtotal, and total== */}
-              <div >
+              <div>
                 <TotalAndSubtTotalCard
                   subTotal={subTotal}
                   shippingFee={shippingFee}
