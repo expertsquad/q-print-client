@@ -4,7 +4,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 interface Product {
   _id: string;
   variant: Variant;
-  orderQuantity: number;
+  orderQuantity: 0;
   variantName: string;
   variantId: string;
   discountPercentage: number;
