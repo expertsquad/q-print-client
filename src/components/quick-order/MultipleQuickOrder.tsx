@@ -59,10 +59,12 @@ const MultipleQuickOrder = ({ products, subTotal }: any) => {
 
     try {
       const res = await quickOrder(value);
+      // @ts-ignore
       toast.success(res.message);
       dispatch(resetQuickOrder());
       handleCloseModal();
     } catch (error) {
+      // @ts-ignore
       toast.error(error.message);
     }
   };

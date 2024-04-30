@@ -20,10 +20,10 @@ import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
 import { useGetQuickOrderSettingQuery } from "@/redux/features/settings/quickOrderSettings";
 
 interface QuickOrderProps {
-  variantName: string;
-  productId: string;
-  btnStyle: string;
-  variantPrice: number;
+  variantName?: string;
+  productId?: string;
+  btnStyle?: string;
+  variantPrice?: number;
 }
 
 const SingleQuickOrder = ({
@@ -83,10 +83,12 @@ const SingleQuickOrder = ({
     try {
       const res = await quickOrder(value);
       console.log(res);
+      // @ts-ignore
       toast.success(res?.message);
       dispatch(resetQuickOrder());
       handleCloseModal();
     } catch (error) {
+      // @ts-ignore
       toast.error(error?.errorMessages);
     }
   };
