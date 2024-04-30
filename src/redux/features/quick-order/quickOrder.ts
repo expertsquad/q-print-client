@@ -18,6 +18,21 @@ type SingleQuickOrderProps = {
 
 const initialState: SingleQuickOrderProps | Record<string, unknown> = {};
 
+// const initialState: SingleQuickOrderProps = {
+//   orderItems: [
+//     {
+//       productId: "",
+//       variantName: "",
+//       orderQuantity: 1,
+//     },
+//   ],
+//   buyer: {
+//     fullName: "",
+//     phoneNumber: "",
+//     address: "",
+//   },
+// };
+
 const singleQuickOrderSlice = createSlice({
   name: "quickOrder",
   initialState,

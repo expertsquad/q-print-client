@@ -20,6 +20,7 @@ import SingleQuickOrder from "../quick-order/SingleQuickOrder";
 import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 
 const ProductViewDescEtc = ({ productDesc }: any) => {
+  console.log(productDesc?._id, "From product view");
   const dispatch = useDispatch();
   const [selectedVariant, setSelectedVariant] = useState<any>(null);
 
@@ -189,8 +190,9 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         <div className="mt-5 flex items-center justify-between gap-5">
           <div className="w-full">
             <SingleQuickOrder
-              product={productDesc}
-              price={
+              productId={productDesc?._id}
+              variantName={selectedVariant?.variantName}
+              variantPrice={
                 selectedVariant?.discountedPrice
                   ? selectedVariant?.discountedPrice
                   : selectedVariant?.sellingPrice

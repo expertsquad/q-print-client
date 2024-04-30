@@ -10,7 +10,6 @@ instance.defaults.timeout = 60000;
 // Add a request interceptor
 instance.interceptors.request.use(
   function (config) {
-    // Do something before request is sent
     const accessToken = getFromLocalStorage(authKey);
     if (accessToken) {
       config.headers.Authorization = `bearer ${accessToken}`;
@@ -18,12 +17,10 @@ instance.interceptors.request.use(
     return config;
   },
   function (error) {
-    // Do something with request error
     return Promise.reject(error);
   }
 );
 
-// Add a response interceptor
 instance.interceptors.response.use(
   //@ts-ignore
   function (response) {
@@ -34,12 +31,13 @@ instance.interceptors.response.use(
     return responseObject;
   },
   function (error) {
-    const responseObject = {
-      statusCode: error?.response?.data?.statusCode || 500,
-      message: error?.response?.data?.message || "Something went wrong",
-      errorMessages: error?.response?.data?.message,
-    };
-    return responseObject;
+    // const responseObject = {
+    //   statusCode: error?.response?.data?.statusCode || 500,
+    //   message: error?.response?.data?.message || "Something went wrong",
+    //   errorMessages: error?.response?.data?.message,
+    // };
+    // return responseObject;
+    throw error;
   }
 );
 

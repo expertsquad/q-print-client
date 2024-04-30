@@ -23,6 +23,7 @@ import SingleQuickOrder from "../quick-order/SingleQuickOrder";
 import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 
 const QuickViewDescription = ({ product }: any) => {
+  console.log(product?._id, "Quick view modal");
   const dispatch = useDispatch();
   const { products } = useAppSelector((state) => state.productCartSlice);
 
@@ -193,7 +194,16 @@ const QuickViewDescription = ({ product }: any) => {
         <div className="mt-5 flex items-center justify-between gap-5">
           <div className="w-full">
             {/* <WishlistQuickOrderBTNModal /> */}
-            <SingleQuickOrder product={product} />
+            <SingleQuickOrder
+              product={product}
+              productId={product?._id}
+              variantPrice={
+                selectedVariant?.discountedPrice
+                  ? selectedVariant?.discountedPrice
+                  : selectedVariant?.sellingPrice
+              }
+              variantName={selectedVariant?.variantName}
+            />
           </div>
           <button className="flex items-center justify-center gap-2 text-white main-bg-color  py-2.5 rounded-lg w-full text-sm">
             {""}

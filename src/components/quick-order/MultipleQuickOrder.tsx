@@ -26,12 +26,13 @@ import {
 } from "@/redux/features/quick-order/multipleQuickOrder";
 import QuickOrderCartItem from "./QuickOrderCartItem";
 import { toast } from "react-toastify";
+import { useGetQuickOrderSettingQuery } from "@/redux/features/settings/quickOrderSettings";
 
-const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
+const MultipleQuickOrder = ({ products, subTotal }: any) => {
+  const { data: deliveryCharge } = useGetQuickOrderSettingQuery("");
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const data = useAppSelector((state) => state.multipleQuickOrder);
-  console.log(data, "data from ");
 
   const [quickOrder] = useQuickOrderMutation();
 
@@ -43,8 +44,6 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
   useLayoutEffect(() => {
     dispatch(setMultipleQuickOrder({ orderItems: products }));
   }, [products, dispatch]);
-
-  const shippingFee = 50;
 
   // handle submit
   const handleSubmit = async (e: any) => {
@@ -58,16 +57,13 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
       },
     };
 
-    console.log(value, "My value");
-
     try {
       const res = await quickOrder(value);
-      console.log(res, "from res");
-      toast.success(res?.message);
+      toast.success(res.message);
       dispatch(resetQuickOrder());
       handleCloseModal();
     } catch (error) {
-      console.log(error);
+      toast.error(error.message);
     }
   };
 
@@ -106,7 +102,7 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
               <div>
                 <TotalAndSubtTotalCard
                   subTotal={subTotal}
-                  shippingFee={shippingFee}
+                  shippingFee={deliveryCharge?.data?.deliveryCharge}
                 />
               </div>
             </div>
@@ -169,7 +165,8 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
                   <span>
                     <IconBolt fill="#fff" stroke={2} width={22} height={22} />
                   </span>
-                  CONFIRM ORDER - {subTotal + shippingFee} QAR
+                  CONFIRM ORDER -{" "}
+                  {subTotal + deliveryCharge?.data?.deliveryCharge} QAR
                 </button>
               </form>
             </div>
