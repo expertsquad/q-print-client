@@ -2,7 +2,7 @@ import ProductsWidgets from "@/components/products/ProductsWidgets";
 
 const Products = () => {
   return (
-    <div>
+    <div> 
       <ProductsWidgets />
     </div>
   );

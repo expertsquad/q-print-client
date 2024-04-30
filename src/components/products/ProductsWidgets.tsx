@@ -6,6 +6,7 @@ import MostPopularSelectOption from "../UI/card/MostPopularSelectOption";
 import { useState } from "react";
 import { IconLoader } from "@tabler/icons-react";
 import { useAppSelector } from "@/redux/hook";
+import ProductCardSkeleton from "../shared/Skeleton/ProductCardSkeleton";
 
 type SortOption = "MostPopular" | "Recent" | "HighPrice" | "LowPrice";
 
@@ -23,6 +24,7 @@ const ProductsWidgets = () => {
     );
     return data;
   };
+  const { data, isLoading } = useGetProductsQuery("")
 
   const mostPopular = useSortedProducts("averageRating", "desc");
   const newProduct = useSortedProducts("createdAt", "desc");
@@ -65,13 +67,23 @@ const ProductsWidgets = () => {
       </div>
 
       <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-between flex-wrap gap-5">
-        {productsData?.data
-          ?.slice(0, visibleProducts)
-          .map((product: IProduct) => (
-            <div key={product?._id}>
-              <ProductCard product={product} />
-            </div>
-          ))}
+        {
+
+          isLoading ? (
+            [...Array(10)].map((_, index) => {
+              return (
+                <ProductCardSkeleton key={index} />
+              )
+            })
+          ) :
+            productsData?.data
+              ?.slice(0, visibleProducts)
+              .map((product: IProduct) => (
+                <div key={product?._id}>
+                  <ProductCard product={product} />
+                </div>
+              ))
+        }
       </div>
 
       {productsData?.data?.length > visibleProducts && (
