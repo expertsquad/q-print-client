@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import StarRating from "./StarRating";
 import { addToCart } from "@/redux/features/cart/productCartSlice";
 
-const ProductCard = ({ product }: any) => {
+const ProductCard = ({ product, loading }: any) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -41,10 +41,10 @@ const ProductCard = ({ product }: any) => {
   return (
     <div
       onClick={handleViewProduct}
-      className="border-[1px] hover:border-fuchsia-700 rounded-lg p-4 group max-w-[300px] w-[300px] h-[405px] max-h-max cursor-pointer"
+      className="border hover:border-fuchsia-700 rounded-custom-10px p-4 group max-w-[300px] w-[300px] h-[405px] max-h-max cursor-pointer"
     >
       <div>
-        <ProductImageSlide product={product} defaultVariant={defaultVariant} />
+        <ProductImageSlide loading={loading} product={product} defaultVariant={defaultVariant} />
       </div>
 
       <div className="mt-4 pt-4 border-t">

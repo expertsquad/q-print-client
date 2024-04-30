@@ -1,4 +1,5 @@
 import { footerLinks } from "@/constants";
+import Link from "next/link";
 
 const FooterLinks = () => {
   return (
@@ -9,11 +10,11 @@ const FooterLinks = () => {
           key={link.title}
         >
           <h3 className="text-white font-semibold pb-2">{link.title}</h3>
-          <div className="">
+          <div className="flex flex-col gap-1">
             {link.links.map((item) => (
-              <p key={item.title} className="text-[#999] mb-2 cursor-pointer">
+              <Link href="/privacy-policy" key={item.title} className="text-[#999] mb-2 cursor-pointer">
                 {item.title}
-              </p>
+              </Link>
             ))}
           </div>
         </div>
