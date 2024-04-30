@@ -199,6 +199,7 @@ const QuickViewDescription = ({ product }: any) => {
           <div className="w-full">
             {/* <WishlistQuickOrderBTNModal /> */}
             <SingleQuickOrder
+              // @ts-ignore
               product={product}
               productId={product?._id}
               variantPrice={
