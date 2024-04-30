@@ -10,14 +10,11 @@ import {
 import ModalCloseBtn from "../shared/ModalCloseBtn";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { addToCart } from "@/redux/features/cart/productCartSlice";
 import Image from "next/image";
-import { removeFromFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 import emptyCart from "@/assets/empty-card-photo.svg";
 import WishlistItem from "../WishlistPageData/WishlistItem";
 
 const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
-  const dispatch = useAppDispatch();
   const { products } = useAppSelector((state) => state.favouriteCartSlice);
 
   const handleCloseWishlist = () => {
@@ -39,7 +36,7 @@ const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
         <h3 className="text-center text-black text-[20px] font-medium border-b pb-4 mb-7">
           Wishlist
         </h3>
-        <div className="p-5">
+        <div className="">
           <div>
             {products?.length ? (
               <div className="overflow-y-scroll no-scrollbar flex flex-col gap-5 justify-between h-[calc(100vh-140px)]">
@@ -48,7 +45,7 @@ const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
                     <WishlistItem product={product} key={product._id} />
                   ))}
                 </div>
-                <div>
+                <div className="mx-5">
                   <Link
                     onClick={handleCloseWishlist}
                     href={"/wishlist"}

@@ -10,40 +10,56 @@ import Image from "next/image";
 import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
 import {
-  decreaseFavQuantity,
-  increaseFavQuantity,
-} from "@/redux/features/wishlist/favouriteCartSlice";
-import { setSingleQuickOrder } from "@/redux/features/quick-order/quickOrder";
+  resetQuickOrder,
+  setSingleQuickOrder,
+} from "@/redux/features/quick-order/quickOrder";
 import { useAppSelector } from "@/redux/hook";
 import { useQuickOrderMutation } from "@/redux/features/quick-order/quickOrderApi";
 import { toast } from "react-toastify";
+import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
+import { useGetQuickOrderSettingQuery } from "@/redux/features/settings/quickOrderSettings";
 
-const SingleQuickOrder = ({ product, btnStyle, price }: string | any) => {
-  // console.log(product, "Products");
+interface QuickOrderProps {
+  variantName: string;
+  productId: string;
+  btnStyle: string;
+  variantPrice: number;
+}
+
+const SingleQuickOrder = ({
+  variantName,
+  variantPrice,
+  productId,
+  btnStyle,
+}: QuickOrderProps) => {
+  // <== Get product by id ==>
+  const { data: oneProduct } = useGetProductByIdQuery(`${productId}`);
+  const singleProduct = oneProduct?.data;
+  const { data: deliveryCharge } = useGetQuickOrderSettingQuery("");
+
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
+  const [orderQuantity, setOrderQuantity] = useState(1);
+
   const handleCloseModal = () => {
     setShowModal(false);
   };
   const [quickOrder] = useQuickOrderMutation();
 
-  const dispatch = useDispatch();
   const data = useAppSelector((state) => state.singleQuickOrder);
 
-  const handleIncreaseQuantity = () => {
-    dispatch(increaseFavQuantity(product));
-  };
-
-  const handleDecreaseQuantity = () => {
-    dispatch(decreaseFavQuantity(product));
-  };
-
-  const shippingFee = 50;
-  const grantTotal = Math.round(product?.price) * product?.orderQuantity;
-  const grantTotalWithShipping = grantTotal + shippingFee;
-
   useLayoutEffect(() => {
-    dispatch(setSingleQuickOrder(product));
-  }, [product, dispatch]);
+    dispatch(setSingleQuickOrder(singleProduct));
+  }, [singleProduct, dispatch]);
+
+  const calculateSubTotal = Number(
+    orderQuantity *
+      (variantPrice
+        ? variantPrice
+        : singleProduct?.variants[0].discountedPrice
+        ? singleProduct?.variants[0].discountedPrice
+        : singleProduct?.variants[0].sellingPrice)
+  );
 
   // <== Hanlde submit to send data into server ==>
   const handleSubmit = async (e: any) => {
@@ -51,9 +67,11 @@ const SingleQuickOrder = ({ product, btnStyle, price }: string | any) => {
     const value = {
       orderItems: [
         {
-          productId: data?.productId,
-          variantName: data?.variantName,
-          orderQuantity: data?.orderQuantity,
+          productId: productId,
+          variantName: variantName
+            ? variantName
+            : singleProduct?.variants[0]?.variantName,
+          orderQuantity: orderQuantity,
         },
       ],
       buyer: {
@@ -62,13 +80,14 @@ const SingleQuickOrder = ({ product, btnStyle, price }: string | any) => {
         address: data?.address,
       },
     };
-
     try {
       const res = await quickOrder(value);
-      console.log(res, "Quick order check");
+      console.log(res);
       toast.success(res?.message);
+      dispatch(resetQuickOrder());
+      handleCloseModal();
     } catch (error) {
-      toast.error(error?.message);
+      toast.error(error?.errorMessages);
     }
   };
 
@@ -97,7 +116,7 @@ const SingleQuickOrder = ({ product, btnStyle, price }: string | any) => {
                 <div className="flex gap-5 border-b mb-5">
                   <div className="h-[70px] w-[70px] relative shrink-0">
                     <Image
-                      src={`${imageUrl}${product?.productPhotos[0]}`}
+                      src={`${imageUrl}${singleProduct?.productPhotos[0]}`}
                       alt="Product Image"
                       fill
                       sizes="(max-width: 80px) 10vw, (max-width: 100px) 10vw, 15vw"
@@ -106,36 +125,42 @@ const SingleQuickOrder = ({ product, btnStyle, price }: string | any) => {
                   </div>
                   <div>
                     <p className="text-black text-opacity-90 text-[16px] line-clamp-1">
-                      {product?.productName}
+                      {singleProduct?.productName}
                     </p>
 
                     <div className="my-1 flex items-center gap-2">
                       <p className="text-black-opacity-80 text-xs">
-                        {product?.brand?.brandName}
+                        {singleProduct?.brand?.brandName}
                       </p>
                       <span
                         className="w-3 h-3 rounded-full"
-                        style={{ backgroundColor: product?.variantName }}
+                        style={{
+                          backgroundColor: variantName
+                            ? variantName
+                            : singleProduct?.variants[0]?.variantName,
+                        }}
                       ></span>
                       <span className="text-xs">
-                        {product?.variantName && product?.variantName}
+                        {variantName
+                          ? variantName
+                          : singleProduct?.variants[0]?.variantName}
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between gap-2 mb-4 whitespace-nowrap">
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={handleDecreaseQuantity}
+                          onClick={() =>
+                            setOrderQuantity(Math.max(orderQuantity - 1, 1))
+                          }
                           className="border p-1 rounded-full"
                         >
                           {""}
                           <IconMinus width={14} stroke={2} height={14} />
                         </button>
-                        <span className="text-sm">
-                          {product?.orderQuantity ? product?.orderQuantity : 0}
-                        </span>
+                        <span className="text-sm">{orderQuantity}</span>
                         <button
-                          onClick={handleIncreaseQuantity}
+                          onClick={() => setOrderQuantity(orderQuantity + 1)}
                           className="border p-1 rounded-full"
                         >
                           {""}
@@ -145,12 +170,17 @@ const SingleQuickOrder = ({ product, btnStyle, price }: string | any) => {
                           <IconX stroke={1} width={14} height={14} />
                         </span>
                         <span className="text-xs">
-                          {product?.price ? product?.price : price}{" "}
+                          {variantPrice
+                            ? variantPrice
+                            : singleProduct?.variants[0].discountedPrice
+                            ? singleProduct?.variants[0].discountedPrice
+                            : singleProduct?.variants[0].sellingPrice}
                           <small>QAR</small>
                         </span>
                       </div>
                       <b className="main-text-color ">
-                        {grantTotal} <small>QAR</small>
+                        {calculateSubTotal}
+                        <small>QAR</small>
                       </b>
                     </div>
                   </div>
@@ -158,8 +188,8 @@ const SingleQuickOrder = ({ product, btnStyle, price }: string | any) => {
               </div>
               {/* ==shipping, subtotal, and total== */}
               <TotalAndSubtTotalCard
-                subTotal={grantTotal}
-                shippingFee={shippingFee}
+                subTotal={calculateSubTotal}
+                shippingFee={deliveryCharge?.data?.deliveryCharge}
               />
             </div>
             {/* == Buyer information container == */}
@@ -220,7 +250,8 @@ const SingleQuickOrder = ({ product, btnStyle, price }: string | any) => {
                   <span>
                     <IconBolt fill="#fff" stroke={2} width={22} height={22} />
                   </span>
-                  CONFIRM ORDER - {grantTotalWithShipping} QAR
+                  CONFIRM ORDER -{" "}
+                  {calculateSubTotal + deliveryCharge?.data?.deliveryCharge} QAR
                 </button>
               </form>
             </div>
