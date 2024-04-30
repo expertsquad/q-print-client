@@ -8,7 +8,7 @@ const PrivacyPolicy = () => {
     return (
         <div className='max-w-[1280px] mx-auto mb-7'>
             <div className="flex flex-col items-center justify-self-center gap-2.5">
-                <h1 className="font-semibold md:font-bold md:text-3xl text-2xl">Privacy Policy of <span className='main-text-color'> Q-Print</span></h1>
+                <h1 className="font-semibold md:font-bold md:text-[25px] text-2xl">Privacy Policy of <span className='main-text-color'> Q-Print</span></h1>
                 <span>Last updated: 25 April 2024</span>
             </div>
 
@@ -21,9 +21,9 @@ const PrivacyPolicy = () => {
             </div>
             {/* instruction */}
 
-            <div className="flex flex-col gap-16">
-                <div>
-                    <h2 className='text-3xl font-bold'>Information We Collect</h2>
+            <div className="flex flex-col gap-16 mt-10">
+                <div className='flex flex-col gap-5'>
+                    <h2 className='text-[25px] font-bold'>Information We Collect</h2>
 
                     {
                         infoWeCollect?.map((info: any, index: number) => {
@@ -35,8 +35,8 @@ const PrivacyPolicy = () => {
                     }
                 </div>
 
-                <div>
-                    <h2 className='text-3xl font-bold'>How We Use Your Information</h2>
+                <div className='flex flex-col gap-5'>
+                    <h2 className='text-[25px] font-bold'>How We Use Your Information</h2>
 
                     {
                         weUseInfo?.map((info: any, index: number) => {
@@ -47,8 +47,8 @@ const PrivacyPolicy = () => {
                     }
                 </div>
 
-                <div>
-                    <h2 className='text-3xl font-bold'>Sharing of Information</h2>
+                <div className='flex flex-col gap-5'>
+                    <h2 className='text-[25px] font-bold'>Sharing of Information</h2>
 
                     {
                         shareInfo?.map((info: any, index: number) => {
@@ -63,13 +63,13 @@ const PrivacyPolicy = () => {
                 </div>
 
 
-                <div>
+                <div className='flex flex-col gap-5'>
                     {
                         contactInfo?.map((info: any, index: number) => {
                             return (
-                                <div key={index}>
+                                <div key={index} className="flex flex-col gap-2">
                                     <PrivacyContent data={info} />
-                                    <div className="flex flex-col ">
+                                    <div className="flex flex-col gap-2">
                                         <span>Email:{" "} <a href="mailto:someone@example.com" className="underline">{info?.email}</a></span>
                                         <span>Address: {" "} <span>{info?.address}</span></span>
                                     </div>
