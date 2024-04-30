@@ -7,8 +7,9 @@ import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
 import QuickProductViewModal from "./QuickProductViewModal";
 import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
+import placeHolder from "@/assets/Placeholder_view_vector.svg"
 
-const ProductImageSlide = ({ product, defaultVariant }: any) => {
+const ProductImageSlide = ({ product, defaultVariant, loading }: any) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -116,12 +117,14 @@ const ProductImageSlide = ({ product, defaultVariant }: any) => {
                 {product?.productPhotos?.map((_: any, dotIndex: number) => (
                   <div
                     key={dotIndex}
-                    onClick={() => handleDotClick(dotIndex)}
-                    className={`indicator w-[6px] h-[6px] rounded-full cursor-pointer ${
-                      dotIndex === currentSlide
-                        ? "main-bg-color"
-                        : "bg-gray-300"
-                    }`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDotClick(dotIndex)
+                    }}
+                    className={`indicator w-[6px] h-[6px] rounded-full cursor-pointer ${dotIndex === currentSlide
+                      ? "main-bg-color"
+                      : "bg-gray-300"
+                      }`}
                   />
                 ))}
               </div>

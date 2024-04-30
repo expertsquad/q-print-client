@@ -6,6 +6,7 @@ import ProductCard from "../product/ProductCard";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/redux/hook";
 import { setCategory } from "@/redux/features/brand/productsByCategorySlice";
+import ProductCardSkeleton from "../shared/Skeleton/ProductCardSkeleton";
 
 const BrandProductGridView = () => {
   const dispatch = useDispatch();
@@ -21,12 +22,10 @@ const BrandProductGridView = () => {
 
   // <== Brand and Category filtered products ==>
   const { data: filteredProducts, isLoading } = useGetProductsQuery(
-    `category.categoryName=${category}&${
-      brandName && `&brand.brandName=${brandName}`
-    }&${
-      minPrice &&
-      maxPrice &&
-      `variants.sellingPrice[gte]=${minPrice}&variants.sellingPrice[lte]=${maxPrice}`
+    `category.categoryName=${category}&${brandName && `&brand.brandName=${brandName}`
+    }&${minPrice &&
+    maxPrice &&
+    `variants.sellingPrice[gte]=${minPrice}&variants.sellingPrice[lte]=${maxPrice}`
     }`
   );
 
@@ -36,20 +35,6 @@ const BrandProductGridView = () => {
   const { data: productsByBrand } = useGetProductsQuery(
     `brand.brandName=${brandName}`
   );
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        {["L", "O", "A", "D", "I", "N", "G", ".", ".", "."].map(
-          (letter, index) => (
-            <span key={index} className="text-4xl font-bold">
-              {letter}
-            </span>
-          )
-        )}
-      </div>
-    );
-  }
 
   return (
     <div className="w-full mt-5">
@@ -92,9 +77,17 @@ const BrandProductGridView = () => {
       </div>
 
       <div className="mt-6 flex items-center justify-between flex-wrap  gap-y-5">
-        {filteredProducts?.data?.map((product: any) => (
-          <ProductCard key={product?._id} product={product} />
-        ))}
+        {
+          isLoading ? (
+            [...Array(12)].map((_, index) => {
+              return (
+                <ProductCardSkeleton key={index} />
+              )
+            })
+          ) :
+            filteredProducts?.data?.map((product: any) => (
+              <ProductCard key={product?._id} product={product} />
+            ))}
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import ProductCard from "../product/ProductCard";
 import { IProduct } from "@/types/productsType";
 import { useState } from "react";
 import { IconLoader } from "@tabler/icons-react";
+import ProductCardSkeleton from "../shared/Skeleton/ProductCardSkeleton";
 
 const ExploreNew = () => {
   const [visibleProducts, setVisibleProducts] = useState(8);
@@ -32,9 +33,15 @@ const ExploreNew = () => {
       </div>
 
       {isLoading ? (
-        <span className="flex items-center justify-center text-3xl">
-          loading...
-        </span>
+        <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-between flex-wrap gap-5">
+          {
+            [...Array(10)].map((_, index) => {
+              return (
+                <ProductCardSkeleton key={index} />
+              )
+            })
+          }
+        </div>
       ) : (
         <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-between flex-wrap gap-5">
           {data?.data?.slice(0, visibleProducts)?.map((product: IProduct) => (

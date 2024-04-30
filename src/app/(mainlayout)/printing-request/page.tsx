@@ -65,8 +65,8 @@ const PrintingRequest = () => {
                       })
                     )
                   }
-                  // @ts-ignore
                   className={`${
+                    // @ts-ignore
                     item._id === data?.paperSize?._id
                       ? "shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)] border border-fuchsia-700"
                       : ""

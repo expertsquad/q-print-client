@@ -6,11 +6,13 @@ import { useGetHeroSliderQuery } from "@/redux/features/dealWidgetSliderEtc/hero
 import { imageUrl } from "@/constants/imageUrl";
 import TopSmallBanner from "./TopSmallBanner";
 import BottomSmallBanner from "./BottomSmallBanner";
+import SmallBannerSkeleton from "../shared/Skeleton/SmallBannerSkeleton";
 
 const Hero = () => {
   const { data, isLoading } = useGetHeroSliderQuery("");
 
   const sliderArray = Object.values(data?.data?.slider || {});
+
 
   // <== Get the right side slider card Top Offer ==>
   const topOffer = data?.data?.topOffer;
@@ -26,10 +28,20 @@ const Hero = () => {
       </div>
 
       {
-        isLoading ? "Loading.."
+        isLoading ? (
+          <div className="flex flex-col gap-4 h-full md:h-auto">
+            {
+              [...Array(2)].map((_, index) => {
+                return (
+                  <SmallBannerSkeleton index={index} key={index} />
+                );
+              })
+            }
+          </div>
+        )
           :
 
-          <div className="flex flex-col gap-4 h-full md:h-auto lg:h-auto rounded-lg">
+          <div className="flex flex-col gap-4 h-full md:h-auto ">
             <TopSmallBanner topOffer={topOffer} />
             <BottomSmallBanner bottomOffer={bottomOffer} />
           </div>}

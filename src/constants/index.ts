@@ -16,7 +16,7 @@ export const footerLinks = [
     links: [
       { title: "Contact", url: "/" },
       { title: "faqs", url: "/" },
-      { title: "Terms & Condition", url: "/" },
+      { title: "Privacy Policy", url: "/privacy-policy" },
       { title: "Wishlist", url: "/" },
     ],
   },
