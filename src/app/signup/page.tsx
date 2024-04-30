@@ -2,6 +2,7 @@
 import Facebook from "@/assets/FooterSVG/Facebook";
 import CustomInput from "@/components/shared/CustomInput";
 import PasswordInput from "@/components/shared/PasswordInput";
+import Spinner from "@/components/shared/Spinner";
 import {
   setConfirmPassword,
   setEmail,
@@ -21,17 +22,21 @@ import {
 } from "@tabler/icons-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const SignUp = () => {
   const [userSignUp] = useUserSignUpMutation();
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
+
 
   const { fullName, email, password, confirmPassword, qid, phoneNumber } =
     useAppSelector((state) => state.signUp);
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData();
     formData.append("email", email);
     formData.append("fullName", fullName);
@@ -42,19 +47,26 @@ const SignUp = () => {
 
     try {
       const res = await userSignUp(formData).unwrap();
-      console.log(res);
+      // console.log(res);
       storeUserInfo({ accessToken: res?.data?.accessToken });
-      console.log(res?.data?.accessToken);
+      // console.log(res?.data?.accessToken);
       if (res?.data?.accessToken) {
         router.push("/");
       }
     } catch (err: any) {
       console.error(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="h-screen flex items-center justify-center">
+      {
+        loading && (
+          <Spinner />
+        )
+      }
       <div className="w-[500px] bg-white px-5 md:px-10 py-3 rounded-2xl shadow-lg border">
         <h4 className="font-bold text-center [font-size:_clamp(20px,5vw,26px)] mb-7">
           Sign Up
