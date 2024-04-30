@@ -4,7 +4,6 @@ import { useAppSelector } from "@/redux/hook";
 
 const Wishlist = () => {
   const { products } = useAppSelector((state) => state.favouriteCartSlice);
-  console.log(products, "Check order quantity");
 
   return (
     <div>

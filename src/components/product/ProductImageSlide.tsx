@@ -61,7 +61,6 @@ const ProductImageSlide = ({ product, defaultVariant, loading }: any) => {
         variantName: product?.variants[0]?.variantName,
         inStock: product?.variants[0].inStock,
         productId: product._id,
-        orderQuantity: 1,
       })
     );
   };

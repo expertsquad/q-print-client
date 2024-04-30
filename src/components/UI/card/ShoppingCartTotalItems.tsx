@@ -11,7 +11,6 @@ import {
   addToCart,
   removeOneFromCart,
 } from "@/redux/features/cart/productCartSlice";
-import { useGetShippingQuery } from "@/redux/features/shipping/shippinApi";
 
 interface ShoppingCartProps {
   handleSubmit?: any;
@@ -24,27 +23,14 @@ const ShoppingCartTotalItems = ({
   btnText,
   btnLink,
 }: ShoppingCartProps) => {
-  const { products, subTotal, total } = useAppSelector(
+  const { products, subTotal } = useAppSelector(
     (state) => state.productCartSlice
   );
   const dispatch = useDispatch();
 
-  const getShipping = useGetShippingQuery("");
-
-  const freeShippingMinOrderAmount =
-    getShipping?.data?.data?.freeShippingMinOrderAmount;
-  const shippingInsideFee = getShipping?.data?.data?.inside;
-
-  let shippingCharge;
-
-  if (freeShippingMinOrderAmount && subTotal) {
-    if (freeShippingMinOrderAmount <= subTotal) {
-      shippingCharge = 0;
-    } else {
-      shippingCharge = shippingInsideFee;
-    }
-  }
-  const calculateTotal = subTotal + shippingCharge;
+  const discountPrice = 100;
+  const shippingCharge = 80;
+  const calculateTotalWithDiscount = subTotal + shippingCharge - discountPrice;
 
   return (
     <div className=" border rounded-lg pb-5 mb-5">
@@ -123,7 +109,7 @@ const ShoppingCartTotalItems = ({
       <div className="flex justify-between items-center px-5 py-2   ">
         <small className="text-base text-gray-500">Discount </small>{" "}
         <p className="text-lg font-medium text-red-500 ">
-          {total - subTotal} QAR
+          -{discountPrice} QAR
         </p>
       </div>
 
@@ -135,7 +121,7 @@ const ShoppingCartTotalItems = ({
       <div className="flex justify-between items-center px-5 py-4">
         <small className="text-lg font-medium text-gray-900">Total</small>{" "}
         <p className=" text-[22px]  font-bold bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-transparent bg-clip-text">
-          {subTotal + shippingCharge} QAR
+          {calculateTotalWithDiscount} QAR
         </p>
       </div>
 

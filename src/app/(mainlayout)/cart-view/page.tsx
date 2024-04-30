@@ -15,34 +15,16 @@ import {
 } from "@/redux/features/cart/productCartSlice";
 import CartViewTotalCard from "@/components/cart-view/CartViewTotalCard";
 import ContinueShopping from "@/components/cart-view/ContinueShopping";
-import MultipleQuickOrder from "@/components/quick-order/MultipleQuickOrder";
-import { useGetShippingQuery } from "@/redux/features/shipping/shippinApi";
 
 const CartView = () => {
-  const { products, subTotal, total } = useAppSelector(
+  const { products, subTotal } = useAppSelector(
     (state) => state.productCartSlice
   );
-  const getShipping = useGetShippingQuery("");
-
   const dispatch = useDispatch();
 
-  const freeShippingMinOrderAmount =
-    getShipping?.data?.data?.freeShippingMinOrderAmount;
-  const shippingInsideFee = getShipping?.data?.data?.inside;
-
-  let shippingCharge;
-
-  if (freeShippingMinOrderAmount && subTotal) {
-    if (freeShippingMinOrderAmount <= subTotal) {
-      shippingCharge = 0;
-    } else {
-      shippingCharge = shippingInsideFee;
-    }
-  }
-  const discountPrice = total - subTotal;
-  const calculateTotalWithDiscount = subTotal + shippingCharge;
-
-  console.log(shippingCharge);
+  const shippingCharge = 80;
+  const discountPrice = 100;
+  const calculateTotalWithDiscount = subTotal + shippingCharge - discountPrice;
 
   return (
     <div className="max-w-[1280px] mx-auto">
@@ -64,13 +46,13 @@ const CartView = () => {
                   >
                     {/* ==Image, Text and Mobile V== */}
                     <div className="flex gap-5 w-full">
-                      <div className="w-[55px] h-[55px] shrink-0 relative">
+                      <div className="flex items-center justify-center max-h-16 w-full max-w-16 p-2 border rounded-md">
                         <Image
                           src={`${imageUrl}${product?.productPhotos?.[1]}`}
                           alt="Product Image"
-                          fill
-                          objectFit="cover"
-                          className="w-full h-full top-0 left-0 object-cover border rounded-md p-1"
+                          width={55}
+                          height={55}
+                          className="w-full h-full"
                         />
                       </div>
                       {/* -Title rating and mobile v-- */}
@@ -174,24 +156,13 @@ const CartView = () => {
               {/* -Price Range- */}
               <div className="mt-5">
                 <div className="mb-5">
-                  <GetDiscountRange
-                    expectedAmount={
-                      getShipping?.data?.data?.freeShippingMinOrderAmount
-                    }
-                    totalAmount={subTotal}
-                  />
+                  <GetDiscountRange priceRange={subTotal} />
                 </div>
                 <div>
-                  {calculateTotalWithDiscount <
-                  getShipping?.data?.data?.freeShippingMinOrderAmount ? (
+                  {calculateTotalWithDiscount < 3000 ? (
                     <p className="">
-                      Spend{" "}
-                      <b className="main-text-color">
-                        {getShipping?.data?.data?.freeShippingMinOrderAmount}{" "}
-                        QAR
-                      </b>{" "}
-                      more to reach{" "}
-                      <b className="font-medium">FREE SHIPPING!</b>
+                      Spend <b className="main-text-color">3000 QAR</b> more to
+                      reach <b className="font-medium">FREE SHIPPING!</b>
                     </p>
                   ) : (
                     <p className="flex gap-1 items-center justify-start text-[16px]">
@@ -204,19 +175,13 @@ const CartView = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full md:max-w-[438px] h-[390px] border px-5 rounded-lg">
-              {/* == Calculate Cart Total == */}
-              <CartViewTotalCard
-                subTotal={subTotal}
-                shippingCharge={shippingCharge}
-                discountPrice={discountPrice}
-                calculateTotalWithDiscount={calculateTotalWithDiscount}
-              />
-              {/* == Quick Orders == */}
-              <div className="w-full">
-                <MultipleQuickOrder products={products} subTotal={subTotal} />
-              </div>
-            </div>
+            {/* == Calculate Cart Total == */}
+            <CartViewTotalCard
+              subTotal={subTotal}
+              shippingCharge={shippingCharge}
+              discountPrice={discountPrice}
+              calculateTotalWithDiscount={calculateTotalWithDiscount}
+            />
           </div>
         </>
       ) : (

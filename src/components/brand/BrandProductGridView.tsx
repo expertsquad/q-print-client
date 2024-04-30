@@ -62,9 +62,7 @@ const BrandProductGridView = () => {
             onChange={(e) => dispatch(setCategory(e.target.value))}
           >
             {allCategory?.data?.map((category: any) => (
-              // console.log(category);
-
-              <option key={category?._id} value={category?.categoryName}>
+              <option key={category?.categoryId} value={category?.categoryName}>
                 {category?.categoryName}
               </option>
             ))}

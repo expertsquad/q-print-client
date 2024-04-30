@@ -22,13 +22,12 @@ const DiscountWidgetCard = () => {
           <p>{widget?.tag}</p>
           <ShopNowButton buttonText={widget?.buttonText} />
         </div>
-        <div className="w-[75%] h-auto">
+        <div>
           <Image
             src="https://www.transparentpng.com/thumb/printer/7udIJT-canon-printer-transparent.png"
             alt="Discounted product image"
-            height={400}
-            width={400}
-            priority
+            height={250}
+            width={150}
           />
         </div>
       </div>
