@@ -20,10 +20,16 @@ import {
 } from "@/redux/features/cart/productCartSlice";
 import { useAppSelector } from "@/redux/hook";
 import { useQuickOrderMutation } from "@/redux/features/quick-order/quickOrderApi";
-import { setMultipleQuickOrder } from "@/redux/features/quick-order/multipleQuickOrder";
+import {
+  resetQuickOrder,
+  setMultipleQuickOrder,
+} from "@/redux/features/quick-order/multipleQuickOrder";
 import QuickOrderCartItem from "./QuickOrderCartItem";
+import { toast } from "react-toastify";
+import { useGetQuickOrderSettingQuery } from "@/redux/features/settings/quickOrderSettings";
 
-const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
+const MultipleQuickOrder = ({ products, subTotal }: any) => {
+  const { data: deliveryCharge } = useGetQuickOrderSettingQuery("");
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const data = useAppSelector((state) => state.multipleQuickOrder);
@@ -39,8 +45,6 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
     dispatch(setMultipleQuickOrder({ orderItems: products }));
   }, [products, dispatch]);
 
-  const shippingFee = 50;
-
   // handle submit
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -53,18 +57,20 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
       },
     };
 
-    console.log(value, "My value");
-
     try {
       const res = await quickOrder(value);
-      console.log(res, "from res");
+      // @ts-ignore
+      toast.success(res.message);
+      dispatch(resetQuickOrder());
+      handleCloseModal();
     } catch (error) {
-      console.log(error);
+      // @ts-ignore
+      toast.error(error.message);
     }
   };
 
   return (
-    <div >
+    <div>
       <button
         onClick={() => {
           setShowModal(true);
@@ -86,17 +92,19 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
           <div className="flex flex-col-reverse md:justify-normal justify-between  md:flex-row items-center w-full">
             {/* == Product info & balance container == */}
             <div className="flex-1 w-full md:py-0 py-5">
-              <span className="block md:hidden mb-5 text-base text-black-opacity-50">Item Lists</span>
+              <span className="block md:hidden mb-5 text-base text-black-opacity-50">
+                Item Lists
+              </span>
               <div className="flex flex-col overflow-y-auto border-t  no-scrollbar gap-5 border-b  md:h-[380px] h-[100px] bg-white">
                 {products?.map((product: any) => (
                   <QuickOrderCartItem key={product?._id} product={product} />
                 ))}
               </div>
               {/* ==shipping, subtotal, and total== */}
-              <div >
+              <div>
                 <TotalAndSubtTotalCard
                   subTotal={subTotal}
-                  shippingFee={shippingFee}
+                  shippingFee={deliveryCharge?.data?.deliveryCharge}
                 />
               </div>
             </div>
@@ -159,7 +167,8 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
                   <span>
                     <IconBolt fill="#fff" stroke={2} width={22} height={22} />
                   </span>
-                  CONFIRM ORDER - {subTotal + shippingFee} QAR
+                  CONFIRM ORDER -{" "}
+                  {subTotal + deliveryCharge?.data?.deliveryCharge} QAR
                 </button>
               </form>
             </div>

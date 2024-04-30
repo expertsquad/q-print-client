@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/features/cart/productCartSlice";
 
 const SpecificationCard = ({ specificationCard }: any) => {
+  console.log(specificationCard?._id, "asldkfalsdk");
   const dispatch = useDispatch();
 
   // <== Handle Add Product In Cart ==>
@@ -60,7 +61,10 @@ const SpecificationCard = ({ specificationCard }: any) => {
           </button>
         </div>
         <div>
-          <SingleQuickOrder product={specificationCard} btnStyle="py-3" />
+          <SingleQuickOrder
+            productId={specificationCard?._id}
+            btnStyle="py-3"
+          />
         </div>
       </div>
       <button

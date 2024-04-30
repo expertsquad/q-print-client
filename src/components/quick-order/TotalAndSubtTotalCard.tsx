@@ -1,12 +1,9 @@
-import React from "react";
-
 interface CardProps {
   subTotal: number;
   shippingFee: number;
 }
 
 const TotalAndSubtTotalCard = ({ subTotal, shippingFee }: CardProps) => {
-  const canculateTotal = subTotal + shippingFee;
   return (
     <div>
       <div className="pt-3">
@@ -25,7 +22,7 @@ const TotalAndSubtTotalCard = ({ subTotal, shippingFee }: CardProps) => {
         <div className="flex justify-between items-center">
           <b className="text-black text-[14px]">Total</b>
           <b className="text-black text-[14px]">
-            <b>{canculateTotal}</b> QAR
+            <b>{subTotal + shippingFee}</b> QAR
           </b>
         </div>
       </div>
