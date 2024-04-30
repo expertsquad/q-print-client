@@ -23,8 +23,10 @@ import SingleQuickOrder from "../quick-order/SingleQuickOrder";
 import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 
 const QuickViewDescription = ({ product }: any) => {
+  console.log(product?._id, "Quick view modal");
   const dispatch = useDispatch();
   const { products } = useAppSelector((state) => state.productCartSlice);
+  const [orderQuantity, setOrderQuantity] = useState(1);
 
   const productQuantity = products?.map((product: any) => {
     return product?.quantity;
@@ -45,7 +47,7 @@ const QuickViewDescription = ({ product }: any) => {
         price: selectedVariant?.discountedPrice
           ? selectedVariant?.discountedPrice
           : selectedVariant?.sellingPrice,
-        orderQuantity: 1,
+        orderQuantity: orderQuantity,
         variantName: selectedVariant?.variantName,
         productId: product?._id,
       })
@@ -157,16 +159,19 @@ const QuickViewDescription = ({ product }: any) => {
         <div className="flex items-center gap-5 mb-5">
           <div className="border border-gray-200 flex items-center gap-2 rounded-3xl p-2">
             <button
-              onClick={() => dispatch(removeOneFromCart(product))}
-              className="p-2 bg-[#F2F2F2] rounded-full"
+              disabled={orderQuantity === 1 ? true : false}
+              onClick={() => setOrderQuantity(orderQuantity - 1)}
+              className={`p-2 bg-[#F2F2F2] rounded-full ${
+                orderQuantity === 1 ? "opacity-50" : ""
+              }`}
             >
               {""}
               <IconMinus width={14} height={14} />
             </button>
-            <span>{0 || productQuantity}</span>
+            <span>{orderQuantity}</span>
             <button
-              onClick={() => dispatch(addToCart(product))}
-              className="p-2 bg-[#F2F2F2] rounded-full"
+              onClick={() => setOrderQuantity(orderQuantity + 1)}
+              className={`p-2 bg-[#F2F2F2] rounded-full`}
             >
               {""}
               <IconPlus width={14} height={14} />
@@ -193,7 +198,17 @@ const QuickViewDescription = ({ product }: any) => {
         <div className="mt-5 flex items-center justify-between gap-5">
           <div className="w-full">
             {/* <WishlistQuickOrderBTNModal /> */}
-            <SingleQuickOrder product={product} />
+            <SingleQuickOrder
+              // @ts-ignore
+              product={product}
+              productId={product?._id}
+              variantPrice={
+                selectedVariant?.discountedPrice
+                  ? selectedVariant?.discountedPrice
+                  : selectedVariant?.sellingPrice
+              }
+              variantName={selectedVariant?.variantName}
+            />
           </div>
           <button className="flex items-center justify-center gap-2 text-white main-bg-color  py-2.5 rounded-lg w-full text-sm">
             {""}

@@ -27,6 +27,7 @@ const QuickViewImage = ({ product }: any) => {
                 src={`${imageUrl}${image}`}
                 alt="Product Photo"
                 fill
+                priority
                 sizes="(max-width: 80px) 10vw, (max-width: 100px) 10vw, 15vw"
                 className="w-full h-full top-0 left-0 object-contain p-2"
               />

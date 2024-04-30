@@ -16,7 +16,7 @@ import { authKey } from "@/constants/storageKey";
 import { useRouter } from "next/navigation";
 import { imageUrl } from "@/constants/imageUrl";
 import { useGetOnlineOrderQuery } from "@/redux/features/online-order/online-orderApi";
-import { useGetReviewQuery } from "@/redux/features/review/reviewApi";
+import { useReviewByIdQuery } from "@/redux/features/review/reviewApi";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
   setProfileLocalPhoto,
@@ -40,17 +40,21 @@ const MyProfileCard = () => {
   };
 
   // <== Get data from user me ==>
-  const { data, isError, isLoading } = useGetUserQuery("");
+  const { data } = useGetUserQuery("");
 
   // <== Get Order Data by Online Order Query ==>
-  const onlineOrderData = useGetOnlineOrderQuery("").data;
+  const onlineOrderData = useGetOnlineOrderQuery(
+    `buyer.userId=${data?.data?._id}`
+  ).data;
 
   // <== Get review data by review Query ==>
-  const reviewData = useGetReviewQuery("").data;
+  const reviewData = useReviewByIdQuery(
+    `reviewer.userId=${data?.data?._id}`
+  ).data;
 
   // <== Get Complete Order Data ==>
   const { data: completeOrder } = useGetOnlineOrderQuery(
-    "orderStatus.status=Delivered"
+    `buyer.userId=${data?.data?._id}&orderStatus.status=Delivered`
   );
 
   // <== onsubmit ==>
@@ -142,7 +146,9 @@ const MyProfileCard = () => {
             <OrderIcon />
           </h3>
           <p className="whitespace-nowrap text-gray-500">Orders</p>
-          <span className="font-bold">{onlineOrderData?.data?.length}</span>
+          <span className="font-bold">
+            {onlineOrderData?.data?.length ? onlineOrderData?.data?.length : 0}
+          </span>
         </div>
 
         {/* grid card 3 */}

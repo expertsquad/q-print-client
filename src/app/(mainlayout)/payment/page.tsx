@@ -18,7 +18,6 @@ import { toast } from "react-toastify";
 const Payment = () => {
   // <== Get User Personal Information ==>
   const { data: personalInformation } = useGetUserQuery("");
-  console.log(personalInformation, "personal information");
 
   const { data: address, isLoading } = useGetUserAddressQuery(`isDefault=true`);
   const dispatch = useAppDispatch();
@@ -95,11 +94,13 @@ const Payment = () => {
                 <IconMapPin width={22} height={22} stroke={1} />
               </span>
               <span className="w-/12 line-clamp-3 text-sm md:text-base">
-                {// @ts-ignore
+                {
+                  // @ts-ignore
                   data?.shippingAddress?.streetAddress
-                    // @ts-ignore
-                    ? data?.shippingAddress?.streetAddress
-                    : address?.data[0]?.streetAddress}
+                    ? // @ts-ignore
+                      data?.shippingAddress?.streetAddress
+                    : address?.data[0]?.streetAddress
+                }
               </span>
             </div>
             <div className="w-2/12">

@@ -22,6 +22,7 @@ import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 const ProductViewDescEtc = ({ productDesc }: any) => {
   const dispatch = useDispatch();
   const [selectedVariant, setSelectedVariant] = useState<any>(null);
+  const [orderQuantity, setOrderQuantity] = useState(1);
 
   useEffect(() => {
     const storedSelectedVariant = localStorage.getItem("selectedVariant");
@@ -46,7 +47,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         price: selectedVariant?.discountedPrice
           ? selectedVariant?.discountedPrice
           : selectedVariant?.sellingPrice,
-        orderQuantity: 1,
+        orderQuantity: orderQuantity,
         variantName: selectedVariant?.variantName,
         productId: product?._id,
       })
@@ -138,33 +139,38 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
           </span>
         </div>
 
-        <GetDiscountRange />
+        {productDesc?.bulk && <GetDiscountRange />}
+        {productDesc?.bulk && (
+          <div className="my-3 whitespace-nowrap text-black-opacity-60">
+            <p>
+              Buy{" "}
+              <span className="font-semibold main-text-color">
+                {productDesc?.bulk?.minOrder}
+              </span>{" "}
+              item to get more{" "}
+              <span className="font-semibold text-black">
+                {productDesc?.bulk?.discount} extra!
+              </span>
+            </p>
+          </div>
+        )}
 
-        <div className="my-3 whitespace-nowrap text-black-opacity-60">
-          <p>
-            Buy{" "}
-            <span className="font-semibold main-text-color">
-              {productDesc?.bulk?.minOrder}
-            </span>{" "}
-            item to get more{" "}
-            <span className="font-semibold text-black">
-              {productDesc?.bulk?.discount} extra!
-            </span>
-          </p>
-        </div>
         <div className="flex items-center gap-5 mb-5">
           <div className="border border-gray-200 flex items-center gap-2 rounded-3xl p-2">
             <button
-              onClick={() => dispatch(removeOneFromCart(productDesc))}
-              className="p-2 bg-[#F2F2F2] rounded-full"
+              disabled={orderQuantity === 1 ? true : false}
+              onClick={() => setOrderQuantity(orderQuantity - 1)}
+              className={`p-2 bg-[#F2F2F2] rounded-full ${
+                orderQuantity === 1 ? "opacity-50" : ""
+              }`}
             >
               {""}
               <IconMinus width={14} height={14} />
             </button>
-            <span>{0}</span>
+            <span>{orderQuantity}</span>
             <button
-              onClick={() => dispatch(addToCart(productDesc))}
-              className="p-2 bg-[#F2F2F2] rounded-full"
+              onClick={() => setOrderQuantity(orderQuantity + 1)}
+              className={`p-2 bg-[#F2F2F2] rounded-full`}
             >
               {""}
               <IconPlus width={14} height={14} />
@@ -188,7 +194,16 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         </div>
         <div className="mt-5 flex items-center justify-between gap-5">
           <div className="w-full">
-            <SingleQuickOrder product={productDesc} btnStyle="py-2.5" />
+            <SingleQuickOrder
+              productId={productDesc?._id}
+              variantName={selectedVariant?.variantName}
+              variantPrice={
+                selectedVariant?.discountedPrice
+                  ? selectedVariant?.discountedPrice
+                  : selectedVariant?.sellingPrice
+              }
+              btnStyle="py-2.5"
+            />
           </div>
           <button className="flex items-center justify-center gap-2 text-white main-bg-color py-2.5 rounded-lg w-full text-sm">
             {""}
