@@ -18,11 +18,14 @@ import {
 } from "@/redux/features/cart/productCartSlice";
 import SingleQuickOrder from "../quick-order/SingleQuickOrder";
 import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
+import { useAppSelector } from "@/redux/hook";
+import { useGetShippingQuery } from "@/redux/features/shipping/shippinApi";
 
 const ProductViewDescEtc = ({ productDesc }: any) => {
   const dispatch = useDispatch();
   const [selectedVariant, setSelectedVariant] = useState<any>(null);
   const [orderQuantity, setOrderQuantity] = useState(1);
+  const data = useAppSelector((state) => state.productCartSlice);
 
   useEffect(() => {
     const storedSelectedVariant = localStorage.getItem("selectedVariant");

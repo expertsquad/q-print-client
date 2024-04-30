@@ -15,17 +15,31 @@ import GetDiscountRange from "../ProductView/GetDiscountRange";
 import emptyCart from "@/assets/empty-card-photo.svg";
 import CartItem from "../cart-view/CartItem";
 import { IconShoppingCart } from "@tabler/icons-react";
+import { useGetShippingQuery } from "@/redux/features/shipping/shippinApi";
 
 const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
   const handleCloseDrawer = () => {
     setOpenCartDrawer(false);
   };
+  const getShipping = useGetShippingQuery("");
 
-  const { products, subTotal } = useAppSelector(
+  const { products, subTotal, total } = useAppSelector(
     (state) => state.productCartSlice
   );
 
-  const shippingCharge = 80;
+  const freeShippingMinOrderAmount =
+    getShipping?.data?.data?.freeShippingMinOrderAmount;
+  const shippingInsideFee = getShipping?.data?.data?.inside;
+
+  let shippingCharge;
+
+  if (freeShippingMinOrderAmount && subTotal) {
+    if (freeShippingMinOrderAmount <= subTotal) {
+      shippingCharge = 0;
+    } else {
+      shippingCharge = shippingInsideFee;
+    }
+  }
   const calculateTotal = subTotal + shippingCharge;
   return (
     <div>
@@ -76,13 +90,24 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                 {/* --Price range and Free shipping-- */}
                 <div className="mb-5">
                   <div className="mb-5">
-                    <GetDiscountRange priceRange={calculateTotal} />
+                    <GetDiscountRange
+                      expectedAmount={
+                        getShipping?.data?.data?.freeShippingMinOrderAmount
+                      }
+                      totalAmount={subTotal}
+                    />
                   </div>
                   <div>
-                    {subTotal < 3000 ? (
+                    {subTotal <
+                    getShipping?.data?.data?.freeShippingMinOrderAmount ? (
                       <p className="text-center">
-                        Spend <b className="main-text-color">3000 QAR</b> more
-                        to reach <b className="font-medium">FREE SHIPPING!</b>
+                        Spend{" "}
+                        <b className="main-text-color">
+                          {getShipping?.data?.data?.freeShippingMinOrderAmount}{" "}
+                          QAR
+                        </b>{" "}
+                        more to reach{" "}
+                        <b className="font-medium">FREE SHIPPING!</b>
                       </p>
                     ) : (
                       <p className="text-center flex gap-1 items-center justify-center text-[16px]">
