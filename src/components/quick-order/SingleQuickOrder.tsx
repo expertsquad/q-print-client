@@ -54,9 +54,9 @@ const SingleQuickOrder = ({
 
   const calculateSubTotal = Number(
     orderQuantity *
-    (variantPrice
-      ? variantPrice
-      : singleProduct?.variants[0].discountedPrice
+      (variantPrice
+        ? variantPrice
+        : singleProduct?.variants[0].discountedPrice
         ? singleProduct?.variants[0].discountedPrice
         : singleProduct?.variants[0].sellingPrice)
   );
@@ -82,7 +82,6 @@ const SingleQuickOrder = ({
     };
     try {
       const res = await quickOrder(value);
-      console.log(res);
       // @ts-ignore
       toast.success(res?.message);
       dispatch(resetQuickOrder());
@@ -175,8 +174,8 @@ const SingleQuickOrder = ({
                           {variantPrice
                             ? variantPrice
                             : singleProduct?.variants[0].discountedPrice
-                              ? singleProduct?.variants[0].discountedPrice
-                              : singleProduct?.variants[0].sellingPrice}
+                            ? singleProduct?.variants[0].discountedPrice
+                            : singleProduct?.variants[0].sellingPrice}
                           <small>QAR</small>
                         </span>
                       </div>

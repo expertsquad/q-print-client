@@ -16,7 +16,10 @@ import { authKey } from "@/constants/storageKey";
 import { useRouter } from "next/navigation";
 import { imageUrl } from "@/constants/imageUrl";
 import { useGetOnlineOrderQuery } from "@/redux/features/online-order/online-orderApi";
-import { useGetReviewQuery } from "@/redux/features/review/reviewApi";
+import {
+  useGetReviewQuery,
+  useReviewByIdQuery,
+} from "@/redux/features/review/reviewApi";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
   setProfileLocalPhoto,
@@ -43,18 +46,21 @@ const MyProfileCard = () => {
   const { data, isError, isLoading } = useGetUserQuery("");
 
   // <== Get Order Data by Online Order Query ==>
-  const onlineOrderData = useGetOnlineOrderQuery("").data;
+  const onlineOrderData = useGetOnlineOrderQuery(
+    `buyer.userId=${data?.data?._id}`
+  ).data;
 
   // <== Get review data by review Query ==>
-  const reviewData = useGetReviewQuery("").data;
+  const reviewData = useReviewByIdQuery(
+    `reviewer.userId=${data?.data?._id}`
+  ).data;
 
   // <== Get Complete Order Data ==>
   const { data: completeOrder } = useGetOnlineOrderQuery(
-    "orderStatus.status=Delivered"
+    `orderStatus.status=Delivered&buyer.userId=${data?.data?._id}`
   );
 
   // <== onsubmit ==>
-
   const handleImageUpload = async (e: any) => {
     e.preventDefault();
     const file = e.target.files[0];

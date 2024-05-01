@@ -30,7 +30,6 @@ const SignUp = () => {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
 
-
   const { fullName, email, password, confirmPassword, qid, phoneNumber } =
     useAppSelector((state) => state.signUp);
 
@@ -47,9 +46,7 @@ const SignUp = () => {
 
     try {
       const res = await userSignUp(formData).unwrap();
-      // console.log(res);
       storeUserInfo({ accessToken: res?.data?.accessToken });
-      // console.log(res?.data?.accessToken);
       if (res?.data?.accessToken) {
         router.push("/");
       }
@@ -62,11 +59,7 @@ const SignUp = () => {
 
   return (
     <div className="h-screen flex items-center justify-center">
-      {
-        loading && (
-          <Spinner />
-        )
-      }
+      {loading && <Spinner />}
       <div className="w-[500px] bg-white px-5 md:px-10 py-3 rounded-2xl shadow-lg border">
         <h4 className="font-bold text-center [font-size:_clamp(20px,5vw,26px)] mb-7">
           Sign Up

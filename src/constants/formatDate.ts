@@ -6,21 +6,6 @@ export const formatDate = (dateString: string) => {
   });
 };
 
-// export const formatDateShorting = (dateString: string) => {
-//   const date = new Date(dateString);
-//   const currentDate = new Date();
-//   const timeDifference = currentDate.getTime() - date.getTime();
-//   const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-
-//   if (daysDifference === 1) {
-//     return "1 day ago";
-//   } else if (daysDifference > 1) {
-//     return `${daysDifference} days ago`;
-//   } else {
-//     return "Today";
-//   }
-// };
-
 export const formatDateShorting = (dateString: string) => {
   const date = new Date(dateString);
   const currentDate = new Date();

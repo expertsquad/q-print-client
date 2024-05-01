@@ -1,5 +1,5 @@
+import { IMeta } from "@/types/metaTypes";
 import { instance as axiosInstance } from "./axiosInstance";
-import { IMeta } from "@/constants/metaTypes";
 import { BaseQueryFn } from "@reduxjs/toolkit/query";
 import { AxiosError, AxiosRequestConfig } from "axios";
 

@@ -32,7 +32,6 @@ const Login = () => {
       const res = await userLogin({ email, password }).unwrap();
 
       storeUserInfo({ accessToken: res?.data?.accessToken });
-      console.log(res, "API Response");
       if (res?.data?.accessToken) {
         router.push("/");
       }
@@ -45,11 +44,7 @@ const Login = () => {
   };
   return (
     <div className="h-screen flex justify-center items-center shadow-product-card-shadow bg-slate-200">
-      {
-        loading && (
-          <Spinner />
-        )
-      }
+      {loading && <Spinner />}
       <div className="bg-white p-5 md:p-10 rounded-custom-5px text-center">
         <div className="flex items-center justify-center my-5">
           <Image
