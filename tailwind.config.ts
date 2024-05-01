@@ -9,17 +9,9 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    // extend: {
-
-    //   boxShadow: {
-    //     miniCardShadow: "0px 0px 15.958px 0px rgba(231, 60, 23, 0.10)",
-    //     modalShadow: "0px 4px 30px 0px rgba(0, 0, 0, 0.15)",
-    //     printerCardShadow: "0px 4px 24px 0px rgba(127, 53, 205, 0.15)",
-    //   },
-    // },
     extend: {
       fontSize: {
-        clamp: "clamp(1rem, 5vw, 3rem)", // use it like this => [font-size:_clamp(2em,5vw,10em)]
+        clamp: "clamp(1rem, 5vw, 3rem)",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -36,7 +28,6 @@ const config: Config = {
         "statistics-bg-color":
           "linear-gradient(180deg, rgba(127, 53, 205, 0.50) -23.33%, rgba(217, 217, 217, 0.00) 109.17%)",
 
-        // taken by Nizam uddin
         "table-row-hover":
           "linear-gradient(90deg, rgba(200, 59, 98, 0.04) 0.32%, rgba(127, 53, 205, 0.04) 102.21%)",
       },
