@@ -5,6 +5,7 @@ import PasswordInput from "@/components/shared/PasswordInput";
 import { useChangePasswordMutation } from "@/redux/features/user/user";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
+  clearInput,
   setConfirmPassword,
   setNewPassword,
   setOldPassword,
@@ -26,6 +27,12 @@ const ChangePassword = () => {
     (state) => state.changePasswordSlice
   );
 
+  const handleResetField = () => {
+    dispatch(setOldPassword(""));
+    dispatch(setNewPassword(""));
+    dispatch(setConfirmPassword(""));
+  };
+
   const handlePasswordChange = async (event: any) => {
     event.preventDefault();
     setLoading(true);
@@ -36,8 +43,8 @@ const ChangePassword = () => {
         newPassword,
         confirmPassword,
       }).unwrap();
-
-      toast.success(res?.message)
+      toast.success(res?.message);
+      clearInput();
 
     } catch (err: any) {
       setError(err.message);
@@ -47,19 +54,13 @@ const ChangePassword = () => {
     }
   };
 
-  const handleResetField = () => {
-    dispatch(setOldPassword(""));
-    dispatch(setNewPassword(""));
-    dispatch(setConfirmPassword(""));
-  };
+
   return (
     <div>
       <section className="w-full mb-7 relative">
         {
           loading &&
-          <div onClick={(e) => e.stopPropagation()} className="absolute bg-white bg-opacity-60 z-10 h-full w-full flex items-center justify-center">
             <Spinner />
-          </div>
         }
         <div className="lg:border rounded-lg lg:p-7 flex justify-between items-center gap-28">
           <div className="lg:w-6/12 w-full">

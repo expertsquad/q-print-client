@@ -9,7 +9,7 @@ const CartViewTotalCard = ({
   calculateTotalWithDiscount,
 }: number | any) => {
   return (
-    <div className="w-full">
+    <div className="w-full h-full md:max-w-[438px] border rounded-lg">
       <h5 className="text-[16px] md:text-[18px] font-medium pl-6 py-5 border-b">
         Cart Total
       </h5>
@@ -46,14 +46,14 @@ const CartViewTotalCard = ({
           {calculateTotalWithDiscount} <small>QAR</small>
         </span>
       </div>
-      <div className="flex items-center justify-center mb-5">
+      <div className="flex items-center justify-center px-5 mb-5">
         <Link
           href="/your-information"
-          className="flex items-center gap-1 justify-center bg-main-bg-color w-full py-3 text-white text-sm rounded-lg whitespace-nowrap"
+          className="flex items-center gap-2 justify-center main-bg-color w-full py-2 text-white rounded-lg"
         >
           <span>Proceed To Checkout</span>
           <span>
-            <IconArrowRight stroke={2} height={18} width={18} />
+            <IconArrowRight stroke={2} height={20} width={20} />
           </span>
         </Link>
       </div>

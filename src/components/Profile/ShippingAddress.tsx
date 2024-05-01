@@ -7,8 +7,14 @@ import {
 } from "@/redux/features/user/user";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { setShippingData } from "@/redux/features/user/shippingAddressSlice";
+import { useState } from "react";
+import Spinner from "@/components/shared/Spinner";
+import { toast } from "react-toastify";
 
 const ShippingAddress = () => {
+
+  const [loading, setLoading] = useState(false);
+
   // add shipping address mutation
   const [addShippingInfo] = useAddShippingAddressMutation();
   // update shipping address mutation
@@ -24,6 +30,7 @@ const ShippingAddress = () => {
 
   const handleUpdateShippingInfo = async (event: any) => {
     event.preventDefault();
+    setLoading(true);
 
     try {
       for (const [key, value] of Object.entries(userData)) {
@@ -33,20 +40,31 @@ const ShippingAddress = () => {
       if (data?.addNewAddress === true) {
         //updating shipping address
         const res = await updateShippingInfo({ data: formData, id: data?._id });
+
       } else {
         //adding new shipping address
         const res = await addShippingInfo({ data: formData });
+
       }
       // updating user info
-      const updateUseInfo = await updateMe(formData);
-      console.log(updateUseInfo);
+      const updateUserInfo = await updateMe(formData);
+      // @ts-ignore
+      toast.success(updateUserInfo?.data?.message);
+      console.log(updateUserInfo);
     } catch (err: any) {
+      toast.error(err?.errorMessages)
       console.log(err.errorMessages);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div>
+    <div className="relative">
+      {
+        loading &&
+        <Spinner />
+      }
       <h1 className="text-black text-xl mb-5 md:mb-8 lg:mb-8 ">
         Shipping Information
       </h1>

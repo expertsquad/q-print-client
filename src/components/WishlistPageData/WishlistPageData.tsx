@@ -106,11 +106,10 @@ const WishlistPageData = ({ products }: any) => {
                           </span>
                           |
                           <small
-                            className={`pl-2 ${
-                              product?.inStock > 0
+                            className={`pl-2 ${product?.inStock > 0
                                 ? "text-green-500"
                                 : "text-red-500"
-                            }`}
+                              }`}
                           >
                             {product?.inStock} In stock
                           </small>
@@ -141,9 +140,8 @@ const WishlistPageData = ({ products }: any) => {
                   <div className="hidden md:block">
                     <div className="flex items-center gap-10">
                       <p
-                        className={`whitespace-nowrap ${
-                          product?.inStock ? "text-[#03A609]" : "text-[#E73C17]"
-                        }`}
+                        className={`whitespace-nowrap ${product?.inStock ? "text-[#03A609]" : "text-[#E73C17]"
+                          }`}
                       >
                         {product?.inStock ? (
                           <span className={`flex items-center gap-0.5`}>

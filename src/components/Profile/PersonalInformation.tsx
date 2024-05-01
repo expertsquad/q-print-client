@@ -28,7 +28,6 @@ const PersonalInformation = ({ personalInformation }: any) => {
     const file = event.target.files[0];
     if (file) {
       dispatch(setProfilePhoto(file));
-
       const reader = URL.createObjectURL(file);
       dispatch(setProfileLocalPhoto(reader));
     }
@@ -83,11 +82,10 @@ const PersonalInformation = ({ personalInformation }: any) => {
             >
               <div className="">
                 <Image
-                  src={`${
-                    profileLocalPhoto
+                  src={`${profileLocalPhoto
                       ? profileLocalPhoto
                       : imageUrl + profilePhoto
-                  }  `}
+                    }  `}
                   alt=""
                   width={50}
                   height={50}
@@ -96,9 +94,8 @@ const PersonalInformation = ({ personalInformation }: any) => {
               </div>
 
               <span
-                className={`absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-3.5 z-50 bg-black bg-opacity-20 ${
-                  profilePhoto ? "hidden" : "block"
-                }`}
+                className={`absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-3.5 z-50 bg-black bg-opacity-20 ${profilePhoto ? "hidden" : "block"
+                  }`}
               >
                 <UploadIcon />
                 <small className="text-white text-sm font-medium">

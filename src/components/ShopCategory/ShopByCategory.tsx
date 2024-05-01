@@ -1,11 +1,12 @@
 "use client";
 
+import CategorySkeleton from "../shared/Skeleton/CategorySkeleton";
 import ShopCategoryCard from "./ShopCategoryCard";
 import { useGetCategoryQuery } from "@/redux/features/category/categories";
 
 const ShopByCategory = () => {
   // <== Get Category ==>
-  const { data } = useGetCategoryQuery("");
+  const { data, isLoading } = useGetCategoryQuery("");
 
   // <== Slice 0-3 for show at home page ==>
   const slicedCategory = data?.data?.slice(0, 3);
@@ -22,9 +23,19 @@ const ShopByCategory = () => {
           </h3>
         </div>
         <div className="flex justify-between gap-4 overflow-scroll no-scrollbar ">
-          {slicedCategory?.map((category: any, index: number) => (
-            <ShopCategoryCard key={index} category={category} />
-          ))}
+          {
+            isLoading ? (
+              [...Array(3)].map((_: any, index: number) => {
+                return (
+
+                  <CategorySkeleton key={index} />
+                )
+              })
+            )
+              :
+              slicedCategory?.map((category: any, index: number) => (
+                <ShopCategoryCard key={index} category={category} />
+              ))}
         </div>
       </div>
     </section>

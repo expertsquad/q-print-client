@@ -19,6 +19,10 @@ import {
   setProductId,
   setRating,
 } from "@/redux/features/review/addReviewSlice";
+import Spinner from "@/components/shared/Spinner";
+
+
+
 
 const ProductReviewModal = ({
   orderId: reviewOrderId,
@@ -30,6 +34,7 @@ const ProductReviewModal = ({
   const { data } = useReviewByIdQuery(`orderId=${reviewOrderId}`);
 
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -52,6 +57,7 @@ const ProductReviewModal = ({
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData();
     formData.append("orderId", reviewOrderId);
     formData.append("productId", reviewProductId);
@@ -68,6 +74,8 @@ const ProductReviewModal = ({
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false)
     }
     handleCloseModal();
   };
@@ -85,9 +93,11 @@ const ProductReviewModal = ({
       <GlobalModal
         isVisible={showModal}
         onClose={handleCloseModal}
-        modalController=""
       >
-        <div className="w-full h-screen md:w-[650px] md:h-auto  bg-white p-7 rounded-lg relative">
+        <div className="w-full h-screen md:w-[650px] md:h-auto  bg-white p-7 rounded-lg relative overflow-hidden">
+          {
+            loading && <Spinner />
+          }
           <div className="absolute top-5 right-5 text-black text-opacity-70 hidden md:block">
             <ModalCloseBtn handleClose={handleCloseModal} />
           </div>

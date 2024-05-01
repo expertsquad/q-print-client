@@ -12,17 +12,21 @@ import {
 } from "@/redux/features/user/loginSlice";
 import CustomInput from "@/components/shared/CustomInput";
 import PasswordInput from "@/components/shared/PasswordInput";
+import { useState } from "react";
+import Spinner from "@/components/shared/Spinner";
 
 const Login = () => {
   const [userLogin] = useUserLoginMutation();
   const router = useRouter();
   const dispatch = useAppDispatch();
-
   const { email, password } = useAppSelector((state) => state.login);
+
+  const [loading, setLoading] = useState(false);
 
   let wrongPass;
   const onSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const res = await userLogin({ email, password }).unwrap();
@@ -35,10 +39,17 @@ const Login = () => {
     } catch (err: any) {
       // console.error(err.message.length);
       wrongPass = err.errorMessages;
+    } finally {
+      setLoading(false);
     }
   };
   return (
     <div className="h-screen flex justify-center items-center shadow-product-card-shadow bg-slate-200">
+      {
+        loading && (
+          <Spinner />
+        )
+      }
       <div className="bg-white p-5 md:p-10 rounded-custom-5px text-center">
         <div className="flex items-center justify-center my-5">
           <Image

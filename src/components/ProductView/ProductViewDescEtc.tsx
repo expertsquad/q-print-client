@@ -20,7 +20,6 @@ import SingleQuickOrder from "../quick-order/SingleQuickOrder";
 import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 
 const ProductViewDescEtc = ({ productDesc }: any) => {
-  console.log(productDesc?._id, "From product view");
   const dispatch = useDispatch();
   const [selectedVariant, setSelectedVariant] = useState<any>(null);
 

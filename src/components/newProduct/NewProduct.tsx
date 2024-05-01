@@ -4,10 +4,11 @@ import NewProductDisountCard from "../UI/card/NewProductDisountCard";
 import Link from "next/link";
 import ProductCard from "../product/ProductCard";
 import { IProduct } from "@/types/productsType";
+import ProductCardSkeleton from "../shared/Skeleton/ProductCardSkeleton";
 
 const NewProduct = () => {
   // <== Finding New Products ==>
-  const { data } = useGetProductsQuery(`sortBy=createdAt&sortOrder=desc`);
+  const { data, isLoading } = useGetProductsQuery(`sortBy=createdAt&sortOrder=desc`);
   const firstThreeProducts = data?.data?.slice(0, 3);
   return (
     <section className="flex justify-between gap-4 lg:mt-20 md:mt-20 mt-8 md:flex-row flex-col-reverse">
@@ -30,11 +31,20 @@ const NewProduct = () => {
           </div>
         </div>
         <div className="w-full md:place-items-start place-items-center flex items-center gap-y-5 justify-center md:justify-between flex-wrap">
-          {firstThreeProducts?.map((product: IProduct) => (
-            <div key={product?._id}>
-              <ProductCard product={product} />
-            </div>
-          ))}
+          {
+            isLoading ? (
+              [...Array(3)].map((_, index) => {
+                return (
+                  <ProductCardSkeleton key={index} />
+                )
+              })
+            ) :
+
+              firstThreeProducts?.map((product: IProduct) => (
+                <div key={product?._id}>
+                  <ProductCard product={product} />
+                </div>
+              ))}
         </div>
       </div>
     </section>

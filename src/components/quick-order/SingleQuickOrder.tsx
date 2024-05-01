@@ -1,5 +1,5 @@
 "use client";
-import { IconBolt, IconPlus, IconX } from "@tabler/icons-react";
+import { IconBolt, IconPlus, IconTrash, IconX } from "@tabler/icons-react";
 import React, { useLayoutEffect, useState } from "react";
 import GlobalModal from "../UI/modal/GlobalModal";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
@@ -20,10 +20,10 @@ import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
 import { useGetQuickOrderSettingQuery } from "@/redux/features/settings/quickOrderSettings";
 
 interface QuickOrderProps {
-  variantName: string;
-  productId: string;
-  btnStyle: string;
-  variantPrice: number;
+  variantName?: string;
+  productId?: string;
+  btnStyle?: string;
+  variantPrice?: number;
 }
 
 const SingleQuickOrder = ({
@@ -54,14 +54,14 @@ const SingleQuickOrder = ({
 
   const calculateSubTotal = Number(
     orderQuantity *
-      (variantPrice
-        ? variantPrice
-        : singleProduct?.variants[0].discountedPrice
+    (variantPrice
+      ? variantPrice
+      : singleProduct?.variants[0].discountedPrice
         ? singleProduct?.variants[0].discountedPrice
         : singleProduct?.variants[0].sellingPrice)
   );
 
-  // <== Hanlde submit to send data into server ==>
+  // handle submit
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const value = {
@@ -83,10 +83,12 @@ const SingleQuickOrder = ({
     try {
       const res = await quickOrder(value);
       console.log(res);
+      // @ts-ignore
       toast.success(res?.message);
       dispatch(resetQuickOrder());
       handleCloseModal();
     } catch (error) {
+      // @ts-ignore
       toast.error(error?.errorMessages);
     }
   };
@@ -173,8 +175,8 @@ const SingleQuickOrder = ({
                           {variantPrice
                             ? variantPrice
                             : singleProduct?.variants[0].discountedPrice
-                            ? singleProduct?.variants[0].discountedPrice
-                            : singleProduct?.variants[0].sellingPrice}
+                              ? singleProduct?.variants[0].discountedPrice
+                              : singleProduct?.variants[0].sellingPrice}
                           <small>QAR</small>
                         </span>
                       </div>

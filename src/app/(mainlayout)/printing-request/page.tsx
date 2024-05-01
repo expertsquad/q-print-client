@@ -68,8 +68,8 @@ const PrintingRequest = () => {
                   }
                   // @ts-ignore
                   className={`${item._id === data?.paperSize?._id
-                    ? "shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)] border border-fuchsia-700"
-                    : ""
+                      ? "shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)] border border-fuchsia-700"
+                      : ""
                     } flex items-center justify-center rounded-lg cursor-pointer w-[100px] h-[150px] border hover:border-fuchsia-700`}
                 >
                   {item.width} x {item.height}
