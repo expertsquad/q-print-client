@@ -12,7 +12,6 @@ import Spinner from "@/components/shared/Spinner";
 import { toast } from "react-toastify";
 
 const ShippingAddress = () => {
-
   const [loading, setLoading] = useState(false);
 
   // add shipping address mutation
@@ -26,6 +25,7 @@ const ShippingAddress = () => {
   const data = useAppSelector((state) => state.updateShippingInfo);
 
   const userData = useAppSelector((state) => state.profileEdit);
+
   const formData = new FormData();
 
   const handleUpdateShippingInfo = async (event: any) => {
@@ -39,12 +39,10 @@ const ShippingAddress = () => {
 
       if (data?.addNewAddress === true) {
         //updating shipping address
-        const res = await updateShippingInfo({ data: formData, id: data?._id });
-
+        const res = await updateShippingInfo({ data: data, id: data?._id });
       } else {
         //adding new shipping address
-        const res = await addShippingInfo({ data: formData });
-
+        const res = await addShippingInfo({ data: data });
       }
       // updating user info
       const updateUserInfo = await updateMe(formData);
@@ -52,7 +50,7 @@ const ShippingAddress = () => {
       toast.success(updateUserInfo?.data?.message);
       console.log(updateUserInfo);
     } catch (err: any) {
-      toast.error(err?.errorMessages)
+      toast.error(err?.errorMessages);
       console.log(err.errorMessages);
     } finally {
       setLoading(false);
@@ -61,10 +59,7 @@ const ShippingAddress = () => {
 
   return (
     <div className="relative">
-      {
-        loading &&
-        <Spinner />
-      }
+      {loading && <Spinner />}
       <h1 className="text-black text-xl mb-5 md:mb-8 lg:mb-8 ">
         Shipping Information
       </h1>
