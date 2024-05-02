@@ -27,6 +27,24 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
   const [orderQuantity, setOrderQuantity] = useState(1);
   const data = useAppSelector((state) => state.productCartSlice);
 
+  console.log(data);
+
+  function getQuantityFromCart({ data, productId, variantName }: any) {
+    const quantity = data?.products?.find(
+      (item: any) =>
+        item.productId === productId && item.variantName === variantName
+    );
+    return quantity?.orderQuantity || 0;
+  }
+
+  const quantity = getQuantityFromCart({
+    data,
+    productId: productDesc?._id,
+    variantName: selectedVariant?.variantName,
+  });
+
+  // set default variant in local storage
+
   useEffect(() => {
     const storedSelectedVariant = localStorage.getItem("selectedVariant");
     if (storedSelectedVariant) {
@@ -40,6 +58,8 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
     setSelectedVariant(variant);
     localStorage.setItem("selectedVariant", JSON.stringify(variant));
   };
+
+  // add to cart
 
   const handleAddToCart = (event: React.MouseEvent, product: any) => {
     event.stopPropagation();
@@ -56,6 +76,8 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
       })
     );
   };
+
+  // add to favorite
 
   const handleAddToFavourite = (event: React.MouseEvent, product: any) => {
     event.stopPropagation();
@@ -142,7 +164,14 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
           </span>
         </div>
 
-        {productDesc?.bulk && <GetDiscountRange />}
+        {productDesc?.bulk && (
+          <GetDiscountRange
+            expectedAmount={
+              productDesc?.bulk?.minOrder ? productDesc?.bulk?.minOrder : 0
+            }
+            totalAmount={quantity}
+          />
+        )}
         {productDesc?.bulk && (
           <div className="my-3 whitespace-nowrap text-black-opacity-60">
             <p>
