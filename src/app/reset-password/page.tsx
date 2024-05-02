@@ -5,8 +5,8 @@ import lockImageOne from "@/assets/lockImageOne.svg";
 import PasswordInput from "@/components/shared/PasswordInput";
 
 const ResetPassword = () => {
-  const handleSubmit = (event: any) => {
-    console.log(event.target.value);
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    console.log(event.currentTarget.elements);
   };
   return (
     <div className="h-screen flex items-center justify-center mx-3">

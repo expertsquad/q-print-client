@@ -1,22 +1,25 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Stepper from "./Stepper";
 import { useGetOnlineOrderByIdQuery } from "@/redux/features/online-order/online-orderApi";
 import { formatDate } from "@/constants/formatDate";
 
-const OrderedStep = ({ id }: any) => {
+const OrderedStep = ({ id }: { id: string }) => {
   const { data } = useGetOnlineOrderByIdQuery(id);
-  const orderStatus = parseFloat(data?.data?.orderStatus);
-
-  const [currentStep, setCurrentStep] = React.useState(3);
+  const [step, setStep] = useState(0);
+  useEffect(() => {
+    if (data?.data?.orderStatus) {
+      setStep(data?.data?.orderStatus?.length - 1);
+    }
+  }, [data]);
 
   return (
     <div className="mb-10">
       <Stepper
-        currentStep={3}
+        currentStep={step}
         numberOfSteps={4}
         iconSize={`${50} md:${40}`}
-        iconStroke={1}
+        iconStroke={2}
         customStepStyle={`relative`}
       />
       <div className="order-track-step-counter">
