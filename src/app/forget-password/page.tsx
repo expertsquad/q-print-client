@@ -9,9 +9,10 @@ const ForgetPassword = () => {
   const [email, setEmail] = useState("");
   const router = useRouter();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("Submitted email:", email);
+    setEmail("");
     router.push("/verify-email");
   };
 

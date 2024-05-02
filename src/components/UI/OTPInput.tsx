@@ -5,11 +5,12 @@ interface OTPInputProps {
   length: number;
   title?: string;
   subTitle?: string;
+  setVerifyOtp?: any;
 }
 
-const OTPInput = ({ length, title, subTitle }: OTPInputProps) => {
+const OTPInput = ({ length, title, subTitle, setVerifyOtp }: OTPInputProps) => {
   const [otp, setOTP] = useState<number[]>(Array(length).fill(NaN));
-  console.log(otp, "a;lsdk");
+  setVerifyOtp(otp.join(""));
 
   const handleChange = (index: number, value: string) => {
     if (/^\d$/.test(value)) {
