@@ -193,6 +193,8 @@ const QuickViewDescription = ({ product }: any) => {
         <div className="mt-5 flex items-center justify-between gap-5">
           <div className="w-full">
             <SingleQuickOrder
+              // @ts-ignore
+              product={product}
               productId={product?._id}
               variantPrice={
                 selectedVariant?.discountedPrice
