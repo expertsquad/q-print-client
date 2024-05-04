@@ -18,10 +18,14 @@ import {
 } from "@/redux/features/cart/productCartSlice";
 import SingleQuickOrder from "../quick-order/SingleQuickOrder";
 import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
+import { useAppSelector } from "@/redux/hook";
+import { useGetShippingQuery } from "@/redux/features/shipping/shippinApi";
 
 const ProductViewDescEtc = ({ productDesc }: any) => {
   const dispatch = useDispatch();
   const [selectedVariant, setSelectedVariant] = useState<any>(null);
+  const [orderQuantity, setOrderQuantity] = useState(1);
+  const data = useAppSelector((state) => state.productCartSlice);
 
   console.log(data);
 
@@ -66,7 +70,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         price: selectedVariant?.discountedPrice
           ? selectedVariant?.discountedPrice
           : selectedVariant?.sellingPrice,
-        orderQuantity: 1,
+        orderQuantity: orderQuantity,
         variantName: selectedVariant?.variantName,
         productId: product?._id,
       })
@@ -160,7 +164,14 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
           </span>
         </div>
 
-        {productDesc?.bulk && <GetDiscountRange />}
+        {productDesc?.bulk && (
+          <GetDiscountRange
+            expectedAmount={
+              productDesc?.bulk?.minOrder ? productDesc?.bulk?.minOrder : 0
+            }
+            totalAmount={quantity}
+          />
+        )}
         {productDesc?.bulk && (
           <div className="my-3 whitespace-nowrap text-black-opacity-60">
             <p>
@@ -179,16 +190,19 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         <div className="flex items-center gap-5 mb-5">
           <div className="border border-gray-200 flex items-center gap-2 rounded-3xl p-2">
             <button
-              onClick={() => dispatch(removeOneFromCart(productDesc))}
-              className="p-2 bg-[#F2F2F2] rounded-full"
+              disabled={orderQuantity === 1 ? true : false}
+              onClick={() => setOrderQuantity(orderQuantity - 1)}
+              className={`p-2 bg-[#F2F2F2] rounded-full ${
+                orderQuantity === 1 ? "opacity-50" : ""
+              }`}
             >
               {""}
               <IconMinus width={14} height={14} />
             </button>
-            <span>{0}</span>
+            <span>{orderQuantity}</span>
             <button
-              onClick={() => dispatch(addToCart(productDesc))}
-              className="p-2 bg-[#F2F2F2] rounded-full"
+              onClick={() => setOrderQuantity(orderQuantity + 1)}
+              className={`p-2 bg-[#F2F2F2] rounded-full`}
             >
               {""}
               <IconPlus width={14} height={14} />
@@ -213,9 +227,8 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         <div className="mt-5 flex items-center justify-between gap-5">
           <div className="w-full">
             <SingleQuickOrder
-              productId={productDesc?._id}
-              variantName={selectedVariant?.variantName}
-              variantPrice={
+              product={productDesc}
+              price={
                 selectedVariant?.discountedPrice
                   ? selectedVariant?.discountedPrice
                   : selectedVariant?.sellingPrice
