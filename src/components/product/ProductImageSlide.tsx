@@ -9,7 +9,22 @@ import QuickProductViewModal from "./QuickProductViewModal";
 import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 import placeHolder from "@/assets/Placeholder_view_vector.svg";
 
-const ProductImageSlide = ({ product, defaultVariant, loading }: any) => {
+interface IProductImageSlideProps {
+  product: IProduct;
+}
+
+interface IProduct {
+  images: string[];
+  name: string;
+  brandName: string;
+  price: number;
+  discount: number;
+  rating: number;
+}
+
+const ProductImageSlide = ({ product }: any) => {
+  console.log(product, "product image slide");
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [showModal, setShowModal] = useState(false);
