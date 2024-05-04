@@ -1,4 +1,4 @@
-"use client";
+import React from "react";
 import GlobalModal from "../UI/modal/GlobalModal";
 import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
 import QuickViewImage from "./QuickViewImage";

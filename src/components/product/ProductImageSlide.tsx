@@ -7,9 +7,24 @@ import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
 import QuickProductViewModal from "./QuickProductViewModal";
 import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
-import placeHolder from "@/assets/Placeholder_view_vector.svg"
+import placeHolder from "@/assets/Placeholder_view_vector.svg";
 
-const ProductImageSlide = ({ product, defaultVariant, loading }: any) => {
+interface IProductImageSlideProps {
+  product: IProduct;
+}
+
+interface IProduct {
+  images: string[];
+  name: string;
+  brandName: string;
+  price: number;
+  discount: number;
+  rating: number;
+}
+
+const ProductImageSlide = ({ product }: any) => {
+  console.log(product, "product image slide");
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -118,12 +133,13 @@ const ProductImageSlide = ({ product, defaultVariant, loading }: any) => {
                     key={dotIndex}
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleDotClick(dotIndex)
+                      handleDotClick(dotIndex);
                     }}
-                    className={`indicator w-[6px] h-[6px] rounded-full cursor-pointer ${dotIndex === currentSlide
-                      ? "main-bg-color"
-                      : "bg-gray-300"
-                      }`}
+                    className={`indicator w-[6px] h-[6px] rounded-full cursor-pointer ${
+                      dotIndex === currentSlide
+                        ? "main-bg-color"
+                        : "bg-gray-300"
+                    }`}
                   />
                 ))}
               </div>
@@ -141,7 +157,7 @@ const ProductImageSlide = ({ product, defaultVariant, loading }: any) => {
           </button>
           <button
             onClick={handleQuickProductView}
-            className="cursor-pointer md:text-[12px] hidden md:flex invisible group-hover:visible group-hover:duration-500 border hover:text-fuchsia-700  md:h-8 md:w-8 h-6 w-6 rounded-full  justify-center items-center hover:bg-gray-100"
+            className="cursor-pointer md:text-[12px] invisible group-hover:visible group-hover:duration-500 border hover:text-fuchsia-700  md:h-8 md:w-8 h-6 w-6 rounded-full flex justify-center items-center hover:bg-gray-100"
           >
             <IconEye className="md:h-4 md:w-4 h-[10px] w-[10px] " />
             {""}
@@ -149,7 +165,6 @@ const ProductImageSlide = ({ product, defaultVariant, loading }: any) => {
         </div>
       </div>
       <QuickProductViewModal
-        id={product?._id}
         handleCloseModal={handleCloseModal}
         showModal={showModal}
       />

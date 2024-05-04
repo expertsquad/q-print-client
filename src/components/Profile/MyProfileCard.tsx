@@ -164,7 +164,7 @@ const MyProfileCard = () => {
         <div className=" border rounded-lg flex items-center justify-center flex-col p-5 gap-4 text-gray-500 ">
           <CompleteOrdersIcon />
           <p className="whitespace-pre-wrap text-gray-500">Complete Orders</p>
-          <div className="font-bold">{completeOrder?.data?.length}</div>
+          <div className="font-bold">45</div>
         </div>
       </div>
     </div>
