@@ -35,7 +35,6 @@ const PringtingRequestOrderCard = ({ href, buttonText, handleSubmit }: any) => {
 
           {totalAmountWithQuantity && (
             <div className="flex items-center gap-2">
-              <p>Nice</p>
               <button
                 onClick={() =>
                   dispatch(
