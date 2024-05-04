@@ -72,7 +72,6 @@ export const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["user"],
     }),
-
     // <== Add new user address ==>
     addNewUserAddress: build.mutation({
       query: (data) => ({

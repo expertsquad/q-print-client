@@ -23,5 +23,7 @@ export const baseApi = createApi({
     "shipping-address",
     "quick-order",
     "verify-email",
+    "forget-password",
+    "reset-password",
   ],
 });

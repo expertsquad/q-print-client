@@ -3,13 +3,46 @@ import Image from "next/image";
 import lockImageOne from "@/assets/lockImageOne.svg";
 
 import PasswordInput from "@/components/shared/PasswordInput";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/redux/hook";
+import {
+  confirmSetResetNewPassword,
+  setResetNewPassword,
+} from "@/redux/features/forgetPassword/forgetPasswordSlice";
+import { useState } from "react";
+import { useResetPasswordMutation } from "@/redux/features/forgetPassword/forgetPasswordApis";
+import { useRouter } from "next/navigation";
+import Spinner from "@/components/shared/Spinner";
 
 const ResetPassword = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    console.log(event.currentTarget.elements);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [resetPassword] = useResetPasswordMutation();
+  const { newPassword, confirmPassword } = useAppSelector(
+    (state) => state.forgetPassword
+  );
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const resetPass = {
+      newPassword: newPassword,
+      confirmPassword: confirmPassword,
+    };
+    try {
+      const res = await resetPassword(resetPass).unwrap();
+      console.log(res, "Reset Pass");
+      if (res.success) {
+        router.push("/");
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <div className="h-screen flex items-center justify-center mx-3">
+      {loading && <Spinner />}
       <div className="md:max-w-[500px] bg-white shadow-modalShadow md:px-11 rounded-2xl px-5 py-14 shadow-2xl">
         <div className="flex items-center justify-center">
           <Image src={lockImageOne} alt="verifyEmailLogo" className="" />
@@ -25,7 +58,8 @@ const ResetPassword = () => {
             New Password
           </label>
           <PasswordInput
-            onChange={(e) => e.target.value}
+            name="newPassword"
+            onChange={(e) => dispatch(setResetNewPassword(e.target.value))}
             placeholder="New Password"
             inputStyle="mb-5"
           />
@@ -33,7 +67,10 @@ const ResetPassword = () => {
             Confirm Password
           </label>
           <PasswordInput
-            onChange={(e) => e.target.value}
+            name="confirmPassword"
+            onChange={(e) =>
+              dispatch(confirmSetResetNewPassword(e.target.value))
+            }
             placeholder="Confirm Password"
           />
           <button
