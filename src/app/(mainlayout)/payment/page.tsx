@@ -41,14 +41,11 @@ const Payment = () => {
       },
     };
 
-    console.log(value, "Helloo2");
-
     try {
       const res = await onlineOrder(value);
-      console.log(res, "Hello");
+      dispatch(resetCart());
       if ("data" in res) {
         toast.success((res as { data: any }).data.message);
-        dispatch(resetCart());
       }
       if ("error" in res) {
         toast.error((res as { error: any }).error.message);

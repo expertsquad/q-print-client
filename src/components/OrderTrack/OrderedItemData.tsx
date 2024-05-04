@@ -6,12 +6,7 @@ import GlobalModal from "../UI/modal/GlobalModal";
 import { OrderedItemsTypes } from "@/types/orderTrackPage";
 import { imageUrl } from "@/constants/imageUrl";
 
-const OrderedItemData = ({
-  orderedItems,
-  totalQuantity,
-  totalPrice,
-  shippingStatus,
-}: any) => {
+const OrderedItemData = ({ orderedItems, totalQuantity, totalPrice }: any) => {
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);
@@ -34,7 +29,7 @@ const OrderedItemData = ({
                 className="w-full h-full top-0 left-0 object-cover border rounded-md p-1"
               />
             </div>
-            {/* == Product Description == */}
+            {/* //Product Description */}
             <div className="w-full">
               <div className="flex items-center justify-between w-full gap-3 md:gap-0">
                 <span className="text-[16px] text-black text-opacity-90 line-clamp-1 md:line-clamp-2">
@@ -69,18 +64,16 @@ const OrderedItemData = ({
               {data?.orderQuantity * data?.variant?.sellingPrice}
               <small className="font-medium ml-0.5">QAR</small>
             </h6>
-            {/* == Cancel product button == */}
-            {shippingStatus?.length < 3 && (
-              <button
-                onClick={() => setShowModal(true)}
-                className="py-1.5 border hover:border-fuchsia-500 px-3 rounded-md bg-transparent hidden md:block md:w-1/1"
-              >
-                <span className="block md:hidden">
-                  <IconX />
-                </span>
-                <span className="hidden md:block">Cancel</span>
-              </button>
-            )}
+            {/* //Cancel Button */}
+            <button
+              onClick={() => setShowModal(true)}
+              className="py-1.5 border hover:border-fuchsia-500 px-3 rounded-md bg-transparent hidden md:block md:w-1/1"
+            >
+              <span className="block md:hidden">
+                <IconX />
+              </span>
+              <span className="hidden md:block">Cancel</span>
+            </button>
           </div>
         ))}
         <div className="my-2.5 px-2">

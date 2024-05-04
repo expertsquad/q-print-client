@@ -22,8 +22,5 @@ export const baseApi = createApi({
     "notification",
     "shipping-address",
     "quick-order",
-    "verify-email",
-    "forget-password",
-    "reset-password",
   ],
 });

@@ -72,6 +72,7 @@ export const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["user"],
     }),
+
     // <== Add new user address ==>
     addNewUserAddress: build.mutation({
       query: (data) => ({
@@ -80,15 +81,6 @@ export const authApi = baseApi.injectEndpoints({
         data,
       }),
       invalidatesTags: ["address"],
-    }),
-    // <== Verify User by OTP ==>
-    verifyUserByOtp: build.mutation({
-      query: (data) => ({
-        url: `/user/verify-email`,
-        method: "PUT",
-        data: data.data,
-      }),
-      invalidatesTags: ["verify-email"],
     }),
   }),
 });
@@ -103,5 +95,4 @@ export const {
   useChangePasswordMutation,
   useAddShippingAddressMutation,
   useAddNewUserAddressMutation,
-  useVerifyUserByOtpMutation,
 } = authApi;

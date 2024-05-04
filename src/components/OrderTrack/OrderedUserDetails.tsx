@@ -18,7 +18,7 @@ const OrderedUserDetails = ({ details }: any) => {
               stroke={1}
               width={20}
               height={20}
-              className="text-black-opacity-70"
+              className="text-[#808080]"
             />
           ),
           text: userAddress?.firstName,
@@ -29,7 +29,7 @@ const OrderedUserDetails = ({ details }: any) => {
               stroke={1}
               width={20}
               height={20}
-              className="text-black-opacity-70"
+              className="text-[#808080]"
             />
           ),
           text: userAddress?.streetAddress,
@@ -40,7 +40,7 @@ const OrderedUserDetails = ({ details }: any) => {
               stroke={1}
               width={20}
               height={20}
-              className="text-black-opacity-70"
+              className="text-[#808080]"
             />
           ),
           text: details?.email,
@@ -51,7 +51,7 @@ const OrderedUserDetails = ({ details }: any) => {
               stroke={1}
               width={20}
               height={20}
-              className="text-black-opacity-70"
+              className="text-[#808080]"
             />
           ),
           text: userAddress?.phoneNumber,
@@ -62,7 +62,7 @@ const OrderedUserDetails = ({ details }: any) => {
               stroke={1}
               width={20}
               height={20}
-              className="text-black-opacity-70"
+              className="text-[#808080]"
             />
           ),
           text: "Cash on Delivery",
@@ -73,7 +73,7 @@ const OrderedUserDetails = ({ details }: any) => {
               stroke={1}
               width={20}
               height={20}
-              className="text-black-opacity-70"
+              className="text-[#808080]"
             />
           ),
           text: userAddress?.state,

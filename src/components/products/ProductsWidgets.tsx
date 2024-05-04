@@ -24,7 +24,7 @@ const ProductsWidgets = () => {
     );
     return data;
   };
-  const { data, isLoading } = useGetProductsQuery("");
+  const { data, isLoading } = useGetProductsQuery("")
 
   const mostPopular = useSortedProducts("averageRating", "desc");
   const newProduct = useSortedProducts("createdAt", "desc");
@@ -67,23 +67,29 @@ const ProductsWidgets = () => {
       </div>
 
       <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-between flex-wrap gap-5">
-        {isLoading
-          ? [...Array(10)].map((_, index) => {
-              return <ProductCardSkeleton key={index} />;
+        {
+
+          isLoading ? (
+            [...Array(10)].map((_, index) => {
+              return (
+                <ProductCardSkeleton key={index} />
+              )
             })
-          : productsData?.data
+          ) :
+            productsData?.data
               ?.slice(0, visibleProducts)
               .map((product: IProduct) => (
                 <div key={product?._id}>
                   <ProductCard product={product} />
                 </div>
-              ))}
+              ))
+        }
       </div>
 
       {productsData?.data?.length > visibleProducts && (
         <div className="flex items-center justify-center mt-20">
           {loadingMore ? (
-            <span className="loading loading-dots loading-lg bg-main-bg-color"></span>
+            <span className="loading loading-dots loading-lg"></span>
           ) : (
             <button
               className="flex items-center gap-2 main-bg-color px-5 py-2.5 rounded-md text-white"

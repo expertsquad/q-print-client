@@ -1,4 +1,5 @@
 "use client";
+import Facebook from "@/assets/FooterSVG/Facebook";
 import CustomInput from "@/components/shared/CustomInput";
 import PasswordInput from "@/components/shared/PasswordInput";
 import Spinner from "@/components/shared/Spinner";
@@ -32,26 +33,25 @@ const SignUp = () => {
   const { fullName, email, password, confirmPassword, qid, phoneNumber } =
     useAppSelector((state) => state.signUp);
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-
     const formData = new FormData();
-    formData.append("fullName", fullName);
-    formData.append("qid", qid);
     formData.append("email", email);
-    formData.append("phoneNumber", phoneNumber);
+    formData.append("fullName", fullName);
     formData.append("password", password);
     formData.append("confirmPassword", confirmPassword);
+    formData.append("phoneNumber", phoneNumber);
+    formData.append("qid", qid);
 
     try {
       const res = await userSignUp(formData).unwrap();
       storeUserInfo({ accessToken: res?.data?.accessToken });
       if (res?.data?.accessToken) {
-        router.push("/verify-email");
+        router.push("/");
       }
     } catch (err: any) {
-      console.error(err);
+      console.error(err.message);
     } finally {
       setLoading(false);
     }
@@ -103,10 +103,7 @@ const SignUp = () => {
             placeholder="Retype Password"
             onChange={(e) => dispatch(setConfirmPassword(e.target.value))}
           />
-          <button
-            type="submit"
-            className="main-bg-color text-white w-full py-3 rounded-lg mt-5"
-          >
+          <button className="main-bg-color text-white w-full py-3 rounded-lg mt-5">
             Create New Account
           </button>
         </form>
