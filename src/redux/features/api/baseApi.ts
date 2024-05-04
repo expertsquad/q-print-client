@@ -22,5 +22,9 @@ export const baseApi = createApi({
     "notification",
     "shipping-address",
     "quick-order",
+<<<<<<< HEAD
+=======
+    "verify-email",
+>>>>>>> parent of b776493 (working on otp validation)
   ],
 });

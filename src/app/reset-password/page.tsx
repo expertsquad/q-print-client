@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import lockImageOne from "@/assets/lockImageOne.svg";
+<<<<<<< HEAD
 import lockImageTwo from "@/assets/lockImageTwo.svg";
 import { useState } from "react";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
@@ -13,11 +14,23 @@ const ResetPassword = () => {
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
+=======
+
+import PasswordInput from "@/components/shared/PasswordInput";
+
+const ResetPassword = () => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    console.log(event.currentTarget.elements);
+>>>>>>> parent of b776493 (working on otp validation)
   };
 
   return (
     <div className="h-screen flex items-center justify-center mx-3">
+<<<<<<< HEAD
       <div className="md:max-w-[600px] bg-white shadow-modalShadow md:px-11 pb-7 rounded-2xl px-10 py-14">
+=======
+      <div className="md:max-w-[500px] bg-white shadow-modalShadow md:px-11 rounded-2xl px-5 py-14 shadow-2xl">
+>>>>>>> parent of b776493 (working on otp validation)
         <div className="flex items-center justify-center">
           <Image
             src={lockImageOne}
@@ -41,7 +54,11 @@ const ResetPassword = () => {
             New Password
           </label>
           <PasswordInput
+<<<<<<< HEAD
             onChange={(e) => console.log(e)}
+=======
+            onChange={(e) => e.target.value}
+>>>>>>> parent of b776493 (working on otp validation)
             placeholder="New Password"
             inputStyle="mb-5"
           />
@@ -49,7 +66,11 @@ const ResetPassword = () => {
             Confirm Password
           </label>
           <PasswordInput
+<<<<<<< HEAD
             onChange={(e) => console.log(e)}
+=======
+            onChange={(e) => e.target.value}
+>>>>>>> parent of b776493 (working on otp validation)
             placeholder="Confirm Password"
           />
           <button
