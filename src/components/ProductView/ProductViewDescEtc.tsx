@@ -23,6 +23,24 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
   const dispatch = useDispatch();
   const [selectedVariant, setSelectedVariant] = useState<any>(null);
 
+  console.log(data);
+
+  function getQuantityFromCart({ data, productId, variantName }: any) {
+    const quantity = data?.products?.find(
+      (item: any) =>
+        item.productId === productId && item.variantName === variantName
+    );
+    return quantity?.orderQuantity || 0;
+  }
+
+  const quantity = getQuantityFromCart({
+    data,
+    productId: productDesc?._id,
+    variantName: selectedVariant?.variantName,
+  });
+
+  // set default variant in local storage
+
   useEffect(() => {
     const storedSelectedVariant = localStorage.getItem("selectedVariant");
     if (storedSelectedVariant) {
@@ -36,6 +54,8 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
     setSelectedVariant(variant);
     localStorage.setItem("selectedVariant", JSON.stringify(variant));
   };
+
+  // add to cart
 
   const handleAddToCart = (event: React.MouseEvent, product: any) => {
     event.stopPropagation();
@@ -52,6 +72,8 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
       })
     );
   };
+
+  // add to favorite
 
   const handleAddToFavourite = (event: React.MouseEvent, product: any) => {
     event.stopPropagation();
@@ -138,20 +160,22 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
           </span>
         </div>
 
-        <GetDiscountRange />
+        {productDesc?.bulk && <GetDiscountRange />}
+        {productDesc?.bulk && (
+          <div className="my-3 whitespace-nowrap text-black-opacity-60">
+            <p>
+              Buy{" "}
+              <span className="font-semibold main-text-color">
+                {productDesc?.bulk?.minOrder}
+              </span>{" "}
+              item to get more{" "}
+              <span className="font-semibold text-black">
+                {productDesc?.bulk?.discount} extra!
+              </span>
+            </p>
+          </div>
+        )}
 
-        <div className="my-3 whitespace-nowrap text-black-opacity-60">
-          <p>
-            Buy{" "}
-            <span className="font-semibold main-text-color">
-              {productDesc?.bulk?.minOrder}
-            </span>{" "}
-            item to get more{" "}
-            <span className="font-semibold text-black">
-              {productDesc?.bulk?.discount} extra!
-            </span>
-          </p>
-        </div>
         <div className="flex items-center gap-5 mb-5">
           <div className="border border-gray-200 flex items-center gap-2 rounded-3xl p-2">
             <button

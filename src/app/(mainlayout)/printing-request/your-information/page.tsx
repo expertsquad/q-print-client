@@ -16,13 +16,13 @@ import { useState } from "react";
 
 const YourInformation = () => {
   const isUserLoggedIn = isLoggedIn();
-  const [addNewShipping, setAddNewShipping] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
   const dispatch = useAppDispatch();
-  const handleAddShipping = () => {
-    setAddNewShipping((prevState) => !prevState);
-  };
   const [addShipping] = useAddShippingAddressMutation();
 
+  const handleOptionChange = (event: any) => {
+    setSelectedOption(event.target.value);
+  };
   // <== Get User Address ==>
   const { data: address, isLoading } = useGetUserAddressQuery(`isDefault=true`);
   const defaultAddress = address?.data?.find(
@@ -39,7 +39,7 @@ const YourInformation = () => {
     try {
       const res = await addShipping(data?.shippingAddress);
       console.log(res, "from res");
-    } catch { }
+    } catch {}
   };
 
   return (
@@ -75,6 +75,7 @@ const YourInformation = () => {
                   type="email"
                   value={personalInformation?.data?.email}
                   placeholder="Enter Your Email"
+                  disabled={"disabled"}
                 />
                 <CustomInput
                   label="Phone Number"
@@ -105,26 +106,37 @@ const YourInformation = () => {
 
               {/* == If user logged in then dropdown for new shipping address, else create an account == */}
               {isUserLoggedIn && (
-                <div className="mb-5 flex gap-1.5 items-center">
+                <label className="inline-flex items-center  ">
+                  <div
+                    className={`w-5 h-5 rounded-full bg-white  flex items-center justify-center border-fuchsia-700 border-2 ${
+                      selectedOption === "address"
+                        ? "border-fuchsia-700 border-2"
+                        : ""
+                    }`}
+                  >
+                    {selectedOption === "address" && (
+                      <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
+                    )}
+                  </div>
+                  <span className="ml-2">Same as shipping address</span>
                   <input
-                    onClick={handleAddShipping}
-                    title="radio"
                     type="radio"
-                    className="checked"
+                    value="address"
+                    checked={selectedOption === "address"}
+                    onChange={handleOptionChange}
+                    className="hidden"
                   />
-                  <span>Add new shipping address</span>
-                </div>
+                </label>
               )}
 
               {/* == shipping address or shipping information == */}
-              {addNewShipping && (
+              {selectedOption && (
                 <div>
                   <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 w-full">
                     <CustomInput
                       label="First Name"
                       type="text"
                       name="firstName"
-                      // @ts-ignore
                       value={data?.shippingAddress?.firstName}
                       placeholder={"First Name"}
                       onChange={(e) =>
@@ -132,7 +144,6 @@ const YourInformation = () => {
                           setPrintingRequest({
                             ...data,
                             shippingAddress: {
-                              // @ts-ignore
                               ...data.shippingAddress,
                               [e.target.name]: e.target.value,
                             },
@@ -144,7 +155,6 @@ const YourInformation = () => {
                       label="Last Name"
                       type="text"
                       name="lastName"
-                      // @ts-ignore
                       value={data?.shippingAddress?.lastName}
                       placeholder={"Last Name"}
                       onChange={(e) =>
@@ -152,7 +162,6 @@ const YourInformation = () => {
                           setPrintingRequest({
                             ...data,
                             shippingAddress: {
-                              // @ts-ignore
                               ...data.shippingAddress,
                               [e.target.name]: e.target.value,
                             },
@@ -164,7 +173,6 @@ const YourInformation = () => {
                       label="Phone Number"
                       type="text"
                       name="phoneNumber"
-                      // @ts-ignore
                       value={data?.shippingAddress?.phoneNumber}
                       placeholder={"Phone Number"}
                       onChange={(e) =>
@@ -172,7 +180,6 @@ const YourInformation = () => {
                           setPrintingRequest({
                             ...data,
                             shippingAddress: {
-                              // @ts-ignore
                               ...data.shippingAddress,
                               [e.target.name]: e.target.value,
                             },
@@ -184,7 +191,6 @@ const YourInformation = () => {
                       label="Street Address"
                       type="text"
                       name="streetAddress"
-                      // @ts-ignore
                       value={data?.shippingAddress?.streetAddress}
                       placeholder="Your Street Address"
                       onChange={(e) =>
@@ -192,7 +198,6 @@ const YourInformation = () => {
                           setPrintingRequest({
                             ...data,
                             shippingAddress: {
-                              // @ts-ignore
                               ...data.shippingAddress,
                               [e.target.name]: e.target.value,
                             },
@@ -204,7 +209,6 @@ const YourInformation = () => {
                       label="State"
                       type="text"
                       name="state"
-                      // @ts-ignore
                       value={data?.shippingAddress?.state}
                       placeholder="Your State"
                       onChange={(e) =>
@@ -212,7 +216,6 @@ const YourInformation = () => {
                           setPrintingRequest({
                             ...data,
                             shippingAddress: {
-                              // @ts-ignore
                               ...data.shippingAddress,
                               [e.target.name]: e.target.value,
                             },
@@ -224,7 +227,6 @@ const YourInformation = () => {
                       label="Country"
                       type="text"
                       name="country"
-                      // @ts-ignore
                       value={data?.shippingAddress?.country}
                       placeholder={"Country"}
                       onChange={(e) =>
@@ -232,7 +234,6 @@ const YourInformation = () => {
                           setPrintingRequest({
                             ...data,
                             shippingAddress: {
-                              // @ts-ignore
                               ...data.shippingAddress,
                               [e.target.name]: e.target.value,
                             },
@@ -244,7 +245,6 @@ const YourInformation = () => {
                       label=" Company Name ( Optional )"
                       type="text"
                       name="companyName"
-                      // @ts-ignore
                       value={data?.shippingAddress?.companyName}
                       placeholder="Company Name"
                       onChange={(e) =>
@@ -252,7 +252,6 @@ const YourInformation = () => {
                           setPrintingRequest({
                             ...data,
                             shippingAddress: {
-                              // @ts-ignore
                               ...data.shippingAddress,
                               [e.target.name]: e.target.value,
                             },
@@ -264,16 +263,14 @@ const YourInformation = () => {
                       label="ZipCode"
                       type="text"
                       name="zipCode"
-                      // @ts-ignore
                       value={data?.shippingAddress?.zipCode}
                       placeholder="Your ZipCode"
                       onChange={(e) =>
                         dispatch(
                           setPrintingRequest({
                             ...data,
-                            // @ts-ignore
+
                             shippingAddress: {
-                              // @ts-ignore
                               ...(data.shippingAddress || {}),
                               [e.target.name]: e.target.value,
                             },
@@ -290,9 +287,8 @@ const YourInformation = () => {
                           setPrintingRequest({
                             ...data,
                             shippingAddress: {
-                              // @ts-ignore
                               ...data.shippingAddress,
-                              // @ts-ignore
+
                               isDefault: !data.shippingAddress.isDefault,
                             },
                           })
@@ -300,7 +296,6 @@ const YourInformation = () => {
                       }
                       title="inputradio"
                       type="checkbox"
-                      // @ts-ignore
                       checked={data?.shippingAddress?.isDefault}
                     />
 

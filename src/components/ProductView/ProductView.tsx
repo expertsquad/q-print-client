@@ -47,7 +47,7 @@ const ProductView = ({ id }: { id: string }) => {
             "w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-5 "
               `}
         >
-          {filteredRelatedProducts?.map((product: IProduct, index: any) => (
+          {filteredRelatedProducts?.map((product: IProduct, index: number) => (
             <RelatedProduct key={index} product={product} />
           ))}
         </div>
