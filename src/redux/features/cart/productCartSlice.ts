@@ -26,14 +26,13 @@ interface Variant {
 interface CartState {
   products: Product[];
   subTotal: number;
-  total: number;
+  discount: number;
 }
 
 const initialState: CartState = {
   products: [],
   subTotal: 0,
-
-  total: 0,
+  discount: 0,
 };
 
 // <== Function to save state into localStorage ==>
@@ -78,11 +77,7 @@ const productCartSlice = createSlice({
         state.products.push(addedProduct);
       }
 
-      // sub total
       state.subTotal = calculateSubTotal(state.products);
-      saveStateToLocalStorage(state);
-      // total
-      state.total = calculateTotal(state.products);
       saveStateToLocalStorage(state);
     },
     removeOneFromCart: (state, action: PayloadAction<Product>) => {
@@ -99,11 +94,8 @@ const productCartSlice = createSlice({
       ) {
         state.products[existingProductIndex].orderQuantity -= 1;
       }
-      // sub total
+
       state.subTotal = calculateSubTotal(state.products);
-      saveStateToLocalStorage(state);
-      // total
-      state.total = calculateTotal(state.products);
       saveStateToLocalStorage(state);
     },
     removeFromCart: (state, action: PayloadAction<Product>) => {
@@ -118,8 +110,9 @@ const productCartSlice = createSlice({
 
       state.subTotal = calculateSubTotal(state.products);
       saveStateToLocalStorage(state);
-
-      state.total = calculateTotal(state.products);
+    },
+    setDiscount: (state, action: PayloadAction<number>) => {
+      state.discount = action.payload;
       saveStateToLocalStorage(state);
     },
     resetCart: (state) => {
@@ -129,19 +122,17 @@ const productCartSlice = createSlice({
   },
 });
 
-// sub total calculate
 const calculateSubTotal = (products: Product[]): number => {
   return products.reduce((total, product) => {
     return total + product.price * product.orderQuantity;
   }, 0);
 };
-// total calculate
-const calculateTotal = (products: Product[]): number => {
-  return products.reduce((total, product) => {
-    return total + product.sellingPrice * product.orderQuantity;
-  }, 0);
-};
 
-export const { addToCart, removeFromCart, removeOneFromCart, resetCart } =
-  productCartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  removeOneFromCart,
+  setDiscount,
+  resetCart,
+} = productCartSlice.actions;
 export default productCartSlice.reducer;

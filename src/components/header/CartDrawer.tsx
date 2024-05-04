@@ -16,7 +16,6 @@ import GetDiscountRange from "../ProductView/GetDiscountRange";
 import emptyCart from "@/assets/empty-card-photo.svg";
 import CartItem from "../cart-view/CartItem";
 import { IconShoppingCart } from "@tabler/icons-react";
-import { useGetShippingQuery } from "@/redux/features/api/shipping/shippingApi";
 
 const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
   const handleCloseDrawer = () => {
