@@ -8,6 +8,7 @@ const BillingAddress = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const data = useAppSelector((state) => state.printingRequestOrder);
+
   const dispatch = useAppDispatch();
 
   // handler herea
@@ -66,14 +67,14 @@ const BillingAddress = () => {
               label="First Name"
               type="text"
               name="firstName"
-              value={data?.shippingAddress?.firstName}
+              value={data?.billingAddress?.firstName}
               placeholder={"First Name"}
               onChange={(e) =>
                 dispatch(
                   setPrintingRequest({
                     ...data,
-                    shippingAddress: {
-                      ...data.shippingAddress,
+                    billingAddress: {
+                      ...data.billingAddress,
                       [e.target.name]: e.target.value,
                     },
                   })
@@ -84,14 +85,14 @@ const BillingAddress = () => {
               label="Last Name"
               type="text"
               name="lastName"
-              value={data?.shippingAddress?.lastName}
+              value={data?.billingAddress?.lastName}
               placeholder={"Last Name"}
               onChange={(e) =>
                 dispatch(
                   setPrintingRequest({
                     ...data,
-                    shippingAddress: {
-                      ...data.shippingAddress,
+                    billingAddress: {
+                      ...data.billingAddress,
                       [e.target.name]: e.target.value,
                     },
                   })
@@ -102,14 +103,14 @@ const BillingAddress = () => {
               label="Phone Number"
               type="text"
               name="phoneNumber"
-              value={data?.shippingAddress?.phoneNumber}
+              value={data?.billingAddress?.phoneNumber}
               placeholder={"Phone Number"}
               onChange={(e) =>
                 dispatch(
                   setPrintingRequest({
                     ...data,
-                    shippingAddress: {
-                      ...data.shippingAddress,
+                    billingAddress: {
+                      ...data.billingAddress,
                       [e.target.name]: e.target.value,
                     },
                   })
@@ -120,14 +121,14 @@ const BillingAddress = () => {
               label="Street Address"
               type="text"
               name="streetAddress"
-              value={data?.shippingAddress?.streetAddress}
+              value={data?.billingAddress?.streetAddress}
               placeholder="Your Street Address"
               onChange={(e) =>
                 dispatch(
                   setPrintingRequest({
                     ...data,
-                    shippingAddress: {
-                      ...data.shippingAddress,
+                    billingAddress: {
+                      ...data.billingAddress,
                       [e.target.name]: e.target.value,
                     },
                   })
@@ -138,14 +139,14 @@ const BillingAddress = () => {
               label="State"
               type="text"
               name="state"
-              value={data?.shippingAddress?.state}
+              value={data?.billingAddress?.state}
               placeholder="Your State"
               onChange={(e) =>
                 dispatch(
                   setPrintingRequest({
                     ...data,
-                    shippingAddress: {
-                      ...data.shippingAddress,
+                    billingAddress: {
+                      ...data.billingAddress,
                       [e.target.name]: e.target.value,
                     },
                   })
@@ -156,14 +157,14 @@ const BillingAddress = () => {
               label="Country"
               type="text"
               name="country"
-              value={data?.shippingAddress?.country}
+              value={data?.billingAddress?.country}
               placeholder={"Country"}
               onChange={(e) =>
                 dispatch(
                   setPrintingRequest({
                     ...data,
-                    shippingAddress: {
-                      ...data.shippingAddress,
+                    billingAddress: {
+                      ...data.billingAddress,
                       [e.target.name]: e.target.value,
                     },
                   })
@@ -174,14 +175,14 @@ const BillingAddress = () => {
               label=" Company Name ( Optional )"
               type="text"
               name="companyName"
-              value={data?.shippingAddress?.companyName}
+              value={data?.billingAddress?.companyName}
               placeholder="Company Name"
               onChange={(e) =>
                 dispatch(
                   setPrintingRequest({
                     ...data,
-                    shippingAddress: {
-                      ...data.shippingAddress,
+                    billingAddress: {
+                      ...data.billingAddress,
                       [e.target.name]: e.target.value,
                     },
                   })
@@ -192,15 +193,15 @@ const BillingAddress = () => {
               label="ZipCode"
               type="text"
               name="zipCode"
-              value={data?.shippingAddress?.zipCode}
+              value={data?.billingAddress?.zipCode}
               placeholder="Your ZipCode"
               onChange={(e) =>
                 dispatch(
                   setPrintingRequest({
                     ...data,
 
-                    shippingAddress: {
-                      ...(data.shippingAddress || {}),
+                    billingAddress: {
+                      ...(data.billingAddress || {}),
                       [e.target.name]: e.target.value,
                     },
                   })

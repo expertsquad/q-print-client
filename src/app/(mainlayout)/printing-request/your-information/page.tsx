@@ -16,13 +16,13 @@ import { useState } from "react";
 
 const YourInformation = () => {
   const isUserLoggedIn = isLoggedIn();
-  const [addNewShipping, setAddNewShipping] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
   const dispatch = useAppDispatch();
-  const handleAddShipping = () => {
-    setAddNewShipping((prevState) => !prevState);
-  };
   const [addShipping] = useAddShippingAddressMutation();
 
+  const handleOptionChange = (event: any) => {
+    setSelectedOption(event.target.value);
+  };
   // <== Get User Address ==>
   const { data: address, isLoading } = useGetUserAddressQuery(`isDefault=true`);
   const defaultAddress = address?.data?.find(
@@ -106,19 +106,31 @@ const YourInformation = () => {
 
               {/* == If user logged in then dropdown for new shipping address, else create an account == */}
               {isUserLoggedIn && (
-                <div className="mb-5 flex gap-1.5 items-center">
+                <label className="inline-flex items-center  ">
+                  <div
+                    className={`w-5 h-5 rounded-full bg-white  flex items-center justify-center border-fuchsia-700 border-2 ${
+                      selectedOption === "address"
+                        ? "border-fuchsia-700 border-2"
+                        : ""
+                    }`}
+                  >
+                    {selectedOption === "address" && (
+                      <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
+                    )}
+                  </div>
+                  <span className="ml-2">Same as shipping address</span>
                   <input
-                    onClick={handleAddShipping}
-                    title="radio"
                     type="radio"
-                    className="checked"
+                    value="address"
+                    checked={selectedOption === "address"}
+                    onChange={handleOptionChange}
+                    className="hidden"
                   />
-                  <span>Add new shipping address</span>
-                </div>
+                </label>
               )}
 
               {/* == shipping address or shipping information == */}
-              {addNewShipping && (
+              {selectedOption && (
                 <div>
                   <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 w-full">
                     <CustomInput

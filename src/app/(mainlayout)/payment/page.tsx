@@ -91,13 +91,9 @@ const Payment = () => {
                 <IconMapPin width={22} height={22} stroke={1} />
               </span>
               <span className="w-/12 line-clamp-3 text-sm md:text-base">
-                {
-                  // @ts-ignore
-                  data?.shippingAddress?.streetAddress
-                    ? // @ts-ignore
-                      data?.shippingAddress?.streetAddress
-                    : address?.data[0]?.streetAddress
-                }
+                {data?.shippingAddress?.streetAddress
+                  ? data?.shippingAddress?.streetAddress
+                  : address?.data[0]?.streetAddress}
               </span>
             </div>
             <div className="w-2/12">
