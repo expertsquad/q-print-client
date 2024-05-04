@@ -30,7 +30,8 @@ type IPrintingRequestOrder = {
   printingModePrice: number | null;
 };
 
-const initialState: any | Record<string | number, unknown> = {};
+const initialState: IPrintingRequestOrder | Record<string | number, unknown> =
+  {};
 
 const postPrintingRequest = createSlice({
   name: "printingRequestOrder",
@@ -38,7 +39,7 @@ const postPrintingRequest = createSlice({
   reducers: {
     setPrintingRequest: (
       state,
-      action: PayloadAction<Partial<any> | false>
+      action: PayloadAction<Partial<IPrintingRequestOrder> | false>
     ) => {
       if (action.payload === false) {
         return initialState;
