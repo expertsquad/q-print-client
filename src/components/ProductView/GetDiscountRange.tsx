@@ -1,21 +1,30 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
-interface IRange {
-  expectedAmount: number;
-  totalAmount: number;
+interface PriceRangeProps {
+  priceRange?: any;
 }
 
-const GetDiscountRange = ({ expectedAmount, totalAmount }: IRange) => {
+const GetDiscountRange = ({ priceRange }: PriceRangeProps) => {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    // Calculate the percentage
-    const percentage = (totalAmount / expectedAmount) * 100;
-    // Set the slider value to the calculated percentage
-    setValue(percentage >= 100 ? 100 : percentage);
-  }, [expectedAmount, totalAmount]);
+    if (priceRange <= 599) {
+      setValue(0);
+    } else if (priceRange <= 1200) {
+      setValue(20);
+    } else if (priceRange <= 1800) {
+      setValue(40);
+    } else if (priceRange <= 2400) {
+      setValue(60);
+    } else if (priceRange <= 3000) {
+      setValue(80);
+    } else {
+      setValue(100);
+    }
+  }, [priceRange]);
 
   const gradientBackground = {
     background:
@@ -24,10 +33,10 @@ const GetDiscountRange = ({ expectedAmount, totalAmount }: IRange) => {
     WebkitTextFillColor: "transparent",
   };
 
-  const percentageText = `${value.toFixed(2)}%`;
+  const percentage = `${value}%`;
 
   return (
-    <div className="bg-white rounded-lg flex items-center justify-center gap-4">
+    <div className="bg-white rounded-lg flex items-center justify-center gap-4 ">
       <Slider
         range={false}
         value={value}
@@ -38,12 +47,9 @@ const GetDiscountRange = ({ expectedAmount, totalAmount }: IRange) => {
           background: "#fff",
           border: "4px solid #7F35CD",
         }}
-        onChange={(newValue) =>
-          setValue(Array.isArray(newValue) ? newValue[0] : newValue)
-        }
       />
       <div className="mt-2 text-center main-text-color font-extrabold">
-        {percentageText}
+        {percentage}
       </div>
     </div>
   );
