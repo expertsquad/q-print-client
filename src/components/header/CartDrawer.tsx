@@ -21,25 +21,12 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
   const handleCloseDrawer = () => {
     setOpenCartDrawer(false);
   };
-  const getShipping = useGetShippingQuery("");
 
-  const { products, subTotal, total } = useAppSelector(
+  const { products, subTotal } = useAppSelector(
     (state) => state.productCartSlice
   );
 
-  const freeShippingMinOrderAmount =
-    getShipping?.data?.data?.freeShippingMinOrderAmount;
-  const shippingInsideFee = getShipping?.data?.data?.inside;
-
-  let shippingCharge;
-
-  if (freeShippingMinOrderAmount && subTotal) {
-    if (freeShippingMinOrderAmount <= subTotal) {
-      shippingCharge = 0;
-    } else {
-      shippingCharge = shippingInsideFee;
-    }
-  }
+  const shippingCharge = 80;
   const calculateTotal = subTotal + shippingCharge;
   return (
     <div>
@@ -90,12 +77,7 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                 {/* --Price range and Free shipping-- */}
                 <div className="mb-5">
                   <div className="mb-5">
-                    <GetDiscountRange
-                      expectedAmount={
-                        getShipping?.data?.data?.freeShippingMinOrderAmount
-                      }
-                      totalAmount={subTotal}
-                    />
+                    <GetDiscountRange priceRange={calculateTotal} />
                   </div>
                   <div>
                     {subTotal < 3000 ? (
