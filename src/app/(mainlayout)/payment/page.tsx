@@ -81,9 +81,6 @@ const Payment = () => {
                 </div>
               </div>
             </div>
-            <div className="w-2/12">
-              <EditButton />
-            </div>
           </div>
           {/*== shipping to ==*/}
 

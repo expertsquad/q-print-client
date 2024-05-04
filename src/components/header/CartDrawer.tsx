@@ -111,7 +111,7 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                       </p>
                     ) : (
                       <p className="text-center flex gap-1 items-center justify-center text-[16px]">
-                        <span className="border rounded-full p-1 text-fuchsia-500 border-fuchsia-500">
+                        <span className="border rounded-full p-1 text-fuchsia-800 border-fuchsia-800">
                           <IconCheck width={15} height={15} />
                         </span>
                         Congratulations! You’ve got free shipping.
