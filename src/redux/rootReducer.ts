@@ -15,6 +15,7 @@ import quickOrder from "./features/quick-order/quickOrder";
 import filterProductReview from "./features/review/filterProductReview";
 import profileEditSlice from "./features/user/profileEditSlice";
 import multipleOrder from "./features/quick-order/multipleQuickOrder";
+import forgetPasswordSlice from "./features/forgetPassword/forgetPasswordSlice";
 
 export const reducer = {
   [baseApi.reducerPath]: baseApi.reducer,
@@ -34,4 +35,5 @@ export const reducer = {
   multipleQuickOrder: multipleOrder,
   filteredProductByReview: filterProductReview,
   profileEdit: profileEditSlice,
+  forgetPassword: forgetPasswordSlice,
 };

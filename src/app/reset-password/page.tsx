@@ -1,47 +1,65 @@
 "use client";
 import Image from "next/image";
 import lockImageOne from "@/assets/lockImageOne.svg";
-import lockImageTwo from "@/assets/lockImageTwo.svg";
-import { useState } from "react";
-import { IconEye, IconEyeOff } from "@tabler/icons-react";
-import CustomInput from "@/components/shared/CustomInput";
+
 import PasswordInput from "@/components/shared/PasswordInput";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/redux/hook";
+import {
+  confirmSetResetNewPassword,
+  setResetNewPassword,
+} from "@/redux/features/forgetPassword/forgetPasswordSlice";
+import { useState } from "react";
+import { useResetPasswordMutation } from "@/redux/features/forgetPassword/forgetPasswordApis";
+import { useRouter } from "next/navigation";
+import Spinner from "@/components/shared/Spinner";
 
 const ResetPassword = () => {
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleTogglePassword = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [resetPassword] = useResetPasswordMutation();
+  const { newPassword, confirmPassword } = useAppSelector(
+    (state) => state.forgetPassword
+  );
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const resetPass = {
+      newPassword: newPassword,
+      confirmPassword: confirmPassword,
+    };
+    try {
+      const res = await resetPassword(resetPass).unwrap();
+      console.log(res, "Reset Pass");
+      if (res.success) {
+        router.push("/");
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
-
   return (
     <div className="h-screen flex items-center justify-center mx-3">
-      <div className="md:max-w-[600px] bg-white shadow-modalShadow md:px-11 pb-7 rounded-2xl px-10 py-14">
+      {loading && <Spinner />}
+      <div className="md:max-w-[500px] bg-white shadow-modalShadow md:px-11 rounded-2xl px-5 py-14 shadow-2xl">
         <div className="flex items-center justify-center">
-          <Image
-            src={lockImageOne}
-            alt="verifyEmailLogo"
-            className="hidden md:block"
-          />
-          <Image
-            src={lockImageTwo}
-            alt="verifyEmailLogo"
-            className="block md:hidden"
-          />
+          <Image src={lockImageOne} alt="verifyEmailLogo" className="" />
         </div>
         <h3 className="text-black text-center font-bold text-xl md:text-2xl my-4">
           Reset Password
         </h3>
-        <p className="text-center text-black text-opacity-50 text-[16px] mb-8">
+        <p className="text-center text-black-opacity-50 text-base mb-8">
           Set the password for your account so you can access all the features.
         </p>
-        <form action="">
+        <form action="" onSubmit={handleSubmit}>
           <label htmlFor="password" className="text-black text-opacity-70">
             New Password
           </label>
           <PasswordInput
-            onChange={(e) => console.log(e)}
+            name="newPassword"
+            onChange={(e) => dispatch(setResetNewPassword(e.target.value))}
             placeholder="New Password"
             inputStyle="mb-5"
           />
@@ -49,12 +67,15 @@ const ResetPassword = () => {
             Confirm Password
           </label>
           <PasswordInput
-            onChange={(e) => console.log(e)}
+            name="confirmPassword"
+            onChange={(e) =>
+              dispatch(confirmSetResetNewPassword(e.target.value))
+            }
             placeholder="Confirm Password"
           />
           <button
             type="submit"
-            className="w-full main-bg-color text-white font-medium py-3 rounded-lg my-10"
+            className="w-full main-bg-color text-white font-medium py-3 rounded-lg mt-10"
           >
             Reset Password
           </button>

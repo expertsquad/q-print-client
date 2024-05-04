@@ -12,10 +12,6 @@ const ProductSearchModal = ({ data, setSearchValue }: any) => {
 
   const { data: products, isLoading } = useProductsBySearchQuery(`${data}`);
 
-  // const defaultVariants = products?.data.map((product: any) =>
-  //   product.variants.find((variant: any) => variant?.isDefault)
-  // );
-
   const handleCloseModal = () => {
     setSearchValue("");
   };
@@ -32,7 +28,7 @@ const ProductSearchModal = ({ data, setSearchValue }: any) => {
       </span>
       {isLoading ? (
         <div className="flex items-center justify-center h-full">
-          <span className="loading loading-dots loading-lg text-secondary"></span>
+          <span className="loading loading-dots loading-lg bg-main-bg-color"></span>
         </div>
       ) : products?.data?.length > 0 ? (
         products?.data?.map((product: IProduct) => (
@@ -55,18 +51,21 @@ const ProductSearchModal = ({ data, setSearchValue }: any) => {
                 <span className="line-clamp-1">{product?.productName}</span>
                 <div className="flex items-center gap-3">
                   <span>{product?.brand?.brandName}</span>
-                  <span className="block md:hidden main-text-color">
-                    {product?.variants[0]?.sellingPrice}
+                  <span className="block md:hidden main-text-color font-bold">
+                    {product?.variants[0]?.discountedPrice
+                      ? product?.variants[0]?.discountedPrice
+                      : product?.variants[0]?.sellingPrice}
                     <small className="ml-1">QAR</small>
                   </span>
                 </div>
               </div>
               <div className="hidden md:block">
-                {product?.variants[0]?.sellingPrice && (
-                  <span className="font-bold main-text-color">
-                    {product?.variants[0]?.sellingPrice} <small>QAR</small>
-                  </span>
-                )}
+                <span className="main-text-color font-bold">
+                  {product?.variants[0]?.discountedPrice
+                    ? product?.variants[0]?.discountedPrice
+                    : product?.variants[0]?.sellingPrice}
+                  <small className="ml-1">QAR</small>
+                </span>
               </div>
             </div>
           </div>
