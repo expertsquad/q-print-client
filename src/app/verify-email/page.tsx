@@ -5,11 +5,13 @@ import OTPInput from "@/components/shared/OTPInput";
 import { useState } from "react";
 import { useVerifyUserByOtpMutation } from "@/redux/features/user/user";
 import Spinner from "@/components/shared/Spinner";
+import { useRouter } from "next/navigation";
+import { storeUserInfo } from "@/services/auth.service";
 
 const VerifyEmail = () => {
   const [verifyOtp, setVerifyOtp] = useState(0);
   const [loading, setLoading] = useState(false);
-
+  const router = useRouter();
   const [verifyEmail] = useVerifyUserByOtpMutation();
 
   const handleSubmit = async (e: any) => {
@@ -17,10 +19,11 @@ const VerifyEmail = () => {
     const otp = Number(verifyOtp);
     try {
       const verifiedOtp = { otp: otp };
-      console.log(verifiedOtp, "Hek");
-
       const res = await verifyEmail(verifiedOtp).unwrap();
-      console.log(res, "Helllo");
+      storeUserInfo({ accessToken: res?.data?.accessToken });
+      if (res.success) {
+        router.push("/");
+      }
     } catch (err: any) {
       console.log(err);
     } finally {

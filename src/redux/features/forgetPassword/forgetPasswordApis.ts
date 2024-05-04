@@ -25,7 +25,7 @@ export const forgetPasswordApi = baseApi.injectEndpoints({
       query: (data) => ({
         url: `/user/reset-password`,
         method: "POST",
-        data,
+        data: data,
       }),
       invalidatesTags: ["reset-password"],
     }),
