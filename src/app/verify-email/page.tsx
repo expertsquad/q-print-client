@@ -1,20 +1,35 @@
 "use client";
 import Image from "next/image";
 import verifyEmailLogo from "@/assets/verifyEmailLogo.svg";
-import verifyEmailLogoTwo from "@/assets/verifyEmailLogo2.svg";
 import OTPInput from "@/components/UI/OTPInput";
 import { useState } from "react";
+import { useVerifyUserByOtpMutation } from "@/redux/features/user/user";
+import Spinner from "@/components/shared/Spinner";
 
 const VerifyEmail = () => {
   const [verifyOtp, setVerifyOtp] = useState(0);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: any) => {
+  const [verifyEmail] = useVerifyUserByOtpMutation();
+
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(Number(verifyOtp));
+    const otp = Number(verifyOtp);
+    try {
+      const OTP = JSON.stringify({ otp });
+      console.log(OTP);
+      const res = await verifyEmail(OTP).unwrap();
+      console.log(res, "Hello");
+    } catch (err: any) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="h-screen flex items-center justify-center mx-3">
+      {loading && <Spinner />}
       <div className="w-[500px] bg-white shadow-modalShadow px-5 md:px-11 pb-7 rounded-2xl shadow-2xl">
         <div className="flex items-center justify-center">
           <Image src={verifyEmailLogo} alt="verifyEmailLogo" className="" />

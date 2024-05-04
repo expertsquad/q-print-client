@@ -41,6 +41,7 @@ const OTPInput = ({ length, title, subTitle, setVerifyOtp }: OTPInputProps) => {
     >
       {otp.map((value, index) => (
         <input
+          name="otp"
           title="OTP Input"
           key={index}
           className={`main-text-color text-[34px] md:text-[45px] font-bold m-2 border h-[70px] md:max-h-[100px] w-[60px] md:max-w-[90px] text-center form-control rounded outline-none ${
