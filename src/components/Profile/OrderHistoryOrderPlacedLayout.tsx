@@ -30,7 +30,7 @@ const OrderHistoryOrderPlacedLayout = ({ id }: string | any) => {
                 {formatDate(orderPlaced?.createdAt)}
               </span>
             </div>
-            <span className="text-[#FA8232] bg-[#FA8232] bg-opacity-10 py-1 px-2 rounded-full text-xs md:text-base">
+            <span className="text-[#000] bg-[#000] bg-opacity-10 py-1 px-2 rounded-full text-xs md:text-base">
               {orderPlaced?.orderStatus?.status === "Order placed" &&
                 "Order Placed"}
             </span>

@@ -5,7 +5,7 @@ import ProductViewDescEtc from "./ProductViewDescEtc";
 import { imageUrl } from "@/constants/imageUrl";
 
 const ProductViewImage = ({ product }: any) => {
-  const [selectedImage, setSelectedImage] = useState(product?.productPhotos[1]);
+  const [selectedImage, setSelectedImage] = useState(product?.productPhotos[0]);
 
   const handleChangePhoto = (item: any) => {
     setSelectedImage(item);

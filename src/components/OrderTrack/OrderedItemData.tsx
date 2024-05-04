@@ -40,7 +40,10 @@ const OrderedItemData = ({
                 <span className="text-[16px] text-black text-opacity-90 line-clamp-1 md:line-clamp-2">
                   {data.productName}
                 </span>
-                <span className="cursor-pointer block md:hidden text-black text-opacity-70 active:text-fuchsia-600">
+                <span
+                  onClick={() => setShowModal(true)}
+                  className="cursor-pointer block md:hidden text-black text-opacity-70 active:text-fuchsia-600"
+                >
                   <IconX width={20} height={20} />
                 </span>
               </div>

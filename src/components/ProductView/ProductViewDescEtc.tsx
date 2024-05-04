@@ -8,7 +8,6 @@ import {
   IconStar,
 } from "@tabler/icons-react";
 import Image from "next/image";
-import adidasBrand from "@/assets/adidas brand.svg";
 import ColorPickUp from "./ColorPickUp";
 import GetDiscountRange from "./GetDiscountRange";
 import { imageUrl } from "@/constants/imageUrl";
