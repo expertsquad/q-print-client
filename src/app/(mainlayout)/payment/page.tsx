@@ -44,7 +44,6 @@ const Payment = () => {
 
     try {
       const res = await onlineOrder(value);
-      console.log(res);
       if ("data" in res) {
         router.push(`${res?.data?.data?.resultObj?.payUrl}`);
         toast.success((res as { data: any }).data.message);
