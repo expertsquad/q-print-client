@@ -31,7 +31,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           capitalizeLinks
         />
       </div>
-      <div className="px-3 md:px-3 lg:px-0 md:mt-56 mt-40">{children}</div>
+      <div className="px-5 md:px-3 lg:px-0 md:mt-56 mt-40">{children}</div>
       <Footer />
       <ToastContainer />
     </div>
