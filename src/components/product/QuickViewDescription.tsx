@@ -138,7 +138,7 @@ const QuickViewDescription = ({ product }: any) => {
           </span>
         </div>
 
-        <GetDiscountRange />
+        {/* <GetDiscountRange /> */}
 
         {/* == Bulk Order == */}
         <div className="my-3 whitespace-nowrap text-black-opacity-60">

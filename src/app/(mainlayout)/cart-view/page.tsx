@@ -15,17 +15,31 @@ import {
 } from "@/redux/features/cart/productCartSlice";
 import CartViewTotalCard from "@/components/cart-view/CartViewTotalCard";
 import ContinueShopping from "@/components/cart-view/ContinueShopping";
+import { useGetShippingQuery } from "@/redux/features/api/shipping/shippingApi";
 
 const CartView = () => {
-  const { products, subTotal } = useAppSelector(
+  const { products, subTotal, total } = useAppSelector(
     (state) => state.productCartSlice
   );
+  const getShipping = useGetShippingQuery("");
+
   const dispatch = useDispatch();
 
-  const shippingCharge = 80;
-  const discountPrice = 100;
-  const calculateTotalWithDiscount = subTotal + shippingCharge - discountPrice;
+  const freeShippingMinOrderAmount =
+    getShipping?.data?.data?.freeShippingMinOrderAmount;
+  const shippingInsideFee = getShipping?.data?.data?.inside;
 
+  let shippingCharge;
+
+  if (freeShippingMinOrderAmount && subTotal) {
+    if (freeShippingMinOrderAmount <= subTotal) {
+      shippingCharge = 0;
+    } else {
+      shippingCharge = shippingInsideFee;
+    }
+  }
+  const discountPrice = total - subTotal;
+  const calculateTotalWithDiscount = subTotal + shippingCharge;
   return (
     <div className="max-w-[1280px] mx-auto">
       <h4 className="text-black text-opacity-80 text-xl md:text-3xl mb-7 md:mb-10">
@@ -156,7 +170,12 @@ const CartView = () => {
               {/* -Price Range- */}
               <div className="mt-5">
                 <div className="mb-5">
-                  <GetDiscountRange priceRange={subTotal} />
+                  <GetDiscountRange
+                    expectedAmount={
+                      getShipping?.data?.data?.freeShippingMinOrderAmount
+                    }
+                    totalAmount={subTotal}
+                  />
                 </div>
                 <div>
                   {calculateTotalWithDiscount < 3000 ? (
