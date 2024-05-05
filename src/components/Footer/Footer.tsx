@@ -19,7 +19,7 @@ const Footer = () => {
     <footer className="bg-[#1A1A1A] p-6 ">
       <div className="space-y-5 md:grid md:grid-cols-3 items-center justify-center md:items-start relative text-center py-5 gap-5 md:max-w-[1280px] mx-auto">
         <div className="space-y-5">
-          <div className="flex items-center justify-center">
+          <div className="flex md:justify-start justify-center ">
             <Logo />
           </div>
           <p className="text-sm text-[#999] lg:text-justify">
@@ -80,7 +80,7 @@ const Footer = () => {
               </p>
             </div>
             {/* //Social Links */}
-            {/* <div className="flex gap-3 md:gap-4 md:pt-14">
+            <div className="flex gap-3 md:gap-4 md:pt-14">
               <CombinedComponent
                 type="social"
                 socialIcon={<Reddit />}
@@ -106,7 +106,7 @@ const Footer = () => {
                 socialIcon={<Facebook />}
                 socialLinkHref="https://www.facebook.com"
               />
-            </div> */}
+            </div>
           </div>
           <p className="text-[#999] text-center md:text-start">
             Q-Print eCommerce © 2022. All Rights Reserved

@@ -1,4 +1,5 @@
 import Lock from "@/assets/FooterSVG/Lock";
+import { IconLock } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactElement } from "react";
@@ -29,9 +30,10 @@ const CombinedComponent: React.FC<CombinedComponentProps> = ({
   if (type === "payment") {
     if (isSecure) {
       return (
-        <button className="w-24 h-12 border border-gray-600 rounded-lg font-bold text-white">
-          <span className="text-[#999] flex items-center gap-1 pl-3 font-semibold text-xs">
-            <Lock />
+        <button className="w-24  border border-gray-600 rounded-md py-0.5 font-bold text-white flex flex-col items-center">
+          <span className=" flex items-center gap-1  font-semibold text-xs">
+            {/* <Lock /> */}
+            <IconLock stroke={1} className="text-white" width={17} height={17} />
             Secure
           </span>
           {secureButtonContent}
@@ -39,14 +41,14 @@ const CombinedComponent: React.FC<CombinedComponentProps> = ({
       );
     }
     return (
-      <button className="border border-gray-600 w-16 h-12 flex items-center justify-center rounded-lg shrink-0">
+      <button className="border border-gray-600 w-16 h-12 flex items-center justify-center rounded-md shrink-0">
         {paymentMethodComponents}
       </button>
     );
   }
 
   if (type === "social") {
-    return <Link href={socialLinkHref || "#"}>{socialIcon}</Link>;
+    return <Link className="hover:scale-105 transition-all" href={socialLinkHref || "#"}>{socialIcon}</Link>;
   }
 
   if (type === "store") {
@@ -62,7 +64,7 @@ const CombinedComponent: React.FC<CombinedComponentProps> = ({
           )}
         </div>
         <div>
-          <p className="text-xs text-[#999]">{additionalText}</p>
+          <p className="text-xs text-[#999] whitespace-nowrap">{additionalText}</p>
           <h2 className="font-bold text-white">{storeType}</h2>
         </div>
       </div>
