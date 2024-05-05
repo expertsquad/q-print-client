@@ -7,17 +7,19 @@ import Spinner from "@/components/shared/Spinner";
 import { useForgetPasswordOtpMutation } from "@/redux/features/forgetPassword/forgetPasswordApis";
 import { useAppSelector } from "@/redux/hook";
 import { useRouter } from "next/navigation";
+import { storeUserInfo } from "@/services/auth.service";
 
 const ForgetPasswordOtp = () => {
   const [verifyOtp, setVerifyOtp] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
   const [forgetPasswordOtp] = useForgetPasswordOtpMutation();
   const { email } = useAppSelector((state) => state.forgetPassword);
-  console.log(email, "Forget password otp");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
     const otp = Number(verifyOtp);
 
     const otpAndEmail = {
@@ -27,12 +29,12 @@ const ForgetPasswordOtp = () => {
 
     try {
       const res = await forgetPasswordOtp(otpAndEmail).unwrap();
-      console.log(res, "From password otp");
+      storeUserInfo({ accessToken: res?.data?.accessToken });
       if (res.success) {
         router.push("/reset-password");
       }
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      setError(err?.data?.message);
     } finally {
       setLoading(false);
     }
@@ -49,9 +51,14 @@ const ForgetPasswordOtp = () => {
           Enter 4 Digits Code
         </h3>
         <p className="text-center text-black-opacity-50 text-sm">
-          Set the password for your account so you can access all the features.
+          We have sent 4 digits code to{" "}
+          <span className="font-semibold">{email}</span>. Enter the code below
+          to reset your password.
         </p>
         <OTPInput length={4} setVerifyOtp={setVerifyOtp} />
+        <small className="text-xs text-red-500 flex items-center justify-center">
+          {error}
+        </small>
         <button
           onClick={handleSubmit}
           className=" items-center w-full main-text-color font-medium py-3 border rounded-lg

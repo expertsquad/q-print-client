@@ -12,25 +12,25 @@ import { setForgettedEmail } from "@/redux/features/forgetPassword/forgetPasswor
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [err, setErr] = useState("");
+  const [error, setError] = useState("");
   const router = useRouter();
   const [forgetPassword] = useForgetPasswordMutation();
   const dispatch = useDispatch();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setLoading(true);
     const isEmail = { email: email };
 
     try {
       const res = await forgetPassword(isEmail).unwrap();
       dispatch(setForgettedEmail(email));
       if (res.success) {
+        setEmail("");
         router.push("/forget-password-otp");
       }
-      setEmail("");
     } catch (err: any) {
-      setErr(err?.data?.message);
-      console.log(err?.data?.message);
+      setError(err?.data?.message);
     } finally {
       setLoading(false);
     }
@@ -61,7 +61,7 @@ const ForgetPassword = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <span className="text-red-500 text-xs">{err}</span>
+          <span className="text-red-500 text-xs">{error}</span>
           <button
             type="submit"
             className="w-full main-bg-color text-white font-medium py-3 rounded-lg my-10 flex items-center justify-center"

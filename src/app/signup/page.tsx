@@ -22,12 +22,14 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [userSignUp] = useUserSignUpMutation();
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const [loading, setLoading] = useState(false);
 
   const { fullName, email, password, confirmPassword, qid, phoneNumber } =
     useAppSelector((state) => state.signUp);
@@ -48,9 +50,12 @@ const SignUp = () => {
       const res = await userSignUp(formData).unwrap();
       storeUserInfo({ accessToken: res?.data?.accessToken });
       if (res?.data?.accessToken) {
+        toast.success(res?.data?.success);
         router.push("/verify-email");
       }
     } catch (err: any) {
+      toast.error(err?.data?.message);
+      setError(err?.data?.message);
       console.error(err);
     } finally {
       setLoading(false);
@@ -103,6 +108,7 @@ const SignUp = () => {
             placeholder="Retype Password"
             onChange={(e) => dispatch(setConfirmPassword(e.target.value))}
           />
+          {error && <small className="text-xs text-red-500">{error}</small>}
           <button
             type="submit"
             className="main-bg-color text-white w-full py-3 rounded-lg mt-5"
