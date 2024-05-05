@@ -13,7 +13,6 @@ const Hero = () => {
 
   const sliderArray = Object.values(data?.data?.slider || {});
 
-
   // <== Get the right side slider card Top Offer ==>
   const topOffer = data?.data?.topOffer;
 
@@ -27,25 +26,19 @@ const Hero = () => {
         <HeroItemSlide isLoading={isLoading} sliderArray={sliderArray} />
       </div>
 
-      {
-        isLoading ? (
-          <div className="flex flex-col gap-4 h-full md:h-auto">
-            {
-              [...Array(2)].map((_, index) => {
-                return (
-                  <SmallBannerSkeleton index={index} key={index} />
-                );
-              })
-            }
-          </div>
-        )
-          :
-
-          <div className="flex flex-col gap-4 h-full md:h-auto ">
-            <TopSmallBanner topOffer={topOffer} />
-            <BottomSmallBanner bottomOffer={bottomOffer} />
-          </div>}
-    </section >
+      {isLoading ? (
+        <div className="flex flex-col gap-4 h-full md:h-auto">
+          {[...Array(2)].map((_, index) => {
+            return <SmallBannerSkeleton index={index} key={index} />;
+          })}
+        </div>
+      ) : (
+        <div className="flex flex-col gap-4 h-full md:h-auto ">
+          <TopSmallBanner topOffer={topOffer} />
+          <BottomSmallBanner bottomOffer={bottomOffer} />
+        </div>
+      )}
+    </section>
   );
 };
 
