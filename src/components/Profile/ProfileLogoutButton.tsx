@@ -8,7 +8,7 @@ const ProfileLogoutButton = ({ handleLogout }: any) => {
       className="active:border-fuchsia-800 focus:border-fuchsia-800 flex items-center gap-3 border px-3 py-2 rounded-sm"
     >
       <span className="">
-        <IconLogin2 />
+        <IconLogin2 stroke={1} className="text-black-opacity-80"  />
       </span>
       <span className="hidden md:block">Log Out</span>
     </button>

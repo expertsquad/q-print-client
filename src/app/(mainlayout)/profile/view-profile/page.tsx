@@ -26,7 +26,7 @@ interface Address {
 
 const ViewProfile = () => {
   // <== Get User Personal Information ==>
-  const { data: personalInformation } = useGetUserQuery("");
+  const { data: personalInformation, isLoading } = useGetUserQuery("");
 
   // <== Get User Address ==>
   const { data: address } = useGetUserAddressQuery("");
@@ -36,11 +36,11 @@ const ViewProfile = () => {
 
   return (
     <section className=" w-full flex flex-col gap-7 mb-7">
-      <ViewProfilleEdit profileInfo={personalInformation?.data} />
-      <ProfileViewPersonalInformation
+      <ViewProfilleEdit isLoading={isLoading} profileInfo={personalInformation?.data} />
+      <ProfileViewPersonalInformation isLoading={isLoading}
         personalInformation={personalInformation?.data}
       />
-      <ProfileViewShippingInfo shippingInformation={defaultAddress} />
+      <ProfileViewShippingInfo shippingInformation={defaultAddress} isLoading={isLoading} />
     </section>
   );
 };

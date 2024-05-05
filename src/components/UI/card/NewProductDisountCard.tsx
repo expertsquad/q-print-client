@@ -14,8 +14,6 @@ const NewProductDisountCard = () => {
       <DiscountCardSkeleton />
     )
       :
-
-
       <div className="md:w-[350px] md:h-[500px] bg-[#134231]  rounded-lg relative overflow-hidden w-full h-auto ">
         <div className="h-[60%] w-full bg-[#3d7c65] opacity-65 blur-2xl rounded-full  absolute  border border-red-600 "></div>
         <div className="items-center justify-between h-full p-4 relative flex md:flex-col flex-row ">
