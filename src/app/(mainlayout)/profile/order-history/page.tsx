@@ -3,10 +3,11 @@ import OrderHistoryDeliveredLayout from "@/components/Profile/OrderHistoryDelive
 import OrderHistoryOrderPlacedLayout from "@/components/Profile/OrderHistoryOrderPlacedLayout";
 import OrderHistoryPackagingLayout from "@/components/Profile/OrderHistoryPackagingLayout";
 import OrderHistoryShippingLayout from "@/components/Profile/OrderHistoryShippingLayout";
+import OrderHistorySkeleton from "@/components/shared/Skeleton/OrderHistorySkeleton";
 import { useGetUserQuery } from "@/redux/features/user/user";
 
 const OrderHistory = () => {
-  const { data } = useGetUserQuery("");
+  const { data, isLoading } = useGetUserQuery("");
   return (
     <div className="w-full mb-7">
       <div className="flex justify-between items-center mb-4">
@@ -35,11 +36,16 @@ const OrderHistory = () => {
         </div>
       </div>
       {/* <ProfileOrderHistory /> */}
-      <OrderHistoryOrderPlacedLayout id={data?.data?._id} />
-      <OrderHistoryPackagingLayout id={data?.data?._id} />
-      <OrderHistoryShippingLayout id={data?.data?._id} />
-      <OrderHistoryDeliveredLayout id={data?.data?._id} />
-    </div>
+      
+
+          <>
+            <OrderHistoryOrderPlacedLayout id={data?.data?._id} />
+            <OrderHistoryPackagingLayout id={data?.data?._id} />
+            <OrderHistoryShippingLayout id={data?.data?._id} />
+            <OrderHistoryDeliveredLayout id={data?.data?._id} />
+          </>
+      
+    </div >
   );
 };
 
