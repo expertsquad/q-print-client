@@ -75,13 +75,18 @@ const YourInformation = () => {
                   type="email"
                   value={personalInformation?.data?.email}
                   placeholder="Enter Your Email"
-                  disabled={"disabled"}
+                  customClassName="opacity-80 "
+                  inputStyle="focus:border-gray-200"
+                  readonly
                 />
                 <CustomInput
                   label="Phone Number"
                   type="number"
                   value={personalInformation?.data?.phoneNumber}
                   placeholder="Enter Your Number"
+                  customClassName="opacity-80 "
+                  inputStyle="focus:border-gray-200"
+                  readonly
                 />
               </div>
 
