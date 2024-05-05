@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import lockImageOne from "@/assets/lockImageOne.svg";
-
 import PasswordInput from "@/components/shared/PasswordInput";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/redux/hook";
@@ -13,6 +12,7 @@ import { useState } from "react";
 import { useResetPasswordMutation } from "@/redux/features/forgetPassword/forgetPasswordApis";
 import { useRouter } from "next/navigation";
 import Spinner from "@/components/shared/Spinner";
+import { toast } from "react-toastify";
 
 const ResetPassword = () => {
   const [loading, setLoading] = useState(false);
@@ -28,13 +28,16 @@ const ResetPassword = () => {
       newPassword: newPassword,
       confirmPassword: confirmPassword,
     };
+    console.log(resetPass, "Reset pass");
     try {
       const res = await resetPassword(resetPass).unwrap();
       console.log(res, "Reset Pass");
       if (res.success) {
+        toast.success(res.message);
         router.push("/");
       }
-    } catch (err) {
+    } catch (err: any) {
+      toast.error(err.message);
       console.log(err);
     } finally {
       setLoading(false);
