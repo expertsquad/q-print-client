@@ -8,7 +8,6 @@ import {
   IconStar,
 } from "@tabler/icons-react";
 import Image from "next/image";
-import adidasBrand from "@/assets/adidas brand.svg";
 import ColorPickUp from "./ColorPickUp";
 import GetDiscountRange from "./GetDiscountRange";
 import { imageUrl } from "@/constants/imageUrl";
@@ -164,7 +163,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
           </span>
         </div>
 
-        {productDesc?.bulk && (
+        {productDesc?.bulk === 1 && (
           <GetDiscountRange
             expectedAmount={
               productDesc?.bulk?.minOrder ? productDesc?.bulk?.minOrder : 0
@@ -172,7 +171,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
             totalAmount={quantity}
           />
         )}
-        {productDesc?.bulk && (
+        {productDesc?.bulk === 1 && (
           <div className="my-3 whitespace-nowrap text-black-opacity-60">
             <p>
               Buy{" "}

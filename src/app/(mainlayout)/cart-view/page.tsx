@@ -15,6 +15,7 @@ import {
 } from "@/redux/features/cart/productCartSlice";
 import CartViewTotalCard from "@/components/cart-view/CartViewTotalCard";
 import ContinueShopping from "@/components/cart-view/ContinueShopping";
+import MultipleQuickOrder from "@/components/quick-order/MultipleQuickOrder";
 import { useGetShippingQuery } from "@/redux/features/api/shipping/shippingApi";
 
 const CartView = () => {
@@ -40,6 +41,9 @@ const CartView = () => {
   }
   const discountPrice = total - subTotal;
   const calculateTotalWithDiscount = subTotal + shippingCharge;
+
+  console.log(shippingCharge);
+
   return (
     <div className="max-w-[1280px] mx-auto">
       <h4 className="text-black text-opacity-80 text-xl md:text-3xl mb-7 md:mb-10">
@@ -60,13 +64,13 @@ const CartView = () => {
                   >
                     {/* ==Image, Text and Mobile V== */}
                     <div className="flex gap-5 w-full">
-                      <div className="flex items-center justify-center max-h-16 w-full max-w-16 p-2 border rounded-md">
+                      <div className="w-[55px] h-[55px] shrink-0 relative">
                         <Image
                           src={`${imageUrl}${product?.productPhotos?.[1]}`}
                           alt="Product Image"
-                          width={55}
-                          height={55}
-                          className="w-full h-full"
+                          fill
+                          objectFit="cover"
+                          className="w-full h-full top-0 left-0 object-cover border rounded-md p-1"
                         />
                       </div>
                       {/* -Title rating and mobile v-- */}
@@ -178,10 +182,16 @@ const CartView = () => {
                   />
                 </div>
                 <div>
-                  {calculateTotalWithDiscount < 3000 ? (
+                  {calculateTotalWithDiscount <
+                  getShipping?.data?.data?.freeShippingMinOrderAmount ? (
                     <p className="">
-                      Spend <b className="main-text-color">3000 QAR</b> more to
-                      reach <b className="font-medium">FREE SHIPPING!</b>
+                      Spend{" "}
+                      <b className="main-text-color">
+                        {getShipping?.data?.data?.freeShippingMinOrderAmount}{" "}
+                        QAR
+                      </b>{" "}
+                      more to reach{" "}
+                      <b className="font-medium">FREE SHIPPING!</b>
                     </p>
                   ) : (
                     <p className="flex gap-1 items-center justify-start text-[16px]">
@@ -194,13 +204,19 @@ const CartView = () => {
                 </div>
               </div>
             </div>
-            {/* == Calculate Cart Total == */}
-            <CartViewTotalCard
-              subTotal={subTotal}
-              shippingCharge={shippingCharge}
-              discountPrice={discountPrice}
-              calculateTotalWithDiscount={calculateTotalWithDiscount}
-            />
+            <div className="w-full md:max-w-[438px] h-[390px] border px-5 rounded-lg">
+              {/* == Calculate Cart Total == */}
+              <CartViewTotalCard
+                subTotal={subTotal}
+                shippingCharge={shippingCharge}
+                discountPrice={discountPrice}
+                calculateTotalWithDiscount={calculateTotalWithDiscount}
+              />
+              {/* == Quick Orders == */}
+              <div className="w-full">
+                <MultipleQuickOrder products={products} subTotal={subTotal} />
+              </div>
+            </div>
           </div>
         </>
       ) : (

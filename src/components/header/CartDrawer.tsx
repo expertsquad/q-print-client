@@ -8,7 +8,6 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import { useAppSelector } from "@/redux/hook";
-import { useDispatch } from "react-redux";
 import Link from "next/link";
 import MultipleQuickOrder from "../quick-order/MultipleQuickOrder";
 import { IconCheck } from "@tabler/icons-react";
@@ -99,10 +98,16 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                     />
                   </div>
                   <div>
-                    {subTotal < 3000 ? (
+                    {subTotal <
+                    getShipping?.data?.data?.freeShippingMinOrderAmount ? (
                       <p className="text-center">
-                        Spend <b className="main-text-color">3000 QAR</b> more
-                        to reach <b className="font-medium">FREE SHIPPING!</b>
+                        Spend{" "}
+                        <b className="main-text-color">
+                          {getShipping?.data?.data?.freeShippingMinOrderAmount}{" "}
+                          QAR
+                        </b>{" "}
+                        more to reach{" "}
+                        <b className="font-medium">FREE SHIPPING!</b>
                       </p>
                     ) : (
                       <p className="text-center flex gap-1 items-center justify-center text-[16px]">
