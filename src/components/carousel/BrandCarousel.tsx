@@ -27,40 +27,31 @@ const BrandCarousel = () => {
   }, [data]);
   return (
     <div className="logos mx-auto whitespace-nowrap max-w-[1280px] lg:mt-20 md:mt-20 mt-8 overflow-hidden">
-
-      {
-        isLoading ? (
-          <div className="flex items-center justify-between gap-[90px] md:gap-[113px]">
-            {
-              [...Array(8)].map((_, index) => {
-                return (
-                  <BrandCarouselSkeleton key={index} />
-                )
-              })
-            }
-          </div>
-        )
-          :
-
-          (<div className="logos-slide flex items-center justify-between gap-[90px] md:gap-[113px]">
-            {
-              data?.data?.map((brand: BrandCarouselProps) => (
-                <div
-                  className="[width:clamp(40px,5vw,60px)] [height:clamp(40px,5vw,60px)]  relative"
-                  key={brand?._id}
-                >
-                  <Image
-                    src={`${imageUrl}${brand?.brandPhoto}`}
-                    alt="Brand Carousel"
-                    fill
-                    sizes="200"
-                    priority={true}
-                    className="rounded-md"
-                  />
-                </div>
-              ))}
-          </div>)
-          }
+      {isLoading ? (
+        <div className="flex items-center justify-between gap-[90px] md:gap-[113px]">
+          {[...Array(8)].map((_, index) => {
+            return <BrandCarouselSkeleton key={index} />;
+          })}
+        </div>
+      ) : (
+        <div className="logos-slide flex items-center justify-between">
+          {data?.data?.map((brand: BrandCarouselProps) => (
+            <div
+              className="[width:clamp(40px,5vw,60px)] [height:clamp(40px,5vw,60px)]  relative mx-14 md:mx-24"
+              key={brand?._id}
+            >
+              <Image
+                src={`${imageUrl}${brand?.brandPhoto}`}
+                alt="Brand Carousel"
+                fill
+                sizes="200"
+                priority={true}
+                className="rounded-md"
+              />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
