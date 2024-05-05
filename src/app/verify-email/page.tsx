@@ -7,10 +7,12 @@ import { useVerifyUserByOtpMutation } from "@/redux/features/user/user";
 import Spinner from "@/components/shared/Spinner";
 import { useRouter } from "next/navigation";
 import { storeUserInfo } from "@/services/auth.service";
+import { toast } from "react-toastify";
 
 const VerifyEmail = () => {
   const [verifyOtp, setVerifyOtp] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
   const [verifyEmail] = useVerifyUserByOtpMutation();
 
@@ -22,9 +24,12 @@ const VerifyEmail = () => {
       const res = await verifyEmail(verifiedOtp).unwrap();
       storeUserInfo({ accessToken: res?.data?.accessToken });
       if (res.success) {
+        toast.success(res?.data?.message);
         router.push("/");
       }
     } catch (err: any) {
+      toast.error(err?.data?.message);
+      setError(err?.data?.message);
       console.log(err);
     } finally {
       setLoading(false);
@@ -45,7 +50,12 @@ const VerifyEmail = () => {
           We emailed a six-digit to artu@gmail.com Enter the code below to
           confirm your email address
         </p>
-        <OTPInput length={4} setVerifyOtp={setVerifyOtp} />
+        <OTPInput length={4} setVerifyOtp={setVerifyOtp} />{" "}
+        {error && (
+          <small className="text-xs text-red-500 flex items-center justify-center">
+            {error}
+          </small>
+        )}
         <button
           onClick={handleSubmit}
           className=" items-center w-full main-text-color font-medium py-3 border rounded-lg

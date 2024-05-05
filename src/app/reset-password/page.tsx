@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import lockImageOne from "@/assets/lockImageOne.svg";
-
 import PasswordInput from "@/components/shared/PasswordInput";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/redux/hook";
@@ -13,9 +12,11 @@ import { useState } from "react";
 import { useResetPasswordMutation } from "@/redux/features/forgetPassword/forgetPasswordApis";
 import { useRouter } from "next/navigation";
 import Spinner from "@/components/shared/Spinner";
+import { toast } from "react-toastify";
 
 const ResetPassword = () => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
   const dispatch = useDispatch();
   const [resetPassword] = useResetPasswordMutation();
@@ -24,18 +25,20 @@ const ResetPassword = () => {
   );
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setLoading(true);
     const resetPass = {
       newPassword: newPassword,
       confirmPassword: confirmPassword,
     };
     try {
       const res = await resetPassword(resetPass).unwrap();
-      console.log(res, "Reset Pass");
+      toast.success(res?.data?.message);
       if (res.success) {
-        router.push("/");
+        router.push("/login");
       }
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      toast.error(err?.data?.message);
+      setError(err?.data?.message);
     } finally {
       setLoading(false);
     }
@@ -73,6 +76,7 @@ const ResetPassword = () => {
             }
             placeholder="Confirm Password"
           />
+          <small className="text-xs text-red-500">{error}</small>
           <button
             type="submit"
             className="w-full main-bg-color text-white font-medium py-3 rounded-lg mt-10"
