@@ -86,7 +86,7 @@ export const authApi = baseApi.injectEndpoints({
       query: (data) => ({
         url: `/user/verify-email`,
         method: "PUT",
-        data: data.data,
+        data,
       }),
       invalidatesTags: ["verify-email"],
     }),
