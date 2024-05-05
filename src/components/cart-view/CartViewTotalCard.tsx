@@ -9,7 +9,7 @@ const CartViewTotalCard = ({
   calculateTotalWithDiscount,
 }: number | any) => {
   return (
-    <div className="w-full h-full md:max-w-[438px] border rounded-lg">
+    <div className="w-full">
       <h5 className="text-[16px] md:text-[18px] font-medium pl-6 py-5 border-b">
         Cart Total
       </h5>

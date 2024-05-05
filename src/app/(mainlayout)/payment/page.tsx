@@ -52,6 +52,8 @@ const Payment = () => {
         toast.success((res as { data: any }).data.message);
         dispatch(resetCart());
       }
+      router.push(`/thank-you/${res?.data?.data?._id}`);
+
       if ("error" in res) {
         toast.error((res as { error: any }).error.message);
       }

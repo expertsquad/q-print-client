@@ -204,7 +204,7 @@ const CartView = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full md:max-w-[438px] h-[390px] border px-5 rounded-lg">
+            <div className="w-full md:max-w-[438px] h-[390px] border rounded-lg">
               {/* == Calculate Cart Total == */}
               <CartViewTotalCard
                 subTotal={subTotal}
@@ -213,7 +213,7 @@ const CartView = () => {
                 calculateTotalWithDiscount={calculateTotalWithDiscount}
               />
               {/* == Quick Orders == */}
-              <div className="w-full">
+              <div className="w-full px-5">
                 <MultipleQuickOrder products={products} subTotal={subTotal} />
               </div>
             </div>

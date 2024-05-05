@@ -4,7 +4,6 @@ import BackToHomePageIcon from "@/assets/svgIcons/GradientHomeIcon";
 import { IconArrowRight } from "@tabler/icons-react";
 
 const ThankYouPageTop = () => {
-  const handleViewOrder = () => {};
   return (
     <div className="flex items-center justify-center flex-col">
       <GradientThankYouIcon />
