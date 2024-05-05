@@ -44,7 +44,6 @@ const ShoppingCartTotalItems = ({
       shippingCharge = shippingInsideFee;
     }
   }
-  const calculateTotal = subTotal + shippingCharge;
 
   return (
     <div className=" border rounded-lg pb-5 mb-5">

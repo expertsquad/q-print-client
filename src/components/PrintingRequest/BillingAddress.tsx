@@ -6,7 +6,6 @@ import CustomInput from "../shared/CustomInput";
 
 const BillingAddress = () => {
   const [selectedOption, setSelectedOption] = useState(null);
-
   const data = useAppSelector((state) => state.printingRequestOrder);
 
   const dispatch = useAppDispatch();
@@ -15,6 +14,15 @@ const BillingAddress = () => {
 
   const handleOptionChange = (event: any) => {
     setSelectedOption(event.target.value);
+    dispatch(
+      setPrintingRequest({
+        ...data,
+        billingAddress: {
+          ...data.billingAddress,
+          selectedOption: event.target.value,
+        },
+      })
+    );
   };
 
   return (
@@ -23,18 +31,20 @@ const BillingAddress = () => {
         <label className="inline-flex items-center  ">
           <div
             className={`w-5 h-5 rounded-full bg-white  flex items-center justify-center border-fuchsia-700 border-2 ${
-              selectedOption === "option1" ? "border-fuchsia-700 border-2" : ""
+              selectedOption === "sameAsShippingAddress"
+                ? "border-fuchsia-700 border-2"
+                : ""
             }`}
           >
-            {selectedOption === "option1" && (
+            {selectedOption === "sameAsShippingAddress" && (
               <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
             )}
           </div>
           <span className="ml-2">Same as shipping address</span>
           <input
             type="radio"
-            value="option1"
-            checked={selectedOption === "option1"}
+            value="sameAsShippingAddress"
+            checked={selectedOption === "sameAsShippingAddress"}
             onChange={handleOptionChange}
             className="hidden"
           />
@@ -43,24 +53,26 @@ const BillingAddress = () => {
         <label className="inline-flex items-center ">
           <div
             className={`w-5 h-5 rounded-full bg-white  flex items-center justify-center border-fuchsia-700 border-2 ${
-              selectedOption === "option2" ? "border-fuchsia-700 border-2" : ""
+              selectedOption === "differentBillingAddress"
+                ? "border-fuchsia-700 border-2"
+                : ""
             }`}
           >
-            {selectedOption === "option2" && (
+            {selectedOption === "differentBillingAddress" && (
               <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD]   rounded-full"></div>
             )}
           </div>
           <span className="ml-2">Use a different billing address</span>
           <input
             type="radio"
-            value="option2"
-            checked={selectedOption === "option2"}
+            value="differentBillingAddress"
+            checked={selectedOption === "differentBillingAddress"}
             onChange={handleOptionChange}
             className="hidden"
           />
         </label>
       </div>
-      {selectedOption === "option2" && (
+      {selectedOption === "differentBillingAddress" && (
         <div>
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 w-full">
             <CustomInput

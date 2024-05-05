@@ -15,7 +15,8 @@ import { useState } from "react";
 const YourInformation = () => {
   const isUserLoggedIn = isLoggedIn();
   const dispatch = useAppDispatch();
-  const [addNewShipping, setAddNewShipping] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(false);
+
   const data = useAppSelector((state) => state.printingRequestOrder);
 
   // <== Get User Address ==>
@@ -24,8 +25,9 @@ const YourInformation = () => {
   // <== Get User Personal Information ==>
   const { data: personalInformation } = useGetUserQuery("");
 
-  const handleAddShipping = () => {
-    setAddNewShipping((prevState) => !prevState);
+  const handleOptionChange = (event: any) => {
+    setSelectedOption((prevState) => !prevState);
+    console.log(event.target.value);
   };
 
   return (
@@ -55,18 +57,24 @@ const YourInformation = () => {
               <p className="text-base text-gray-500 mb-5">
                 Contact information
               </p>
-              <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 w-full mb-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 w-full mb-8  ">
                 <CustomInput
                   label="Email"
                   type="email"
                   value={personalInformation?.data?.email}
                   placeholder="Enter Your Email"
+                  customClassName="opacity-80 "
+                  inputStyle="focus:border-gray-200"
+                  readonly
                 />
                 <CustomInput
                   label="Phone Number"
                   type="number"
                   value={personalInformation?.data?.phoneNumber}
                   placeholder="Enter Your Number"
+                  customClassName="opacity-80 "
+                  inputStyle="focus:border-gray-200"
+                  readonly
                 />
               </div>
 
@@ -91,19 +99,31 @@ const YourInformation = () => {
 
               {/* == If user logged in then dropdown for new shipping address, else create an account == */}
               {isUserLoggedIn && (
-                <div className="mb-5 flex gap-1.5 items-center">
-                  <input
-                    onClick={handleAddShipping}
-                    title="radio"
-                    type="radio"
-                    className="checked"
-                  />
-                  <span>Add new shipping address</span>
+                <div>
+                  <label className="inline-flex items-center gap-2  ">
+                    <div
+                      className={`w-5 h-5 rounded-full bg-white  flex items-center justify-center border-fuchsia-700 border-2 ${
+                        selectedOption ? "border-fuchsia-700 border-2" : ""
+                      }`}
+                    >
+                      {selectedOption && (
+                        <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
+                      )}
+                    </div>
+                    <input
+                      type="radio"
+                      value="address"
+                      checked={selectedOption}
+                      onChange={handleOptionChange}
+                      className="hidden"
+                    />
+                    <span className="">Add New Shipping Address</span>
+                  </label>
                 </div>
               )}
 
               {/* == shipping address or shipping information == */}
-              {addNewShipping && (
+              {selectedOption && (
                 <div>
                   <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 w-full">
                     <CustomInput

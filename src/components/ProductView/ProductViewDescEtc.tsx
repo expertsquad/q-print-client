@@ -164,7 +164,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
           </span>
         </div>
 
-        {productDesc?.bulk && (
+        {productDesc?.bulk === 1 && (
           <GetDiscountRange
             expectedAmount={
               productDesc?.bulk?.minOrder ? productDesc?.bulk?.minOrder : 0

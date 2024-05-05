@@ -13,16 +13,20 @@ import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { IconMail } from "@tabler/icons-react";
 import { IconPhone } from "@tabler/icons-react";
 import { IconMapPin } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 const Payment = () => {
   // <== Get User Personal Information ==>
   const { data: personalInformation } = useGetUserQuery("");
 
+  const router = useRouter();
+
   const { data: address, isLoading } = useGetUserAddressQuery(`isDefault=true`);
   const dispatch = useAppDispatch();
 
   const { products } = useAppSelector((state) => state.productCartSlice);
+
   const data = useAppSelector((state) => state.printingRequestOrder);
 
   const [onlineOrder] = useOnlineOrderPostMutation();
@@ -35,17 +39,16 @@ const Payment = () => {
       shippingAddress: data?.shippingAddress
         ? data?.shippingAddress
         : address?.data[0],
-      payment: {
-        paymentStatus: "Unpaid",
-        paymentMethod: "COD",
-      },
+      payment: data?.payment,
     };
 
     try {
       const res = await onlineOrder(value);
-      dispatch(resetCart());
+      console.log(res);
       if ("data" in res) {
+        router.push(`${res?.data?.data?.resultObj?.payUrl}`);
         toast.success((res as { data: any }).data.message);
+        dispatch(resetCart());
       }
       if ("error" in res) {
         toast.error((res as { error: any }).error.message);
