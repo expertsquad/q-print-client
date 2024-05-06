@@ -26,6 +26,7 @@ const ThankYou = ({ params }: { params: string }) => {
           shippingCharge={onlineOrder?.shippingCharge}
           totalDiscount={onlineOrder?.totalDiscount}
           products={onlineOrder?.orderItems}
+          totalPrice={onlineOrder?.totalPrice}
         />
         <ThankYouPageContactInfo
           contact={onlineOrder?.buyer?.email}

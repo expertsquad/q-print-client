@@ -59,26 +59,30 @@ const PurchagingOrderDetails = ({
           <div className="mt-7  p-5 md:p-10">
             <div className="text-base flex items-center justify-between pb-5">
               <span className="text-black-opacity-60">Sub Total</span>{" "}
-              <span className="main-text-color">{totalPrice} QAR</span>
+              <span className="main-text-color font-bold">
+                {totalPrice} QAR
+              </span>
             </div>
             <div className="text-base flex items-center justify-between  pb-5">
               <span className="text-black-opacity-60">Shipping</span>{" "}
-              <span className="main-text-color">{shippingCharge} QAR</span>
+              <span className="main-text-color font-bold">
+                {shippingCharge} QAR
+              </span>
             </div>
             <div className="text-base flex items-center justify-between  pb-5">
               <span className="text-black-opacity-60">Discount</span>{" "}
-              <span className="main-text-color">
+              <span className="main-text-color font-bold">
                 {totalDiscount?.toFixed(2)} QAR
               </span>
             </div>
             <div className="text-base flex items-center justify-between  pb-5 border-b">
               <span className="text-black-opacity-60">Tax</span>{" "}
-              <span className="main-text-color">{0} QAR</span>
+              <span className="main-text-color font-bold">{0} QAR</span>
             </div>
           </div>
 
           {/* == Grand Total == */}
-          <div className="mt-5 flex justify-between items-center pb-5 md:px-10 px-5 md:pb-10">
+          <div className="flex justify-between items-center pb-5 md:px-10 px-5 md:pb-10">
             <p>Total</p>
             <div className="font-bold text-xl">{totalPayable} QAR</div>
           </div>

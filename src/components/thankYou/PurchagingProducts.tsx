@@ -23,7 +23,7 @@ const PurchagingProducts = ({ products }: any) => {
               alt="Brand Photo"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               fill
-              className="w-full h-full top-0 left-0 object-cover border p-1"
+              className="w-full h-full top-0 left-0 object-cover border p-1 rounded-md"
             />
           </div>
           {/* == Product Name and Price etc == */}
@@ -51,7 +51,7 @@ const PurchagingProducts = ({ products }: any) => {
             </div>
           </div>
           {/* == Product Price == */}
-          <div className="w-full hidden md:flex font-bold items-end justify-end">
+          <div className="hidden md:block font-bold ">
             <span>
               $
               {product?.variant?.discountedPrice
