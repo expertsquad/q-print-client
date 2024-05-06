@@ -27,12 +27,9 @@ const PrintingRequest = () => {
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0] || null;
     if (file) {
-      const { name } = file;
       dispatch(
         setPrintingRequest({
-          printingRequestFile: {
-            name,
-          },
+          printingRequestFile: file,
         })
       );
     }
@@ -66,7 +63,6 @@ const PrintingRequest = () => {
                     )
                   }
                   className={`${
-                    // @ts-ignore
                     item._id === data?.paperSize?._id
                       ? "shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)] border border-fuchsia-700"
                       : ""
@@ -142,11 +138,15 @@ const PrintingRequest = () => {
                   onChange={handleFileUpload}
                   className="hidden"
                   type="file"
+                  accept="image/*"
                 />{" "}
                 <GradientUploadIcon />
                 file upload
               </label>
             </div>
+            {data?.printingRequestFile?.name && (
+              <p>You have added {data?.printingRequestFile?.name} </p>
+            )}
           </div>
         </div>
 

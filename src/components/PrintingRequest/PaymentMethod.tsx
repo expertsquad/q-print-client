@@ -5,11 +5,12 @@ import GradientPaypalIcon from "@/assets/svgIcons/GradientPaypalIcon";
 import CodPaymentIcon from "../UI/CodPaymentIcon";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { setPrintingRequest } from "@/redux/features/printing-request/postPrintingRequestSlice";
+import { usePathname } from "next/navigation";
 
 const PaymentMethod = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const data = useAppSelector((state) => state.printingRequestOrder);
-  console.log(data);
+  const pathName = usePathname();
 
   const dispatch = useAppDispatch();
 
@@ -65,28 +66,33 @@ const PaymentMethod = () => {
       </label>
 
       {/* by COD */}
-      <div className="md:border-r md:h-12 h-0 border-r-0 "></div>
 
-      <label className="inline-flex items-center gap-2 ">
-        <CodPaymentIcon />
-        <span className="">Cash on Delivery</span>
-        <div
-          className={`w-5 h-5 rounded-full bg-white  flex items-center justify-center border-fuchsia-700 border-2 ${
-            selectedOption === "cod" ? "border-fuchsia-700 border-2" : ""
-          }`}
-        >
-          {selectedOption === "cod" && (
-            <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD]   rounded-full"></div>
-          )}
-        </div>
-        <input
-          type="radio"
-          value="cod"
-          checked={selectedOption === "cod"}
-          onChange={handleOptionChange}
-          className="hidden"
-        />
-      </label>
+      {pathName !== "/printing-request/payment" && (
+        <>
+          <div className="md:border-r md:h-12 h-0 border-r-0 "></div>
+
+          <label className="inline-flex items-center gap-2 ">
+            <CodPaymentIcon />
+            <span className="">Cash on Delivery</span>
+            <div
+              className={`w-5 h-5 rounded-full bg-white  flex items-center justify-center border-fuchsia-700 border-2 ${
+                selectedOption === "cod" ? "border-fuchsia-700 border-2" : ""
+              }`}
+            >
+              {selectedOption === "cod" && (
+                <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD]   rounded-full"></div>
+              )}
+            </div>
+            <input
+              type="radio"
+              value="cod"
+              checked={selectedOption === "cod"}
+              onChange={handleOptionChange}
+              className="hidden"
+            />
+          </label>
+        </>
+      )}
     </div>
   );
 };
