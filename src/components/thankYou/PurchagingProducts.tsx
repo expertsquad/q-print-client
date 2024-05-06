@@ -11,13 +11,13 @@ const PurchagingProducts = ({ products }: any) => {
   console.log(products);
 
   return (
-    <div className="w-full flex flex-col gap-y-3">
+    <div className="w-full flex flex-col gap-y-5">
       {products?.map((product: OrderItem) => (
         <div
           key={product.id}
-          className="flex items-center justify-between w-full"
+          className="flex items-center justify-between w-full border-b pb-2"
         >
-          <div className="w-[55px] h-[55px] shrink-0 relative mr-2">
+          <div className="w-[60px] h-[60px] shrink-0 relative mr-2">
             <Image
               src={`${imageUrl}${product?.productPhotos[0]}`}
               alt="Brand Photo"
@@ -28,13 +28,13 @@ const PurchagingProducts = ({ products }: any) => {
           </div>
           {/* == Product Name and Price etc == */}
           <div className="w-full">
-            <span className="line-clamp-1 md:line-clamp-2">
+            <span className="line-clamp-1 md:line-clamp-2 text-base w-full">
               {product?.productName}
             </span>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1">
                 <span>{product?.orderQuantity}</span>
-                <IconX stroke={1} width={18} height={18} />
+                <IconX stroke={2} width={18} height={18} />
                 <span>
                   {" "}
                   {product?.variant?.discountedPrice
@@ -42,7 +42,8 @@ const PurchagingProducts = ({ products }: any) => {
                     : product?.variant?.sellingPrice}
                 </span>
               </div>
-              <span className="block md:hidden main-text-color font-bold ">
+              <span className="md:hidden block font-bold">
+                $
                 {product?.variant?.discountedPrice
                   ? product?.variant?.discountedPrice
                   : product?.variant?.sellingPrice}
@@ -50,11 +51,14 @@ const PurchagingProducts = ({ products }: any) => {
             </div>
           </div>
           {/* == Product Price == */}
-          <span className="w-full hidden md:block main-text-color font-bold">
-            {product?.variant?.discountedPrice
-              ? product?.variant?.discountedPrice
-              : product?.variant?.sellingPrice * product?.orderQuantity}
-          </span>
+          <div className="w-full hidden md:flex font-bold items-end justify-end">
+            <span>
+              $
+              {product?.variant?.discountedPrice
+                ? product?.variant?.discountedPrice
+                : product?.variant?.sellingPrice * product?.orderQuantity}
+            </span>
+          </div>
         </div>
       ))}
     </div>

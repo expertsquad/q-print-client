@@ -2,8 +2,15 @@ import GradientThankYouIcon from "@/assets/svgIcons/GradientThankYouIcon";
 import Link from "next/link";
 import BackToHomePageIcon from "@/assets/svgIcons/GradientHomeIcon";
 import { IconArrowRight } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 
-const ThankYouPageTop = () => {
+const ThankYouPageTop = ({ id }: { id: string }) => {
+  const router = useRouter();
+  const handleViewOrder = (e: any) => {
+    e.stopPropagation();
+    router.push(`/order-track/${id}`);
+  };
+
   return (
     <div className="flex items-center justify-center flex-col">
       <GradientThankYouIcon />
@@ -25,7 +32,10 @@ const ThankYouPageTop = () => {
             GO TO HOME PAGE
           </span>
         </Link>
-        <div className="flex items-center gap-2 bg-main-bg-color py-2 px-3 rounded-md text-white">
+        <div
+          onClick={handleViewOrder}
+          className="flex items-center gap-2 bg-main-bg-color py-2 px-3 rounded-md text-white"
+        >
           <span className="font-medium whitespace-nowrap">VIEW ORDER</span>
           <IconArrowRight stroke={2} />
         </div>

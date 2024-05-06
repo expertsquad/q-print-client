@@ -8,13 +8,12 @@ import Link from "next/link";
 import React from "react";
 
 const ThankYou = ({ params }: { params: string }) => {
-  console.log(params?.id, "Hello");
+  //@ts-ignore
   const { data } = useGetOnlineOrderByIdQuery(params?.id);
   const onlineOrder = data?.data;
-  console.log(onlineOrder, "data undifined");
   return (
     <div className="max-w-[800px] mx-auto">
-      <ThankYouPageTop />
+      <ThankYouPageTop id={params?.id} />
       <span className="flex items-center justify-center font-bold text-2xl mb-5">
         Order Details
       </span>

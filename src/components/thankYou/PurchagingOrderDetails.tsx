@@ -48,7 +48,7 @@ const PurchagingOrderDetails = ({
 
       <div className="flex flex-col border rounded-lg mt-5">
         {/* == Product short info == */}
-        <div className="flex justify-between items-stretch p-5 md:p-10 border-b">
+        <div className="w-full flex justify-between items-stretch p-5 md:p-10 border-b">
           <div className="w-full">
             <PurchagingProducts products={products} />
           </div>
