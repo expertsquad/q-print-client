@@ -41,16 +41,15 @@ const FilterButton = ({ brandProductGridView }: any) => {
               aria-label="close sidebar"
               className="drawer-overlay"
             ></label>
-            <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content [&>:nth-child(5)]:order-2 md:[&>:nth-child(5)]:order-none [&>:nth-child(3)]:order-3 md:[&>:nth-child(3)]:order-none">
+            <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content [&>:nth-child(3)]:order-3 md:[&>:nth-child(3)]:order-none">
               {/* Sidebar content here */}
 
               <MostPopularSelectOption />
               {brandProductGridView ? null : <CategoriesCard />}
-
               <PriceRangeCard />
-              <AvailabilityCard />
+              {/* <AvailabilityCard /> */}
               <BrandsCard />
-              <DiscountWidgetCard />
+              {/* <DiscountWidgetCard /> */}
             </ul>
           </div>
         </div>
