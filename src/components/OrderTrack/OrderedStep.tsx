@@ -22,7 +22,7 @@ const OrderedStep = ({ id }: { id: string }) => {
         iconStroke={2}
         customStepStyle={`relative`}
       />
-      <div className="order-track-step-counter">
+      <div className="">
         {data?.data?.orderStatus?.map((status: any, index: number) => (
           <div key={status?._id} className="flex flex-col items-center">
             <span className="text-[11px] md:text-[16px] italic">

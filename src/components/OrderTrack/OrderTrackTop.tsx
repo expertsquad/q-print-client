@@ -6,6 +6,7 @@ import { IconTruckDelivery } from "@tabler/icons-react";
 const OrderTrackTop = ({ id }: any) => {
   // <== Get Online Orders Query ==>
   const { data } = useGetOnlineOrderByIdQuery(id);
+  console.log(data?.data, "From OrderTrackTop");
 
   return (
     <section>
@@ -14,16 +15,18 @@ const OrderTrackTop = ({ id }: any) => {
         <h2 className="text-black text-opacity-70 text-xl md:text-3xl font-semibold mb-5">
           Order ID: {data?.data?.orderId}
         </h2>
-        <div className="flex text-wrap flex-wrap mb-7">
-          <p className="text-[16px] flex flex-wrap mr-1">
-            Order Date:{" "}
-            <span className="mx-1">{formatDate(data?.data?.createdAt)}</span>|
-            <span className="flex items-center mx-1 text-[#12B76A]">
-              <IconTruckDelivery />
-              Estimated Delivery:{" "}
-              <time dateTime="2024-02-20">Feb 20, 2024</time>
-            </span>
-          </p>
+        <div className="flex md:flex-row flex-col md:items-center gap-x-1 flex-wrap mb-7">
+          <div className="flex items-center whitespace-nowrap">
+            <span>Order Date: </span>
+            <span className="mx-1">{formatDate(data?.data?.createdAt)}</span>
+          </div>
+          <span className="hidden md:block">|</span>
+          <div className="flex items-center whitespace-nowrap text-[#12B76A]">
+            <IconTruckDelivery stroke={1} />
+
+            <span> Estimated Delivery: </span>
+            <span>Feb 20, 2024</span>
+          </div>
         </div>
         <hr className="bg-black opacity-10 h-[2px] hidden md:block" />
       </div>
