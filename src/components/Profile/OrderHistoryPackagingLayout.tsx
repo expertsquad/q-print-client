@@ -7,6 +7,8 @@ import { formatDate } from "@/constants/formatDate";
 import { IconX } from "@tabler/icons-react";
 
 const OrderHistoryPackagingLayout = ({ id }: string | any) => {
+  console.log(id);
+
   // <== Get data from order history query ==>
   const { data } = useGetOnlineOrderQuery(
     `buyer.userId=${id}&orderStatus.status=Packaging`
@@ -26,7 +28,7 @@ const OrderHistoryPackagingLayout = ({ id }: string | any) => {
                 Order Id: {packagingData?.orderId}
               </span>
               <span className="text-black-opacity-60 text-sm">
-                {formatDate(packagingData?.createdAt)}
+                {formatDate(packagingData?.updatedAt)}
               </span>
             </div>
             <span className="text-[#FA8232] bg-[#FA8232] bg-opacity-10 py-1 px-2 rounded-full text-xs md:text-base">

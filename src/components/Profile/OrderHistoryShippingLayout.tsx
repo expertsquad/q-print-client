@@ -30,7 +30,7 @@ const OrderHistoryShippingLayout = ({ id }: string | any) => {
                 Order Id: {shippingData?.orderId}
               </span>
               <span className="text-black-opacity-60 text-sm">
-                {formatDate(shippingData?.createdAt)}
+                {formatDate(shippingData?.updatedAt)}
               </span>
             </div>
             <span className="text-[#5A8BF2] bg-[#5A8BF2] bg-opacity-10 py-1 px-2 rounded-full text-xs md:text-base">

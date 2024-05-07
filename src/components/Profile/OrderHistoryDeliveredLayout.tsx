@@ -14,6 +14,8 @@ const OrderHistoryDeliveredLayout = ({ id }: string | any) => {
     `buyer.userId=${id}&orderStatus.status=Delivered`
   );
 
+  console.log(data);
+
   return (
     <div>
       {data?.data?.map((deliveredData: any) => (
@@ -28,7 +30,7 @@ const OrderHistoryDeliveredLayout = ({ id }: string | any) => {
                 Order Id: {deliveredData?.orderId}
               </span>
               <span className="text-black-opacity-60 text-sm">
-                {formatDate(deliveredData?.createdAt)}
+                {formatDate(deliveredData?.updatedAt)}
               </span>
             </div>
             <span className="text-[#0D9755] bg-[#0D9755] bg-opacity-10 py-1 px-2 rounded-full text-xs md:text-base">
