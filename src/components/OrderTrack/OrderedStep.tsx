@@ -4,6 +4,13 @@ import Stepper from "./Stepper";
 import { useGetOnlineOrderByIdQuery } from "@/redux/features/online-order/online-orderApi";
 import { formatDate } from "@/constants/formatDate";
 
+interface OrderStatusType {
+  status: string;
+  time: string;
+  _id: string;
+  id: string;
+}
+
 const OrderedStep = ({ id }: { id: string }) => {
   const { data } = useGetOnlineOrderByIdQuery(id);
   const [step, setStep] = useState(0);
@@ -18,12 +25,11 @@ const OrderedStep = ({ id }: { id: string }) => {
       <Stepper
         currentStep={step}
         numberOfSteps={4}
-        iconSize={`${50} md:${40}`}
         iconStroke={2}
         customStepStyle={`relative`}
       />
-      <div className="">
-        {data?.data?.orderStatus?.map((status: any, index: number) => (
+      <div className="grid grid-cols-4">
+        {data?.data?.orderStatus?.map((status: OrderStatusType) => (
           <div key={status?._id} className="flex flex-col items-center">
             <span className="text-[11px] md:text-[16px] italic">
               {status?.status}

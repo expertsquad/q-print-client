@@ -19,12 +19,14 @@ const OrderTrackTop = ({ id }: { id: string }) => {
           <h2 className="text-black text-opacity-70 text-xl md:text-3xl font-semibold">
             Order ID: {data?.data?.orderId}
           </h2>
-          <button
-            onClick={() => setShowModal(true)}
-            className="border main-bg-color text-white font-bold py-1 w-28 rounded-md bg-transparent"
-          >
-            Cancel
-          </button>
+          {data?.data?.orderStatus?.length <= 2 && (
+            <button
+              onClick={() => setShowModal(true)}
+              className="border main-bg-color text-white font-bold py-1 w-28 rounded-md bg-transparent"
+            >
+              Cancel
+            </button>
+          )}
         </div>
         <div className="flex md:flex-row flex-col md:items-center gap-x-1 flex-wrap mb-7">
           <div className="flex items-center whitespace-nowrap">

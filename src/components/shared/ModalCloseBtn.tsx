@@ -1,4 +1,3 @@
-import { setClearReview } from "@/redux/features/review/addReviewSlice";
 import { IconX } from "@tabler/icons-react";
 
 const ModalCloseBtn = ({ handleClose, icon }: any) => {
@@ -6,7 +5,6 @@ const ModalCloseBtn = ({ handleClose, icon }: any) => {
     <button
       onClick={() => {
         handleClose();
-        // setClearReview();
       }}
       className={`${
         icon ? "" : "hover:rotate-90 transition-all print:hidden "
