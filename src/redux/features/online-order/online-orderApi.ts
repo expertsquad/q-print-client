@@ -29,8 +29,8 @@ export const onlineOrderApi = baseApi.injectEndpoints({
     cancelOrderByStatus: build.mutation({
       query: (data) => ({
         url: `/online-order/${data.id}`,
-        method: "PUT",
-        data: data.data,
+        method: "PATCH",
+        data: data,
       }),
       invalidatesTags: ["onlineOrders"],
     }),

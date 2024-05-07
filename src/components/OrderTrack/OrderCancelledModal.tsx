@@ -29,11 +29,8 @@ const OrderCancelledModal = ({ showModal, setShowModal, orderId }: any) => {
       commentOnCancellation: comment,
     };
 
-    console.log(cancelledOrderData, "Cn order");
-
     try {
       const res = await cancelOrder(cancelledOrderData);
-      console.log(res, "Cancel Order");
       if ("data" in res) {
         toast.success((res as { data: any }).data.message);
         router.push(`/profile/order-history`);
