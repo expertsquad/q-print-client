@@ -1,20 +1,31 @@
 "use client";
 import { formatDate } from "@/constants/formatDate";
 import { useGetOnlineOrderByIdQuery } from "@/redux/features/online-order/online-orderApi";
-import { IconTruckDelivery } from "@tabler/icons-react";
+import { IconTruckDelivery, IconX } from "@tabler/icons-react";
+import { useState } from "react";
+import OrderCancelledModal from "./OrderCancelledModal";
 
-const OrderTrackTop = ({ id }: any) => {
+const OrderTrackTop = ({ id }: { id: string }) => {
+  const [showModal, setShowModal] = useState(false);
+
   // <== Get Online Orders Query ==>
   const { data } = useGetOnlineOrderByIdQuery(id);
-  console.log(data?.data, "From OrderTrackTop");
 
   return (
     <section>
       {/* ===Title and Description=== */}
       <div className="mb-12">
-        <h2 className="text-black text-opacity-70 text-xl md:text-3xl font-semibold mb-5">
-          Order ID: {data?.data?.orderId}
-        </h2>
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-black text-opacity-70 text-xl md:text-3xl font-semibold">
+            Order ID: {data?.data?.orderId}
+          </h2>
+          <button
+            onClick={() => setShowModal(true)}
+            className="border main-bg-color text-white font-bold py-1 w-28 rounded-md bg-transparent"
+          >
+            Cancel
+          </button>
+        </div>
         <div className="flex md:flex-row flex-col md:items-center gap-x-1 flex-wrap mb-7">
           <div className="flex items-center whitespace-nowrap">
             <span>Order Date: </span>
@@ -30,6 +41,13 @@ const OrderTrackTop = ({ id }: any) => {
         </div>
         <hr className="bg-black opacity-10 h-[2px] hidden md:block" />
       </div>
+      {showModal && (
+        <OrderCancelledModal
+          orderId={id}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+      )}
     </section>
   );
 };

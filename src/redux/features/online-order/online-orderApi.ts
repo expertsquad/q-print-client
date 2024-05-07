@@ -25,12 +25,21 @@ export const onlineOrderApi = baseApi.injectEndpoints({
         data: data,
       }),
     }),
+    // <== Cancel Order by Status ==>
+    cancelOrderByStatus: build.mutation({
+      query: (data) => ({
+        url: `/online-order/${data.id}`,
+        method: "PUT",
+        data: data.data,
+      }),
+      invalidatesTags: ["onlineOrders"],
+    }),
   }),
 });
 
-// == Export Method ==
 export const {
   useGetOnlineOrderQuery,
   useGetOnlineOrderByIdQuery,
   useOnlineOrderPostMutation,
+  useCancelOrderByStatusMutation,
 } = onlineOrderApi;
