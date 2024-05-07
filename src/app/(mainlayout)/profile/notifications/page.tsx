@@ -9,7 +9,7 @@ import NotificationSkeleton from "@/components/shared/Skeleton/NotificationSkele
 
 const Notifications = () => {
   const { data, isLoading } = useGetNotificationsQuery("");
-  
+
   return (
     <div className="flex flex-col gap-5 border rounded-lg p-3 md:p-7 mb-14">
       <h4 className="text-xl text-black font-bold mb-2">Notification</h4>
@@ -17,7 +17,7 @@ const Notifications = () => {
 
       {
 
-       isLoading ? (
+        isLoading ? (
           [...Array(10)].map((_, index) => {
             return (
               <NotificationSkeleton key={index} />
