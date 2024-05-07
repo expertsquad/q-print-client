@@ -1,13 +1,15 @@
 import BrandsCard from "../UI/card/BrandsCard";
 import PriceRangeCard from "../UI/card/PriceRangeCard";
-import DiscountWidgetCard from "../UI/card/DiscountWidgetCard";
+import NewProductDisountCard from "../UI/card/NewProductDisountCard";
 
 const BrandLeftSideWidget = () => {
   return (
     <aside>
       <BrandsCard />
       <PriceRangeCard />
-      <DiscountWidgetCard />
+      <div className="mt-5">
+        <NewProductDisountCard />
+      </div>
     </aside>
   );
 };

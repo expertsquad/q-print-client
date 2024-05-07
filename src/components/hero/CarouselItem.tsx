@@ -35,7 +35,7 @@ const CarouselItem = ({ item, index, sliderArray }: any) => {
       id={item._id}
       style={showSlide(index)}
     >
-      <div className="flex items-center gap-5 justify-between lg:px-9 md:px-6 px-4 py-4 h-full w-full">
+      <div className="flex items-center md:gap-5 gap-3.5 justify-between lg:px-9 md:px-6 px-4 py-4 h-full w-full">
         <div className="flex flex-col w-6/12  ">
           <h3 className="font-bold main-text-color [font-size:_clamp(0.5em,60vw,0.9em)] animate-bounce">
             {item?.sliderTag}
@@ -60,14 +60,13 @@ const CarouselItem = ({ item, index, sliderArray }: any) => {
               <div
                 key={index}
                 onClick={() => handleDotClick(index)}
-                className={`indicator w-[10px] h-[10px] rounded-full cursor-pointer ${
-                  index === currentSlide ? "main-bg-color" : "bg-gray-300"
-                }`}
+                className={`indicator w-[10px] h-[10px] rounded-full cursor-pointer ${index === currentSlide ? "main-bg-color" : "bg-gray-300"
+                  }`}
               />
             ))}
           </div>
         </div>
-        <div className="relative shrink-0 w-[250px] h-[250px]">
+        <div className="relative shrink-0 md:w-[250px] md:h-[250px] w-[180px] h-[150px]">
           <Image
             src={`${imageUrl}${item?.productPhoto}`}
             alt="hero item images"

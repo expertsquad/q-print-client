@@ -5,9 +5,9 @@ import React, { useState } from "react";
 import CategoriesCard from "../card/CategoriesCard";
 import AvailabilityCard from "../card/AvailabilityCard";
 import BrandsCard from "../card/BrandsCard";
-import DiscountWidgetCard from "../card/DiscountWidgetCard";
 import PriceRangeCard from "../card/PriceRangeCard";
 import MostPopularSelectOption from "../card/MostPopularSelectOption";
+import NewProductDisountCard from "../card/NewProductDisountCard";
 
 const FilterButton = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -49,7 +49,7 @@ const FilterButton = () => {
               <PriceRangeCard />
               <AvailabilityCard />
               <BrandsCard />
-              <DiscountWidgetCard />
+              <NewProductDisountCard />
             </ul>
           </div>
         </div>

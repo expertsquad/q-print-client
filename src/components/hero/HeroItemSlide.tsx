@@ -16,12 +16,6 @@ const HeroItemSlide = ({ sliderArray, isLoading }: any) => {
             item={item}
             sliderArray={sliderArray}
           />
-          // <CarouselItemTwo
-          //   key={index}
-          //   index={index}
-          //   item={item}
-          //   sliderArray={sliderArray}
-          // />
         ))
       )}
     </div>

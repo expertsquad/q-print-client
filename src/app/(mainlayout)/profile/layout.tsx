@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
 
-   const [openMobileMenu, setOpenMobileMenu] = useState(false);
+  const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
 
   const handleMobileMenu = () => {
@@ -19,7 +19,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="hidden md:block ">
         <ProfileNav handleModal={handleMobileMenu} />
       </div>
-      <div className="md:hidden block">
+      <div className="md:hidden block  ">
         <ProfileMobileMenu openMobileMenu={openMobileMenu} setOpenDrawer={setOpenMobileMenu} handleModal={handleMobileMenu} />
       </div>
 

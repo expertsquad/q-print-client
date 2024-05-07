@@ -68,8 +68,8 @@ const ProductsWidgets = () => {
 
       <div className=" main-product-card-container">
         {
-         ! isLoading
-            ? [...Array(10)].map((_, index) => {
+          !isLoading
+            ? [...Array(12)].map((_, index) => {
               return <ProductCardSkeleton key={index} />;
             })
             : productsData?.data

@@ -12,7 +12,7 @@ const ProfileMobileMenu = ({ setOpenDrawer, handleModal, openMobileMenu }: any) 
 
   return (
     <>
-      <div onClick={() => handleModal()} className="flex items-center justify-between  border px-2.5 py-3.5 rounded-lg cursor-pointer">
+      <div onClick={() => handleModal()} className="flex bg-white items-center justify-between  border px-2.5 py-3.5 rounded-lg cursor-pointer ">
         {path === "/profile" ?
 
           <div className="flex items-center gap-3">
@@ -70,13 +70,11 @@ const ProfileMobileMenu = ({ setOpenDrawer, handleModal, openMobileMenu }: any) 
                         <span className="main-text-color text-base">Change Password</span>
                       </div>
                       : ""
-
         }
         <div>
           <IconChevronRight stroke={1} width={24} height={24} className="text-black-opacity-70" />
         </div>
       </div>
-
       {
         openMobileMenu && (
           <ProfileMobileMenuDrawer setOpenDrawer={setOpenDrawer} handleModal={handleModal} />

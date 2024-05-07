@@ -52,12 +52,12 @@ const BrandProductGridView = () => {
             Results found.
           </p>
         </div>
-        <div className="lg:block md:block hidden">
+        <div className=" md:block hidden">
           <select
             title="Category Name"
             name={"category"}
             id=""
-            className="border outline-none"
+            className="border outline-none px-4 py-3 rounded-md"
             value={category}
             onChange={(e) => dispatch(setCategory(e.target.value))}
           >

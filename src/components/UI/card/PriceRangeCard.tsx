@@ -32,7 +32,7 @@ const PriceRangeCard = () => {
   }
 
   const { minimumPrice, maximumPrice } = findMinMaxPrices(products);
-  console.log(minimumPrice, maximumPrice, "Filtered");
+
 
   const [range, setRange] = useState([
     priceRange.minPrice,
