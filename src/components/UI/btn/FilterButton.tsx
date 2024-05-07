@@ -49,7 +49,7 @@ const FilterButton = () => {
               <PriceRangeCard />
               <AvailabilityCard />
               <BrandsCard />
-              <NewProductDisountCard />
+              {/* <NewProductDisountCard /> */}
             </ul>
           </div>
         </div>
