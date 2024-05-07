@@ -15,6 +15,9 @@ import playStore from "@/assets/playstore.svg";
 import appleStore from "@/assets/applestore.svg";
 
 const Footer = () => {
+
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="bg-[#1A1A1A] p-6 ">
       <div className="space-y-5 md:grid md:grid-cols-3 items-center justify-center md:items-start relative text-center py-5 gap-5 md:max-w-[1280px] mx-auto">
@@ -23,9 +26,7 @@ const Footer = () => {
             <Logo />
           </div>
           <p className="text-sm text-[#999] lg:text-justify">
-            Lorem ipsum dolor sit amet consectetur. Imperdiet aliquet faucibus
-            malesuada vitae. Amet imperdiet pulvinar blandit pulvinar. Quam
-            consectetur aliquam sit libero eu ultrices sed
+            Welcome to Q Print, your one-stop destination for all your printing needs! From business cards to banners, weve got you covered with high-quality printing solutions. Browse our wide selection of products and services, including custom designs and fast turnaround times. At Q Print, were committed to excellence in both print quality and customer service. Let us help bring your ideas to life. Explore our website today and experience the ease and convenience of printing with Q Print.
           </p>
         </div>
         {/* //Footer Links */}
@@ -109,7 +110,7 @@ const Footer = () => {
             </div>
           </div>
           <p className="text-[#999] text-center md:text-start">
-            Q-Print eCommerce © 2022. All Rights Reserved
+            Q-Print eCommerce © {`${currentYear}`}. All Rights Reserved
           </p>
         </div>
       </div>

@@ -70,7 +70,7 @@ const TabProductView = () => {
               See all &rarr;
             </Link>
 
-            <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-between flex-wrap gap-5 ">
+            <div className="main-product-card-container">
               {
                 loadingTopSelling ? (
                   [...Array(8)].map((_, index) => {
@@ -98,7 +98,7 @@ const TabProductView = () => {
               {" "}
               See all &rarr;
             </Link>
-            <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-5 ">
+            <div className="main-product-card-container">
               {
                 loadingMostPopular
                   ? (
@@ -126,7 +126,7 @@ const TabProductView = () => {
               {" "}
               See all &rarr;
             </Link>
-            <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-5 ">
+            <div className="main-product-card-container ">
               {
                 loadingNewProduct ? (
                   [...Array(8)].map((_, index) => {

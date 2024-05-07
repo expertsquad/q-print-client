@@ -33,13 +33,13 @@ const ExploreNew = () => {
       </div>
 
       {isLoading ? (
-        <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-between flex-wrap gap-5">
+        <div className="main-product-card-container">
           {[...Array(10)].map((_, index) => {
             return <ProductCardSkeleton key={index} />;
           })}
         </div>
       ) : (
-        <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-between flex-wrap gap-5">
+        <div className="main-product-card-container">
           {data?.data?.slice(0, visibleProducts)?.map((product: IProduct) => (
             <div key={product?._id}>
               <ProductCard product={product} />

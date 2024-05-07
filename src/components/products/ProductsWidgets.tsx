@@ -66,12 +66,13 @@ const ProductsWidgets = () => {
         </div>
       </div>
 
-      <div className="w-full md:place-items-start place-items-center flex items-center justify-center md:justify-between flex-wrap gap-5">
-        {isLoading
-          ? [...Array(10)].map((_, index) => {
+      <div className=" main-product-card-container">
+        {
+         ! isLoading
+            ? [...Array(10)].map((_, index) => {
               return <ProductCardSkeleton key={index} />;
             })
-          : productsData?.data
+            : productsData?.data
               ?.slice(0, visibleProducts)
               .map((product: IProduct) => (
                 <div key={product?._id}>

@@ -18,10 +18,12 @@
 
 /* main product card design start */
 
-.main-product-card {
+.main-product-card-container {
+  overflow-y: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 16px;
+  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(400px, 1fr));
 }
 
 /* main border color */
@@ -237,6 +239,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .logos {
   display: flex;
 }
+
 .logos:hover .logos-slide {
   animation-play-state: paused;
 }
@@ -250,14 +253,17 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 50px;
   margin: 0 70px;
 }
+
 @keyframes slide {
   from {
     transform: translateX(0%);
   }
+
   to {
     transform: translateX(-100%);
   }
 }
+
 @media (min-width: 768px) {
   .md\:order-packaging-shipped-order-placed-card-style {
     display: grid;
@@ -270,6 +276,7 @@ input[type="number"]::-webkit-outer-spin-button {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+
 .logos-slide img {
   height: 30px;
   margin: 0 30px;

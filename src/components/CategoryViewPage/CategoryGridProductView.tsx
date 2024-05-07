@@ -5,6 +5,7 @@ import MostPopularSelectOption from "../UI/card/MostPopularSelectOption";
 import { useGetProductsQuery } from "@/redux/features/products/productsApi";
 import ProductCard from "../product/ProductCard";
 import { IProduct } from "@/types/productsType";
+import ProductCardSkeleton from "../shared/Skeleton/ProductCardSkeleton";
 
 const CategoryGridProductView = () => {
   const { options } = useAppSelector((state) => state.categoryOption);
@@ -18,17 +19,16 @@ const CategoryGridProductView = () => {
     minPrice: number,
     maxPrice: number
   ) {
-    const queryString = `sortBy=${sortBy}&sortOrder=${sortOrder}&${
-      minPrice &&
+    const queryString = `sortBy=${sortBy}&sortOrder=${sortOrder}&${minPrice &&
       maxPrice &&
       `variants.sellingPrice[gte]=${minPrice}&variants.sellingPrice[lte]=${maxPrice}`
-    }`;
+      }`;
 
     return useGetProductsQuery(queryString);
   }
 
   // <== Most Popular ==>
-  const { data: mostPopular } = useGetProductsSortedQuery(
+  const { data: mostPopular, isLoading } = useGetProductsSortedQuery(
     "averageRating",
     "desc",
     minPrice,
@@ -91,10 +91,16 @@ const CategoryGridProductView = () => {
         </div>
       </div>
 
-      <div className="mt-6 w-full md:place-items-start place-items-center flex items-center justify-center md:justify-between flex-wrap gap-5">
-        {productsData?.data?.map((product: IProduct) => (
-          <ProductCard key={product?._id} product={product} />
-        ))}
+      <div className="my-6 main-product-card-container">
+        {
+          isLoading
+            ? [...Array(12)].map((_, index) => {
+              return <ProductCardSkeleton key={index} />;
+            })
+            :
+            productsData?.data?.map((product: IProduct) => (
+              <ProductCard key={product?._id} product={product} />
+            ))}
       </div>
     </div>
   );

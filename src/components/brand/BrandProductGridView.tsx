@@ -22,12 +22,10 @@ const BrandProductGridView = () => {
 
   // <== Brand and Category filtered products ==>
   const { data: filteredProducts, isLoading } = useGetProductsQuery(
-    `category.categoryName=${category}&${
-      brandName && `&brand.brandName=${brandName}`
-    }&${
-      minPrice &&
-      maxPrice &&
-      `variants.sellingPrice[gte]=${minPrice}&variants.sellingPrice[lte]=${maxPrice}`
+    `category.categoryName=${category}&${brandName && `&brand.brandName=${brandName}`
+    }&${minPrice &&
+    maxPrice &&
+    `variants.sellingPrice[gte]=${minPrice}&variants.sellingPrice[lte]=${maxPrice}`
     }`
   );
 
@@ -76,14 +74,14 @@ const BrandProductGridView = () => {
         </div>
       </div>
 
-      <div className="mt-6 flex items-center justify-between flex-wrap  gap-y-5">
+      <div className="my-6 main-product-card-container">
         {isLoading
           ? [...Array(12)].map((_, index) => {
-              return <ProductCardSkeleton key={index} />;
-            })
+            return <ProductCardSkeleton key={index} />;
+          })
           : filteredProducts?.data?.map((product: any) => (
-              <ProductCard key={product?._id} product={product} />
-            ))}
+            <ProductCard key={product?._id} product={product} />
+          ))}
       </div>
     </div>
   );

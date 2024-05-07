@@ -41,24 +41,26 @@ const ProductCard = ({ product, loading }: any) => {
   return (
     <div
       onClick={handleViewProduct}
-      className="border hover:border-fuchsia-700 rounded-custom-10px p-4 group max-w-[300px] w-[300px] h-[405px] max-h-max cursor-pointer"
+      className="border hover:border-fuchsia-700 rounded-custom-10px p-4 group w-[calc(300px, 32vw, 184px)] md:min-h-[400px] min-h-[300px] cursor-pointer transition-all"
     >
       <div>
         <ProductImageSlide loading={loading} product={product} defaultVariant={defaultVariant} />
       </div>
 
       <div className="mt-4 pt-4 border-t">
-        <h3 className="[font-size:_clamp(0.7em,4vw,1em)] line-clamp-2 mb-2">
-          {product?.productName}
-        </h3>
-        <p className=" text-gray-500 [font-size:_clamp(0.5em,4vw,0.8em)] mb-1">
-          {" "}
-          {product?.brand?.brandName}
-        </p>
+        <div className="flex flex-col gap-[5px]">
+          <h3 className="[font-size:_clamp(0.7em,4vw,1em)] line-clamp-1 ">
+            {product?.productName}
+          </h3>
+          <span className=" text-gray-500 [font-size:_clamp(0.5em,4vw,0.8em)] ">
+            {" "}
+            {product?.brand?.brandName}
+          </span>
 
-        <StarRating rating={Math.round(product?.averageRating)} />
+          <StarRating rating={Math.round(product?.averageRating)} />
+        </div>
 
-        <div className="flex items-baseline justify-start gap-2 my-1 whitespace-nowrap">
+        <div className="flex items-baseline justify-start gap-2 my-3.5 whitespace-nowrap">
           <h4 className="[font-size:_clamp(0.6em,4vw,1.1em)] main-text-color font-bold">
             {defaultVariant?.discountedPrice || defaultVariant?.sellingPrice}{" "}
             QAR

@@ -16,13 +16,13 @@ const AddToCartButton: React.FC<IAddTOCartButton> = ({
   return (
     <button
       onClick={onClick}
-      className={`${className} bg-[#F2F2F2] w-full px-2 md:px-3 lg:px-3 py-2 rounded-lg group-hover:bg-gradient-to-l from-[#C83B62] to-[#7F35CD] flex items-center justify-center gap-1 md:gap-2 lg:gap-2 group-hover:text-white [font-size:_clamp(0.8em,4vw,1em)]`}
+      className={`${className} bg-[#F2F2F2] w-full px-2 md:px-3  py-2 rounded group-hover:bg-gradient-to-l from-[#C83B62] to-[#7F35CD] flex items-center justify-center gap-1 md:gap-2  group-hover:text-white [font-size:_clamp(0.8em,4vw,1em)] transition-all`}
     >
-      <span className="text-gray-600 group-hover:text-white ">
+      <span className=" group-hover:text-white transition-all ">
         {" "}
-        <IconShoppingBag className="md:h-5 md:w-5 lg:h-5 lg:w-5 h-4 w-4" />
+        <IconShoppingBag className="md:h-5 md:w-5  h-4 w-4" />
       </span>{" "}
-      Add To Cart
+      <span className="text-black group-hover:text-white transition-all">Add To Cart</span>
     </button>
   );
 };

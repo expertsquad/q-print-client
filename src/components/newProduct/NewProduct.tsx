@@ -30,7 +30,7 @@ const NewProduct = () => {
             </Link>
           </div>
         </div>
-        <div className="w-full md:place-items-start place-items-center flex items-center gap-y-5 justify-center md:justify-between flex-wrap">
+        <div className="main-product-card-container">
           {
             isLoading ? (
               [...Array(3)].map((_, index) => {
