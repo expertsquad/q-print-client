@@ -20,27 +20,26 @@ interface IProfileNav {
   href: string;
 }
 
-const ProfileNav = () => {
+const ProfileNav = ({handleModal}:any) => {
   const pathName = usePathname();
 
   return (
-    <div className="flex items-center justify-center flex-col border rounded-lg gap-2  overflow-hidden md:w-[300px] w-full">
+    <div className="flex items-center justify-center flex-col md:border md:rounded-lg gap-2 md:sticky md:top-52  overflow-hidden md:w-[300px] w-full">
       {profileNav?.map((profileNav: IProfileNav) => (
         <Link
+          onClick={() => handleModal()}
           href={profileNav?.href}
-          className={`${
-            pathName === profileNav?.href
-              ? "text-textColor w-full px-5 py-3 bg-gradient-to-r from-pink-50 to-purple-50 group "
-              : "list-none  w-full px-5 py-3  "
-          }`}
+          className={`${pathName === profileNav?.href
+            ? "text-textColor w-full px-5 py-3 bg-gradient-to-r from-pink-50 to-purple-50 group "
+            : "list-none  w-full px-5 py-3  "
+            }`}
           key={profileNav?.key}
         >
           <div
-            className={`${
-              pathName === profileNav?.href
-                ? "text-fuchsia-700 flex gap-2 "
-                : "flex gap-2 text-gray-400 "
-            }`}
+            className={`${pathName === profileNav?.href
+              ? "text-fuchsia-700 flex gap-2 "
+              : "flex gap-2 text-gray-400 "
+              }`}
           >
             {" "}
             <span className="  ">

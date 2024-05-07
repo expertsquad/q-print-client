@@ -66,7 +66,7 @@ const Header = () => {
 
           <CustomInput
             placeholder="Search For Products"
-            inputStyle="w-full rounded-full"
+            inputStyle="w-full rounded-[200px]"
             value={searchValue}
             onChange={handleSearchInputChange}
           />
