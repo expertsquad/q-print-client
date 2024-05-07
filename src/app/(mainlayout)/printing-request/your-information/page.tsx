@@ -35,10 +35,10 @@ const YourInformation = () => {
   const data = useAppSelector((state) => state.printingRequestOrder);
 
   const handleSubmit = async (e: any) => {
+    console.log("clicked");
     e.preventDefault();
     try {
       const res = await addShipping(data?.shippingAddress);
-      console.log(res, "from res");
     } catch {}
   };
 
@@ -123,7 +123,7 @@ const YourInformation = () => {
                       <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
                     )}
                   </div>
-                  <span className="ml-2">Same as shipping address</span>
+                  <span className="ml-2">Add New Address</span>
                   <input
                     type="radio"
                     value="address"

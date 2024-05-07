@@ -3,6 +3,8 @@ import BillingAddress from "@/components/PrintingRequest/BillingAddress";
 import EditButton from "@/components/PrintingRequest/EditButton";
 import PaymentMethod from "@/components/PrintingRequest/PaymentMethod";
 import PringtingRequestOrderCard from "@/components/PrintingRequest/PringtingRequestOrderCard";
+import PrintingRequestTotalOrderCard from "@/components/PrintingRequest/PrintingRequestTotalOrderCard";
+import { useAddPrintingMutation } from "@/redux/features/printing-request/printingRequestApi";
 import {
   useGetUserAddressQuery,
   useGetUserQuery,
@@ -15,8 +17,8 @@ import { IconMapPin } from "@tabler/icons-react";
 const Payment = () => {
   // <== Get User Personal Information ==>
   const { data: personalInformation } = useGetUserQuery("");
-
   const data = useAppSelector((state) => state.printingRequestOrder);
+
   return (
     <section className="lg:max-w-[1280px] w-full mx-auto  mb-7 ">
       <div className="mb-7">
@@ -80,10 +82,7 @@ const Payment = () => {
         </div>
 
         <div className="w-full md:w-4/12 ">
-          <PringtingRequestOrderCard
-            buttonText={"Place Order"}
-            href={"order-places"}
-          />
+          <PrintingRequestTotalOrderCard buttonText={"Place Order"} />
         </div>
       </div>
     </section>

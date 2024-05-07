@@ -25,7 +25,7 @@ const PrintingRequest = () => {
 
   // <== get uploaded file fn ==>
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0] || null;
+    const file = event.target.files?.[0];
     if (file) {
       dispatch(
         setPrintingRequest({
@@ -141,7 +141,7 @@ const PrintingRequest = () => {
                   accept="image/*"
                 />{" "}
                 <GradientUploadIcon />
-                file upload
+                File upload
               </label>
             </div>
             {data?.printingRequestFile?.name && (
