@@ -120,10 +120,11 @@ const ProductImageSlide = ({ product, defaultVariant, loading }: any) => {
                       e.stopPropagation();
                       handleDotClick(dotIndex);
                     }}
-                    className={`indicator w-[6px] h-[6px] rounded-full cursor-pointer ${dotIndex === currentSlide
-                      ? "main-bg-color"
-                      : "bg-gray-300"
-                      }`}
+                    className={`indicator w-[6px] h-[6px] rounded-full cursor-pointer ${
+                      dotIndex === currentSlide
+                        ? "main-bg-color"
+                        : "bg-gray-300"
+                    }`}
                   />
                 ))}
               </div>
@@ -151,6 +152,7 @@ const ProductImageSlide = ({ product, defaultVariant, loading }: any) => {
       <QuickProductViewModal
         handleCloseModal={handleCloseModal}
         showModal={showModal}
+        id={product._id}
       />
     </section>
   );

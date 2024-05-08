@@ -16,6 +16,7 @@ import filterProductReview from "./features/review/filterProductReview";
 import profileEditSlice from "./features/user/profileEditSlice";
 import multipleOrder from "./features/quick-order/multipleQuickOrder";
 import forgetPasswordSlice from "./features/forgetPassword/forgetPasswordSlice";
+import filterProducts from "./features/products/filterProducts";
 
 export const reducer = {
   [baseApi.reducerPath]: baseApi.reducer,
@@ -23,6 +24,7 @@ export const reducer = {
   login: loginSlice,
   addReview: addReviewSlice,
   categoryOption: categoryFilterSlice,
+  productsFilterOptions: filterProducts,
   productByCategory: productsByCategorySlice,
   productByBrandName: brandNameSlice,
   priceRangeSlice: FilterByPriceSlice,
