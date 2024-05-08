@@ -19,7 +19,7 @@ export const printingRequestApi = baseApi.injectEndpoints({
     }),
     printingRequestById: build.query({
       query: (data) => ({
-        url: "/printing-request/660ec8f6e1d99e7fdccc7d25",
+        url: `/printing-request/${data}`,
         method: "GET",
       }),
       providesTags: ["printingRequests"],

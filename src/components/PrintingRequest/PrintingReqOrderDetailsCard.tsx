@@ -1,13 +1,14 @@
 "use client";
 import { usePrintingRequestByIdQuery } from "@/redux/features/printing-request/printing-request";
-import ThankYouPageContact from "./ThankYouPage/ThankYouPageContact";
-import ThankYouPageOrderInfo from "./ThankYouPage/ThankYouPageOrderInfo";
+import PrintingReqThankYouPageContact from "./ThankYouPage/PrintingReqThankYouPageContact";
+import PrintingReqThankYouPageOrderInfo from "./ThankYouPage/PrintingReqThankYouPageOrderInfo";
 
-const OrderDetailsCard = () => {
+const PrintingReqOrderDetailsCard = ({ id }: { id: string }) => {
   // <== get printing request ordered items ==>
-  const { data } = usePrintingRequestByIdQuery("");
+  const { data } = usePrintingRequestByIdQuery(`${id}`);
 
   const printingOrderInfo = data?.data;
+  console.log(printingOrderInfo, "Hello page");
 
   return (
     <div className="flex flex-col gap-5">
@@ -15,7 +16,7 @@ const OrderDetailsCard = () => {
         Order Details
       </h2>
 
-      <ThankYouPageOrderInfo
+      <PrintingReqThankYouPageOrderInfo
         orderId={printingOrderInfo?.orderId}
         createdAt={printingOrderInfo?.createdAt}
         totalPayable={printingOrderInfo?.totalPayable}
@@ -26,7 +27,7 @@ const OrderDetailsCard = () => {
         printingRequestFile={printingOrderInfo?.printingRequestFile}
       />
 
-      <ThankYouPageContact
+      <PrintingReqThankYouPageContact
         contact={printingOrderInfo?.buyer?.email}
         payment={printingOrderInfo?.payment?.paymentGateway}
         streetAddress={printingOrderInfo?.buyer?.shippingAddress?.streetAddress}
@@ -35,4 +36,4 @@ const OrderDetailsCard = () => {
   );
 };
 
-export default OrderDetailsCard;
+export default PrintingReqOrderDetailsCard;

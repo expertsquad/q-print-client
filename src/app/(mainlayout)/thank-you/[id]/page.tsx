@@ -7,13 +7,13 @@ import { IconInfoCircle } from "@tabler/icons-react";
 import Link from "next/link";
 import React from "react";
 
-const ThankYou = ({ params }: { params: string }) => {
+const ThankYou = ({ params }: { params: { id: string } }) => {
   //@ts-ignore
-  const { data } = useGetOnlineOrderByIdQuery(params?.id);
+  const { data } = useGetOnlineOrderByIdQuery(params.id);
   const onlineOrder = data?.data;
   return (
     <div className="max-w-[800px] mx-auto">
-      <ThankYouPageTop id={params?.id} />
+      <ThankYouPageTop id={params.id} />
       <span className="flex items-center justify-center font-bold text-2xl mb-5">
         Order Details
       </span>
