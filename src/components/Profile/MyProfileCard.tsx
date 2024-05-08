@@ -99,7 +99,7 @@ const MyProfileCard = () => {
                     src={
                       isLoading
                         ? personPlaceholder
-                        : `${imageUrl}${imageUrl + data?.data?.profilePhoto}`
+                        : `${imageUrl + data?.data?.profilePhoto}`
                     }
                     alt="My profile image"
                     height={100}
