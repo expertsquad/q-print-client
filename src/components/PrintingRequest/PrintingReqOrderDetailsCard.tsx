@@ -8,7 +8,6 @@ const PrintingReqOrderDetailsCard = ({ id }: { id: string }) => {
   const { data } = usePrintingRequestByIdQuery(`${id}`);
 
   const printingOrderInfo = data?.data;
-  console.log(printingOrderInfo, "Hello page");
 
   return (
     <div className="flex flex-col gap-5">
