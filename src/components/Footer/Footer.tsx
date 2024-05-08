@@ -57,7 +57,8 @@ const Footer = () => {
           />
         </div>
         <div>
-          <div className="flex gap-y-5 gap-x-5 py-10 md:flex-col items-center justify-center">
+          <div className="flex gap-y-5 gap-x-5 py-10 md:flex-col md:items-end md:justify-end items-center
+          justify-center">
             <CombinedComponent
               type="store"
               storeImageSrc={playStore}

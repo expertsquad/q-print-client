@@ -53,7 +53,7 @@ const CombinedComponent: React.FC<CombinedComponentProps> = ({
 
   if (type === "store") {
     return (
-      <div className="flex items-center justify-between flex-1 rounded-lg bg-[#000] text-white-color text-left py-4 md:py-3 px-3 md:w-40">
+      <div className="flex items-center max-w-[165px] justify-between flex-1 rounded-lg bg-[#000] text-white-color text-left py-4 md:py-3 px-3 md:w-40">
         <div className="mx-h-8">
           {storeImageSrc && (
             <Image
