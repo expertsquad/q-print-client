@@ -30,8 +30,8 @@ const OrderHistoryShippingLayout = ({ id }: string | any) => {
             <div
               key={shippingData?._id}
               className={`${data?.data?.length > 1
-                  ? "mb-5 border rounded-md p-4 md:p-[30px]"
-                  : "mb-5 border rounded-md p-4 md:p-[30px]"
+                ? "mb-5 border rounded-md p-4 md:p-[30px]"
+                : "mb-5 border rounded-md p-4 md:p-[30px]"
                 }`}
             >
               {/* == Basic Information == */}

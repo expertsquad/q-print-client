@@ -1,7 +1,6 @@
 "use client";
 import HeroItemSliderSkeleton from "../shared/Skeleton/HeroItemSliderSkeleton";
 import CarouselItem from "./CarouselItem";
-import CarouselItemTwo from "./CarouselItemTwo";
 
 const HeroItemSlide = ({ sliderArray, isLoading }: any) => {
   return (

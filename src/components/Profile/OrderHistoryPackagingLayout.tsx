@@ -9,6 +9,8 @@ import OrderHistorySkeleton from "@/components/shared/Skeleton/OrderHistorySkele
 
 
 const OrderHistoryPackagingLayout = ({ id }: string | any) => {
+  console.log(id);
+
   // <== Get data from order history query ==>
   const { data, isLoading } = useGetOnlineOrderQuery(
     `buyer.userId=${id}&orderStatus.status=Packaging`

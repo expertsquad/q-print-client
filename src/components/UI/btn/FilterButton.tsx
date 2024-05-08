@@ -9,7 +9,7 @@ import PriceRangeCard from "../card/PriceRangeCard";
 import MostPopularSelectOption from "../card/MostPopularSelectOption";
 import NewProductDisountCard from "../card/NewProductDisountCard";
 
-const FilterButton = () => {
+const FilterButton = ({ brandProductGridView }: any) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleButtonClick = () => {
@@ -41,15 +41,16 @@ const FilterButton = () => {
               aria-label="close sidebar"
               className="drawer-overlay"
             ></label>
-            <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+            <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content [&>:nth-child(3)]:order-3 md:[&>:nth-child(3)]:order-none">
               {/* Sidebar content here */}
 
               <MostPopularSelectOption />
-              <CategoriesCard />
+              {brandProductGridView ? null : <CategoriesCard />}
               <PriceRangeCard />
-              <AvailabilityCard />
+              {/* <AvailabilityCard /> */}
               <BrandsCard />
               {/* <NewProductDisountCard /> */}
+              {/* <DiscountWidgetCard /> */}
             </ul>
           </div>
         </div>

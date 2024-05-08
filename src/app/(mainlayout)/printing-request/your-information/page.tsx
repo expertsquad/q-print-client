@@ -35,10 +35,10 @@ const YourInformation = () => {
   const data = useAppSelector((state) => state.printingRequestOrder);
 
   const handleSubmit = async (e: any) => {
+    console.log("clicked");
     e.preventDefault();
     try {
       const res = await addShipping(data?.shippingAddress);
-      console.log(res, "from res");
     } catch {}
   };
 
@@ -75,13 +75,18 @@ const YourInformation = () => {
                   type="email"
                   value={personalInformation?.data?.email}
                   placeholder="Enter Your Email"
-                  disabled={"disabled"}
+                  customClassName="opacity-80 "
+                  inputStyle="focus:border-gray-200"
+                  readonly
                 />
                 <CustomInput
                   label="Phone Number"
                   type="number"
                   value={personalInformation?.data?.phoneNumber}
                   placeholder="Enter Your Number"
+                  customClassName="opacity-80 "
+                  inputStyle="focus:border-gray-200"
+                  readonly
                 />
               </div>
 
@@ -118,7 +123,7 @@ const YourInformation = () => {
                       <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
                     )}
                   </div>
-                  <span className="ml-2">Same as shipping address</span>
+                  <span className="ml-2">Add New Address</span>
                   <input
                     type="radio"
                     value="address"

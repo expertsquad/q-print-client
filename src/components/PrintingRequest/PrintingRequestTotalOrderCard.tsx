@@ -1,19 +1,20 @@
 import { useGetShippingQuery } from "@/redux/features/api/shipping/shippingApi";
 import { setPrintingRequest } from "@/redux/features/printing-request/postPrintingRequestSlice";
+import { useAddPrintingMutation } from "@/redux/features/printing-request/printingRequestApi";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { IconPlus } from "@tabler/icons-react";
 import { IconMinus } from "@tabler/icons-react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
-const PringtingRequestOrderCard = ({ href, buttonText, handleSubmit }: any) => {
+const PrintingRequestTotalOrderCard = ({ buttonText }: any) => {
   const data = useAppSelector((state) => state.printingRequestOrder);
   const getShipping = useGetShippingQuery("");
-
+  const [addPrinting] = useAddPrintingMutation();
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const calculateHeightWidth = data?.paperSize?.height * data?.paperSize?.width;
-
   const heightWidthMultiplyByType = calculateHeightWidth * data?.paperTypePrice;
 
   const heightWidthMultiplyMode =
@@ -22,6 +23,38 @@ const PringtingRequestOrderCard = ({ href, buttonText, handleSubmit }: any) => {
   const totalAmount = heightWidthMultiplyByType + heightWidthMultiplyMode;
 
   const totalAmountWithQuantity = totalAmount * data?.totalQuantity;
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    formData.append("payment", JSON.stringify(data?.payment || {}));
+    formData.append(
+      "shippingAddress",
+      JSON.stringify(data?.shippingAddress || {})
+    );
+    formData.append("paperSize", JSON.stringify(data?.paperSize || {}));
+    formData.append("printingColorModeId", data?.printingColorModeId || "");
+    formData.append("paperTypeId", data?.paperTypeId || "");
+    formData.append("totalQuantity", (data?.totalQuantity || 0).toString());
+
+    if (data?.printingRequestFile) {
+      formData.append("printingRequestFile", data?.printingRequestFile);
+    }
+
+    try {
+      const res = await addPrinting(formData);
+      console.log(res);
+      // @ts-ignore
+      if (res?.data) {
+        // @ts-ignore
+        router.push(res?.data?.data?.resultObj?.payUrl);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className=" border rounded-lg pb-5 mb-5">
@@ -74,7 +107,7 @@ const PringtingRequestOrderCard = ({ href, buttonText, handleSubmit }: any) => {
       <div className="flex justify-between items-center px-5 py-4   ">
         <small className="text-base text-gray-500">Printing Price</small>{" "}
         <p className="text-lg font-medium text-gray-800">
-          {totalAmountWithQuantity || 0} QAR
+          {totalAmountWithQuantity} QAR
         </p>
       </div>
       {/* delivery Charge */}
@@ -86,7 +119,7 @@ const PringtingRequestOrderCard = ({ href, buttonText, handleSubmit }: any) => {
       <div className="flex justify-between items-center px-5 py-4 border-t">
         <small className="text-lg font-medium text-gray-900">Total</small>{" "}
         <p className=" text-[22px]  font-bold bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-transparent bg-clip-text">
-          {totalAmountWithQuantity + deliveryCharge || 0} QAR
+          {totalAmountWithQuantity + deliveryCharge} QAR
         </p>
       </div>
 
@@ -94,8 +127,7 @@ const PringtingRequestOrderCard = ({ href, buttonText, handleSubmit }: any) => {
         onSubmit={handleSubmit}
         className="flex justify-center items-center px-5 py-4   "
       >
-        <Link
-          href={`${href}`}
+        <button
           className={`bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white  shadow-sm hover:duration-500 hover:shadow-lg text-center ${
             totalAmountWithQuantity
               ? "cursor-pointer"
@@ -103,10 +135,10 @@ const PringtingRequestOrderCard = ({ href, buttonText, handleSubmit }: any) => {
           }`}
         >
           {buttonText}
-        </Link>
+        </button>
       </form>
     </div>
   );
 };
 
-export default PringtingRequestOrderCard;
+export default PrintingRequestTotalOrderCard;

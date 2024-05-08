@@ -1,57 +1,71 @@
-"use client";
-import { useGetOnlineOrderQuery } from "@/redux/features/online-order/online-orderApi";
+"use client"
 import React from "react";
-import OrderTrackButton from "./OrderTrackButton";
+import { useGetOnlineOrderQuery } from "@/redux/features/online-order/online-orderApi";
 import Image from "next/image";
 import { imageUrl } from "@/constants/imageUrl";
-import ProductReviewModal from "./ProductReviewModal";
 import { formatDate } from "@/constants/formatDate";
 import { IconX } from "@tabler/icons-react";
 import OrderHistorySkeleton from "@/components/shared/Skeleton/OrderHistorySkeleton";
+import OrderTrackButton from "./OrderTrackButton";
+import ProductReviewModal from "./ProductReviewModal";
 
-
-const OrderHistoryDeliveredLayout = ({ id }: string | any) => {
+const OrderHistoryDeliveredLayout = ({ id }: { id: string }) => {
   // <== Get data from order history query ==>
   const { data, isLoading } = useGetOnlineOrderQuery(
     `buyer.userId=${id}&orderStatus.status=Delivered`
   );
 
+  console.log(data);
+
   return (
     <div>
-      {
-
-        isLoading ? (
-
-          [...Array(2)].map((_: any, index: number) => {
-            return (
-              <OrderHistorySkeleton key={index} />
-            )
-          })
-
-        ) :
-
-          data?.data?.map((deliveredData: any) => (
-            <div
-              key={deliveredData?._id}
-              className={`mb-5 border rounded-md p-4 md:p-[30px]`}
-            >
-              {/* == Basic Information == */}
-              <div className="flex items-baseline justify-between pb-3.5 md:pb-7 border-b mb-3.5 md:mb-7">
-                <div className="flex flex-col">
-                  <span className="font-semibold text-xs md:text-base">
-                    Order Id: {deliveredData?.orderId}
-                  </span>
-                  <span className="text-black-opacity-60 text-sm">
-                    {formatDate(deliveredData?.createdAt)}
-                  </span>
-                </div>
-                <span className="text-[#0D9755] bg-[#0D9755] bg-opacity-10 py-1 px-2 rounded-full text-xs md:text-base">
-                  {deliveredData?.orderStatus?.status === "Delivered" &&
-                    "Order Received"}
+      {isLoading ? (
+        [...Array(2)].map((_: any, index: number) => {
+          return <OrderHistorySkeleton key={index} />;
+        })
+      ) : (
+        data?.data?.map((deliveredData: any) => (
+          <div
+            key={deliveredData?._id}
+            className={`mb-5 border rounded-md p-4 md:p-[30px]`}
+          >
+            {/* == Basic Information == */}
+            <div className="flex items-baseline justify-between pb-3.5 md:pb-7 border-b mb-3.5 md:mb-7">
+              <div className="flex flex-col">
+                <span className="font-semibold text-xs md:text-base">
+                  Order Id: {deliveredData?.orderId}
+                </span>
+                <span className="text-black-opacity-60 text-sm">
+                  {formatDate(deliveredData?.updatedAt)}
                 </span>
               </div>
-              {/* == Delivered Items == */}
-              {deliveredData?.orderItems?.map((product: any) => (
+              <span className="text-[#0D9755] bg-[#0D9755] bg-opacity-10 py-1 px-2 rounded-full text-xs md:text-base">
+                {deliveredData?.orderStatus?.status === "Delivered" &&
+                  "Order Received"}
+              </span>
+            </div>
+            {/* == Delivered Items == */}
+            {deliveredData?.orderItems?.map((product: any) => (
+              <div
+                key={product?._id}
+                className={`mb-5 border rounded-md p-4 md:p-[30px]`}
+              >
+                {/* == Basic Information == */}
+                <div className="flex items-baseline justify-between pb-3.5 md:pb-7 border-b mb-3.5 md:mb-7">
+                  <div className="flex flex-col">
+                    <span className="font-semibold text-xs md:text-base">
+                      Order Id: {deliveredData?.orderId}
+                    </span>
+                    <span className="text-black-opacity-60 text-sm">
+                      {formatDate(deliveredData?.createdAt)}
+                    </span>
+                  </div>
+                  <span className="text-[#0D9755] bg-[#0D9755] bg-opacity-10 py-1 px-2 rounded-full text-xs md:text-base">
+                    {deliveredData?.orderStatus?.status === "Delivered" &&
+                      "Order Received"}
+                  </span>
+                </div>
+                {/* == Delivered Items == */}
                 <div
                   key={product?._id}
                   className="flex md:order-delivered-card-style mb-3.5 md:mb-7"
@@ -111,22 +125,24 @@ const OrderHistoryDeliveredLayout = ({ id }: string | any) => {
                     />
                   </div>
                 </div>
-              ))}
-              {/* == Summary == */}
-              <div className="flex items-center justify-between border-t border-dashed pt-3.5 md:pt-6">
-                <div className="flex items-center gap-1">
-                  <span className="md:text-base text-sm">
-                    {deliveredData?.orderItems?.length} Items,
-                  </span>
-                  <span className="text-sm md:text-base">
-                    Total: <b className="font-bold">{deliveredData?.totalPrice}</b>
-                    QAR
-                  </span>
-                </div>
-                <OrderTrackButton id={deliveredData?._id} />
               </div>
+            ))}
+            {/* == Summary == */}
+            <div className="flex items-center justify-between border-t border-dashed pt-3.5 md:pt-6">
+              <div className="flex items-center gap-1">
+                <span className="md:text-base text-sm">
+                  {deliveredData?.orderItems?.length} Items,
+                </span>
+                <span className="text-sm md:text-base">
+                  Total: <b className="font-bold">{deliveredData?.totalPrice}</b>
+                  QAR
+                </span>
+              </div>
+              <OrderTrackButton id={deliveredData?._id} />
             </div>
-          ))}
+          </div>
+        ))
+      )}
     </div>
   );
 };

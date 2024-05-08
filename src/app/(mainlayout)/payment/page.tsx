@@ -14,9 +14,12 @@ import { IconMail } from "@tabler/icons-react";
 import { IconPhone } from "@tabler/icons-react";
 import { IconMapPin } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { toast } from "react-toastify";
 
 const Payment = () => {
+  const [loading, setLoading] = useState(false);
+
   // <== Get User Personal Information ==>
   const { data: personalInformation } = useGetUserQuery("");
 
@@ -33,6 +36,7 @@ const Payment = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     const value = {
       orderItems: products,
@@ -42,8 +46,6 @@ const Payment = () => {
       payment: data?.payment,
     };
 
-    console.log(value, "Helloo2");
-
     try {
       const res = await onlineOrder(value);
       console.log(res, "Hello");
@@ -52,11 +54,16 @@ const Payment = () => {
         toast.success((res as { data: any }).data.message);
         dispatch(resetCart());
       }
+      //@ts-ignore
+      router.push(`/thank-you/${res?.data?.data?._id}`);
+
       if ("error" in res) {
         toast.error((res as { error: any }).error.message);
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 

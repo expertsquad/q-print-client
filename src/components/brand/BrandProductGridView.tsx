@@ -70,7 +70,7 @@ const BrandProductGridView = () => {
         </div>
         <div className="lg:hidden md:hidden block">
           {" "}
-          <FilterButton />
+          <FilterButton brandProductGridView={BrandProductGridView} />
         </div>
       </div>
 

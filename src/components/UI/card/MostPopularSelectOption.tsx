@@ -1,8 +1,13 @@
 "use client";
+import { setCategory } from "@/redux/features/brand/productsByCategorySlice";
+import { useGetCategoryQuery } from "@/redux/features/category/categories";
 import { setFilterOption } from "@/redux/features/category/categoryFilterSlice";
-import { useAppDispatch } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 
 const MostPopularSelectOption = () => {
+  // <== Get category name for category wise product ==>
+  const { data: allCategory } = useGetCategoryQuery("");
+  const { category } = useAppSelector((state) => state.productByCategory);
   const dispatch = useAppDispatch();
   return (
     <div className="border  px-3 rounded-lg  shadow-lg md:shadow-none">
@@ -11,20 +16,14 @@ const MostPopularSelectOption = () => {
         className="py-2 rounded-md outline-none border-none w-full md:w-min bg-transparent text-gray-700 active:text-fuchsia-700"
         name="options"
         id=""
-        onChange={(e) => dispatch(setFilterOption(e.target.value))}
+        value={category}
+        onChange={(e) => dispatch(setCategory(e.target.value))}
       >
-        <option value="MostPopular" className=" text-gray-800">
-          Most Popular
-        </option>
-        <option value="Recent" className=" text-gray-800">
-          Recent
-        </option>
-        <option value="HighPrice" className=" text-gray-800">
-          High Price
-        </option>
-        <option value="LowPrice" className=" text-gray-800">
-          Low Price
-        </option>
+        {allCategory?.data?.map((category: any) => (
+          <option key={category?._id} value={category?.categoryName}>
+            {category?.categoryName}
+          </option>
+        ))}
       </select>
     </div>
   );
