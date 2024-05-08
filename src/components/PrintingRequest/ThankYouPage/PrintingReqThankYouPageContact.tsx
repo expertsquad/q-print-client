@@ -1,8 +1,4 @@
 "use client";
-import {
-  useGetUserAddressQuery,
-  useGetUserQuery,
-} from "@/redux/features/user/user";
 
 interface thankYouPageProps {
   contact: string;
@@ -10,7 +6,7 @@ interface thankYouPageProps {
   payment: string;
 }
 
-const ThankYouPageContact = ({
+const PrintingReqThankYouPageContact = ({
   streetAddress,
   contact,
   payment,
@@ -34,4 +30,4 @@ const ThankYouPageContact = ({
   );
 };
 
-export default ThankYouPageContact;
+export default PrintingReqThankYouPageContact;

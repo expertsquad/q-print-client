@@ -1,15 +1,17 @@
 import { formatDate } from "@/constants/formatDate";
+import { OnlineOrderThankYouPageType } from "@/types/onlineOrderThankPageTypes";
 import React from "react";
+import PurchagingProducts from "./PurchagingProducts";
 
 interface OrderInfoProps {
   orderId?: string;
-  createdAt?: string;
+  createdAt?: any;
   totalPayable?: number;
   paymentGateway?: string;
-  totalQuantity?: number;
   totalPrice?: number;
   shippingCharge?: number;
-  printingRequestFile?: any;
+  totalDiscount?: number;
+  products: OnlineOrderThankYouPageType;
 }
 
 const PurchagingOrderDetails = ({
@@ -18,9 +20,9 @@ const PurchagingOrderDetails = ({
   paymentGateway,
   totalPayable,
   totalPrice,
-  totalQuantity,
   shippingCharge,
-  printingRequestFile,
+  totalDiscount,
+  products,
 }: OrderInfoProps) => {
   const divStyle = "text-base flex items-center justify-between";
   return (
@@ -46,15 +48,9 @@ const PurchagingOrderDetails = ({
 
       <div className="flex flex-col border rounded-lg mt-5">
         {/* == Product short info == */}
-        <div className="flex justify-between items-stretch p-5 md:p-10 border-b">
-          <div>
-            <p className="text-base text-wrap">{printingRequestFile}</p>
-            <p className="text-base">
-              {totalQuantity} X {totalPrice / totalQuantity} QAR
-            </p>
-          </div>
-          <div className="main-text-color font-bold text-xl">
-            {totalPayable} QAR
+        <div className="w-full flex justify-between items-stretch p-5 md:p-10 border-b">
+          <div className="w-full">
+            <PurchagingProducts products={products} />
           </div>
         </div>
 
@@ -63,24 +59,30 @@ const PurchagingOrderDetails = ({
           <div className="mt-7  p-5 md:p-10">
             <div className="text-base flex items-center justify-between pb-5">
               <span className="text-black-opacity-60">Sub Total</span>{" "}
-              <small className="main-text-color">{totalPrice} QAR</small>
+              <span className="main-text-color font-bold">
+                {totalPrice} QAR
+              </span>
             </div>
             <div className="text-base flex items-center justify-between  pb-5">
               <span className="text-black-opacity-60">Shipping</span>{" "}
-              <small className="main-text-color">{shippingCharge} QAR</small>
+              <span className="main-text-color font-bold">
+                {shippingCharge} QAR
+              </span>
             </div>
             <div className="text-base flex items-center justify-between  pb-5">
               <span className="text-black-opacity-60">Discount</span>{" "}
-              <small className="main-text-color">{0} QAR</small>
+              <span className="main-text-color font-bold">
+                {totalDiscount?.toFixed(2)} QAR
+              </span>
             </div>
             <div className="text-base flex items-center justify-between  pb-5 border-b">
               <span className="text-black-opacity-60">Tax</span>{" "}
-              <small className="main-text-color">{0} QAR</small>
+              <span className="main-text-color font-bold">{0} QAR</span>
             </div>
           </div>
 
           {/* == Grand Total == */}
-          <div className="mt-5 flex justify-between items-center pb-5 md:px-10 px-5 md:pb-10">
+          <div className="flex justify-between items-center pb-5 md:px-10 px-5 md:pb-10">
             <p>Total</p>
             <div className="font-bold text-xl">{totalPayable} QAR</div>
           </div>

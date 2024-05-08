@@ -100,7 +100,6 @@ const SingleQuickOrder = ({
       >
         <IconBolt stroke={2} width={18} height={18} fill="#fff" /> Quick Order
       </button>
-      {/* == Here is a single quick order modal == */}
       <GlobalModal
         isVisible={showModal}
         onClose={handleCloseModal}

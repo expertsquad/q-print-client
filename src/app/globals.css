@@ -100,7 +100,7 @@
 @media (min-width: 768px) {
   .md\:order-item-data {
     display: grid;
-    grid-template-columns: 0.4fr 2.5fr 0.9fr 0.6fr 0.5fr;
+    grid-template-columns: 0.4fr 2.5fr 0.9fr 0.6fr;
     /* margin-top: 24px; */
     grid-gap: 5px;
     align-items: center;
@@ -266,10 +266,6 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
-.order-track-step-counter {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}
 .logos-slide img {
   height: 30px;
   margin: 0 30px;

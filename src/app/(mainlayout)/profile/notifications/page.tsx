@@ -8,6 +8,7 @@ import { formatDateShorting } from "@/constants/formatDate";
 
 const Notifications = () => {
   const { data } = useGetNotificationsQuery("");
+  console.log(data?.data, "Notifications");
   return (
     <div className="flex flex-col gap-5 border rounded-lg p-3 md:p-7 mb-14">
       <h4 className="text-xl text-black font-bold mb-2">Notification</h4>
@@ -21,8 +22,7 @@ const Notifications = () => {
           >
             <div className="w-[40px] md:w-[60px] md:h-[60px] h-[40px] relative shrink-0 mr-2.5 md:mr-5">
               <Image
-                // src={`${imageUrl}${product?.productPhotos[0]}`}
-                src={demoImg}
+                src={`${imageUrl}${notification?.productPhoto}`}
                 fill
                 objectFit="cover"
                 alt="Product Photo"
