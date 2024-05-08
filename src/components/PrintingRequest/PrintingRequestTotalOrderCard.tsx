@@ -4,6 +4,7 @@ import { useAddPrintingMutation } from "@/redux/features/printing-request/printi
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { IconPlus } from "@tabler/icons-react";
 import { IconMinus } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const PrintingRequestTotalOrderCard = ({ buttonText }: any) => {
@@ -11,9 +12,9 @@ const PrintingRequestTotalOrderCard = ({ buttonText }: any) => {
   const getShipping = useGetShippingQuery("");
   const [addPrinting] = useAddPrintingMutation();
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const calculateHeightWidth = data?.paperSize?.height * data?.paperSize?.width;
-
   const heightWidthMultiplyByType = calculateHeightWidth * data?.paperTypePrice;
 
   const heightWidthMultiplyMode =
@@ -28,12 +29,15 @@ const PrintingRequestTotalOrderCard = ({ buttonText }: any) => {
 
     const formData = new FormData();
 
-    formData.append("payment", JSON.stringify(data?.payment));
-    formData.append("shippingAddress", JSON.stringify(data?.shippingAddress));
-    formData.append("paperSize", JSON.stringify(data?.paperSize));
-    formData.append("printingColorModeId", data?.printingColorModeId);
-    formData.append("paperTypeId", data?.paperTypeId);
-    formData.append("totalQuantity", data?.totalQuantity);
+    formData.append("payment", JSON.stringify(data?.payment || {}));
+    formData.append(
+      "shippingAddress",
+      JSON.stringify(data?.shippingAddress || {})
+    );
+    formData.append("paperSize", JSON.stringify(data?.paperSize || {}));
+    formData.append("printingColorModeId", data?.printingColorModeId || "");
+    formData.append("paperTypeId", data?.paperTypeId || "");
+    formData.append("totalQuantity", (data?.totalQuantity || 0).toString());
 
     if (data?.printingRequestFile) {
       formData.append("printingRequestFile", data?.printingRequestFile);
@@ -42,6 +46,11 @@ const PrintingRequestTotalOrderCard = ({ buttonText }: any) => {
     try {
       const res = await addPrinting(formData);
       console.log(res);
+      // @ts-ignore
+      if (res?.data) {
+        // @ts-ignore
+        router.push(res?.data?.data?.resultObj?.payUrl);
+      }
     } catch (error) {
       console.error(error);
     }
