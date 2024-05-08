@@ -2,7 +2,7 @@
 import QServices from "./QServices";
 import ProductViewImage from "./ProductViewImage";
 import SpecificationDetails from "./SpecificationDetails";
-import RelatedProduct from "./RelatedProduct";
+import ProductCard from "../product/ProductCard";
 import {
   useGetProductByIdQuery,
   useGetProductsQuery,
@@ -43,13 +43,12 @@ const ProductView = ({ id }: { id: string }) => {
           </Link>
         </div>
         <div
-          className={`
-            "w-full md:place-items-start place-items-center flex items-center justify-center md:justify-normal flex-wrap gap-5 "
-              `}
-        >
-          {filteredRelatedProducts?.map((product: IProduct, index: number) => (
-            <RelatedProduct key={index} product={product} />
-          ))}
+          className="grid grid-cols-product-grid md:gap-10 gap-5 ">
+          {
+
+            filteredRelatedProducts?.map((product: IProduct, index: number) => (
+              <ProductCard key={index} product={product} />
+            ))}
         </div>
       </div>
       {/* == Product specification == */}

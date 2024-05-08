@@ -30,7 +30,7 @@ const NewProduct = () => {
             </Link>
           </div>
         </div>
-        <div className="main-product-card-container">
+        <div className="grid grid-cols-product-grid md:gap-6 gap-5 ">
           {
             isLoading ? (
               [...Array(3)].map((_, index) => {

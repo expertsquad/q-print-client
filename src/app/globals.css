@@ -13,18 +13,13 @@
 .main-text-color {
   background: -webkit-linear-gradient(90deg, #c83b62 0.32%, #7f35cd 102.21%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* main product card design start */
 
-.main-product-card-container {
-  overflow-y: auto;
-  display: grid;
-  grid-gap: 30px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(400px, 1fr));
-}
+
+
 
 /* main border color */
 

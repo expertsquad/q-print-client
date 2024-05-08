@@ -1,7 +1,7 @@
-import CategoriesCard from "../UI/card/CategoriesCard";
 import BrandsCard from "../UI/card/BrandsCard";
-import DiscountWidgetCard from "../UI/card/DiscountWidgetCard";
+import CategoriesCard from "../UI/card/CategoriesCard";
 import PriceRangeCard from "../UI/card/PriceRangeCard";
+
 
 const CategoryLeftSideWidget = () => {
   return (
@@ -9,7 +9,7 @@ const CategoryLeftSideWidget = () => {
       <CategoriesCard />
       <PriceRangeCard />
       <BrandsCard />
-      <DiscountWidgetCard />
+      {/* <DiscountWidgetCard /> */}
     </aside>
   );
 };

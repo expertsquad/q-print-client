@@ -74,7 +74,7 @@ const BrandProductGridView = () => {
         </div>
       </div>
 
-      <div className="my-6 main-product-card-container">
+      <div className="my-6 grid grid-cols-product-grid md:gap-10 gap-5 ">
         {isLoading
           ? [...Array(12)].map((_, index) => {
             return <ProductCardSkeleton key={index} />;

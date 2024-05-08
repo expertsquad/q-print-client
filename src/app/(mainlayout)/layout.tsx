@@ -14,8 +14,8 @@ const poppins = Poppins({
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className={`${poppins.className} scroll-smooth no-scrollbar`}>
-      <div className="px-3 md:px-3 lg:px-0">
+    <div className={`${poppins.className}  no-scrollbar`}>
+      <div className="">
         <Header />
         <NextBreadcrumb
           homeElement={"Home"}
@@ -31,7 +31,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           capitalizeLinks
         />
       </div>
-      <div className="px-5 md:px-3 lg:px-0 md:mt-56 mt-40">{children}</div>
+      <div className="md:mt-56 mt-40 px-5">{children}</div>
       <Footer />
       <ToastContainer />
     </div>

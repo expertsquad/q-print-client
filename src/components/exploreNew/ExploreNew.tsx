@@ -33,13 +33,13 @@ const ExploreNew = () => {
       </div>
 
       {isLoading ? (
-        <div className="main-product-card-container">
+        <div className="grid grid-cols-product-grid md:gap-10 gap-5 ">
           {[...Array(10)].map((_, index) => {
             return <ProductCardSkeleton key={index} />;
           })}
         </div>
       ) : (
-        <div className="main-product-card-container">
+        <div className="grid grid-cols-product-grid md:gap-10 gap-5 ">
           {data?.data?.slice(0, visibleProducts)?.map((product: IProduct) => (
             <div key={product?._id}>
               <ProductCard product={product} />
