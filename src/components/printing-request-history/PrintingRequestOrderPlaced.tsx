@@ -1,15 +1,13 @@
 import PringtingOrderHistoryTable from "./PringtingOrderHistoryTable";
 import OrderHistorySkeleton from "@/components/shared/Skeleton/OrderHistorySkeleton";
 
-
 const PrintingRequestOrderPlaced = ({ printingReqData, isLoading }: any) => {
-  console.log(printingReqData, "From Printing History");
   return (
     <div>
       {isLoading ? (
-        <span className="">
-          Shariful Islam Dalim Bhai Please add the skeleton for this component
-        </span>
+        <div>
+          <OrderHistorySkeleton />
+        </div>
       ) : (
         printingReqData &&
         printingReqData.map((element: any) => (

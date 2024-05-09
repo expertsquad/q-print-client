@@ -27,7 +27,7 @@ const PrintingOrderPlacesTop = ({ id }: { id: string }) => {
             </span>
           </Link>
           <Link
-            href={`/order-track/${id}`}
+            href={`/printing-request/printing-request-order-track/${id}`}
             className="flex items-center gap-2 bg-main-bg-color py-2.5 px-3 rounded-md text-white cursor-pointer"
           >
             <span className="font-medium whitespace-nowrap">VIEW ORDER</span>

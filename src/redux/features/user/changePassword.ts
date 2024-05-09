@@ -31,6 +31,10 @@ const changePasswordSlice = createSlice({
   },
 });
 
-export const { setOldPassword, setNewPassword, setConfirmPassword, clearInput } =
-  changePasswordSlice.actions;
+export const {
+  setOldPassword,
+  setNewPassword,
+  setConfirmPassword,
+  clearInput,
+} = changePasswordSlice.actions;
 export default changePasswordSlice.reducer;
