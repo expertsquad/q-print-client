@@ -1,21 +1,25 @@
 import { useGetShippingQuery } from "@/redux/features/api/shipping/shippingApi";
 import { setPrintingRequest } from "@/redux/features/printing-request/postPrintingRequestSlice";
 import { useAddPrintingMutation } from "@/redux/features/printing-request/printingRequestApi";
+import { useAddShippingAddressMutation } from "@/redux/features/user/user";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { IconPlus } from "@tabler/icons-react";
 import { IconMinus } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 
-const PrintingRequestTotalOrderCard = ({ buttonText }: any) => {
+const PrintingRequestTotalOrderCard = ({ buttonText, btnDisable }: any) => {
   const data = useAppSelector((state) => state.printingRequestOrder);
   const getShipping = useGetShippingQuery("");
   const [addPrinting] = useAddPrintingMutation();
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const calculateHeightWidth = data?.paperSize?.height * data?.paperSize?.width;
   const heightWidthMultiplyByType = calculateHeightWidth * data?.paperTypePrice;
+  // shipping address mutation
+  const [addShippingInfo] = useAddShippingAddressMutation();
 
   const heightWidthMultiplyMode =
     calculateHeightWidth * data?.printingModePrice;
@@ -24,9 +28,15 @@ const PrintingRequestTotalOrderCard = ({ buttonText }: any) => {
 
   const totalAmountWithQuantity = totalAmount * data?.totalQuantity;
 
+  // zip code string to number
+  const shippingAddress = {
+    ...data?.shippingAddress,
+    zipCode: parseInt(data?.shippingAddress?.zipCode),
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
+    setIsLoading(true);
     const formData = new FormData();
 
     formData.append("payment", JSON.stringify(data?.payment || {}));
@@ -44,8 +54,15 @@ const PrintingRequestTotalOrderCard = ({ buttonText }: any) => {
     }
 
     try {
+      // updating shipping address
+      if (data?.shippingAddress?.isDefault === true) {
+        const res = await addShippingInfo({ data: shippingAddress });
+        console.log(res);
+      }
+
+      // printing request mutation
       const res = await addPrinting(formData);
-      console.log(res);
+
       // @ts-ignore
       if (res?.data) {
         // @ts-ignore
@@ -54,10 +71,13 @@ const PrintingRequestTotalOrderCard = ({ buttonText }: any) => {
     } catch (error) {
       console.error(error);
     }
+    setIsLoading(false);
   };
 
   return (
-    <div className=" border rounded-lg pb-5 mb-5">
+    <div
+      className={`" border rounded-lg pb-5 mb-5" ${isLoading && "opacity-50"}`}
+    >
       <h4 className="px-5 py-4 text-lg font-medium">Total Order</h4>
 
       <div className="border-y">
@@ -125,13 +145,14 @@ const PrintingRequestTotalOrderCard = ({ buttonText }: any) => {
 
       <form
         onSubmit={handleSubmit}
-        className="flex justify-center items-center px-5 py-4   "
+        className={`"flex justify-center items-center px-5 py-4   " ${btnDisable} `}
       >
         <button
-          className={`bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white  shadow-sm hover:duration-500 hover:shadow-lg text-center ${totalAmountWithQuantity
-            ? "cursor-pointer"
-            : "cursor-not-allowed btn-disabled"
-            }`}
+          className={`bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white  shadow-sm hover:duration-500 hover:shadow-lg text-center ${
+            totalAmountWithQuantity
+              ? "cursor-pointer"
+              : "cursor-not-allowed btn-disabled"
+          }`}
         >
           {buttonText}
         </button>

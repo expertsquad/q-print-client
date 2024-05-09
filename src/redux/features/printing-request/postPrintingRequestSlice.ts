@@ -52,9 +52,15 @@ const postPrintingRequest = createSlice({
     resetPrinting: (state) => {
       return initialState;
     },
+    resetShippingAddress: (state) => {
+      return {
+        ...state,
+        shippingAddress: initialState.shippingAddress,
+      };
+    },
   },
 });
 
-export const { setPrintingRequest, resetPrinting } =
+export const { setPrintingRequest, resetPrinting, resetShippingAddress } =
   postPrintingRequest.actions;
 export default postPrintingRequest.reducer;

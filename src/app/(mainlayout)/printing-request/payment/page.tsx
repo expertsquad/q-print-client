@@ -18,6 +18,7 @@ const Payment = () => {
   // <== Get User Personal Information ==>
   const { data: personalInformation } = useGetUserQuery("");
   const data = useAppSelector((state) => state.printingRequestOrder);
+  console.log(data);
 
   return (
     <section className="lg:max-w-[1280px] w-full mx-auto  mb-7 ">
@@ -82,7 +83,14 @@ const Payment = () => {
         </div>
 
         <div className="w-full md:w-4/12 ">
-          <PrintingRequestTotalOrderCard buttonText={"Place Order"} />
+          <PrintingRequestTotalOrderCard
+            btnDisable={
+              data?.billingAddress === undefined || data?.payment === undefined
+                ? "btn-disabled opacity-50"
+                : ""
+            }
+            buttonText={"Place Order"}
+          />
         </div>
       </div>
     </section>

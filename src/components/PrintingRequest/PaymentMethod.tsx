@@ -44,9 +44,7 @@ const PaymentMethod = () => {
   return (
     <div className="flex justify-start md:justify-between lg:justify-between  gap-5 my-5 flex-col md:flex-row lg:flex-row md:border lg:border   rounded-lg md:px-10 lg:px-10 py-5 p-0">
       {/* credit and debid card */}
-      <label className="inline-flex items-center gap-2  ">
-        <GradientCardIcon />
-        <span className="">Debid/Credit Card</span>
+      <label className="inline-flex items-center gap-3  ">
         <div
           className={`w-5 h-5 rounded-full bg-white  flex items-center justify-center border-fuchsia-700 border-2 ${
             selectedOption === "byCard" ? "border-fuchsia-700 border-2" : ""
@@ -56,6 +54,9 @@ const PaymentMethod = () => {
             <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
           )}
         </div>
+        <GradientCardIcon />
+        <span className="">Debid/Credit Card</span>
+
         <input
           type="radio"
           value="byCard"
@@ -71,9 +72,7 @@ const PaymentMethod = () => {
         <>
           <div className="md:border-r md:h-12 h-0 border-r-0 "></div>
 
-          <label className="inline-flex items-center gap-2 ">
-            <CodPaymentIcon />
-            <span className="">Cash on Delivery</span>
+          <label className="inline-flex items-center gap-3 ">
             <div
               className={`w-5 h-5 rounded-full bg-white  flex items-center justify-center border-fuchsia-700 border-2 ${
                 selectedOption === "cod" ? "border-fuchsia-700 border-2" : ""
@@ -83,6 +82,9 @@ const PaymentMethod = () => {
                 <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD]   rounded-full"></div>
               )}
             </div>
+            <CodPaymentIcon />
+            <span className="">Cash on Delivery</span>
+
             <input
               type="radio"
               value="cod"

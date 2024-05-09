@@ -2,9 +2,11 @@
 import PringtingRequestOrderCard from "@/components/PrintingRequest/PringtingRequestOrderCard";
 import ReturnToCardButton from "@/components/PrintingRequest/ReturnToCardButton";
 import CustomInput from "@/components/shared/CustomInput";
-import { setPrintingRequest } from "@/redux/features/printing-request/postPrintingRequestSlice";
 import {
-  useAddShippingAddressMutation,
+  resetShippingAddress,
+  setPrintingRequest,
+} from "@/redux/features/printing-request/postPrintingRequestSlice";
+import {
   useGetUserAddressQuery,
   useGetUserQuery,
 } from "@/redux/features/user/user";
@@ -16,31 +18,40 @@ import { useState } from "react";
 
 const YourInformation = () => {
   const isUserLoggedIn = isLoggedIn();
-  const [selectedOption, setSelectedOption] = useState(null);
   const dispatch = useAppDispatch();
-  const [addShipping] = useAddShippingAddressMutation();
-
-  const handleOptionChange = (event: any) => {
-    setSelectedOption(event.target.value);
-  };
+  const [selectedOption, setSelectedOption] = useState(null);
   // <== Get User Address ==>
   const { data: address, isLoading } = useGetUserAddressQuery(`isDefault=true`);
   const defaultAddress = address?.data?.find(
     (address: any) => address.isDefault
   );
-
+  console.log(defaultAddress);
   // <== Get User Personal Information ==>
   const { data: personalInformation } = useGetUserQuery("");
 
+  //slice
   const data = useAppSelector((state) => state.printingRequestOrder);
 
-  const handleSubmit = async (e: any) => {
-    console.log("clicked");
-    e.preventDefault();
-    try {
-      const res = await addShipping(data?.shippingAddress);
-    } catch {}
+  const handleOptionChange = (event: any) => {
+    setSelectedOption(event.target.value);
+    // Check the value of the newly selected option
+    if (selectedOption === "addedAddress") {
+      // Set default address as shipping address
+      setPrintingRequest({
+        ...data,
+        shippingAddress: {
+          ...data.shippingAddress,
+          shippingAddress: defaultAddress,
+        },
+      });
+      dispatch(resetShippingAddress());
+    } else if (selectedOption === "address") {
+      // Set input value as shipping address
+      // You can add your logic here to set the input values
+    }
   };
+
+  console.log(data);
 
   return (
     <section className="lg:max-w-[1280px] w-full mx-auto  mb-7">
@@ -91,12 +102,39 @@ const YourInformation = () => {
               </div>
 
               {/* == Existing User Address == */}
+
+              {/* existing user address */}
+
+              {isUserLoggedIn && (
+                <label className="inline-flex items-center mb-4 cursor-pointer  ">
+                  <div
+                    className={`w-5 h-5 rounded-full bg-white  flex items-center justify-center border-fuchsia-700 border-2 ${
+                      selectedOption === "addedAddress"
+                        ? "border-fuchsia-700 border-2"
+                        : ""
+                    }`}
+                  >
+                    {selectedOption === "addedAddress" && (
+                      <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
+                    )}
+                  </div>
+                  <span className="ml-2">Use default address </span>
+                  <input
+                    type="radio"
+                    value="addedAddress"
+                    checked={selectedOption === "addedAddress"}
+                    onChange={handleOptionChange}
+                    className="hidden"
+                  />
+                </label>
+              )}
+
               {isUserLoggedIn && (
                 <>
                   {isLoading ? (
                     <p>Loading...</p>
                   ) : (
-                    <div className="flex flex-col mb-5 border p-3 rounded-md">
+                    <div className="flex flex-col mb-5 border-b p-3 rounded-md">
                       <span className="text-black-opacity-60">
                         Shipping Address
                       </span>
@@ -111,7 +149,7 @@ const YourInformation = () => {
 
               {/* == If user logged in then dropdown for new shipping address, else create an account == */}
               {isUserLoggedIn && (
-                <label className="inline-flex items-center  ">
+                <label className="inline-flex items-center mb-4 cursor-pointer ">
                   <div
                     className={`w-5 h-5 rounded-full bg-white  flex items-center justify-center border-fuchsia-700 border-2 ${
                       selectedOption === "address"
@@ -135,7 +173,7 @@ const YourInformation = () => {
               )}
 
               {/* == shipping address or shipping information == */}
-              {selectedOption && (
+              {selectedOption === "address" && (
                 <div>
                   <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7 gap-5 w-full">
                     <CustomInput
@@ -320,7 +358,11 @@ const YourInformation = () => {
         {/* == Total Amount Card == */}
         <div className="w-full md:w-4/12 lg:w-4/12">
           <PringtingRequestOrderCard
-            handleSubmit={handleSubmit}
+            btnDisable={
+              data?.shippingAddress === undefined
+                ? "btn-disabled opacity-50"
+                : ""
+            }
             buttonText={"Continue to Payment"}
             href={"/printing-request/payment"}
           />

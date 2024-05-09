@@ -12,6 +12,7 @@ const PrintingRequest = () => {
   const isUserLoggedIn = isLoggedIn();
   const dispatch = useDispatch();
   const data = useAppSelector((state) => state.printingRequestOrder);
+  console.log(data);
   // <== paperSize, paperType,colorMode API's ===>
   const { data: paperSize } = useGetPrintingRequestsQuery(
     "printingSetupType=Paper Size"
@@ -152,7 +153,14 @@ const PrintingRequest = () => {
 
         <div className="w-full md:w-4/12 lg:w-4/12">
           <PringtingRequestOrderCard
-            data={data}
+            btnDisable={
+              data?.paperSize === undefined ||
+              data.paperTypeId === undefined ||
+              data?.printingColorModeId === undefined ||
+              data?.printingRequestFile === undefined
+                ? "btn-disabled opacity-50"
+                : ""
+            }
             buttonText={"Proceed To Checkout"}
             href={
               isUserLoggedIn ? "printing-request/your-information" : "/login"

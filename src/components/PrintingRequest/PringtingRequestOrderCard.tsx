@@ -6,7 +6,7 @@ import { IconMinus } from "@tabler/icons-react";
 import Link from "next/link";
 import React from "react";
 
-const PringtingRequestOrderCard = ({ href, buttonText, handleSubmit }: any) => {
+const PringtingRequestOrderCard = ({ href, buttonText, btnDisable }: any) => {
   const data = useAppSelector((state) => state.printingRequestOrder);
   const getShipping = useGetShippingQuery("");
 
@@ -90,9 +90,8 @@ const PringtingRequestOrderCard = ({ href, buttonText, handleSubmit }: any) => {
         </p>
       </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className="flex justify-center items-center px-5 py-4   "
+      <button
+        className={`flex justify-center items-center px-5 py-4 w-full ${btnDisable}  `}
       >
         <Link
           href={`${href}`}
@@ -104,7 +103,7 @@ const PringtingRequestOrderCard = ({ href, buttonText, handleSubmit }: any) => {
         >
           {buttonText}
         </Link>
-      </form>
+      </button>
     </div>
   );
 };
