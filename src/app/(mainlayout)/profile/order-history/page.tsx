@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { useGetOnlineOrderQuery } from "@/redux/features/online-order/online-orderApi";
 import { useGetUserQuery } from "@/redux/features/user/user";
 import OrderHistoryOrderPlacedLayout from "@/components/Profile/OrderHistoryOrderPlacedLayout";
@@ -10,22 +10,25 @@ const OrderHistory = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const { data } = useGetUserQuery("");
+  const [loading, setLoading] = useState(false);
 
   // Update query parameters when startDate or endDate changes
   const { data: onlineOrder, isLoading } = useGetOnlineOrderQuery(
     timePeriod === "All Order"
       ? `buyer.userId=${data?.data._id}`
-      : `createdAt[gte]=${startDate?.toISOString()}&createdAt[lte]=${endDate?.toISOString()}&buyer.userId=${data?.data._id
-      }`
+      : `createdAt[gte]=${startDate?.toISOString()}&createdAt[lte]=${endDate?.toISOString()}&buyer.userId=${
+          data?.data._id
+        }`
   );
 
   const currentDate = useMemo(() => new Date(), []);
 
-  const handleTimePeriodChange = (
+  const handleTimePeriodChange = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const selectedTimePeriod = event.target.value;
     setTimePeriod(selectedTimePeriod);
+    setLoading(true); // Set loading state to true
 
     const newStartDate = new Date(); // Initialize with current date
 
@@ -34,6 +37,7 @@ const OrderHistory = () => {
         setStartDate(null);
         setEndDate(null);
         break;
+
       case "week":
         newStartDate.setDate(newStartDate.getDate() - 7);
         break;
@@ -59,6 +63,10 @@ const OrderHistory = () => {
 
     setStartDate(newStartDate || null);
     setEndDate(new Date() || null); // Set end date as current date
+
+    // Introduce a 1-second delay before setting loading to false
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setLoading(false); // Set loading state to false
   };
 
   return (
@@ -85,10 +93,10 @@ const OrderHistory = () => {
                 All Order
               </option>
               <option value="week" className=" text-gray-800">
-                week
+                7 days
               </option>
               <option value="2 week" className=" text-gray-800">
-                2 week
+                14 days
               </option>
               <option value="1 month" className=" text-gray-800">
                 1 month
@@ -107,7 +115,10 @@ const OrderHistory = () => {
         </div>
       </div>
 
-      <OrderHistoryDetails data={onlineOrder} isLoading={isLoading} />
+      <OrderHistoryDetails
+        data={onlineOrder}
+        isLoading={isLoading || loading}
+      />
     </div>
   );
 };

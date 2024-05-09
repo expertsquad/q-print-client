@@ -8,8 +8,6 @@ import { formatDate } from "@/constants/formatDate";
 import { OrderHistoryProduct } from "@/types/orderTrackPage";
 
 const OrderHistoryDetails = ({ data, isLoading }: any) => {
-  console.log(data);
-
   // <== Get data from order history query ==>
   // const { data, isLoading } = useGetOnlineOrderQuery(`buyer.userId=${id}`);
 

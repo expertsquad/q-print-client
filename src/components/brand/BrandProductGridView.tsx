@@ -30,7 +30,6 @@ const BrandProductGridView = () => {
       `variants.sellingPrice[gte]=${minPrice}&variants.sellingPrice[lte]=${maxPrice}`
     }`
   );
-
   // <== Get all products length ==>
   const { data: allProducts } = useGetProductsQuery("");
   // <== Get all products by brand length ==>
