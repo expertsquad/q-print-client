@@ -11,7 +11,7 @@ interface CustomInputProps {
   name?: string;
   readonly?: boolean;
   label?: string;
-  disabled?: string;
+  disabled?: boolean;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -44,16 +44,17 @@ const CustomInput: React.FC<CustomInputProps> = ({
           {label}
         </label>
         <input
-
           disabled={disabled}
           readOnly={readonly}
           type={type}
           onChange={onChange}
           value={value}
           name={name}
-          className={`${inputStyle} w-full border border-black border-opacity-10  py-3  pr-4 focus:outline-none focus:border-fuchsia-800 rounded-md ${readonly ? "text-black-opacity-60" : "text-black"
-            } placeholder:text-sm ${placeholderIcon ? "pl-9" : "pl-5"
-            } ${customClassName}`}
+          className={`${inputStyle} w-full border border-black border-opacity-10  py-3  pr-4 focus:outline-none focus:border-fuchsia-800 rounded-md ${
+            readonly ? "text-black-opacity-60" : "text-black"
+          } placeholder:text-sm ${
+            placeholderIcon ? "pl-9" : "pl-5"
+          } ${customClassName}`}
           placeholder={placeholder}
         />
       </div>

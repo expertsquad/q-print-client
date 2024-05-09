@@ -1,11 +1,7 @@
 "use client";
 import CustomGlobalDrawer from "../shared/CustomGlobalDrawer";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
-import {
-  IconArrowRight,
-  IconChevronLeft,
-  IconChevronRight,
-} from "@tabler/icons-react";
+import { IconArrowRight, IconChevronRight } from "@tabler/icons-react";
 import Image from "next/image";
 import { useAppSelector } from "@/redux/hook";
 import Link from "next/link";
@@ -149,7 +145,8 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
                 Your Cart Is Empty!!
               </span>
               <Link
-                href={"/products"}
+                href={"/"}
+                onClick={handleCloseDrawer}
                 className="flex items-center gap-2 justify-center main-bg-color py-3.5 text-white rounded-[5px] w-full"
               >
                 Continue Shopping

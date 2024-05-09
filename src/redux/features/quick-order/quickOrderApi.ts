@@ -11,7 +11,14 @@ export const quickOrderApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["quick-order"],
     }),
+    quickOrderById: build.query({
+      query: (id) => ({
+        url: `/quick-order/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["quick-order"],
+    }),
   }),
 });
 
-export const { useQuickOrderMutation } = quickOrderApi;
+export const { useQuickOrderMutation, useQuickOrderByIdQuery } = quickOrderApi;

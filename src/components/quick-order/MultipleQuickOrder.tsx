@@ -2,22 +2,11 @@
 import { useLayoutEffect, useState } from "react";
 import GlobalModal from "../UI/modal/GlobalModal";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
-import {
-  IconBolt,
-  IconMinus,
-  IconPlus,
-  IconTrash,
-  IconX,
-} from "@tabler/icons-react";
+import { IconBolt } from "@tabler/icons-react";
 import CustomInput from "../shared/CustomInput";
 
 import { useDispatch } from "react-redux";
 import TotalAndSubtTotalCard from "./TotalAndSubtTotalCard";
-import {
-  addToCart,
-  removeFromCart,
-  removeOneFromCart,
-} from "@/redux/features/cart/productCartSlice";
 import { useAppSelector } from "@/redux/hook";
 import { useQuickOrderMutation } from "@/redux/features/quick-order/quickOrderApi";
 import {
@@ -27,10 +16,15 @@ import {
 import QuickOrderCartItem from "./QuickOrderCartItem";
 import { toast } from "react-toastify";
 import { useGetQuickOrderSettingQuery } from "@/redux/features/settings/quickOrderSettings";
+import Spinner from "../shared/Spinner";
+import { useRouter } from "next/navigation";
 
-const MultipleQuickOrder = ({ products, subTotal }: any) => {
-  const { data: deliveryCharge } = useGetQuickOrderSettingQuery("");
+const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const router = useRouter();
+  const { data: deliveryCharge } = useGetQuickOrderSettingQuery("");
   const dispatch = useDispatch();
   const data = useAppSelector((state) => state.multipleQuickOrder);
 
@@ -45,9 +39,10 @@ const MultipleQuickOrder = ({ products, subTotal }: any) => {
     dispatch(setMultipleQuickOrder({ orderItems: products }));
   }, [products, dispatch]);
 
-  // handle submit
+  // <== handle submit quick order ==>
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
     const value = {
       orderItems: data?.orderItems,
       buyer: {
@@ -59,13 +54,21 @@ const MultipleQuickOrder = ({ products, subTotal }: any) => {
 
     try {
       const res = await quickOrder(value);
+      console.log(res, "Modasl");
+      console.log(error, "eror");
       // @ts-ignore
-      toast.success(res.message);
-      dispatch(resetQuickOrder());
-      handleCloseModal();
-    } catch (error) {
-      // @ts-ignore
-      toast.error(error.message);
+      if ("data" in res) {
+        toast.success(res?.data?.message);
+        handleCloseModal();
+        dispatch(resetQuickOrder());
+        router.push(`/quick-order-places/${res?.data?.data?._id}`);
+        handleCloseDrawer();
+      }
+    } catch (err: any) {
+      setError(err?.data?.message);
+      console.log(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -85,7 +88,8 @@ const MultipleQuickOrder = ({ products, subTotal }: any) => {
         onClose={handleCloseModal}
         mainClassName="w-full md:w-[900px] h-screen md:h-auto overflow-y-auto"
       >
-        <div className=" w-full bg-white p-7 rounded-lg relative">
+        <div className="w-full bg-white p-7 rounded-lg relative no-scrollbar">
+          {loading && <Spinner />}
           <div className="absolute top-5 right-5 text-black text-opacity-70">
             <ModalCloseBtn handleClose={handleCloseModal} />
           </div>
@@ -95,7 +99,7 @@ const MultipleQuickOrder = ({ products, subTotal }: any) => {
               <span className="block md:hidden mb-5 text-base text-black-opacity-50">
                 Item Lists
               </span>
-              <div className="flex flex-col overflow-y-auto border-t  no-scrollbar gap-5 border-b  md:h-[380px] h-[100px] bg-white">
+              <div className="flex flex-col overflow-y-auto no-scrollbar gap-5 md:h-[380px] h-[200px] bg-white shadow-inner">
                 {products?.map((product: any) => (
                   <QuickOrderCartItem key={product?._id} product={product} />
                 ))}
@@ -113,7 +117,7 @@ const MultipleQuickOrder = ({ products, subTotal }: any) => {
               <h4 className="text-black text-[18px] font-semibold mb-1 uppercase ">
                 Cash on delivery
               </h4>
-              <p className="text-black text-opacity-50 text-[16px] mb-7 md:mb-9">
+              <p className="text-black-opacity-60 text-[16px] mb-7 md:mb-9">
                 Enter Your shipping address
               </p>
               <form onSubmit={handleSubmit} action="" className="">
@@ -168,7 +172,8 @@ const MultipleQuickOrder = ({ products, subTotal }: any) => {
                     <IconBolt fill="#fff" stroke={2} width={22} height={22} />
                   </span>
                   CONFIRM ORDER -{" "}
-                  {subTotal + deliveryCharge?.data?.deliveryCharge} QAR
+                  {(subTotal + deliveryCharge?.data?.deliveryCharge).toFixed(2)}{" "}
+                  QAR
                 </button>
               </form>
             </div>

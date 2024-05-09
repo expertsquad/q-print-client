@@ -204,7 +204,7 @@ const CartView = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full md:max-w-[438px] h-[390px] border rounded-lg">
+            <div className="w-full md:max-w-[350px] h-[390px] border rounded-lg">
               {/* == Calculate Cart Total == */}
               <CartViewTotalCard
                 subTotal={subTotal}
