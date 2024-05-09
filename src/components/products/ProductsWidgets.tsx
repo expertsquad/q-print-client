@@ -2,11 +2,11 @@
 import { useGetProductsQuery } from "@/redux/features/products/productsApi";
 import ProductCard from "../product/ProductCard";
 import { IProduct } from "@/types/productsType";
-import MostPopularSelectOption from "../UI/card/MostPopularSelectOption";
 import { useState } from "react";
 import { IconLoader } from "@tabler/icons-react";
 import { useAppSelector } from "@/redux/hook";
 import ProductCardSkeleton from "../shared/Skeleton/ProductCardSkeleton";
+import ProductsFilter from "./ProductsFilter";
 
 type SortOption = "MostPopular" | "Recent" | "HighPrice" | "LowPrice";
 
@@ -15,7 +15,9 @@ const ProductsWidgets = () => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [limit, setLimit] = useState(12);
 
-  const { options } = useAppSelector((state) => state.categoryOption);
+  const { options } = useAppSelector((state) => state.productsFilterOptions);
+
+  console.log(options, "Fkdkkddkk");
 
   // <== This fn is used to get products sorted by sortBy and sortOrder ==>
   const useSortedProducts = (sortBy: string, sortOrder: string) => {
@@ -62,17 +64,16 @@ const ProductsWidgets = () => {
           </span>
         </div>
         <div className="">
-          <MostPopularSelectOption />
+          <ProductsFilter />
         </div>
       </div>
 
       <div className=" main-product-card-container">
-        {
-          isLoading
-            ? [...Array(12)].map((_, index) => {
+        {isLoading
+          ? [...Array(12)].map((_, index) => {
               return <ProductCardSkeleton key={index} />;
             })
-            : productsData?.data
+          : productsData?.data
               ?.slice(0, visibleProducts)
               .map((product: IProduct) => (
                 <div key={product?._id}>
