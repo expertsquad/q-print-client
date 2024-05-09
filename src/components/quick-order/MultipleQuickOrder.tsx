@@ -83,13 +83,13 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
         <IconBolt stroke={1} width={18} height={18} fill="#fff" /> Quick Order
       </button>
       {/* == Here is a single quick order modal == */}
+      {loading && <Spinner />}
       <GlobalModal
         isVisible={showModal}
         onClose={handleCloseModal}
         mainClassName="w-full md:w-[900px] h-screen md:h-auto overflow-y-auto"
       >
         <div className="w-full bg-white p-7 rounded-lg relative no-scrollbar">
-          {loading && <Spinner />}
           <div className="absolute top-5 right-5 text-black text-opacity-70">
             <ModalCloseBtn handleClose={handleCloseModal} />
           </div>

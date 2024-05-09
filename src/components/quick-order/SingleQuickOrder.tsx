@@ -116,17 +116,17 @@ const SingleQuickOrder = ({
         onClose={handleCloseModal}
         mainClassName="w-full md:w-[760px] h-full md:h-auto"
       >
-        {loading && <Spinner />}
-
         <div className=" bg-white p-7 rounded-lg relative">
           <div className="absolute top-5 right-5 text-black text-opacity-70">
             <ModalCloseBtn handleClose={handleCloseModal} />
           </div>
           <div className="flex flex-col-reverse md:flex-row items-center w-full">
+            {loading && <Spinner />}
+
             {/* == Product info & balance container == */}
             <div className="flex-1 pr-5 border-r w-full">
               <div className="flex flex-col overflow-scroll no-scrollbar max-w-[450px] max-h-[400px]">
-                <div className="flex gap-5 border-b mb-5">
+                <div className="flex gap-5 mb-5">
                   <div className="h-[70px] w-[70px] relative shrink-0">
                     <Image
                       src={`${imageUrl}${singleProduct?.productPhotos[0]}`}
