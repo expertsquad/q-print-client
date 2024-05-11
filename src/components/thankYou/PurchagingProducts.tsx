@@ -1,15 +1,10 @@
 import { imageUrl } from "@/constants/imageUrl";
-import {
-  OnlineOrderThankYouPageType,
-  OrderItem,
-} from "@/types/onlineOrderThankPageTypes";
+import { OrderItem } from "@/types/onlineOrderThankPageTypes";
 import { IconX } from "@tabler/icons-react";
 import Image from "next/image";
 import React from "react";
 
 const PurchagingProducts = ({ products }: any) => {
-  console.log(products);
-
   return (
     <div className="w-full flex flex-col gap-y-5">
       {products?.map((product: OrderItem) => (

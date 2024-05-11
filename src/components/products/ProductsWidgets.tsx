@@ -17,8 +17,6 @@ const ProductsWidgets = () => {
 
   const { options } = useAppSelector((state) => state.productsFilterOptions);
 
-  console.log(options, "Fkdkkddkk");
-
   // <== This fn is used to get products sorted by sortBy and sortOrder ==>
   const useSortedProducts = (sortBy: string, sortOrder: string) => {
     const { data } = useGetProductsQuery(

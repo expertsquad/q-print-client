@@ -55,7 +55,7 @@ const PaymentMethod = () => {
           )}
         </div>
         <GradientCardIcon />
-        <span className="">Debid/Credit Card</span>
+        <span className="">Debit/Credit Card</span>
 
         <input
           type="radio"

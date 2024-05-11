@@ -11,7 +11,7 @@ interface CustomInputProps {
   name?: string;
   readonly?: boolean;
   label?: string;
-  disabled?: string;
+  disabled?: boolean;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({

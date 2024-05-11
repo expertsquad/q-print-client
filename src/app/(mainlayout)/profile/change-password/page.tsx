@@ -14,23 +14,19 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import Spinner from "@/components/shared/Spinner";
 
-
-
-
 const ChangePassword = () => {
   const [changePassword] = useChangePasswordMutation();
   const dispatch = useAppDispatch();
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
   const { oldPassword, newPassword, confirmPassword } = useAppSelector(
     (state) => state.changePasswordSlice
   );
 
-  const handleResetField = () => {
-    dispatch(setOldPassword(""));
-    dispatch(setNewPassword(""));
-    dispatch(setConfirmPassword(""));
+  const resetUpdateInput = () => {
+    dispatch(clearInput());
   };
 
   const handlePasswordChange = async (event: any) => {
@@ -43,25 +39,27 @@ const ChangePassword = () => {
         newPassword,
         confirmPassword,
       }).unwrap();
-      toast.success(res?.message);
-      clearInput();
 
+      console.log(res, "From 120");
+      if ("data" in res) {
+        toast.success(res?.data?.message);
+        setSuccess(res?.data?.message);
+        resetUpdateInput();
+        clearInput();
+      }
     } catch (err: any) {
-      setError(err.message);
-      toast.error(err?.message)
+      console.log(err);
+      setError(err?.data?.message);
+      toast.error(err?.data?.message);
     } finally {
       setLoading(false);
     }
   };
 
-
   return (
     <div>
       <section className="w-full mb-7 relative">
-        {
-          loading &&
-            <Spinner />
-        }
+        {loading && <Spinner />}
         <div className="lg:border rounded-lg lg:p-7 flex justify-between items-center gap-28">
           <div className="lg:w-6/12 w-full">
             <h1 className="text-black text-[22px] font-semibold">
@@ -84,7 +82,6 @@ const ChangePassword = () => {
                   placeholder=""
                   onChange={(e) => dispatch(setOldPassword(e.target.value))}
                 />
-                {error && <span className="text-red-500 text-xs">{error}</span>}
               </div>
               <div className="flex flex-col">
                 <label
@@ -112,6 +109,7 @@ const ChangePassword = () => {
                   onChange={(e) => dispatch(setConfirmPassword(e.target.value))}
                 />
               </div>
+              {error && <span className="text-red-500 text-xs">{error}</span>}
               <div className="flex lg:gap-12 gap-10 items-center">
                 <button
                   type="submit"
@@ -121,8 +119,7 @@ const ChangePassword = () => {
                   Update Password
                 </button>
                 <button
-                  type="submit"
-                  onClick={handleResetField}
+                  onClick={resetUpdateInput}
                   className="lg:text-lg text-base font-normal lg:font-medium text-text-Gray-colors"
                 >
                   Cancel
@@ -134,8 +131,8 @@ const ChangePassword = () => {
             <Image src={resetPasswordImg} alt="resetPasswordImg" />
           </div>
         </div>
-      </section >
-    </div >
+      </section>
+    </div>
   );
 };
 

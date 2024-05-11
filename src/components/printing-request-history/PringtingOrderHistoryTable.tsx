@@ -2,11 +2,8 @@ import { formatDate } from "@/constants/formatDate";
 import React from "react";
 import OrderTrackButton from "../Profile/OrderTrackButton";
 import { IconX } from "@tabler/icons-react";
+import Link from "next/link";
 
-// type IPaperSize = {
-//   height: number;
-//   width: number;
-// };
 interface IProps {
   id?: string;
   unit?: string;
@@ -100,7 +97,12 @@ const PringtingOrderHistoryTable = ({
           <span>{quantity} Items,</span>
           <span>Total: {totalPrice} QAR</span>
         </div>
-        <OrderTrackButton id={id} />
+        <Link
+          className="text-xs md:text-base shadow-md py-1 px-3 border rounded-lg bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-transparent bg-clip-text border-fuchsia-700 hover:scale-105 hover:duration-500 "
+          href={`/printing-request/printing-request-order-track/${id}`}
+        >
+          Order Track
+        </Link>
       </div>
     </div>
   );

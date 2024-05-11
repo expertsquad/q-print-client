@@ -1,5 +1,5 @@
 "use client";
-import { IconBolt, IconPlus, IconTrash, IconX } from "@tabler/icons-react";
+import { IconBolt, IconPlus, IconX } from "@tabler/icons-react";
 import React, { useLayoutEffect, useState } from "react";
 import GlobalModal from "../UI/modal/GlobalModal";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
@@ -18,6 +18,8 @@ import { useQuickOrderMutation } from "@/redux/features/quick-order/quickOrderAp
 import { toast } from "react-toastify";
 import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
 import { useGetQuickOrderSettingQuery } from "@/redux/features/settings/quickOrderSettings";
+import { useRouter } from "next/navigation";
+import Spinner from "../shared/Spinner";
 
 interface QuickOrderProps {
   variantName?: string;
@@ -33,13 +35,16 @@ const SingleQuickOrder = ({
   btnStyle,
 }: QuickOrderProps) => {
   // <== Get product by id ==>
-  const { data: oneProduct } = useGetProductByIdQuery(`${productId}`);
-  const singleProduct = oneProduct?.data;
-  const { data: deliveryCharge } = useGetQuickOrderSettingQuery("");
 
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [orderQuantity, setOrderQuantity] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const router = useRouter();
+  const { data: oneProduct } = useGetProductByIdQuery(`${productId}`);
+  const singleProduct = oneProduct?.data;
+  const { data: deliveryCharge } = useGetQuickOrderSettingQuery("");
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -82,13 +87,19 @@ const SingleQuickOrder = ({
     };
     try {
       const res = await quickOrder(value);
-      // @ts-ignore
-      toast.success(res?.message);
-      dispatch(resetQuickOrder());
-      handleCloseModal();
-    } catch (error) {
-      // @ts-ignore
-      toast.error(error?.errorMessages);
+      console.log(res, "Modasl");
+      console.log(error, "eror");
+      if ("data" in res) {
+        toast.success(res?.data?.message);
+        handleCloseModal();
+        dispatch(resetQuickOrder());
+        router.push(`/quick-order-places/${res?.data?.data?._id}`);
+      }
+    } catch (err: any) {
+      setError(err?.data?.message);
+      console.log(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -110,10 +121,12 @@ const SingleQuickOrder = ({
             <ModalCloseBtn handleClose={handleCloseModal} />
           </div>
           <div className="flex flex-col-reverse md:flex-row items-center w-full">
+            {loading && <Spinner />}
+
             {/* == Product info & balance container == */}
             <div className="flex-1 pr-5 border-r w-full">
               <div className="flex flex-col overflow-scroll no-scrollbar max-w-[450px] max-h-[400px]">
-                <div className="flex gap-5 border-b mb-5">
+                <div className="flex gap-5 mb-5">
                   <div className="h-[70px] w-[70px] relative shrink-0">
                     <Image
                       src={`${imageUrl}${singleProduct?.productPhotos[0]}`}

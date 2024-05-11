@@ -1,15 +1,15 @@
-import GradientThankYouIcon from "@/assets/svgIcons/GradientThankYouIcon";
-import BackToHomePageIcon from "@/assets/svgIcons/GradientHomeIcon";
 import Link from "next/link";
-import { IconArrowRight } from "@tabler/icons-react";
+import React from "react";
+import BackToHomePageIcon from "@/assets/svgIcons/GradientHomeIcon";
+import GradientThankYouIcon from "@/assets/svgIcons/GradientThankYouIcon";
 
-const PrintingOrderPlacesTop = ({ id }: { id: string }) => {
+const QuickOrderPlacesTop = () => {
   return (
     <div className="flex items-center justify-center flex-col">
       <GradientThankYouIcon />
       <h3 className="[font-size:_clamp(1.2em,4vw,1.6em)]">Thank You</h3>
       <h3 className="[font-size:_clamp(1.2em,4vw,1.6em)] font-bold text-gray-800 mt-7">
-        Your order is successfully placed
+        Your Quick Order Places Successfully
       </h3>
       <p className="text-sm text-gray-400 mt-5 text-center">
         Lorem ipsum dolor sit amet consectetur. Tellus turpis morbi fermentum
@@ -26,17 +26,17 @@ const PrintingOrderPlacesTop = ({ id }: { id: string }) => {
               GO TO HOME PAGE
             </span>
           </Link>
-          <Link
-            href={`/printing-request/printing-request-order-track/${id}`}
+          {/* <Link
+            href={`/order-track/${id}`}
             className="flex items-center gap-2 bg-main-bg-color py-2.5 px-3 rounded-md text-white cursor-pointer"
           >
             <span className="font-medium whitespace-nowrap">VIEW ORDER</span>
             <IconArrowRight stroke={2} />
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>
   );
 };
 
-export default PrintingOrderPlacesTop;
+export default QuickOrderPlacesTop;

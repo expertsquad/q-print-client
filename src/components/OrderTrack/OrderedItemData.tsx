@@ -2,10 +2,8 @@
 import { IconX } from "@tabler/icons-react";
 import Image from "next/image";
 import React, { useState } from "react";
-import GlobalModal from "../UI/modal/GlobalModal";
 import { OrderedItemsTypes } from "@/types/orderTrackPage";
 import { imageUrl } from "@/constants/imageUrl";
-import OrderCancelledModal from "./OrderCancelledModal";
 
 const OrderedItemData = ({
   orderedItems,

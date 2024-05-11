@@ -14,10 +14,10 @@ const ProductsFilter = () => {
         className="py-2 rounded-md outline-none border-none w-full md:w-min bg-transparent text-gray-700 active:text-fuchsia-700"
         onChange={(e) => dispatch(setProductsFilterOption(e.target.value))}
       >
-        <option value="mostPopular">Most Popular</option>
-        <option value="newProduct">New Produt</option>
-        <option value="highPrice">High Price</option>
-        <option value="lowPrice">Low Price</option>
+        <option value="MostPopular">Most Popular</option>
+        <option value="Recent">New Product</option>
+        <option value="HighPrice">High Price</option>
+        <option value="LowPrice">Low Price</option>
       </select>
     </div>
   );

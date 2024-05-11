@@ -14,9 +14,7 @@ const PrintingOrderHistory = () => {
   return (
     <div className="w-full mb-7">
       <div className="flex justify-between items-center mb-4">
-        <h3 className="[font-size:_clamp(1em,4vw,1.5em)] font-bold">
-          Printing Order History
-        </h3>
+        <h3 className="text-lg md:text-xl font-bold">Printing Order History</h3>
         <div className="border py-2 px-3 rounded-lg  ">
           <select
             title="Month Filter"
