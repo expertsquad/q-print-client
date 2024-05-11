@@ -25,7 +25,7 @@ const YourInformation = () => {
   const defaultAddress = address?.data?.find(
     (address: any) => address.isDefault
   );
-  console.log(defaultAddress);
+
   // <== Get User Personal Information ==>
   const { data: personalInformation } = useGetUserQuery("");
 
@@ -34,24 +34,29 @@ const YourInformation = () => {
 
   const handleOptionChange = (event: any) => {
     setSelectedOption(event.target.value);
-    // Check the value of the newly selected option
-    if (selectedOption === "addedAddress") {
-      // Set default address as shipping address
-      setPrintingRequest({
-        ...data,
-        shippingAddress: {
-          ...data.shippingAddress,
-          shippingAddress: defaultAddress,
-        },
-      });
-      dispatch(resetShippingAddress());
-    } else if (selectedOption === "address") {
-      // Set input value as shipping address
-      // You can add your logic here to set the input values
+
+    if (event.target.value === "addedAddress") {
+      dispatch(
+        setPrintingRequest({
+          ...data,
+          shippingAddress: {
+            ...data.shippingAddress,
+            oldAddress: true,
+          },
+        })
+      );
+    } else {
+      dispatch(
+        setPrintingRequest({
+          ...data,
+          shippingAddress: {
+            ...data.shippingAddress,
+            oldAddress: false,
+          },
+        })
+      );
     }
   };
-
-  console.log(data);
 
   return (
     <section className="lg:max-w-[1280px] w-full mx-auto  mb-7">
@@ -118,10 +123,11 @@ const YourInformation = () => {
                       <div className="h-3 w-3 bg-gradient-to-r from-[#C83B62] to-[#7F35CD] rounded-full"></div>
                     )}
                   </div>
-                  <span className="ml-2">Use default address </span>
+                  <span className="ml-2">Use Default Address </span>
                   <input
                     type="radio"
                     value="addedAddress"
+                    name="addedAddress"
                     checked={selectedOption === "addedAddress"}
                     onChange={handleOptionChange}
                     className="hidden"
@@ -165,6 +171,7 @@ const YourInformation = () => {
                   <input
                     type="radio"
                     value="address"
+                    name="address"
                     checked={selectedOption === "address"}
                     onChange={handleOptionChange}
                     className="hidden"
@@ -180,6 +187,13 @@ const YourInformation = () => {
                       label="First Name"
                       type="text"
                       name="firstName"
+                      inputStyle={
+                        (data?.shippingAddress?.oldAddress === false &&
+                          data?.shippingAddress?.firstName === undefined) ||
+                        data?.shippingAddress?.firstName === ""
+                          ? "border border-red-500"
+                          : " "
+                      }
                       value={data?.shippingAddress?.firstName}
                       placeholder={"First Name"}
                       onChange={(e) =>
@@ -198,6 +212,13 @@ const YourInformation = () => {
                       label="Last Name"
                       type="text"
                       name="lastName"
+                      inputStyle={
+                        (data?.shippingAddress?.oldAddress === false &&
+                          data?.shippingAddress?.lastName === undefined) ||
+                        data?.shippingAddress?.lastName === ""
+                          ? "border border-red-500"
+                          : " "
+                      }
                       value={data?.shippingAddress?.lastName}
                       placeholder={"Last Name"}
                       onChange={(e) =>
@@ -213,11 +234,18 @@ const YourInformation = () => {
                       }
                     />
                     <CustomInput
-                      label="Phone Number"
+                      label="Phone Number (Make sure Valid Number)"
                       type="text"
                       name="phoneNumber"
+                      inputStyle={
+                        (data?.shippingAddress?.oldAddress === false &&
+                          data?.shippingAddress?.phoneNumber === undefined) ||
+                        data?.shippingAddress?.phoneNumber === ""
+                          ? "border border-red-500"
+                          : " "
+                      }
                       value={data?.shippingAddress?.phoneNumber}
-                      placeholder={"Phone Number"}
+                      placeholder={"974*****"}
                       onChange={(e) =>
                         dispatch(
                           setPrintingRequest({
@@ -234,6 +262,13 @@ const YourInformation = () => {
                       label="Street Address"
                       type="text"
                       name="streetAddress"
+                      inputStyle={
+                        (data?.shippingAddress?.oldAddress === false &&
+                          data?.shippingAddress?.streetAddress === undefined) ||
+                        data?.shippingAddress?.streetAddress === ""
+                          ? "border border-red-500"
+                          : " "
+                      }
                       value={data?.shippingAddress?.streetAddress}
                       placeholder="Your Street Address"
                       onChange={(e) =>
@@ -252,6 +287,13 @@ const YourInformation = () => {
                       label="State"
                       type="text"
                       name="state"
+                      inputStyle={
+                        (data?.shippingAddress?.oldAddress === false &&
+                          data?.shippingAddress?.state === undefined) ||
+                        data?.shippingAddress?.state === ""
+                          ? "border border-red-500"
+                          : " "
+                      }
                       value={data?.shippingAddress?.state}
                       placeholder="Your State"
                       onChange={(e) =>
@@ -270,6 +312,13 @@ const YourInformation = () => {
                       label="Country"
                       type="text"
                       name="country"
+                      inputStyle={
+                        (data?.shippingAddress?.oldAddress === false &&
+                          data?.shippingAddress?.country === undefined) ||
+                        data?.shippingAddress?.country === ""
+                          ? "border border-red-500"
+                          : " "
+                      }
                       value={data?.shippingAddress?.country}
                       placeholder={"Country"}
                       onChange={(e) =>
@@ -288,6 +337,13 @@ const YourInformation = () => {
                       label=" Company Name ( Optional )"
                       type="text"
                       name="companyName"
+                      inputStyle={
+                        (data?.shippingAddress?.oldAddress === false &&
+                          data?.shippingAddress?.companyName === undefined) ||
+                        data?.shippingAddress?.companyName === ""
+                          ? "border border-red-500"
+                          : " "
+                      }
                       value={data?.shippingAddress?.companyName}
                       placeholder="Company Name"
                       onChange={(e) =>
@@ -306,6 +362,13 @@ const YourInformation = () => {
                       label="ZipCode"
                       type="text"
                       name="zipCode"
+                      inputStyle={
+                        (data?.shippingAddress?.oldAddress === false &&
+                          data?.shippingAddress?.zipCode === undefined) ||
+                        data?.shippingAddress?.zipCode === ""
+                          ? "border border-red-500"
+                          : " "
+                      }
                       value={data?.shippingAddress?.zipCode}
                       placeholder="Your ZipCode"
                       onChange={(e) =>

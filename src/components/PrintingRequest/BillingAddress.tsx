@@ -79,6 +79,14 @@ const BillingAddress = () => {
               label="First Name"
               type="text"
               name="firstName"
+              inputStyle={
+                (data?.billingAddress?.selectedOption ===
+                  "differentBillingAddress" &&
+                  data?.billingAddress?.firstName === undefined) ||
+                data?.billingAddress?.firstName === ""
+                  ? "border border-red-500"
+                  : " "
+              }
               value={data?.billingAddress?.firstName}
               placeholder={"First Name"}
               onChange={(e) =>
@@ -97,6 +105,14 @@ const BillingAddress = () => {
               label="Last Name"
               type="text"
               name="lastName"
+              inputStyle={
+                (data?.billingAddress?.selectedOption ===
+                  "differentBillingAddress" &&
+                  data?.billingAddress?.lastName === undefined) ||
+                data?.billingAddress?.lastName === ""
+                  ? "border border-red-500"
+                  : " "
+              }
               value={data?.billingAddress?.lastName}
               placeholder={"Last Name"}
               onChange={(e) =>
@@ -112,11 +128,19 @@ const BillingAddress = () => {
               }
             />
             <CustomInput
-              label="Phone Number"
+              label="Phone Number (Make sure Valid Number)"
               type="text"
               name="phoneNumber"
+              inputStyle={
+                (data?.billingAddress?.selectedOption ===
+                  "differentBillingAddress" &&
+                  data?.billingAddress?.phoneNumber === undefined) ||
+                data?.billingAddress?.phoneNumber === ""
+                  ? "border border-red-500"
+                  : " "
+              }
               value={data?.billingAddress?.phoneNumber}
-              placeholder={"Phone Number"}
+              placeholder={"974*****"}
               onChange={(e) =>
                 dispatch(
                   setPrintingRequest({
@@ -133,6 +157,14 @@ const BillingAddress = () => {
               label="Street Address"
               type="text"
               name="streetAddress"
+              inputStyle={
+                (data?.billingAddress?.selectedOption ===
+                  "differentBillingAddress" &&
+                  data?.billingAddress?.streetAddress === undefined) ||
+                data?.billingAddress?.streetAddress === ""
+                  ? "border border-red-500"
+                  : " "
+              }
               value={data?.billingAddress?.streetAddress}
               placeholder="Your Street Address"
               onChange={(e) =>
@@ -151,6 +183,14 @@ const BillingAddress = () => {
               label="State"
               type="text"
               name="state"
+              inputStyle={
+                (data?.billingAddress?.selectedOption ===
+                  "differentBillingAddress" &&
+                  data?.billingAddress?.state === undefined) ||
+                data?.billingAddress?.state === ""
+                  ? "border border-red-500"
+                  : " "
+              }
               value={data?.billingAddress?.state}
               placeholder="Your State"
               onChange={(e) =>
@@ -169,6 +209,14 @@ const BillingAddress = () => {
               label="Country"
               type="text"
               name="country"
+              inputStyle={
+                (data?.billingAddress?.selectedOption ===
+                  "differentBillingAddress" &&
+                  data?.billingAddress?.country === undefined) ||
+                data?.billingAddress?.country === ""
+                  ? "border border-red-500"
+                  : " "
+              }
               value={data?.billingAddress?.country}
               placeholder={"Country"}
               onChange={(e) =>
@@ -187,6 +235,14 @@ const BillingAddress = () => {
               label=" Company Name ( Optional )"
               type="text"
               name="companyName"
+              inputStyle={
+                (data?.billingAddress?.selectedOption ===
+                  "differentBillingAddress" &&
+                  data?.billingAddress?.companyName === undefined) ||
+                data?.billingAddress?.companyName === ""
+                  ? "border border-red-500"
+                  : " "
+              }
               value={data?.billingAddress?.companyName}
               placeholder="Company Name"
               onChange={(e) =>
@@ -205,6 +261,14 @@ const BillingAddress = () => {
               label="ZipCode"
               type="text"
               name="zipCode"
+              inputStyle={
+                (data?.billingAddress?.selectedOption ===
+                  "differentBillingAddress" &&
+                  data?.billingAddress?.zipCode === undefined) ||
+                data?.billingAddress?.zipCode === ""
+                  ? "border border-red-500"
+                  : " "
+              }
               value={data?.billingAddress?.zipCode}
               placeholder="Your ZipCode"
               onChange={(e) =>

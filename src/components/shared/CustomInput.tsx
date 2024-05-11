@@ -44,12 +44,12 @@ const CustomInput: React.FC<CustomInputProps> = ({
           {label}
         </label>
         <input
-          disabled={disabled}
+          // disabled={disabled}
           type={type}
           onChange={onChange}
           value={value}
           name={name}
-          className={`${inputStyle} w-full border border-black border-opacity-10  py-3  pr-4 focus:outline-none focus:border-fuchsia-800 rounded-md ${
+          className={` required w-full border border-gray-200  py-3  pr-4 focus:outline-none focus:border-fuchsia-800 rounded-md ${inputStyle} ${
             readonly ? "text-black-opacity-60" : "text-black"
           } placeholder:text-sm ${
             placeholderIcon ? "pl-9" : "pl-5"

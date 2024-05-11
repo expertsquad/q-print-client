@@ -1,7 +1,10 @@
 import { useGetShippingQuery } from "@/redux/features/api/shipping/shippingApi";
 import { setPrintingRequest } from "@/redux/features/printing-request/postPrintingRequestSlice";
 import { useAddPrintingMutation } from "@/redux/features/printing-request/printingRequestApi";
-import { useAddShippingAddressMutation } from "@/redux/features/user/user";
+import {
+  useAddShippingAddressMutation,
+  useGetUserAddressQuery,
+} from "@/redux/features/user/user";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { IconPlus } from "@tabler/icons-react";
 import { IconMinus } from "@tabler/icons-react";
@@ -20,6 +23,12 @@ const PrintingRequestTotalOrderCard = ({ buttonText, btnDisable }: any) => {
   const heightWidthMultiplyByType = calculateHeightWidth * data?.paperTypePrice;
   // shipping address mutation
   const [addShippingInfo] = useAddShippingAddressMutation();
+
+  // <== Get User Address ==>
+  const { data: address } = useGetUserAddressQuery(`isDefault=true`);
+  const defaultAddress = address?.data?.find(
+    (address: any) => address.isDefault
+  );
 
   const heightWidthMultiplyMode =
     calculateHeightWidth * data?.printingModePrice;
@@ -42,7 +51,11 @@ const PrintingRequestTotalOrderCard = ({ buttonText, btnDisable }: any) => {
     formData.append("payment", JSON.stringify(data?.payment || {}));
     formData.append(
       "shippingAddress",
-      JSON.stringify(data?.shippingAddress || {})
+      JSON.stringify(
+        data?.shippingAddress.oldAddress === true
+          ? defaultAddress
+          : data?.shippingAddress
+      )
     );
     formData.append("paperSize", JSON.stringify(data?.paperSize || {}));
     formData.append("printingColorModeId", data?.printingColorModeId || "");
@@ -55,13 +68,17 @@ const PrintingRequestTotalOrderCard = ({ buttonText, btnDisable }: any) => {
 
     try {
       // updating shipping address
-      if (data?.shippingAddress?.isDefault === true) {
+      if (
+        data?.shippingAddress?.oldAddress === false &&
+        data?.shippingAddress?.isDefault === true
+      ) {
         const res = await addShippingInfo({ data: shippingAddress });
         console.log(res);
       }
 
       // printing request mutation
       const res = await addPrinting(formData);
+      console.log(res);
 
       // @ts-ignore
       if (res?.data) {
