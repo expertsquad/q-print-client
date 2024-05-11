@@ -41,8 +41,8 @@ const Header = () => {
   };
 
   return (
-    <header className=" mx-auto   relative">
-      <section className="header-section-css pt-6  fixed top-0 left-0 right-0 z-40 bg-white max-w-[1280px]  mx-auto px-5">
+    <header className=" mx-auto relative ">
+      <section className="header-section-css pt-6  fixed top-0 left-0 right-0 z-40 bg-white max-w-[1280px]  mx-auto px-5 ">
         {/* ==Logo== */}
         <div className="order-2 md:order-1 section-first-child ">
           <div onClick={() => router.push("/")} className="w-full h-auto cursor-pointer">
