@@ -41,7 +41,7 @@ const ProductCard = ({ product, loading }: any) => {
   return (
     <div
       onClick={handleViewProduct}
-      className="border hover:border-fuchsia-700 rounded-custom-10px p-4 group w-[calc(300px, 32vw, 184px)] md:min-h-[400px] min-h-[300px] cursor-pointer transition-all"
+      className="border hover:border-fuchsia-700 rounded-custom-10px p-4 group w-[calc(300px,2vw,185px)]  md:min-h-[400px] min-h-[300px] cursor-pointer duration-500  "
     >
       <div>
         <ProductImageSlide loading={loading} product={product} defaultVariant={defaultVariant} />

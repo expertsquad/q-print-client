@@ -10,6 +10,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        "product-grid": "repeat(auto-fill, minmax(250px,1fr))",
+      },
+
       fontSize: {
         clamp: "clamp(1rem, 5vw, 3rem)",
       },

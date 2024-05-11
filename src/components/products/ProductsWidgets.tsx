@@ -68,7 +68,7 @@ const ProductsWidgets = () => {
         </div>
       </div>
 
-      <div className=" main-product-card-container">
+      <div className="grid grid-cols-product-grid md:gap-10 gap-5 ">
         {isLoading
           ? [...Array(12)].map((_, index) => {
               return <ProductCardSkeleton key={index} />;

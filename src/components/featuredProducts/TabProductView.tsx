@@ -70,7 +70,7 @@ const TabProductView = () => {
               See all &rarr;
             </Link>
 
-            <div className="main-product-card-container">
+            <div className="grid grid-cols-product-grid md:gap-10 gap-5 ">
               {
                 loadingTopSelling ? (
                   [...Array(8)].map((_, index) => {
@@ -98,7 +98,7 @@ const TabProductView = () => {
               {" "}
               See all &rarr;
             </Link>
-            <div className="main-product-card-container">
+            <div className="grid grid-cols-product-grid md:gap-10 gap-5 ">
               {
                 loadingMostPopular
                   ? (
@@ -126,7 +126,7 @@ const TabProductView = () => {
               {" "}
               See all &rarr;
             </Link>
-            <div className="main-product-card-container ">
+            <div className="grid grid-cols-product-grid md:gap-10 gap-5  ">
               {
                 loadingNewProduct ? (
                   [...Array(8)].map((_, index) => {
