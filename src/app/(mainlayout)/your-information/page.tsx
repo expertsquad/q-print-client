@@ -2,6 +2,7 @@
 import ReturnToCardButton from "@/components/PrintingRequest/ReturnToCardButton";
 import CustomInput from "@/components/shared/CustomInput";
 import ShoppingCartTotalItems from "@/components/UI/card/ShoppingCartTotalItems";
+import { qatarStates } from "@/constants/qatarState";
 import { setPrintingRequest } from "@/redux/features/printing-request/postPrintingRequestSlice";
 import {
   useGetUserAddressQuery,
@@ -18,8 +19,6 @@ const YourInformation = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const data = useAppSelector((state) => state.printingRequestOrder);
-
-  console.log(data);
 
   // <== Get User Address ==>
   const { data: address, isLoading } = useGetUserAddressQuery(`isDefault=true`);
@@ -47,6 +46,7 @@ const YourInformation = () => {
           shippingAddress: {
             ...data.shippingAddress,
             oldAddress: false,
+            state: "Ad Dawhah (Doha)",
           },
         })
       );
@@ -275,7 +275,7 @@ const YourInformation = () => {
                         )
                       }
                     />
-                    <CustomInput
+                    {/* <CustomInput
                       label="State"
                       type="text"
                       name="state"
@@ -299,7 +299,42 @@ const YourInformation = () => {
                           })
                         )
                       }
-                    />
+                    /> */}
+
+                    {/* state */}
+
+                    <label htmlFor="state">
+                      Select State
+                      <select
+                        defaultValue={"Ad Dawhah (Doha)"}
+                        name="state"
+                        id="state"
+                        onChange={(e) =>
+                          dispatch(
+                            setPrintingRequest({
+                              ...data,
+                              shippingAddress: {
+                                ...data.shippingAddress,
+                                [e.target.name]: e.target.value,
+                              },
+                            })
+                          )
+                        }
+                        className="w-full border border-gray-200 py-3 focus:outline-none focus:border-fuchsia-800 rounded-md"
+                      >
+                        {qatarStates?.map((state) => (
+                          <option
+                            key={state}
+                            value={state}
+                            selected={state === "Ad Dawhah (Doha)"}
+                            defaultValue={"Ad Dawhah (Doha)"}
+                          >
+                            {state}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+
                     <CustomInput
                       label="Country"
                       type="text"

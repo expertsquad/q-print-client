@@ -6,6 +6,7 @@ import ShoppingCartTotalItems from "@/components/UI/card/ShoppingCartTotalItems"
 import { resetCart } from "@/redux/features/cart/productCartSlice";
 import { useOnlineOrderPostMutation } from "@/redux/features/online-order/online-orderApi";
 import {
+  useAddShippingAddressMutation,
   useGetUserAddressQuery,
   useGetUserQuery,
 } from "@/redux/features/user/user";
@@ -13,6 +14,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { IconMail } from "@tabler/icons-react";
 import { IconPhone } from "@tabler/icons-react";
 import { IconMapPin } from "@tabler/icons-react";
+import { error } from "console";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -22,17 +24,25 @@ const Payment = () => {
 
   // <== Get User Personal Information ==>
   const { data: personalInformation } = useGetUserQuery("");
+  // getting default address
+  const { data: address, isLoading } = useGetUserAddressQuery(`isDefault=true`);
+  //cart items
+  const { products } = useAppSelector((state) => state.productCartSlice);
+  // shippinng and billing
+  const data = useAppSelector((state) => state.printingRequestOrder);
+  //if user select new shipping address and make it default
+  const [addShippingInfo] = useAddShippingAddressMutation();
+  // order mutation
+  const [onlineOrder] = useOnlineOrderPostMutation();
 
+  const dispatch = useAppDispatch();
   const router = useRouter();
 
-  const { data: address, isLoading } = useGetUserAddressQuery(`isDefault=true`);
-  const dispatch = useAppDispatch();
-
-  const { products } = useAppSelector((state) => state.productCartSlice);
-
-  const data = useAppSelector((state) => state.printingRequestOrder);
-
-  const [onlineOrder] = useOnlineOrderPostMutation();
+  // zip code string to number
+  const shippingAddress = {
+    ...data?.shippingAddress,
+    zipCode: parseInt(data?.shippingAddress?.zipCode),
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,25 +50,36 @@ const Payment = () => {
 
     const value = {
       orderItems: products,
-      shippingAddress: data?.shippingAddress
-        ? data?.shippingAddress
-        : address?.data[0],
+      shippingAddress:
+        data?.shippingAddress?.oldAddress === false
+          ? shippingAddress
+          : address?.data[0],
       payment: data?.payment,
     };
 
     try {
+      // updating shipping address
+      if (
+        data?.shippingAddress?.oldAddress === false &&
+        data?.shippingAddress?.isDefault === true
+      ) {
+        const res = await addShippingInfo({ data: shippingAddress });
+        console.log(res);
+      }
       const res = await onlineOrder(value);
-      console.log(res, "Hello");
+      console.log(res);
       if ("data" in res) {
-        router.push(`${res?.data?.data?.resultObj?.payUrl}`);
-        toast.success((res as { data: any }).data.message);
+        if (res?.data?.data?.payment?.paymentMethod === "COD") {
+          toast.success((res as { data: any }).data.message);
+          router.push(`/thank-you/${res?.data?.data?._id}`);
+        } else {
+          router.push(`${res?.data?.data?.resultObj?.payUrl}`);
+        }
         dispatch(resetCart());
       }
-      //@ts-ignore
-      router.push(`/thank-you/${res?.data?.data?._id}`);
 
       if ("error" in res) {
-        toast.error((res as { error: any }).error.message);
+        toast.error((res as { error: any }).data.message);
       }
     } catch (error) {
       console.error(error);
@@ -68,7 +89,11 @@ const Payment = () => {
   };
 
   return (
-    <section className="lg:max-w-[1280px] w-full mx-auto  mb-7">
+    <section
+      className={`${
+        loading && "opacity-50 pointer-events-none"
+      } "lg:max-w-[1280px] w-full mx-auto  mb-7" `}
+    >
       <div className="mb-7">
         <h3 className="[font-size:_clamp(1.2em,4vw,1.8em)] font-bold">
           Payment
