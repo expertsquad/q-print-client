@@ -12,10 +12,7 @@ import ColorPickUp from "./ColorPickUp";
 import GetDiscountRange from "./GetDiscountRange";
 import { imageUrl } from "@/constants/imageUrl";
 import { useDispatch } from "react-redux";
-import {
-  addToCart,
-  removeOneFromCart,
-} from "@/redux/features/cart/productCartSlice";
+import { addToCart } from "@/redux/features/cart/productCartSlice";
 import SingleQuickOrder from "../quick-order/SingleQuickOrder";
 import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 import { useAppSelector } from "@/redux/hook";
@@ -26,8 +23,19 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
   const [orderQuantity, setOrderQuantity] = useState(1);
   const data = useAppSelector((state) => state.productCartSlice);
 
-  console.log(data);
+  const favoriteProducts = useAppSelector(
+    (state) => state.favouriteCartSlice.products
+  );
+  // <== Checking is product in favourite? ==>
+  const isProductInFavorite = (productId: string) => {
+    const foundProduct = favoriteProducts?.filter(
+      (product) => product?._id === productId
+    );
+    return foundProduct.length > 0;
+  };
 
+  const isFav = isProductInFavorite(productDesc?._id);
+  // <== Get quantity fn ==>
   function getQuantityFromCart({ data, productId, variantName }: any) {
     const quantity = data?.products?.find(
       (item: any) =>
@@ -35,15 +43,14 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
     );
     return quantity?.orderQuantity || 0;
   }
-
+  // <== Get quantity fn ==>
   const quantity = getQuantityFromCart({
     data,
     productId: productDesc?._id,
     variantName: selectedVariant?.variantName,
   });
 
-  // set default variant in local storage
-
+  // <== set default variant in local storage ==>
   useEffect(() => {
     const storedSelectedVariant = localStorage.getItem("selectedVariant");
     if (storedSelectedVariant) {
@@ -58,8 +65,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
     localStorage.setItem("selectedVariant", JSON.stringify(variant));
   };
 
-  // add to cart
-
+  // <== handle add to cart fn ==>
   const handleAddToCart = (event: React.MouseEvent, product: any) => {
     event.stopPropagation();
     dispatch(
@@ -76,8 +82,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
     );
   };
 
-  // add to favorite
-
+  // <== handle add to favourite fn ==>
   const handleAddToFavourite = (event: React.MouseEvent, product: any) => {
     event.stopPropagation();
     dispatch(
@@ -90,6 +95,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         orderQuantity: 1,
         variantName: selectedVariant?.variantName,
         inStock: product?.variants[0].inStock,
+        productId: product?._id,
       })
     );
   };
@@ -100,7 +106,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         {productDesc?.productName}
       </h2>
       <div className="flex items-center my-3">
-        <div className="w-[50px] h-[50px] relative shrink-0">
+        <div className="w-[50px] h-[20px] relative shrink-0">
           <Image
             src={`${imageUrl}${productDesc?.brand?.brandPhoto}`}
             alt="Brand Image"
@@ -137,9 +143,17 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
           onClick={(event: React.MouseEvent) =>
             handleAddToFavourite(event, productDesc)
           }
-          className="flex items-center gap-2 ml-3 text-black-opacity-60 [font-size:_clamp(13px,5vw,14px)] whitespace-nowrap"
+          className={`flex items-center gap-1 ml-3  [font-size:_clamp(13px,5vw,14px)] whitespace-nowrap ${
+            isFav ? "disabled btn-disabled" : ""
+          }`}
         >
-          <IconHeart className="text-[#E73C17]" />
+          <IconHeart
+            className={`${
+              isFav ? "text-[#E73C17] fill-current" : "text-[#E73C17]"
+            }`}
+            width={18}
+            height={18}
+          />
           Add To Wishlist
         </button>
       </div>
@@ -150,7 +164,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
         />
       </div>
       <div className="">
-        <div className="flex items-center flex-wrap">
+        <div className="flex items-baseline flex-wrap">
           <h3 className="main-text-color [font-size:_clamp(20px,5vw,26px)] font-semibold mr-2">
             {selectedVariant?.discountedPrice}
             <small> QAR</small>
@@ -163,28 +177,30 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
           </span>
         </div>
 
-        {productDesc?.bulk === 1 && (
-          <GetDiscountRange
-            expectedAmount={
-              productDesc?.bulk?.minOrder ? productDesc?.bulk?.minOrder : 0
-            }
-            totalAmount={quantity}
-          />
-        )}
-        {productDesc?.bulk === 1 && (
-          <div className="my-3 whitespace-nowrap text-black-opacity-60">
-            <p>
-              Buy{" "}
-              <span className="font-semibold main-text-color">
-                {productDesc?.bulk?.minOrder}
-              </span>{" "}
-              item to get more{" "}
-              <span className="font-semibold text-black">
-                {productDesc?.bulk?.discount} extra!
-              </span>
-            </p>
-          </div>
-        )}
+        {productDesc?.bulk === true ||
+          (productDesc?.bulk?.minOrder > 1 && (
+            <GetDiscountRange
+              expectedAmount={
+                productDesc?.bulk?.minOrder ? productDesc?.bulk?.minOrder : 0
+              }
+              totalAmount={quantity}
+            />
+          ))}
+        {productDesc?.bulk === true ||
+          (productDesc?.bulk?.minOrder > 1 && (
+            <div className="my-3 whitespace-nowrap text-black-opacity-60">
+              <p>
+                Buy{" "}
+                <span className="font-semibold main-text-color">
+                  {productDesc?.bulk?.minOrder}
+                </span>{" "}
+                item to get more{" "}
+                <span className="font-semibold text-black">
+                  {productDesc?.bulk?.discount} extra!
+                </span>
+              </p>
+            </div>
+          ))}
 
         <div className="flex items-center gap-5 mb-5">
           <div className="border border-gray-200 flex items-center gap-2 rounded-3xl p-2">

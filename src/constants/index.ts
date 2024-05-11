@@ -88,12 +88,12 @@ export const productViewMenus = [
     hashtag: "#specification",
   },
   {
-    _id: 1,
+    _id: 2,
     name: "Warranty",
     hashtag: "#warranty",
   },
   {
-    _id: 1,
+    _id: 3,
     name: "Description",
     hashtag: "#description",
   },
