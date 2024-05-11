@@ -7,6 +7,7 @@ const CartViewTotalCard = ({
   shippingCharge,
   discountPrice,
   calculateTotalWithDiscount,
+  btnDisabled,
 }: number | any) => {
   return (
     <div className="w-full">
@@ -46,7 +47,9 @@ const CartViewTotalCard = ({
           {calculateTotalWithDiscount} <small>QAR</small>
         </span>
       </div>
-      <div className="flex items-center justify-center px-5 mb-5">
+      <button
+        className={`${btnDisabled} "flex items-center justify-center px-5 mb-5 w-full  "`}
+      >
         <Link
           href="/your-information"
           className="flex items-center gap-2 justify-center main-bg-color w-full py-2 text-white rounded-lg"
@@ -56,7 +59,7 @@ const CartViewTotalCard = ({
             <IconArrowRight stroke={2} height={20} width={20} />
           </span>
         </Link>
-      </div>
+      </button>
     </div>
   );
 };

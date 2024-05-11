@@ -17,12 +17,14 @@ interface ShoppingCartProps {
   handleSubmit?: any;
   btnText?: string;
   btnLink?: string;
+  btnDisable?: string;
 }
 
 const ShoppingCartTotalItems = ({
   handleSubmit,
   btnText,
   btnLink,
+  btnDisable,
 }: ShoppingCartProps) => {
   const { products, subTotal, total } = useAppSelector(
     (state) => state.productCartSlice
@@ -123,7 +125,7 @@ const ShoppingCartTotalItems = ({
       <div className="flex justify-between items-center px-5 py-2   ">
         <small className="text-base text-gray-500">Discount </small>{" "}
         <p className="text-lg font-medium text-red-500 ">
-          {total - subTotal} QAR
+          {(total - subTotal).toFixed(2)} QAR
         </p>
       </div>
 
@@ -143,7 +145,7 @@ const ShoppingCartTotalItems = ({
         {btnText ? (
           <Link
             href={`/${btnLink}`}
-            className="bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white hover:scale-105 shadow-sm hover:duration-500 hover:shadow-lg text-center "
+            className={`${btnDisable} " bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white hover:scale-105 shadow-sm hover:duration-500 hover:shadow-lg text-center "`}
           >
             {btnText}
           </Link>

@@ -12,7 +12,7 @@ const PrintingRequest = () => {
   const isUserLoggedIn = isLoggedIn();
   const dispatch = useDispatch();
   const data = useAppSelector((state) => state.printingRequestOrder);
-  console.log(data);
+
   // <== paperSize, paperType,colorMode API's ===>
   const { data: paperSize } = useGetPrintingRequestsQuery(
     "printingSetupType=Paper Size"
