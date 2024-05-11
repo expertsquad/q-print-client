@@ -19,6 +19,8 @@ const YourInformation = () => {
 
   const data = useAppSelector((state) => state.printingRequestOrder);
 
+  console.log(data);
+
   // <== Get User Address ==>
   const { data: address, isLoading } = useGetUserAddressQuery(`isDefault=true`);
 
@@ -100,7 +102,7 @@ const YourInformation = () => {
               </div>
 
               {/* == Existing User Address == */}
-              {isUserLoggedIn && (
+              {isUserLoggedIn && address !== undefined && (
                 <label className="inline-flex items-center mb-4 cursor-pointer  ">
                   <div
                     className={`w-5 h-5 rounded-full bg-white  flex items-center justify-center border-fuchsia-700 border-2 ${
@@ -124,7 +126,7 @@ const YourInformation = () => {
                   />
                 </label>
               )}
-              {isUserLoggedIn && (
+              {isUserLoggedIn && address !== undefined && (
                 <>
                   {isLoading ? (
                     <p>Loading...</p>
@@ -413,6 +415,11 @@ const YourInformation = () => {
           <ShoppingCartTotalItems
             btnText="Continue Payment"
             btnLink="payment"
+            btnDisable={
+              data?.shippingAddress === undefined
+                ? "btn-disabled opacity-50"
+                : ""
+            }
           />
         </div>
 

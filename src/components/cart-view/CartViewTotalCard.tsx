@@ -48,7 +48,7 @@ const CartViewTotalCard = ({
         </span>
       </div>
       <button
-        className={`${btnDisabled} "flex items-center justify-center px-5 mb-5  w-full"`}
+        className={`${btnDisabled} "flex items-center justify-center px-5 mb-5 w-full  "`}
       >
         <Link
           href="/your-information"

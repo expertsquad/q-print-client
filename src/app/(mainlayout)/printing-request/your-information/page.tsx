@@ -110,7 +110,7 @@ const YourInformation = () => {
 
               {/* existing user address */}
 
-              {isUserLoggedIn && (
+              {isUserLoggedIn && defaultAddress !== undefined && (
                 <label className="inline-flex items-center mb-4 cursor-pointer  ">
                   <div
                     className={`w-5 h-5 rounded-full bg-white  flex items-center justify-center border-fuchsia-700 border-2 ${
@@ -135,7 +135,7 @@ const YourInformation = () => {
                 </label>
               )}
 
-              {isUserLoggedIn && (
+              {isUserLoggedIn && defaultAddress !== undefined && (
                 <>
                   {isLoading ? (
                     <p>Loading...</p>
