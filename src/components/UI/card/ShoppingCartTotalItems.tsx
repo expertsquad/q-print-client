@@ -12,6 +12,7 @@ import {
   removeOneFromCart,
 } from "@/redux/features/cart/productCartSlice";
 import { useGetShippingQuery } from "@/redux/features/api/shipping/shippingApi";
+import { get } from "http";
 
 interface ShoppingCartProps {
   handleSubmit?: any;
@@ -32,6 +33,7 @@ const ShoppingCartTotalItems = ({
   const dispatch = useDispatch();
 
   const getShipping = useGetShippingQuery("");
+  console.log(getShipping);
 
   const freeShippingMinOrderAmount =
     getShipping?.data?.data?.freeShippingMinOrderAmount;
@@ -46,7 +48,6 @@ const ShoppingCartTotalItems = ({
       shippingCharge = shippingInsideFee;
     }
   }
-  const calculateTotal = subTotal + shippingCharge;
 
   return (
     <div className=" border rounded-lg pb-5 mb-5">

@@ -18,7 +18,6 @@ const YourInformation = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const data = useAppSelector((state) => state.printingRequestOrder);
-
   console.log(data);
 
   // <== Get User Address ==>
@@ -275,7 +274,7 @@ const YourInformation = () => {
                         )
                       }
                     />
-                    <CustomInput
+                    {/* <CustomInput
                       label="State"
                       type="text"
                       name="state"
@@ -299,7 +298,30 @@ const YourInformation = () => {
                           })
                         )
                       }
-                    />
+                    /> */}
+                    <label htmlFor="">
+                      Select State
+                      <select
+                        name="state"
+                        id="state"
+                        onChange={(e) =>
+                          dispatch(
+                            setPrintingRequest({
+                              ...data,
+                              shippingAddress: {
+                                ...data.shippingAddress,
+                                [e.target.name]: e.target.value,
+                              },
+                            })
+                          )
+                        }
+                        className="  w-full border border-gray-200  py-3   focus:outline-none focus:border-fuchsia-800 rounded-md"
+                      >
+                        <option value="inside">Inside Doha</option>
+                        <option value="outside">Outside Doha</option>
+                      </select>
+                    </label>
+
                     <CustomInput
                       label="Country"
                       type="text"

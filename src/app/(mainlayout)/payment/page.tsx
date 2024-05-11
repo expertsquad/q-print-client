@@ -55,7 +55,7 @@ const Payment = () => {
         dispatch(resetCart());
       }
       //@ts-ignore
-      router.push(`/thank-you/${res?.data?.data?._id}`);
+      // router.push(`/thank-you/${res?.data?.data?._id}`);
 
       if ("error" in res) {
         toast.error((res as { error: any }).error.message);
@@ -68,7 +68,11 @@ const Payment = () => {
   };
 
   return (
-    <section className="lg:max-w-[1280px] w-full mx-auto  mb-7">
+    <section
+      className={`${
+        loading && "opacity-50 pointer-events-none"
+      } "lg:max-w-[1280px] w-full mx-auto  mb-7" `}
+    >
       <div className="mb-7">
         <h3 className="[font-size:_clamp(1.2em,4vw,1.8em)] font-bold">
           Payment

@@ -20,7 +20,7 @@ const CartViewTotalCard = ({
           { label: "Shipping", amount: shippingCharge },
           {
             label: "Discount",
-            amount: -discountPrice,
+            amount: -discountPrice.toFixed(2),
             borderBottom: true,
           },
         ].map(({ label, amount }, index, array) => (
