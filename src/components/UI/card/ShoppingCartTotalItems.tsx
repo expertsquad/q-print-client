@@ -13,6 +13,8 @@ import {
 } from "@/redux/features/cart/productCartSlice";
 import { useGetShippingQuery } from "@/redux/features/api/shipping/shippingApi";
 import { get } from "http";
+import { isLoggedIn } from "@/services/auth.service";
+import { useGetUserAddressQuery } from "@/redux/features/user/user";
 
 interface ShoppingCartProps {
   handleSubmit?: any;
@@ -30,23 +32,41 @@ const ShoppingCartTotalItems = ({
   const { products, subTotal, total } = useAppSelector(
     (state) => state.productCartSlice
   );
-  const dispatch = useDispatch();
-
   const getShipping = useGetShippingQuery("");
-  console.log(getShipping);
+  // default address
+  const { data: address } = useGetUserAddressQuery(`isDefault=true`);
+  // is user login
+  const isUserLoggedIn = isLoggedIn();
+  // shipping and billing data
+  const data = useAppSelector((state) => state.printingRequestOrder);
+
+  const dispatch = useDispatch();
 
   const freeShippingMinOrderAmount =
     getShipping?.data?.data?.freeShippingMinOrderAmount;
-  const shippingInsideFee = getShipping?.data?.data?.inside;
 
   let shippingCharge;
 
-  if (freeShippingMinOrderAmount && subTotal) {
+  if (isUserLoggedIn && address?.data[0].state === "Ad Dawhah (Doha)") {
+    shippingCharge = getShipping?.data?.data?.inside;
+  } else if (isUserLoggedIn && address?.data[0].state !== "Ad Dawhah (Doha)") {
+    shippingCharge = getShipping?.data?.data?.outside;
+  } else if (isUserLoggedIn === false || address?.data[0].state === undefined) {
+    shippingCharge = getShipping?.data?.data?.inside;
+  }
+
+  if (getShipping?.data?.data?.isFreeShippingActive === false && subTotal) {
     if (freeShippingMinOrderAmount <= subTotal) {
       shippingCharge = 0;
     } else {
-      shippingCharge = shippingInsideFee;
+      shippingCharge;
     }
+  }
+
+  if (data?.shippingAddress?.state === "Ad Dawhah (Doha)") {
+    shippingCharge = getShipping?.data?.data?.inside;
+  } else if (data?.shippingAddress?.state !== "Ad Dawhah (Doha)") {
+    shippingCharge = getShipping?.data?.data?.outside;
   }
 
   return (
