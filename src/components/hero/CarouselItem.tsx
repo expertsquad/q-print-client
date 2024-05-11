@@ -66,7 +66,7 @@ const CarouselItem = ({ item, index, sliderArray }: any) => {
             ))}
           </div>
         </div>
-        <div className="relative shrink-0 md:w-[250px] md:h-[250px] w-[180px] h-[150px]">
+        <div className="relative  md:w-[250px] md:h-[250px] w-[180px] h-[150px]">
           <Image
             src={`${imageUrl}${item?.productPhoto}`}
             alt="hero item images"

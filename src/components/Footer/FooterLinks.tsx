@@ -12,7 +12,7 @@ const FooterLinks = () => {
           <h3 className="text-white md:text-start font-semibold pb-2">{link.title}</h3>
           <div className="flex flex-col md:items-start gap-1">
             {link.links.map((item) => (
-              <Link href="/privacy-policy" key={item.title} className="text-[#999] mb-2 cursor-pointer">
+              <Link href={`/${item?.url}`} key={item.title} className="text-[#999] mb-2 cursor-pointer">
                 {item.title}
               </Link>
             ))}

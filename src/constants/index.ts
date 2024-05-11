@@ -4,10 +4,10 @@ export const footerLinks = [
   {
     title: "My Account",
     links: [
-      { title: "My Account", url: "/" },
-      { title: "Order History", url: "/" },
-      { title: "Shopping Cart", url: "/" },
-      { title: "Wishlist", url: "/" },
+      { title: "My Account", url: "profile/view-profile" },
+      { title: "Order History", url: "profile/order-history" },
+      { title: "Shopping Cart", url: "cart-view" },
+      { title: "Wishlist", url: "wishlist" },
     ],
   },
   //Helps
@@ -16,7 +16,7 @@ export const footerLinks = [
     links: [
       { title: "Contact", url: "/" },
       { title: "faqs", url: "/" },
-      { title: "Privacy Policy", url: "/privacy-policy" },
+      { title: "Privacy Policy", url: "privacy-policy" },
       { title: "Wishlist", url: "/" },
     ],
   },

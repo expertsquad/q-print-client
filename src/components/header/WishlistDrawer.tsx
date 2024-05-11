@@ -64,7 +64,8 @@ const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
                   Your Wishlist Is Empty!!
                 </span>
                 <Link
-                  href={"/"}
+                  href={"/products"}
+                  onClick={() => handleCloseWishlist()}
                   className="flex items-center justify-center main-bg-color py-2 text-white rounded-lg w-full"
                 >
                   Continue Shopping

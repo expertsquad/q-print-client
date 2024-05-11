@@ -8,7 +8,7 @@ import { setBrandName } from "@/redux/features/brand/brandNameSlice";
 import BrandViewSkeleton from "@/components/shared/Skeleton/BrandViewSkeleton";
 
 
-const BrandsCard = () => {
+const BrandsCard = ({ handleModal }: any) => {
   const { data, isLoading } = useGetBrandsQuery("");
   const dispatch = useDispatch();
   const { brandName } = useAppSelector((state) => state.productByBrandName);
@@ -34,7 +34,9 @@ const BrandsCard = () => {
 
 
             data?.data?.map((brand: any, i: number) => (
-              <span key={i} className="flex gap-4 justify-start items-center">
+              <div onClick={() => {
+                handleModal()
+              }} key={i} className="flex gap-4 justify-start items-center">
                 <div className="w-[40px] h-[28px] shrink-0 relative ">
                   <Image
                     src={`${imageUrl}${brand?.brandPhoto}`}
@@ -50,7 +52,7 @@ const BrandsCard = () => {
                 >
                   {brand?.brandName}
                 </small>
-              </span>
+              </div>
             ))}
       </div>
     </div>

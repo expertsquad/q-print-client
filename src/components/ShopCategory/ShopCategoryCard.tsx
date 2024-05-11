@@ -11,19 +11,21 @@ interface ShopCategoryCardProps {
   category: ShopCategoryProps;
 }
 
+
 const ShopCategoryCard = ({ category }: any) => {
+
   return (
-    <div className="relative bg-[#F2F4F5] rounded-xl shrink-0 overflow-scroll no-scrollbar p-10 w-52 md:w-64 lg:w-96 group/item transition-all duration-500 cursor-pointer">
-      <div className="relative w-[120px] h-[120px] md:w-[250px] md:h-[250px] mx-auto">
+    <div className="relative bg-[#F2F4F5] rounded-xl shrink-0  md:px-10 px-5 py-2.5 w-52 md:w-96   cursor-pointer flex flex-col  items-center gap-2.5">
+      <div className="md:w-[250px] md:h-[250px] w-[120px] h-[135px] flex items-center justify-center">
         <Image
-          src={`${imageUrl}${category?.categoryPhoto}`}
-          fill
-          alt={category?.categoryName}
           sizes="(max-width: 768px) 30vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-contain w-full h-full top-0 left-0"
+          src={`${imageUrl}${category?.categoryPhoto}`}
+          alt="category image"
+          width={500}
+          height={500}
         />
       </div>
-      <h3 className="absolute font-medium text-sm md:text-xl bottom-2 left-6 md:left-11  md:group-hover/item:duration-500 transition-all whitespace-nowrap">
+      <h3 className=" absolute bottom-4 left-5 font-medium text-sm md:text-xl  ">
         {category?.categoryName}
       </h3>
     </div>

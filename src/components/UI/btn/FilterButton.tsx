@@ -48,7 +48,7 @@ const FilterButton = ({ brandProductGridView }: any) => {
               {brandProductGridView ? null : <CategoriesCard />}
               <PriceRangeCard />
               {/* <AvailabilityCard /> */}
-              <BrandsCard />
+              <BrandsCard handleModal={handleButtonClick} />
               {/* <NewProductDisountCard /> */}
               {/* <DiscountWidgetCard /> */}
             </ul>

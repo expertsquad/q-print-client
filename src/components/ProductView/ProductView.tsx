@@ -9,9 +9,10 @@ import {
 } from "@/redux/features/products/productsApi";
 import { IProduct } from "@/types/productsType";
 import Link from "next/link";
+import ProductCardSkeleton from "../shared/Skeleton/ProductCardSkeleton";
 
 const ProductView = ({ id }: { id: string }) => {
-  const { data } = useGetProductByIdQuery(id);
+  const { data, isLoading } = useGetProductByIdQuery(id);
   const productdata = data?.data;
 
   const { data: relatedData } = useGetProductsQuery(
@@ -46,9 +47,17 @@ const ProductView = ({ id }: { id: string }) => {
           className="grid grid-cols-product-grid md:gap-10 gap-5 ">
           {
 
-            filteredRelatedProducts?.map((product: IProduct, index: number) => (
-              <ProductCard key={index} product={product} />
-            ))}
+            isLoading ? (
+              [...Array(4)].map((_, index) => {
+                return (
+                  <ProductCardSkeleton key={index} />
+                )
+              })
+            ) :
+
+              filteredRelatedProducts?.map((product: IProduct, index: number) => (
+                <ProductCard key={index} product={product} />
+              ))}
         </div>
       </div>
       {/* == Product specification == */}
