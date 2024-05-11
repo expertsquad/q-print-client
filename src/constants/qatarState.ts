@@ -1,5 +1,5 @@
 export const qatarStates = [
-  "Ad Dawhah (Doha)",
+  "Doha",
   "Al Daayen",
   "Al Khor",
   "Al Wakrah",

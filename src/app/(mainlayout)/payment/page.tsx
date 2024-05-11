@@ -14,7 +14,6 @@ import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { IconMail } from "@tabler/icons-react";
 import { IconPhone } from "@tabler/icons-react";
 import { IconMapPin } from "@tabler/icons-react";
-import { error } from "console";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -64,7 +63,6 @@ const Payment = () => {
         data?.shippingAddress?.isDefault === true
       ) {
         const res = await addShippingInfo({ data: shippingAddress });
-        console.log(res);
       }
       const res = await onlineOrder(value);
       console.log(res);
@@ -79,7 +77,8 @@ const Payment = () => {
       }
 
       if ("error" in res) {
-        toast.error((res as { error: any }).data.message);
+        // @ts-ignore
+        toast.error(error?.data);
       }
     } catch (error) {
       console.error(error);

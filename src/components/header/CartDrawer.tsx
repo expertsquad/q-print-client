@@ -38,9 +38,9 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
 
   let shippingCharge;
 
-  if (isUserLoggedIn && address?.data[0].state === "Ad Dawhah (Doha)") {
+  if (isUserLoggedIn && address?.data[0].state === "Doha") {
     shippingCharge = getShipping?.data?.data?.inside;
-  } else if (isUserLoggedIn && address?.data[0].state !== "Ad Dawhah (Doha)") {
+  } else if (isUserLoggedIn && address?.data[0].state !== "Doha") {
     shippingCharge = getShipping?.data?.data?.outside;
   } else if (isUserLoggedIn === false || address?.data[0].state === undefined) {
     shippingCharge = getShipping?.data?.data?.inside;

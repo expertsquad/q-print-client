@@ -1,6 +1,8 @@
 import { useGetShippingQuery } from "@/redux/features/api/shipping/shippingApi";
 import { setPrintingRequest } from "@/redux/features/printing-request/postPrintingRequestSlice";
+import { useGetUserAddressQuery } from "@/redux/features/user/user";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { isLoggedIn } from "@/services/auth.service";
 import { IconPlus } from "@tabler/icons-react";
 import { IconMinus } from "@tabler/icons-react";
 import Link from "next/link";
@@ -18,7 +20,44 @@ const PringtingRequestOrderCard = ({ href, buttonText, btnDisable }: any) => {
 
   const heightWidthMultiplyMode =
     calculateHeightWidth * data?.printingModePrice;
-  const deliveryCharge = getShipping?.data?.data?.inside;
+
+  // default address
+  const { data: address } = useGetUserAddressQuery(`isDefault=true`);
+  // is user login
+  const isUserLoggedIn = isLoggedIn();
+
+  let deliveryCharge;
+
+  if (isUserLoggedIn && address?.data[0].state === "Doha") {
+    deliveryCharge = getShipping?.data?.data?.inside;
+  } else if (isUserLoggedIn && address?.data[0].state !== "Doha") {
+    deliveryCharge = getShipping?.data?.data?.outside;
+  } else if (isUserLoggedIn === false || address?.data[0].state === undefined) {
+    deliveryCharge = getShipping?.data?.data?.inside;
+  }
+
+  if (
+    data?.shippingAddress?.oldAddress == false &&
+    data?.shippingAddress?.state === "Doha"
+  ) {
+    deliveryCharge = getShipping?.data?.data?.inside;
+  } else if (
+    data?.shippingAddress?.oldAddress == false &&
+    data?.shippingAddress?.state !== "Doha"
+  ) {
+    deliveryCharge = getShipping?.data?.data?.outside;
+  } else if (
+    data?.shippingAddress?.oldAddress == true &&
+    address?.data[0].state === "Doha"
+  ) {
+    deliveryCharge = getShipping?.data?.data?.inside;
+  } else if (
+    data?.shippingAddress?.oldAddress == true &&
+    address?.data[0].state !== "Doha"
+  ) {
+    deliveryCharge = getShipping?.data?.data?.outside;
+  }
+
   const totalAmount = heightWidthMultiplyByType + heightWidthMultiplyMode;
 
   const totalAmountWithQuantity = totalAmount * data?.totalQuantity;

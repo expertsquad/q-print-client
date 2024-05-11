@@ -46,7 +46,7 @@ const YourInformation = () => {
           shippingAddress: {
             ...data.shippingAddress,
             oldAddress: false,
-            state: "Ad Dawhah (Doha)",
+            state: "Doha",
           },
         })
       );
@@ -306,7 +306,7 @@ const YourInformation = () => {
                     <label htmlFor="state">
                       Select State
                       <select
-                        defaultValue={"Ad Dawhah (Doha)"}
+                        defaultValue={"Doha"}
                         name="state"
                         id="state"
                         onChange={(e) =>
@@ -326,8 +326,8 @@ const YourInformation = () => {
                           <option
                             key={state}
                             value={state}
-                            selected={state === "Ad Dawhah (Doha)"}
-                            defaultValue={"Ad Dawhah (Doha)"}
+                            selected={state === "Doha"}
+                            defaultValue={"Doha"}
                           >
                             {state}
                           </option>

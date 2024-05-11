@@ -47,9 +47,9 @@ const ShoppingCartTotalItems = ({
 
   let shippingCharge;
 
-  if (isUserLoggedIn && address?.data[0].state === "Ad Dawhah (Doha)") {
+  if (isUserLoggedIn && address?.data[0].state === "Doha") {
     shippingCharge = getShipping?.data?.data?.inside;
-  } else if (isUserLoggedIn && address?.data[0].state !== "Ad Dawhah (Doha)") {
+  } else if (isUserLoggedIn && address?.data[0].state !== "Doha") {
     shippingCharge = getShipping?.data?.data?.outside;
   } else if (isUserLoggedIn === false || address?.data[0].state === undefined) {
     shippingCharge = getShipping?.data?.data?.inside;
@@ -63,9 +63,25 @@ const ShoppingCartTotalItems = ({
     }
   }
 
-  if (data?.shippingAddress?.state === "Ad Dawhah (Doha)") {
+  if (
+    data?.shippingAddress?.oldAddress == false &&
+    data?.shippingAddress?.state === "Doha"
+  ) {
     shippingCharge = getShipping?.data?.data?.inside;
-  } else if (data?.shippingAddress?.state !== "Ad Dawhah (Doha)") {
+  } else if (
+    data?.shippingAddress?.oldAddress == false &&
+    data?.shippingAddress?.state !== "Doha"
+  ) {
+    shippingCharge = getShipping?.data?.data?.outside;
+  } else if (
+    data?.shippingAddress?.oldAddress == true &&
+    address?.data[0].state === "Doha"
+  ) {
+    shippingCharge = getShipping?.data?.data?.inside;
+  } else if (
+    data?.shippingAddress?.oldAddress == true &&
+    address?.data[0].state !== "Doha"
+  ) {
     shippingCharge = getShipping?.data?.data?.outside;
   }
 
