@@ -7,14 +7,14 @@ import { IconX } from "@tabler/icons-react";
 import { formatDate } from "@/constants/formatDate";
 import { OrderHistoryProduct } from "@/types/orderTrackPage";
 
-const OrderHistoryDetails = ({ data, isLoading }: any) => {
+const OrderHistoryDetails = ({ data, isLoading, loadingMore }: any) => {
   console.log(data);
 
   // <== Get data from order history query ==>
   // const { data, isLoading } = useGetOnlineOrderQuery(`buyer.userId=${id}`);
 
   return (
-    <div>
+    <div className="w-full">
       {isLoading ? (
         <div className="mb-5 border rounded-custom-10px p-4 md:p-[30px] animate-pulse">
           <div className="flex items-center justify-between gap-2.5">
@@ -147,6 +147,11 @@ const OrderHistoryDetails = ({ data, isLoading }: any) => {
             </div>
           </div>
         ))
+      )}
+      {loadingMore && (
+        <div className="flex items-center justify-center  w-full">
+          <span className="loading loading-dots loading-lg bg-main-bg-color "></span>
+        </div>
       )}
     </div>
   );
