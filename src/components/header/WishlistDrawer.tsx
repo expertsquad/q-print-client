@@ -1,15 +1,8 @@
-import React from "react";
 import CustomGlobalDrawer from "../shared/CustomGlobalDrawer";
-import {
-  IconArrowLeft,
-  IconChevronLeft,
-  IconChevronRight,
-  IconShoppingCart,
-  IconX,
-} from "@tabler/icons-react";
+import { IconChevronRight } from "@tabler/icons-react";
 import ModalCloseBtn from "../shared/ModalCloseBtn";
 import Link from "next/link";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { useAppSelector } from "@/redux/hook";
 import Image from "next/image";
 import emptyCart from "@/assets/empty-card-photo.svg";
 import WishlistItem from "../WishlistPageData/WishlistItem";
@@ -42,7 +35,11 @@ const WishlistDrawer = ({ openWishlistDrawer, setOpenWishlistDrawer }: any) => {
               <div className="overflow-y-scroll no-scrollbar flex flex-col gap-5 justify-between h-[calc(100vh-140px)]">
                 <div className="flex flex-col  overflow-y-scroll no-scrollbar ">
                   {products?.map((product: any) => (
-                    <WishlistItem product={product} key={product._id} />
+                    <WishlistItem
+                      product={product}
+                      key={product._id}
+                      handleCloseWishlist={handleCloseWishlist}
+                    />
                   ))}
                 </div>
                 <div className="mx-5">
