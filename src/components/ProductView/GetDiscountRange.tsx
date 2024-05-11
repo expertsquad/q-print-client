@@ -42,7 +42,7 @@ const GetDiscountRange = ({ expectedAmount, totalAmount }: IRange) => {
           setValue(Array.isArray(newValue) ? newValue[0] : newValue)
         }
       />
-      <div className="mt-2 text-center main-text-color font-extrabold">
+      <div className="mt-2 md:mt-auto text-center main-text-color font-extrabold">
         {percentageText}
       </div>
     </div>

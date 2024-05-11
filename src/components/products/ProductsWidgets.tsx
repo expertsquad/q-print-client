@@ -55,10 +55,10 @@ const ProductsWidgets = () => {
       <div className="flex justify-between mb-10">
         <div className="flex items-center gap-1.5">
           <span className="text-black font-bold">
-            {productsData?.data?.length}
+            {productsData?.meta?.total}
           </span>
           <span className="text-sm">
-            {productsData?.data?.length && "Products Found"}
+            {data?.meta?.total && "Products Found"}
           </span>
         </div>
         <div className="">

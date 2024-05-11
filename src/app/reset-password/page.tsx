@@ -57,7 +57,7 @@ const ResetPassword = () => {
           Set the password for your account so you can access all the features.
         </p>
         <form action="" onSubmit={handleSubmit}>
-          <label htmlFor="password" className="text-black text-opacity-70">
+          <label htmlFor="password" className="text-black-opacity-70">
             New Password
           </label>
           <PasswordInput
@@ -66,7 +66,7 @@ const ResetPassword = () => {
             placeholder="New Password"
             inputStyle="mb-5"
           />
-          <label htmlFor="password" className="text-black text-opacity-70">
+          <label htmlFor="password" className="text-black-opacity-70">
             Confirm Password
           </label>
           <PasswordInput

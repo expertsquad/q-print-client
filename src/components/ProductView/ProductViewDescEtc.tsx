@@ -33,8 +33,8 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
     );
     return foundProduct.length > 0;
   };
-
   const isFav = isProductInFavorite(productDesc?._id);
+
   // <== Get quantity fn ==>
   function getQuantityFromCart({ data, productId, variantName }: any) {
     const quantity = data?.products?.find(
@@ -134,7 +134,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
       <div className="flex items-center">
         <p className="[font-size:_clamp(13px,5vw,14px)] mr-3 whitespace-nowrap">
           Category:{" "}
-          <span className="text-black-opacity-60 whitespace-nowrap">
+          <span className=" whitespace-nowrap">
             {productDesc?.category?.categoryName}
           </span>
         </p>{" "}
