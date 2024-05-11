@@ -4,7 +4,6 @@ import { useGetOnlineOrderQuery } from "@/redux/features/online-order/online-ord
 import { useGetUserQuery } from "@/redux/features/user/user";
 import OrderHistoryOrderPlacedLayout from "@/components/Profile/OrderHistoryOrderPlacedLayout";
 import OrderHistoryDetails from "@/components/Profile/OrderHistoryDetails";
-import useInfiniteScroll from "@/constants/useInfiniteScroll";
 
 const OrderHistory = () => {
   const [timePeriod, setTimePeriod] = useState("All Order");
