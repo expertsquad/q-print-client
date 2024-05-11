@@ -6,9 +6,15 @@ import { useGetProductsQuery } from "@/redux/features/products/productsApi";
 import ProductCard from "../product/ProductCard";
 import { IProduct } from "@/types/productsType";
 import ProductCardSkeleton from "../shared/Skeleton/ProductCardSkeleton";
-
+import ProductsFilter from "../products/ProductsFilter";
+import { useState } from "react";
+type SortOption = "MostPopular" | "Recent" | "HighPrice" | "LowPrice";
 const CategoryGridProductView = () => {
-  const { options } = useAppSelector((state) => state.categoryOption);
+  // const { options } = useAppSelector((state) => state.categoryOption);
+
+  const { options } = useAppSelector((state) => state.productsFilterOptions);
+  console.log(options);
+
   const { maxPrice, minPrice } = useAppSelector(
     (state) => state.priceRangeSlice
   );
@@ -19,10 +25,11 @@ const CategoryGridProductView = () => {
     minPrice: number,
     maxPrice: number
   ) {
-    const queryString = `sortBy=${sortBy}&sortOrder=${sortOrder}&${minPrice &&
+    const queryString = `sortBy=${sortBy}&sortOrder=${sortOrder}&${
+      minPrice &&
       maxPrice &&
       `variants.sellingPrice[gte]=${minPrice}&variants.sellingPrice[lte]=${maxPrice}`
-      }`;
+    }`;
 
     return useGetProductsQuery(queryString);
   }
@@ -59,18 +66,15 @@ const CategoryGridProductView = () => {
     maxPrice
   );
 
-  let productsData;
-  if (options === "MostPopular") {
-    productsData = mostPopular;
-  } else if (options === "Recent") {
-    productsData = newProduct;
-  } else if (options === "HighPrice") {
-    productsData = highPrice;
-  } else if (options === "LowPrice") {
-    productsData = lowPrice;
-  } else {
-    productsData = newProduct;
-  }
+  const sortOptions = {
+    MostPopular: mostPopular,
+    Recent: newProduct,
+    HighPrice: highPrice,
+    LowPrice: lowPrice,
+  };
+
+  const productsData = sortOptions[options as SortOption] || newProduct;
+
   return (
     <div className="w-full mt-5 ">
       {/* category page grid view  header section */}
@@ -78,12 +82,15 @@ const CategoryGridProductView = () => {
         <div>
           <h2 className="text-2xl font-bold ">Printer</h2>
           <p className="text-gray-500">
-            <span className="text-black font-bold"> 867 </span>
+            <span className="text-black font-bold">
+              {" "}
+              {productsData?.meta?.total}{" "}
+            </span>
             Results found.
           </p>
         </div>
         <div className="lg:block md:block hidden">
-          <MostPopularSelectOption />
+          <ProductsFilter />
         </div>
         <div className="lg:hidden md:hidden block">
           {" "}
@@ -92,13 +99,11 @@ const CategoryGridProductView = () => {
       </div>
 
       <div className="my-6 grid grid-cols-product-grid md:gap-10 gap-5 ">
-        {
-          isLoading
-            ? [...Array(12)].map((_, index) => {
+        {isLoading
+          ? [...Array(12)].map((_, index) => {
               return <ProductCardSkeleton key={index} />;
             })
-            :
-            productsData?.data?.map((product: IProduct) => (
+          : productsData?.data?.map((product: IProduct) => (
               <ProductCard key={product?._id} product={product} />
             ))}
       </div>

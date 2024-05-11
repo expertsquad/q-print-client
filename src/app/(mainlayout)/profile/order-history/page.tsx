@@ -4,6 +4,7 @@ import { useGetOnlineOrderQuery } from "@/redux/features/online-order/online-ord
 import { useGetUserQuery } from "@/redux/features/user/user";
 import OrderHistoryOrderPlacedLayout from "@/components/Profile/OrderHistoryOrderPlacedLayout";
 import OrderHistoryDetails from "@/components/Profile/OrderHistoryDetails";
+import useInfiniteScroll from "@/constants/useInfiniteScroll";
 
 const OrderHistory = () => {
   const [timePeriod, setTimePeriod] = useState("All Order");
@@ -21,8 +22,6 @@ const OrderHistory = () => {
           data?.data._id
         }&limit=${limit}`
   );
-
-  console.log(onlineOrder);
 
   const currentDate = useMemo(() => new Date(), []);
 
@@ -72,28 +71,35 @@ const OrderHistory = () => {
     setLoading(false); // Set loading state to false
   };
 
-  // Fetch more data when the user scrolls to the bottom of the page
-  const handleScroll = React.useCallback(() => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight ||
-      loadingMore ||
-      isLoading
-    ) {
-      return;
-    }
-    setLoadingMore(true);
-    setLimit((prevLimit) => (prevLimit ? prevLimit + 10 : 10)); // Increase the limit
-  }, [loadingMore, isLoading]);
-
   useEffect(() => {
+    const handleScroll = () => {
+      const { scrollTop, clientHeight, scrollHeight } =
+        document.documentElement;
+      const scrollPosition = scrollTop + clientHeight;
+      const buffer = 150; // Buffer zone in pixels
+
+      // Check if there's available data and it hasn't reached the end
+      if (
+        onlineOrder?.data?.length < onlineOrder?.meta?.total &&
+        scrollPosition >= scrollHeight - clientHeight - buffer &&
+        !loadingMore &&
+        !isLoading
+      ) {
+        setLoadingMore(true);
+        setLimit((prevLimit) => prevLimit + 10); // Increase the limit
+      } else if (onlineOrder?.data?.length >= onlineOrder?.meta?.total) {
+        setLoadingMore(false); // Disable Load More if all data has been loaded
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]); // Add/remove event listener on component mount/unmount
 
-  useEffect(() => {
-    setLoadingMore(false);
-  }, [onlineOrder]);
+    // Cleanup function
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [loadingMore, isLoading, onlineOrder]);
+
   return (
     <div className="w-full mb-7">
       <div className="flex justify-between items-center mb-4">
