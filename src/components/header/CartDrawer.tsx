@@ -57,7 +57,11 @@ const CartDrawer = ({ setOpenCartDrawer, openCartDrawer }: any) => {
               {/* --data container-- */}
               <div className="flex flex-col overflow-y-auto no-scrollbar h-[550px]">
                 {products?.map((product: any, index: number) => (
-                  <CartItem key={index} product={product} />
+                  <CartItem
+                    key={index}
+                    product={product}
+                    handleCloseDrawer={handleCloseDrawer}
+                  />
                 ))}
               </div>
               {/* --fixed data container-- */}

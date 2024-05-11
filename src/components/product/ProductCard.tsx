@@ -44,7 +44,11 @@ const ProductCard = ({ product, loading }: any) => {
       className="border hover:border-fuchsia-700 rounded-custom-10px p-4 group w-[calc(300px,2vw,185px)]  md:min-h-[400px] min-h-[300px] cursor-pointer duration-500  "
     >
       <div>
-        <ProductImageSlide loading={loading} product={product} defaultVariant={defaultVariant} />
+        <ProductImageSlide
+          loading={loading}
+          product={product}
+          defaultVariant={defaultVariant}
+        />
       </div>
 
       <div className="mt-4 pt-4 border-t">

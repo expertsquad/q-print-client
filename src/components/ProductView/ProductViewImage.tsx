@@ -1,14 +1,19 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductViewDescEtc from "./ProductViewDescEtc";
 import { imageUrl } from "@/constants/imageUrl";
 
 const ProductViewImage = ({ product }: any) => {
-  const [selectedImage, setSelectedImage] = useState(product?.productPhotos[1]);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const handleChangePhoto = (item: any) => {
+  useEffect(() => {
+    setSelectedImage(product?.productPhotos[0]);
+  }, [product]);
+
+  const handleChangePhoto = (item: string) => {
     setSelectedImage(item);
+    localStorage.setItem("selectedImage", item);
   };
 
   const slicedProducts = product?.productPhotos.slice(0, 4);
