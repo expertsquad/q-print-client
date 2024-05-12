@@ -10,6 +10,7 @@ import { setShippingData } from "@/redux/features/user/shippingAddressSlice";
 import { useState } from "react";
 import Spinner from "@/components/shared/Spinner";
 import { toast } from "react-toastify";
+import { qatarStates } from "@/constants/qatarState";
 
 const ShippingAddress = () => {
   const [loading, setLoading] = useState(false);
@@ -107,16 +108,29 @@ const ShippingAddress = () => {
             }
           />
 
-          <CustomInput
-            label="State"
-            type="text"
-            name="state"
-            value={data?.state}
-            placeholder=""
-            onChange={(e) =>
-              dispatch(setShippingData({ [e.target.name]: e.target.value }))
-            }
-          />
+          <label htmlFor="state">
+            Select State
+            <select
+              value={data?.state}
+              name="state"
+              id="state"
+              onChange={(e) =>
+                dispatch(setShippingData({ [e.target.name]: e.target.value }))
+              }
+              className="w-full border border-gray-200 py-3 focus:outline-none focus:border-fuchsia-800 rounded-md"
+            >
+              {qatarStates?.map((state) => (
+                <option
+                  key={state}
+                  value={state}
+                  selected={state === "Doha"}
+                  defaultValue={"Doha"}
+                >
+                  {state}
+                </option>
+              ))}
+            </select>
+          </label>
 
           <CustomInput
             label="ZipCode"

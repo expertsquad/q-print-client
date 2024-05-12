@@ -459,6 +459,20 @@ const YourInformation = () => {
             btnDisable={
               data?.shippingAddress === undefined
                 ? "btn-disabled opacity-50"
+                : data?.shippingAddress?.oldAddress === false &&
+                  (data?.shippingAddress?.firstName === undefined ||
+                    data?.shippingAddress?.firstName === "" ||
+                    data?.shippingAddress?.lastName === undefined ||
+                    data?.shippingAddress?.lastName === "" ||
+                    data?.shippingAddress?.streetAddress === undefined ||
+                    data?.shippingAddress?.streetAddress === "" ||
+                    data?.shippingAddress?.country === undefined ||
+                    data?.shippingAddress?.country === "" ||
+                    data?.shippingAddress?.zipCode === undefined ||
+                    data?.shippingAddress?.zipCode === "" ||
+                    data?.shippingAddress?.phoneNumber === undefined ||
+                    data?.shippingAddress?.phoneNumber === "")
+                ? "btn-disabled opacity-50"
                 : ""
             }
             buttonText={"Continue to Payment"}
