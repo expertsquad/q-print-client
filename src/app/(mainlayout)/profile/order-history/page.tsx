@@ -148,7 +148,7 @@ const OrderHistory = () => {
       {!isLoading && ( // Render only when initial loading is complete
         <OrderHistoryDetails
           data={onlineOrder}
-          isLoading={isLoading || loading}
+          isLoading={isLoading}
           loadingMore={loadingMore}
         />
       )}

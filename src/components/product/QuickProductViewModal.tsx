@@ -19,7 +19,7 @@ const QuickProductViewModal = ({ handleCloseModal, showModal, id }: any) => {
           <div className="flex justify-end ">
             <ModalCloseBtn handleClose={handleCloseModal} />
           </div>
-          <div className="grid md:grid-cols-2 grid-cols-1 mb-16 md:gap-3 gap-7">
+          <div className="grid md:grid-cols-2 grid-cols-1  md:gap-3 gap-7">
             <QuickViewImage product={data?.data} />
             <QuickViewDescription product={data?.data} />
           </div>

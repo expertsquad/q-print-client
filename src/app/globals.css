@@ -17,10 +17,6 @@
   -webkit-text-fill-color: transparent;
 }
 
-
-
-
-
 /* main border color */
 
 .main-gradient-border {
@@ -222,14 +218,6 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
-/* <== order-packaging-shipped-order-placed-card-style ==> */
-.order-packaging-shipped-order-placed-card-style {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #ccc;
-}
-
 /* nizam */
 .logos {
   display: flex;
@@ -259,10 +247,25 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
+/* <== order-packaging-shipped-order-placed-card-style ==> */
+.order-packaging-shipped-order-placed-card-style {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ccc;
+}
+
 @media (min-width: 768px) {
   .md\:order-packaging-shipped-order-placed-card-style {
     display: grid;
     grid-template-columns: 0.2fr 2.2fr 0.7fr 0.7fr;
+    align-items: center;
+  }
+}
+@media (min-width: 768px) {
+  .md\:order-packaging-shipped-order-placed-delivered-card-style {
+    display: grid;
+    grid-template-columns: 0.2fr 2.2fr 0.7fr 0.7fr 0.7fr;
     align-items: center;
   }
 }

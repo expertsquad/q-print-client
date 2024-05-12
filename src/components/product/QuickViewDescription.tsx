@@ -23,14 +23,26 @@ import SingleQuickOrder from "../quick-order/SingleQuickOrder";
 import { addToFavourite } from "@/redux/features/wishlist/favouriteCartSlice";
 
 const QuickViewDescription = ({ product }: any) => {
+  const [orderQuantity, setOrderQuantity] = useState(1);
+  const [selectedVariant, setSelectedVariant] = useState(product?.variants[0]);
   const dispatch = useDispatch();
-  const { products } = useAppSelector((state) => state.productCartSlice);
+  const data = useAppSelector((state) => state.productCartSlice);
 
-  const productQuantity = products?.map((product: any) => {
-    return product?.quantity;
+  // <== Get quantity fn ==>
+  function getQuantityFromCart({ data, productId, variantName }: any) {
+    const quantity = data?.products?.find(
+      (item: any) =>
+        item.productId === productId && item.variantName === variantName
+    );
+    return quantity?.orderQuantity || 0;
+  }
+  // <== Get quantity fn ==>
+  const quantity = getQuantityFromCart({
+    data,
+    productId: product?._id,
+    variantName: selectedVariant?.variantName,
   });
 
-  const [selectedVariant, setSelectedVariant] = useState(product?.variants[0]);
   const handleSelectVariant = (variant: any) => {
     setSelectedVariant(variant);
   };
@@ -45,7 +57,7 @@ const QuickViewDescription = ({ product }: any) => {
         price: selectedVariant?.discountedPrice
           ? selectedVariant?.discountedPrice
           : selectedVariant?.sellingPrice,
-        orderQuantity: 1,
+        orderQuantity: orderQuantity,
         variantName: selectedVariant?.variantName,
         productId: product?._id,
       })
@@ -74,19 +86,16 @@ const QuickViewDescription = ({ product }: any) => {
         {product?.productName}
       </h2>
       <div className="flex items-center mb-5">
-        {product?.data?.brandPhoto ? (
-          <div className="w-10 h-10 shrink-0 relative">
-            <Image
-              src={`${imageUrl}${product?.brand?.brandPhoto}`}
-              fill
-              sizes="(max-width: 80px) 10vw, (max-width: 100px) 10vw, 15vw"
-              alt="Brand Photo"
-              className="w-full h-full top-0 left-0 object-contain"
-            />
-          </div>
-        ) : (
-          <div className="skeleton w-10 h-6"></div>
-        )}
+        <div className="w-[50px] h-[20px] relative shrink-0">
+          <Image
+            src={`${imageUrl}${product?.brand?.brandPhoto}`}
+            alt="Brand Image"
+            fill
+            objectFit="cover"
+            className="top-0 left-0 w-full h-full object-cover"
+          />
+        </div>
+
         <h6 className="text-[16px] text-black opacity-60 mr-5 ml-1">
           {product?.brand?.brandName}
         </h6>
@@ -138,34 +147,47 @@ const QuickViewDescription = ({ product }: any) => {
           </span>
         </div>
 
-        {/* <GetDiscountRange /> */}
-
         {/* == Bulk Order == */}
-        <div className="my-3 whitespace-nowrap text-black-opacity-60">
-          <p>
-            Buy{" "}
-            <span className="font-semibold main-text-color">
-              {product?.bulk?.minOrder}
-            </span>{" "}
-            item to get more{" "}
-            <span className="font-semibold text-black">
-              {product?.bulk?.discount} extra!
-            </span>
-          </p>
-        </div>
+        {product?.bulk === true ||
+          (product?.bulk?.minOrder > 1 && (
+            <GetDiscountRange
+              expectedAmount={
+                product?.bulk?.minOrder ? product?.bulk?.minOrder : 0
+              }
+              totalAmount={quantity}
+            />
+          ))}
+        {product?.bulk === true ||
+          (product?.bulk?.minOrder > 1 && (
+            <div className="my-3 whitespace-nowrap text-black-opacity-60">
+              <p>
+                Buy{" "}
+                <span className="font-semibold main-text-color">
+                  {product?.bulk?.minOrder}
+                </span>{" "}
+                item to get more{" "}
+                <span className="font-semibold text-black">
+                  {product?.bulk?.discount} extra!
+                </span>
+              </p>
+            </div>
+          ))}
+
         {/* == Item increase & decrease fn == */}
         <div className="flex items-center gap-5 mb-5">
           <div className="border border-gray-200 flex items-center gap-2 rounded-3xl p-2">
             <button
-              onClick={() => dispatch(removeOneFromCart(product))}
-              className="p-2 bg-[#F2F2F2] rounded-full"
+              onClick={() => setOrderQuantity(orderQuantity - 1)}
+              className={`p-2 bg-[#F2F2F2] rounded-full ${
+                orderQuantity === 1 && "btn-disabled"
+              }`}
             >
               {""}
               <IconMinus width={14} height={14} />
             </button>
-            <span>{0 || productQuantity}</span>
+            <span>{orderQuantity}</span>
             <button
-              onClick={() => dispatch(addToCart(product))}
+              onClick={() => setOrderQuantity(orderQuantity + 1)}
               className="p-2 bg-[#F2F2F2] rounded-full"
             >
               {""}
@@ -202,7 +224,7 @@ const QuickViewDescription = ({ product }: any) => {
               variantName={selectedVariant?.variantName}
             />
           </div>
-          <button className="flex items-center justify-center gap-2 text-white main-bg-color  py-2.5 rounded-lg w-full text-sm">
+          <button className="flex items-center justify-center gap-2 text-white main-bg-color  py-2 rounded-lg w-full text-sm">
             {""}
             <IconShoppingBag width={18} stroke={2} height={18} />
             BUY NOW

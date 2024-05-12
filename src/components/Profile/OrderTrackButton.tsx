@@ -11,9 +11,9 @@ const OrderTrackButton = ({ id }: any) => {
   return (
     <button
       onClick={handleOrderTracking}
-      className="text-xs md:text-base shadow-md py-1 px-3 border rounded-lg bg-gradient-to-r from-[#C83B62] to-[#7F35CD] text-transparent bg-clip-text border-fuchsia-700 hover:scale-105 hover:duration-500 "
+      className="text-xs md:text-base shadow-md py-1 px-3 border main-text-color rounded-md border-main-border-color"
     >
-      Order Track
+      Track Order
     </button>
   );
 };

@@ -22,7 +22,7 @@ const QuickViewImage = ({ product }: any) => {
             }`}
             onClick={() => handleChangePhoto(image)}
           >
-            <div className="w-16 h-16 shrink-0 relative">
+            <div className="w-14 h-14 md:w-20 md:h-24 shrink-0 relative">
               <Image
                 src={`${imageUrl}${image}`}
                 alt="Product Photo"
@@ -36,13 +36,14 @@ const QuickViewImage = ({ product }: any) => {
       </div>
       <div className="flex items-center justify-center border rounded-lg w-full h-full">
         {selectedImage && (
-          <div className="h-80 w-80 shrink-0 relative">
+          <div className="relative shrink-0 h-96 w-96 md:h-[400px] md:w-[300px]">
             <Image
               src={`${imageUrl}${selectedImage}`}
               alt="Product Photo"
               fill
+              objectFit="cover"
               sizes="(max-width: 350px) 50vw, (max-width: 350px) 60vw, 65vw"
-              className="w-full h-full top-0 left-0 object-cover"
+              className="w-full h-full top-0 left-0 object-cover p-5 rounded-lg"
             />
           </div>
         )}

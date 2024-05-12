@@ -249,6 +249,7 @@ const ProductViewDescEtc = ({ productDesc }: any) => {
                   ? selectedVariant?.discountedPrice
                   : selectedVariant?.sellingPrice
               }
+              quantity={orderQuantity}
               btnStyle="py-2.5"
             />
           </div>
