@@ -129,7 +129,7 @@ const BillingAddress = () => {
             />
             <CustomInput
               label="Phone Number (Make sure Valid Number)"
-              type="text"
+              type="number"
               name="phoneNumber"
               inputStyle={
                 (data?.billingAddress?.selectedOption ===

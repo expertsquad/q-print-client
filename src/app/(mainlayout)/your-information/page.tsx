@@ -227,7 +227,7 @@ const YourInformation = () => {
                     />
                     <CustomInput
                       label="Phone Number (Make sure Valid Number)"
-                      type="text"
+                      type="number"
                       name="phoneNumber"
                       inputStyle={
                         (data?.shippingAddress?.oldAddress === false &&

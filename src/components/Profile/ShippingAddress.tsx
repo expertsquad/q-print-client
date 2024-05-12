@@ -88,7 +88,7 @@ const ShippingAddress = () => {
           />
           <CustomInput
             label="Phone Number"
-            type="text"
+            type="number"
             name="phoneNumber"
             value={data?.phoneNumber}
             placeholder={""}

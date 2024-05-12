@@ -237,7 +237,7 @@ const YourInformation = () => {
                     />
                     <CustomInput
                       label="Phone Number (Make sure Valid Number)"
-                      type="text"
+                      type="number"
                       name="phoneNumber"
                       inputStyle={
                         (data?.shippingAddress?.oldAddress === false &&
@@ -285,31 +285,6 @@ const YourInformation = () => {
                         )
                       }
                     />
-                    {/* <CustomInput
-                      label="State"
-                      type="text"
-                      name="state"
-                      inputStyle={
-                        (data?.shippingAddress?.oldAddress === false &&
-                          data?.shippingAddress?.state === undefined) ||
-                        data?.shippingAddress?.state === ""
-                          ? "border border-red-500"
-                          : " "
-                      }
-                      value={data?.shippingAddress?.state}
-                      placeholder="Your State"
-                      onChange={(e) =>
-                        dispatch(
-                          setPrintingRequest({
-                            ...data,
-                            shippingAddress: {
-                              ...data.shippingAddress,
-                              [e.target.name]: e.target.value,
-                            },
-                          })
-                        )
-                      }
-                    /> */}
 
                     <label htmlFor="state">
                       Select State
