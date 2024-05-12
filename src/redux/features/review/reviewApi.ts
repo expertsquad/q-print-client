@@ -4,9 +4,8 @@ export const reviewApi = baseApi.injectEndpoints({
     // <== Get Review Query ==>
     getReview: build.query({
       query: (data) => ({
-        url: "/review",
+        url: "/review/",
         method: "GET",
-        data,
       }),
       providesTags: ["review"],
     }),

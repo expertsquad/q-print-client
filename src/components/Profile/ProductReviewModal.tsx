@@ -1,10 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import GlobalModal from "../UI/modal/GlobalModal";
-import { IconArrowLeft, IconStarFilled, IconX } from "@tabler/icons-react";
+import { IconStarFilled } from "@tabler/icons-react";
 import Image from "next/image";
 import {
   useAddReviewMutation,
+  useGetReviewQuery,
   useReviewByIdQuery,
 } from "@/redux/features/review/reviewApi";
 import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
@@ -20,40 +21,28 @@ import {
   setRating,
 } from "@/redux/features/review/addReviewSlice";
 import Spinner from "@/components/shared/Spinner";
-
-
-
+import { IconPencil } from "@tabler/icons-react";
 
 const ProductReviewModal = ({
   orderId: reviewOrderId,
   productId: reviewProductId,
   isReviewed,
 }: any) => {
-  const dispatch = useDispatch();
-  const { data: product } = useGetProductByIdQuery(reviewProductId);
-  const { data } = useReviewByIdQuery(`orderId=${reviewOrderId}`);
-
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
-  const { orderId, productId, comment, rating } = useAppSelector(
-    (state) => state.addReview
-  );
+  const dispatch = useDispatch();
+  const { data: product } = useGetProductByIdQuery(reviewProductId);
   const [addReview] = useAddReviewMutation();
-
   const handleStarClick = (index: number) => {
     dispatch(setRating(index + 1));
   };
+  const handleCloseModal = () => {
+    setShowModal(false);
+    dispatch(setRating(0));
+    dispatch(setComment(""));
+  };
 
-  useEffect(() => {
-    dispatch(setOrderId(reviewOrderId));
-    dispatch(setProductId(reviewProductId));
-    dispatch(setRating(data?.data?.length ? data?.data[0].rating : 0));
-    dispatch(setComment(data?.data?.length ? data?.data[0].comment : ""));
-  }, [data, dispatch, reviewOrderId, reviewProductId]);
+  const { comment, rating } = useAppSelector((state) => state.addReview);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -75,7 +64,7 @@ const ProductReviewModal = ({
     } catch (error) {
       console.log(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
     handleCloseModal();
   };
@@ -85,27 +74,18 @@ const ProductReviewModal = ({
       <div>
         <button
           onClick={() => setShowModal(true)}
-          className="border border-fuchsia-800 rounded-md py-1 px-2 md:px-3.5 main-text-color text-xs md:text-base"
+          className={`border border-main-border-color rounded-md py-1 px-2 md:px-3.5 main-text-color text-xs md:text-base ${
+            isReviewed && "btn-disabled"
+          }`}
         >
-          {isReviewed ? "Edit Review" : "Review"}
+          {isReviewed ? <span>Edit Review</span> : "Review"}
         </button>
       </div>
-      <GlobalModal
-        isVisible={showModal}
-        onClose={handleCloseModal}
-      >
+      <GlobalModal isVisible={showModal} onClose={handleCloseModal}>
         <div className="w-full h-screen md:w-[650px] md:h-auto  bg-white p-7 rounded-lg relative overflow-hidden">
-          {
-            loading && <Spinner />
-          }
-          <div className="absolute top-5 right-5 text-black text-opacity-70 hidden md:block">
+          {loading && <Spinner />}
+          <div className="absolute top-5 right-5 text-black text-opacity-70">
             <ModalCloseBtn handleClose={handleCloseModal} />
-          </div>
-          <div className="absolute top-8 left-5 text-black text-opacity-70 block md:hidden">
-            <ModalCloseBtn
-              handleClose={handleCloseModal}
-              icon={<IconArrowLeft />}
-            />
           </div>
 
           <div className="relative">
@@ -125,17 +105,19 @@ const ProductReviewModal = ({
                   />
                 </div>
                 <div>
-                  <p className="text-black text-opacity-90 text-base md:text-lg line-clamp-2 text-wrap">
+                  <p className="text-black-opacity-90 text-base  line-clamp-2 text-wrap">
                     {product?.data?.productName}
                   </p>
 
-                  <p className="text-black text-opacity-60 text-sm">
+                  <p className="text-black-opacity-70 text-sm">
                     {product?.data?.brand?.brandName}
                   </p>
                 </div>
               </div>
               <div>
-                <p className="text-base mb-2">Select Product Rating</p>
+                <p className="text-base mb-2 whitespace-nowrap">
+                  Select Product Rating
+                </p>
                 <div className="flex">
                   {[...Array(5)]?.map((_, index) => (
                     <IconStarFilled
@@ -154,7 +136,7 @@ const ProductReviewModal = ({
               </div>
             </div>
             <form onSubmit={handleSubmit} action="" className="mt-7">
-              <label className="text-sm md:text-[18px]" htmlFor="review">
+              <label className="text-sm text-black-opacity-70" htmlFor="review">
                 Add Written Review
               </label>
 
@@ -164,13 +146,13 @@ const ProductReviewModal = ({
                 name="review"
                 id="review"
                 cols={50}
-                rows={4}
-                maxLength={100}
+                rows={6}
+                maxLength={200}
                 value={comment}
                 onChange={(e) => dispatch(setComment(e.target.value))}
               ></textarea>
               <p className="text-right text-sm text-black text-opacity-80">
-                {comment.length}/100
+                {comment.length}/200
               </p>
               <button
                 type="submit"

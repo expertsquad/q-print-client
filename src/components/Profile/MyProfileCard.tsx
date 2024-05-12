@@ -16,10 +16,7 @@ import { authKey } from "@/constants/storageKey";
 import { useRouter } from "next/navigation";
 import { imageUrl } from "@/constants/imageUrl";
 import { useGetOnlineOrderQuery } from "@/redux/features/online-order/online-orderApi";
-import {
-  useGetReviewQuery,
-  useReviewByIdQuery,
-} from "@/redux/features/review/reviewApi";
+import { useReviewByIdQuery } from "@/redux/features/review/reviewApi";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
   setProfileLocalPhoto,
@@ -85,7 +82,7 @@ const MyProfileCard = () => {
   };
 
   return (
-    <div className="m:border w-full md:p-10 rounded-custom-10px ">
+    <div className="m:border w-full  rounded-custom-10px ">
       {/* Profile image and logout section */}
       <div className="">
         <div className="flex justify-between items-center pb-5  md:border-b lg:border-b">
@@ -149,7 +146,7 @@ const MyProfileCard = () => {
           })}
         </div>
       ) : (
-        <div className="grid  grid-cols-2 md:grid-cols-2 lg:grid-cols-4  gap-4 mt-5">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5 justify-between">
           {/* grid card 1 */}
           <div className=" border rounded-lg flex items-center justify-center flex-col p-5 gap-4 text-gray-500 ">
             <ProfileUserIcon />
