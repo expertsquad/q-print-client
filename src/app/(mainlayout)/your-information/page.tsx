@@ -275,31 +275,6 @@ const YourInformation = () => {
                         )
                       }
                     />
-                    {/* <CustomInput
-                      label="State"
-                      type="text"
-                      name="state"
-                      inputStyle={
-                        (data?.shippingAddress?.oldAddress === false &&
-                          data?.shippingAddress?.state === undefined) ||
-                        data?.shippingAddress?.state === ""
-                          ? "border border-red-500"
-                          : " "
-                      }
-                      value={data?.shippingAddress?.state}
-                      placeholder="Your State"
-                      onChange={(e) =>
-                        dispatch(
-                          setPrintingRequest({
-                            ...data,
-                            shippingAddress: {
-                              ...data.shippingAddress,
-                              [e.target.name]: e.target.value,
-                            },
-                          })
-                        )
-                      }
-                    /> */}
 
                     {/* state */}
 
@@ -452,6 +427,20 @@ const YourInformation = () => {
             btnLink="payment"
             btnDisable={
               data?.shippingAddress === undefined
+                ? "btn-disabled opacity-50"
+                : data?.shippingAddress?.oldAddress === false &&
+                  (data?.shippingAddress?.firstName === undefined ||
+                    data?.shippingAddress?.firstName === "" ||
+                    data?.shippingAddress?.lastName === undefined ||
+                    data?.shippingAddress?.lastName === "" ||
+                    data?.shippingAddress?.streetAddress === undefined ||
+                    data?.shippingAddress?.streetAddress === "" ||
+                    data?.shippingAddress?.country === undefined ||
+                    data?.shippingAddress?.country === "" ||
+                    data?.shippingAddress?.zipCode === undefined ||
+                    data?.shippingAddress?.zipCode === "" ||
+                    data?.shippingAddress?.phoneNumber === undefined ||
+                    data?.shippingAddress?.phoneNumber === "")
                 ? "btn-disabled opacity-50"
                 : ""
             }

@@ -182,13 +182,13 @@ const ShoppingCartTotalItems = ({
         {btnText ? (
           <Link
             href={`/${btnLink}`}
-            className={`${btnDisable} " bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white hover:scale-105 shadow-sm hover:duration-500 hover:shadow-lg text-center "`}
+            className={`${btnDisable} " bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white hover:scale-105 shadow-sm hover:duration-500 hover:shadow-lg text-center  "`}
           >
             {btnText}
           </Link>
         ) : (
           <button
-            className="bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white hover:scale-105 shadow-sm hover:duration-500 hover:shadow-lg text-center "
+            className={`" bg-gradient-to-r from-[#C83B62] to-[#7F35CD] w-full rounded-lg py-3 text-white hover:scale-105 shadow-sm hover:duration-500 hover:shadow-lg text-center " ${btnDisable} `}
             onClick={handleSubmit}
           >
             Place Order

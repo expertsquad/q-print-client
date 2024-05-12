@@ -85,7 +85,24 @@ const Payment = () => {
           <PrintingRequestTotalOrderCard
             btnDisable={
               data?.billingAddress === undefined || data?.payment === undefined
-                ? "btn-disabled opacity-50"
+                ? "btn-disabled opacity-50 "
+                : data?.billingAddress?.selectedOption ===
+                    "differentBillingAddress" &&
+                  (data?.billingAddress?.firstName === undefined ||
+                    data?.billingAddress?.firstName === "" ||
+                    data?.billingAddress?.lastName === undefined ||
+                    data?.billingAddress?.lastName === "" ||
+                    data?.billingAddress?.streetAddress === undefined ||
+                    data?.billingAddress?.streetAddress === "" ||
+                    data?.billingAddress?.country === undefined ||
+                    data?.billingAddress?.country === "" ||
+                    data?.billingAddress?.zipCode === undefined ||
+                    data?.billingAddress?.zipCode === "" ||
+                    data?.billingAddress?.phoneNumber === undefined ||
+                    data?.billingAddress?.phoneNumber === "" ||
+                    data?.billingAddress?.state === undefined ||
+                    data?.billingAddress?.state === "")
+                ? "btn-disabled opacity-50 "
                 : ""
             }
             buttonText={"Place Order"}
