@@ -60,8 +60,9 @@ const CarouselItem = ({ item, index, sliderArray }: any) => {
               <div
                 key={index}
                 onClick={() => handleDotClick(index)}
-                className={`indicator w-[10px] h-[10px] rounded-full cursor-pointer ${index === currentSlide ? "main-bg-color" : "bg-gray-300"
-                  }`}
+                className={`indicator w-[10px] h-[10px] rounded-full cursor-pointer ${
+                  index === currentSlide ? "main-bg-color" : "bg-gray-300"
+                }`}
               />
             ))}
           </div>

@@ -1,33 +1,45 @@
+import React, { useState } from "react";
+import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import Image from "next/image";
+import { imageUrl } from "@/constants/imageUrl";
+import ShopNowButton from "../UI/btn/ShopNowButton";
 
-const Carousel = () => {
-  const images = [
-    "https://w7.pngwing.com/pngs/464/405/png-transparent-nike-just-do-it-logo-just-do-it-nike-swoosh-logo-brand-nike-logo-text-sticker-tagline-thumbnail.png",
-    "https://freepngimg.com/thumb/logo/62859-logo-twitter-computer-icons-free-transparent-image-hq.png",
-    "https://freepngimg.com/thumb/logo/62866-logo-whatsapp-computer-icons-free-download-png-hq.png",
-    "https://freepngimg.com/thumb/logo/61746-graphic-priyanka-brand-chopra-design-graphics-logo.png",
-    "https://freepngimg.com/thumb/logo/62841-social-logo-computer-icons-free-clipart-hq.png",
-    "https://freepngimg.com/thumb/logo/62837-instagram-icons-photography-computer-logo-icon.png",
-    "https://freepngimg.com/thumb/logo/62859-logo-twitter-computer-icons-free-transparent-image-hq.png",
-    "https://freepngimg.com/thumb/logo/62866-logo-whatsapp-computer-icons-free-download-png-hq.png",
-    "https://freepngimg.com/thumb/logo/61746-graphic-priyanka-brand-chopra-design-graphics-logo.png",
-    "https://freepngimg.com/thumb/logo/62841-social-logo-computer-icons-free-clipart-hq.png",
-  ];
-
+const Carousel = ({ item, index, sliderArray }: any) => {
   return (
-    <div className=" w-full overflow-x-scroll ">
-      <div className="  flex items-center justify-center h-[160px] md:h-[250px] overflow-x-scroll gap-10  ">
-        {images.map((brand, index) => (
-          <div key={index} className=" animated-carousel  ">
-            <Image
-              className="h-[100px] w-[70px]  "
-              src={brand}
-              alt="carousel brands logo"
-              width={100}
-              height={70}
-            />
+    <div
+      key={index}
+      className="carousel-item w-full bg-[#f3f5f2] h-[320px] md:h-[450px] lg:h-[450px]"
+      id={item._id}
+    >
+      <div className="flex items-center md:gap-5 gap-3.5 justify-between lg:px-9 md:px-6 px-4 py-4 h-full w-full">
+        <div className="flex flex-col w-6/12">
+          <h3 className="font-bold main-text-color [font-size:_clamp(0.5em,60vw,0.9em)] animate-bounce">
+            {item?.sliderTag}
+          </h3>
+          <h2
+            className={`lg:text-4xl md:text-lg text-lg font-bold leading-0 line-clamp-2`}
+          >
+            {item.title}
+          </h2>
+          <p
+            className={`[font-size:_clamp(0.85em,5vw,1em)] text-gray-500 line-clamp-2 `}
+          >
+            {item.description}
+          </p>
+          <div className="mt-4">
+            <ShopNowButton href={item?.link} />
           </div>
-        ))}
+        </div>
+        <div className="relative md:w-[250px] md:h-[250px] w-[180px] h-[150px]">
+          <Image
+            src={`${imageUrl}${item?.productPhoto}`}
+            alt="hero item images"
+            fill
+            priority={true}
+            sizes="(max-width: 768px) 30vw, (max-width: 1200px) 50vw, 33vw"
+            className="w-full h-full top-0 left-0 object-contain"
+          />
+        </div>
       </div>
     </div>
   );
