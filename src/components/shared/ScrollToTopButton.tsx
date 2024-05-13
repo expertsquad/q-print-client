@@ -34,9 +34,9 @@ function ScrollToTopButton() {
       {showButton && (
         <div
           onClick={scrollToTop}
-          className='fixed flex items-center justify-center w-[60px] h-[60px] right-10 bottom-10 rounded-full  bg-white hover:bg-main-bg-color text-black  border group cursor-pointer z-40'
+          className='fixed flex items-center justify-center w-[60px] h-[60px] right-10 bottom-[100px] rounded-full  bg-white  text-black  border group cursor-pointer z-40'
         >
-          <IconArrowNarrowUp className="text-black group-hover:text-[#FFFF]" width={30} height={30} stroke={1} />
+          <IconArrowNarrowUp className="text-black group-hover:text-fuchsia-800" width={30} height={30} stroke={1} />
 
         </div>
       )}
