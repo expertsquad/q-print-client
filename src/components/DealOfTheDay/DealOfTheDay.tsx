@@ -51,7 +51,7 @@ const DealOfTheDay = () => {
                 </button>
               </Link>
             </div>
-            <div className="w-[150px] h-[150px] md:w-[250px] md:h-[250px] relative shrink-0">
+            <div className="w-[150px] h-[150px] md:w-[250px] md:h-[250px] relative">
               <Image
                 src={`${imageUrl}${firstDeal?.productPhoto}`}
                 alt="deal photo 1"
@@ -92,7 +92,7 @@ const DealOfTheDay = () => {
                 </button>
               </Link>
             </div>
-            <div className="w-[150px] h-[150px] md:w-[250px] md:h-[250px] relative shrink-0">
+            <div className="w-[150px] h-[150px] md:w-[250px] md:h-[250px] relative ">
               <Image
                 src={`${imageUrl}${secondDeal?.productPhoto}`}
                 alt="deal photo 1"
