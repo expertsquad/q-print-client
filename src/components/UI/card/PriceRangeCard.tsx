@@ -10,6 +10,7 @@ import { IProduct } from "@/types/productsType";
 const PriceRangeCard = () => {
   const dispatch = useAppDispatch();
   const priceRange = useAppSelector((state) => state.priceRangeSlice);
+  // <== This static limit is temporary ==>
   const { data } = useGetProductsQuery("limit=38");
   const products = data?.data;
 

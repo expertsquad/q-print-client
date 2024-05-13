@@ -24,7 +24,10 @@ const CarouselItem = ({ item, index, sliderArray }: any) => {
   }, [sliderArray.length]);
 
   const showSlide = (index: number) => {
-    return { display: index === currentSlide ? "block" : "none" };
+    return {
+      display: index === currentSlide ? "block" : "none",
+      backgroundColor: item?.backgroundPhoto ? "" : `#${item?.backgroundColor}`,
+    };
   };
 
   const handleDotClick = (index: number) => {
@@ -32,7 +35,9 @@ const CarouselItem = ({ item, index, sliderArray }: any) => {
   };
   return (
     <div
-      className="carousel-item w-full bg-[#f3f5f2] h-[320px] md:h-[450px] lg:h-[450px] "
+      className={`carousel-item w-full h-[320px] md:h-[450px] lg:h-[450px] ${
+        item?.backgroundPhoto && "border border-main-border-color"
+      }`}
       id={item._id}
       style={showSlide(index)}
     >
@@ -43,7 +48,7 @@ const CarouselItem = ({ item, index, sliderArray }: any) => {
             alt="Hero Item"
             objectFit="cover"
             fill
-            className="top-0 left-0 w-full h-full object-cover"
+            className="top-0 left-0 w-full h-full object-cover rounded-lg"
           />
         </div>
       ) : (

@@ -25,12 +25,12 @@ const Hero = () => {
 
       {isLoading ? (
         <div className="flex flex-col gap-4 h-full md:h-auto">
-          {[...Array(2)].map((_, index) => {
-            return <SmallBannerSkeleton index={index} key={index} />;
-          })}
+          {[...Array(2)].map((_, index) => (
+            <SmallBannerSkeleton index={index} key={index} />
+          ))}
         </div>
       ) : (
-        <div className="flex flex-col gap-5 h-full md:h-auto ">
+        <div className="flex flex-col gap-5 h-full md:h-auto w-full">
           <TopSmallBanner topOffer={topOffer} />
           <BottomSmallBanner bottomOffer={bottomOffer} />
         </div>
