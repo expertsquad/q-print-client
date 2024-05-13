@@ -5,6 +5,7 @@ import { IconChevronRight } from "@tabler/icons-react";
 import { Poppins } from "next/font/google";
 import React from "react";
 import { ToastContainer } from "react-toastify";
+import ScrollToTopButton from "@/components/shared/ScrollToTopButton";
 import "react-toastify/dist/ReactToastify.css";
 
 const poppins = Poppins({
@@ -31,6 +32,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           capitalizeLinks
         />
       </div>
+       <ScrollToTopButton />
       <div className="md:mt-56 mt-40 max-w-[1280px]  mx-auto px-5 ">{children}</div>
       {/* <Footer /> */}
       <NewFooter />
