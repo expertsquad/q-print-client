@@ -1,9 +1,6 @@
 "use client";
-import Image from "next/image";
-import ShopNowButton from "../UI/btn/ShopNowButton";
 import HeroItemSlide from "./HeroItemSlide";
 import { useGetHeroSliderQuery } from "@/redux/features/dealWidgetSliderEtc/heroSlider";
-import { imageUrl } from "@/constants/imageUrl";
 import TopSmallBanner from "./TopSmallBanner";
 import BottomSmallBanner from "./BottomSmallBanner";
 import SmallBannerSkeleton from "../shared/Skeleton/SmallBannerSkeleton";
@@ -20,7 +17,7 @@ const Hero = () => {
   const bottomOffer = data?.data?.bottomOffer;
 
   return (
-    <section className="flex w-full md:flex-row lg:flex-row flex-col gap-7">
+    <section className="flex w-full md:flex-row lg:flex-row flex-col gap-5">
       <div className="md:w-8/12 lg:w-8/12 w-full">
         {/* === Left side slider with three nested section === */}
         <HeroItemSlide isLoading={isLoading} sliderArray={sliderArray} />
@@ -33,7 +30,7 @@ const Hero = () => {
           })}
         </div>
       ) : (
-        <div className="flex flex-col gap-4 h-full md:h-auto ">
+        <div className="flex flex-col gap-5 h-full md:h-auto ">
           <TopSmallBanner topOffer={topOffer} />
           <BottomSmallBanner bottomOffer={bottomOffer} />
         </div>
