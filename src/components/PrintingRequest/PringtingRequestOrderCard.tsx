@@ -89,7 +89,7 @@ const PringtingRequestOrderCard = ({ href, buttonText, btnDisable }: any) => {
               <IconMinus stroke={3} width={15} height={15} />
             </button>
 
-            <span>{data?.totalQuantity}</span>
+            <span>{data?.totalQuantity ? data?.totalQuantity : 0}</span>
             <button
               onClick={() =>
                 dispatch(
