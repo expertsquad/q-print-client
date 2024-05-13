@@ -68,44 +68,44 @@ const PringtingRequestOrderCard = ({ href, buttonText, btnDisable }: any) => {
 
       <div className="border-y">
         <div className="flex justify-between items-center px-5 py-4   ">
-          <small className="text-base text-gray-500">Item of print</small>
+          <small className="text-base text-gray-500">Item of print </small>
 
-          {totalAmountWithQuantity && (
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() =>
-                  dispatch(
-                    setPrintingRequest({
-                      ...data,
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() =>
+                dispatch(
+                  setPrintingRequest({
+                    ...data,
 
-                      totalQuantity: data?.totalQuantity - 1,
-                    })
-                  )
-                }
-                className="border border-fuchsia-800 p-0.5 text-black text-opacity-70"
-              >
-                {""}
-                <IconMinus stroke={3} width={15} height={15} />
-              </button>
+                    totalQuantity: data?.totalQuantity - 1,
+                  })
+                )
+              }
+              className={`${
+                data?.totalQuantity < 1 ? "btn-disabled opacity-50" : ""
+              } border border-fuchsia-800 p-0.5 text-black text-opacity-70 `}
+            >
+              {""}
+              <IconMinus stroke={3} width={15} height={15} />
+            </button>
 
-              <span>{data?.totalQuantity}</span>
-              <button
-                onClick={() =>
-                  dispatch(
-                    setPrintingRequest({
-                      ...data,
+            <span>{data?.totalQuantity}</span>
+            <button
+              onClick={() =>
+                dispatch(
+                  setPrintingRequest({
+                    ...data,
 
-                      totalQuantity: data?.totalQuantity + 1,
-                    })
-                  )
-                }
-                className="border border-fuchsia-800 p-0.5 text-black text-opacity-70 "
-              >
-                {""}
-                <IconPlus stroke={3} width={15} height={15} />
-              </button>
-            </div>
-          )}
+                    totalQuantity: data?.totalQuantity + 1,
+                  })
+                )
+              }
+              className="border border-fuchsia-800 p-0.5 text-black text-opacity-70 "
+            >
+              {""}
+              <IconPlus stroke={3} width={15} height={15} />
+            </button>
+          </div>
         </div>
       </div>
 
