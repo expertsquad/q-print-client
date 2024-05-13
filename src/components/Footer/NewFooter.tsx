@@ -53,31 +53,31 @@ const NewFooter = () => {
                         </span>
                     </div>
                 </div>
-                <div className="md:block hidden md:absolute right-0  md:bottom-5">
+                <div className="md:block hidden md:absolute right-5  md:bottom-5">
                     <div className="flex items-center justify-center gap-5 flex-wrap   ">
-                    <CombinedComponent
-                        type="payment"
-                        paymentMethodComponents={<ApplePay />}
-                    />
-                    <CombinedComponent
-                        type="payment"
-                        paymentMethodComponents={<Visa />}
-                    />
-                    <CombinedComponent
-                        type="payment"
-                        paymentMethodComponents={<Discover />}
-                    />
-                    <CombinedComponent
-                        type="payment"
-                        paymentMethodComponents={<Mastercard />}
-                    />
+                        <CombinedComponent
+                            type="payment"
+                            paymentMethodComponents={<ApplePay />}
+                        />
+                        <CombinedComponent
+                            type="payment"
+                            paymentMethodComponents={<Visa />}
+                        />
+                        <CombinedComponent
+                            type="payment"
+                            paymentMethodComponents={<Discover />}
+                        />
+                        <CombinedComponent
+                            type="payment"
+                            paymentMethodComponents={<Mastercard />}
+                        />
 
-                    <CombinedComponent
-                        type="payment"
-                        isSecure={true}
-                        secureButtonContent="Payment"
-                    />
-                </div>
+                        <CombinedComponent
+                            type="payment"
+                            isSecure={true}
+                            secureButtonContent="Payment"
+                        />
+                    </div>
                 </div>
             </div>
 
