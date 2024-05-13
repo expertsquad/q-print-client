@@ -1,7 +1,6 @@
 "use client";
 import { useAppSelector } from "@/redux/hook";
 import FilterButton from "../UI/btn/FilterButton";
-import MostPopularSelectOption from "../UI/card/MostPopularSelectOption";
 import { useGetProductsQuery } from "@/redux/features/products/productsApi";
 import ProductCard from "../product/ProductCard";
 import { IProduct } from "@/types/productsType";
@@ -11,9 +10,7 @@ import { useState } from "react";
 type SortOption = "MostPopular" | "Recent" | "HighPrice" | "LowPrice";
 const CategoryGridProductView = () => {
   // const { options } = useAppSelector((state) => state.categoryOption);
-
   const { options } = useAppSelector((state) => state.productsFilterOptions);
-  console.log(options);
 
   const { maxPrice, minPrice } = useAppSelector(
     (state) => state.priceRangeSlice
@@ -33,7 +30,7 @@ const CategoryGridProductView = () => {
 
     return useGetProductsQuery(queryString);
   }
-
+  //  const { data, isLoading } = useGetProductsQuery("");
   // <== Most Popular ==>
   const { data: mostPopular, isLoading } = useGetProductsSortedQuery(
     "averageRating",
