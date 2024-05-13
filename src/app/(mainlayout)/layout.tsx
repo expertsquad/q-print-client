@@ -1,4 +1,4 @@
-import Footer from "@/components/Footer/Footer";
+import NewFooter from "@/components/Footer/NewFooter";
 import Header from "@/components/header/Header";
 import NextBreadcrumb from "@/components/shared/NextBreadcrumb";
 import { IconChevronRight } from "@tabler/icons-react";
@@ -32,7 +32,8 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         />
       </div>
       <div className="md:mt-56 mt-40 max-w-[1280px]  mx-auto px-5 ">{children}</div>
-      <Footer />
+      {/* <Footer /> */}
+      <NewFooter />
       <ToastContainer />
     </div>
   );
