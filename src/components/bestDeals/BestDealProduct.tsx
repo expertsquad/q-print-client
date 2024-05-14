@@ -12,7 +12,7 @@ const BestDealProduct = ({ productData }: any) => {
   const handleViewProduct = (e: any) => {
     e.stopPropagation();
     const product = productData?.map((product: any) => {
-      return router.push(`/product/${product?._id}`);
+      return router.push(`/product/${product?.productId}`);
     });
   };
   return (

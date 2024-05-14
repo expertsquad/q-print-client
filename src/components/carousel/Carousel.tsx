@@ -32,7 +32,7 @@ const Carousel = ({ item }: { item: HeroSliderProps }) => {
         }`,
         backgroundImage: `url(${imageUrl}${item?.backgroundPhoto})`,
         width: "100%",
-        backgroundPosition: "cover",
+        backgroundPosition: "center",
         backgroundSize: "cover",
       }}
       id={item._id}
