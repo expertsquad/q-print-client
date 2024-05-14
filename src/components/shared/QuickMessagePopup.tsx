@@ -11,7 +11,7 @@ import { useGetSocialMediaQuery } from '@/redux/features/social-media/socialMedi
 function QuickMessagePopup() {
 
     const { data, isLoading } = useGetSocialMediaQuery();
-    console.log(data);
+
 
     const dispatch = useAppDispatch();
     const socialMediaData = useAppSelector((state) => state.socialMediaSlice);
