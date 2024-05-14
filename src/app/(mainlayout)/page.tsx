@@ -8,9 +8,11 @@ import NewProduct from "@/components/newProduct/NewProduct";
 import FeaturedProducts from "@/components/featuredProducts/featuredProducts";
 import BrandCarousel from "@/components/carousel/BrandCarousel";
 
+
 const Home = () => {
   return (
     <main className="max-w-[1280px] mx-auto">
+
       <Hero />
       <BrandCarousel />
       <ShopByCategory />

@@ -4,6 +4,7 @@ import { useGetOnlineOrderQuery } from "@/redux/features/online-order/online-ord
 import { useGetUserQuery } from "@/redux/features/user/user";
 import OrderHistoryOrderPlacedLayout from "@/components/Profile/OrderHistoryOrderPlacedLayout";
 import OrderHistoryDetails from "@/components/Profile/OrderHistoryDetails";
+import OrderHistorySkeleton from "@/components/shared/Skeleton/OrderHistorySkeleton";
 
 const OrderHistory = () => {
   const [timePeriod, setTimePeriod] = useState("All Order");
@@ -17,9 +18,8 @@ const OrderHistory = () => {
   const { data: onlineOrder, isLoading } = useGetOnlineOrderQuery(
     timePeriod === "All Order"
       ? `buyer.userId=${data?.data._id}&limit=${limit}`
-      : `createdAt[gte]=${startDate?.toISOString()}&createdAt[lte]=${endDate?.toISOString()}&buyer.userId=${
-          data?.data._id
-        }&limit=${limit}`
+      : `createdAt[gte]=${startDate?.toISOString()}&createdAt[lte]=${endDate?.toISOString()}&buyer.userId=${data?.data._id
+      }&limit=${limit}`
   );
 
   const currentDate = useMemo(() => new Date(), []);
@@ -106,9 +106,9 @@ const OrderHistory = () => {
           <h3 className="[font-size:_clamp(1em,4vw,1.5em)] font-bold">
             Order History
           </h3>
-          <span className="flex items-center bg-[#03a6091a] text-[#03A609] rounded-full px-2 py-1 [font-size:clamp(9px,3vw,13.5px)]">
+          <div className={`flex items-center bg-[#03a6091a] text-[#03A609] rounded-full w-8 h-8 p-2.5 [font-size:clamp(9px,3vw,13.5px)] ${isLoading && "animate-ping"}`}>
             {onlineOrder?.meta?.total}
-          </span>
+          </div>
         </div>
         <div>
           <span className="border md:py-3 py-2 px-3 rounded-lg  w-fit ">
@@ -145,13 +145,19 @@ const OrderHistory = () => {
         </div>
       </div>
 
-      {!isLoading && ( // Render only when initial loading is complete
+      {isLoading ? (
+        [...Array(4)].map((_, index) => {
+          return (
+            <OrderHistorySkeleton key={index} />
+          )
+        })
+      ) :
         <OrderHistoryDetails
           data={onlineOrder}
           isLoading={isLoading}
           loadingMore={loadingMore}
         />
-      )}
+      }
     </div>
   );
 };

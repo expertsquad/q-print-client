@@ -25,5 +25,6 @@ export const baseApi = createApi({
     "verify-email",
     "forget-password",
     "reset-password",
+    "social-media",
   ],
 });

@@ -15,8 +15,8 @@ import playStore from "@/assets/playstore.svg";
 import appleStore from "@/assets/applestore.svg";
 
 const Footer = () => {
-
   const currentYear = new Date().getFullYear();
+
 
   return (
     <footer className="bg-[#1A1A1A] p-6 ">
