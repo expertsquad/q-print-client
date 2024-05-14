@@ -46,7 +46,7 @@ function QuickMessagePopup() {
                 <div
                     ref={popupRef}
                     className={`bg-white px-5 md:py-10 py-3 md:rounded-[10px] md:w-[350px] w-full rounded-t-[30px] z-50 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] fixed md:right-10 md:bottom-[100px] bottom-0 transition-all duration-1000 transform ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`}>
-                    <div className="md:hidden block mb-3.5 top-3 bg-[#00000017] h-1.5 rounded-full w-[60px] mx-auto cursor-pointer" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} ></div>
+                    <div className="md:hidden block mb-3.5 top-3 bg-[#00000017] h-1.5 rounded-full w-[60px] mx-auto cursor-pointer" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onClick={togglePopup} ></div>
                     <div className="flex flex-col gap-12 md:mt-0 mt-10">
                         <div className="flex flex-col gap-3.5 items-center justify-center">
                             <div className="w-full h-auto items-center flex justify-center cursor-pointer">
