@@ -26,12 +26,14 @@ const HeroItemSlide = ({ sliderArray, isLoading }: any) => {
   }, [curr]);
 
   return (
-    <div className="overflow-hidden relative group ">
+    <div className="overflow-hidden relative group">
       {isLoading ? (
-        <HeroItemSliderSkeleton />
+        <div className="w-full">
+          <HeroItemSliderSkeleton />
+        </div>
       ) : (
         <div
-          className="flex transition-transform ease-out duration-500"
+          className="h-[280px] md:h-[450px] flex transition-transform ease-out duration-500"
           style={{ transform: `translateX(-${curr * 100}%)` }}
           onClick={prev}
         >
@@ -55,7 +57,7 @@ const HeroItemSlide = ({ sliderArray, isLoading }: any) => {
           <IconChevronRight stroke={2} />
         </button>
       </div>
-      <div className="absolute bottom-10 right-0 left-0">
+      <div className="absolute bottom-2 md:bottom-10 right-0 left-0">
         <div className="flex items-center justify-center gap-2">
           {sliderArray?.map((s: any, i: number) => (
             <div

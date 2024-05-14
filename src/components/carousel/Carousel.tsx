@@ -25,15 +25,14 @@ const Carousel = ({ item }: { item: HeroSliderProps }) => {
   return (
     <div
       key={item?._id}
-      className={`carousel-item w-full h-[320px] md:h-[450px] lg:h-[450px] rounded-lg `}
+      className={`carousel-item w-full rounded-lg`}
       style={{
         backgroundColor: `${
           item?.backgroundColor && `#${item?.backgroundColor}`
         }`,
         backgroundImage: `url(${imageUrl}${item?.backgroundPhoto})`,
         width: "100%",
-        height: "450px",
-        minHeight: "320px",
+        backgroundPosition: "cover",
         backgroundSize: "cover",
       }}
       id={item._id}
