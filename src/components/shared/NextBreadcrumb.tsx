@@ -1,7 +1,5 @@
 "use client";
-
 import React, { ReactNode } from "react";
-// import { useRouter,usePathname } from "next/navigation";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -31,7 +29,7 @@ const NextBreadcrumb = ({
   }
 
   return (
-    <div className="md:max-w-[1280px] mx-auto">
+    <div className="md:max-w-[1280px] mx-auto px-5">
       <ul className={containerClasses}>
         <li className={listClasses}>
           <Link href={"/"}>{homeElement}</Link>

@@ -39,7 +39,8 @@ const MyProfileCard = () => {
   // <== User Logout Functionality ==>
   const userLogout = () => {
     removeUserInfo(authKey);
-    router.push("/login");
+    router.push("/");
+    location.reload();
   };
 
   // <== Get data from user me ==>

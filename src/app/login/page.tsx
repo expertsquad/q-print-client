@@ -104,6 +104,14 @@ const Login = () => {
             </div>
           </div>
         </form>
+        <div className="flex items-center whitespace-nowrap">
+          <span className="text-black-opacity-50">
+            Don’t have your account?
+          </span>
+          <Link href={"/signup"} className="main-text-color font-bold ml-1">
+            Register Now
+          </Link>
+        </div>
         <Link
           className="flex items-center justify-center mt-5 font-bold"
           href={"/"}

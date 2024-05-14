@@ -16,9 +16,9 @@ const poppins = Poppins({
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className={`${poppins.className}   no-scrollbar`}>
-      <div>
-        <Header />
+    <div className={`${poppins.className} no-scrollbar`}>
+      <Header />
+      <div className="mt-[200px]">
         <NextBreadcrumb
           homeElement={"Home"}
           separator={
@@ -35,7 +35,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       </div>
       <ScrollToTopButton />
       <QuickMessagePopup />
-      <div className="md:mt-56 mt-40 max-w-[1280px]  mx-auto px-5 ">{children}</div>
+      <div className="max-w-[1280px]  mx-auto px-5 ">{children}</div>
       {/* <Footer /> */}
       <NewFooter />
       <ToastContainer />

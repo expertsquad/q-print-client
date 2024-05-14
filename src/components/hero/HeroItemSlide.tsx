@@ -33,7 +33,7 @@ const HeroItemSlide = ({ sliderArray, isLoading }: any) => {
         </div>
       ) : (
         <div
-          className="h-[280px] md:h-[450px] flex transition-transform ease-out duration-500"
+          className="h-[280px] md:h-[450px] w-full flex transition-transform ease-out duration-500"
           style={{ transform: `translateX(-${curr * 100}%)` }}
           onClick={prev}
         >

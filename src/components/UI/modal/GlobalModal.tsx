@@ -28,7 +28,7 @@ const GlobalModal = ({
       onClick={handleClose}
     >
       <div
-        className={`${mainClassName} rounded-lg bg-white`}
+        className={`${mainClassName} cursor-default rounded-lg bg-white`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className={`${yourCustomStyle}`}>{children}</div>
