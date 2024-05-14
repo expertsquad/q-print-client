@@ -31,7 +31,6 @@ const Carousel = ({ item }: { item: HeroSliderProps }) => {
           item?.backgroundColor && `#${item?.backgroundColor}`
         }`,
         backgroundImage: `url(${imageUrl}${item?.backgroundPhoto})`,
-        width: "100%",
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}

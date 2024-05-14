@@ -44,14 +44,13 @@ const CountdownTimer: React.FC<CountdownProps> = ({ endDate }) => {
       {Object.entries(timeLeft).map(([unit, value]) => (
         <div
           key={unit}
-          className="flex flex-col border p-2 md:rounded rounded-[10px] items-center justify-center bg-white"
+          className="flex flex-col border p-1 md:p-2 rounded md:rounded-md items-center justify-center bg-white"
         >
           <span className="countdown text-sm md:text-base">{value}</span>
           <span className="text-[10px] font-bold bg-gradient-to-r from-[#C83B62]  to-[#7F35CD]  text-transparent bg-clip-text">
             {unit.toUpperCase()}
           </span>
         </div>
-
       ))}
     </div>
   );

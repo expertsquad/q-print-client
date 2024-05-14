@@ -22,10 +22,10 @@ const BottomSmallBanner = ({
       }}
     >
       <div className="flex flex-col gap-y-5">
-        <h2 className="text-lg leading-7 line-clamp-1">
+        <h2 className="text-base md:text-lg leading-7 line-clamp-1">
           {bottomOffer?.offerTag}
         </h2>
-        <h2 className="text-lg leading-7 line-clamp-1">{bottomOffer?.title}</h2>
+        <h2 className="text-sm leading-7 line-clamp-1">{bottomOffer?.title}</h2>
         <ShopNowButton
           href={bottomOffer?.link}
           buttonText={bottomOffer?.buttonText}

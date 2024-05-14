@@ -29,7 +29,9 @@ const TopSmallBanner = ({ topOffer }: { topOffer: heroTopSmallBanner }) => {
       </div>
 
       <div className="flex flex-col gap-y-5">
-        <h2 className="text-lg leading-7 line-clamp-1">{topOffer?.title}</h2>
+        <h2 className="text-base md:text-lg leading-7 line-clamp-1">
+          {topOffer?.title}
+        </h2>
         <div className="flex items-baseline gap-1 main-text-color font-bold">
           <span className="text-lg">{topOffer?.price}</span>
           <small>QAR</small>

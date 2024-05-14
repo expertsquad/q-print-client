@@ -19,14 +19,14 @@ const HeroItemSlide = ({ sliderArray, isLoading }: any) => {
     if (autoSlideInterval) {
       clearInterval(autoSlideInterval);
     }
-    const interval = setInterval(next, 10000);
+    const interval = setInterval(next, 5000);
     setAutoSlideInterval(interval);
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [curr]);
 
   return (
-    <div className="overflow-hidden relative group">
+    <div className="overflow-hidden relative group w-full">
       {isLoading ? (
         <div className="w-full">
           <HeroItemSliderSkeleton />
