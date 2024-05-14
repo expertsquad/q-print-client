@@ -49,7 +49,7 @@ function QuickMessagePopup() {
 
     return (
         <>
-            <div className="fixed bottom-5 md:right-10 right-5 z-50">
+            <div className="fixed bottom-5 md:right-10 right-5 z-40">
                 <button className="flex items-center justify-center w-[60px] h-[60px] rounded-full outline-none bg-main-bg-color group cursor-pointer z-40" onClick={togglePopup}>
                     {isOpen ? (
                         <IconX className="text-white" width={30} height={30} stroke={2} />
@@ -74,6 +74,8 @@ function QuickMessagePopup() {
                         <div className="flex flex-col gap-5 items-center w-full">
 
                             {
+
+
                                 data?.data?.map((media: any, index: number) => {
                                     return (
                                         <Link
