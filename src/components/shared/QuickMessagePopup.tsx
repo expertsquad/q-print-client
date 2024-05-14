@@ -40,6 +40,11 @@ function QuickMessagePopup() {
         }
     };
 
+    function isWhatsAppInstalled() {
+        return navigator.userAgent.includes("WhatsApp");
+    }
+
+
 
 
     return (
@@ -74,29 +79,29 @@ function QuickMessagePopup() {
                                         <Link
                                             href={
                                                 media?.mediaName === "Messenger"
-                                                    ?
-                                                    `https://m.me/${media?.userName}`
-                                                    :
-                                                    media?.mediaName === "Whatsapp"
-                                                        ? `https://api.whatsapp.com/send?phone=${media?.phoneNumber
-                                                        }` : ""}
+                                                    ? `https://m.me/${media?.userName}`
+                                                    : media?.mediaName === "Whatsapp"
+                                                        ? isWhatsAppInstalled()
+                                                            ? `https://api.whatsapp.com/send?phone=${media?.phoneNumber}`
+                                                            : `https://web.whatsapp.com/send?phone=${media?.phoneNumber}`
+                                                        : ""
+                                            }
                                             key={index}
-                                            className={`
-                                            flex items-center gap-3 justify-center py-3 px-3.5
-                                            ${media?.mediaName === "Messenger" ? "bg-[#097DFF]" : "bg-[#25D366]"}
-                                            rounded-lg w-full`}
-                                            target="blank">
+                                            className={`flex items-center gap-3 justify-center py-3 px-3.5 ${media?.mediaName === "Messenger" ? "bg-[#097DFF]" : "bg-[#25D366]"} rounded-lg w-full`}
+                                            target="_blank"
+                                        >
                                             {
                                                 media?.mediaName === "Messenger"
-                                                    ?
-                                                    <IconBrandMessenger stroke={1} className="text-white" width={24} height={24} />
-                                                    :
-                                                    media?.mediaName === "Whatsapp" ?
-                                                        <IconBrandWhatsapp stroke={1} className="text-white" width={24} height={24} />
+                                                    ? <IconBrandMessenger stroke={1} className="text-white" width={24} height={24} />
+                                                    : media?.mediaName === "Whatsapp"
+                                                        ? isWhatsAppInstalled()
+                                                            ? <IconBrandWhatsapp stroke={1} className="text-white" width={24} height={24} />
+                                                            : <IconBrandWhatsapp stroke={1} className="text-white" width={24} height={24} />
                                                         : ""
                                             }
                                             <span className="text-white text-base">{media?.mediaName}</span>
                                         </Link>
+
                                     )
                                 })
                             }
