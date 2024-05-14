@@ -90,7 +90,7 @@ const Login = () => {
             >
               Login
             </button>
-            <div className="flex items-center justify-start gap-2">
+            <div className="items-center justify-start gap-2 hidden">
               <input
                 type="checkbox"
                 id="remember-me"
@@ -104,7 +104,7 @@ const Login = () => {
             </div>
           </div>
         </form>
-        <div className="flex items-center whitespace-nowrap">
+        <div className="flex items-center whitespace-nowrap mt-5">
           <span className="text-black-opacity-50">
             Don’t have your account?
           </span>

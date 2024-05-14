@@ -36,7 +36,7 @@ const Header = () => {
     if (userLoggedIn) {
       router.push("/profile");
     } else {
-      router.push("/signup");
+      router.push("/login");
     }
   };
 
