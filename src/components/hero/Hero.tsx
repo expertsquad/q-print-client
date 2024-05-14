@@ -11,14 +11,14 @@ const Hero = () => {
   const sliderArray = Object.values(data?.data?.slider || {});
 
   return (
-    <section className="flex w-full md:flex-row flex-col gap-5">
+    <section className="grid grid-cols-1 md:grid-cols-3 gap-5">
       {/* === Left side slider with three nested section === */}
-      <div className="md:w-8/12 w-full h-[280px] md:h-[450px]">
+      <div className="h-[280px] md:h-[450px] md:col-span-2">
         <HeroItemSlide isLoading={isLoading} sliderArray={sliderArray} />
       </div>
 
       {/* === right top and right bottom === */}
-      <div className="w-full">
+      <div className="">
         {isLoading ? (
           <div className="flex flex-col gap-4 h-full md:h-auto">
             {[...Array(2)].map((_, index) => (

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const HeroItemSliderSkeleton = () => {
   return (
-    <div className="w-full bg-gray-300 animate-pulse flex items-center justify-between h-[280px] md:h-[450px] rounded-custom-10px px-[60px] py-[90px] relative">
+    <div className="w-full bg-gray-300 animate-pulse flex items-center justify-between gap-20 h-[280px] md:h-[450px] rounded-custom-10px px-[60px] py-[90px] relative">
       <div className="flex flex-col  gap-5 w-full">
         <div className="flex flex-col gap-2.5 w-full">
           <div className="bg-gray-400 md:w-28 skeleton w-20 h-2 rounded-full"></div>

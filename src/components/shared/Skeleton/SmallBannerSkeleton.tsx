@@ -4,7 +4,7 @@ import placeHolder from "@/assets/Placeholder_view_vector.svg"
 
 const SmallBannerSkeleton = ({ index }: any) => {
     return (
-        <div className={`bg-gray-300 animate-pulse rounded-custom-10px md:w-[445px] w-full md:h-[217px] h-[160px] flex ${index === 1 && "flex-row-reverse"} items-center justify-between gap-3.5 px-5`}>
+        <div className={`bg-gray-300 animate-pulse rounded-custom-10px  w-full md:h-[217px] h-[160px] flex ${index === 1 && "flex-row-reverse"} items-center justify-between gap-3.5 px-5`}>
 
             <div className="overflow-hidden rounded-md">
                 <Image className='md:w-[170px] w-[220px] h-[120px]' src={placeHolder} alt="small banner loading" />

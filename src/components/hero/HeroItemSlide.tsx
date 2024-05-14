@@ -28,7 +28,7 @@ const HeroItemSlide = ({ sliderArray, isLoading }: any) => {
   return (
     <div className="overflow-hidden relative group w-full">
       {isLoading ? (
-        <div className="w-full">
+        <div className="w-full ">
           <HeroItemSliderSkeleton />
         </div>
       ) : (
