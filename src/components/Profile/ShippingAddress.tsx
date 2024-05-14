@@ -117,7 +117,7 @@ const ShippingAddress = () => {
               onChange={(e) =>
                 dispatch(setShippingData({ [e.target.name]: e.target.value }))
               }
-              className="w-full border border-gray-200 py-3 focus:outline-none focus:border-fuchsia-800 rounded-md"
+              className="w-full border border-gray-200 px-3.5 py-3 focus:outline-none focus:border-fuchsia-800 rounded-md"
             >
               {qatarStates?.map((state) => (
                 <option

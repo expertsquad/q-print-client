@@ -1,3 +1,4 @@
+import { isLoggedIn } from "@/services/auth.service";
 import { IconArrowRight } from "@tabler/icons-react";
 import Link from "next/link";
 import React from "react";
@@ -9,6 +10,8 @@ const CartViewTotalCard = ({
   calculateTotalWithDiscount,
   btnDisabled,
 }: number | any) => {
+  const isUserLoggedIn = isLoggedIn();
+
   return (
     <div className="w-full  ">
       <h5 className="text-[16px] md:text-[18px] font-medium pl-6 py-5 border-b">
@@ -50,7 +53,7 @@ const CartViewTotalCard = ({
         className={`${btnDisabled} "flex items-center justify-center px-5 mb-5 w-full  "`}
       >
         <Link
-          href="/your-information"
+          href={` ${!isUserLoggedIn ? "/login" : "/your-information"}`}
           className="flex items-center gap-2 justify-center main-bg-color w-full py-3 text-sm text-white rounded-[5px]"
         >
           <span className="uppercase">Proceed To Checkout</span>
