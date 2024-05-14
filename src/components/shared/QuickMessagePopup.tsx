@@ -44,7 +44,7 @@ function QuickMessagePopup() {
 
     return (
         <>
-            <div className="fixed bottom-5 right-10">
+            <div className="fixed bottom-5 md:right-10 right-5 z-50">
                 <button className="flex items-center justify-center w-[60px] h-[60px] rounded-full outline-none bg-main-bg-color group cursor-pointer z-40" onClick={togglePopup}>
                     {isOpen ? (
                         <IconX className="text-white" width={30} height={30} stroke={2} />
