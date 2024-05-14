@@ -12,12 +12,12 @@ const BestDealProduct = ({ productData }: any) => {
   const handleViewProduct = (e: any) => {
     e.stopPropagation();
     const product = productData?.map((product: any) => {
-      return router.push(`/product/${product?._id}`);
+      return router.push(`/product/${product?.productId}`);
     });
   };
   return (
     <div>
-      <div className="flex items-center justify-between gap-3 overflow-x-auto scroll-smooth no-scrollbar mt-5">
+      <div className="flex items-center justify-center gap-3 overflow-x-auto scroll-smooth no-scrollbar mt-5">
         {/* === Event Product Card === */}
         {productData?.map((product: BestDealsProduct) => (
           <div
@@ -36,7 +36,7 @@ const BestDealProduct = ({ productData }: any) => {
               />
             </div>
             <div className="flex justify-center flex-col gap-1">
-              <span className="text-black line-clamp-1">
+              <span className="text-black text-sm md:text-base line-clamp-1">
                 {product?.productName}
               </span>
 
