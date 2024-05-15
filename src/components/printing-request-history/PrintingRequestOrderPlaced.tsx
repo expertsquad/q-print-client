@@ -2,6 +2,7 @@ import PringtingOrderHistoryTable from "./PringtingOrderHistoryTable";
 import OrderHistorySkeleton from "@/components/shared/Skeleton/OrderHistorySkeleton";
 
 const PrintingRequestOrderPlaced = ({ printingReqData, isLoading }: any) => {
+  console.log(printingReqData, "From printing page");
   return (
     <div>
       {isLoading ? (

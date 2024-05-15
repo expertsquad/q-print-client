@@ -8,7 +8,7 @@ const Spinner = () => {
     >
       <div className="flex items-center">
         <svg
-          className="animate-spin h-20  w-20 text-gray-800"
+          className="animate-spin h-20  w-20 text-main-text-color"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"

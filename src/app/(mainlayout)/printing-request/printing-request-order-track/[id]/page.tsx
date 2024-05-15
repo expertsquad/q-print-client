@@ -9,7 +9,6 @@ import React from "react";
 const PrintingRequestOrderTrack = ({ params }: { params: { id: string } }) => {
   const { data, isLoading } = usePrintingRequestByIdQuery(params?.id);
   const orderedData = data?.data;
-  console.log(orderedData, "From 120");
   return (
     <div className="max-w-[1280px] mx-auto relative">
       {isLoading && (
@@ -20,6 +19,8 @@ const PrintingRequestOrderTrack = ({ params }: { params: { id: string } }) => {
       <div>
         <PrintingRequestOrderTrackTop
           orderId={orderedData?.orderId}
+          id={params?.id}
+          orderedData={orderedData}
           createdAt={orderedData?.createdAt}
         />
         <PrintingRequestOrderTrackStep orderedData={orderedData} />

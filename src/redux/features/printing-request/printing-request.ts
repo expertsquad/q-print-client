@@ -31,6 +31,14 @@ export const printingRequestApi = baseApi.injectEndpoints({
         data: data.data,
       }),
     }),
+    printingRequestOrderCancel: build.mutation({
+      query: (data) => ({
+        url: `/printing-request/${data.id}`,
+        method: "PATCH",
+        data: data,
+      }),
+      invalidatesTags: ["printingRequests"],
+    }),
   }),
 });
 
@@ -39,4 +47,5 @@ export const {
   useGetPrintingRequestsQuery,
   usePrintingRequestOrderHistoryQuery,
   usePrintingRequestByIdQuery,
+  usePrintingRequestOrderCancelMutation,
 } = printingRequestApi;

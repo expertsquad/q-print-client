@@ -142,7 +142,11 @@ const OrderHistoryDetails = ({ data, isLoading, loadingMore }: any) => {
                   <span>{data?.orderItems?.length} Items,</span>
                   <span>Total: {data?.totalPrice} QAR</span>
                 </div>
-                <OrderTrackButton id={data?._id} />
+                {data.orderStatus.status !== "Cancelled" &&
+                data.orderStatus.status !== "Returned" &&
+                data.orderStatus.status !== "Rejected" ? (
+                  <OrderTrackButton id={data._id} />
+                ) : null}
               </div>
             </div>
           ))}

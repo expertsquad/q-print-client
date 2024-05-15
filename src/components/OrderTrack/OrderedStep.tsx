@@ -27,19 +27,8 @@ const OrderedStep = ({ id }: { id: string }) => {
         numberOfSteps={4}
         iconStroke={2}
         customStepStyle={`relative`}
+        orderStatus={data?.data?.orderStatus}
       />
-      <div className="grid grid-cols-4">
-        {data?.data?.orderStatus?.map((status: OrderStatusType) => (
-          <div key={status?._id} className="flex flex-col items-center">
-            <span className="text-[11px] md:text-[16px] italic">
-              {status?.status}
-            </span>
-            <span className="text-black text-opacity-50 text-[11px] md:text-sm italic">
-              {formatDate(status?.time)}
-            </span>
-          </div>
-        ))}
-      </div>
     </div>
   );
 };

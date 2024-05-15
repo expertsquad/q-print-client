@@ -23,19 +23,8 @@ const PrintingRequestOrderTrackStep = ({ orderedData }: any) => {
         numberOfSteps={4}
         iconStroke={2}
         customStepStyle={`relative`}
+        orderStatus={orderedData?.orderStatus}
       />
-      <div className="grid grid-cols-4">
-        {orderedData?.orderStatus?.map((status: OrderStatusType) => (
-          <div key={status?._id} className="flex flex-col items-center">
-            <span className="text-[11px] md:text-[16px] italic">
-              {status?.status}
-            </span>
-            <span className="text-black text-opacity-50 text-[11px] md:text-sm italic">
-              {formatDate(status?.time)}
-            </span>
-          </div>
-        ))}
-      </div>
     </div>
   );
 };
