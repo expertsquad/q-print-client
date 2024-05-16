@@ -1,8 +1,19 @@
 import React from "react";
 import GlobalModal from "../UI/modal/GlobalModal";
 import { IconAlertTriangle } from "@tabler/icons-react";
+import { removeUserInfo } from "@/services/auth.service";
+import { useRouter } from "next/navigation";
+import { authKey } from "@/constants/storageKey";
 
 const DeleteGlobalModal = ({ handleModal }: any) => {
+  const router = useRouter();
+  const userLogout = () => {
+    removeUserInfo(authKey);
+    router.push("/");
+    setTimeout(() => {
+      location.reload();
+    }, 500);
+  };
   return (
     <div>
       <GlobalModal
@@ -26,7 +37,10 @@ const DeleteGlobalModal = ({ handleModal }: any) => {
             >
               No
             </button>
-            <button className="bg-main-bg-color-opacity-32 px-10 py-3.5 rounded-md">
+            <button
+              onClick={() => userLogout()}
+              className="bg-main-bg-color-opacity-32 px-10 py-3.5 rounded-md"
+            >
               Yes
             </button>
           </div>
