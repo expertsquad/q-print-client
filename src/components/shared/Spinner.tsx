@@ -4,7 +4,7 @@ const Spinner = () => {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="fixed inset-0 bg-black  bg-opacity-40 z-10 h-full w-full flex items-center justify-center"
+      className="fixed inset-0 bg-black  bg-opacity-40 z-50 h-full w-full flex items-center justify-center"
     >
       <svg
         className="text-gray-300 animate-spin w-14 h-14"
