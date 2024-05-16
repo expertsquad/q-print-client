@@ -27,7 +27,7 @@ const Spinner = () => {
           stroke-width="5"
           stroke-linecap="round"
           stroke-linejoin="round"
-          className="text-purple-500"
+          className="text-purple-800"
         ></path>
       </svg>
     </div>
