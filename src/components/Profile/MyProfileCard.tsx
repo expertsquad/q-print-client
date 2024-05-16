@@ -127,10 +127,8 @@ const MyProfileCard = () => {
               </div>
               <div>
                 <p>Hello,</p>
-                {data?.data?.fullName ? (
+                {data?.data?.fullName && (
                   <h3 className="font-bold">{data?.data?.fullName}</h3>
-                ) : (
-                  <h3 className="font-bold">User Name</h3>
                 )}
               </div>
             </div>

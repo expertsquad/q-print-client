@@ -28,9 +28,18 @@ const ProfileSettings = () => {
   }, [defaultAddress, dispatch]);
 
   return (
-    <div className="lg:border rounded-lg lg:p-7 flex flex-col gap-8 mb-7">
-      <PersonalInformation personalInformation={personalInformation?.data} />
-      <ShippingAddress />
+    <div className="">
+      <div className="lg:border rounded-lg lg:p-7 flex flex-col gap-8 mb-7">
+        <PersonalInformation personalInformation={personalInformation?.data} />
+        <ShippingAddress />
+      </div>
+
+      {/* will be deleted */}
+      <div className="my-10 text-center ">
+        <button className="px-6 py-2 hover:bg-red-500 text-red-500 hover:text-white rounded-3xl border border-red-500  ">
+          Delete my account
+        </button>
+      </div>
     </div>
   );
 };
