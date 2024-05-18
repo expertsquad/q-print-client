@@ -14,8 +14,11 @@ const brandNameSlice = createSlice({
     setBrandName: (state, action) => {
       state.brandName = action.payload;
     },
+    resetBrandName: (state) => {
+      return initialState;
+    },
   },
 });
 
-export const { setBrandName } = brandNameSlice.actions;
+export const { setBrandName, resetBrandName } = brandNameSlice.actions;
 export default brandNameSlice.reducer;

@@ -1,8 +1,5 @@
 "use client";
 import Image from "next/image";
-import dealDayOne from "@/assets/deal-day-1.svg";
-import dealDayTwo from "@/assets/deal-day-2.svg";
-import ShopNowButton from "../UI/btn/ShopNowButton";
 import { IconArrowRight } from "@tabler/icons-react";
 import { useGetDealOfTheDayQuery } from "@/redux/features/dealWidgetSliderEtc/dealOfTheDay";
 import { imageUrl } from "@/constants/imageUrl";
@@ -28,23 +25,23 @@ const DealOfTheDay = () => {
             <div className="flex flex-col md:gap-5 gap-3.5">
               <div className="flex flex-col gap-2.5">
                 <div className="bg-[#EFD33D] text-center animate-bounce py-1.5 px-3 rounded font-medium text-black w-[80px] ">
-                  <span className="md:text-xs text-[10px]">{firstDeal?.discount}% OFF</span>
+                  <span className="md:text-xs text-[10px]">
+                    {firstDeal?.discount}% OFF
+                  </span>
                 </div>
                 <div className="flex flex-col md:gap-2 gap-1">
                   <h2 className="font-semibold [font-size:_clamp(18px,4vw,24px)]  md:line-clamp-2 line-clamp-1">
                     {firstDeal?.title}
                   </h2>
-                  <p className=" md:line-clamp-2 line-clamp-1">{firstDeal?.description}</p>
+                  <p className=" md:line-clamp-2 line-clamp-1">
+                    {firstDeal?.description}
+                  </p>
                 </div>
               </div>
 
-              <Link
-                href={`${firstDeal?.link}`}
-              >
+              <Link href={`${firstDeal?.link}`}>
                 <button className="text-sm flex items-center justify-center gap-2 py-3 px-3  rounded-md uppercase main-bg-color text-white transition hover:translate-x-2 delay-150 whitespace-nowrap">
-                  <span>
-                    {firstDeal?.buttonText}
-                  </span>
+                  <span>{firstDeal?.buttonText}</span>
                   <span>
                     <IconArrowRight width={20} height={20} />
                   </span>
@@ -69,23 +66,23 @@ const DealOfTheDay = () => {
             <div className="flex flex-col md:gap-5 gap-3.5">
               <div className="flex flex-col gap-2.5">
                 <div className="animate-bounce w-auto">
-                  <span className="md:text-xs text-[10px] bg-[#2DA5F3] text-center  uppercase py-1.5 px-3 rounded font-medium text-white ">{secondDeal?.tag}</span>
+                  <span className="md:text-xs text-[10px] bg-[#2DA5F3] text-center  uppercase py-1.5 px-3 rounded font-medium text-white ">
+                    {secondDeal?.tag}
+                  </span>
                 </div>
                 <div className="flex flex-col md:gap-2 gap-1 text-white">
                   <h2 className="font-semibold [font-size:_clamp(18px,4vw,24px)]  md:line-clamp-2 line-clamp-1">
                     {secondDeal?.title}
                   </h2>
-                  <p className=" md:line-clamp-2 line-clamp-1">{secondDeal?.description}</p>
+                  <p className=" md:line-clamp-2 line-clamp-1">
+                    {secondDeal?.description}
+                  </p>
                 </div>
               </div>
 
-              <Link
-                href={`${secondDeal?.link}`}
-              >
+              <Link href={`${secondDeal?.link}`}>
                 <button className="text-sm flex items-center justify-center gap-2 py-3 px-3  rounded-md uppercase main-bg-color text-white transition hover:translate-x-2 delay-150 whitespace-nowrap">
-                  <span>
-                    {secondDeal?.buttonText}
-                  </span>
+                  <span>{secondDeal?.buttonText}</span>
                   <span>
                     <IconArrowRight width={20} height={20} />
                   </span>

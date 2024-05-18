@@ -7,7 +7,6 @@ import { useAppSelector } from "@/redux/hook";
 import { setBrandName } from "@/redux/features/brand/brandNameSlice";
 import BrandViewSkeleton from "@/components/shared/Skeleton/BrandViewSkeleton";
 
-
 const BrandsCard = ({ handleModal }: any) => {
   const { data, isLoading } = useGetBrandsQuery("");
   const dispatch = useDispatch();
@@ -21,22 +20,12 @@ const BrandsCard = ({ handleModal }: any) => {
       <h1 className="text-[#00000066] font-semibold text-base">BRANDS</h1>
       <hr className="my-5" />
       <div className="flex flex-col gap-4">
-        {
-
-          isLoading ? (
-            [...Array(10)].map((_, index) => {
-              return (
-                <BrandViewSkeleton key={index} />
-              )
+        {isLoading
+          ? [...Array(10)].map((_, index) => {
+              return <BrandViewSkeleton key={index} />;
             })
-          ) :
-
-
-
-            data?.data?.map((brand: any, i: number) => (
-              <div onClick={() => {
-                handleModal()
-              }} key={i} className="flex gap-4 justify-start items-center">
+          : data?.data?.map((brand: any, i: number) => (
+              <div key={i} className="flex gap-4 justify-start items-center">
                 <div className="w-[40px] h-[28px] shrink-0 relative ">
                   <Image
                     src={`${imageUrl}${brand?.brandPhoto}`}
