@@ -18,6 +18,7 @@ import multipleOrder from "./features/quick-order/multipleQuickOrder";
 import forgetPasswordSlice from "./features/forgetPassword/forgetPasswordSlice";
 import filterProducts from "./features/products/filterProducts";
 import socialMediaSlice from "./features/social-media/socialMediaSlice";
+import productsFilterBySubCategory from "./features/products/productsFilterBySubCategory";
 
 export const reducer = {
   [baseApi.reducerPath]: baseApi.reducer,
@@ -40,4 +41,5 @@ export const reducer = {
   profileEdit: profileEditSlice,
   forgetPassword: forgetPasswordSlice,
   socialMediaSlice: socialMediaSlice,
+  productsBySubcategory: productsFilterBySubCategory,
 };

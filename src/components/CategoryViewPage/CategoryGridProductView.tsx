@@ -16,6 +16,10 @@ type SortOption = "MostPopular" | "Recent" | "HighPrice" | "LowPrice";
 const CategoryGridProductView = () => {
   const { options } = useAppSelector((state) => state.productsFilterOptions);
   const { brandName } = useAppSelector((state) => state.productByBrandName);
+  const { selectedSubcategoryName } = useAppSelector(
+    (state) => state.productsBySubcategory
+  );
+  console.log(selectedSubcategoryName, "SUB Category");
   const dispatch = useDispatch();
 
   const { maxPrice, minPrice } = useAppSelector(
@@ -26,13 +30,20 @@ const CategoryGridProductView = () => {
     sortBy: string,
     sortOrder: string,
     minPrice: number,
-    maxPrice: number
+    maxPrice: number,
+    selectedSubcategoryName?: string
   ) {
     const queryString = `sortBy=${sortBy}&sortOrder=${sortOrder}&${
       minPrice &&
       maxPrice &&
-      `variants.sellingPrice[gte]=${minPrice}&variants.sellingPrice[lte]=${maxPrice}`
+      `variants.sellingPrice[gte]=${minPrice}&variants.sellingPrice[lte]=${maxPrice}&${
+        selectedSubcategoryName
+          ? `category.subcategory.subcategoryName=${selectedSubcategoryName}`
+          : ""
+      }`
     }`;
+
+    console.log("Query String:", queryString);
 
     return useGetProductsQuery(queryString);
   }
@@ -42,7 +53,8 @@ const CategoryGridProductView = () => {
     "averageRating",
     "desc",
     minPrice,
-    maxPrice
+    maxPrice,
+    selectedSubcategoryName
   );
 
   // <== Recent | New Products ==>
@@ -50,7 +62,8 @@ const CategoryGridProductView = () => {
     "createdAt",
     "desc",
     minPrice,
-    maxPrice
+    maxPrice,
+    selectedSubcategoryName
   );
 
   // <== High Price ==>
@@ -58,7 +71,8 @@ const CategoryGridProductView = () => {
     "variants.sellingPrice",
     "desc",
     minPrice,
-    maxPrice
+    maxPrice,
+    selectedSubcategoryName
   );
 
   // <== Low Price ==>
@@ -66,7 +80,8 @@ const CategoryGridProductView = () => {
     "variants.sellingPrice",
     "asc",
     minPrice,
-    maxPrice
+    maxPrice,
+    selectedSubcategoryName
   );
 
   const sortOptions = {

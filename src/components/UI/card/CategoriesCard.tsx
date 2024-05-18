@@ -1,9 +1,12 @@
 "use client";
 import { useGetCategoryQuery } from "@/redux/features/category/categories";
+import { setSelectedSubcategoryName } from "@/redux/features/products/productsFilterBySubCategory";
+import { useDispatch } from "react-redux";
 
 const CategoriesCard = () => {
   // <== Get Category & SubCategory ==>
   const { data } = useGetCategoryQuery("");
+  const dispatch = useDispatch();
 
   return (
     <ul className="menu rounded-box shadow-md mt-5 ">
@@ -20,7 +23,15 @@ const CategoriesCard = () => {
             <ul className="text-[#475156] text-base cursor-pointer">
               {category?.subcategories?.map((subcategory: any) => (
                 <li key={subcategory?.subcategoryId}>
-                  <a href="">{subcategory?.subcategoryName}</a>
+                  <span
+                    onClick={() =>
+                      dispatch(
+                        setSelectedSubcategoryName(subcategory.subcategoryName)
+                      )
+                    }
+                  >
+                    {subcategory?.subcategoryName}
+                  </span>
                 </li>
               ))}
             </ul>

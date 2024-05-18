@@ -19,3 +19,7 @@ const productsBySubcategory = createSlice({
     },
   },
 });
+
+export const { setSelectedSubcategoryName, resetSelectedSubcategoryName } =
+  productsBySubcategory.actions;
+export default productsBySubcategory.reducer;
