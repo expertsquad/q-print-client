@@ -19,7 +19,6 @@ const CategoryGridProductView = () => {
   const { selectedSubcategoryName } = useAppSelector(
     (state) => state.productsBySubcategory
   );
-  console.log(selectedSubcategoryName, "SUB Category");
   const dispatch = useDispatch();
 
   const { maxPrice, minPrice } = useAppSelector(
@@ -29,21 +28,19 @@ const CategoryGridProductView = () => {
   function useGetProductsSortedQuery(
     sortBy: string,
     sortOrder: string,
-    minPrice: number,
-    maxPrice: number,
+    minPrice?: number,
+    maxPrice?: number,
     selectedSubcategoryName?: string
   ) {
-    const queryString = `sortBy=${sortBy}&sortOrder=${sortOrder}&${
+    const queryString = `sortBy=${sortBy}&sortOrder=${sortOrder}${
+      selectedSubcategoryName
+        ? `category.subcategory.subcategoryName=${selectedSubcategoryName}`
+        : ""
+    }&${
       minPrice &&
       maxPrice &&
-      `variants.sellingPrice[gte]=${minPrice}&variants.sellingPrice[lte]=${maxPrice}&${
-        selectedSubcategoryName
-          ? `category.subcategory.subcategoryName=${selectedSubcategoryName}`
-          : ""
-      }`
+      `variants.sellingPrice[gte]=${minPrice}&variants.sellingPrice[lte]=${maxPrice}&`
     }`;
-
-    console.log("Query String:", queryString);
 
     return useGetProductsQuery(queryString);
   }
@@ -103,7 +100,7 @@ const CategoryGridProductView = () => {
       <div className="flex justify-between">
         <div className="flex items-center gap-x-20">
           <div>
-            <h2 className="text-2xl font-bold ">Printer</h2>
+            <h2 className="text-2xl font-bold ">{selectedSubcategoryName}</h2>
             <p className="text-gray-500">
               <span className="text-black font-bold">
                 {" "}
