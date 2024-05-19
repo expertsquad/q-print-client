@@ -18,6 +18,12 @@ const Payment = () => {
   // <== Get User Personal Information ==>
   const { data: personalInformation } = useGetUserQuery("");
   const data = useAppSelector((state) => state.printingRequestOrder);
+  // <== Get User Address ==>
+  const { data: address, isLoading } = useGetUserAddressQuery(`isDefault=true`);
+  const defaultAddress = address?.data?.find(
+    (address: any) => address.isDefault
+  );
+  console.log(defaultAddress);
 
   return (
     <section className="lg:max-w-[1280px] w-full mx-auto  mb-7 ">
@@ -53,7 +59,9 @@ const Payment = () => {
                 <IconMapPin width={22} height={22} stroke={1} />
               </span>
               <span className="w-/12 line-clamp-3 text-sm md:text-base">
-                {data?.shippingAddress?.streetAddress}
+                {data?.shippingAddress?.oldAddress === true
+                  ? defaultAddress?.streetAddress
+                  : data?.shippingAddress?.address}
               </span>
             </div>
             <div className="w-2/12">

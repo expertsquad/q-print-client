@@ -35,7 +35,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
         onChange={onChange}
         name={name}
         placeholder={placeholder}
-        className={`border w-full py-3 pl-3 outline-none focus:border-fuchsia-200 rounded-md mt-3 placeholder:text-sm ${inputStyle}`}
+        className={`border w-full py-3 pl-3 outline-none focus:border-fuchsia-800 rounded-md mt-3 placeholder:text-sm ${inputStyle}`}
       />
       <button
         type="button"

@@ -22,9 +22,9 @@ const BestDeals = () => {
       className={`py-4 px-2 md:py-7 md:px-8  lg:mt-20 md:mt-20 mt-8 rounded-lg`}
       style={{
         backgroundColor: `${
-          data?.data?.backgroundColor && `${data?.data?.backgroundColor}`
+          data?.data?.backgroundColor !== "" && `${data?.data?.backgroundColor}`
         }`,
-        backgroundImage: `url(${imageUrl}${data?.data?.backgroundPhoto})`,
+        backgroundImage: `url(${imageUrl + data?.data?.backgroundPhoto})`,
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
