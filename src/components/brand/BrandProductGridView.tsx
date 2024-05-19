@@ -30,12 +30,6 @@ const BrandProductGridView = () => {
       `variants.sellingPrice[gte]=${minPrice}&variants.sellingPrice[lte]=${maxPrice}`
     }`
   );
-  // <== Get all products length ==>
-  const { data: allProducts } = useGetProductsQuery("");
-  // <== Get all products by brand length ==>
-  const { data: productsByBrand } = useGetProductsQuery(
-    `brand.brandName=${brandName}`
-  );
 
   return (
     <div className="w-full mt-5">
@@ -46,9 +40,6 @@ const BrandProductGridView = () => {
           </span>
           <p className="text-gray-500 ">
             <span className="text-black font-bold">
-              {/* {brandName
-                ? productsByBrand?.data?.length
-                : allProducts?.data?.length} */}
               {filteredProducts?.meta?.total}
             </span>{" "}
             Results found.

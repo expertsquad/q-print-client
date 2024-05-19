@@ -81,8 +81,7 @@ const Payment = () => {
       }
 
       if ("error" in res) {
-        // @ts-ignore
-        toast.error(error?.data);
+        toast.error((res as { error: any }).error.message);
       }
     } catch (error) {
       console.error(error);

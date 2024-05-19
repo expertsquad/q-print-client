@@ -56,7 +56,6 @@ const MultipleQuickOrder = ({ products, subTotal, handleCloseDrawer }: any) => {
       const res = await quickOrder(value);
       console.log(res, "Modasl");
       console.log(error, "eror");
-      // @ts-ignore
       if ("data" in res) {
         toast.success(res?.data?.message);
         handleCloseModal();

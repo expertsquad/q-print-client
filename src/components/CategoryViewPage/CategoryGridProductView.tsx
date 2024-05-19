@@ -13,73 +13,88 @@ import Image from "next/image";
 import emptydata from "@/assets/empty-data.png";
 
 type SortOption = "MostPopular" | "Recent" | "HighPrice" | "LowPrice";
+
 const CategoryGridProductView = () => {
   const { options } = useAppSelector((state) => state.productsFilterOptions);
   const { brandName } = useAppSelector((state) => state.productByBrandName);
   const { selectedSubcategoryName } = useAppSelector(
     (state) => state.productsBySubcategory
   );
-  const dispatch = useDispatch();
-
   const { maxPrice, minPrice } = useAppSelector(
     (state) => state.priceRangeSlice
   );
+  const dispatch = useDispatch();
 
-  function useGetProductsSortedQuery(
-    sortBy: string,
-    sortOrder: string,
+  const buildQueryString = (
+    sortBy?: string,
+    sortOrder?: string,
     minPrice?: number,
     maxPrice?: number,
-    selectedSubcategoryName?: string
-  ) {
-    const queryString = `sortBy=${sortBy}&sortOrder=${sortOrder}${
-      selectedSubcategoryName
-        ? `category.subcategory.subcategoryName=${selectedSubcategoryName}`
-        : ""
-    }&${
-      minPrice &&
-      maxPrice &&
-      `variants.sellingPrice[gte]=${minPrice}&variants.sellingPrice[lte]=${maxPrice}&`
-    }`;
+    selectedSubcategoryName?: string,
+    brandName?: string
+  ) => {
+    let queryString = `sortBy=${sortBy}&sortOrder=${sortOrder}`;
 
-    return useGetProductsQuery(queryString);
-  }
+    if (selectedSubcategoryName) {
+      queryString += `&category.subcategory.subcategoryName=${selectedSubcategoryName}`;
+    }
 
-  // <== Most Popular ==>
-  const { data: mostPopular, isLoading } = useGetProductsSortedQuery(
+    if (brandName) {
+      queryString += `&brand.brandName=${brandName}`;
+    }
+
+    if (minPrice) {
+      queryString += `&variants.sellingPrice[gte]=${minPrice}`;
+    }
+
+    if (maxPrice) {
+      queryString += `&variants.sellingPrice[lte]=${maxPrice}`;
+    }
+
+    return queryString;
+  };
+
+  const mostPopularQueryString = buildQueryString(
     "averageRating",
     "desc",
     minPrice,
     maxPrice,
-    selectedSubcategoryName
+    selectedSubcategoryName,
+    brandName
   );
-
-  // <== Recent | New Products ==>
-  const { data: newProduct } = useGetProductsSortedQuery(
+  const newProductQueryString = buildQueryString(
     "createdAt",
     "desc",
     minPrice,
     maxPrice,
-    selectedSubcategoryName
+    selectedSubcategoryName,
+    brandName
   );
-
-  // <== High Price ==>
-  const { data: highPrice } = useGetProductsSortedQuery(
+  const highPriceQueryString = buildQueryString(
     "variants.sellingPrice",
     "desc",
     minPrice,
     maxPrice,
-    selectedSubcategoryName
+    selectedSubcategoryName,
+    brandName
   );
-
-  // <== Low Price ==>
-  const { data: lowPrice } = useGetProductsSortedQuery(
+  const lowPriceQueryString = buildQueryString(
     "variants.sellingPrice",
     "asc",
     minPrice,
     maxPrice,
-    selectedSubcategoryName
+    selectedSubcategoryName,
+    brandName
   );
+
+  const { data: mostPopular, isLoading: isMostPopularLoading } =
+    useGetProductsQuery(mostPopularQueryString);
+  const { data: newProduct, isLoading: isNewProductLoading } =
+    useGetProductsQuery(newProductQueryString);
+  const { data: highPrice, isLoading: isHighPriceLoading } =
+    useGetProductsQuery(highPriceQueryString);
+  const { data: lowPrice, isLoading: isLowPriceLoading } =
+    useGetProductsQuery(lowPriceQueryString);
 
   const sortOptions = {
     MostPopular: mostPopular,
@@ -95,17 +110,16 @@ const CategoryGridProductView = () => {
   };
 
   return (
-    <div className="w-full mt-5 ">
-      {/* category page grid view  header section */}
+    <div className="w-full mt-5">
+      {/* category page grid view header section */}
       <div className="flex justify-between">
         <div className="flex items-center gap-x-20">
           <div>
             <h2 className="text-2xl font-bold ">{selectedSubcategoryName}</h2>
             <p className="text-gray-500">
               <span className="text-black font-bold">
-                {" "}
-                {productsData?.meta?.total}{" "}
-              </span>
+                {productsData?.meta?.total}
+              </span>{" "}
               Results found.
             </p>
           </div>
@@ -119,21 +133,23 @@ const CategoryGridProductView = () => {
             </div>
           )}
         </div>
-        <div className="lg:block md:block hidden">
+        <div className="md:block hidden">
           <ProductsFilter />
         </div>
-        <div className="lg:hidden md:hidden block">
-          {" "}
+        <div className="md:hidden block">
           <FilterButton />
         </div>
       </div>
 
-      <div className="my-6 grid grid-cols-product-grid md:gap-10 gap-5 ">
-        {isLoading ? (
+      <div className="my-6 grid grid-cols-product-grid md:gap-10 gap-5">
+        {isMostPopularLoading ||
+        isNewProductLoading ||
+        isHighPriceLoading ||
+        isLowPriceLoading ? (
           [...Array(12)].map((_, index) => {
             return <ProductCardSkeleton key={index} />;
           })
-        ) : productsData?.data?.length > 1 ? (
+        ) : productsData?.data?.length > 0 ? (
           productsData?.data?.map((product: IProduct) => (
             <ProductCard key={product?._id} product={product} />
           ))

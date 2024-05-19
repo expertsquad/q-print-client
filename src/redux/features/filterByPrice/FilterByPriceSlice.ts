@@ -5,7 +5,7 @@ type selectPriceRange = {
   maxPrice: number;
 };
 const initialState: selectPriceRange = {
-  minPrice: 300,
+  minPrice: 0,
   maxPrice: 0,
 };
 const priceRangeSlice = createSlice({

@@ -80,9 +80,7 @@ const PrintingRequestTotalOrderCard = ({ buttonText, btnDisable }: any) => {
       const res = await addPrinting(formData);
       console.log(res);
 
-      // @ts-ignore
-      if (res?.data) {
-        // @ts-ignore
+      if ("data" in res) {
         router.push(res?.data?.data?.resultObj?.payUrl);
       }
     } catch (error) {

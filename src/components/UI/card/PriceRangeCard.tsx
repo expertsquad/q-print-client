@@ -75,11 +75,9 @@ const PriceRangeCard = () => {
         railStyle={{ background: "#d593" }}
         handleStyle={[
           {
-            // background: "#fff",
             border: "4px solid #7F35CD",
           },
           {
-            // background: "#fff",
             border: "4px solid #7F35CD",
           },
         ]}
@@ -91,6 +89,7 @@ const PriceRangeCard = () => {
             type="text"
             name="priceRange"
             value={range[0]}
+            readOnly
             className="w-[120px] p-2 rounded-lg border text-center focus:outline-none focus:border-fuchsia-700 focus:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)]"
           />
         </div>
@@ -100,6 +99,7 @@ const PriceRangeCard = () => {
             name="priceRange"
             type="text"
             value={range[1]}
+            readOnly
             className="w-[120px] p-2 rounded-lg border text-center focus:outline-none focus:border-fuchsia-700 focus:shadow-[0px_4px_24px_0px_rgba(127,_53,_205,_0.15)]"
           />
         </div>
