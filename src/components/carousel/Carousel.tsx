@@ -22,15 +22,19 @@ const Carousel = ({ item }: { item: HeroSliderProps }) => {
   const discountedPrice =
     item?.price - item?.price * (item?.discountPercentage / 100);
 
+  console.log(item);
+
   return (
     <div
       key={item?._id}
-      className={`carousel-item w-full rounded-lg`}
+      className={`carousel-item w-full rounded-lg `}
       style={{
         backgroundColor: `${
-          item?.backgroundColor && `#${item?.backgroundColor}`
+          item?.backgroundColor !== "" && `${item?.backgroundColor}`
         }`,
-        backgroundImage: `url(${imageUrl}${item?.backgroundPhoto})`,
+        backgroundImage: `url(${
+          item?.backgroundColor === "" && imageUrl + item?.backgroundPhoto
+        })`,
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
