@@ -24,7 +24,10 @@ const BestDeals = () => {
         backgroundColor: `${
           data?.data?.backgroundColor !== "" && `${data?.data?.backgroundColor}`
         }`,
-        backgroundImage: `url(${imageUrl + data?.data?.backgroundPhoto})`,
+        backgroundImage: `url(${
+          data?.data?.backgroundColor === "" &&
+          imageUrl + data?.data?.backgroundPhoto
+        })`,
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
