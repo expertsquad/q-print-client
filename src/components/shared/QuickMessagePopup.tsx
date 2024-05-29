@@ -103,8 +103,8 @@ function QuickMessagePopup() {
                         ? `https://m.me/${media?.userName}`
                         : media?.mediaName === "Whatsapp"
                         ? isWhatsAppInstalled()
-                          ? `https://api.whatsapp.com/send?phone=${media?.phoneNumber}`
-                          : `https://web.whatsapp.com/send?phone=${media?.phoneNumber}`
+                          ? `https://web.whatsapp.com/send?phone=${media?.phoneNumber}`
+                          : `https://api.whatsapp.com/send?phone=${media?.phoneNumber}`
                         : ""
                     }
                     key={index}
